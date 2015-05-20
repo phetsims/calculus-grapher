@@ -1,0 +1,34 @@
+{
+  "name": "calculus-grapher",
+  "version": "1.0.0-dev.1",
+  "license": "GPLv3",
+  "simTitleStringKey": "CALCULUS_GRAPHER/calculus-grapher.name",
+  "phetLibs": [
+    "calculus-grapher",
+    "assert",
+    "axon",
+    "babel",
+    "brand",
+    "chipper",
+    "dot",
+    "joist",
+    "kite",
+    "phet-core",
+    "phetcommon",
+    "scenery",
+    "scenery-phet",
+    "sherpa",
+    "sun"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phetsims/calculus-grapher.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-requirejs": "~0.4.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "uglify-js": "~2.4.0",
+    "requirejs": "~2.1.8"
+  }
+}
