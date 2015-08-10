@@ -2,6 +2,7 @@
   "name": "calculus-grapher",
   "version": "1.0.0-dev.1",
   "license": "GPLv3",
+  "requirejsNamespace": "CALCULUS_GRAPHER",
   "simTitleStringKey": "CALCULUS_GRAPHER/calculus-grapher.name",
   "phetLibs": [
     "calculus-grapher",
