@@ -5,21 +5,7 @@
   "requirejsNamespace": "CALCULUS_GRAPHER",
   "simTitleStringKey": "CALCULUS_GRAPHER/calculus-grapher.name",
   "phetLibs": [
-    "calculus-grapher",
-    "assert",
-    "axon",
-    "babel",
-    "brand",
-    "chipper",
-    "dot",
-    "joist",
-    "kite",
-    "phet-core",
-    "phetcommon",
-    "scenery",
-    "scenery-phet",
-    "sherpa",
-    "sun"
+    "calculus-grapher"
   ],
   "repository": {
     "type": "git",
