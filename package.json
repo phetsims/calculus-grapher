@@ -15,9 +15,6 @@
   },
   "phet": {
     "requirejsNamespace": "CALCULUS_GRAPHER",
-    "simTitleStringKey": "CALCULUS_GRAPHER/calculus-grapher.name",
-    "phetLibs": [
-      "calculus-grapher"
-    ]
+    "simTitleStringKey": "CALCULUS_GRAPHER/calculus-grapher.name"
   }
 }
