@@ -14,7 +14,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var calculusGrapherSimString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.name' );
+  var calculusGrapherSimString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
 
   /**
    * @constructor

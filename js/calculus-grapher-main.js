@@ -14,7 +14,7 @@ define( function( require ) {
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!CALCULUS_GRAPHER/calculus-grapher.name' );
+  var simTitle = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
 
   var simOptions = {
     credits: {
