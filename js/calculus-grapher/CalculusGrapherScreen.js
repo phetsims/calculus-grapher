@@ -14,7 +14,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var calculusGrapherSimString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
+  var calculusGrapherTitleString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
 
   /**
    * @constructor
@@ -25,7 +25,7 @@ define( function( require ) {
     //If there are multiple screens, then the icon must be provided here.
     var icon = null;
 
-    Screen.call( this, calculusGrapherSimString, icon,
+    Screen.call( this, calculusGrapherTitleString, icon,
       function() { return new CalculusGrapherModel(); },
       function( model ) { return new CalculusGrapherScreenView( model ); },
       { backgroundColor: 'white' }
