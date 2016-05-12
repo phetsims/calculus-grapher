@@ -8,6 +8,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
   var CalculusGrapherModel = require( 'CALCULUS_GRAPHER/calculus-grapher/model/CalculusGrapherModel' );
   var CalculusGrapherScreenView = require( 'CALCULUS_GRAPHER/calculus-grapher/view/CalculusGrapherScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -31,6 +32,8 @@ define( function( require ) {
       { backgroundColor: 'white' }
     );
   }
+
+  calculusGrapher.register( 'CalculusGrapherScreen', CalculusGrapherScreen );
 
   return inherit( Screen, CalculusGrapherScreen );
 } );

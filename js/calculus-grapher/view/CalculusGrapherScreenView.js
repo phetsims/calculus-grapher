@@ -8,6 +8,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -30,6 +31,8 @@ define( function( require ) {
     } );
     this.addChild( resetAllButton );
   }
+
+  calculusGrapher.register( 'CalculusGrapherScreenView', CalculusGrapherScreenView );
 
   return inherit( ScreenView, CalculusGrapherScreenView );
 } );

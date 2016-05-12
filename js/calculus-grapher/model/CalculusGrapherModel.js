@@ -8,6 +8,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
 
@@ -18,6 +19,8 @@ define( function( require ) {
 
     PropertySet.call( this, {} );
   }
+
+  calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
 
   return inherit( PropertySet, CalculusGrapherModel );
 } );
