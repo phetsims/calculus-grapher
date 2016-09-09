@@ -14,19 +14,11 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
-  // strings
-  var calculusGrapherTitleString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
-
   /**
    * @constructor
    */
   function CalculusGrapherScreen() {
-
-    //If this is a single-screen sim, then no icon is necessary.
-    //If there are multiple screens, then the icon must be provided here.
-    var icon = null;
-
-    Screen.call( this, calculusGrapherTitleString, icon,
+    Screen.call( this,
       function() { return new CalculusGrapherModel(); },
       function( model ) { return new CalculusGrapherScreenView( model ); },
       { backgroundColor: 'white' }
