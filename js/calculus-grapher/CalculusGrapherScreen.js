@@ -13,6 +13,8 @@ define( function( require ) {
   var CalculusGrapherScreenView = require( 'CALCULUS_GRAPHER/calculus-grapher/view/CalculusGrapherScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
+  var Property = require( 'AXON/Property' );
+  var Color = require( 'SCENERY/util/Color' );
 
   /**
    * @constructor
@@ -21,7 +23,7 @@ define( function( require ) {
     Screen.call( this,
       function() { return new CalculusGrapherModel(); },
       function( model ) { return new CalculusGrapherScreenView( model ); },
-      { backgroundColor: 'white' }
+      { backgroundColorProperty: new Property( Color.toColor( 'white' ) ) }
     );
   }
 
