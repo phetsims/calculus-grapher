@@ -14,7 +14,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
   var Property = require( 'AXON/Property' );
-  var Color = require( 'SCENERY/util/Color' );
 
   /**
    * @constructor
@@ -23,7 +22,7 @@ define( function( require ) {
     Screen.call( this,
       function() { return new CalculusGrapherModel(); },
       function( model ) { return new CalculusGrapherScreenView( model ); },
-      { backgroundColorProperty: new Property( Color.toColor( 'white' ) ) }
+      { backgroundColorProperty: new Property( 'white' ) }
     );
   }
 
