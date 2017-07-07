@@ -10,17 +10,22 @@ define( function( require ) {
   // modules
   var calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
 
   /**
    * @constructor
    */
   function CalculusGrapherModel() {
 
-    PropertySet.call( this, {} );
   }
 
   calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
 
-  return inherit( PropertySet, CalculusGrapherModel );
+  return inherit( Object, CalculusGrapherModel, {
+    /**
+     * @public
+     */
+    reset: function() {
+      // reset the properties of the model
+    }
+  } );
 } );
