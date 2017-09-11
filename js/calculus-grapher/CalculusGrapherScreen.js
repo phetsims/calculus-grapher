@@ -12,8 +12,8 @@ define( function( require ) {
   var CalculusGrapherModel = require( 'CALCULUS_GRAPHER/calculus-grapher/model/CalculusGrapherModel' );
   var CalculusGrapherScreenView = require( 'CALCULUS_GRAPHER/calculus-grapher/view/CalculusGrapherScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Screen = require( 'JOIST/Screen' );
   var Property = require( 'AXON/Property' );
+  var Screen = require( 'JOIST/Screen' );
 
   /**
    * @constructor
