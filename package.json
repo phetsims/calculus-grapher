@@ -13,7 +13,8 @@
     "requirejsNamespace": "CALCULUS_GRAPHER",
     "runnable": true,
     "supportedBrands": [
-      "phet"
+      "phet",
+      "adapted-from-phet"
     ],
     "simulation": true
   }
