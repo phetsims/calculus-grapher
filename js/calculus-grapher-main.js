@@ -16,7 +16,7 @@ define( require => {
   // strings
   const calculusGrapherTitleString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
 
-  var simOptions = {
+  const simOptions = {
     credits: {
       //TODO fill in proper credits, all of these fields are optional, see joist.AboutDialog
       leadDesign: '',
@@ -29,7 +29,7 @@ define( require => {
   };
 
   SimLauncher.launch( function() {
-    var sim = new Sim( calculusGrapherTitleString, [ new CalculusGrapherScreen() ], simOptions );
+    const sim = new Sim( calculusGrapherTitleString, [ new CalculusGrapherScreen() ], simOptions );
     sim.start();
   } );
 } );

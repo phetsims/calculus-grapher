@@ -22,7 +22,7 @@ define( require => {
     ScreenView.call( this );
 
     // Create and add the Reset All Button in the bottom right, which resets the model
-    var resetAllButton = new ResetAllButton( {
+    const resetAllButton = new ResetAllButton( {
       listener: function() {
         calculusGrapherModel.reset();
       },
