@@ -4,14 +4,14 @@
  *
  * @author 0
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var ScreenView = require( 'JOIST/ScreenView' );
+  const calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  const ScreenView = require( 'JOIST/ScreenView' );
 
   /**
    * @param {CalculusGrapherModel} calculusGrapherModel

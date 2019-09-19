@@ -4,12 +4,12 @@
  *
  * @author 0
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  const calculusGrapher = require( 'CALCULUS_GRAPHER/calculusGrapher' );
+  const inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * @constructor

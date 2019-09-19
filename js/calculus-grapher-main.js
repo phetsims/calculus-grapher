@@ -5,16 +5,16 @@
  *
  * @author 0
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var CalculusGrapherScreen = require( 'CALCULUS_GRAPHER/calculus-grapher/CalculusGrapherScreen' );
-  var Sim = require( 'JOIST/Sim' );
-  var SimLauncher = require( 'JOIST/SimLauncher' );
+  const CalculusGrapherScreen = require( 'CALCULUS_GRAPHER/calculus-grapher/CalculusGrapherScreen' );
+  const Sim = require( 'JOIST/Sim' );
+  const SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var calculusGrapherTitleString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
+  const calculusGrapherTitleString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
 
   var simOptions = {
     credits: {
