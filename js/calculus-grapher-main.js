@@ -5,31 +5,27 @@
  *
  * @author 0
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const CalculusGrapherScreen = require( 'CALCULUS_GRAPHER/calculus-grapher/CalculusGrapherScreen' );
-  const Sim = require( 'JOIST/Sim' );
-  const SimLauncher = require( 'JOIST/SimLauncher' );
+import Sim from '../../joist/js/Sim.js';
+import SimLauncher from '../../joist/js/SimLauncher.js';
+import calculusGrapherStrings from './calculus-grapher-strings.js';
+import CalculusGrapherScreen from './calculus-grapher/CalculusGrapherScreen.js';
 
-  // strings
-  const calculusGrapherTitleString = require( 'string!CALCULUS_GRAPHER/calculus-grapher.title' );
+const calculusGrapherTitleString = calculusGrapherStrings[ 'calculus-grapher' ].title;
 
-  const simOptions = {
-    credits: {
-      //TODO fill in proper credits, all of these fields are optional, see joist.AboutDialog
-      leadDesign: '',
-      softwareDevelopment: '',
-      team: '',
-      qualityAssurance: '',
-      graphicArts: '',
-      thanks: ''
-    }
-  };
+const simOptions = {
+  credits: {
+    //TODO fill in proper credits, all of these fields are optional, see joist.AboutDialog
+    leadDesign: '',
+    softwareDevelopment: '',
+    team: '',
+    qualityAssurance: '',
+    graphicArts: '',
+    thanks: ''
+  }
+};
 
-  SimLauncher.launch( function() {
-    const sim = new Sim( calculusGrapherTitleString, [ new CalculusGrapherScreen() ], simOptions );
-    sim.start();
-  } );
+SimLauncher.launch( function() {
+  const sim = new Sim( calculusGrapherTitleString, [ new CalculusGrapherScreen() ], simOptions );
+  sim.start();
 } );
