@@ -8,7 +8,7 @@
 
 import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
-import calculusGrapherStrings from './calculus-grapher-strings.js';
+import calculusGrapherStrings from './calculusGrapherStrings.js';
 import CalculusGrapherScreen from './calculus-grapher/CalculusGrapherScreen.js';
 
 const calculusGrapherTitleString = calculusGrapherStrings[ 'calculus-grapher' ].title;
