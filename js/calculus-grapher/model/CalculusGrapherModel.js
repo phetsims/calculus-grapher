@@ -17,7 +17,7 @@ function CalculusGrapherModel() {
 
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
 
-export default inherit( Object, CalculusGrapherModel, {
+inherit( Object, CalculusGrapherModel, {
   /**
    * @public
    */
@@ -25,3 +25,5 @@ export default inherit( Object, CalculusGrapherModel, {
     // reset the properties of the model
   }
 } );
+
+export default CalculusGrapherModel;
