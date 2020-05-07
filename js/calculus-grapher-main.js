@@ -7,7 +7,7 @@
  */
 
 import Sim from '../../joist/js/Sim.js';
-import SimLauncher from '../../joist/js/SimLauncher.js';
+import simLauncher from '../../joist/js/simLauncher.js';
 import calculusGrapherStrings from './calculusGrapherStrings.js';
 import CalculusGrapherScreen from './calculus-grapher/CalculusGrapherScreen.js';
 
@@ -25,7 +25,7 @@ const simOptions = {
   }
 };
 
-SimLauncher.launch( function() {
+simLauncher.launch( function() {
   const sim = new Sim( calculusGrapherTitleString, [ new CalculusGrapherScreen() ], simOptions );
   sim.start();
 } );
