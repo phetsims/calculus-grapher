@@ -3,29 +3,35 @@
 /**
  * Main entry point for the sim.
  *
- * @author 0
+ * @author Brandon Li
  */
 
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
+import Tandem from '../../tandem/js/Tandem.js';
 import calculusGrapherStrings from './calculusGrapherStrings.js';
-import CalculusGrapherScreen from './calculus-grapher/CalculusGrapherScreen.js';
-
-const calculusGrapherTitleString = calculusGrapherStrings[ 'calculus-grapher' ].title;
+import IntroScreen from './intro/IntroScreen.js';
+import LabScreen from './lab/LabScreen.js';
 
 const simOptions = {
   credits: {
-    //TODO fill in proper credits, all of these fields are optional, see joist.AboutDialog
     leadDesign: '',
     softwareDevelopment: '',
     team: '',
     qualityAssurance: '',
     graphicArts: '',
+    soundDesign: '',
     thanks: ''
   }
 };
 
-simLauncher.launch( function() {
-  const sim = new Sim( calculusGrapherTitleString, [ new CalculusGrapherScreen() ], simOptions );
+// Launch the 'Calculus Grapher' simulation.
+simLauncher.launch( () => {
+
+  const sim = new Sim( calculusGrapherStrings[ 'calculus-grapher' ].title, [
+    new IntroScreen( Tandem.ROOT.createTandem( 'introScreen' ) ),
+    new LabScreen( Tandem.ROOT.createTandem( 'labScreen' ) )
+  ], simOptions );
+
   sim.start();
 } );
