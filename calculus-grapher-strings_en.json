@@ -1,5 +1,11 @@
 {
   "calculus-grapher.title": {
     "value": "Calculus Grapher"
+  },
+  "screen.intro": {
+    "value": "Intro"
+  },
+  "screen.lab": {
+    "value": "Lab"
   }
 }
