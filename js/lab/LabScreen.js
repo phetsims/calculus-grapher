@@ -6,9 +6,11 @@
  * @author Brandon Li
  */
 
+import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
+import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
 
@@ -25,6 +27,7 @@ class LabScreen extends Screen {
 
     super( createModel, createView, {
       name: 'Lab',
+      backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
       tandem: tandem
     } );
   }
