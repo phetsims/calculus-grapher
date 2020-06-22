@@ -13,7 +13,7 @@ const CurveTypes = Enumeration.byKeys( [
 
   // TODO document this.
   'INTEGRAL',
-  'BASE',
+  'ORIGINAL',
   'DERIVATIVE',
   'SECOND_DERIVATIVE'
 
