@@ -1,4 +1,4 @@
-// Copyright 2019-2020, University of Colorado Boulder
+// Copyright 2020, University of Colorado Boulder
 
 /**
  * Root class (to be subclassed) for the top-level view of every screen in the 'Calculus Grapher' simulation.
