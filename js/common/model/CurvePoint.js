@@ -1,18 +1,18 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * CurvePoint is a single mutable point of a curve at a given x-value.
+ * CurvePoint is a single mutable point of a Curve at a given x-value.
  *
  * Each CurvePoint contains the following information:
  *   - The corresponding y-value of the point.
  *   - All of its saved y-values. Y-values are saved when the user manipulates the original Curve.
- *   - Whether or not the point is defined. A point that isn't defined is a hole or a discontinuity in the curve.
+ *   - Whether or not the point is defined. A point that isn't defined is a hole or a discontinuity in the Curve.
  *   - Whether or not the point is differentiable. For 'Calculus Grapher', the only scenario when points are not
  *     differentiable occur when there is a cusp. See https://en.wikipedia.org/wiki/Cusp_(singularity).
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve and its subtypes to represent and map
- * out the curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
- * sim and are mutated when the curve changes. CurvePoints are never disposed.
+ * out the Curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
+ * sim and are mutated when the Curve changes. CurvePoints are never disposed.
  *
  * @author Brandon Li
  */
@@ -87,7 +87,7 @@ class CurvePoint {
    * @public
    *
    * This method is invoked when the user manipulates the original Curve. When the undo button is pressed, the points
-   * of the original curve will be set to their last saved state.
+   * of the original Curve will be set to their last saved state.
    */
   save() {
 
