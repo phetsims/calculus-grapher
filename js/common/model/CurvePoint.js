@@ -10,7 +10,7 @@
  *     CurvePoints in the OriginalCurve are saved.
  *   - Whether or not the point is differentiable. For 'Calculus Grapher', the only scenario when points are not
  *     differentiable occur when there is a cusp in the original curve. See
- *     https://en.wikipedia.org/wiki/Cusp_(singularity).
+ *     https://en.wikipedia.org/wiki/Cusp_(singularity). Non-differentiable implies non-twice-differentiable.
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve and its subtypes to represent and map
  * out the Curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
