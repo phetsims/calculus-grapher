@@ -44,19 +44,19 @@ class CurvePoint {
 
     //----------------------------------------------------------------------------------------
 
-    // @public (read-only) {number} - the x-coordinate of the point. This value cannot be mutated.
+    // @public (read-only) {number} - the x-coordinate of the Point. This value cannot be mutated.
     this.x = x;
 
-    // @public (read-only) {NumberProperty} - the y-coordinate of the point.
+    // @public (read-only) {NumberProperty} - the y-coordinate of the Point.
     this.yProperty = new NumberProperty( initialY );
 
     // @private {number[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
 
-    // @public {boolean} - indicates if the point is currently differentiable.
+    // @public {boolean} - indicates if the Point is currently differentiable.
     this.isDifferentiable = options.isDifferentiable;
 
-    // @private {boolean} - the initial differentiability of the point.
+    // @private {boolean} - the initial differentiability of the Point.
     this.initialIsDifferentiable = options.isDifferentiable;
   }
 
@@ -88,8 +88,8 @@ class CurvePoint {
    * Saves the current y-value of the Point for the next undoToLastSave() method.
    * @public
    *
-   * This method is invoked when the user manipulates the original Curve. When the undo button is pressed, the points
-   * of the original Curve will be set to their last saved state.
+   * This method is invoked when the user finishes manipulating the original Curve. When the undo button is pressed,
+   * the Points of the original Curve will be set to their last saved state.
    */
   save() {
 
@@ -98,10 +98,10 @@ class CurvePoint {
   }
 
   /**
-   * Sets the y-value of this CurvedPoint to their last saved state.
+   * Sets the y-value of this CurvedPoint to its last saved state.
    * @public
    *
-   * This method is invoked when the undo button is pressed, which successively undo the last action.
+   * This method is invoked when the undo button is pressed, which successively undos the last action.
    */
   undoToLastSave() {
 
