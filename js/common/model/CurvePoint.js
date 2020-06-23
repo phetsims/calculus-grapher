@@ -5,10 +5,12 @@
  *
  * Each CurvePoint contains the following information:
  *   - The corresponding y-value of the point.
- *   - All of its previously 'saved' y-values. When the user manipulates the original Curve, the y-value is saved.
  *   - Whether or not the point exists. A point that isn't defined means that the Curve has a hole or a discontinuity.
+ *   - All of its previously 'saved' y-values. When the user finishes manipulating the original Curve, the y-value of
+ *     CurvePoints in the OriginalCurve are saved.
  *   - Whether or not the point is differentiable. For 'Calculus Grapher', the only scenario when points are not
- *     differentiable occur when there is a cusp. See https://en.wikipedia.org/wiki/Cusp_(singularity).
+ *     differentiable occur when there is a cusp in the original curve. See
+ *     https://en.wikipedia.org/wiki/Cusp_(singularity).
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve and its subtypes to represent and map
  * out the Curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
@@ -71,7 +73,7 @@ class CurvePoint {
   }
 
   /**
-   * Restarts this Ball. Called when the restart button is pressed.
+   * Restarts this CurvePoint. Called when the restart button is pressed.
    * @public
    *
    * See https://github.com/phetsims/collision-lab/issues/76 for context on the differences between reset and restart.
