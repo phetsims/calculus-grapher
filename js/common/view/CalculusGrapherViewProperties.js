@@ -7,7 +7,7 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import collisionLab from '../../collisionLab.js';
+import calculusGrapher from '../../calculusGrapher.js';
 
 class CalculusGrapherViewProperties {
 
@@ -44,5 +44,5 @@ class CalculusGrapherViewProperties {
   }
 }
 
-collisionLab.register( 'CalculusGrapherViewProperties', CalculusGrapherViewProperties );
+calculusGrapher.register( 'CalculusGrapherViewProperties', CalculusGrapherViewProperties );
 export default CalculusGrapherViewProperties;

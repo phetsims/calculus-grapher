@@ -6,11 +6,13 @@
  * @author Brandon Li
  */
 
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-// import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
+import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
+import GraphNode from './GraphNode.js';
 
 class CalculusGrapherScreenView extends ScreenView {
 
@@ -26,7 +28,12 @@ class CalculusGrapherScreenView extends ScreenView {
     super( options );
 
     // Create the view-specific properties for the screen.
-    // const viewProperties = new CalculusGrapherViewProperties();
+    const viewProperties = new CalculusGrapherViewProperties();
+
+
+    const graphNode = new GraphNode( new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty );
+    graphNode.center = this.layoutBounds.center;
+    this.addChild( graphNode );
   }
 }
 
