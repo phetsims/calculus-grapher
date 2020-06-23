@@ -5,8 +5,8 @@
  *
  * Each CurvePoint contains the following information:
  *   - The corresponding y-value of the point.
- *   - All of its saved y-values. Y-values are saved when the user manipulates the original Curve.
- *   - Whether or not the point is defined. A point that isn't defined is a hole or a discontinuity in the Curve.
+ *   - All of its previously 'saved' y-values. When the user manipulates the original Curve, the y-value is saved.
+ *   - Whether or not the point exists. A point that isn't defined means that the Curve has a hole or a discontinuity.
  *   - Whether or not the point is differentiable. For 'Calculus Grapher', the only scenario when points are not
  *     differentiable occur when there is a cusp. See https://en.wikipedia.org/wiki/Cusp_(singularity).
  *
