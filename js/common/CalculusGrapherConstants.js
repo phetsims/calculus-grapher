@@ -12,7 +12,7 @@ import calculusGrapher from '../calculusGrapher.js';
 const CalculusGrapherConstants = {
 
   // Ranges
-  GRAPH_X_RANGE: new Range( 0, 30 )
+  CURVE_X_RANGE: new Range( 0, 30 )
 
 
 
