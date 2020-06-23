@@ -18,6 +18,15 @@ class CalculusGrapherViewProperties {
 
     // @public {BooleanProperty} - indicates if the reference line is visible.
     this.referenceLineVisibleProrperty = new BooleanProperty( false );
+
+    // @public {BooleanProperty} - indicates if the integral curve is visible.
+    this.integralCurveVisibleProrperty = new BooleanProperty( false );
+
+     // @public {BooleanProperty} - indicates if the derivative curve is visible.
+    this.derivativeCurveVisibleProrperty = new BooleanProperty( false );
+
+     // @public {BooleanProperty} - indicates if the second derivative curve is visible.
+    this.secondDerivativeCurveVisibleProrperty = new BooleanProperty( false );
   }
 
   /**
@@ -29,6 +38,9 @@ class CalculusGrapherViewProperties {
   reset() {
     this.gridVisibleProrperty.reset();
     this.referenceLineVisibleProrperty.reset();
+    this.integralCurveVisibleProrperty.reset();
+    this.derivativeCurveVisibleProrperty.reset();
+    this.secondDerivativeCurveVisibleProrperty.reset();
   }
 }
 

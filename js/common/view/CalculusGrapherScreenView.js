@@ -10,6 +10,7 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
+// import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
 
 class CalculusGrapherScreenView extends ScreenView {
 
@@ -23,6 +24,9 @@ class CalculusGrapherScreenView extends ScreenView {
     assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
     super( options );
+
+    // Create the view-specific properties for the screen.
+    // const viewProperties = new CalculusGrapherViewProperties();
   }
 }
 

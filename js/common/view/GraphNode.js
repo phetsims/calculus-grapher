@@ -16,7 +16,7 @@ class GraphNode extends Node {
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Object} [options]
    */
-  constructor( bounds, modelViewTransform, options ) {
+  constructor( bounds, gridVisibleProrperty, modelViewTransform, options ) {
 
     super( options );
 
@@ -42,6 +42,7 @@ class GraphNode extends Node {
       },
       center: viewBounds.center
     } );
+    gridVisibleProrperty.linkAttribute( gridNode, 'visible' );
 
 
     const border = new Rectangle( viewBounds, {
