@@ -4,12 +4,12 @@
  * DerivativeCurve is a Curve sub-type for a curve that represents the derivative of a 'base' curve. It is used
  * as both the first derivative and second derivative of the OriginalCurve.
  *
- * When any of the Points of the base Curve changes, the derivative Curve differentiates it and updates its Points.
+ * When any of the Points of the base Curve changes, the DerivativeCurve differentiates it and updates its Points.
  * For a general background on differentiation, see https://en.wikipedia.org/wiki/Derivative#Rigorous_definition.
  * Although derivatives formally consider the behavior of the curve from both sides, for this simulation
  * DerivativeCurves only consider the left side of each Point.
  *
- * Like Curve, DerivativeCurve is created at the start and persist for the lifetime of the simulation. Links
+ * Like Curve, DerivativeCurve is created at the start and persists for the lifetime of the simulation. Links
  * are left as-is and DerivativeCurves are never disposed.
  *
  * @author Brandon Li
