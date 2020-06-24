@@ -19,26 +19,27 @@ import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from './Curve.js';
+import OriginalCurve from './OriginalCurve.js';
 
 class IntegralCurve extends Curve {
 
   /**
-   * @param {Curve} baseCurve - the curve to differentiate to get the values of this IntegralCurve.
+   * @param {OriginalCurve} baseCurve - the curve to differentiate to get the values of this IntegralCurve.
    */
   constructor( baseCurve ) {
-    assert && assert( baseCurve instanceof Curve, `invalid baseCurve: ${baseCurve}` );
+    assert && assert( baseCurve instanceof OriginalCurve, `invalid baseCurve: ${baseCurve}` );
 
     super();
 
     //----------------------------------------------------------------------------------------
 
-    // @private {Curve} - reference to the BaseCurve that was passed-in.
+    // @private {OriginalCurve} - reference to the base Curve that was passed-in.
     this.baseCurve = baseCurve;
 
-    // Observe when any of the base Curve's Point's y-value changes and update this curve to represent the derivative of
+    // Observe when any of the base Curve's Point's y-value changes and update this curve to represent the integral of
     // the base Curve. Multilink is never disposed since IntegralCurves are never disposed.
     Property.multilink( baseCurve.points.map( _.property( 'yProperty' ) ), () => {
-      this.updateDerivative();
+      this.updateIntegral();
     } );
   }
 
@@ -51,48 +52,30 @@ class IntegralCurve extends Curve {
    */
   reset() {
     super.reset();
-    this.updateDerivative();
+    this.updateIntegral();
   }
 
   /**
-   * Updates the y-values of the IntegralCurve to represent the derivative of the base Curve. Each Point of the base
+   * Updates the y-values of the IntegralCurve to represent the integral of the base Curve. Each Point of the base
    * curve are considered to be infinitesimally close to each other.
    * @private
    *
-   * There are 3 scenarios for taking the derivative of a Point of the base curve:
-   *   - If the Point isn't differentiable, the corresponding Point of the IntegralCurve is a hole.
-   *   - If the Point is differentiable but the previous Point is a hole, the corresponding Point of the IntegralCurve
-   *     is 0.
-   *   - Otherwise, the Point is differentiable and the previous Point isn't a hole, meaning the slope between the
-   *     Points exists and is defined as the derivative.
+   * The IntegralCurve exists at all points since OriginalCurve is finite at all points, so we don't need to consider
+   * non-differentiable points of the base curve.
    */
-  updateDerivative() {
+  updateIntegral() {
 
     // Loop through each pair of Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
+      assert && assert( point.isDifferentiable && previousPoint.isDifferentiable );
 
-      if ( !point.isDifferentiable ) {
+      // Take the integral from the min to the Point of the base curve using a trapezoidal Riemann sum approximation.
+      // See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
+      const trapezoidalArea = ( point.y + previousPoint.y ) / 2 * ( point.x - previousPoint.x );
+      assert && assert( Number.isFinite( trapezoidalArea ), 'non finite trapezoidal area' );
 
-        // If the Point on the base curve isn't differentiable, set the y-value to null to indicate that there is a
-        // hole in the IntegralCurve.
-        this.points[ index ].y = null;
-      }
-      else if ( point.isDifferentiable && !previousPoint.exists ) {
-
-        // If the Point is differentiable but the previous Point is a hole, the corresponding Point of the
-        // IntegralCurve is 0.
-        this.points[ index ].y = 0;
-      }
-      if ( point.isDifferentiable && previousPoint.exists ) {
-
-        // Take the derivative of the Point, but only consider the left-side of the limit definition of a derivative.
-        // Use the definition of a slope to approximate the derivative.
-        const slope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
-        assert && assert( Number.isFinite( slope ), 'non finite slope at a differentiable point' );
-
-        // Set the y-value of the IntegralCurve to the slope.
-        this.points[ index ].y = slope;
-      }
+      // Set the y-value of the IntegralCurve to the previous value plus the trapezoidal area.
+      this.points[ index ].y = this.getClosestsPointAt( previousPoint.x ) + trapezoidalArea;
     } );
   }
 }

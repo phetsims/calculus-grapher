@@ -32,7 +32,7 @@ class DerivativeCurve extends Curve {
 
     //----------------------------------------------------------------------------------------
 
-    // @private {Curve} - reference to the BaseCurve that was passed-in.
+    // @private {Curve} - reference to the base Curve that was passed-in.
     this.baseCurve = baseCurve;
 
     // Observe when any of the base Curve's Point's y-value changes and update this curve to represent the derivative of
