@@ -7,13 +7,14 @@
  */
 
 import Range from '../../../dot/js/Range.js';
+import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import calculusGrapher from '../calculusGrapher.js';
 
 const CalculusGrapherConstants = {
 
   // Ranges
-  CURVE_X_RANGE: new Range( 0, 30 )
-
+  CURVE_X_RANGE: new Range( 0, 30 ),
+  CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 )
 
 
 };
