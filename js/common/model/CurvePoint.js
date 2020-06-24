@@ -18,7 +18,7 @@
  * @author Brandon Li
  */
 
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Property from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -46,8 +46,11 @@ class CurvePoint {
     // @public (read-only) {number} - the x-coordinate of the Point. This value cannot be mutated.
     this.x = x;
 
-    // @public (read-only) {NumberProperty} - the y-coordinate of the Point.
-    this.yProperty = new NumberProperty( initialY );
+    // @public (read-only) {Property.<number|null>} - the y-coordinate of the Point. If null, it means that the
+    //                                                point is undefined (which means there is a hole in the curve).
+    this.yProperty = new Property( initialY, {
+      isValidValue: value => Number.isFinite( value ) || value === null
+    } );
 
     // @private {number[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
