@@ -43,6 +43,18 @@ class DerivativeCurve extends Curve {
   }
 
   /**
+   * Resets the DerivativeCurve.
+   * @override
+   * @public
+   *
+   * Called when the reset-all button is pressed.
+   */
+  reset() {
+    super.reset();
+    this.updateDerivative();
+  }
+
+  /**
    * Updates the y-values of the DerivativeCurve to represent the derivative of the base Curve. Each Point of the base
    * curve are considered to be infinitesimally close to each other.
    * @private
