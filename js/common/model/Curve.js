@@ -20,6 +20,7 @@
  * @author Brandon Li
  */
 
+import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurvePoint from './CurvePoint.js';
@@ -39,8 +40,8 @@ class Curve {
 
     //----------------------------------------------------------------------------------------
 
-    // @private {CurvePoint[]} - the points that map out the curve at a finite number of points inside of a interval.
-    //                           See the comment at the top of this file for full context.
+    // @public (read-only) {CurvePoint[]} - the points that map out the curve at a finite number of points inside of a
+    //                                      interval. See the comment at the top of this file for full context.
     this.points = [];
 
     // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
@@ -58,6 +59,20 @@ class Curve {
    */
   reset() {
     this.points.forEach( point => { point.reset(); } ); // Reset all CurvePoints.
+  }
+
+  /**
+   * Gets the CurvePoint whose x-value is closest to the given x-value.
+   * @public
+   *
+   * @param {number} x
+   * @returns {CurvePoint}
+   */
+  getClosestsPointAt( x ) {
+    assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
+
+    // Use dimensional analysis to convert the x-value to the index of the Point.
+    return this.points[ Utils.roundSymmetric( x * POINTS_PER_COORDINATE ) ];
   }
 }
 
