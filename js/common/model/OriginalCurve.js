@@ -37,7 +37,8 @@ class OriginalCurve extends Curve {
 
     super();
 
-    // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves.
+    // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
+    //                                                          is manipulated by the view.
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes,
       CurveManipulationModes.HILL );
 
@@ -62,9 +63,54 @@ class OriginalCurve extends Curve {
     this.curveManipulationWidthProperty.reset();
   }
 
+  /**
+   * Saves the current y-values of the Points for the next undoToLastSave() method.
+   * @public
+   *
+   * This method is invoked when the user finishes manipulating the OriginalCurve. When the undo button is pressed,
+   * the Points of the OriginalCurve will be set to their last saved state.
+   */
+  saveCurrentPoints() {
 
+    // Save the current y-value of each CurvePoint.
+    this.points.forEach( point => { point.save(); } );
+  }
 
+  /**
+   * Sets the y-values of this CurvedPoints of this Curve to its last saved state.
+   * @public
+   *
+   * This method is invoked when the undo button is pressed, which successively undos the last action.
+   */
+  undoToLastSave() {
 
+    // Revert back to the saved y-value of each CurvePoint.
+    this.points.forEach( point => { point.undoToLastSave(); } );
+  }
+
+  /**
+   * Gets the current CurveManipulationMode.
+   * @public
+   *
+   * @returns {CurveManipulationMode}
+   */
+  get curveManipulationMode() {
+    return this.curveManipulationModeProperty.value;
+  }
+
+  /**
+   * Gets the current curve-manipulation width.
+   * @public
+   *
+   * @returns {number}
+   */
+  get curveManipulationWidth() {
+    return this.curveManipulationWidthProperty.value;
+  }
+
+  /*----------------------------------------------------------------------------*
+   * Curve Manipulation Algorithms
+   *----------------------------------------------------------------------------*/
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );
