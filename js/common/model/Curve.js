@@ -24,11 +24,12 @@
 import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurvePoint from './CurvePoint.js';
 
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
-const POINTS_PER_COORDINATE = 12;
+const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
 class Curve {
 
