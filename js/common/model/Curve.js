@@ -1,9 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Curve is the base-class for a single curve that appears in the 'Calculus Grapher' simulation. It provides functionality
- * that is common to all types of curves, which are integral, original, and derivative curves, and is intended to be
- * sub-classed for type-specific features.
+ * Curve is the base-class for a single curve that appears in the 'Calculus Grapher' simulation. It provides
+ * functionality that is common to all types of curves, which are integrals, original, and derivative curves, and is
+ * intended to be sub-classed for type-specific features.
  *
  * For an overview of the class hierarchy of Curves, see
  * https://github.com/phetsims/calculus-grapher/blob/master/doc/implementation-notes.md
