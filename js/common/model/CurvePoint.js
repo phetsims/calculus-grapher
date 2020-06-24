@@ -8,9 +8,8 @@
  *   - Whether or not the point exists. A point that isn't defined means that the Curve has a hole or a discontinuity.
  *   - All of its previously 'saved' y-values. When the user finishes manipulating the original Curve, the y-value of
  *     CurvePoints in the OriginalCurve are saved.
- *   - Whether or not the point is differentiable. For 'Calculus Grapher', the only scenario when points are not
- *     differentiable occur when there is a cusp in the original curve. See
- *     https://en.wikipedia.org/wiki/Cusp_(singularity). Non-differentiable implies non-twice-differentiable.
+ *   - Whether or not the point is a cusp. See https://en.wikipedia.org/wiki/Cusp_(singularity). For 'Calculus Grapher',
+ *     cusps imply that the Point is non-differentiable and non-twice-differentiable.
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve and its subtypes to represent and map
  * out the Curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
@@ -37,8 +36,8 @@ class CurvePoint {
 
     options = merge( {
 
-      // {boolean} - indicates if the point is differentiable.
-      isDifferentiable: true
+      // {boolean} - indicates if the point is a cusp. See the comment at the top of this file.
+      isCusp: true
 
     }, options );
 
@@ -53,11 +52,11 @@ class CurvePoint {
     // @private {number[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
 
-    // @public {boolean} - indicates if the Point is currently differentiable.
-    this.isDifferentiable = options.isDifferentiable;
+    // @public {boolean} - indicates if the Point is currently a cusp.
+    this.isCusp = options.isCusp;
 
-    // @private {boolean} - the initial differentiability of the Point.
-    this.initialIsDifferentiable = options.isDifferentiable;
+    // @private {boolean} - whether of not the Point was initiated as a cusp.
+    this.initialIsCusp = options.isCusp;
   }
 
   /**
@@ -69,19 +68,19 @@ class CurvePoint {
   reset() {
     this.yProperty.reset();
     this.savedYValues = [];
-    this.isDifferentiable = this.initialIsDifferentiable;
+    this.isCusp = this.initialIsCusp;
   }
 
   /**
-   * Restarts this CurvePoint. Called when the restart button is pressed.
+   * Returns a boolean that indicates if the point is differentiable. For the 'Calculus Grapher' simulation, there
+   * are not vertical tangents, so the only time this is true is when this Point is a cusp or when this Point isn't
+   * defined.
    * @public
    *
-   * See https://github.com/phetsims/collision-lab/issues/76 for context on the differences between reset and restart.
+   * @returns {boolean}
    */
-  restart() {
-    this.position = this.restartState.position;
-    this.velocity = this.restartState.velocity;
-    this.mass = this.restartState.mass;
+  get isDifferentiable() {
+    return Number.isFinite( this.y ) && !this.isCusp;
   }
 
   /**
