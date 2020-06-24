@@ -2,7 +2,7 @@
 
 /**
  * Curve is the base-class for a single curve that appears in a 'Calculus Grapher' simulation. It provides functionality
- * that is common to all CurveTyes and is intended to be sub-classed for CurveType-specific features.
+ * that is common to all CurveTypes and is intended to be sub-classed for CurveType-specific features.
  *
  * For an overview of the class hierarchy of Curves, see
  * https://github.com/phetsims/calculus-grapher/blob/master/doc/implementation-notes.md
@@ -21,11 +21,33 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CurvePoint from './CurvePoint.js';
+import CurveTypes from './CurveTypes.js';
+
+// constants
+const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
+const POINTS_PER_COORDINATE = 12;
 
 class Curve {
 
-  constructor() {
+  /**
+   * @param {CurveTypes} curveType - the type of Curve
+   */
+  constructor( curveType ) {
+    assert && assert( CurveTypes.includes( curveType ), `invalid curveType: ${curveType}` );
 
+    //----------------------------------------------------------------------------------------
+
+    // @private {CurvePoint[]} - the points that map out the curve at a finite number of points inside of a interval.
+    //                           See the comment at the top of this file for full context.
+    this.points = [];
+
+    // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
+    // start of the simulation here and they are never disposed. Points are initialized at y = 0.
+    for ( let x = CURVE_X_RANGE.min; x <= CURVE_X_RANGE.max; x += 1 / POINTS_PER_COORDINATE ) {
+      this.points.push( new CurvePoint( x, 0 ) );
+    }
   }
 }
 
