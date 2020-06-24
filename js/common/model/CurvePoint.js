@@ -83,7 +83,17 @@ class CurvePoint {
    * @returns {boolean}
    */
   get isDifferentiable() {
-    return Number.isFinite( this.y ) && !this.isCusp;
+    return this.exists && !this.isCusp;
+  }
+
+  /**
+   * Returns a boolean that indicates if the point exists.
+   * @public
+   *
+   * @returns {boolean}
+   */
+  get exists() {
+    return Number.isFinite( this.y );
   }
 
   /**

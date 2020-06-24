@@ -17,7 +17,7 @@ const CalculusGrapherUtils = {
    * @public
    *
    * @param {*[]} array
-   * @param {function(value:*,previousValue:*)} iterator
+   * @param {function(value:*,previousValue:*,index*)} iterator
    */
   forEachAdjacentPair( array, iterator ) {
     assert && assert( Array.isArray( array ), `invalid array: ${array}` );
@@ -27,7 +27,7 @@ const CalculusGrapherUtils = {
       const value = array[ i ];
       const previousValue = array[ i - 1 ];
 
-      iterator( value, previousValue );
+      iterator( value, previousValue, i );
     }
   },
 
