@@ -49,6 +49,16 @@ class Curve {
       this.points.push( new CurvePoint( x, 0 ) );
     }
   }
+
+  /**
+   * Resets the Curve to its initial state.
+   * @public
+   *
+   * Called when the reset-all button is pressed.
+   */
+  reset() {
+    this.points.forEach( point => { point.reset(); } ); // Reset all CurvePoints.
+  }
 }
 
 calculusGrapher.register( 'Curve', Curve );
