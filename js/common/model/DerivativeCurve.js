@@ -15,7 +15,6 @@
  * @author Brandon Li
  */
 
-import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from './Curve.js';
@@ -37,7 +36,7 @@ class DerivativeCurve extends Curve {
 
     // Observe when any of the base Curve's Point's y-value changes and update this curve to represent the derivative of
     // the base Curve. Multilink is never disposed since DerivativeCurves are never disposed.
-    Property.multilink( baseCurve.points.map( _.property( 'yProperty' ) ), () => {
+    baseCurve.curveChangedEmitter.addListener( () => {
       this.updateDerivative();
     } );
   }
@@ -94,6 +93,8 @@ class DerivativeCurve extends Curve {
         this.points[ index ].y = slope;
       }
     } );
+
+    this.curveChangedEmitter.emit();
   }
 }
 

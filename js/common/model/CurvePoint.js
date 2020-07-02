@@ -105,24 +105,6 @@ class CurvePoint {
     this.y = this.savedYValues.pop();
   }
 
-  //----------------------------------------------------------------------------------------
-
-  /**
-   * Gets the y-value of the CurvePoint.
-   * @public
-   *
-   * @returns {number}
-   */
-  get y() { return this.yProperty.value; }
-
-  /**
-   * Sets the y-value of the CurvePoint.
-   * @public
-   *
-   * @param {number} y
-   */
-  set y( y ) { this.yProperty.value = y; }
-
   /**
    * Debugging string for the CurvePoint.
    * @public

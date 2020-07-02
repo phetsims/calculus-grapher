@@ -15,7 +15,6 @@
  * @author Brandon Li
  */
 
-import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from './Curve.js';
@@ -38,7 +37,7 @@ class IntegralCurve extends Curve {
 
     // Observe when any of the base Curve's Point's y-value changes and update this curve to represent the integral of
     // the base Curve. Multilink is never disposed since IntegralCurves are never disposed.
-    Property.multilink( baseCurve.points.map( _.property( 'yProperty' ) ), () => {
+    baseCurve.curveChangedEmitter.addListener( () => {
       this.updateIntegral();
     } );
   }
@@ -77,6 +76,8 @@ class IntegralCurve extends Curve {
       // Set the y-value of the IntegralCurve to the previous value plus the trapezoidal area.
       this.points[ index ].y = this.getClosestsPointAt( previousPoint.x ) + trapezoidalArea;
     } );
+
+    this.curveChangedEmitter.emit();
   }
 }
 
