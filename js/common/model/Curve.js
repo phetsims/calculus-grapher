@@ -21,6 +21,7 @@
  * @author Brandon Li
  */
 
+import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -44,6 +45,9 @@ class Curve {
     for ( let x = CURVE_X_RANGE.min; x <= CURVE_X_RANGE.max; x += 1 / POINTS_PER_COORDINATE ) {
       this.points.push( new CurvePoint( x, 0 ) );
     }
+
+    // @public (read-only) {Emitter} - Emits when the Curve has changed in any form.
+    this.curveChangedEmitter = new Emitter();
   }
 
   /**
@@ -53,7 +57,12 @@ class Curve {
    * Called when the reset-all button is pressed.
    */
   reset() {
-    this.points.forEach( point => { point.reset(); } ); // Reset all CurvePoints.
+    this.points.forEach( point => {
+      point.y = 0;
+      point.reset();
+    } );
+
+    this.curveChangedEmitter.emit();
   }
 
   /**
