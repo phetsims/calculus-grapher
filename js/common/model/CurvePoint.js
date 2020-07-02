@@ -18,8 +18,6 @@
  * @author Brandon Li
  */
 
-import Property from '../../../../axon/js/Property.js';
-import merge from '../../../../phet-core/js/merge.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
@@ -27,39 +25,25 @@ class CurvePoint {
 
   /**
    * @param {number} x - the x-coordinate of the point.
-   * @param {number|null} initialY - the initial y-coordinate of the point.
+   * @param {number|null} y - the y-coordinate of the point.
    * @param {Object} [options]
    */
-  constructor( x, initialY, options ) {
+  constructor( x, y, options ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
-    assert && assert( initialY === null || typeof initialY === 'number', `invalid initialY: ${initialY}` );
-
-    options = merge( {
-
-      // {boolean} - indicates if the point is a cusp. See the comment at the top of this file.
-      isCusp: true
-
-    }, options );
-
-    //----------------------------------------------------------------------------------------
+    assert && assert( y === null || typeof y === 'number', `invalid y: ${y}` );
 
     // @public (read-only) {number} - the x-coordinate of the Point. This value cannot be mutated.
     this.x = x;
 
-    // @public (read-only) {Property.<number|null>} - the y-coordinate of the Point. If null, it means that the
-    //                                                point is undefined (which means there is a hole in the curve).
-    this.yProperty = new Property( initialY, {
-      isValidValue: value => Number.isFinite( value ) || value === null
-    } );
+    // @public {number} - the y-coordinate of the Point. If null, it means that the point is undefined (which means
+    //                    there is a hole in the curve).
+    this.y = y;
 
     // @private {number[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
 
     // @public {boolean} - indicates if the Point is currently a cusp.
-    this.isCusp = options.isCusp;
-
-    // @private {boolean} - whether of not the Point was initiated as a cusp.
-    this.initialIsCusp = options.isCusp;
+    this.isCusp = false;
   }
 
   /**
@@ -69,9 +53,8 @@ class CurvePoint {
    * Called when the reset-all button is pressed.
    */
   reset() {
-    this.yProperty.reset();
     this.savedYValues = [];
-    this.isCusp = this.initialIsCusp;
+    this.isCusp = false;
   }
 
   /**
