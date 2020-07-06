@@ -1,6 +1,15 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
+ * CurveNode is the view representation of a single Curve, which appears in all screens of the 'Calculus Grapher'
+ * simulation. CurveNodes are implemented to work for all Curve sub-types, so no CurveNode sub-types are needed.
+ *
+ * Primary responsibilities are:
+ *  - TODO
+ *
+ *
+ * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation. Thus,
+ * CurveNodes persist for the lifetime of the simulation and links are left as-is. See Curve.js for more background.
  *
  * @author Brandon Li
  */
