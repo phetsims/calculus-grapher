@@ -39,7 +39,7 @@ class CurveNode extends Node {
 
       // {Object} - passed to the main Path instance
       pathOptions: {
-        lineWidth: 1
+        lineWidth: 3
       }
 
     }, options );
@@ -58,6 +58,8 @@ class CurveNode extends Node {
     // Observe
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
     modelViewTransformProperty.link( this.updateCurveNode.bind( this ) );
+
+    this.addChild( this.path );
   }
 
   /**
@@ -88,6 +90,8 @@ class CurveNode extends Node {
       }
 
     } );
+
+    this.path.setShape( pathShape.makeImmutable() );
    }
 }
 

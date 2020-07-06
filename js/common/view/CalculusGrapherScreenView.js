@@ -31,7 +31,7 @@ class CalculusGrapherScreenView extends ScreenView {
     const viewProperties = new CalculusGrapherViewProperties();
 
 
-    const graphNode = new GraphNode( new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty );
+    const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty );
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );
   }
