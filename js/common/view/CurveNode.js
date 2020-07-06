@@ -14,10 +14,14 @@
  * @author Brandon Li
  */
 
+import Shape from '../../../../kite/js/Shape.js';
+import merge from '../../../../phet-core/js/merge.js';
 import AssertUtils from '../../../../phetcommon/js/AssertUtils.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from '../model/Curve.js';
 
 class CurveNode extends Node {
@@ -31,9 +35,60 @@ class CurveNode extends Node {
     assert && assert( curve instanceof Curve, `invalid curve: ${curve}` );
     assert && AssertUtils.assertPropertyOf( modelViewTransformProperty, ModelViewTransform2 );
 
+    options = merge( {
+
+      // {Object} - passed to the main Path instance
+      pathOptions: {
+        lineWidth: 1
+      }
+
+    }, options );
 
     super( options );
+
+    //----------------------------------------------------------------------------------------
+
+    // @private {Path} - Path of the lines in between each CurvePoint.
+    this.path = new Path( null, options.pathOptions );
+
+    // @private
+    this.curve = curve;
+    this.modelViewTransformProperty = modelViewTransformProperty;
+
+    // Observe
+    curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
+    modelViewTransformProperty.link( this.updateCurveNode.bind( this ) );
   }
+
+  /**
+   * Updates the CurveNode
+   * @public
+   */
+   updateCurveNode() { // TODO: pass modelViewTransformProperty value?
+
+    const pathShape = new Shape().moveTo(
+      this.modelViewTransformProperty.value.modelToViewX( this.curve.points[ 0 ].x ),
+      this.modelViewTransformProperty.value.modelToViewY( this.curve.points[ 0 ].y )
+    );
+
+    // Loop through each pair of Points of the base Curve.
+    CalculusGrapherUtils.forEachAdjacentPair( this.curve.points, ( point, previousPoint ) => {
+
+      if ( point.exists && previousPoint.exists ) {
+        pathShape.lineTo(
+          this.modelViewTransformProperty.value.modelToViewX( point.x ),
+          this.modelViewTransformProperty.value.modelToViewY( point.y )
+        );
+      }
+      else if ( point.exists && !previousPoint.exists ) {
+        pathShape.moveTo(
+          this.modelViewTransformProperty.value.modelToViewX( point.x ),
+          this.modelViewTransformProperty.value.modelToViewY( point.y )
+        );
+      }
+
+    } );
+   }
 }
 
 calculusGrapher.register( 'CurveNode', CurveNode );
