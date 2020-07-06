@@ -40,6 +40,7 @@ class IntegralCurve extends Curve {
     baseCurve.curveChangedEmitter.addListener( () => {
       this.updateIntegral();
     } );
+    this.updateIntegral();
   }
 
   /**

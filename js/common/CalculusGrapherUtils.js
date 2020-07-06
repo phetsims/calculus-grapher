@@ -7,7 +7,7 @@
  */
 
 import AssertUtils from '../../../phetcommon/js/AssertUtils.js';
-import collisionLab from '../collisionLab.js';
+import calculusGrapher from '../calculusGrapher.js';
 
 const CalculusGrapherUtils = {
 
@@ -69,5 +69,5 @@ const CalculusGrapherUtils = {
   }
 };
 
-collisionLab.register( 'CalculusGrapherUtils', CalculusGrapherUtils );
+calculusGrapher.register( 'CalculusGrapherUtils', CalculusGrapherUtils );
 export default CalculusGrapherUtils;

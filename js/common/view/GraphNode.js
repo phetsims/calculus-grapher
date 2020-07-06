@@ -16,7 +16,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 class GraphNode extends Node {
 
   /**
-   * @param {ModelViewTransform2} modelViewTransform
    * @param {Object} [options]
    */
   constructor( bounds, gridVisibleProrperty, options ) {
@@ -26,7 +25,6 @@ class GraphNode extends Node {
     //----------------------------------------------------------------------------------------
     const viewBounds = new Bounds2( 0, 0, 30 * 20, 10 * 20 );
 
-    // TODO: make the modelViewTransform a local transform. Then translate graph nodes based on which graphs are visible.
     const modelViewTransform = ModelViewTransform2.createSinglePointXYScaleMapping(
       Vector2.ZERO,
       viewBounds.leftCenter,

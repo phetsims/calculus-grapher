@@ -39,6 +39,7 @@ class DerivativeCurve extends Curve {
     baseCurve.curveChangedEmitter.addListener( () => {
       this.updateDerivative();
     } );
+    this.updateDerivative();
   }
 
   /**
