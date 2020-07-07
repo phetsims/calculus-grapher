@@ -73,10 +73,12 @@ class Curve {
    * @returns {CurvePoint}
    */
   getClosestsPointAt( x ) {
-    assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
+    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
     // Use dimensional analysis to convert the x-value to the index of the Point.
-    return this.points[ Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE ) ];
+    const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
+
+    return this.points[ Utils.clamp( index, 0, this.points.length ) ];
   }
 }
 

@@ -23,7 +23,6 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -32,8 +31,7 @@ import CurveManipulationModes from './CurveManipulationModes.js';
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
-const SMOOTHING_WINDOW_WIDTH = 10;
-const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
+const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
 class OriginalCurve extends Curve {
@@ -134,16 +132,16 @@ class OriginalCurve extends Curve {
     // the previous y-values for all Points in the OriginalCurve.
     this.saveCurrentPoints();
 
-    this.points.forEach( ( point, index ) => {
+    this.points.forEach( point => {
 
       // Flag that tracks the total of the moving window.
       let movingTotal = 0;
 
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let i = -SMOOTHING_WINDOW_WIDTH / 2; i < SMOOTHING_WINDOW_WIDTH / 2; i++ ) {
+      for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += POINTS_PER_COORDINATE ) {
 
         // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
-        movingTotal += this.points[ Utils.clamp( index, 0, POINTS_PER_COORDINATE * CURVE_X_RANGE.max ) ].previousY;
+        movingTotal += this.getClosestsPointAt( point.x + dx ).previousY;
       }
 
       // Set the Point's new y-value to the moving average.
