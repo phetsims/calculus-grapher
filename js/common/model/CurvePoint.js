@@ -80,6 +80,16 @@ class CurvePoint {
   }
 
   /**
+   * Gets the most recently saved y-value, if it exists.
+   * @public
+   *
+   * @returns {number|null}
+   */
+  get previousY() {
+    return _.last( this.savedYValues );
+  }
+
+  /**
    * Saves the current y-value of the Point for the next undoToLastSave() method.
    * @public
    *
@@ -113,16 +123,6 @@ class CurvePoint {
    */
   toString() {
     return `CurvePoint[ x: ${this.x}, y: ${this.y} ]`;
-  }
-
-  /**
-   * Gets our previous y value, if it exists.
-   * @public
-   *
-   * @returns {number|null}
-   */
-  get previousY() {
-    return _.last( this.savedYValues );
   }
 }
 
