@@ -23,6 +23,7 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
@@ -30,6 +31,9 @@ import CurveManipulationModes from './CurveManipulationModes.js';
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
+const SMOOTHING_WINDOW_WIDTH = 10;
+const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
+const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
 class OriginalCurve extends Curve {
 
@@ -114,6 +118,40 @@ class OriginalCurve extends Curve {
   /*----------------------------------------------------------------------------*
    * Curve Manipulation Algorithms
    *----------------------------------------------------------------------------*/
+
+   /**
+    * Smooths the curve. Called when the user presses the 'smooth' button.
+    * @public
+    *
+    * This method uses a simple moving average algorithm for 'smoothing' a curve, which is described in
+    * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithms was adapted but significantly
+    * improved from the flash implementation of calculus grapher.
+    */
+   smooth() {
+
+    // Save the current values of our Points for the next undo call. Note that the current y-values are the same as
+    // the previous y-values for all Points in the OriginalCurve.
+    this.saveCurrentPoints();
+
+    this.points.forEach( ( point, index ) => {
+
+      // Flag that tracks the total of the moving window.
+      let movingTotal = 0;
+
+      // Loop through each point on BOTH sides of the window, adding the y-value to our total.
+      for ( let i = -SMOOTHING_WINDOW_WIDTH / 2; i < SMOOTHING_WINDOW_WIDTH / 2; i++ ) {
+
+        // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
+        movingTotal += this.points[ Utils.clamp( index, 0, POINTS_PER_COORDINATE * CURVE_X_RANGE.max ) ].previousY;
+      }
+
+      // Set the Point's new y-value to the moving average.
+      point.y = movingTotal / SMOOTHING_WINDOW_WIDTH;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+   }
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );

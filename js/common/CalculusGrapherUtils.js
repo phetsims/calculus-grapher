@@ -6,6 +6,7 @@
  * @author Brandon Li
  */
 
+import Range from '../../../dot/js/Range.js';
 import AssertUtils from '../../../phetcommon/js/AssertUtils.js';
 import calculusGrapher from '../calculusGrapher.js';
 
@@ -29,6 +30,22 @@ const CalculusGrapherUtils = {
 
       iterator( value, previousValue, i );
     }
+  },
+
+  /**
+   * Gets a Range that is scaled by the desired scalar value. For instance, multiplyRange( new Range( 1, 2 ), 2 ) would
+   * return Range( 2, 4 ).
+   * @public
+   *
+   * @param {Range} range - will not be mutated
+   * @param {number} scalar - amount to scale the each extreme of the Range
+   * @returns {Range}
+   */
+  multiplyRange( range, scalar ) {
+    assert && assert( range instanceof Range, `invalid range: ${range}` );
+    assert && assert( typeof scalar === 'number', `invalid scalar: ${scalar}` );
+
+    return new Range( range.min * scalar, range.max * scalar );
   },
 
   /**
