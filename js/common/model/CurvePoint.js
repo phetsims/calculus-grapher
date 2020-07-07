@@ -114,6 +114,16 @@ class CurvePoint {
   toString() {
     return `CurvePoint[ x: ${this.x}, y: ${this.y} ]`;
   }
+
+  /**
+   * Gets our previous y value, if it exists.
+   * @public
+   *
+   * @returns {number|null}
+   */
+  get previousY() {
+    return _.last( this.savedYValues );
+  }
 }
 
 calculusGrapher.register( 'CurvePoint', CurvePoint );
