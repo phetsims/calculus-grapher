@@ -10,8 +10,9 @@ import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import calculusGrapherStrings from './calculusGrapherStrings.js';
+import DerivativeLabScreen from './derivative-lab/DerivativeLabScreen.js';
+import IntegralLabScreen from './integral-lab/IntegralLabScreen.js';
 import IntroScreen from './intro/IntroScreen.js';
-import LabScreen from './lab/LabScreen.js';
 
 const simOptions = {
   credits: {
@@ -30,7 +31,8 @@ simLauncher.launch( () => {
 
   const sim = new Sim( calculusGrapherStrings[ 'calculus-grapher' ].title, [
     new IntroScreen( Tandem.ROOT.createTandem( 'introScreen' ) ),
-    new LabScreen( Tandem.ROOT.createTandem( 'labScreen' ) )
+    new IntegralLabScreen( Tandem.ROOT.createTandem( 'integralLabScreen' ) ),
+    new DerivativeLabScreen( Tandem.ROOT.createTandem( 'derivativeLabScreen' ) )
   ], simOptions );
 
   sim.start();

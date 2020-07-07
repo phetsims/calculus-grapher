@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Top level model for the 'Lab' screen.
+ * Top level model for the 'Integral Lab' screen.
  *
  * @author Brandon Li
  */
@@ -10,7 +10,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../../common/model/CalculusGrapherModel.js';
 
-class LabModel extends CalculusGrapherModel {
+class IntegralLabModel extends CalculusGrapherModel {
 
   /**
    * @param {Tandem} tandem
@@ -22,5 +22,5 @@ class LabModel extends CalculusGrapherModel {
   }
 }
 
-calculusGrapher.register( 'LabModel', LabModel );
-export default LabModel;
+calculusGrapher.register( 'IntegralLabModel', IntegralLabModel );
+export default IntegralLabModel;

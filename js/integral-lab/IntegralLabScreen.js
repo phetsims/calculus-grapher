@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * The 'Lab' screen. Conforms to the contract specified in joist/Screen.
+ * The 'Integral Lab' screen. Conforms to the contract specified in joist/Screen.
  *
  * @author Brandon Li
  */
@@ -12,10 +12,10 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import calculusGrapherStrings from '../calculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
-import LabModel from './model/LabModel.js';
-import LabScreenView from './view/LabScreenView.js';
+import IntegralLabModel from './model/IntegralLabModel.js';
+import IntegralLabScreenView from './view/IntegralLabScreenView.js';
 
-class LabScreen extends Screen {
+class IntegralLabScreen extends Screen {
 
   /**
    * @param {Tandem} tandem
@@ -23,16 +23,16 @@ class LabScreen extends Screen {
   constructor( tandem ) {
     assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
-    const createModel = () => new LabModel( tandem.createTandem( 'introModel' ) );
-    const createView = model => new LabScreenView( model, tandem.createTandem( 'introScreenView' ) );
+    const createModel = () => new IntegralLabModel( tandem.createTandem( 'integralLabModel' ) );
+    const createView = model => new IntegralLabScreenView( model, tandem.createTandem( 'integralLabScreenView' ) );
 
     super( createModel, createView, {
-      name: calculusGrapherStrings.screen.lab,
+      name: calculusGrapherStrings.screen.integralLab,
       backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
       tandem: tandem
     } );
   }
 }
 
-calculusGrapher.register( 'LabScreen', LabScreen );
-export default LabScreen;
+calculusGrapher.register( 'IntegralLabScreen', IntegralLabScreen );
+export default IntegralLabScreen;

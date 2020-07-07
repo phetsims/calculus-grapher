@@ -5,7 +5,10 @@
   "screen.intro": {
     "value": "Intro"
   },
-  "screen.lab": {
-    "value": "Lab"
+  "screen.derivativeLab": {
+    "value": "Derivative Lab"
+  },
+  "screen.integralLab": {
+    "value": "Integral Lab"
   }
 }
