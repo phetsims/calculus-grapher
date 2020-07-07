@@ -122,23 +122,24 @@ class OriginalCurve extends Curve {
     * Smooths the curve. Called when the user presses the 'smooth' button.
     * @public
     *
-    * This method uses a simple moving average algorithm for 'smoothing' a curve, which is described in
-    * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithms was adapted but significantly
+    * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
+    * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
     * improved from the flash implementation of calculus grapher.
     */
    smooth() {
 
-    // Save the current values of our Points for the next undo call. Note that the current y-values are the same as
-    // the previous y-values for all Points in the OriginalCurve.
+    // Save the current values of our Points for the next undoToLastSave call. Note that the current y-values are the
+    // same as the previous y-values for all Points in the OriginalCurve.
     this.saveCurrentPoints();
 
+    // Loop through each Point and set the Point's new y-value.
     this.points.forEach( point => {
 
-      // Flag that tracks the total of the moving window.
+      // Flag that tracks the sum of the y-values of all Points within the moving window.
       let movingTotal = 0;
 
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += POINTS_PER_COORDINATE ) {
+      for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
         // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
         movingTotal += this.getClosestsPointAt( point.x + dx ).previousY;
