@@ -197,6 +197,42 @@ class OriginalCurve extends Curve {
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
+
+  /**
+   * Freeform.
+   * @public
+   *
+   * @param {Vector2} position - in model coordinates
+   */
+  drawFreeformToPosition( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
+
+    // Signal that this Curve has changed.
+    // this.curveChangedEmitter.emit();
+
+
+    //     xP = Math.round(xP);
+    // this.y_arr[xP] = yP;
+    // var distX:int = Math.abs(xP - lastX);
+    // var sign:Number = xP - lastX;
+    // var W:Number;
+
+    // if ( distX > 1 ) {
+    //     for ( var i:int = 1; i < distX; i++ ) {
+    //         W = i / distX;
+    //         if ( sign > 0 ) {
+    //             this.y_arr[lastX + i] = (1 - W) * this.lastY + W * yP;
+    //         }
+    //         else {
+    //             this.y_arr[lastX - i] = (1 - W) * this.lastY + W * yP;
+    //         }
+
+    //     }
+    // }
+    // this.lastX = xP;
+    // this.lastY = yP;
+  }
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );
