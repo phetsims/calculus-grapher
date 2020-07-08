@@ -13,7 +13,7 @@
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve and its subtypes to represent and map
  * out the Curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
- * sim and are mutated when the Curve changes. CurvePoints are never disposed.
+ * sim and are mutated when the Curve changes, meaning CurvePoints are never disposed.
  *
  * @author Brandon Li
  */
