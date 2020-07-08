@@ -49,9 +49,16 @@ class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationModes.SHIFT ) {
           curve.shiftToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
+        if ( curve.curveManipulationMode === CurveManipulationModes.FREEFORM ) {
+          curve.drawFreeformToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+        }
       }
 
     } ) );
+
+    window.addEventListener( 'keydown', () => {
+      curve.smooth();
+    } );
 
   }
 }

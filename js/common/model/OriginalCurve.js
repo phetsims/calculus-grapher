@@ -138,16 +138,19 @@ class OriginalCurve extends Curve {
 
       // Flag that tracks the sum of the y-values of all Points within the moving window.
       let movingTotal = 0;
+      let addedPoints = 0;
 
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
       for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
         // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
         movingTotal += this.getClosestPointAt( point.x + dx ).previousY;
+
+        addedPoints += 1;
       }
 
       // Set the Point's new y-value to the moving average.
-      point.y = movingTotal / SMOOTHING_WINDOW_WIDTH;
+      point.y = movingTotal / addedPoints;
     } );
 
     // Signal that this Curve has changed.
@@ -207,6 +210,9 @@ class OriginalCurve extends Curve {
   drawFreeformToPosition( position ) {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    this.getClosestPointAt( position.x ).y = position.y;
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
