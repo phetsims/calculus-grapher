@@ -23,6 +23,7 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -118,15 +119,15 @@ class OriginalCurve extends Curve {
    * Curve Manipulation Algorithms
    *----------------------------------------------------------------------------*/
 
-   /**
-    * Smooths the curve. Called when the user presses the 'smooth' button.
-    * @public
-    *
-    * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
-    * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
-    * improved from the flash implementation of calculus grapher.
-    */
-   smooth() {
+  /**
+   * Smooths the curve. Called when the user presses the 'smooth' button.
+   * @public
+   *
+   * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
+   * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
+   * improved from the flash implementation of calculus grapher.
+   */
+  smooth() {
 
     // Save the current values of our Points for the next undoToLastSave call. Note that the current y-values are the
     // same as the previous y-values for all Points in the OriginalCurve.
@@ -147,6 +148,28 @@ class OriginalCurve extends Curve {
 
       // Set the Point's new y-value to the moving average.
       point.y = movingTotal / SMOOTHING_WINDOW_WIDTH;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
+   * Shifts the curve to the specified Position.
+   * @public
+   *
+   * @param {Vector2} position - in model coordinates
+   */
+  shiftToPosition( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.SHIFT );
+
+    // Amount to shift the entire curve.
+    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+
+    // Shift each of the CurvePoints by deltaY.
+    this.points.forEach( point => {
+      point.y += deltaY;
     } );
 
     // Signal that this Curve has changed.
