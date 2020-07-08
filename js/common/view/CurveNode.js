@@ -92,8 +92,6 @@ class CurveNode extends Node {
     } );
 
     this.path.setShape( pathShape.makeImmutable() );
-    this.touchArea = Shape.bounds( pathShape.bounds.dilated( 10 ) );
-    this.mouseArea = Shape.bounds( pathShape.bounds.dilated( 10 ) );
   }
 }
 

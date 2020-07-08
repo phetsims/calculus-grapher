@@ -5,6 +5,7 @@
  * @author Brandon Li
  */
 
+import Shape from '../../../../kite/js/Shape.js';
 import merge from '../../../../phet-core/js/merge.js';
 import AssertUtils from '../../../../phetcommon/js/AssertUtils.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
@@ -60,6 +61,51 @@ class OriginalCurveNode extends CurveNode {
       curve.smooth();
     } );
 
+  }
+
+  /**
+   * Updates the CurveNode
+   * @public
+   */
+   updateCurveNode() { // TODO: pass modelViewTransformProperty value?
+
+    super.updateCurveNode();
+
+    this.touchArea = OriginalCurveNode.createDilatedHead( this.curve, this.modelViewTransformProperty.value );
+    this.mouseArea = this.touchArea;
+  }
+
+  /**
+   * Creates a (rough) dilated shape for a vector head.  The head is pointing to the right.
+   * @public
+   *
+   * @param {number} headWidth
+   * @param {number} headHeight
+   * @param {number} dilation
+   * @returns {Shape} - in view units
+   */
+  static createDilatedHead( curve, modelViewTransform ) {
+    const dilation = 0.4;
+
+    const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - dilation );
+
+    // Bellow
+    curve.points.forEach( point => {
+      if ( point.exists ) {
+        pathShape.lineTo( point.x, point.y - dilation );
+      }
+    } );
+
+    // Above
+    _.forEachRight( curve.points, point => {
+      if ( point.exists ) {
+        pathShape.lineTo( point.x, point.y + dilation );
+      }
+    } );
+
+    pathShape.close().makeImmutable();
+
+    return modelViewTransform.modelToViewShape( pathShape );
   }
 }
 
