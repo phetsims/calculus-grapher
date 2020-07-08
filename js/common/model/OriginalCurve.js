@@ -44,7 +44,7 @@ class OriginalCurve extends Curve {
     // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
     //                                                          is manipulated by the view.
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes,
-      CurveManipulationModes.HILL );
+      CurveManipulationModes.TILT );
 
 
     // @public {NumberProperty} - the width of the curve-manipulation 'dent' that the user makes in the curve. This only
@@ -143,7 +143,7 @@ class OriginalCurve extends Curve {
       for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
         // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
-        movingTotal += this.getClosestsPointAt( point.x + dx ).previousY;
+        movingTotal += this.getClosestPointAt( point.x + dx ).previousY;
       }
 
       // Set the Point's new y-value to the moving average.

@@ -75,7 +75,7 @@ class IntegralCurve extends Curve {
       assert && assert( Number.isFinite( trapezoidalArea ), 'non finite trapezoidal area' );
 
       // Set the y-value of the IntegralCurve to the previous value plus the trapezoidal area.
-      this.points[ index ].y = this.getClosestsPointAt( previousPoint.x ) + trapezoidalArea;
+      this.points[ index ].y = this.getClosestPointAt( previousPoint.x ) + trapezoidalArea;
     } );
 
     this.curveChangedEmitter.emit();

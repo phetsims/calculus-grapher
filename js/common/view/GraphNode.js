@@ -12,7 +12,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CurveNode from './CurveNode.js';
+import OriginalCurveNode from './OriginalCurveNode.js';
 
 class GraphNode extends Node {
 
@@ -47,7 +47,7 @@ class GraphNode extends Node {
     } );
     // gridVisibleProrperty.linkAttribute( gridNode, 'visible' );
     // @public
-    this.curveNode = new CurveNode( curve, new Property( modelViewTransform ), {
+    this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
       pathOptions: {
         stroke: 'blue'
       }
