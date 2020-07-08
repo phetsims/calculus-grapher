@@ -155,7 +155,7 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Shifts the curve to the specified Position.
+   * Shifts the curve to the specified drag Position.
    * @public
    *
    * @param {Vector2} position - in model coordinates
@@ -174,7 +174,29 @@ class OriginalCurve extends Curve {
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
-   }
+  }
+
+  /**
+   * Tilts the curve to the specified drag Position.
+   * @public
+   *
+   * @param {Vector2} position - in model coordinates
+   */
+  tiltToPosition( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+
+    // Shift each of the CurvePoints by a factor of deltaY.
+    this.points.forEach( point => {
+      point.y += deltaY * point.x / position.x;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );
