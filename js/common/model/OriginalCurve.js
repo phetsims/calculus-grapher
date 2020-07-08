@@ -209,7 +209,7 @@ class OriginalCurve extends Curve {
     assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
 
     // Signal that this Curve has changed.
-    // this.curveChangedEmitter.emit();
+    this.curveChangedEmitter.emit();
 
 
     //     xP = Math.round(xP);
