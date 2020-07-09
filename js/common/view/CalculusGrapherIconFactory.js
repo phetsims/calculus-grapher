@@ -23,28 +23,83 @@ const CalculusGrapherIconFactory = {
 
   /*---------------------- Curve Manipulation Icons --------------------------*/
 
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.HILL.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createHillIcon() {
 
+  },
 
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.LINE.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createLineIcon() {
 
+  },
 
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.PEDESTAL.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createPedestalIcon() {
 
+  },
 
-  // *
-  //  * Creates the center-of-mass icon, which is placed next to a checkbox to toggle the visibility of the center-of-mass.
-  //  * @public
-  //  * @param {Object} [options]
-  //  * @returns {Node}
+    /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.PARABOLA.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createParabolaIcon() {
 
-  // createCenterOfMassIcon( options ) {
+  },
 
-  //   options = merge( {
-  //     lineWidth: 1,
-  //     length: 15,
-  //     legThickness: 3.3
-  //   }, options );
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.SINE.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createSineIcon() {
 
-  //   return new XNode( options );
-  // }
+  },
+
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.FREEFORM.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createFreeformIcon() {
+
+  },
+
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.TILT.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createTiltIcon() {
+
+  },
+
+  /**
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.SHIFT.
+   * @public
+   *
+   * @returns {Node}
+   */
+  createShiftIcon() {}
 };
 
 calculusGrapher.register( 'CalculusGrapherIconFactory', CalculusGrapherIconFactory );
