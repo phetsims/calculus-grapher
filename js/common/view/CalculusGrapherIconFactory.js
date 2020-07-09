@@ -5,6 +5,7 @@
  *
  * CalculusGrapherIconFactory currently creates the following icons:
  *   - Screen Icons
+ *   - Curve Manipulation Icons
  *
  *
  * NOTE: All 'magic' numbers in this file were tentatively determined empirically to match the design document.
@@ -15,6 +16,16 @@
 import calculusGrapher from '../../calculusGrapher.js';
 
 const CalculusGrapherIconFactory = {
+
+
+  /*--------------------------- Screen Icons ---------------------------------*/
+
+
+  /*---------------------- Curve Manipulation Icons --------------------------*/
+
+
+
+
 
 
 
