@@ -92,7 +92,7 @@ class CurveNode extends Node {
     } );
 
     this.path.setShape( pathShape.makeImmutable() );
-   }
+  }
 }
 
 calculusGrapher.register( 'CurveNode', CurveNode );

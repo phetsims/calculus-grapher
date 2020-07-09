@@ -23,6 +23,7 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -43,7 +44,7 @@ class OriginalCurve extends Curve {
     // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
     //                                                          is manipulated by the view.
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes,
-      CurveManipulationModes.HILL );
+      CurveManipulationModes.TILT );
 
 
     // @public {NumberProperty} - the width of the curve-manipulation 'dent' that the user makes in the curve. This only
@@ -118,15 +119,15 @@ class OriginalCurve extends Curve {
    * Curve Manipulation Algorithms
    *----------------------------------------------------------------------------*/
 
-   /**
-    * Smooths the curve. Called when the user presses the 'smooth' button.
-    * @public
-    *
-    * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
-    * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
-    * improved from the flash implementation of calculus grapher.
-    */
-   smooth() {
+  /**
+   * Smooths the curve. Called when the user presses the 'smooth' button.
+   * @public
+   *
+   * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
+   * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
+   * improved from the flash implementation of calculus grapher.
+   */
+  smooth() {
 
     // Save the current values of our Points for the next undoToLastSave call. Note that the current y-values are the
     // same as the previous y-values for all Points in the OriginalCurve.
@@ -137,21 +138,107 @@ class OriginalCurve extends Curve {
 
       // Flag that tracks the sum of the y-values of all Points within the moving window.
       let movingTotal = 0;
+      let addedPoints = 0;
 
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
       for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
         // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
-        movingTotal += this.getClosestsPointAt( point.x + dx ).previousY;
+        movingTotal += this.getClosestPointAt( point.x + dx ).previousY;
+
+        addedPoints += 1;
       }
 
       // Set the Point's new y-value to the moving average.
-      point.y = movingTotal / SMOOTHING_WINDOW_WIDTH;
+      point.y = movingTotal / addedPoints;
     } );
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
-   }
+  }
+
+  /**
+   * Shifts the curve to the specified drag Position.
+   * @public
+   *
+   * @param {Vector2} position - in model coordinates
+   */
+  shiftToPosition( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.SHIFT );
+
+    // Amount to shift the entire curve.
+    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+
+    // Shift each of the CurvePoints by deltaY.
+    this.points.forEach( point => {
+      point.y += deltaY;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
+   * Tilts the curve to the specified drag Position.
+   * @public
+   *
+   * @param {Vector2} position - in model coordinates
+   */
+  tiltToPosition( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+
+    // Shift each of the CurvePoints by a factor of deltaY.
+    this.points.forEach( point => {
+      point.y += deltaY * point.x / position.x;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
+   * Freeform.
+   * @public
+   *
+   * @param {Vector2} position - in model coordinates
+   */
+  drawFreeformToPosition( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    this.getClosestPointAt( position.x ).y = position.y;
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+
+
+    //     xP = Math.round(xP);
+    // this.y_arr[xP] = yP;
+    // var distX:int = Math.abs(xP - lastX);
+    // var sign:Number = xP - lastX;
+    // var W:Number;
+
+    // if ( distX > 1 ) {
+    //     for ( var i:int = 1; i < distX; i++ ) {
+    //         W = i / distX;
+    //         if ( sign > 0 ) {
+    //             this.y_arr[lastX + i] = (1 - W) * this.lastY + W * yP;
+    //         }
+    //         else {
+    //             this.y_arr[lastX - i] = (1 - W) * this.lastY + W * yP;
+    //         }
+
+    //     }
+    // }
+    // this.lastX = xP;
+    // this.lastY = yP;
+  }
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );

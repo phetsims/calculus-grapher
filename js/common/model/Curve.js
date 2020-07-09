@@ -43,7 +43,7 @@ class Curve {
     // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
     // start of the simulation here and they are never disposed. Points are initialized at y = 0.
     for ( let x = CURVE_X_RANGE.min; x <= CURVE_X_RANGE.max; x += 1 / POINTS_PER_COORDINATE ) {
-      this.points.push( new CurvePoint( x, 0 ) );
+      this.points.push( new CurvePoint( x ) );
     }
 
     // @public (read-only) {Emitter} - Emits when the Curve has changed in any form.
@@ -58,7 +58,6 @@ class Curve {
    */
   reset() {
     this.points.forEach( point => {
-      point.y = 0;
       point.reset();
     } );
 
@@ -72,13 +71,13 @@ class Curve {
    * @param {number} x
    * @returns {CurvePoint}
    */
-  getClosestsPointAt( x ) {
+  getClosestPointAt( x ) {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
     // Use dimensional analysis to convert the x-value to the index of the Point.
     const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
 
-    return this.points[ Utils.clamp( index, 0, this.points.length ) ];
+    return this.points[ Utils.clamp( index, 0, this.points.length - 1 ) ];
   }
 }
 

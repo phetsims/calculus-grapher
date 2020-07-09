@@ -33,7 +33,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   smoothingWindowWidth: {
     type: 'number',
     isValidValue: value => ( value > 0 ),
-    defaultValue: 2
+    defaultValue: 1.2
   }
 } );
 

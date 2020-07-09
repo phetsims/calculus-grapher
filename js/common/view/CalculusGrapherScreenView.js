@@ -11,6 +11,7 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
+import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
 import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
 import GraphNode from './GraphNode.js';
 
@@ -34,6 +35,10 @@ class CalculusGrapherScreenView extends ScreenView {
     const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty );
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );
+
+    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve.curveManipulationModeProperty );
+    controlPanel.rightCenter = this.layoutBounds.rightCenter;
+    this.addChild( controlPanel );
   }
 }
 

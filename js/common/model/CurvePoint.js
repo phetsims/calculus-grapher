@@ -13,7 +13,7 @@
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve and its subtypes to represent and map
  * out the Curve at a finite number of points inside of a interval. Thus, CurvePoints are created at the start of the
- * sim and are mutated when the Curve changes. CurvePoints are never disposed.
+ * sim and are mutated when the Curve changes, meaning CurvePoints are never disposed.
  *
  * @author Brandon Li
  */
@@ -25,19 +25,17 @@ class CurvePoint {
 
   /**
    * @param {number} x - the x-coordinate of the point.
-   * @param {number|null} y - the y-coordinate of the point.
    * @param {Object} [options]
    */
-  constructor( x, y, options ) {
+  constructor( x, options ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
-    assert && assert( y === null || typeof y === 'number', `invalid y: ${y}` );
 
     // @public (read-only) {number} - the x-coordinate of the Point. This value cannot be mutated.
     this.x = x;
 
     // @public {number} - the y-coordinate of the Point. If null, it means that the point is undefined (which means
-    //                    there is a hole in the curve).
-    this.y = y;
+    //                    there is a hole in the curve). Initialized at 0.
+    this.y = 0;
 
     // @private {number[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
@@ -53,6 +51,7 @@ class CurvePoint {
    * Called when the reset-all button is pressed.
    */
   reset() {
+    this.y = 0;
     this.savedYValues = [];
     this.isCusp = false;
   }

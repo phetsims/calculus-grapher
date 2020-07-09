@@ -19,7 +19,7 @@ const CurveManipulationModes = Enumeration.byKeys( [
   'SINE',
   'FREEFORM',
   'TILT',
-  'OFFSET'
+  'SHIFT'
 
 ] );
 
