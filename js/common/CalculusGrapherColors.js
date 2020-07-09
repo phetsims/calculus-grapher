@@ -6,12 +6,17 @@
  * @author Brandon Li
  */
 
+import Color from '../../../scenery/js/util/Color.js';
 import calculusGrapher from '../calculusGrapher.js';
 
 const CalculusGrapherColors = {
 
   // General
-  SCREEN_BACKGROUND: 'rgb( 240, 240, 240 )'
+  SCREEN_BACKGROUND: 'rgb( 240, 240, 240 )',
+
+
+  // Curves
+  ORIGINAL_CURVE_COLOR: Color.BLUE
 
 
 

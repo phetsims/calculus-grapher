@@ -43,7 +43,9 @@ class OriginalCurveNode extends CurveNode {
     this.addInputListener( new DragListener( {
       applyOffset: false,
       drag: ( event, listener ) => {
-
+        if ( curve.curveManipulationMode === CurveManipulationModes.HILL ) {
+          curve.hill( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+        }
         if ( curve.curveManipulationMode === CurveManipulationModes.TILT ) {
           curve.tiltToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
@@ -53,6 +55,10 @@ class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationModes.FREEFORM ) {
           curve.drawFreeformToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
+      },
+      start() {
+        curve.saveCurrentPoints();
+
       }
 
     } ) );

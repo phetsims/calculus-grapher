@@ -15,13 +15,17 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 
+// constants
+// const CURVE_MANIPULATION_ICON_WIDTH = 10;
+// const CURVE_MANIPULATION_ICON_HEIGHT = 5;
+
 const CalculusGrapherIconFactory = {
 
 
   /*--------------------------- Screen Icons ---------------------------------*/
 
 
-  /*---------------------- Curve Manipulation Icons --------------------------*/
+  /*--------------------- Curve Manipulation Icons ---------------------------*/
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.HILL.
@@ -30,6 +34,7 @@ const CalculusGrapherIconFactory = {
    * @returns {Node}
    */
   createHillIcon() {
+    // OriginalCurve.createHillShape
 
   },
 
@@ -99,7 +104,9 @@ const CalculusGrapherIconFactory = {
    *
    * @returns {Node}
    */
-  createShiftIcon() {}
+  createShiftIcon() {
+
+  }
 };
 
 calculusGrapher.register( 'CalculusGrapherIconFactory', CalculusGrapherIconFactory );

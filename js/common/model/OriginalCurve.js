@@ -202,6 +202,39 @@ class OriginalCurve extends Curve {
   }
 
   /**
+   * Hill
+   * @public
+   *
+   * TODO: this was copied from flash. Understand and improve?
+   */
+  hill( position ) {
+    const width = 20;
+
+    const closestPoint = this.getClosestPointAt( position.x );
+    assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
+
+    // Amount to shift the entire curve.
+    const deltaY = Math.abs( position.y - closestPoint.previousY );
+    let P = 1;
+
+    this.points.forEach( ( point, index ) => {
+      if ( point !== closestPoint ) {
+        const dist = Math.abs( point.x - closestPoint.x ) * POINTS_PER_COORDINATE;
+        P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
+        assert && assert( Number.isFinite( P ), `${ dist } ${ deltaY } ${ Math.log( deltaY + 1 ) } ${ -dist / ( width * Math.log( deltaY + 1 ) ) }` );
+
+        point.y = P * position.y + ( 1 - P ) * point.previousY;
+      }
+
+      point.y = ( P * position.y + ( 1 - P ) * point.y );
+
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
    * Freeform.
    * @public
    *
