@@ -268,6 +268,40 @@ class OriginalCurve extends Curve {
   }
 
   /**
+   * Parabola
+   * @public
+   * TODO: this was copied from flash. Understand and improve?
+   */
+  parabola( position ) {
+    const closestPoint = this.getClosestPointAt( position.x );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    const deltaY = position.y - closestPoint.previousY;
+
+    // const width = 20;
+    const a = 1;
+    // const slopeMin = 1 / 5;
+    // const slopeMax = 15;
+    // const fS = Math.pow( slopeMax / slopeMin, 1 / 10 );
+    // const slope = slopeMin * Math.pow( fS, 1 );
+
+    this.points.forEach( point => {
+      const newY = position.y - Math.sign( deltaY ) * a * Math.pow( point.x - closestPoint.x, 2 );
+
+      if ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) {
+        point.y = newY;
+      }
+      else {
+        point.y = point.previousY;
+      }
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+
+  /**
    * Freeform.
    * @public
    *
