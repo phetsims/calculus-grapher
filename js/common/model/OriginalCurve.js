@@ -311,33 +311,34 @@ class OriginalCurve extends Curve {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
 
+    const closestPoint = this.getClosestPointAt( position.x );
+
     // Amount to shift the CurvePoint closest to the passed-in position.
-    this.getClosestPointAt( position.x ).y = position.y;
+    closestPoint.y = position.y;
+
+
+    if ( this.last ) {
+      const distX = Math.abs( closestPoint.x - this.last.x );
+
+      if ( distX > 1 / POINTS_PER_COORDINATE ) {
+
+        for ( let dx = 1 / POINTS_PER_COORDINATE; dx < distX; dx += 1 / POINTS_PER_COORDINATE ) {
+          const W = dx / distX;
+
+          if ( closestPoint.x > this.last.x ) {
+            this.getClosestPointAt( this.last.x + dx ).y = (1 - W) * this.last.y + W * closestPoint.y;
+          }
+          else {
+            this.getClosestPointAt( this.last.x - dx ).y = (1 - W) * this.last.y + W * closestPoint.y;
+          }
+        }
+      }
+    }
+
+    this.last = closestPoint;
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
-
-
-    //     xP = Math.round(xP);
-    // this.y_arr[xP] = yP;
-    // var distX:int = Math.abs(xP - lastX);
-    // var sign:Number = xP - lastX;
-    // var W:Number;
-
-    // if ( distX > 1 ) {
-    //     for ( var i:int = 1; i < distX; i++ ) {
-    //         W = i / distX;
-    //         if ( sign > 0 ) {
-    //             this.y_arr[lastX + i] = (1 - W) * this.lastY + W * yP;
-    //         }
-    //         else {
-    //             this.y_arr[lastX - i] = (1 - W) * this.lastY + W * yP;
-    //         }
-
-    //     }
-    // }
-    // this.lastX = xP;
-    // this.lastY = yP;
   }
 }
 
