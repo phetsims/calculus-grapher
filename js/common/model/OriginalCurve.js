@@ -23,7 +23,6 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -256,7 +255,7 @@ class OriginalCurve extends Curve {
 
     // Right
     for ( let i = closestPointIndex; i < this.points.length; i ++ ) {
-      const newY = closestPoint.y - Utils.sign( deltaY ) * slope * Math.abs( this.points[ i ].x - closestPoint.x );
+      const newY = closestPoint.y - Math.sign( deltaY ) * slope * Math.abs( this.points[ i ].x - closestPoint.x );
 
 
 
@@ -273,7 +272,7 @@ class OriginalCurve extends Curve {
 
     // Left
     for ( let i = closestPointIndex; i > 0; i-- ) {
-      const newY = closestPoint.y - Utils.sign( deltaY ) * slope * Math.abs( this.points[ i ].x - closestPoint.x );
+      const newY = closestPoint.y - Math.sign( deltaY ) * slope * Math.abs( this.points[ i ].x - closestPoint.x );
 
       if ( ( deltaY >=0 && newY > this.points[ i ].previousY ) || ( deltaY < 0 && newY < this.points[ i ].previousY ) ) {
         this.points[ i ].y = newY;
