@@ -217,7 +217,7 @@ class OriginalCurve extends Curve {
     const deltaY = Math.abs( position.y - closestPoint.previousY );
     let P = 1;
 
-    this.points.forEach( ( point, index ) => {
+    this.points.forEach( point => {
       if ( point !== closestPoint ) {
         const dist = Math.abs( point.x - closestPoint.x ) * POINTS_PER_COORDINATE;
         P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
@@ -240,11 +240,10 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   line( position ) {
+    const closestPoint = this.getClosestPointAt( position.x );
+
     // Amount to shift the CurvePoint closest to the passed-in position.
-    this.getClosestPointAt( position.x ).y = position.y;
-    const deltaY = this.getClosestPointAt( position.x ).y - this.getClosestPointAt( position.x ).previousY;
-    const closestPointIndex = this.getIndexOfClosestPoint( position.x );
-    const closestPoint = this.points[ closestPointIndex ];
+    const deltaY = position.y - closestPoint.previousY;
 
     // const width = 20;
     const slope = 1;
@@ -253,35 +252,16 @@ class OriginalCurve extends Curve {
     // const fS = Math.pow( slopeMax / slopeMin, 1 / 10 );
     // const slope = slopeMin * Math.pow( fS, 1 );
 
-    // Right
-    for ( let i = closestPointIndex; i < this.points.length; i ++ ) {
-      const newY = closestPoint.y - Math.sign( deltaY ) * slope * Math.abs( this.points[ i ].x - closestPoint.x );
+    this.points.forEach( point => {
+      const newY = position.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
 
-
-
-      // ( i - closestPointIndex ) * slope / POINTS_PER_COORDINATE;
-
-      if ( ( deltaY >=0 && newY > this.points[ i ].previousY ) || ( deltaY < 0 && newY < this.points[ i ].previousY ) ) {
-        this.points[ i ].y = newY;
+      if ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) {
+        point.y = newY;
       }
       else {
-        this.points[ i ].y = this.points[ i ].previousY;
-        // break; // TODO, set cusp
+        point.y = point.previousY;
       }
-    }
-
-    // Left
-    for ( let i = closestPointIndex; i > 0; i-- ) {
-      const newY = closestPoint.y - Math.sign( deltaY ) * slope * Math.abs( this.points[ i ].x - closestPoint.x );
-
-      if ( ( deltaY >=0 && newY > this.points[ i ].previousY ) || ( deltaY < 0 && newY < this.points[ i ].previousY ) ) {
-        this.points[ i ].y = newY;
-      }
-      else {
-        this.points[ i ].y = this.points[ i ].previousY;
-        // break; // TODO, set cusp
-      }
-    }
+    } );
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
