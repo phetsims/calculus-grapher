@@ -49,6 +49,9 @@ class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationModes.PARABOLA ) {
           curve.parabola( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
+        if ( curve.curveManipulationMode === CurveManipulationModes.PEDESTAL ) {
+          curve.pedestal( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+        }
         if ( curve.curveManipulationMode === CurveManipulationModes.LINE ) {
           curve.line( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }

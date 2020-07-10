@@ -300,6 +300,35 @@ class OriginalCurve extends Curve {
     this.curveChangedEmitter.emit();
   }
 
+  /**
+   * Pedestal
+   * @public
+   * TODO: this was copied from flash. Understand and improve?
+   */
+  pedestal( position ) {
+    // const cornerRadius = 0.2;
+    const width = 5;
+
+    const closestPoint = this.getClosestPointAt( position.x );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    const deltaY = position.y - closestPoint.previousY;
+
+    this.points.forEach( point => {
+      const newY = position.y;
+      const deltaX = Math.abs( point.x - closestPoint.x );
+
+      if ( deltaX < width / 2 && ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) ) {
+        point.y = newY;
+      }
+      else {
+        point.y = point.previousY;
+      }
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
 
   /**
    * Freeform.
