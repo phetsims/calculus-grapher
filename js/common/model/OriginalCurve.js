@@ -306,24 +306,53 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   pedestal( position ) {
-    // const cornerRadius = 0.2;
-    const width = 5;
+    const width = 10;
+    // const factor = 10;
 
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = position.y - closestPoint.previousY;
+    const deltaY = Math.abs( position.y - closestPoint.previousY );
+    // const leftPoint = this.getClosestPointAt( position.x - width / 2 );
+    // const rightPoint = this.getClosestPointAt( position.x + width / 2 );
+    // closestPoint.y = position.y;
 
     this.points.forEach( point => {
+      // let newY;
       const newY = position.y;
-      const deltaX = Math.abs( point.x - closestPoint.x );
 
-      if ( deltaX < width / 2 && ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) ) {
+      if ( Math.abs( point.x - closestPoint.x ) < width / 2 && ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) ) {
         point.y = newY;
       }
       else {
         point.y = point.previousY;
       }
+      // const dx = point.x - leftPoint.x;
+      // if ( dx <= width / 2 ) {
+      //   newY = leftPoint.previousY + deltaY * 1 / ( 1 + Math.exp( -( dx * factor - Math.log( ( 2 + Math.sqrt( 3 ) ) * deltaY ) ) ) );
+      // }
+      // else {
+      //   newY = position.y;
+      //   // newY = -deltaY * ( 1 / ( 1 + Math.exp( -( width - dx ) * factor + Math.log( -( width - dx ) * factor) ) ) );
+      // }
+
+        // else if ( dx <= ( width - cornerRadius - trapSideLength ) ) {
+        //   newY = rightPoint.previousY + cornerRadius + trapSideLength + -Math.sign( deltaY ) * Math.sqrt( cornerRadius ** 2 - ( dx - topLength - trapSideLength - 2 * cornerRadius ) ** 2 );
+        // }
+        // else if ( dx <= ( width - cornerRadius ) ) {
+        //   newY = rightPoint.previousY + cornerRadius + Math.sign( deltaY ) * sideSlope * ( ( dx - topLength - trapSideLength - 3 * cornerRadius ) - cornerRadius );
+        // }
+        // else {
+        //   newY = rightPoint.y + Math.sign( deltaY ) * Math.sqrt( cornerRadius ** 2 - ( cornerRadius - ( width - dx ) ) ** 2 );
+        // }
+
+      //   if ( ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) ) {
+      //     point.y = newY;
+      //   }
+      // }
+      // else {
+      //   point.y = point.previousY;
+      // }
     } );
 
     // Signal that this Curve has changed.
