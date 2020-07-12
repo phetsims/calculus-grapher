@@ -398,6 +398,38 @@ class OriginalCurve extends Curve {
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
+
+  /**
+   * Sine
+   * @public
+   * TODO: this was copied from flash. Understand and improve?
+   */
+  sine( position ) {
+    // const closestPoint = this.getClosestPointAt( position.x );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    // const deltaY = position.y - closestPoint.previousY;
+
+    const width = 1;
+
+
+    this.points.forEach( point => {
+      const newY = position.y * Math.cos( point.x * width );
+      const clearForSine = Math.abs( newY ) > Math.abs( point.previousY );
+
+
+      if ( clearForSine ) {
+        point.y = newY;
+      }
+      else {
+        point.y = point.previousY;
+      }
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );

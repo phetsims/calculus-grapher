@@ -64,7 +64,10 @@ class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationModes.FREEFORM ) {
           curve.drawFreeformToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
-      },
+        if ( curve.curveManipulationMode === CurveManipulationModes.SINE ) {
+          curve.sine( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+        }
+        },
       start() {
         curve.saveCurrentPoints();
 
