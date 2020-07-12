@@ -312,7 +312,7 @@ class OriginalCurve extends Curve {
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = Math.abs( position.y - closestPoint.previousY );
+    // const deltaY = Math.abs( position.y - closestPoint.previousY );
     // const leftPoint = this.getClosestPointAt( position.x - width / 2 );
     // const rightPoint = this.getClosestPointAt( position.x + width / 2 );
     // closestPoint.y = position.y;
@@ -321,7 +321,7 @@ class OriginalCurve extends Curve {
       // let newY;
       const newY = position.y;
 
-      if ( Math.abs( point.x - closestPoint.x ) < width / 2 && ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) ) {
+      if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
         point.y = newY;
       }
       else {
