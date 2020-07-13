@@ -194,7 +194,7 @@ class OriginalCurve extends Curve {
     assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    this.angle = Utils.clamp( Utils.toDegrees( Math.atan2( position.y, position.x ) ), -45, 45 );
+    this.angle = Utils.clamp( Utils.toDegrees( Math.atan2( position.y, position.x ) ), -CalculusGrapherQueryParameters.maxTilt, CalculusGrapherQueryParameters.maxTilt );
     const deltaY = Math.tan( Utils.toRadians( this.angle ) ) * position.x - this.getClosestPointAt( position.x ).previousY;
 
     // Shift each of the CurvePoints by a factor of deltaY.

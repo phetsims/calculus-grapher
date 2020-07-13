@@ -19,7 +19,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
    */
   pointsPerCoordinate: {
     type: 'number',
-    isValidValue: value => ( value > 0 ),
+    isValidValue: value => value > 0,
     defaultValue: 12
   },
 
@@ -32,9 +32,22 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
    */
   smoothingWindowWidth: {
     type: 'number',
-    isValidValue: value => ( value > 0 ),
+    isValidValue: value => value > 0,
     defaultValue: 1.2
+  },
+
+  /**
+   * The maximum tilting of curves relative to the horizontal. See
+   * https://github.com/phetsims/calculus-grapher/issues/26
+   *
+   * For internal use.
+   */
+  maxTilt: {
+    type: 'number',
+    isValidValue: value => value >= 0 && value < 90,
+    defaultValue: 45
   }
+
 } );
 
 calculusGrapher.register( 'CalculusGrapherQueryParameters', CalculusGrapherQueryParameters );
