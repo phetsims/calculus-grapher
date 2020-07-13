@@ -52,7 +52,7 @@ class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationModes.PEDESTAL ) {
           curve.pedestal( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.LINE ) {
+        if ( curve.curveManipulationMode === CurveManipulationModes.TRIANGLE ) {
           curve.line( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.TILT ) {

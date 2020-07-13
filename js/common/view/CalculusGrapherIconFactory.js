@@ -39,7 +39,7 @@ const CalculusGrapherIconFactory = {
   },
 
   /**
-   * Creates the Curve Manipulation Icon for CurveManipulationModes.LINE.
+   * Creates the Curve Manipulation Icon for CurveManipulationModes.TRIANGLE.
    * @public
    *
    * @returns {Node}

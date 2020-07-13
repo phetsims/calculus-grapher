@@ -10,7 +10,7 @@
  * OriginalCurve is mainly responsible for:
  *   - Keeping track of the current CurveManipulationMode
  *   - Keeping track of the width of the curve-manipulation 'dent' that the user makes in the curve. This only applies
- *     to HILL, LINE, PEDESTAL, PARABOLA, and SINE (which make a 'dent' in the curve).
+ *     to HILL, TRIANGLE, PEDESTAL, PARABOLA, and SINE (which make a 'dent' in the curve).
  *   - Changing the Curve based on where the user is dragging the CurvePoint and the CurveManipulationMode or when
  *     the user 'smooths' the Curve. The algorithms for curve manipulation were adapted and improved from the flash
  *     implementation of Calculus Grapher.
