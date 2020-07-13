@@ -36,17 +36,20 @@ class Curve {
 
   constructor() {
 
-    // @public (read-only) {CurvePoint[]} - the points that map out the curve at a finite number of points inside of a
-    //                                      interval. See the comment at the top of this file for full context.
+    // @public (read-only) {CurvePoint[]} - the Points that map out the curve at a finite number of partitions within
+    //                                      the domain. See the comment at the top of this file for full context.
     this.points = [];
 
     // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
-    // start of the simulation here and they are never disposed. Points are initialized at y = 0.
+    // start of the simulation here and are never disposed.
     for ( let x = CURVE_X_RANGE.min; x <= CURVE_X_RANGE.max; x += 1 / POINTS_PER_COORDINATE ) {
       this.points.push( new CurvePoint( x ) );
     }
 
-    // @public (read-only) {Emitter} - Emits when the Curve has changed in any form.
+    // @public (read-only) {Emitter} - Emits when the Curve has changed in any form. Instead of listening to a yProperty
+    //                                 of every CurvePoint, which was deemed invasive to the performance of the sim, we
+    //                                 use an Emitter that emits once after all CurvePoints are set upon manipulation.
+    //                                 See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
   }
 
