@@ -5,8 +5,8 @@
  * was decided to implement CurvePoints to be minimally invasive and lightweight for performance.
  *
  * Each CurvePoint contains the following information:
- *   - The corresponding y-value of the point.
- *   - Whether or not the point exists. A point that isn't defined means that the Curve has a hole or a discontinuity.
+ *   - The corresponding y-value of the Point.
+ *   - Whether or not the Point exists. A Point that isn't defined means that the Curve has a hole or a discontinuity.
  *   - All of its previously 'saved' y-values. When the user finishes manipulating the OriginalCurve, the y-value of
  *     CurvePoints in the OriginalCurve are saved.
  *
