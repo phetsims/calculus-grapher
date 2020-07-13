@@ -147,8 +147,8 @@ class OriginalCurve extends Curve {
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
       for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
-        // Add the Point's previousY, which was the Point's y-value before the smooth() method was called.
-        movingTotal += this.getClosestPointAt( point.x + dx ).previousY;
+        // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
+        movingTotal += this.getClosestPointAt( point.x + dx ).lastSavedY;
 
         addedPoints += 1;
       }
@@ -195,11 +195,11 @@ class OriginalCurve extends Curve {
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     this.angle = Utils.clamp( Utils.toDegrees( Math.atan2( position.y, position.x ) ), -CalculusGrapherQueryParameters.maxTilt, CalculusGrapherQueryParameters.maxTilt );
-    const deltaY = Math.tan( Utils.toRadians( this.angle ) ) * position.x - this.getClosestPointAt( position.x ).previousY;
+    const deltaY = Math.tan( Utils.toRadians( this.angle ) ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
 
     // Shift each of the CurvePoints by a factor of deltaY.
     this.points.forEach( point => {
-      point.y = point.previousY + deltaY * point.x / position.x;
+      point.y = point.lastSavedY + deltaY * point.x / position.x;
     } );
 
     // Signal that this Curve has changed.
@@ -219,7 +219,7 @@ class OriginalCurve extends Curve {
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
 
     // Amount to shift the entire curve.
-    const deltaY = Math.abs( position.y - closestPoint.previousY );
+    const deltaY = Math.abs( position.y - closestPoint.lastSavedY );
     let P = 1;
 
     this.points.forEach( point => {
@@ -228,7 +228,7 @@ class OriginalCurve extends Curve {
         P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
         assert && assert( Number.isFinite( P ), `${ dist } ${ deltaY } ${ Math.log( deltaY + 1 ) } ${ -dist / ( width * Math.log( deltaY + 1 ) ) }` );
 
-        point.y = P * position.y + ( 1 - P ) * point.previousY;
+        point.y = P * position.y + ( 1 - P ) * point.lastSavedY;
       }
 
       point.y = ( P * position.y + ( 1 - P ) * point.y );
@@ -248,7 +248,7 @@ class OriginalCurve extends Curve {
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = position.y - closestPoint.previousY;
+    const deltaY = position.y - closestPoint.lastSavedY;
 
     // const width = 20;
     const slope = 1;
@@ -260,11 +260,11 @@ class OriginalCurve extends Curve {
     this.points.forEach( point => {
       const newY = position.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
 
-      if ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) {
+      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
       else {
-        point.y = point.previousY;
+        point.y = point.lastSavedY;
       }
     } );
 
@@ -281,7 +281,7 @@ class OriginalCurve extends Curve {
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = position.y - closestPoint.previousY;
+    const deltaY = position.y - closestPoint.lastSavedY;
 
     // const width = 20;
     const a = 1;
@@ -293,11 +293,11 @@ class OriginalCurve extends Curve {
     this.points.forEach( point => {
       const newY = position.y - Math.sign( deltaY ) * a * Math.pow( point.x - closestPoint.x, 2 );
 
-      if ( ( deltaY > 0 && newY > point.previousY ) || ( deltaY < 0 && newY < point.previousY ) ) {
+      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
       else {
-        point.y = point.previousY;
+        point.y = point.lastSavedY;
       }
     } );
 
@@ -331,7 +331,7 @@ class OriginalCurve extends Curve {
         P = Math.exp( -Math.pow( point.x - ( closestPoint.x + width / 2 ), 4 ) / ( 2 * c * c ) );
       }
 
-      point.y = P * position.y + ( 1 - P ) * point.previousY;
+      point.y = P * position.y + ( 1 - P ) * point.lastSavedY;
     } );
 
     // Signal that this Curve has changed.
@@ -387,21 +387,21 @@ class OriginalCurve extends Curve {
     // const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    // const deltaY = position.y - closestPoint.previousY;
+    // const deltaY = position.y - closestPoint.lastSavedY;
 
     const width = 1;
 
 
     this.points.forEach( point => {
       const newY = position.y * Math.cos( point.x * width );
-      const clearForSine = Math.abs( newY ) > Math.abs( point.previousY );
+      const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
 
 
       if ( clearForSine ) {
         point.y = newY;
       }
       else {
-        point.y = point.previousY;
+        point.y = point.lastSavedY;
       }
     } );
 
