@@ -26,6 +26,7 @@ import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import CurvePoint from './CurvePoint.js';
 
 // constants
@@ -71,23 +72,6 @@ class Curve {
   }
 
   /**
-   * Gets the index of the CurvePoint that is closest in x-value to the given x-value.
-   * @public
-   *
-   * @param {number} x
-   * @returns {number}
-   */
-  getIndexOfClosestPoint( x ) {
-    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
-
-    // Use dimensional analysis to convert the x-value to the index of the Point.
-    const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
-
-    // Clamp the index to a point inside our range.
-    return Utils.clamp( index, 0, this.points.length - 1 );
-  }
-
-  /**
    * Gets the CurvePoint whose x-value is closest to the given x-value.
    * @public
    *
@@ -96,8 +80,13 @@ class Curve {
    */
   getClosestPointAt( x ) {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
+    assert && assert( CalculusGrapherUtils.isSortedBy( this.points, _.property( 'x' ) ) );
 
-    return this.points[ this.getIndexOfClosestPoint( x ) ];
+    // Use dimensional analysis to convert the x-value to the index of the Point.
+    const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
+
+    // Clamp the index to a point inside our range.
+    return this.points[ Utils.clamp( index, 0, this.points.length - 1 ) ];
   }
 }
 
