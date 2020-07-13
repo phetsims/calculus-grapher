@@ -3,7 +3,7 @@
 /**
  * Enumeration of the possible 'modes' of manipulating OriginalCurves.
  *
- * When the user-drags on the OriginalCurve, the curve is manipulated based on the current CurveManipulationMode,
+ * When the user drags on the OriginalCurve, the curve is manipulated based on the current CurveManipulationMode,
  * allowing the user to create custom curves. The documentation in this file is not exhaustive and does not describe
  * the algorithms for response to curve user-manipulation. Please also see OriginalCurve.js
  *
