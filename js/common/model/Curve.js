@@ -60,10 +60,13 @@ class Curve {
    * Called when the reset-all button is pressed.
    */
   reset() {
+
+    // Reset every CurvePoint to its initial state.
     this.points.forEach( point => {
       point.reset();
     } );
 
+    // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 
