@@ -22,8 +22,12 @@
 
 import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from './Curve.js';
+
+// constants
+const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
 
 class DerivativeCurve extends Curve {
 
@@ -65,12 +69,12 @@ class DerivativeCurve extends Curve {
    * @private
    *
    * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the slope of
-   * the secant line between each adjacent Point is considered to be the instantaneous derivative of each Point. Our
-   * version, however, considers both the slope of the secant lines from the left and right side of every point. See
+   * the secant line between each adjacent Point is considered to be the instantaneous derivative. Our version
+   * considers both the slope of the secant lines from the left and right side of every point. See
    * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition
    *
-   * Since the 'Calculus Grapher' sim has second derivatives, the base curve could have cusps and/or non-finite points.
-   * The algorithm works by iterating through each Point of the 'base' Curve.
+   * Since the 'Calculus Grapher' sim has second derivatives, the 'base' curve could have cusps and/or non-finite
+   * points. The algorithm for computing derivatives works by iterating through each Point of the 'base' Curve.
    * Here is the decision tree:
    *
    *   - If the Point of the 'base' curve does not exist:
@@ -93,47 +97,63 @@ class DerivativeCurve extends Curve {
    */
   updateDerivative() {
 
-    // Loop through each trio of Points of the base Curve.
+    // Loop through each trio of adjacent Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentTrio( this.baseCurve.points, ( previousPoint, point, nextPoint, index ) => {
 
       if ( !point.exists ) {
 
-        // If the Point on the base curve isn't differentiable, set the y-value to null to indicate that there is a
+        // If the Point of the 'base' curve does not exist, set the y-value to null to indicate that there is a
         // hole in the DerivativeCurve.
         this.points[ index ].y = null;
       }
       else {
 
+        // Flags of the slopes of the secant lines from the left and right adjacent sides of the Point. Set later.
         let leftSlope;
         let rightSlope;
+
+        // Compute the leftSlope and rightSlope.
         if ( previousPoint && previousPoint.exists ) {
 
-          // Take the derivative of the Point, but only consider the left-side of the limit definition of a derivative.
-          // Use the definition of a slope to approximate the derivative.
+          // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
           leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
+          assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
         }
         if ( nextPoint && nextPoint.exists ) {
+
+          // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
           rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
+          assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
         }
-        // assert && assert( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ), 'non finite slope at a differentiable point' );
-        // console.log( leftSlope, rightSlope)
+
+        //----------------------------------------------------------------------------------------
+
+        // Set the y-value of the corresponding Point of the DerivativeCurve.
         if ( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-          this.points[ index ].y = Utils.equalsEpsilon( leftSlope, rightSlope, 0.5 ) ?
-            ( leftSlope + rightSlope ) / 2 : null;
+
+          // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
+          // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
+          this.points[ index ].y = Utils.equalsEpsilon( leftSlope, rightSlope, DERIVATIVE_THRESHOLD ) ?
+                                     ( leftSlope + rightSlope ) / 2 :
+                                     null;
         }
         else if ( Number.isFinite( leftSlope ) ) {
+
+          // If only the slope of the left side exists, use that as the derivative.
           this.points[ index ].y = leftSlope;
         }
         else if ( Number.isFinite( rightSlope ) ) {
+
+          // If only the slope of the right side exists, use that as the derivative.
           this.points[ index ].y = rightSlope;
         }
         else {
+
+          // Otherwise, both adjacent Points don't exist, meaning the derivative also doesn't exist
           this.points[ index ].y = null;
         }
-        // console.log( 'end', this.points[ index ].y)
       }
     } );
-    // console.table( this.points)
 
     // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
