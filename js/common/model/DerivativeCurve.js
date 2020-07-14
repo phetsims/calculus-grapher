@@ -70,17 +70,19 @@ class DerivativeCurve extends Curve {
    * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition
    *
    * Since the 'Calculus Grapher' sim has second derivatives, the base curve could have cusps and/or non-finite points.
-   * Here is the decision tree:
-   *   - If a Point of the 'base' curve does not exist:
-   *       - The derivative also doesn't exist
+   * The algorithm works by iterating through each Point of the 'base' Curve. Here is the decision tree:
+   *   - If the Point of the 'base' curve does not exist:
+   *      - The derivative at the corresponding x-value also doesn't exist.
    *   - Otherwise:
-   *       - If both the left and right Points exist:
-   *          - If the slope of the secant lines from the left and right side are approximately equal:
-   *              - the slope is the average of the slopes
-   *          - Otherwise, the derivative doesn't exist
-   *       - If only one of the two adjacent Points exists, only use the slope of the secant line between the point
-   *         as the derivative.
-   *       - Otherwise, both adjacent Points don't exist, only the derivative also doesn't exist.
+   *      - If both the left and right adjacent Points of the Point of the 'base' curve exist:
+   *         - If the slope of the secant lines from the left and right side are approximately equal:
+   *             - The slope is the average of the slopes.
+   *         - Otherwise:
+   *             - The derivative doesn't exist
+   *      - If only one of the two adjacent Points exists:
+   *         - The derivative is the slope of the secant line between the Point and the existing adjacent Point.
+   *      - Otherwise:
+   *         - Both adjacent Points don't exist, meaning the derivative also doesn't exist.
    */
   updateDerivative() {
 
