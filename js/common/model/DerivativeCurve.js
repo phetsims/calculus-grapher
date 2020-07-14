@@ -5,8 +5,8 @@
  * as both the first derivative and second derivative of the OriginalCurve.
  *
  * DerivativeCurves's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
- * the Points of the derivative. Derivatives are computed by considering the slope of secant lines from both sides of
- * every point. For a general background on differentiation, see
+ * the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
+ * of every point. For a general background on differentiation, see
  * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition.
  *
  * For the 'Calculus Grapher' simulation, there are no vertical tangents. However, it is possible for the 'base' Curve
@@ -61,16 +61,26 @@ class DerivativeCurve extends Curve {
   }
 
   /**
-   * Updates the y-values of the DerivativeCurve to represent the derivative of the base Curve. Each Point of the base
-   * curve are considered to be infinitesimally close to each other.
+   * Updates the y-values of the DerivativeCurve to represent the derivative of the 'base' Curve.
    * @private
    *
-   * There are 3 scenarios for taking the derivative of a Point of the base curve:
-   *   - If the Point isn't differentiable, the corresponding Point of the DerivativeCurve is a hole.
-   *   - If the Point is differentiable but the previous Point is a hole, the corresponding Point of the DerivativeCurve
-   *     is 0.
-   *   - Otherwise, the Point is differentiable and the previous Point isn't a hole, meaning the slope between the
-   *     Points exists and is defined as the derivative.
+   * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the slope of
+   * the secant line between each adjacent Point is considered to be the instantaneous derivative of each Point. Our
+   * version, however, considers both the slope of the secant lines from the left and right side of every point. See
+   * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition
+   *
+   * Since the 'Calculus Grapher' sim has second derivatives, the base curve could have cusps and/or non-finite points.
+   * Here is the decision tree:
+   *   - If a Point of the 'base' curve does not exist:
+   *       - The derivative also doesn't exist
+   *   - Otherwise:
+   *       - If both the left and right Points exist:
+   *          - If the slope of the secant lines from the left and right side are approximately equal:
+   *              - the slope is the average of the slopes
+   *          - Otherwise, the derivative doesn't exist
+   *       - If only one of the two adjacent Points exists, only use the slope of the secant line between the point
+   *         as the derivative.
+   *       - Otherwise, both adjacent Points don't exist, only the derivative also doesn't exist.
    */
   updateDerivative() {
 
