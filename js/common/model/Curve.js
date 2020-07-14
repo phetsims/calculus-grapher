@@ -26,7 +26,6 @@ import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import CurvePoint from './CurvePoint.js';
 
 // constants
@@ -80,7 +79,6 @@ class Curve {
    */
   getClosestPointAt( x ) {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
-    assert && assert( CalculusGrapherUtils.isSortedBy( this.points, _.property( 'x' ) ) );
 
     // Use dimensional analysis to convert the x-value to the index of the Point.
     const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
