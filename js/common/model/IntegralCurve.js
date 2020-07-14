@@ -1,16 +1,16 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * IntegralCurve is a Curve sub-type for a curve that represents the integral of a OriginalCurve, called the 'base'
- * Curve.
+ * IntegralCurve is a Curve sub-type for the curve that represents the integral of the OriginalCurve. The OriginalCurve
+ * is referenced as the 'base' Curve of the IntegralCurve.
  *
- * When any of the Points of the base Curve changes, the IntegralCurve integrates it and updates its Points.
- * For a general background on integration, see https://en.wikipedia.org/wiki/Integral. Our version uses a trapezoidal
- * Riemann sum to approximate integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background. The
- * IntegralCurve exists at all points since OriginalCurve is finite at all points.
+ * IntegralCurves main responsibility is to observe when the 'base' Curve changes and integrate it and update the
+ * Points of the Integral. For a general background on integration, see https://en.wikipedia.org/wiki/Integral. Our
+ * version uses a trapezoidal Riemann sum to approximate integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule
+ * for background. Since the 'base' Curve exists at all Points, the Integral is also finite at all points.
  *
- * Like Curve, IntegralCurve is created at the start and persists for the lifetime of the simulation. Links
- * are left as-is and IntegralCurves are never disposed.
+ * Like Curve, IntegralCurve is created at the start and persists for the lifetime of the simulation. Links are left
+ * as-is and IntegralCurves are never disposed.
  *
  * @author Brandon Li
  */
