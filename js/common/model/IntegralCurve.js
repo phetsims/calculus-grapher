@@ -44,7 +44,7 @@ class IntegralCurve extends Curve {
   }
 
   /**
-   * Resets the IntegralCurve.
+   * Resets the IntegralCurve. Ensures that IntegralCurve matches the 'base' Curve regardless of resetting order.
    * @override
    * @public
    *
@@ -56,8 +56,8 @@ class IntegralCurve extends Curve {
   }
 
   /**
-   * Updates the y-values of the IntegralCurve to represent the integral of the base Curve. Each Point of the base
-   * curve are considered to be infinitesimally close to each other.
+   * Updates the y-values of the IntegralCurve to represent the integral of the 'base' Curve. Each adjacent Point of the
+   * base curve is considered to be infinitesimally close to each other.
    * @private
    *
    * The IntegralCurve exists at all points since OriginalCurve is finite at all points, so we don't need to consider
@@ -66,18 +66,21 @@ class IntegralCurve extends Curve {
   updateIntegral() {
 
     // Loop through each pair of Points of the base Curve.
-    CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
+    CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint ) => {
       assert && assert( point.exists && previousPoint.exists );
 
-      // Take the integral from the min to the Point of the base curve using a trapezoidal Riemann sum approximation.
-      // See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
+      // Take the integral from the minimum of the domain of Curves to the x-value of the current point using a
+      // trapezoidal Riemann sum approximation. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
       const trapezoidalArea = ( point.y + previousPoint.y ) / 2 * ( point.x - previousPoint.x );
-      assert && assert( Number.isFinite( trapezoidalArea ), 'non finite trapezoidal area' );
 
-      // Set the y-value of the IntegralCurve to the previous value plus the trapezoidal area.
-      this.points[ index ].y = this.getClosestPointAt( previousPoint.x ).y + trapezoidalArea;
+      // Add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
+      point.y = previousPoint.y + trapezoidalArea;
+
+      // Sanity check that verifies that the Integral exists at the current Point.
+      assert && assert( Number.isFinite( trapezoidalArea ) && point.exists, 'non-finite trapezoidal area' );
     } );
 
+    // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 }
