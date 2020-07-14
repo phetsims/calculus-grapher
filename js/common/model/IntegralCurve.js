@@ -70,7 +70,7 @@ class IntegralCurve extends Curve {
   updateIntegral() {
 
     // Loop through each pair of adjacent Points of the base Curve.
-    CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint ) => {
+    CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
       assert && assert( point.exists && previousPoint.exists );
 
       // Take the integral from the minimum of the domain of Curves to the x-value of the current point using a
@@ -78,7 +78,7 @@ class IntegralCurve extends Curve {
       const trapezoidalArea = ( point.y + previousPoint.y ) / 2 * ( point.x - previousPoint.x );
 
       // Add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
-      point.y = previousPoint.y + trapezoidalArea;
+      this.points[ index ].y = this.points[ index - 1 ].y + trapezoidalArea;
 
       // Sanity check that verifies that the Integral exists at the current Point.
       assert && assert( Number.isFinite( trapezoidalArea ) && point.exists, 'non-finite trapezoidal area' );
