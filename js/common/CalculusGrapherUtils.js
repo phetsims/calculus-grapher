@@ -33,6 +33,29 @@ const CalculusGrapherUtils = {
   },
 
   /**
+   * Iterates through an array in trios, passing the previous value, the current value, and the next value, if they
+   * exist, to the iterator function. NOTE: this function will pass in boundaries; for instance,
+   * forEachAdjacentTrio( [ 1, 2, 3, 4 ], f ) would invoke f( null, 1, 2  ), f( 1, 2, 3 ), f( 2, 3, 4 ),
+   * and f( 3, 4, null).
+   * @public
+   *
+   * @param {*[]} array
+   * @param {function(previousValue:*,value:*,nextValue*,indexOfValue*)} iterator
+   */
+  forEachAdjacentTrio( array, iterator ) {
+    assert && assert( Array.isArray( array ), `invalid array: ${array}` );
+    assert && assert( typeof iterator === 'function', `invalid iterator: ${iterator}` );
+
+    for ( let i = 0; i < array.length; i++ ) {
+      const value = array[ i ];
+      const previousValue = i > 0 ? array[ i - 1 ] : null;
+      const nextValue = i < array.length ? array[ i + 1 ] : null;
+
+      iterator( previousValue, value, nextValue, i );
+    }
+  },
+
+  /**
    * Gets a Range that is scaled by the desired scalar value. For instance, multiplyRange( new Range( 1, 2 ), 2 ) would
    * return Range( 2, 4 ).
    * @public
