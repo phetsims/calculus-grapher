@@ -35,7 +35,7 @@ class IntegralCurve extends Curve {
     // @private {OriginalCurve} - reference to the 'base' Curve that was passed-in.
     this.baseCurve = baseCurve;
 
-    // Observe when any of the 'base' Curve changes and update this curve to represent the integral of the 'base' Curve.
+    // Observe when the 'base' Curve changes and update this curve to represent the integral of the 'base' Curve.
     // Listener is never removed since IntegralCurves are never disposed.
     baseCurve.curveChangedEmitter.addListener( this.updateIntegral.bind( this ) );
 
