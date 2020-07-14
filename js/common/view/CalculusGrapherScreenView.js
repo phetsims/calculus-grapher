@@ -36,6 +36,11 @@ class CalculusGrapherScreenView extends ScreenView {
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );
 
+    const integral = new GraphNode( model.integralCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty, false );
+    integral.centerBottom = graphNode.centerTop.minusXY( 0, 10 );
+    this.addChild( integral );
+
+
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve.curveManipulationModeProperty );
     controlPanel.rightCenter = this.layoutBounds.rightCenter;
     this.addChild( controlPanel );

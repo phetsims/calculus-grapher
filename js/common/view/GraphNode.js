@@ -12,6 +12,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
 
 class GraphNode extends Node {
@@ -19,7 +20,7 @@ class GraphNode extends Node {
   /**
    * @param {Object} [options]
    */
-  constructor( curve, bounds, gridVisibleProrperty, options ) {
+  constructor( curve, bounds, gridVisibleProrperty, original = true, options ) {
 
     super( options );
 
@@ -34,7 +35,6 @@ class GraphNode extends Node {
       20,
       -20
     );
-    const background = new Rectangle( viewBounds, { fill: 'white' } );
 
     const gridNode = new GridNode( viewBounds.width, viewBounds.height, {
       minorHorizontalLineSpacing: 1,
@@ -45,13 +45,27 @@ class GraphNode extends Node {
         stroke: 'black'
       }
     } );
-    // gridVisibleProrperty.linkAttribute( gridNode, 'visible' );
-    // @public
-    this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
-      pathOptions: {
-        stroke: 'blue'
-      }
-    } );
+
+    let background;
+    if ( original ) {
+      // gridVisibleProrperty.linkAttribute( gridNode, 'visible' );
+      // @public
+      this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
+        pathOptions: {
+          stroke: 'blue'
+        }
+      } );
+      background = new Rectangle( viewBounds, { fill: 'white' } );
+    }
+    else {
+      // @public
+      this.curveNode = new CurveNode( curve, new Property( modelViewTransform ), {
+        pathOptions: {
+          stroke: 'green'
+        }
+      } );
+      background = new Rectangle( viewBounds, { fill: 'white', opacity: 0.2 } );
+    }
 
     const border = new Rectangle( viewBounds, {
       stroke: 'black',

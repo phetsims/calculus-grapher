@@ -67,7 +67,7 @@ class IntegralCurve extends Curve {
 
     // Loop through each pair of Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
-      assert && assert( point.isDifferentiable && previousPoint.isDifferentiable );
+      assert && assert( point.exists && previousPoint.exists );
 
       // Take the integral from the min to the Point of the base curve using a trapezoidal Riemann sum approximation.
       // See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
@@ -75,7 +75,7 @@ class IntegralCurve extends Curve {
       assert && assert( Number.isFinite( trapezoidalArea ), 'non finite trapezoidal area' );
 
       // Set the y-value of the IntegralCurve to the previous value plus the trapezoidal area.
-      this.points[ index ].y = this.getClosestPointAt( previousPoint.x ) + trapezoidalArea;
+      this.points[ index ].y = this.getClosestPointAt( previousPoint.x ).y + trapezoidalArea;
     } );
 
     this.curveChangedEmitter.emit();
