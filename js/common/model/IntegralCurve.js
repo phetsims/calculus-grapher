@@ -23,7 +23,7 @@ import OriginalCurve from './OriginalCurve.js';
 class IntegralCurve extends Curve {
 
   /**
-   * @param {OriginalCurve} baseCurve - the curve to differentiate to get the values of this IntegralCurve.
+   * @param {OriginalCurve} baseCurve - the curve to integrate to get the values of this IntegralCurve.
    */
   constructor( baseCurve ) {
     assert && assert( baseCurve instanceof OriginalCurve, `invalid baseCurve: ${baseCurve}` );
@@ -32,14 +32,14 @@ class IntegralCurve extends Curve {
 
     //----------------------------------------------------------------------------------------
 
-    // @private {OriginalCurve} - reference to the base Curve that was passed-in.
+    // @private {OriginalCurve} - reference to the 'base' Curve that was passed-in.
     this.baseCurve = baseCurve;
 
-    // Observe when any of the base Curve's Point's y-value changes and update this curve to represent the integral of
-    // the base Curve. Multilink is never disposed since IntegralCurves are never disposed.
-    baseCurve.curveChangedEmitter.addListener( () => {
-      this.updateIntegral();
-    } );
+    // Observe when any of the 'base' Curve changes and update this curve to represent the integral of the 'base' Curve.
+    // Listener is never removed since IntegralCurves are never disposed.
+    baseCurve.curveChangedEmitter.addListener( this.updateIntegral.bind( this ) );
+
+    // Make the initial call to updateIntegral() to match the 'base' Curve upon initialization.
     this.updateIntegral();
   }
 
