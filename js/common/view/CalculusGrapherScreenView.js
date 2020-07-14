@@ -41,6 +41,10 @@ class CalculusGrapherScreenView extends ScreenView {
     this.addChild( integral );
 
 
+    // const derivative = new GraphNode( model.derivativeCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty, false );
+    // derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
+    // this.addChild( derivative );
+
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve.curveManipulationModeProperty );
     controlPanel.rightCenter = this.layoutBounds.rightCenter;
     this.addChild( controlPanel );

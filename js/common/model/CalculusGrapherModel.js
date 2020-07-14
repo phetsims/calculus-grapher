@@ -8,7 +8,7 @@
 
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-// import DerivativeCurve from './DerivativeCurve.js';
+import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
 import OriginalCurve from './OriginalCurve.js';
 
@@ -23,7 +23,7 @@ class CalculusGrapherModel {
 
     // @public (read-only)
     this.originalCurve = new OriginalCurve();
-    // this.derivativeCurve = new DerivativeCurve( this.originalCurve );
+    this.derivativeCurve = new DerivativeCurve( this.originalCurve );
     // this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve );
     this.integralCurve = new IntegralCurve( this.originalCurve );
 

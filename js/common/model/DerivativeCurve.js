@@ -20,6 +20,7 @@
  * @author Brandon Li
  */
 
+import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from './Curve.js';
@@ -73,33 +74,49 @@ class DerivativeCurve extends Curve {
    */
   updateDerivative() {
 
-    // Loop through each pair of Points of the base Curve.
-    CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
+    // Loop through each trio of Points of the base Curve.
+    CalculusGrapherUtils.forEachAdjacentTrio( this.baseCurve.points, ( previousPoint, point, nextPoint, index ) => {
 
-      if ( !point.isDifferentiable ) {
+      if ( !point.exists ) {
 
         // If the Point on the base curve isn't differentiable, set the y-value to null to indicate that there is a
         // hole in the DerivativeCurve.
         this.points[ index ].y = null;
       }
-      else if ( point.isDifferentiable && !previousPoint.exists ) {
+      else {
 
-        // If the Point is differentiable but the previous Point is a hole, the corresponding Point of the
-        // DerivativeCurve is 0.
-        this.points[ index ].y = 0;
-      }
-      if ( point.isDifferentiable && previousPoint.exists ) {
+        let leftSlope;
+        let rightSlope;
+        if ( previousPoint && previousPoint.exists ) {
 
-        // Take the derivative of the Point, but only consider the left-side of the limit definition of a derivative.
-        // Use the definition of a slope to approximate the derivative.
-        const slope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
-        assert && assert( Number.isFinite( slope ), 'non finite slope at a differentiable point' );
-
-        // Set the y-value of the DerivativeCurve to the slope.
-        this.points[ index ].y = slope;
+          // Take the derivative of the Point, but only consider the left-side of the limit definition of a derivative.
+          // Use the definition of a slope to approximate the derivative.
+          leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
+        }
+        if ( nextPoint && nextPoint.exists ) {
+          rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
+        }
+        // assert && assert( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ), 'non finite slope at a differentiable point' );
+        // console.log( leftSlope, rightSlope)
+        if ( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+          this.points[ index ].y = Utils.equalsEpsilon( leftSlope, rightSlope, 0.5 ) ?
+            ( leftSlope + rightSlope ) / 2 : null;
+        }
+        else if ( Number.isFinite( leftSlope ) ) {
+          this.points[ index ].y = leftSlope;
+        }
+        else if ( Number.isFinite( rightSlope ) ) {
+          this.points[ index ].y = rightSlope;
+        }
+        else {
+          this.points[ index ].y = null;
+        }
+        // console.log( 'end', this.points[ index ].y)
       }
     } );
+    // console.table( this.points)
 
+    // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 }
