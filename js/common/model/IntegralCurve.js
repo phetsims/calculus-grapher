@@ -4,7 +4,7 @@
  * IntegralCurve is a Curve sub-type for the curve that represents the integral of the OriginalCurve. The OriginalCurve
  * is referenced as the 'base' Curve of the IntegralCurve.
  *
- * IntegralCurves main responsibility is to observe when the 'base' Curve changes and integrate it and update the
+ * IntegralCurve's main responsibility is to observe when the 'base' Curve changes and integrate it and update the
  * Points of the Integral. For a general background on integration, see https://en.wikipedia.org/wiki/Integral. Our
  * version uses a trapezoidal Riemann sum to approximate integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule
  * for background. Since the 'base' Curve exists at all Points, the Integral is also finite at all points.
