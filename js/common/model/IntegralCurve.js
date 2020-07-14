@@ -69,7 +69,7 @@ class IntegralCurve extends Curve {
    */
   updateIntegral() {
 
-    // Loop through each pair of Points of the base Curve.
+    // Loop through each pair of adjacent Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint ) => {
       assert && assert( point.exists && previousPoint.exists );
 
