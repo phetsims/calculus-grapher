@@ -43,4 +43,3 @@ const CurveManipulationModes = Enumeration.byKeys( [
 
 calculusGrapher.register( 'CurveManipulationModes', CurveManipulationModes );
 export default CurveManipulationModes;
-
