@@ -9,8 +9,9 @@
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivativeCurve from './DerivativeCurve.js';
-// import IntegralCurve from './IntegralCurve.js';
 import OriginalCurve from './OriginalCurve.js';
+
+// import IntegralCurve from './IntegralCurve.js';
 
 class CalculusGrapherModel {
 

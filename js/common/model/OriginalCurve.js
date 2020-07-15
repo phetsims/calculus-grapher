@@ -8,7 +8,7 @@
  *   - Keeping track of the current CurveManipulationMode. When the user drags on the OriginalCurve, the curve is
  *     manipulated based on the current CurveManipulationMode, allowing the user to create custom curves.
  *
- *   - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL , TRIANGLE, PEDESTAL, PARABOLA,
+ *   - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
  *     and SINE, and the value is interpreted differently for each response algorithm to curve user-manipulation.
  *
  *   - Implementing the response algorithms that are used when the user drags on the OriginalCurve. The response is
@@ -46,12 +46,11 @@ class OriginalCurve extends Curve {
 
     // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
     //                                                          is manipulated by the view.
-    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes,
-      CurveManipulationModes.TILT );
+    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes, CurveManipulationModes.HILL );
 
-
-    // @public {NumberProperty} - the width of the curve-manipulation 'dent' that the user makes in the curve. This only
-    //                            applies to some CurveManipulationModes. See the comment at the top of this file.
+    // @public {NumberProperty} - the width of the curve-manipulation. This only applies to some CurveManipulationModes
+    //                            and the value is interpreted differently for each response algorithm to curve
+    //                            user-manipulation.
     this.curveManipulationWidthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
       range: CURVE_MANIPULATION_WIDTH_RANGE
     } );
