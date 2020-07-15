@@ -2,18 +2,20 @@
 
 /**
  * OriginalCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then
- * triggers a change in the OriginalCurve and its integral/derivative/second-derivative Curve.
- *
- * The OriginalCurve can be manipulated in various ways, mainly through the 8 CurveManipulationModes that were ported
- * from the flash implementation of the simulation.
+ * triggers a change in the CurvePoints and the OriginaLCurve's integral, derivative, and second-derivative Curves.
  *
  * OriginalCurve is mainly responsible for:
- *   - Keeping track of the current CurveManipulationMode
- *   - Keeping track of the width of the curve-manipulation 'dent' that the user makes in the curve. This only applies
- *     to HILL, TRIANGLE, PEDESTAL, PARABOLA, and SINE (which make a 'dent' in the curve).
- *   - Changing the Curve based on where the user is dragging the CurvePoint and the CurveManipulationMode or when
- *     the user 'smooths' the Curve. The algorithms for curve manipulation were adapted and improved from the flash
- *     implementation of Calculus Grapher.
+ *   - Keeping track of the current CurveManipulationMode. When the user drags on the OriginalCurve, the curve is
+ *     manipulated based on the current CurveManipulationMode, allowing the user to create custom curves.
+ *
+ *   - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL , TRIANGLE, PEDESTAL, PARABOLA,
+ *     and SINE, and the value is interpreted differently for each response algorithm to curve user-manipulation.
+ *
+ *   - Implementing the response algorithms that are used when the user drags on the OriginalCurve. The response is
+ *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
+ *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
+ *
+ *   - Implementing smoothing, saving, undoing, and other interactions.
  *
  * Like Curve, OriginalCurve is created at the start and persists for the lifetime of the simulation. Links
  * are left as-is and DerivativeCurves are never disposed.
