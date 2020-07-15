@@ -18,6 +18,7 @@ import Shape from '../../../../kite/js/Shape.js';
 import merge from '../../../../phet-core/js/merge.js';
 import AssertUtils from '../../../../phetcommon/js/AssertUtils.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -55,11 +56,12 @@ class CurveNode extends Node {
     this.curve = curve;
     this.modelViewTransformProperty = modelViewTransformProperty;
 
+    this.addChild( this.path );
+    this.cuspContainer = new Node();
+    this.addChild( this.cuspContainer );
     // Observe
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
     modelViewTransformProperty.link( this.updateCurveNode.bind( this ) );
-
-    this.addChild( this.path );
   }
 
   /**
@@ -90,6 +92,20 @@ class CurveNode extends Node {
       }
 
     } );
+
+    if ( this.curve.cusps ) {
+      this.cuspContainer.removeAllChildren();
+      this.curve.cusps.forEach( cusp => {
+        this.cuspContainer.addChild( new Circle( 2, {
+          centerX: this.modelViewTransformProperty.value.modelToViewX( cusp.x ),
+          centerY: this.modelViewTransformProperty.value.modelToViewY( cusp.y ),
+          fill: null,
+          stroke: 'red',
+          lineWidth: 1
+        } ) );
+      } );
+
+    }
 
     this.path.setShape( pathShape.makeImmutable() );
   }

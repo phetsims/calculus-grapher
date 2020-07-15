@@ -20,7 +20,7 @@
  * @author Brandon Li
  */
 
-import Utils from '../../../../dot/js/Utils.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
@@ -96,7 +96,7 @@ class DerivativeCurve extends Curve {
    *         * Both adjacent Points don't exist, meaning the derivative also doesn't exist.
    */
   updateDerivative() {
-
+    this.baseCurve.cusps = [];
     // Loop through each trio of adjacent Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentTrio( this.baseCurve.points, ( previousPoint, point, nextPoint, index ) => {
 
@@ -130,12 +130,27 @@ class DerivativeCurve extends Curve {
 
         // Set the y-value of the corresponding Point of the DerivativeCurve.
         if ( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+          const p0 = new Vector2( previousPoint.x, previousPoint.y ) ;
+          const p1 = new Vector2( point.x, point.y ) ;
+          const p2 = new Vector2( nextPoint.x, nextPoint.y ) ;
+
+          const dx1 = p1.x - p0.x;
+          const dy1 = p1.y - p0.y;
+          const dx2 = p2.x - p0.x;
+          const dy2 = p2.y - p0.y;
+          const area = dx1 * dy2 - dy1 * dx2;
+          const len0 = p0.distance(p1);
+          const len1 = p1.distance(p2);
+          const len2 = p2.distance(p0);
+
+          const K = 4 * Math.abs( area ) / (len0 * len1 * len2);
+          if ( K >= DERIVATIVE_THRESHOLD ) {
+            this.baseCurve.cusps.push( point );
+          }
 
           // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
           // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
-          this.points[ index ].y = Utils.equalsEpsilon( leftSlope, rightSlope, DERIVATIVE_THRESHOLD ) ?
-                                     ( leftSlope + rightSlope ) / 2 :
-                                     null;
+          this.points[ index ].y = ( leftSlope + rightSlope );
         }
         else if ( Number.isFinite( leftSlope ) ) {
 

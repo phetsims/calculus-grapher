@@ -20,7 +20,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   pointsPerCoordinate: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 12
+    defaultValue: 25
   },
 
   /**
@@ -58,7 +58,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   derivativeThreshold: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 0.65
+    defaultValue: 15
   }
 } );
 
