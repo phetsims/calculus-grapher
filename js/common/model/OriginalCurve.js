@@ -25,7 +25,7 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
+// import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -191,20 +191,20 @@ class OriginalCurve extends Curve {
    * @param {Vector2} position - in model coordinates
    */
   tiltToPosition( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
-    assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
+    // assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    // assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
 
-    // Amount to shift the CurvePoint closest to the passed-in position.
-    this.angle = Utils.clamp( Utils.toDegrees( Math.atan2( position.y, position.x ) ), -CalculusGrapherQueryParameters.maxTilt, CalculusGrapherQueryParameters.maxTilt );
-    const deltaY = Math.tan( Utils.toRadians( this.angle ) ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
+    // // Amount to shift the CurvePoint closest to the passed-in position.
+    // this.angle = Utils.clamp( Utils.toDegrees( Math.atan2( position.y, position.x ) ), -CalculusGrapherQueryParameters.maxTilt, CalculusGrapherQueryParameters.maxTilt );
+    // const deltaY = Math.tan( Utils.toRadians( this.angle ) ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
 
-    // Shift each of the CurvePoints by a factor of deltaY.
-    this.points.forEach( point => {
-      point.y = point.lastSavedY + deltaY * point.x / position.x;
-    } );
+    // // Shift each of the CurvePoints by a factor of deltaY.
+    // this.points.forEach( point => {
+    //   point.y = point.lastSavedY + deltaY * point.x / position.x;
+    // } );
 
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
+    // // Signal that this Curve has changed.
+    // this.curveChangedEmitter.emit();
   }
 
   /**
