@@ -10,6 +10,9 @@
     "grunt": "~1.1.0"
   },
   "phet": {
+    "phetLibs": [
+      "griddle"
+    ],
     "requirejsNamespace": "CALCULUS_GRAPHER",
     "runnable": true,
     "supportedBrands": [
