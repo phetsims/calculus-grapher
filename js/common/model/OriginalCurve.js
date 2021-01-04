@@ -25,7 +25,7 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-// import Utils from '../../../../dot/js/Utils.js';
+import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -76,7 +76,7 @@ class OriginalCurve extends Curve {
    * Saves the current y-values of the Points for the next undoToLastSave() method.
    * @public
    *
-   * This method is invoked when the user finishes manipulating the OriginalCurve. When the undo button is pressed,
+   * This method is invoked when the user starts manipulating the OriginalCurve. When the undo button is pressed,
    * the Points of the OriginalCurve will be set to their last saved state.
    */
   saveCurrentPoints() {
