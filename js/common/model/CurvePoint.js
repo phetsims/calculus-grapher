@@ -45,7 +45,7 @@ class CurvePoint {
     // @private {number|null} - the initial y-coordinate passed into the CurvePoint, for resetting purposes.
     this.initialY = y;
 
-    // @private {number[]} - an array of all of this Point's saved y-values.
+    // @private {number|null[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
   }
 
