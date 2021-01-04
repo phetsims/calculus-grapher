@@ -7,7 +7,7 @@
  *
  * Curves are modeled by segmenting the curve into a finite number of CurvePoints that are close together and map out
  * the y-values of the shape and curvature of the Curve. Adjacent CurvePoints are considered to be infinitesimally close
- * enough for derivative and integral computations and acre considered to cover 'every' x-value within its domain.
+ * enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
  *
  * Responsibilities are:
  *   - Create an array of CurvePoints for each partition of the Curve.
