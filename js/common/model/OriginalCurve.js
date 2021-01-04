@@ -2,7 +2,7 @@
 
 /**
  * OriginalCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then
- * triggers a change in the CurvePoints and the OriginaLCurve's integral, derivative, and second-derivative Curves.
+ * triggers a change in the CurvePoints and the OriginalCurve's integral, derivative, and second-derivative Curves.
  *
  * OriginalCurve is mainly responsible for:
  *   - Keeping track of the current CurveManipulationMode. When the user drags on the OriginalCurve, the curve is
@@ -18,7 +18,7 @@
  *   - Implementing smoothing, saving, undoing, and other interactions.
  *
  * Like Curve, OriginalCurve is created at the start and persists for the lifetime of the simulation. Links
- * are left as-is and DerivativeCurves are never disposed.
+ * are left as-is and OriginalCurves are never disposed.
  *
  * @author Brandon Li
  */
