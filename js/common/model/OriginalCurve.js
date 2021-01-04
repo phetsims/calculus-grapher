@@ -54,9 +54,6 @@ class OriginalCurve extends Curve {
     this.curveManipulationWidthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
       range: CURVE_MANIPULATION_WIDTH_RANGE
     } );
-
-    // @public (read-only) - the tilting angle.
-    this.angle = 0;
   }
 
   /**
@@ -172,6 +169,9 @@ class OriginalCurve extends Curve {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.SHIFT );
 
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
     // Amount to shift the entire curve.
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
 
@@ -191,20 +191,29 @@ class OriginalCurve extends Curve {
    * @param {Vector2} position - in model coordinates
    */
   tiltToPosition( position ) {
-    // assert && assert( position instanceof Vector2, `invalid position: ${position}` );
-    // assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+    assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
 
-    // // Amount to shift the CurvePoint closest to the passed-in position.
-    this.angle = Utils.clamp( Utils.toDegrees( Math.atan2( position.y, position.x ) ), -CalculusGrapherQueryParameters.maxTilt, CalculusGrapherQueryParameters.maxTilt );
-    // const deltaY = Math.tan( Utils.toRadians( this.angle ) ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
 
-    // // Shift each of the CurvePoints by a factor of deltaY.
-    // this.points.forEach( point => {
-    //   point.y = point.lastSavedY + deltaY * point.x / position.x;
-    // } );
+    // Find the angle of the tile, based on where the user dragged the Curve.
+    const angle = Utils.clamp(
+      Utils.toDegrees( Math.atan2( position.y, position.x ) ),
+      -CalculusGrapherQueryParameters.maxTilt,
+      CalculusGrapherQueryParameters.maxTilt
+    );
 
-    // // Signal that this Curve has changed.
-    // this.curveChangedEmitter.emit();
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
+
+    // Shift each of the CurvePoints by a factor of deltaY.
+    this.points.forEach( point => {
+      point.y = point.lastSavedY + deltaY * point.x / position.x;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
   /**
