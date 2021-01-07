@@ -60,7 +60,7 @@ class OriginalCurveNode extends CurveNode {
           curve.createParabolaAt( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.PEDESTAL ) {
-          curve.pedestal( modelPosition );
+          curve.createPedestalAt( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.TRIANGLE ) {
           curve.createTriangleAt( modelPosition );
@@ -110,6 +110,7 @@ class OriginalCurveNode extends CurveNode {
    * @returns {Shape} - in model units
    */
   static createDilatedCurvePath( curve ) {
+    assert && assert( curve instanceof OriginalCurve, `invalid curve: ${curve}` );
 
     const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - CURVE_DRAG_DILATION );
 

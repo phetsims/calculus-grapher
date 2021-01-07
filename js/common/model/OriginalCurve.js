@@ -328,37 +328,36 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Pedestal
+   * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    * @public
+   *
    * TODO: this was copied from flash. Understand and improve?
+   * @param {Vector2} peak
    */
-  pedestal( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+  createPedestalAt( peak ) {
+    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
+    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
+    const width = 10;
+    const edgeSlopeFactor = 1.5;
 
-    const width = 10; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    const c = 1.5;
+    const closestPoint = this.getClosestPointAt( peak.x );
 
-    const closestPoint = this.getClosestPointAt( position.x );
-
-    // https://en.wikipedia.org/wiki/Gaussian_function
+    // See https://en.wikipedia.org/wiki/Gaussian_function
     this.points.forEach( point => {
-      // let newY;
       let P = 1;
 
       if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
         P = 1;
       }
       else if ( point.x <= closestPoint.x ) {
-        P = Math.exp( -Math.pow( point.x - ( closestPoint.x - width / 2 ), 4 ) / ( 2 * c * c ) );
+        P = Math.exp( -Math.pow( point.x - ( closestPoint.x - width / 2 ), 4 ) / ( 2 * edgeSlopeFactor * edgeSlopeFactor ) );
       }
-      else {  // https://en.wikipedia.org/wiki/Gaussian_function
-        P = Math.exp( -Math.pow( point.x - ( closestPoint.x + width / 2 ), 4 ) / ( 2 * c * c ) );
+      else {
+        P = Math.exp( -Math.pow( point.x - ( closestPoint.x + width / 2 ), 4 ) / ( 2 * edgeSlopeFactor * edgeSlopeFactor ) );
       }
 
-      point.y = P * position.y + ( 1 - P ) * point.lastSavedY;
+      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
 
     // Signal that this Curve has changed.
