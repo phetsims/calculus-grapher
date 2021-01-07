@@ -169,9 +169,6 @@ class OriginalCurve extends Curve {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.SHIFT );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
-
     // Amount to shift the entire curve.
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
 
@@ -194,15 +191,12 @@ class OriginalCurve extends Curve {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
-
     // Find the angle of the tile, based on where the user dragged the Curve.
-    const angle = Utils.clamp(
-      Utils.toDegrees( Math.atan2( position.y, position.x ) ),
+    const angle = Utils.toRadians( Utils.clamp(
+      Utils.toDegrees( Math.atan( position.y / position.x ) ),
       -CalculusGrapherQueryParameters.maxTilt,
       CalculusGrapherQueryParameters.maxTilt
-    );
+    ) );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;

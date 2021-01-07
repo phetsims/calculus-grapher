@@ -77,6 +77,12 @@ class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationModes.SINE ) {
           curve.sine( modelPosition );
         }
+      },
+      start() {
+
+        // Save the current values of the Points for the next undoToLastSave call.
+        // This must be called once at the start of dragging (and not on each micro drag-position change).
+        curve.saveCurrentPoints();
       }
     } ) );
   }
