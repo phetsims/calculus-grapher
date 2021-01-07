@@ -223,6 +223,10 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   hill( position ) {
+
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
     const width = 20;
 
     const closestPoint = this.getClosestPointAt( position.x );
@@ -255,6 +259,10 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   line( position ) {
+
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
@@ -288,6 +296,11 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   parabola( position ) {
+
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
+
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
@@ -321,6 +334,10 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   pedestal( position ) {
+
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
     const width = 10;
     const c = 1.5;
 
@@ -358,6 +375,9 @@ class OriginalCurve extends Curve {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
 
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
@@ -394,6 +414,10 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   sine( position ) {
+
+    // Save the current values of our Points for the next undoToLastSave call.
+    this.saveCurrentPoints();
+
     // const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
