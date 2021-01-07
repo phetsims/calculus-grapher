@@ -10,5 +10,11 @@
   },
   "screen.integralLab": {
     "value": "Integral Lab"
+  },
+  "reset": {
+    "value": "Reset"
+  },
+  "smooth": {
+    "value": "Smooth"
   }
 }

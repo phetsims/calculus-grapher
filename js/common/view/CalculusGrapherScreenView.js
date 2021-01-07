@@ -45,7 +45,7 @@ class CalculusGrapherScreenView extends ScreenView {
     // derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
     // this.addChild( derivative );
 
-    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve.curveManipulationModeProperty );
+    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve );
     controlPanel.rightCenter = this.layoutBounds.rightCenter;
     this.addChild( controlPanel );
   }

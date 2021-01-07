@@ -79,15 +79,6 @@ class OriginalCurveNode extends CurveNode {
         }
       }
     } ) );
-
-    window.addEventListener( 'keydown', event => {
-      if ( event.keyCode === 13 ) {
-        curve.reset();
-      }
-      else {
-        curve.smooth();
-      }
-    } );
   }
 
   /**

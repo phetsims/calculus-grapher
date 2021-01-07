@@ -1,7 +1,8 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Control Panel
+ * Control Panel at the middle-right of each screen that allows the user to manipulate certain Properties of
+ * the simulation.
  *
  * @author Brandon Li
  */
@@ -11,36 +12,32 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import AquaRadioButtonGroup from '../../../../sun/js/AquaRadioButtonGroup.js';
 import Panel from '../../../../sun/js/Panel.js';
+import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import calculusGrapherStrings from '../../calculusGrapherStrings.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationModes from '../model/CurveManipulationModes.js';
+import OriginalCurve from '../model/OriginalCurve.js';
 
 class CalculusGrapherControlPanel extends Panel {
 
   /**
-   * @param {Property.<CurveManipulationModes>} curveManipulationModeProperty
+   * @param {OriginalCurve} originalCurve - the model Curve.
    * @param {Object} [options]
    */
-  constructor( curveManipulationModeProperty, options ) {
+  constructor( originalCurve, options ) {
+    assert && assert( originalCurve instanceof OriginalCurve, `invalid originalCurve: ${originalCurve}` );
 
     options = merge( {
 
       // {number} - the spacing between the content Nodes of the Panel
       contentSpacing: 7,
 
-
-
-  // Panel-like Containers
-      stroke: 'rgb( 190, 190, 190 )',
-      fill: 'rgb( 240, 240, 240 )'
+      // super-class options
+      stroke: CalculusGrapherColors.PANEL_STROKE,
+      fill: CalculusGrapherColors.PANEL_FILL
 
     }, options );
-
-    // Make the panel a fixed width.
-    assert && assert( options.minWidth === undefined, 'CalculusGrapherControlPanel sets minWidth' );
-    assert && assert( options.maxWidth === undefined, 'CalculusGrapherControlPanel sets maxWidth' );
-    // const panelWidth =  + 2 * options.xMargin;
-    // options.minWidth = panelWidth;
-    // options.maxWidth = panelWidth;
 
     //----------------------------------------------------------------------------------------
 
@@ -48,20 +45,30 @@ class CalculusGrapherControlPanel extends Panel {
     const contentNode = new VBox( { spacing: options.contentSpacing } );
     super( contentNode, options );
 
-    // @protected {Node} - the content Node. This is referenced for layouting purposes in sub-classes.
-    this.contentNode = contentNode;
-
-    const buttons = [];
-    CurveManipulationModes.VALUES.forEach( mode => {
-      buttons.push( {
+    // Radio Buttons that control the curveManipulationModeProperty.
+    const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup(
+      originalCurve.curveManipulationModeProperty,
+      CurveManipulationModes.VALUES.map( mode => ( {
         value: mode,
         node: new Text( mode.toString() )
-      } );
+      } ) )
+    );
+
+    // Smooth Button
+    const smoothButton = new TextPushButton( calculusGrapherStrings.smooth, {
+      listener: () => originalCurve.smooth()
     } );
 
-    const radioButtonGroup = new AquaRadioButtonGroup( curveManipulationModeProperty, buttons );
+    // Reset Button
+    const resetButton = new TextPushButton( calculusGrapherStrings.reset, {
+      listener: () => originalCurve.reset()
+    } );
 
-    this.contentNode.addChild( radioButtonGroup );
+    contentNode.children = [
+      curveManipulationModeRadioButtonGroup,
+      smoothButton,
+      resetButton
+    ];
   }
 }
 
