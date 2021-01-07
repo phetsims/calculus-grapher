@@ -211,37 +211,34 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Hill
+   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    * @public
    *
-   * TODO: this was copied from flash. Understand and improve?
+   * TODO: this was copied from flash. Understand and improve on it.
+   * @param {Vector2} peak
    */
-  hill( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+  createHillAt( peak ) {
+    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
+    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
+    const width = 20;
 
-    const width = 20; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-
-    const closestPoint = this.getClosestPointAt( position.x );
+    const closestPoint = this.getClosestPointAt( peak.x );
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
 
     // Amount to shift the entire curve.
-    const deltaY = Math.abs( position.y - closestPoint.lastSavedY );
+    const deltaY = Math.abs( peak.y - closestPoint.lastSavedY );
     let P = 1;
 
     this.points.forEach( point => {
       if ( point !== closestPoint ) {
         const dist = Math.abs( point.x - closestPoint.x ) * POINTS_PER_COORDINATE;
         P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
-        assert && assert( Number.isFinite( P ), `${ dist } ${ deltaY } ${ Math.log( deltaY + 1 ) } ${ -dist / ( width * Math.log( deltaY + 1 ) ) }` );
 
-        point.y = P * position.y + ( 1 - P ) * point.lastSavedY;
+        point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
       }
 
-      point.y = ( P * position.y + ( 1 - P ) * point.y );
-
+      point.y = ( P * peak.y + ( 1 - P ) * point.y );
     } );
 
     // Signal that this Curve has changed.

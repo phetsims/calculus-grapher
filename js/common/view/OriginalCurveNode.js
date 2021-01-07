@@ -54,7 +54,7 @@ class OriginalCurveNode extends CurveNode {
         const modelPosition = modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint );
 
         if ( curve.curveManipulationMode === CurveManipulationModes.HILL ) {
-          curve.hill( modelPosition );
+          curve.createHillAt( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.PARABOLA ) {
           curve.parabola( modelPosition );
