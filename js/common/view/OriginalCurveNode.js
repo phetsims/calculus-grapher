@@ -75,7 +75,7 @@ class OriginalCurveNode extends CurveNode {
           curve.drawFreeformToPosition( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.SINE ) {
-          curve.sine( modelPosition );
+          curve.createSineAt( modelPosition );
         }
       },
       start() {

@@ -365,7 +365,7 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Freeform.
+   * Allows the user to drag Points in the Curve to any desired position to create custom Curves shapes.
    * @public
    *
    * @param {Vector2} position - in model coordinates
@@ -374,15 +374,12 @@ class OriginalCurve extends Curve {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
-
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     closestPoint.y = position.y;
 
-
+    // TODO: this was copied from flash. Understand and improve?
     if ( this.last ) {
       const distX = Math.abs( closestPoint.x - this.last.x );
 
@@ -408,27 +405,25 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Sine
+   * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    * @public
+   *
    * TODO: this was copied from flash. Understand and improve?
+   * @param {Vector2} position
    */
-  sine( position ) {
-
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
+  createSineAt( position ) {
 
     // const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     // const deltaY = position.y - closestPoint.lastSavedY;
 
-    const width = 1; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-
+    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
+    const width = 1;
 
     this.points.forEach( point => {
       const newY = position.y * Math.cos( point.x * width );
       const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
-
 
       if ( clearForSine ) {
         point.y = newY;
@@ -441,7 +436,6 @@ class OriginalCurve extends Curve {
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
-
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );
