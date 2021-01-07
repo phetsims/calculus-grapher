@@ -223,11 +223,12 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   hill( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
 
     // Save the current values of our Points for the next undoToLastSave call.
     this.saveCurrentPoints();
 
-    const width = 20;
+    const width = 20; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
 
     const closestPoint = this.getClosestPointAt( position.x );
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
@@ -259,6 +260,7 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   line( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
 
     // Save the current values of our Points for the next undoToLastSave call.
     this.saveCurrentPoints();
@@ -268,7 +270,7 @@ class OriginalCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in position.
     const deltaY = position.y - closestPoint.lastSavedY;
 
-    // const width = 20;
+    // const width = 20; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
     const slope = 1;
     // const slopeMin = 1 / 5;
     // const slopeMax = 15;
@@ -296,6 +298,7 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   parabola( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
 
     // Save the current values of our Points for the next undoToLastSave call.
     this.saveCurrentPoints();
@@ -306,7 +309,7 @@ class OriginalCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in position.
     const deltaY = position.y - closestPoint.lastSavedY;
 
-    // const width = 20;
+    // const width = 20; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
     const a = 1;
     // const slopeMin = 1 / 5;
     // const slopeMax = 15;
@@ -334,11 +337,12 @@ class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   pedestal( position ) {
+    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
 
     // Save the current values of our Points for the next undoToLastSave call.
     this.saveCurrentPoints();
 
-    const width = 10;
+    const width = 10; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
     const c = 1.5;
 
     const closestPoint = this.getClosestPointAt( position.x );
@@ -423,7 +427,7 @@ class OriginalCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in position.
     // const deltaY = position.y - closestPoint.lastSavedY;
 
-    const width = 1;
+    const width = 1; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
 
 
     this.points.forEach( point => {
