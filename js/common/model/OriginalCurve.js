@@ -246,31 +246,35 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Line
+   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    * @public
+   *
    * TODO: this was copied from flash. Understand and improve?
+   * @param {Vector2} peak
    */
-  line( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+  createTriangleAt( peak ) {
+    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
+    const closestPoint = this.getClosestPointAt( peak.x );
 
-    const closestPoint = this.getClosestPointAt( position.x );
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peak.y - closestPoint.lastSavedY;
 
-    // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = position.y - closestPoint.lastSavedY;
+    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
+    // const width = 20;
+    const slope = 1; // TODO: derive slope from width
 
-    // const width = 20; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    const slope = 1;
+    // TODO: this is from flash source code. Understand this and determine if still needed.
     // const slopeMin = 1 / 5;
     // const slopeMax = 15;
     // const fS = Math.pow( slopeMax / slopeMin, 1 / 10 );
     // const slope = slopeMin * Math.pow( fS, 1 );
 
     this.points.forEach( point => {
-      const newY = position.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
+      const newY = peak.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
 
+      // If the point is within the 'width' of the triangle, modify the y position.
+      // Otherwise , the point is not within the width and don't modify its position.
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }

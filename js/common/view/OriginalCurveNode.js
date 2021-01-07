@@ -63,7 +63,7 @@ class OriginalCurveNode extends CurveNode {
           curve.pedestal( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.TRIANGLE ) {
-          curve.line( modelPosition );
+          curve.createTriangleAt( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.TILT ) {
           curve.tiltToPosition( modelPosition );
