@@ -83,6 +83,7 @@ class OriginalCurveNode extends CurveNode {
         curve.smooth();
       }
     } );
+    this.moveToFront();
 
   }
 

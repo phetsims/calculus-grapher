@@ -43,7 +43,9 @@ class GraphNode extends Node {
       minorLineOptions: {
         lineWidth: 1,
         stroke: 'black'
-      }
+      },
+      touchArea: Bounds2.ZERO,
+      mouseArea: Bounds2.ZERO
     } );
 
     let background;
@@ -75,8 +77,8 @@ class GraphNode extends Node {
     this.children = [
       background,
       gridNode,
-      this.curveNode,
-      border
+      border,
+      this.curveNode
     ];
   }
 }
