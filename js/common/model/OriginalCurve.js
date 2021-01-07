@@ -288,32 +288,33 @@ class OriginalCurve extends Curve {
   }
 
   /**
-   * Parabola
+   * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    * @public
+   *
    * TODO: this was copied from flash. Understand and improve?
+   * @param {Vector2} peak
    */
-  parabola( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+  createParabolaAt( peak ) {
+    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
 
-    // Save the current values of our Points for the next undoToLastSave call.
-    this.saveCurrentPoints();
+    const closestPoint = this.getClosestPointAt( peak.x );
 
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peak.y - closestPoint.lastSavedY;
 
-    const closestPoint = this.getClosestPointAt( position.x );
-
-    // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = position.y - closestPoint.lastSavedY;
-
-    // const width = 20; // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    const a = 1;
+    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
+    // TODO: this is from flash. Understand this and integrate into the algorithm.
+    // const width = 20;
     // const slopeMin = 1 / 5;
     // const slopeMax = 15;
     // const fS = Math.pow( slopeMax / slopeMin, 1 / 10 );
     // const slope = slopeMin * Math.pow( fS, 1 );
 
     this.points.forEach( point => {
-      const newY = position.y - Math.sign( deltaY ) * a * Math.pow( point.x - closestPoint.x, 2 );
+      const newY = peak.y - Math.sign( deltaY ) * Math.pow( point.x - closestPoint.x, 2 );
 
+      // If the point is within the 'width' of the parabola, modify the y position.
+      // Otherwise , the point is not within the width and don't modify its position.
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }

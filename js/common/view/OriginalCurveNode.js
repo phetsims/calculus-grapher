@@ -57,7 +57,7 @@ class OriginalCurveNode extends CurveNode {
           curve.createHillAt( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.PARABOLA ) {
-          curve.parabola( modelPosition );
+          curve.createParabolaAt( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.PEDESTAL ) {
           curve.pedestal( modelPosition );
