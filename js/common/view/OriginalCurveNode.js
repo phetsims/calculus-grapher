@@ -1,6 +1,11 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
+ * OriginalCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then
+ * triggers a change in the model OriginalCurve's points.
+ *
+ * Like CurveNode, OriginalCurveNode is created at the start and persists for the lifetime of the simulation. Links
+ * are left as-is and OriginalCurves are never disposed.
  *
  * @author Brandon Li
  */
@@ -15,10 +20,13 @@ import CurveManipulationModes from '../model/CurveManipulationModes.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode from './CurveNode.js';
 
+// constants
+const CURVE_DRAG_DILATION = 0.4; // in model units
+
 class OriginalCurveNode extends CurveNode {
 
   /**
-   * @param {Curve} curve - the model for the Curve.
+   * @param {OriginalCurve} curve - the model Curve.
    * @param {Property.<ModelViewTransform2>} modelViewTransformProperty
    * @param {Object} [options]
    */
@@ -26,53 +34,50 @@ class OriginalCurveNode extends CurveNode {
     assert && assert( curve instanceof OriginalCurve, `invalid curve: ${curve}` );
     assert && AssertUtils.assertPropertyOf( modelViewTransformProperty, ModelViewTransform2 );
 
-
     options = merge( {
 
-      // {Object} - passed to the main Path instance
+      // super-class options
       pathOptions: {
         cursor: 'pointer'
       }
-
     }, options );
 
     super( curve, modelViewTransformProperty, options );
 
     //----------------------------------------------------------------------------------------
 
-    this.addInputListener( new DragListener( {
+    // Add a DragListener to the path for manipulating the OriginalCurve model. Listener is never removed since
+    // OriginalCurveNodes are never disposed.
+    this.path.addInputListener( new DragListener( {
       applyOffset: false,
-      drag: ( event, listener ) => {
+      drag( event, listener ) {
+        const modelPosition = modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint );
+
         if ( curve.curveManipulationMode === CurveManipulationModes.HILL ) {
-          curve.hill( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.hill( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.PARABOLA ) {
-          curve.parabola( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.parabola( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.PEDESTAL ) {
-          curve.pedestal( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.pedestal( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.TRIANGLE ) {
-          curve.line( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.line( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.TILT ) {
-          curve.tiltToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.tiltToPosition( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.SHIFT ) {
-          curve.shiftToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.shiftToPosition( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.FREEFORM ) {
-          curve.drawFreeformToPosition( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.drawFreeformToPosition( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationModes.SINE ) {
-          curve.sine( modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint ) );
+          curve.sine( modelPosition );
         }
-        },
-      start() {
-        curve.saveCurrentPoints();
-
       }
-
     } ) );
 
     window.addEventListener( 'keydown', event => {
@@ -83,53 +88,49 @@ class OriginalCurveNode extends CurveNode {
         curve.smooth();
       }
     } );
-    this.moveToFront();
-
   }
 
   /**
-   * Updates the CurveNode
+   * @override
+   * Forwards response to super-class, except this adds a dilation to the touch/mouse area of the Path.
    * @public
    */
-   updateCurveNode() { // TODO: pass modelViewTransformProperty value?
-
+   updateCurveNode() {
     super.updateCurveNode();
 
-    this.touchArea = OriginalCurveNode.createDilatedHead( this.curve, this.modelViewTransformProperty.value );
-    this.mouseArea = this.touchArea;
+    const dilatedPathShape = OriginalCurveNode.createDilatedCurvePath( this.curve );
+    const dilatedPathShapeView = this.modelViewTransformProperty.value.modelToViewShape( dilatedPathShape );
+
+    this.path.touchArea = dilatedPathShapeView;
+    this.path.mouseArea = dilatedPathShapeView;
   }
 
   /**
-   * Creates a (rough) dilated shape for a vector head.  The head is pointing to the right.
+   * Creates a (rough) dilated shape for a Curve.
    * @public
    *
-   * @param {number} headWidth
-   * @param {number} headHeight
-   * @param {number} dilation
-   * @returns {Shape} - in view units
+   * @param {OriginalCurve} curve - the model Curve.
+   * @returns {Shape} - in model units
    */
-  static createDilatedHead( curve, modelViewTransform ) {
-    const dilation = 0.4;
+  static createDilatedCurvePath( curve ) {
 
-    const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - dilation );
+    const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - CURVE_DRAG_DILATION );
 
-    // Bellow
+    // Draw the curve shape slightly BELLOW the true y-value.
     curve.points.forEach( point => {
       if ( point.exists ) {
-        pathShape.lineTo( point.x, point.y - dilation );
+        pathShape.lineTo( point.x, point.y - CURVE_DRAG_DILATION );
       }
     } );
 
-    // Above
+    // Draw the curve shape slightly ABOVE the true y-value.
     _.forEachRight( curve.points, point => {
       if ( point.exists ) {
-        pathShape.lineTo( point.x, point.y + dilation );
+        pathShape.lineTo( point.x, point.y + CURVE_DRAG_DILATION );
       }
     } );
 
-    pathShape.close().makeImmutable();
-
-    return modelViewTransform.modelToViewShape( pathShape );
+    return pathShape.close().makeImmutable();
   }
 }
 

@@ -49,7 +49,7 @@ class CurveNode extends Node {
 
     //----------------------------------------------------------------------------------------
 
-    // @private {Path} - Path of the lines in between each CurvePoint.
+    // @protected {Path} - Path of the lines in between each CurvePoint.
     this.path = new Path( null, options.pathOptions );
 
     // @private
