@@ -43,9 +43,7 @@ class GraphNode extends Node {
       minorLineOptions: {
         lineWidth: 1,
         stroke: 'black'
-      },
-      touchArea: Bounds2.ZERO,
-      mouseArea: Bounds2.ZERO
+      }
     } );
 
     let background;
