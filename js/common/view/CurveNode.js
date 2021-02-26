@@ -68,7 +68,7 @@ class CurveNode extends Node {
    * Updates the CurveNode
    * @public
    */
-   updateCurveNode() { // TODO: pass modelViewTransformProperty value?
+  updateCurveNode() { // TODO: pass modelViewTransformProperty value?
 
     const pathShape = new Shape().moveTo(
       this.modelViewTransformProperty.value.modelToViewX( this.curve.points[ 0 ].x ),

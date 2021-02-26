@@ -389,10 +389,10 @@ class OriginalCurve extends Curve {
           const W = dx / distX;
 
           if ( closestPoint.x > this.last.x ) {
-            this.getClosestPointAt( this.last.x + dx ).y = (1 - W) * this.last.y + W * closestPoint.y;
+            this.getClosestPointAt( this.last.x + dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
           }
           else {
-            this.getClosestPointAt( this.last.x - dx ).y = (1 - W) * this.last.y + W * closestPoint.y;
+            this.getClosestPointAt( this.last.x - dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
           }
         }
       }

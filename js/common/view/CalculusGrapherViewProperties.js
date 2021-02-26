@@ -22,10 +22,10 @@ class CalculusGrapherViewProperties {
     // @public {BooleanProperty} - indicates if the integral curve is visible.
     this.integralCurveVisibleProrperty = new BooleanProperty( false );
 
-     // @public {BooleanProperty} - indicates if the derivative curve is visible.
+    // @public {BooleanProperty} - indicates if the derivative curve is visible.
     this.derivativeCurveVisibleProrperty = new BooleanProperty( false );
 
-     // @public {BooleanProperty} - indicates if the second derivative curve is visible.
+    // @public {BooleanProperty} - indicates if the second derivative curve is visible.
     this.secondDerivativeCurveVisibleProrperty = new BooleanProperty( false );
   }
 

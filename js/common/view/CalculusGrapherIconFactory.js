@@ -58,7 +58,7 @@ const CalculusGrapherIconFactory = {
 
   },
 
-    /**
+  /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.PARABOLA.
    * @public
    *

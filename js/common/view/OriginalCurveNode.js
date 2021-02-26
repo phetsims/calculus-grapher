@@ -92,7 +92,7 @@ class OriginalCurveNode extends CurveNode {
    * Forwards response to super-class, except this adds a dilation to the touch/mouse area of the Path.
    * @public
    */
-   updateCurveNode() {
+  updateCurveNode() {
     super.updateCurveNode();
 
     const dilatedPathShape = OriginalCurveNode.createDilatedCurvePath( this.curve );
