@@ -23,8 +23,8 @@ class DerivativeLabScreen extends Screen {
   constructor( tandem ) {
     assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
-    const createModel = () => new DerivativeLabModel( tandem.createTandem( 'derivativeLabModel' ) );
-    const createView = model => new DerivativeLabScreenView( model, tandem.createTandem( 'derivativeLabScreenView' ) );
+    const createModel = () => new DerivativeLabModel( tandem.createTandem( 'model' ) );
+    const createView = model => new DerivativeLabScreenView( model, tandem.createTandem( 'view' ) );
 
     super( createModel, createView, {
       name: calculusGrapherStrings.screen.derivativeLab,

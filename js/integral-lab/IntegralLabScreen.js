@@ -23,8 +23,8 @@ class IntegralLabScreen extends Screen {
   constructor( tandem ) {
     assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
-    const createModel = () => new IntegralLabModel( tandem.createTandem( 'integralLabModel' ) );
-    const createView = model => new IntegralLabScreenView( model, tandem.createTandem( 'integralLabScreenView' ) );
+    const createModel = () => new IntegralLabModel( tandem.createTandem( 'model' ) );
+    const createView = model => new IntegralLabScreenView( model, tandem.createTandem( 'view' ) );
 
     super( createModel, createView, {
       name: calculusGrapherStrings.screen.integralLab,
