@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * OriginalCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then
