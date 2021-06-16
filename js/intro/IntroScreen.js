@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * The 'Intro' screen. Conforms to the contract specified in joist/Screen.

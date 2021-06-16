@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * CurveNode is the view representation of a single Curve, which appears in all screens of the 'Calculus Grapher'

@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * CalculusGrapherUtils is a collection of general utility functions used in this sim.

@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * OriginalCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then

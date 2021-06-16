@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * CurvePoint is a single mutable point of a Curve at a given x-value. Inheriting from Vector2 was considered but it

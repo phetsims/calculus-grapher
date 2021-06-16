@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * Root class (to be subclassed) for the top-level model of every screen in the 'Calculus Grapher' simulation.

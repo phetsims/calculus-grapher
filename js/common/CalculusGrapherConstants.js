@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * Constants used in multiple locations within the 'Calculus Grapher' simulation. All fields are static.

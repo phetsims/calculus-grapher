@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * Control Panel at the middle-right of each screen that allows the user to manipulate certain Properties of
