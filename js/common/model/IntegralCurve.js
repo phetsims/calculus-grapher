@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * IntegralCurve is a Curve sub-type for the curve that represents the integral of the OriginalCurve. The OriginalCurve

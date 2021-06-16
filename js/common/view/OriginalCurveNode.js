@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * OriginalCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then

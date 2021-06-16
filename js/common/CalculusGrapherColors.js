@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Colors for the 'Calculus Grapher' sim.

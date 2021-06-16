@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * Top level model for the 'Derivative Lab' screen.

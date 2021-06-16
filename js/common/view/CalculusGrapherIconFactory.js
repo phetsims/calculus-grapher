@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Factory for creating the various icons that appear in the 'Calculus Grapher' simulation. All methods are static.

@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * The 'Integral Lab' screen. Conforms to the contract specified in joist/Screen.

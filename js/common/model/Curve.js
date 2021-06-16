@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Curve is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides

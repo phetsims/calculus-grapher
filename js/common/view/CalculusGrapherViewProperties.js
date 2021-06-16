@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Properties that are only used within the view hierarchy of the 'Calculus Grapher' simulation.
