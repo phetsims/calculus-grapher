@@ -20,7 +20,7 @@ class GraphNode extends Node {
   /**
    * @param {Object} [options]
    */
-  constructor( curve, bounds, gridVisibleProrperty, original = true, options ) {
+  constructor( curve, bounds, gridVisibleProrperty, original, options ) {
 
     super( options );
 
