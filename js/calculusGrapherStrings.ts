@@ -3,11 +3,24 @@
 /**
  * Auto-generated from modulify, DO NOT manually modify.
  */
-
+/* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
 import calculusGrapher from './calculusGrapher.js';
 
-const calculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' );
+type StringsType = {
+  'calculus-grapher': {
+    'title': string
+  },
+  'screen': {
+    'intro': string,
+    'derivativeLab': string,
+    'integralLab': string
+  },
+  'reset': string,
+  'smooth': string
+};
+
+const calculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
 
 calculusGrapher.register( 'calculusGrapherStrings', calculusGrapherStrings );
 
