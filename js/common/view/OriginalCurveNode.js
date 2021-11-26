@@ -14,7 +14,7 @@ import Shape from '../../../../kite/js/Shape.js';
 import merge from '../../../../phet-core/js/merge.js';
 import AssertUtils from '../../../../phetcommon/js/AssertUtils.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import DragListener from '../../../../scenery/js/listeners/DragListener.js';
+import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationModes from '../model/CurveManipulationModes.js';
 import OriginalCurve from '../model/OriginalCurve.js';
