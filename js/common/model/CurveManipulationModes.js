@@ -10,10 +10,10 @@
  * @author Brandon Li
  */
 
-import Enumeration from '../../../../phet-core/js/Enumeration.js';
+import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
-const CurveManipulationModes = Enumeration.byKeys( [
+const CurveManipulationModes = EnumerationDeprecated.byKeys( [
 
   // Creates a smooth, continuous, and differentiable bell-shaped curve, where the peak is the drag-position.
   'HILL',
