@@ -23,7 +23,7 @@
  * @author Brandon Li
  */
 
-import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
+import EnumerationDeprecatedProperty from '../../../../axon/js/EnumerationDeprecatedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -44,9 +44,9 @@ class OriginalCurve extends Curve {
 
     super();
 
-    // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
+    // @public {EnumerationDeprecatedProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
     //                                                          is manipulated by the view.
-    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes, CurveManipulationModes.HILL );
+    this.curveManipulationModeProperty = new EnumerationDeprecatedProperty( CurveManipulationModes, CurveManipulationModes.HILL );
 
     // @public {NumberProperty} - the width of the curve-manipulation. This only applies to some CurveManipulationModes
     //                            and the value is interpreted differently for each response algorithm to curve
