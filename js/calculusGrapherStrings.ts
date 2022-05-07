@@ -9,15 +9,15 @@ import calculusGrapher from './calculusGrapher.js';
 
 type StringsType = {
   'calculus-grapher': {
-    'title': string
-  },
+    'title': string;
+  };
   'screen': {
-    'intro': string,
-    'derivativeLab': string,
-    'integralLab': string
-  },
-  'reset': string,
-  'smooth': string
+    'intro': string;
+    'derivativeLab': string;
+    'integralLab': string;
+  };
+  'reset': string;
+  'smooth': string;
 };
 
 const calculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
