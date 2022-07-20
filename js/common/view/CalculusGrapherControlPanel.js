@@ -8,11 +8,10 @@
  */
 
 import merge from '../../../../phet-core/js/merge.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import { VBox } from '../../../../scenery/js/imports.js';
+import { Text, VBox } from '../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup from '../../../../sun/js/AquaRadioButtonGroup.js';
-import Panel from '../../../../sun/js/Panel.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
+import Panel from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import calculusGrapherStrings from '../../calculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
