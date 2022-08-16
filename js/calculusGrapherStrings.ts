@@ -5,19 +5,26 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
+import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
 import calculusGrapher from './calculusGrapher.js';
 
 type StringsType = {
   'calculus-grapher': {
     'title': string;
+    'titleProperty': TReadOnlyProperty<string>;
   };
   'screen': {
     'intro': string;
+    'introProperty': TReadOnlyProperty<string>;
     'derivativeLab': string;
+    'derivativeLabProperty': TReadOnlyProperty<string>;
     'integralLab': string;
+    'integralLabProperty': TReadOnlyProperty<string>;
   };
   'reset': string;
+  'resetProperty': TReadOnlyProperty<string>;
   'smooth': string;
+  'smoothProperty': TReadOnlyProperty<string>;
 };
 
 const calculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
