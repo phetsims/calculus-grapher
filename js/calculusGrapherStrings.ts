@@ -11,20 +11,20 @@ import calculusGrapher from './calculusGrapher.js';
 type StringsType = {
   'calculus-grapher': {
     'title': string;
-    'titleProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': TReadOnlyProperty<string>;
   };
   'screen': {
     'intro': string;
-    'introProperty': TReadOnlyProperty<string>;
+    'introStringProperty': TReadOnlyProperty<string>;
     'derivativeLab': string;
-    'derivativeLabProperty': TReadOnlyProperty<string>;
+    'derivativeLabStringProperty': TReadOnlyProperty<string>;
     'integralLab': string;
-    'integralLabProperty': TReadOnlyProperty<string>;
+    'integralLabStringProperty': TReadOnlyProperty<string>;
   };
   'reset': string;
-  'resetProperty': TReadOnlyProperty<string>;
+  'resetStringProperty': TReadOnlyProperty<string>;
   'smooth': string;
-  'smoothProperty': TReadOnlyProperty<string>;
+  'smoothStringProperty': TReadOnlyProperty<string>;
 };
 
 const calculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
