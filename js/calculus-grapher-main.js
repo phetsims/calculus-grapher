@@ -29,7 +29,7 @@ const simOptions = {
 // Launch the 'Calculus Grapher' simulation.
 simLauncher.launch( () => {
 
-  const sim = new Sim( calculusGrapherStrings[ 'calculus-grapher' ].title, [
+  const sim = new Sim( calculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, [
     new IntroScreen( Tandem.ROOT.createTandem( 'introScreen' ) ),
     new IntegralLabScreen( Tandem.ROOT.createTandem( 'integralLabScreen' ) ),
     new DerivativeLabScreen( Tandem.ROOT.createTandem( 'derivativeLabScreen' ) )
