@@ -13,7 +13,7 @@ import AquaRadioButtonGroup from '../../../../sun/js/AquaRadioButtonGroup.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import Panel from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import calculusGrapherStrings from '../../calculusGrapherStrings.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationModes from '../model/CurveManipulationModes.js';
 import OriginalCurve from '../model/OriginalCurve.js';
@@ -54,12 +54,12 @@ class CalculusGrapherControlPanel extends Panel {
     );
 
     // Smooth Button
-    const smoothButton = new TextPushButton( calculusGrapherStrings.smooth, {
+    const smoothButton = new TextPushButton( CalculusGrapherStrings.smooth, {
       listener: () => originalCurve.smooth()
     } );
 
     // Reset Button
-    const resetButton = new TextPushButton( calculusGrapherStrings.reset, {
+    const resetButton = new TextPushButton( CalculusGrapherStrings.reset, {
       listener: () => originalCurve.reset()
     } );
 

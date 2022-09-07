@@ -10,7 +10,7 @@ import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
-import calculusGrapherStrings from '../calculusGrapherStrings.js';
+import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import IntroModel from './model/IntroModel.js';
 import IntroScreenView from './view/IntroScreenView.js';
@@ -27,7 +27,7 @@ class IntroScreen extends Screen {
     const createView = model => new IntroScreenView( model, tandem.createTandem( 'view' ) );
 
     super( createModel, createView, {
-      name: calculusGrapherStrings.screen.intro,
+      name: CalculusGrapherStrings.screen.intro,
       backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
       tandem: tandem
     } );

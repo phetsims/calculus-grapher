@@ -27,8 +27,8 @@ type StringsType = {
   'smoothStringProperty': TReadOnlyProperty<string>;
 };
 
-const calculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
+const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
 
-calculusGrapher.register( 'calculusGrapherStrings', calculusGrapherStrings );
+calculusGrapher.register( 'CalculusGrapherStrings', CalculusGrapherStrings );
 
-export default calculusGrapherStrings;
+export default CalculusGrapherStrings;
