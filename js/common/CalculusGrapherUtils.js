@@ -61,7 +61,7 @@ const CalculusGrapherUtils = {
    * @public
    *
    * @param {Range} range - will not be mutated
-   * @param {number} scalar - amount to scale the each extreme of the Range
+   * @param {number} scalar - amount to scale the extreme of the Range
    * @returns {Range}
    */
   multiplyRange( range, scalar ) {

@@ -90,7 +90,7 @@ class OriginalCurve extends Curve {
    */
   undoToLastSave() {
 
-    // Revert back to the saved y-value of each CurvePoint.
+    // Revert to the saved y-value of each CurvePoint.
     this.points.forEach( point => { point.undoToLastSave(); } );
 
     // Signal that this Curve has changed.

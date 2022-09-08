@@ -6,7 +6,7 @@
  *
  * Each CurvePoint contains the following information:
  *   - The corresponding y-value of the Point.
- *   - Whether or not the Point exists. A Point that isn't defined means that the Curve has a hole or a discontinuity.
+ *   - Whether the Point exists. A Point that isn't defined means that the Curve has a hole or a discontinuity.
  *   - All of its previously 'saved' y-values. When the user finishes manipulating the OriginalCurve, the y-value of
  *     CurvePoints in the OriginalCurve are saved.
  *
@@ -37,7 +37,7 @@ class CurvePoint {
     // @public {number|null} - the y-coordinate of the Point. If null, it means that the Point represents a hole or
     //                         a discontinuity in the Curve.
     //
-    //                         Using a observable Property for the y-value was considered, but it was deemed to be
+    //                         Using an observable Property for the y-value was considered, but it was deemed to be
     //                         invasive to the performance of the simulation as observers had to listen to the yProperty
     //                         of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
     this.y = y;

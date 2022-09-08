@@ -17,6 +17,7 @@ class CalculusGrapherModel {
 
   /**
    * @param {Tandem} tandem
+
    */
   constructor( tandem, options ) {
     assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
