@@ -61,7 +61,7 @@ class IntegralCurve extends Curve {
    *
    * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the
    * trapezoidal area between each adjacent Point is also considered to be infinitesimally small. Thus, summing up all
-   * trapezoidal areas correctly matches one of the definitions of a Integral where each y-value represents the 'area'
+   * trapezoidal areas correctly matches one of the definitions of an Integral where each y-value represents the 'area'
    * under the 'base' Curve. See https://en.wikipedia.org/wiki/Integral#Riemann_integral
    *
    * The IntegralCurve exists at all points since OriginalCurve is finite at all points, so we don't need to consider
