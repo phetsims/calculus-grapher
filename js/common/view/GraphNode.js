@@ -19,11 +19,11 @@ class GraphNode extends Node {
   /**
    * @param {Curve} curve
    * @param {Bounds2} bounds
-   * @param gridVisibleProrperty
+   * @param gridVisibleProperty
    * @param original
    * @param {Object} [options]
    */
-  constructor( curve, bounds, gridVisibleProrperty, original, options ) {
+  constructor( curve, bounds, gridVisibleProperty, original, options ) {
 
     super( options );
 
@@ -51,7 +51,7 @@ class GraphNode extends Node {
 
     let background;
     if ( original ) {
-      // gridVisibleProrperty.linkAttribute( gridNode, 'visible' );
+      // gridVisibleProperty.linkAttribute( gridNode, 'visible' );
       // @public
       this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
         pathOptions: {

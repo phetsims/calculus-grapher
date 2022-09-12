@@ -14,19 +14,19 @@ class CalculusGrapherViewProperties {
   constructor() {
 
     // @public {BooleanProperty} - indicates if the grids of the graphs are visible.
-    this.gridVisibleProrperty = new BooleanProperty( false );
+    this.gridVisibleProperty = new BooleanProperty( false );
 
     // @public {BooleanProperty} - indicates if the reference line is visible.
-    this.referenceLineVisibleProrperty = new BooleanProperty( false );
+    this.referenceLineVisibleProperty = new BooleanProperty( false );
 
     // @public {BooleanProperty} - indicates if the integral curve is visible.
-    this.integralCurveVisibleProrperty = new BooleanProperty( false );
+    this.integralCurveVisibleProperty = new BooleanProperty( false );
 
     // @public {BooleanProperty} - indicates if the derivative curve is visible.
-    this.derivativeCurveVisibleProrperty = new BooleanProperty( false );
+    this.derivativeCurveVisibleProperty = new BooleanProperty( false );
 
     // @public {BooleanProperty} - indicates if the second derivative curve is visible.
-    this.secondDerivativeCurveVisibleProrperty = new BooleanProperty( false );
+    this.secondDerivativeCurveVisibleProperty = new BooleanProperty( false );
   }
 
   /**
@@ -36,11 +36,11 @@ class CalculusGrapherViewProperties {
    * Called when the reset-all button is pressed.
    */
   reset() {
-    this.gridVisibleProrperty.reset();
-    this.referenceLineVisibleProrperty.reset();
-    this.integralCurveVisibleProrperty.reset();
-    this.derivativeCurveVisibleProrperty.reset();
-    this.secondDerivativeCurveVisibleProrperty.reset();
+    this.gridVisibleProperty.reset();
+    this.referenceLineVisibleProperty.reset();
+    this.integralCurveVisibleProperty.reset();
+    this.derivativeCurveVisibleProperty.reset();
+    this.secondDerivativeCurveVisibleProperty.reset();
   }
 }
 

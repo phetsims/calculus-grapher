@@ -32,16 +32,16 @@ class CalculusGrapherScreenView extends ScreenView {
     const viewProperties = new CalculusGrapherViewProperties();
 
 
-    const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty, true );
+    const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, true );
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );
 
-    // const integral = new GraphNode( model.integralCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty, false );
+    // const integral = new GraphNode( model.integralCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, false );
     // integral.centerBottom = graphNode.centerTop.minusXY( 0, 10 );
     // this.addChild( integral );
 
 
-    // const derivative = new GraphNode( model.derivativeCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProrperty, false );
+    // const derivative = new GraphNode( model.derivativeCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, false );
     // derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
     // this.addChild( derivative );
 
