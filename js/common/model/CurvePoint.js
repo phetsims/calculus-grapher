@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * CurvePoint is a single mutable point of a Curve at a given x-value. Inheriting from Vector2 was considered but it
+ * CurvePoint is a single mutable point of a Curve at a given x-value. Inheriting from Vector2 was considered, but it
  * was decided to implement CurvePoints to be minimally invasive and lightweight for performance.
  *
  * Each CurvePoint contains the following information:
