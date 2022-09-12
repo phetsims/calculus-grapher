@@ -17,6 +17,10 @@ import OriginalCurveNode from './OriginalCurveNode.js';
 class GraphNode extends Node {
 
   /**
+   * @param {Curve} curve
+   * @param {Bounds2} bounds
+   * @param gridVisibleProrperty
+   * @param original
    * @param {Object} [options]
    */
   constructor( curve, bounds, gridVisibleProrperty, original, options ) {
