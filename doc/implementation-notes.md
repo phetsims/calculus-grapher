@@ -14,6 +14,15 @@ The reader is encouraged to read the model document before proceeding:
 A model-view transform is used for each graph. The model has +x to the left, and +y up, and scaling is isometric in both
 directions. The scaling changes based on the zoom level.
 
+### Query Parameters
+
+There are a number of query parameters for internal use. 
+
+- `pointsPerCoordinate` sets the number of curves points per coordinates. The default value is 12. 
+- `smoothingWindowWidth` sets the window width used in the smoothing function. The default value is 1.2 .
+- `maxTilt` sets the maximum tilting angle of curves relative to the horizontal. The default value is 45.
+- `derivativeThreshold` sets the maximum difference between the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
+
 ### Curve Hierarchy
 
 `Curve` is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides
