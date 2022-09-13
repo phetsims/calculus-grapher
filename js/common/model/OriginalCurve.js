@@ -188,6 +188,7 @@ class OriginalCurve extends Curve {
    * @param {Vector2} position - in model coordinates
    */
   tiltToPosition( position ) {
+    assert && assert( position.x !== 0, 'x position cannot be zero' );
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
 
