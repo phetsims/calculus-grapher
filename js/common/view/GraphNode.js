@@ -5,11 +5,16 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import AxisLine from '../../../../bamboo/js/AxisLine.js';
+import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import GridNode from '../../../../griddle/js/GridNode.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import { Node, Rectangle } from '../../../../scenery/js/imports.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
@@ -39,17 +44,24 @@ class GraphNode extends Node {
       -20
     );
 
-    const gridNode = new GridNode( viewBounds.width, viewBounds.height, {
-      minorHorizontalLineSpacing: 1,
-      minorVerticalLineSpacing: 1,
-      modelViewTransformProperty: new Property( modelViewTransform ),
-      minorLineOptions: {
-        lineWidth: 1,
-        stroke: 'black'
-      }
+    const chartTransform = new ChartTransform( {
+      viewWidth: 600,
+      viewHeight: 200,
+      modelXRange: new Range( 0, 30 ),
+      modelYRange: new Range( -5, 5 )
     } );
 
-    let background;
+    // grid lines
+    const horizontalGridLines = new GridLineSet( chartTransform, Orientation.HORIZONTAL, 1, { stroke: 'lightGray' } );
+    const verticalGridLines = new GridLineSet( chartTransform, Orientation.VERTICAL, 1, { stroke: 'lightGray' } );
+
+    // Axes nodes are clipped in the chart
+    const horizontalAxisLine = new AxisLine( chartTransform, Orientation.HORIZONTAL );
+    const verticalAxisLine = new AxisLine( chartTransform, Orientation.VERTICAL );
+
+    const gridNode = new Node( { children: [ horizontalGridLines, verticalGridLines ] } );
+
+    let chartRectangle;
     if ( original ) {
       // gridVisibleProperty.linkAttribute( gridNode, 'visible' );
       // @public
@@ -58,7 +70,11 @@ class GraphNode extends Node {
           stroke: 'blue'
         }
       } );
-      background = new Rectangle( viewBounds, { fill: 'white' } );
+      chartRectangle = new ChartRectangle( chartTransform, {
+        fill: 'white',
+        stroke: 'black'
+      } );
+
     }
     else {
       // @public
@@ -67,18 +83,18 @@ class GraphNode extends Node {
           stroke: 'green'
         }
       } );
-      background = new Rectangle( viewBounds, { fill: 'white', opacity: 0.2 } );
+      chartRectangle = new ChartRectangle( chartTransform, {
+        fill: 'white',
+        opacity: 0.2,
+        stroke: 'black'
+      } );
     }
 
-    const border = new Rectangle( viewBounds, {
-      stroke: 'black',
-      lineWidth: 1
-    } );
-
     this.children = [
-      background,
+      chartRectangle,
       gridNode,
-      border,
+      horizontalAxisLine,
+      verticalAxisLine,
       this.curveNode
     ];
   }
