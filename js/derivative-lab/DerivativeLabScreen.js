@@ -27,7 +27,7 @@ class DerivativeLabScreen extends Screen {
     const createView = model => new DerivativeLabScreenView( model, tandem.createTandem( 'view' ) );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.derivativeLab,
+      name: CalculusGrapherStrings.screen.derivativeLabStringProperty,
       backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
       tandem: tandem
     } );

@@ -27,7 +27,7 @@ class IntegralLabScreen extends Screen {
     const createView = model => new IntegralLabScreenView( model, tandem.createTandem( 'view' ) );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.integralLab,
+      name: CalculusGrapherStrings.screen.integralLabStringProperty,
       backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
       tandem: tandem
     } );

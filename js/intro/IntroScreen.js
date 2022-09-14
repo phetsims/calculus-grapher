@@ -27,7 +27,7 @@ class IntroScreen extends Screen {
     const createView = model => new IntroScreenView( model, tandem.createTandem( 'view' ) );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.intro,
+      name: CalculusGrapherStrings.screen.introStringProperty,
       backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
       tandem: tandem
     } );
