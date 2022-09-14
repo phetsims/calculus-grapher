@@ -16,6 +16,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
 
@@ -25,7 +26,7 @@ class GraphNode extends Node {
    * @param {Curve} curve
    * @param {Bounds2} bounds
    * @param gridVisibleProperty
-   * @param original
+   * @param {boolean} original
    * @param {Object} [options]
    */
   constructor( curve, bounds, gridVisibleProperty, original, options ) {
@@ -47,7 +48,7 @@ class GraphNode extends Node {
     const chartTransform = new ChartTransform( {
       viewWidth: 600,
       viewHeight: 200,
-      modelXRange: new Range( 0, 30 ),
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
       modelYRange: new Range( -5, 5 )
     } );
 
