@@ -54,12 +54,12 @@ class CalculusGrapherControlPanel extends Panel {
     );
 
     // Smooth Button
-    const smoothButton = new TextPushButton( CalculusGrapherStrings.smooth, {
+    const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
       listener: () => originalCurve.smooth()
     } );
 
     // Reset Button
-    const resetButton = new TextPushButton( CalculusGrapherStrings.reset, {
+    const resetButton = new TextPushButton( CalculusGrapherStrings.resetStringProperty, {
       listener: () => originalCurve.reset()
     } );
 
