@@ -10,20 +10,14 @@ import calculusGrapher from './calculusGrapher.js';
 
 type StringsType = {
   'calculus-grapher': {
-    'title': string;
     'titleStringProperty': TReadOnlyProperty<string>;
   };
   'screen': {
-    'intro': string;
     'introStringProperty': TReadOnlyProperty<string>;
-    'derivativeLab': string;
     'derivativeLabStringProperty': TReadOnlyProperty<string>;
-    'integralLab': string;
     'integralLabStringProperty': TReadOnlyProperty<string>;
   };
-  'reset': string;
   'resetStringProperty': TReadOnlyProperty<string>;
-  'smooth': string;
   'smoothStringProperty': TReadOnlyProperty<string>;
 };
 
