@@ -1,5 +1,6 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * CurveNode is the view representation of a single Curve, which appears in all screens of the 'Calculus Grapher'
  * simulation. CurveNodes are implemented to work for all Curve sub-types, so no CurveNode sub-types are needed.
