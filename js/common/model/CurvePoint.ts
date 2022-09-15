@@ -1,6 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * CurvePoint is a single mutable point of a Curve at a given x-value. Inheriting from Vector2 was considered, but it
  * was decided to implement CurvePoints to be minimally invasive and lightweight for performance.
@@ -22,52 +21,41 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
-class CurvePoint {
+export default class CurvePoint {
 
-  /**
-   * @param {number} x - the x-coordinate of the CurvePoint.
-   * @param {number|null} y - the y-coordinate of the CurvePoint.
-   */
-  constructor( x, y = 0 ) {
+  public readonly x: number;
+
+  // Using an observable Property for the y-value was considered, but it was deemed to be
+  // invasive to the performance of the simulation as observers had to listen to the yProperty
+  // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
+  public y: number | null;
+
+  // the initial y-coordinate passed into the CurvePoint, for resetting purposes.
+  private readonly initialY: number | null;
+
+  // an array of all of this Point's saved y-values.
+  private savedYValues: ( number | null )[]; //TODO when would we be saving null?
+
+  public constructor( x: number, y: number | null = 0 ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
     assert && assert( y === null || Number.isFinite( y ), `invalid y: ${y}` );
 
-    // @public (read-only) {number} - the x-coordinate of the Point. This value cannot be mutated.
     this.x = x;
-
-    // @public {number|null} - the y-coordinate of the Point. If null, it means that the Point represents a hole or
-    //                         a discontinuity in the Curve.
-    //
-    //                         Using an observable Property for the y-value was considered, but it was deemed to be
-    //                         invasive to the performance of the simulation as observers had to listen to the yProperty
-    //                         of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
     this.y = y;
 
-    // @private {number|null} - the initial y-coordinate passed into the CurvePoint, for resetting purposes.
     this.initialY = y;
-
-    // @private {number|null[]} - an array of all of this Point's saved y-values.
     this.savedYValues = [];
   }
 
-  /**
-   * Resets this CurvePoint to its factory settings.
-   * @public
-   *
-   * Called when the reset-all button is pressed.
-   */
-  reset() {
+  public reset(): void {
     this.y = this.initialY;
     this.savedYValues = [];
   }
 
   /**
    * Returns a boolean that indicates if the point exists.
-   * @public
-   *
-   * @returns {boolean}
    */
-  get exists() {
+  public get exists(): boolean {
     return Number.isFinite( this.y );
   }
 
@@ -75,22 +63,17 @@ class CurvePoint {
 
   /**
    * Gets the most recently saved y-value.
-   * @public
-   *
-   * @returns {number|null}
    */
-  get lastSavedY() {
-    return this.savedYValues.length ? _.last( this.savedYValues ) : null;
+  public get lastSavedY(): number | null {
+    return ( this.savedYValues.length === 0 ) ? null : _.last( this.savedYValues )!;
   }
 
   /**
    * Saves the current y-value of the Point for the next undoToLastSave() method.
-   * @public
-   *
    * This method is invoked when the user finishes manipulating the OriginalCurve. When the undo button is pressed,
    * the Points of the OriginalCurve will be set to their last saved state.
    */
-  save() {
+  public save(): void {
 
     // Save the current y-value of the CurvePoint.
     this.savedYValues.push( this.y );
@@ -98,36 +81,27 @@ class CurvePoint {
 
   /**
    * Sets the y-value of this CurvedPoint to its last saved state.
-   * @public
-   *
    * This method is invoked when the undo button is pressed, which successively undos the last action.
    */
-  undoToLastSave() {
+  public undoToLastSave(): void {
 
     // Set the y-value of this CurvedPoint to the last saved state. The y-value is removed from our savedYValues
     // so the next undoToLastSave() call successively reverts to the state before this one.
-    this.y = this.savedYValues.pop();
+    this.y = ( this.savedYValues.length === 0 ) ? null : this.savedYValues.pop()!;
   }
 
   //----------------------------------------------------------------------------------------
 
   /**
    * Debugging string for the CurvePoint.
-   * @public
-   *
-   * @returns {string}
    */
-  toString() {
+  public toString(): string {
     return `CurvePoint[ x: ${this.x}, y: ${this.y} ]`;
   }
 
-  /**
-   * @public
-   */
-  dispose() {
+  public dispose(): void {
     assert && assert( false, 'CurvePoint cannot be disposed (exists for the lifetime of the sim)' );
   }
 }
 
 calculusGrapher.register( 'CurvePoint', CurvePoint );
-export default CurvePoint;
