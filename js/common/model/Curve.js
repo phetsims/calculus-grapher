@@ -51,6 +51,9 @@ class Curve {
     //                                 use an Emitter that emits once after all CurvePoints are set upon manipulation.
     //                                 See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
+
+    //TODO this was not here prior to starting TS conversion. Is this where it belongs? Is the type correct?
+    this.cusps = null; // {CurvePoint[]|null}
   }
 
   /**
