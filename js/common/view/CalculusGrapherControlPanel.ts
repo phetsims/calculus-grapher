@@ -6,44 +6,41 @@
  *
  * @author Brandon Li
  */
-// @ts-nocheck
 
-import merge from '../../../../phet-core/js/merge.js';
 import { Text, VBox } from '../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup from '../../../../sun/js/AquaRadioButtonGroup.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
-import Panel from '../../../../sun/js/Panel.js';
+import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationModes from '../model/CurveManipulationModes.js';
 import OriginalCurve from '../model/OriginalCurve.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 
-class CalculusGrapherControlPanel extends Panel {
+type SelfOptions = {
+  contentSpacing?: number;
+};
 
-  /**
-   * @param {OriginalCurve} originalCurve - the model Curve.
-   * @param {Object} [options]
-   */
-  constructor( originalCurve, options ) {
-    assert && assert( originalCurve instanceof OriginalCurve, `invalid originalCurve: ${originalCurve}` );
+type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
-    options = merge( {
+export default class CalculusGrapherControlPanel extends Panel {
 
-      // {number} - the spacing between the content Nodes of the Panel
+  public constructor( originalCurve: OriginalCurve, provideOptions: CalculusGrapherControlPanelOptions ) {
+
+    const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
+
+      //  the spacing between the content Nodes of the Panel
       contentSpacing: 7,
 
       // super-class options
       stroke: CalculusGrapherColors.PANEL_STROKE,
       fill: CalculusGrapherColors.PANEL_FILL
 
-    }, options );
-
-    //----------------------------------------------------------------------------------------
+    }, provideOptions );
 
     // Create the content Node of the Control Panel.
     const contentNode = new VBox( { spacing: options.contentSpacing } );
-    super( contentNode, options );
 
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup(
@@ -69,8 +66,9 @@ class CalculusGrapherControlPanel extends Panel {
       smoothButton,
       resetButton
     ];
+
+    super( contentNode, options );
   }
 }
 
 calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
-export default CalculusGrapherControlPanel;
