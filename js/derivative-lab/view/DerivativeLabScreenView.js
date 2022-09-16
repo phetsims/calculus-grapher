@@ -1,5 +1,5 @@
 // Copyright 2020-2021, University of Colorado Boulder
-// @ts-nocheck
+
 /**
  * Top level view for the 'Derivative Lab' screen.
  *
