@@ -1,13 +1,16 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Properties that are only used within the view hierarchy of the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
  */
 
+
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import calculusGrapher from '../../calculusGrapher.js';
+
 
 class CalculusGrapherViewProperties {
 
