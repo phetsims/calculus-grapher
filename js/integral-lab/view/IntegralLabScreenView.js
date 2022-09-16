@@ -6,7 +6,6 @@
  * @author BrandonLi
  */
 
-import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralLabModel from '../model/IntegralLabModel.js';
@@ -15,14 +14,12 @@ class IntegralLabScreenView extends CalculusGrapherScreenView {
 
   /**
    * @param {IntegralLabModel} model
-   * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( model, tandem, options ) {
+  constructor( model, options ) {
     assert && assert( model instanceof IntegralLabModel, `invalid model: ${model}` );
-    assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
-    super( model, tandem, options );
+    super( model, options );
   }
 }
 

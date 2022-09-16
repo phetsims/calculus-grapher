@@ -8,7 +8,6 @@
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
@@ -19,12 +18,10 @@ class CalculusGrapherScreenView extends ScreenView {
 
   /**
    * @param {CalculusGrapherModel} model
-   * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( model, tandem, options ) {
+  constructor( model, options ) {
     assert && assert( model instanceof CalculusGrapherModel, `invalid model: ${model}` );
-    assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
     super( options );
 

@@ -6,7 +6,6 @@
  * @author BrandonLi
  */
 
-import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeLabModel from '../model/DerivativeLabModel.js';
@@ -15,14 +14,12 @@ class DerivativeLabScreenView extends CalculusGrapherScreenView {
 
   /**
    * @param {DerivativeLabModel} model
-   * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( model, tandem, options ) {
+  constructor( model, options ) {
     assert && assert( model instanceof DerivativeLabModel, `invalid model: ${model}` );
-    assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
 
-    super( model, tandem, options );
+    super( model, options );
   }
 }
 

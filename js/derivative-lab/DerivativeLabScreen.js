@@ -8,7 +8,6 @@
 
 import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
@@ -18,18 +17,17 @@ import DerivativeLabScreenView from './view/DerivativeLabScreenView.js';
 class DerivativeLabScreen extends Screen {
 
   /**
-   * @param {Tandem} tandem
+   * @param {Object} [options]
    */
-  constructor( tandem ) {
-    assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
+  constructor( options ) {
 
-    const createModel = () => new DerivativeLabModel( tandem.createTandem( 'model' ) );
-    const createView = model => new DerivativeLabScreenView( model, tandem.createTandem( 'view' ) );
+    const createModel = () => new DerivativeLabModel( { tandem: options.tandem.createTandem( 'model' ) } );
+    const createView = model => new DerivativeLabScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
 
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.derivativeLabStringProperty,
       backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
-      tandem: tandem
+      tandem: options.tandem
     } );
   }
 }

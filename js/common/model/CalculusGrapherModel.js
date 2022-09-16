@@ -6,7 +6,6 @@
  * @author Brandon Li
  */
 
-import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import OriginalCurve from './OriginalCurve.js';
@@ -16,11 +15,9 @@ import OriginalCurve from './OriginalCurve.js';
 class CalculusGrapherModel {
 
   /**
-   * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( tandem, options ) {
-    assert && assert( tandem instanceof Tandem, `invalid tandem: ${tandem}` );
+  constructor( options ) {
 
 
     // @public (read-only)
