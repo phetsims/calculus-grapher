@@ -1,6 +1,6 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
-// @ts-nocheck
+
 /**
  * Properties that are only used within the view hierarchy of the 'Calculus Grapher' simulation.
  *
@@ -10,35 +10,42 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import Property from '../../../../axon/js/Property.js';
 
+export default class CalculusGrapherViewProperties {
 
-class CalculusGrapherViewProperties {
+  // indicates if the graph grid is visible.
+  public readonly gridVisibleProperty: Property<boolean>;
 
-  constructor() {
+  //indicates if the reference line is visible.
+  public readonly referenceLineVisibleProperty: Property<boolean>;
 
-    // @public {BooleanProperty} - indicates if the grids of the graphs are visible.
+  //indicates if the integral curve is visible.
+  public readonly integralCurveVisibleProperty: Property<boolean>;
+
+  // indicates if the derivative curve is visible.
+  public readonly derivativeCurveVisibleProperty: Property<boolean>;
+
+  //indicates if the second derivative curve is visible.
+  public readonly secondDerivativeCurveVisibleProperty: Property<boolean>;
+
+  public constructor() {
+
     this.gridVisibleProperty = new BooleanProperty( false );
 
-    // @public {BooleanProperty} - indicates if the reference line is visible.
     this.referenceLineVisibleProperty = new BooleanProperty( false );
 
-    // @public {BooleanProperty} - indicates if the integral curve is visible.
     this.integralCurveVisibleProperty = new BooleanProperty( false );
 
-    // @public {BooleanProperty} - indicates if the derivative curve is visible.
     this.derivativeCurveVisibleProperty = new BooleanProperty( false );
 
-    // @public {BooleanProperty} - indicates if the second derivative curve is visible.
     this.secondDerivativeCurveVisibleProperty = new BooleanProperty( false );
   }
 
   /**
-   * Resets the CalculusGrapherViewProperties.
-   * @public
-   *
-   * Called when the reset-all button is pressed.
+   * Resets all the CalculusGrapherViewProperties.
    */
-  reset() {
+  public reset(): void {
     this.gridVisibleProperty.reset();
     this.referenceLineVisibleProperty.reset();
     this.integralCurveVisibleProperty.reset();
@@ -48,4 +55,3 @@ class CalculusGrapherViewProperties {
 }
 
 calculusGrapher.register( 'CalculusGrapherViewProperties', CalculusGrapherViewProperties );
-export default CalculusGrapherViewProperties;
