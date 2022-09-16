@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * The 'Intro' screen. Conforms to the contract specified in joist/Screen.
  *

@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * The 'Integral Lab' screen. Conforms to the contract specified in joist/Screen.
  *
