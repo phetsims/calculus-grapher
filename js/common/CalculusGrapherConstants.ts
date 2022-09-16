@@ -16,7 +16,6 @@ const CalculusGrapherConstants = {
   CURVE_X_RANGE: new Range( 0, 30 ),
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 )
 
-
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
