@@ -13,17 +13,16 @@ import CalculusGrapherStrings from './CalculusGrapherStrings.js';
 import DerivativeLabScreen from './derivative-lab/DerivativeLabScreen.js';
 import IntegralLabScreen from './integral-lab/IntegralLabScreen.js';
 import IntroScreen from './intro/IntroScreen.js';
+import { CreditsData } from '../../joist/js/CreditsNode.js';
 
-const simOptions = {
-  credits: {
-    leadDesign: '',
-    softwareDevelopment: '',
-    team: '',
-    qualityAssurance: '',
-    graphicArts: '',
-    soundDesign: '',
-    thanks: ''
-  }
+const simCredits: CreditsData = {
+  leadDesign: '',
+  softwareDevelopment: '',
+  team: '',
+  qualityAssurance: '',
+  graphicArts: '',
+  soundDesign: '',
+  thanks: ''
 };
 
 // Launch the 'Calculus Grapher' simulation.
@@ -33,7 +32,7 @@ simLauncher.launch( () => {
     new IntroScreen( { tandem: Tandem.ROOT.createTandem( 'introScreen' ) } ),
     new IntegralLabScreen( { tandem: Tandem.ROOT.createTandem( 'integralLabScreen' ) } ),
     new DerivativeLabScreen( { tandem: Tandem.ROOT.createTandem( 'derivativeLabScreen' ) } )
-  ], simOptions );
+  ], { credits: simCredits } );
 
   sim.start();
 } );
