@@ -21,8 +21,6 @@
  * @author Brandon Li
  */
 
-// @ts-nocheck
-
 import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -34,12 +32,22 @@ import CurvePoint from './CurvePoint.js';
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
-class Curve {
+export default class Curve {
 
-  constructor() {
+  public readonly points: CurvePoint[];
 
-    // @public (read-only) {CurvePoint[]} - the Points that map out the curve at a finite number of partitions within
-    //                                      the domain. See the comment at the top of this file for full context.
+  // Using an observable Property for the y-value was considered, but it was deemed to be
+  // invasive to the performance of the simulation as observers had to listen to the yProperty
+  // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
+  public readonly curveChangedEmitter: Emitter;
+
+  public cusps: CurvePoint[] | null;
+
+
+  public constructor() {
+
+    // the Points that map out the curve at a finite number of partitions within
+    // the domain. See the comment at the top of this file for full context.
     this.points = [];
 
     // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
@@ -48,23 +56,20 @@ class Curve {
       this.points.push( new CurvePoint( x ) );
     }
 
-    // @public (read-only) {Emitter} - Emits when the Curve has changed in any form. Instead of listening to a yProperty
-    //                                 of every CurvePoint, which was deemed invasive to the performance of the sim, we
-    //                                 use an Emitter that emits once after all CurvePoints are set upon manipulation.
-    //                                 See https://github.com/phetsims/calculus-grapher/issues/19
+    // Emits when the Curve has changed in any form. Instead of listening to a yProperty
+    // of every CurvePoint, which was deemed invasive to the performance of the sim, we
+    // use an Emitter that emits once after all CurvePoints are set upon manipulation.
+    // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
-    //TODO this was not here prior to starting TS conversion. Is this where it belongs? Is the type correct?
+    // a collection of cusps points if present
     this.cusps = null; // {CurvePoint[]|null}
   }
 
   /**
    * Resets the Curve to its initial state.
-   * @public
-   *
-   * Called when the reset-all button is pressed.
    */
-  reset() {
+  public reset(): void {
 
     // Reset every CurvePoint to its initial state.
     this.points.forEach( point => {
@@ -77,12 +82,8 @@ class Curve {
 
   /**
    * Gets the CurvePoint whose x-value is closest to the given x-value.
-   * @public
-   *
-   * @param {number} x
-   * @returns {CurvePoint}
    */
-  getClosestPointAt( x ) {
+  public getClosestPointAt( x: number ): CurvePoint {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
     // Use dimensional analysis to convert the x-value to the index of the Point.
@@ -94,4 +95,3 @@ class Curve {
 }
 
 calculusGrapher.register( 'Curve', Curve );
-export default Curve;
