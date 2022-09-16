@@ -6,7 +6,6 @@
  * @author Brandon Li
  */
 
-// @ts-nocheck
 import { Color } from '../../../scenery/js/imports.js';
 import calculusGrapher from '../calculusGrapher.js';
 
