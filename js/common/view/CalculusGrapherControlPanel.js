@@ -6,6 +6,7 @@
  *
  * @author Brandon Li
  */
+// @ts-nocheck
 
 import merge from '../../../../phet-core/js/merge.js';
 import { Text, VBox } from '../../../../scenery/js/imports.js';
