@@ -6,7 +6,6 @@
  * @author Brandon Li
  */
 
-// @ts-nocheck
 import calculusGrapher from '../calculusGrapher.js';
 
 const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
