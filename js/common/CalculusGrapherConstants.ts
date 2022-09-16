@@ -6,8 +6,6 @@
  * @author Brandon Li
  */
 
-// @ts-nocheck
-
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import calculusGrapher from '../calculusGrapher.js';
