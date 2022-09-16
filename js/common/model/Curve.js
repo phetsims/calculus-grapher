@@ -21,6 +21,8 @@
  * @author Brandon Li
  */
 
+// @ts-nocheck
+
 import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
 import calculusGrapher from '../../calculusGrapher.js';
