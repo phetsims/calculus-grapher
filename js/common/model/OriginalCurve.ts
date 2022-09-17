@@ -1,6 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * OriginalCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then
  * triggers a change in the CurvePoints and the OriginalCurve's integral, derivative, and second-derivative Curves.
@@ -39,32 +38,48 @@ const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATI
 const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
-class OriginalCurve extends Curve {
+export default class OriginalCurve extends Curve {
 
-  constructor() {
+  // the 'mode' that user is in for manipulating curves. This
+  // is manipulated by the view.
+  public curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>;
+
+  // the width of the curve-manipulation. This only applies to some CurveManipulationModes
+  // and the value is interpreted differently for each response algorithm to curve
+  // user-manipulation.
+  public curveManipulationWidthProperty: NumberProperty;
+
+  public constructor() {
 
     super();
 
-    // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
-    //                                                          is manipulated by the view.
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL );
 
-    // @public {NumberProperty} - the width of the curve-manipulation. This only applies to some CurveManipulationModes
-    //                            and the value is interpreted differently for each response algorithm to curve
-    //                            user-manipulation.
     this.curveManipulationWidthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
       range: CURVE_MANIPULATION_WIDTH_RANGE
     } );
   }
 
   /**
-   * Resets the OriginalCurve.
-   * @override
-   * @public
+   * Gets the current CurveManipulationMode.
    *
+   */
+  public get curveManipulationMode(): CurveManipulationMode {
+    return this.curveManipulationModeProperty.value;
+  }
+
+  /**
+   * Gets the current curve-manipulation width.
+   */
+  public get curveManipulationWidth(): number {
+    return this.curveManipulationWidthProperty.value;
+  }
+
+  /**
+   * Resets the OriginalCurve.
    * Called when the reset-all button is pressed.
    */
-  reset() {
+  public override reset(): void {
     super.reset();
     this.curveManipulationModeProperty.reset();
     this.curveManipulationWidthProperty.reset();
@@ -72,12 +87,11 @@ class OriginalCurve extends Curve {
 
   /**
    * Saves the current y-values of the Points for the next undoToLastSave() method.
-   * @public
    *
    * This method is invoked when the user starts manipulating the OriginalCurve. When the undo button is pressed,
    * the Points of the OriginalCurve will be set to their last saved state.
    */
-  saveCurrentPoints() {
+  public saveCurrentPoints(): void {
 
     // Save the current y-value of each CurvePoint.
     this.points.forEach( point => { point.save(); } );
@@ -85,11 +99,10 @@ class OriginalCurve extends Curve {
 
   /**
    * Sets the y-values of this CurvedPoints of this Curve to its last saved state.
-   * @public
    *
    * This method is invoked when the undo button is pressed, which successively undos the last action.
    */
-  undoToLastSave() {
+  public undoToLastSave(): void {
 
     // Revert to the saved y-value of each CurvePoint.
     this.points.forEach( point => { point.undoToLastSave(); } );
@@ -98,39 +111,18 @@ class OriginalCurve extends Curve {
     this.curveChangedEmitter.emit();
   }
 
-  /**
-   * Gets the current CurveManipulationMode.
-   * @public
-   *
-   * @returns {CurveManipulationMode}
-   */
-  get curveManipulationMode() {
-    return this.curveManipulationModeProperty.value;
-  }
-
-  /**
-   * Gets the current curve-manipulation width.
-   * @public
-   *
-   * @returns {number}
-   */
-  get curveManipulationWidth() {
-    return this.curveManipulationWidthProperty.value;
-  }
-
   /*----------------------------------------------------------------------------*
    * Curve Manipulation Algorithms
    *----------------------------------------------------------------------------*/
 
   /**
    * Smooths the curve. Called when the user presses the 'smooth' button.
-   * @public
    *
    * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
    * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
    * improved from the flash implementation of calculus grapher.
    */
-  smooth() {
+  public smooth(): void {
 
     // Save the current values of our Points for the next undoToLastSave call. Note that the current y-values are the
     // same as the previous y-values for all Points in the OriginalCurve.
@@ -147,6 +139,7 @@ class OriginalCurve extends Curve {
       for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
         // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
+        // @ts-ignore
         movingTotal += this.getClosestPointAt( point.x + dx ).lastSavedY;
 
         addedPoints += 1;
@@ -162,19 +155,19 @@ class OriginalCurve extends Curve {
 
   /**
    * Shifts the curve to the specified drag Position.
-   * @public
    *
-   * @param {Vector2} position - in model coordinates
+   * @param position - in model coordinates
    */
-  shiftToPosition( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+  public shiftToPosition( position: Vector2 ): void {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.SHIFT );
 
     // Amount to shift the entire curve.
+    // @ts-ignore
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
 
     // Shift each of the CurvePoints by deltaY.
     this.points.forEach( point => {
+      // @ts-ignore
       point.y += deltaY;
     } );
 
@@ -184,13 +177,11 @@ class OriginalCurve extends Curve {
 
   /**
    * Tilts the curve to the specified drag Position.
-   * @public
    *
-   * @param {Vector2} position - in model coordinates
+   * @param position - in model coordinates
    */
-  tiltToPosition( position ) {
+  public tiltToPosition( position: Vector2 ): void {
     assert && assert( position.x !== 0, 'x position cannot be zero' );
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
     assert && assert( this.curveManipulationMode === CurveManipulationMode.TILT );
 
     // Find the angle of the tile, based on where the user dragged the Curve.
@@ -201,10 +192,12 @@ class OriginalCurve extends Curve {
     ) );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
+    // @ts-ignore
     const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
 
     // Shift each of the CurvePoints by a factor of deltaY.
     this.points.forEach( point => {
+      // @ts-ignore
       point.y = point.lastSavedY + deltaY * point.x / position.x;
     } );
 
@@ -214,13 +207,9 @@ class OriginalCurve extends Curve {
 
   /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
-   * @public
-   *
    * TODO: this was copied from flash. Understand and improve on it.
-   * @param {Vector2} peak
    */
-  createHillAt( peak ) {
-    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
+  public createHillAt( peak: Vector2 ): void {
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
     const width = 20;
@@ -229,6 +218,7 @@ class OriginalCurve extends Curve {
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
 
     // Amount to shift the entire curve.
+    // @ts-ignore
     const deltaY = Math.abs( peak.y - closestPoint.lastSavedY );
     let P = 1;
 
@@ -237,9 +227,11 @@ class OriginalCurve extends Curve {
         const dist = Math.abs( point.x - closestPoint.x ) * POINTS_PER_COORDINATE;
         P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
 
+        // @ts-ignore
         point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
       }
 
+      // @ts-ignore
       point.y = ( P * peak.y + ( 1 - P ) * point.y );
     } );
 
@@ -249,17 +241,14 @@ class OriginalCurve extends Curve {
 
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
-   * @public
-   *
    * TODO: this was copied from flash. Understand and improve?
-   * @param {Vector2} peak
    */
-  createTriangleAt( peak ) {
-    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
+  public createTriangleAt( peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
+    // @ts-ignore
     const deltaY = peak.y - closestPoint.lastSavedY;
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
@@ -277,6 +266,7 @@ class OriginalCurve extends Curve {
 
       // If the point is within the 'width' of the triangle, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
+      // @ts-ignore
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
@@ -291,17 +281,15 @@ class OriginalCurve extends Curve {
 
   /**
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
-   * @public
    *
    * TODO: this was copied from flash. Understand and improve?
-   * @param {Vector2} peak
    */
-  createParabolaAt( peak ) {
-    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
+  public createParabolaAt( peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
+    // @ts-ignore
     const deltaY = peak.y - closestPoint.lastSavedY;
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
@@ -317,6 +305,7 @@ class OriginalCurve extends Curve {
 
       // If the point is within the 'width' of the parabola, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
+      // @ts-ignore
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
@@ -331,12 +320,10 @@ class OriginalCurve extends Curve {
 
   /**
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
-   * @public
    *
    * TODO: this was copied from flash. Understand and improve?
-   * @param {Vector2} peak
    */
-  createPedestalAt( peak ) {
+  public createPedestalAt( peak: Vector2 ): void {
     assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
@@ -359,6 +346,7 @@ class OriginalCurve extends Curve {
         P = Math.exp( -Math.pow( point.x - ( closestPoint.x + width / 2 ), 4 ) / ( 2 * edgeSlopeFactor * edgeSlopeFactor ) );
       }
 
+      // @ts-ignore
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
 
@@ -368,12 +356,10 @@ class OriginalCurve extends Curve {
 
   /**
    * Allows the user to drag Points in the Curve to any desired position to create custom Curves shapes.
-   * @public
    *
-   * @param {Vector2} position - in model coordinates
+   * @param position - in model coordinates
    */
-  drawFreeformToPosition( position ) {
-    assert && assert( position instanceof Vector2, `invalid position: ${position}` );
+  public drawFreeformToPosition( position: Vector2 ): void {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
     const closestPoint = this.getClosestPointAt( position.x );
@@ -382,24 +368,28 @@ class OriginalCurve extends Curve {
     closestPoint.y = position.y;
 
     // TODO: this was copied from flash. Understand and improve?
+    // @ts-ignore
     if ( this.last ) {
+      // @ts-ignore
       const distX = Math.abs( closestPoint.x - this.last.x );
 
       if ( distX > 1 / POINTS_PER_COORDINATE ) {
 
         for ( let dx = 1 / POINTS_PER_COORDINATE; dx < distX; dx += 1 / POINTS_PER_COORDINATE ) {
           const W = dx / distX;
-
+          // @ts-ignore
           if ( closestPoint.x > this.last.x ) {
+            // @ts-ignore
             this.getClosestPointAt( this.last.x + dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
           }
           else {
+            // @ts-ignore
             this.getClosestPointAt( this.last.x - dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
           }
         }
       }
     }
-
+    // @ts-ignore
     this.last = closestPoint;
 
     // Signal that this Curve has changed.
@@ -408,12 +398,9 @@ class OriginalCurve extends Curve {
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-   * @public
-   *
    * TODO: this was copied from flash. Understand and improve?
-   * @param {Vector2} position
    */
-  createSineAt( position ) {
+  public createSineAt( position: Vector2 ): void {
 
     // const closestPoint = this.getClosestPointAt( position.x );
 
@@ -425,6 +412,7 @@ class OriginalCurve extends Curve {
 
     this.points.forEach( point => {
       const newY = position.y * Math.cos( point.x * width );
+      // @ts-ignore
       const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
 
       if ( clearForSine ) {
@@ -441,4 +429,3 @@ class OriginalCurve extends Curve {
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );
-export default OriginalCurve;
