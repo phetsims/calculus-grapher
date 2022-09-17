@@ -14,19 +14,19 @@ import Enumeration from '../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
-class CurveManipulationModes extends EnumerationValue {
+class CurveManipulationMode extends EnumerationValue {
 
-  static HILL = new CurveManipulationModes();
-  static TRIANGLE = new CurveManipulationModes();
-  static PEDESTAL = new CurveManipulationModes();
-  static PARABOLA = new CurveManipulationModes();
-  static SINE = new CurveManipulationModes();
-  static FREEFORM = new CurveManipulationModes();
-  static TILT = new CurveManipulationModes();
-  static SHIFT = new CurveManipulationModes();
+  static HILL = new CurveManipulationMode();
+  static TRIANGLE = new CurveManipulationMode();
+  static PEDESTAL = new CurveManipulationMode();
+  static PARABOLA = new CurveManipulationMode();
+  static SINE = new CurveManipulationMode();
+  static FREEFORM = new CurveManipulationMode();
+  static TILT = new CurveManipulationMode();
+  static SHIFT = new CurveManipulationMode();
 
-  static enumeration = new Enumeration( CurveManipulationModes );
+  static enumeration = new Enumeration( CurveManipulationMode );
 }
 
-calculusGrapher.register( 'CurveManipulationModes', CurveManipulationModes );
-export default CurveManipulationModes;
+calculusGrapher.register( 'CurveManipulationMode', CurveManipulationMode );
+export default CurveManipulationMode;

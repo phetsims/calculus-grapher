@@ -14,7 +14,7 @@ import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CurveManipulationModes from '../model/CurveManipulationModes.js';
+import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 
@@ -43,7 +43,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     const contentNode = new VBox( { spacing: options.contentSpacing } );
 
     // Create radio button group items
-    const aquaRadioButtonGroupItems = CurveManipulationModes.enumeration.values.map(
+    const aquaRadioButtonGroupItems = CurveManipulationMode.enumeration.values.map(
       ( mode, index ) => ( {
         value: mode,
         node: new Text( mode.toString() )

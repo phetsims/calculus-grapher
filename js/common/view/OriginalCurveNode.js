@@ -16,7 +16,7 @@ import AssertUtils from '../../../../phetcommon/js/AssertUtils.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationModes from '../model/CurveManipulationModes.js';
+import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode from './CurveNode.js';
 
@@ -53,28 +53,28 @@ class OriginalCurveNode extends CurveNode {
       drag( event, listener ) {
         const modelPosition = modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint );
 
-        if ( curve.curveManipulationMode === CurveManipulationModes.HILL ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.HILL ) {
           curve.createHillAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.PARABOLA ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.PARABOLA ) {
           curve.createParabolaAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.PEDESTAL ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.PEDESTAL ) {
           curve.createPedestalAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.TRIANGLE ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.TRIANGLE ) {
           curve.createTriangleAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.TILT ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.TILT ) {
           curve.tiltToPosition( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.SHIFT ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.SHIFT ) {
           curve.shiftToPosition( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.FREEFORM ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.FREEFORM ) {
           curve.drawFreeformToPosition( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationModes.SINE ) {
+        if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
           curve.createSineAt( modelPosition );
         }
       },

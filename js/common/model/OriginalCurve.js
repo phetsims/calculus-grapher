@@ -31,7 +31,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve from './Curve.js';
-import CurveManipulationModes from './CurveManipulationModes.js';
+import CurveManipulationMode from './CurveManipulationMode.js';
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
@@ -46,7 +46,7 @@ class OriginalCurve extends Curve {
 
     // @public {EnumerationProperty.<CurveManipulationModes>} - the 'mode' that user is in for manipulating curves. This
     //                                                          is manipulated by the view.
-    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationModes.HILL );
+    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL );
 
     // @public {NumberProperty} - the width of the curve-manipulation. This only applies to some CurveManipulationModes
     //                            and the value is interpreted differently for each response algorithm to curve
@@ -167,7 +167,7 @@ class OriginalCurve extends Curve {
    */
   shiftToPosition( position ) {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
-    assert && assert( this.curveManipulationMode === CurveManipulationModes.SHIFT );
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.SHIFT );
 
     // Amount to shift the entire curve.
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
@@ -190,7 +190,7 @@ class OriginalCurve extends Curve {
   tiltToPosition( position ) {
     assert && assert( position.x !== 0, 'x position cannot be zero' );
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
-    assert && assert( this.curveManipulationMode === CurveManipulationModes.TILT );
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.TILT );
 
     // Find the angle of the tile, based on where the user dragged the Curve.
     const angle = Utils.toRadians( Utils.clamp(
@@ -373,7 +373,7 @@ class OriginalCurve extends Curve {
    */
   drawFreeformToPosition( position ) {
     assert && assert( position instanceof Vector2, `invalid position: ${position}` );
-    assert && assert( this.curveManipulationMode === CurveManipulationModes.FREEFORM );
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
     const closestPoint = this.getClosestPointAt( position.x );
 
