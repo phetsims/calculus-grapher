@@ -39,7 +39,7 @@ export default class CurveNode extends Node {
   private readonly cuspContainer: Node;
 
   public constructor( curve: Curve, modelViewTransformProperty: TReadOnlyProperty<ModelViewTransform2>,
-                      provideOptions: CurveNodeOptions ) {
+                      provideOptions?: CurveNodeOptions ) {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
 

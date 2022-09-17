@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-// @ts-nocheck
+
 /**
  * Root class (to be subclassed) for the top-level view of every screen in the 'Calculus Grapher' simulation.
  *
@@ -7,21 +7,24 @@
  */
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import ScreenView from '../../../../joist/js/ScreenView.js';
+import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
 import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
 import GraphNode from './GraphNode.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
-class CalculusGrapherScreenView extends ScreenView {
 
-  /**
-   * @param {CalculusGrapherModel} model
-   * @param {Object} [options]
-   */
-  constructor( model, options ) {
-    assert && assert( model instanceof CalculusGrapherModel, `invalid model: ${model}` );
+type SelfOptions = EmptySelfOptions;
+type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
+
+
+export default class CalculusGrapherScreenView extends ScreenView {
+
+  public constructor( model: CalculusGrapherModel, providedOptions?: CalculusGrapherScreenViewOptions ) {
+
+    const options = optionize<CalculusGrapherScreenViewOptions, SelfOptions, ScreenViewOptions>()( {}, providedOptions );
 
     super( options );
 
@@ -49,4 +52,3 @@ class CalculusGrapherScreenView extends ScreenView {
 }
 
 calculusGrapher.register( 'CalculusGrapherScreenView', CalculusGrapherScreenView );
-export default CalculusGrapherScreenView;

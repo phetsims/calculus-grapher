@@ -21,7 +21,6 @@ import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
 import Curve from '../model/Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 type GraphNodeOptions = SelfOptions & NodeOptions;
@@ -32,9 +31,9 @@ export default class GraphNode extends Node {
 
 
   public constructor( curve: Curve, bounds: Bounds2,
-                      gridVisibleProperty: BooleanProperty,
+                      gridVisibleProperty: Property<boolean>,
                       original: boolean,
-                      providedOptions: GraphNodeOptions ) {
+                      providedOptions?: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 

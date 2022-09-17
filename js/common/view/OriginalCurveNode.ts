@@ -37,7 +37,7 @@ const CURVE_DRAG_DILATION = 0.4; // in model units
 
 export default class OriginalCurveNode extends CurveNode {
 
-  public constructor( curve: OriginalCurve, modelViewTransformProperty: Property<ModelViewTransform2>, providedOptions: OriginalCurveNodeOptions ) {
+  public constructor( curve: OriginalCurve, modelViewTransformProperty: Property<ModelViewTransform2>, providedOptions?: OriginalCurveNodeOptions ) {
 
     const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
