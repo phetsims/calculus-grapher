@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-// @ts-nocheck
+
 /**
  * @author Brandon Li
  */
@@ -14,22 +14,29 @@ import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
+import Curve from '../model/Curve.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
-class GraphNode extends Node {
+type SelfOptions = EmptySelfOptions;
+type GraphNodeOptions = SelfOptions & NodeOptions;
 
-  /**
-   * @param {Curve} curve
-   * @param {Bounds2} bounds
-   * @param gridVisibleProperty
-   * @param {boolean} original
-   * @param {Object} [options]
-   */
-  constructor( curve, bounds, gridVisibleProperty, original, options ) {
+export default class GraphNode extends Node {
+
+  public curveNode: CurveNode | OriginalCurveNode;
+
+
+  public constructor( curve: Curve, bounds: Bounds2,
+                      gridVisibleProperty: BooleanProperty,
+                      original: boolean,
+                      providedOptions: GraphNodeOptions ) {
+
+    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 
     super( options );
 
@@ -65,7 +72,8 @@ class GraphNode extends Node {
     let chartRectangle;
     if ( original ) {
       // gridVisibleProperty.linkAttribute( gridNode, 'visible' );
-      // @public
+
+      // @ts-ignore
       this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
         pathOptions: {
           stroke: 'blue'
@@ -78,7 +86,7 @@ class GraphNode extends Node {
 
     }
     else {
-      // @public
+
       this.curveNode = new CurveNode( curve, new Property( modelViewTransform ), {
         pathOptions: {
           stroke: 'green'
@@ -102,4 +110,3 @@ class GraphNode extends Node {
 }
 
 calculusGrapher.register( 'GraphNode', GraphNode );
-export default GraphNode;
