@@ -1,5 +1,5 @@
 // Copyright 2020-2021, University of Colorado Boulder
-// @ts-nocheck
+
 /**
  * Factory for creating the various icons that appear in the 'Calculus Grapher' simulation. All methods are static.
  *
@@ -14,10 +14,12 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
+import { Node } from '../../../../scenery/js/imports.js';
 
 // constants
 // const CURVE_MANIPULATION_ICON_WIDTH = 10;
 // const CURVE_MANIPULATION_ICON_HEIGHT = 5;
+
 
 const CalculusGrapherIconFactory = {
 
@@ -29,83 +31,59 @@ const CalculusGrapherIconFactory = {
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.HILL.
-   * @public
-   *
-   * @returns {Node}
    */
-  createHillIcon() {
+  createHillIcon(): Node {
     // OriginalCurve.createHillShape
-
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.TRIANGLE.
-   * @public
-   *
-   * @returns {Node}
    */
-  createLineIcon() {
-
+  createLineIcon(): Node {
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.PEDESTAL.
-   * @public
-   *
-   * @returns {Node}
    */
-  createPedestalIcon() {
-
+  createPedestalIcon(): Node {
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.PARABOLA.
-   * @public
-   *
-   * @returns {Node}
    */
-  createParabolaIcon() {
-
+  createParabolaIcon(): Node {
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.SINE.
-   * @public
-   *
-   * @returns {Node}
    */
-  createSineIcon() {
-
+  createSineIcon(): Node {
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.FREEFORM.
-   * @public
-   *
-   * @returns {Node}
    */
-  createFreeformIcon() {
-
+  createFreeformIcon(): Node {
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.TILT.
-   * @public
-   *
-   * @returns {Node}
    */
-  createTiltIcon() {
-
+  createTiltIcon(): Node {
+    return new Node();
   },
 
   /**
    * Creates the Curve Manipulation Icon for CurveManipulationModes.SHIFT.
-   * @public
-   *
-   * @returns {Node}
    */
-  createShiftIcon() {
-
+  createShiftIcon(): Node {
+    return new Node();
   }
 };
 
