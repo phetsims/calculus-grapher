@@ -1,5 +1,6 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * OriginalCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then
  * triggers a change in the CurvePoints and the OriginalCurve's integral, derivative, and second-derivative Curves.
