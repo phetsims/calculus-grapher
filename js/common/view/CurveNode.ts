@@ -28,9 +28,9 @@ type SelfOptions = {
   pathOptions?: PathOptions;
 };
 
-type CurveNodeOptions = SelfOptions; //TODO nothing from NodeOptions for now, but eventually PickRequired<NodeOptions, 'tandem'>
+export type CurveNodeOptions = SelfOptions; //TODO nothing from NodeOptions for now, but eventually PickRequired<NodeOptions, 'tandem'>
 
-class CurveNode extends Node {
+export default class CurveNode extends Node {
 
   // Path of the lines in between each CurvePoint.
   protected readonly path: Path;
@@ -119,4 +119,3 @@ class CurveNode extends Node {
 }
 
 calculusGrapher.register( 'CurveNode', CurveNode );
-export default CurveNode;
