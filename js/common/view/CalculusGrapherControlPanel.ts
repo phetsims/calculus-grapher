@@ -42,14 +42,17 @@ export default class CalculusGrapherControlPanel extends Panel {
     // Create the content Node of the Control Panel.
     const contentNode = new VBox( { spacing: options.contentSpacing } );
 
-    // Radio Buttons that control the curveManipulationModeProperty.
-    const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup(
-      originalCurve.curveManipulationModeProperty,
-      CurveManipulationModes.VALUES.map( mode => ( {
+    // Create radio button group items
+    const aquaRadioButtonGroupItems = CurveManipulationModes.enumeration.values.map(
+      ( mode, index ) => ( {
         value: mode,
         node: new Text( mode.toString() )
-      } ) )
+      } )
     );
+
+    // Radio Buttons that control the curveManipulationModeProperty.
+    const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup(
+      originalCurve.curveManipulationModeProperty, aquaRadioButtonGroupItems );
 
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {

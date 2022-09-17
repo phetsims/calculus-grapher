@@ -10,36 +10,23 @@
  * @author Brandon Li
  */
 
-import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
+import Enumeration from '../../../../phet-core/js/Enumeration.js';
+import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
-const CurveManipulationModes = EnumerationDeprecated.byKeys( [
+class CurveManipulationModes extends EnumerationValue {
 
-  // Creates a smooth, continuous, and differentiable bell-shaped curve, where the peak is the drag-position.
-  'HILL',
+  static HILL = new CurveManipulationModes();
+  static TRIANGLE = new CurveManipulationModes();
+  static PEDESTAL = new CurveManipulationModes();
+  static PARABOLA = new CurveManipulationModes();
+  static SINE = new CurveManipulationModes();
+  static FREEFORM = new CurveManipulationModes();
+  static TILT = new CurveManipulationModes();
+  static SHIFT = new CurveManipulationModes();
 
-  // Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
-  'TRIANGLE',
-
-  // Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
-  'PEDESTAL',
-
-  // Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
-  'PARABOLA',
-
-  // Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-  'SINE',
-
-  // Allows the user to drag Points in the Curve to any desired position to create custom Curves shapes.
-  'FREEFORM',
-
-  // Allows the user to tilt the angle of the Curve upwards or downwards.
-  'TILT',
-
-  // Allows the user to shift the Curve upwards or downwards.
-  'SHIFT'
-
-] );
+  static enumeration = new Enumeration( CurveManipulationModes );
+}
 
 calculusGrapher.register( 'CurveManipulationModes', CurveManipulationModes );
 export default CurveManipulationModes;
