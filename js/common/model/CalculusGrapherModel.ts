@@ -24,7 +24,7 @@ export default class CalculusGrapherModel {
   public readonly originalCurve: OriginalCurve;
   public readonly derivativeCurve: DerivativeCurve;
 
-  public constructor( providedOptions: CalculusGrapherModelOptions ) {
+  public constructor( providedOptions?: CalculusGrapherModelOptions ) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {}, providedOptions );
