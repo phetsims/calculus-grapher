@@ -17,7 +17,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 
 
 type SelfOptions = EmptySelfOptions;
-type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
+export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 
 export default class CalculusGrapherScreenView extends ScreenView {

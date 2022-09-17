@@ -1,27 +1,28 @@
 // Copyright 2020-2022, University of Colorado Boulder
-// @ts-nocheck
+
 /**
  * Top level view for the 'Intro' screen.
  *
  * @author BrandonLi
  */
 
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherScreenView from '../../common/view/CalculusGrapherScreenView.js';
+import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntroModel from '../model/IntroModel.js';
 
-class IntroScreenView extends CalculusGrapherScreenView {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {IntroModel} model
-   * @param {Object} [options]
-   */
-  constructor( model, options ) {
-    assert && assert( model instanceof IntroModel, `invalid model: ${model}` );
+export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+
+export default class IntroScreenView extends CalculusGrapherScreenView {
+
+  public constructor( model: IntroModel, providedOptions?: IntroScreenViewOptions ) {
+
+    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {}, providedOptions );
 
     super( model, options );
   }
 }
 
 calculusGrapher.register( 'IntroScreenView', IntroScreenView );
-export default IntroScreenView;
