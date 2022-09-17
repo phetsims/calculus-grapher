@@ -1,5 +1,5 @@
 // Copyright 2020-2021, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * Factory for creating the various icons that appear in the 'Calculus Grapher' simulation. All methods are static.
  *
