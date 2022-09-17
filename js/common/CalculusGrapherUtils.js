@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * CalculusGrapherUtils is a collection of general utility functions used in this sim.
  *
