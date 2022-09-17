@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * OriginalCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then
  * triggers a change in the model OriginalCurve's points.
