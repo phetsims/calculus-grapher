@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-// @ts-nocheck
+
 /**
  * Top level model for the 'Intro' screen.
  *
@@ -7,18 +7,21 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherModel from '../../common/model/CalculusGrapherModel.js';
+import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
-class IntroModel extends CalculusGrapherModel {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Object} [options]
-   */
-  constructor( options ) {
+export type IntroModelOptions = SelfOptions & CalculusGrapherModelOptions;
+
+export default class IntroModel extends CalculusGrapherModel {
+
+  public constructor( providedOptions?: IntroModelOptions ) {
+    const options = optionize<IntroModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {}, providedOptions );
 
     super( options );
+
   }
 }
 
 calculusGrapher.register( 'IntroModel', IntroModel );
-export default IntroModel;
