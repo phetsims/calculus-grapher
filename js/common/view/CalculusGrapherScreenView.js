@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * Root class (to be subclassed) for the top-level view of every screen in the 'Calculus Grapher' simulation.
  *
