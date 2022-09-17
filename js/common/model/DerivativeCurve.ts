@@ -1,6 +1,5 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * DerivativeCurve is a Curve sub-type for a curve that represents the derivative of a 'base' curve. It is used
  * as both the first derivative and second derivative of the OriginalCurve.
@@ -30,19 +29,18 @@ import Curve from './Curve.js';
 // constants
 const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
 
-class DerivativeCurve extends Curve {
+export default class DerivativeCurve extends Curve {
+
+  // reference to the 'base' Curve that was passed-in.
+  private baseCurve: Curve;
 
   /**
-   * @param {Curve} baseCurve - the curve to differentiate to get the values of this DerivativeCurve.
+   * @param baseCurve - the curve to differentiate to get the values of this DerivativeCurve.
    */
-  constructor( baseCurve ) {
-    assert && assert( baseCurve instanceof Curve, `invalid baseCurve: ${baseCurve}` );
+  public constructor( baseCurve: Curve ) {
 
     super();
 
-    //----------------------------------------------------------------------------------------
-
-    // @private {OriginalCurve} - reference to the 'base' Curve that was passed-in.
     this.baseCurve = baseCurve;
 
     // Observe when the 'base' Curve changes and update this curve to represent the derivative of the 'base' Curve.
@@ -55,19 +53,15 @@ class DerivativeCurve extends Curve {
 
   /**
    * Resets the DerivativeCurve. Ensures that DerivativeCurve matches the 'base' Curve regardless of resetting order.
-   * @override
-   * @public
-   *
    * Called when the reset-all button is pressed.
    */
-  reset() {
+  public override reset(): void {
     super.reset();
     this.updateDerivative();
   }
 
   /**
    * Updates the y-values of the DerivativeCurve to represent the derivative of the 'base' Curve.
-   * @private
    *
    * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the slope of
    * the secant line between each adjacent Point is considered to be the instantaneous derivative. Our version
@@ -96,7 +90,7 @@ class DerivativeCurve extends Curve {
    *      + Otherwise:
    *         * Both adjacent Points don't exist, meaning the derivative also doesn't exist.
    */
-  updateDerivative() {
+  private updateDerivative(): void {
     this.baseCurve.cusps = [];
     // Loop through each trio of adjacent Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentTrio( this.baseCurve.points, ( previousPoint, point, nextPoint, index ) => {
@@ -146,21 +140,25 @@ class DerivativeCurve extends Curve {
 
           const K = 4 * Math.abs( area ) / ( len0 * len1 * len2 );
           if ( K >= DERIVATIVE_THRESHOLD ) {
+            // @ts-ignore
             this.baseCurve.cusps.push( point );
           }
 
           // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
           // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
+          // @ts-ignore
           this.points[ index ].y = ( leftSlope + rightSlope );
         }
         else if ( Number.isFinite( leftSlope ) ) {
 
           // If only the slope of the left side exists, use that as the derivative.
+          // @ts-ignore
           this.points[ index ].y = leftSlope;
         }
         else if ( Number.isFinite( rightSlope ) ) {
 
           // If only the slope of the right side exists, use that as the derivative.
+          // @ts-ignore
           this.points[ index ].y = rightSlope;
         }
         else {
@@ -177,4 +175,3 @@ class DerivativeCurve extends Curve {
 }
 
 calculusGrapher.register( 'DerivativeCurve', DerivativeCurve );
-export default DerivativeCurve;
