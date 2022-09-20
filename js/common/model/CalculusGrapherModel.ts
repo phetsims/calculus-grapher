@@ -10,9 +10,9 @@ import calculusGrapher from '../../calculusGrapher.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import OriginalCurve from './OriginalCurve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import IntegralCurve from './IntegralCurve.js';
 // import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
-// import IntegralCurve from './IntegralCurve.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -23,6 +23,8 @@ export default class CalculusGrapherModel {
 
   public readonly originalCurve: OriginalCurve;
   public readonly derivativeCurve: DerivativeCurve;
+  public readonly integralCurve: IntegralCurve;
+  public readonly secondDerivativeCurve: DerivativeCurve;
 
   public constructor( providedOptions?: CalculusGrapherModelOptions ) {
 
@@ -31,8 +33,8 @@ export default class CalculusGrapherModel {
 
     this.originalCurve = new OriginalCurve();
     this.derivativeCurve = new DerivativeCurve( this.originalCurve );
-    // this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve );
-    // this.integralCurve = new IntegralCurve( this.originalCurve );
+    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve );
+    this.integralCurve = new IntegralCurve( this.originalCurve );
 
   }
 }
