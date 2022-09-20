@@ -17,8 +17,7 @@ const CalculusGrapherUtils = {
    *
    */
   forEachAdjacentPair( array: ( CurvePoint )[], iterator: {
-    ( point: CurvePoint | null, previousPoint: CurvePoint | null ): void;
-    ( point: CurvePoint | null, previousPoint: CurvePoint | null, index: number ): void;
+    ( point: CurvePoint | null, previousPoint: CurvePoint | null, index?: number ): void;
   } ): void {
     assert && assert( Array.isArray( array ), `invalid array: ${array}` );
     assert && assert( typeof iterator === 'function', `invalid iterator: ${iterator}` );
