@@ -324,7 +324,6 @@ export default class OriginalCurve extends Curve {
    * TODO: this was copied from flash. Understand and improve?
    */
   public createPedestalAt( peak: Vector2 ): void {
-    assert && assert( peak instanceof Vector2, `invalid peak: ${peak}` );
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
     const width = 10;
