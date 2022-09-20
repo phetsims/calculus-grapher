@@ -4,7 +4,7 @@
  * DerivativeCurve is a Curve sub-type for a curve that represents the derivative of a 'base' curve. It is used
  * as both the first derivative and second derivative of the OriginalCurve.
  *
- * DerivativeCurves's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
+ * DerivativeCurves' main responsibility is to observe when the 'base' Curve changes and differentiates it and update
  * the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
  * of every point. For a general background on differentiation, see
  * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition.
