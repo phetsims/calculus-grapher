@@ -44,7 +44,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // Create radio button group items
     const aquaRadioButtonGroupItems = CurveManipulationMode.enumeration.values.map(
-      ( mode, index ) => ( {
+      mode => ( {
         value: mode,
         node: new Text( mode.toString() )
       } )
