@@ -11,11 +11,12 @@ import DerivativeCurve from './DerivativeCurve.js';
 import OriginalCurve from './OriginalCurve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import IntegralCurve from './IntegralCurve.js';
-
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type CalculusGrapherModelOptions = SelfOptions;
+export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class CalculusGrapherModel {
 
@@ -24,7 +25,7 @@ export default class CalculusGrapherModel {
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-  public constructor( providedOptions?: CalculusGrapherModelOptions ) {
+  public constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {}, providedOptions );

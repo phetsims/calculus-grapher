@@ -25,7 +25,6 @@ export default class IntroScreen extends Screen {
 
     const options = optionize<CalculusGrapherScreenViewOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
-    // @ts-ignore
     const createModel = () => new IntroModel( { tandem: options.tandem.createTandem( 'model' ) } );
 
     const createView = ( model: IntroModel ) => new IntroScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
