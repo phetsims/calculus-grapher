@@ -19,9 +19,6 @@ import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import Property from '../../../../axon/js/Property.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-// import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-
-// import IntegralCurve from './IntegralCurve.js';
 
 type SelfOptions = {
   pathOptions: {
@@ -29,7 +26,6 @@ type SelfOptions = {
   };
 };
 
-// Make numberOfAtoms optional. Note that it must be omitted, then made required.
 type OriginalCurveNodeOptions = SelfOptions;
 
 // constants

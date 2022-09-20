@@ -11,12 +11,10 @@ import DerivativeCurve from './DerivativeCurve.js';
 import OriginalCurve from './OriginalCurve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import IntegralCurve from './IntegralCurve.js';
-// import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 
 type SelfOptions = EmptySelfOptions;
 
-// Make numberOfAtoms optional. Note that it must be omitted, then made required.
 export type CalculusGrapherModelOptions = SelfOptions;
 
 export default class CalculusGrapherModel {
