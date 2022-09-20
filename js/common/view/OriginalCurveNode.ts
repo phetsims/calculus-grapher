@@ -102,7 +102,7 @@ export default class OriginalCurveNode extends CurveNode {
     // @ts-ignore
     const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - CURVE_DRAG_DILATION );
 
-    // Draw the curve shape slightly BELLOW the true y-value.
+    // Draw the curve shape slightly BELOW the true y-value.
     curve.points.forEach( point => {
       if ( point.exists ) {
         // @ts-ignore
