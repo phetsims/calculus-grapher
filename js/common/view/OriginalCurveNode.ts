@@ -19,6 +19,7 @@ import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import Property from '../../../../axon/js/Property.js';
 import optionize from '../../../../phet-core/js/optionize.js';
+import Curve from '../model/Curve.js';
 
 type SelfOptions = {
   pathOptions: {
@@ -93,7 +94,7 @@ export default class OriginalCurveNode extends CurveNode {
    * @param  curve - the model Curve.
    * @returns shape in model units
    */
-  public static createDilatedCurvePath( curve: OriginalCurve ): Shape {
+  public static createDilatedCurvePath( curve: Curve ): Shape {
 
     // @ts-ignore
     const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - CURVE_DRAG_DILATION );
@@ -123,9 +124,8 @@ export default class OriginalCurveNode extends CurveNode {
   public override updateCurveNode(): void {
     super.updateCurveNode();
 
-    // @ts-ignore
     const dilatedPathShape = OriginalCurveNode.createDilatedCurvePath( this.curve );
-    // @ts-ignore
+
     const dilatedPathShapeView = this.modelViewTransformProperty.value.modelToViewShape( dilatedPathShape );
 
     this.path.touchArea = dilatedPathShapeView;
