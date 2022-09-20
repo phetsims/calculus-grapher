@@ -11,7 +11,7 @@
   },
   "phet": {
     "phetLibs": [
-      "griddle"
+      "bamboo"
     ],
     "requirejsNamespace": "CALCULUS_GRAPHER",
     "runnable": true,
