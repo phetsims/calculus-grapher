@@ -28,8 +28,7 @@ export default class IntroScreen extends Screen {
     // @ts-ignore
     const createModel = () => new IntroModel( { tandem: options.tandem.createTandem( 'model' ) } );
 
-    // @ts-ignore
-    const createView = model => new IntroScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
+    const createView = ( model: IntroModel ) => new IntroScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
 
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.introStringProperty,
