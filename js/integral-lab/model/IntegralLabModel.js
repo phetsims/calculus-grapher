@@ -1,5 +1,5 @@
 // Copyright 2020-2022, University of Colorado Boulder
-
+// @ts-nocheck
 /**
  * Top level model for the 'Integral Lab' screen.
  *
