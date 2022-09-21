@@ -29,7 +29,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     super( options );
 
     // Create the view-specific properties for the screen.
-    const viewProperties = new CalculusGrapherViewProperties();
+    const viewProperties = new CalculusGrapherViewProperties( options );
 
 
     const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, true );

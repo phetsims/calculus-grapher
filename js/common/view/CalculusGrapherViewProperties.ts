@@ -11,6 +11,13 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+
+
+type SelfOptions = EmptySelfOptions;
+export type CalculusGrapherViewPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class CalculusGrapherViewProperties {
 
@@ -29,17 +36,33 @@ export default class CalculusGrapherViewProperties {
   //indicates if the second derivative curve is visible.
   public readonly secondDerivativeCurveVisibleProperty: Property<boolean>;
 
-  public constructor() {
 
-    this.gridVisibleProperty = new BooleanProperty( false );
+  public constructor( providedOptions: CalculusGrapherViewPropertiesOptions ) {
 
-    this.referenceLineVisibleProperty = new BooleanProperty( false );
+    const options = optionize<CalculusGrapherViewPropertiesOptions, SelfOptions>()( {}, providedOptions );
 
-    this.integralCurveVisibleProperty = new BooleanProperty( false );
+    this.gridVisibleProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'gridVisibleProperty' )
+    } );
 
-    this.derivativeCurveVisibleProperty = new BooleanProperty( false );
+    this.referenceLineVisibleProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
+    } );
 
-    this.secondDerivativeCurveVisibleProperty = new BooleanProperty( false );
+    this.integralCurveVisibleProperty = new BooleanProperty( false,
+      {
+        tandem: options.tandem.createTandem( 'integralCurveVisibleProperty' )
+      } );
+
+    this.derivativeCurveVisibleProperty = new BooleanProperty( false,
+      {
+        tandem: options.tandem.createTandem( 'derivativeCurveVisibleProperty' )
+      } );
+
+    this.secondDerivativeCurveVisibleProperty = new BooleanProperty( false,
+      {
+        tandem: options.tandem.createTandem( 'secondDerivativeCurveVisibleProperty' )
+      } );
   }
 
   /**
