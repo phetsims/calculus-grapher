@@ -154,7 +154,7 @@ export default class DerivativeCurve extends Curve {
           // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
           // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
           // @ts-ignore
-          this.points[ index ].y = ( leftSlope + rightSlope );
+          this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
         }
         else if ( Number.isFinite( leftSlope ) ) {
 
