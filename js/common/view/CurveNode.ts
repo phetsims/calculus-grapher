@@ -17,6 +17,7 @@
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Circle, Node, NodeOptions, Path, PathOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -28,7 +29,7 @@ type SelfOptions = {
   pathOptions?: PathOptions;
 };
 
-export type CurveNodeOptions = SelfOptions; //TODO nothing from NodeOptions for now, but eventually PickRequired<NodeOptions, 'tandem'>
+export type CurveNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class CurveNode extends Node {
 

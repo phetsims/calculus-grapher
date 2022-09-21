@@ -79,7 +79,8 @@ export default class GraphNode extends Node {
       this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
         pathOptions: {
           stroke: 'blue'
-        }
+        },
+        tandem: options.tandem.createTandem( 'originalCurveNode' )
       } );
       chartRectangle = new ChartRectangle( chartTransform, {
         fill: 'white',
@@ -92,7 +93,8 @@ export default class GraphNode extends Node {
       this.curveNode = new CurveNode( curve, new Property( modelViewTransform ), {
         pathOptions: {
           stroke: 'green'
-        }
+        },
+        tandem: options.tandem.createTandem( 'curveNode' )
       } );
       chartRectangle = new ChartRectangle( chartTransform, {
         fill: 'white',
