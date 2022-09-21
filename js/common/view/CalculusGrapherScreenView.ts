@@ -45,7 +45,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
     // derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
     // this.addChild( derivative );
 
-    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve );
+    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
+      tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
+    } );
     controlPanel.rightCenter = this.layoutBounds.rightCenter;
     this.addChild( controlPanel );
   }
