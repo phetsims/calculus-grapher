@@ -66,11 +66,14 @@ export default class GraphNode extends Node {
     const horizontalAxisLine = new AxisLine( chartTransform, Orientation.HORIZONTAL );
     const verticalAxisLine = new AxisLine( chartTransform, Orientation.VERTICAL );
 
+
     const gridNode = new Node( { children: [ horizontalGridLines, verticalGridLines ] } );
+
+    // link visibility of the gridNode
+    gridVisibleProperty.linkAttribute( gridNode, 'visible' );
 
     let chartRectangle;
     if ( original ) {
-      // gridVisibleProperty.linkAttribute( gridNode, 'visible' );
 
       // @ts-ignore
       this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
