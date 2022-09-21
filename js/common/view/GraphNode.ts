@@ -33,7 +33,7 @@ export default class GraphNode extends Node {
   public constructor( curve: Curve, bounds: Bounds2,
                       gridVisibleProperty: Property<boolean>,
                       original: boolean,
-                      providedOptions?: GraphNodeOptions ) {
+                      providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 

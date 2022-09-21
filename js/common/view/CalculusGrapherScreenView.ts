@@ -32,7 +32,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const viewProperties = new CalculusGrapherViewProperties( options );
 
 
-    const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, true );
+    const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, true,
+      {
+        tandem: options.tandem.createTandem( 'originalGraphNode' )
+      } );
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );
 
