@@ -52,16 +52,19 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup(
-      originalCurve.curveManipulationModeProperty, aquaRadioButtonGroupItems );
+      originalCurve.curveManipulationModeProperty, aquaRadioButtonGroupItems,
+      { tandem: options.tandem.createTandem( 'radioButtonGroup' ) } );
 
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
-      listener: () => originalCurve.smooth()
+      listener: () => originalCurve.smooth(),
+      tandem: options.tandem.createTandem( 'smoothButton' )
     } );
 
     // Reset Button
     const resetButton = new TextPushButton( CalculusGrapherStrings.resetStringProperty, {
-      listener: () => originalCurve.reset()
+      listener: () => originalCurve.reset(),
+      tandem: options.tandem.createTandem( 'resetButton' )
     } );
 
     contentNode.children = [
