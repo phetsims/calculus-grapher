@@ -23,7 +23,7 @@
 
 import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -50,7 +50,10 @@ export default class Curve {
 
   public cusps: CurvePoint[] | null;
 
-  public constructor( providedOptions: CurveOptions ) {
+  public constructor( providedOptions?: CurveOptions ) {
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const options = optionize<CurveOptions, SelfOptions>()( {}, providedOptions );
 
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.
