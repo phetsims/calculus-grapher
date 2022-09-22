@@ -34,6 +34,7 @@ export default class IntegralCurve extends Curve {
 
   /**
    * @param baseCurve - the curve to integrate to get the values of this IntegralCurve.
+   * @param providedOptions
    */
   public constructor( baseCurve: OriginalCurve, providedOptions?: IntegralCurveOptions ) {
 

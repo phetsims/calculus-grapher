@@ -43,7 +43,8 @@ export default class DerivativeCurve extends Curve {
   private baseCurve: Curve;
 
   /**
-   * @param baseCurve - the curve to differentiate to get the values of this DerivativeCurve.
+   * @param baseCurve - the curve to differentiate to get the values of this DerivativeCurve
+   * @param providedOptions
    */
   public constructor( baseCurve: Curve, providedOptions?: DerivativeCurveOptions ) {
 
