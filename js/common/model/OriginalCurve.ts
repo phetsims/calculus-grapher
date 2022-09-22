@@ -27,16 +27,24 @@ import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 
+
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
+
+type SelfOptions = EmptySelfOptions;
+
+export type OriginalCurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class OriginalCurve extends Curve {
 
@@ -49,14 +57,19 @@ export default class OriginalCurve extends Curve {
   // user-manipulation.
   public curveManipulationWidthProperty: NumberProperty;
 
-  public constructor() {
+  public constructor( providedOptions: OriginalCurveOptions ) {
+
+    const options = optionize<OriginalCurveOptions, SelfOptions>()( {}, providedOptions );
 
     super();
 
-    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL );
+    this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL, {
+      tandem: options.tandem.createTandem( 'curveManipulationModeProperty' )
+    } );
 
     this.curveManipulationWidthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
-      range: CURVE_MANIPULATION_WIDTH_RANGE
+      range: CURVE_MANIPULATION_WIDTH_RANGE,
+      tandem: options.tandem.createTandem( 'curveManipulationWidthProperty' )
     } );
   }
 
