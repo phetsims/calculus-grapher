@@ -224,8 +224,8 @@ export default class OriginalCurve extends Curve {
    */
   public createHillAt( peak: Vector2 ): void {
 
-    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    const width = 20;
+    // width of the hill
+    const width = this.curveManipulationWidth;
 
     const closestPoint = this.getClosestPointAt( peak.x );
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
@@ -338,8 +338,9 @@ export default class OriginalCurve extends Curve {
    */
   public createPedestalAt( peak: Vector2 ): void {
 
-    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    const width = 10;
+    // width of the hill
+    const width = this.curveManipulationWidth;
+
     const edgeSlopeFactor = 1.5;
 
     const closestPoint = this.getClosestPointAt( peak.x );
@@ -419,11 +420,11 @@ export default class OriginalCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in position.
     // const deltaY = position.y - closestPoint.lastSavedY;
 
-    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    const width = 1;
+    // width of the hill
+    const width = this.curveManipulationWidth;
 
     this.points.forEach( point => {
-      const newY = position.y * Math.cos( point.x * width );
+      const newY = position.y * Math.cos( point.x * width / ( Math.PI * 2 ) );
       // @ts-ignore
       const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
 
