@@ -30,9 +30,9 @@ export default class CalculusGrapherModel {
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {}, providedOptions );
 
     this.originalCurve = new OriginalCurve( options );
-    this.derivativeCurve = new DerivativeCurve( this.originalCurve );
-    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve );
-    this.integralCurve = new IntegralCurve( this.originalCurve );
+    this.derivativeCurve = new DerivativeCurve( this.originalCurve, options );
+    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, options );
+    this.integralCurve = new IntegralCurve( this.originalCurve, options );
 
   }
 }

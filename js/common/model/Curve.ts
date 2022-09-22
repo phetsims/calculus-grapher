@@ -23,6 +23,9 @@
 
 import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -31,6 +34,10 @@ import CurvePoint from './CurvePoint.js';
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
+
+type SelfOptions = EmptySelfOptions;
+
+export type CurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class Curve {
 
@@ -43,8 +50,7 @@ export default class Curve {
 
   public cusps: CurvePoint[] | null;
 
-
-  public constructor() {
+  public constructor( providedOptions: CurveOptions ) {
 
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.

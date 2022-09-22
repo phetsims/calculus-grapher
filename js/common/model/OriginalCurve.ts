@@ -57,11 +57,11 @@ export default class OriginalCurve extends Curve {
   // user-manipulation.
   public curveManipulationWidthProperty: NumberProperty;
 
-  public constructor( providedOptions: OriginalCurveOptions ) {
+  public constructor( providedOptions?: OriginalCurveOptions ) {
 
     const options = optionize<OriginalCurveOptions, SelfOptions>()( {}, providedOptions );
 
-    super();
+    super( options );
 
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL, {
       tandem: options.tandem.createTandem( 'curveManipulationModeProperty' )
