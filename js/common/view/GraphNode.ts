@@ -72,37 +72,45 @@ export default class GraphNode extends Node {
     // link visibility of the gridNode
     gridVisibleProperty.linkAttribute( gridNode, 'visible' );
 
-    let chartRectangle;
+    // tracks changes of modelViewTransform
+    const transformProperty = new Property( modelViewTransform );
+
+    let chartRectangleOptions;
     if ( original ) {
 
       // @ts-ignore
-      this.curveNode = new OriginalCurveNode( curve, new Property( modelViewTransform ), {
+      this.curveNode = new OriginalCurveNode( curve, transformProperty, {
         pathOptions: {
           stroke: 'blue'
         },
         tandem: options.tandem.createTandem( 'originalCurveNode' )
       } );
-      chartRectangle = new ChartRectangle( chartTransform, {
+
+      chartRectangleOptions = {
         fill: 'white',
         stroke: 'black'
-      } );
+      };
 
     }
     else {
 
-      this.curveNode = new CurveNode( curve, new Property( modelViewTransform ), {
+      this.curveNode = new CurveNode( curve, transformProperty, {
         pathOptions: {
           stroke: 'green'
         },
         tandem: options.tandem.createTandem( 'curveNode' )
       } );
-      chartRectangle = new ChartRectangle( chartTransform, {
+      chartRectangleOptions = {
         fill: 'white',
         opacity: 0.2,
         stroke: 'black'
-      } );
+      };
     }
 
+    // chart Rectangle for the graph
+    const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
+
+    // add children to this node
     this.children = [
       chartRectangle,
       gridNode,
