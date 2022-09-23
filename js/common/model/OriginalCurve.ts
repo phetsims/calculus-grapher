@@ -152,7 +152,6 @@ export default class OriginalCurve extends Curve {
       for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
 
         // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
-        // @ts-ignore
         movingTotal += this.getClosestPointAt( point.x + dx ).lastSavedY;
 
         addedPoints += 1;
@@ -175,12 +174,10 @@ export default class OriginalCurve extends Curve {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.SHIFT );
 
     // Amount to shift the entire curve.
-    // @ts-ignore
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
 
     // Shift each of the CurvePoints by deltaY.
     this.points.forEach( point => {
-      // @ts-ignore
       point.y += deltaY;
     } );
 
@@ -205,12 +202,10 @@ export default class OriginalCurve extends Curve {
     ) );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
-    // @ts-ignore
     const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
 
     // Shift each of the CurvePoints by a factor of deltaY.
     this.points.forEach( point => {
-      // @ts-ignore
       point.y = point.lastSavedY + deltaY * point.x / position.x;
     } );
 
@@ -231,7 +226,6 @@ export default class OriginalCurve extends Curve {
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
 
     // Amount to shift the entire curve.
-    // @ts-ignore
     const deltaY = Math.abs( peak.y - closestPoint.lastSavedY );
     let P = 1;
 
@@ -240,11 +234,9 @@ export default class OriginalCurve extends Curve {
         const dist = Math.abs( point.x - closestPoint.x ) * POINTS_PER_COORDINATE;
         P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
 
-        // @ts-ignore
         point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
       }
 
-      // @ts-ignore
       point.y = ( P * peak.y + ( 1 - P ) * point.y );
     } );
 
@@ -261,7 +253,6 @@ export default class OriginalCurve extends Curve {
     const closestPoint = this.getClosestPointAt( peak.x );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
-    // @ts-ignore
     const deltaY = peak.y - closestPoint.lastSavedY;
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
@@ -279,7 +270,6 @@ export default class OriginalCurve extends Curve {
 
       // If the point is within the 'width' of the triangle, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
-      // @ts-ignore
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
@@ -302,7 +292,6 @@ export default class OriginalCurve extends Curve {
     const closestPoint = this.getClosestPointAt( peak.x );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
-    // @ts-ignore
     const deltaY = peak.y - closestPoint.lastSavedY;
 
     // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
@@ -318,7 +307,6 @@ export default class OriginalCurve extends Curve {
 
       // If the point is within the 'width' of the parabola, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
-      // @ts-ignore
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
@@ -347,7 +335,7 @@ export default class OriginalCurve extends Curve {
 
     // See https://en.wikipedia.org/wiki/Gaussian_function
     this.points.forEach( point => {
-      let P = 1;
+      let P;
 
       if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
         P = 1;
@@ -359,7 +347,6 @@ export default class OriginalCurve extends Curve {
         P = Math.exp( -Math.pow( point.x - ( closestPoint.x + width / 2 ), 4 ) / ( 2 * edgeSlopeFactor * edgeSlopeFactor ) );
       }
 
-      // @ts-ignore
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
 
@@ -425,7 +412,7 @@ export default class OriginalCurve extends Curve {
 
     this.points.forEach( point => {
       const newY = position.y * Math.cos( point.x * width / ( Math.PI * 2 ) );
-      // @ts-ignore
+
       const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
 
       if ( clearForSine ) {

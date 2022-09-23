@@ -28,15 +28,15 @@ export default class CurvePoint {
   // Using an observable Property for the y-value was considered, but it was deemed to be
   // invasive to the performance of the simulation as observers had to listen to the yProperty
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
-  public y: number | null;
+  public y: number;
 
   // the initial y-coordinate passed into the CurvePoint, for resetting purposes.
-  private readonly initialY: number | null;
+  private readonly initialY: number;
 
   // an array of all of this Point's saved y-values.
-  private savedYValues: ( number | null )[]; //TODO when would we be saving null?
+  private savedYValues: ( number )[]; //TODO when would we be saving null?
 
-  public constructor( x: number, y: number | null = 0 ) {
+  public constructor( x: number, y = 0 ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
     assert && assert( y === null || Number.isFinite( y ), `invalid y: ${y}` );
 
@@ -64,8 +64,8 @@ export default class CurvePoint {
   /**
    * Gets the most recently saved y-value.
    */
-  public get lastSavedY(): number | null {
-    return ( this.savedYValues.length === 0 ) ? null : _.last( this.savedYValues )!;
+  public get lastSavedY(): number {
+    return ( this.savedYValues.length === 0 ) ? this.initialY : _.last( this.savedYValues )!;
   }
 
   /**
@@ -87,7 +87,7 @@ export default class CurvePoint {
 
     // Set the y-value of this CurvedPoint to the last saved state. The y-value is removed from our savedYValues
     // so the next undoToLastSave() call successively reverts to the state before this one.
-    this.y = ( this.savedYValues.length === 0 ) ? null : this.savedYValues.pop()!;
+    this.y = ( this.savedYValues.length === 0 ) ? this.initialY : this.savedYValues.pop()!;
   }
 
   //----------------------------------------------------------------------------------------

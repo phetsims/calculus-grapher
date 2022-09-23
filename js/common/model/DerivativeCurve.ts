@@ -116,14 +116,12 @@ export default class DerivativeCurve extends Curve {
 
         // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
 
-        // @ts-ignore
         leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
         assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
       }
       if ( nextPoint && nextPoint.exists ) {
 
         // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
-        // @ts-ignore
         rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
         assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
       }
@@ -133,11 +131,8 @@ export default class DerivativeCurve extends Curve {
       // Set the y-value of the corresponding Point of the DerivativeCurve.
       if ( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
 
-        // @ts-ignore
         const p0 = new Vector2( previousPoint.x, previousPoint.y );
-        // @ts-ignore
         const p1 = new Vector2( point.x, point.y );
-        // @ts-ignore
         const p2 = new Vector2( nextPoint.x, nextPoint.y );
 
         const dx1 = p1.x - p0.x;
@@ -151,7 +146,6 @@ export default class DerivativeCurve extends Curve {
 
         const K = 4 * Math.abs( area ) / ( len0 * len1 * len2 );
         if ( K >= DERIVATIVE_THRESHOLD ) {
-          // @ts-ignore
           this.baseCurve.cusps.push( point );
         }
 
@@ -166,18 +160,15 @@ export default class DerivativeCurve extends Curve {
         // @ts-ignore
         this.points[ index ].y = leftSlope;
       }
-      else if ( Number.isFinite( rightSlope ) ) {
+      else {
+        //( Number.isFinite( rightSlope ) )
 
         // If only the slope of the right side exists, use that as the derivative.
         // @ts-ignore
         this.points[ index ].y = rightSlope;
-      }
-      else {
 
-        // Otherwise, both adjacent Points don't exist, meaning the derivative also doesn't exist
-        this.points[ index ].y = null;
-      }
 
+      }
     } );
 
     // Signal once that this Curve has changed.

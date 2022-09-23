@@ -98,13 +98,11 @@ export default class OriginalCurveNode extends CurveNode {
    */
   public static createDilatedCurvePath( curve: Curve ): Shape {
 
-    // @ts-ignore
     const pathShape = new Shape().moveTo( curve.points[ 0 ].x, curve.points[ 0 ].y - CURVE_DRAG_DILATION );
 
     // Draw the curve shape slightly BELOW the true y-value.
     curve.points.forEach( point => {
       if ( point.exists ) {
-        // @ts-ignore
         pathShape.lineTo( point.x, point.y - CURVE_DRAG_DILATION );
       }
     } );
@@ -112,7 +110,6 @@ export default class OriginalCurveNode extends CurveNode {
     // Draw the curve shape slightly ABOVE the true y-value.
     _.forEachRight( curve.points, point => {
       if ( point.exists ) {
-        // @ts-ignore
         pathShape.lineTo( point.x, point.y + CURVE_DRAG_DILATION );
       }
     } );

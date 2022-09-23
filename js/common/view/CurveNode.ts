@@ -72,7 +72,7 @@ export default class CurveNode extends Node {
   public updateCurveNode(): void { // TODO: pass modelViewTransformProperty value?
 
     const x = this.curve.points[ 0 ].x;
-    const y = this.curve.points[ 0 ].y!;
+    const y = this.curve.points[ 0 ].y;
     assert && assert( y !== null );
 
     const pathShape = new Shape().moveTo(
@@ -86,14 +86,12 @@ export default class CurveNode extends Node {
       if ( point.exists && previousPoint.exists ) {
         pathShape.lineTo(
           this.modelViewTransformProperty.value.modelToViewX( point.x ),
-          // @ts-ignore
           this.modelViewTransformProperty.value.modelToViewY( point.y )
         );
       }
       else if ( point.exists && !previousPoint.exists ) {
         pathShape.moveTo(
           this.modelViewTransformProperty.value.modelToViewX( point.x ),
-          // @ts-ignore
           this.modelViewTransformProperty.value.modelToViewY( point.y )
         );
       }
@@ -105,7 +103,7 @@ export default class CurveNode extends Node {
       this.curve.cusps.forEach( ( cusp: CurvePoint ) => {
 
         const x = cusp.x;
-        const y = cusp.y!;
+        const y = cusp.y;
         assert && assert( y !== null );
 
         this.cuspContainer.addChild( new Circle( 2, {
