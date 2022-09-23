@@ -29,11 +29,8 @@ const CalculusGrapherUtils = {
   },
 
   /**
-   * Iterates through an array in trios, passing the previous value, the current value, and the next value, if they
-   * exist, to the iterator function.
-   * forEachAdjacentTrio( [ 1, 2, 3, 4 ], f ) would invoke  f( 1, 2, 3 ) and  f( 2, 3, 4 ),
-   * .
-   *
+   * Iterates through an array in trios, passing the previous value, the current value, and the next value, to the iterator function.
+   * forEachAdjacentTrio( [ 1, 2, 3, 4, 5 ], f ) would invoke  f( 1, 2, 3 ), f( 2, 3, 4 ), f( 3, 4, 5 )
    */
   forEachAdjacentTrio( array: ( CurvePoint )[],
                        iterator: ( previousPoint: CurvePoint, point: CurvePoint, nextPoint: CurvePoint, index: number ) => void ): void {
