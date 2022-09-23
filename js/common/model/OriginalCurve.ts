@@ -261,15 +261,13 @@ export default class OriginalCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in peak.
     const deltaY = peak.y - closestPoint.lastSavedY;
 
-    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    // const width = 20;
-    const slope = 1; // TODO: derive slope from width
+    // full 'width' of the triangle
+    const width = this.curveManipulationWidth;
 
-    // TODO: this is from flash source code. Understand this and determine if still needed.
-    // const slopeMin = 1 / 5;
-    // const slopeMax = 15;
-    // const fS = Math.pow( slopeMax / slopeMin, 1 / 10 );
-    // const slope = slopeMin * Math.pow( fS, 1 );
+    const maxY = 5;// TODO, this should be pull from the max Y bounds
+
+    // set the slope coefficient such that the triangle at y=0 has a 'width' equal to this.curveManipulationWidth when the peak is at maxY
+    const slope = maxY / ( width / 2 );
 
     this.points.forEach( point => {
       const newY = peak.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );

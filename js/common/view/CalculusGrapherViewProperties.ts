@@ -36,12 +36,11 @@ export default class CalculusGrapherViewProperties {
   //indicates if the second derivative curve is visible.
   public readonly secondDerivativeCurveVisibleProperty: Property<boolean>;
 
-
   public constructor( providedOptions: CalculusGrapherViewPropertiesOptions ) {
 
     const options = optionize<CalculusGrapherViewPropertiesOptions, SelfOptions>()( {}, providedOptions );
 
-    this.gridVisibleProperty = new BooleanProperty( false, {
+    this.gridVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'gridVisibleProperty' )
     } );
 
