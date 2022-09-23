@@ -221,7 +221,6 @@ export default class OriginalCurve extends Curve {
 
   /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
-   * TODO: this was copied from flash. Understand and improve on it.
    */
   public createHillAt( peak: Vector2 ): void {
 
@@ -231,19 +230,11 @@ export default class OriginalCurve extends Curve {
     const closestPoint = this.getClosestPointAt( peak.x );
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
 
-    // Amount to shift the entire curve.
-    const deltaY = Math.abs( peak.y - closestPoint.lastSavedY );
-    let P = 1;
-
     this.points.forEach( point => {
-      if ( point !== closestPoint ) {
-        const dist = Math.abs( point.x - closestPoint.x ) * POINTS_PER_COORDINATE;
-        P = Math.exp( -dist / ( point === closestPoint ? 1 : width * Math.log( deltaY + 1 ) ) );
 
-        point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
-      }
+      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
 
-      point.y = ( P * peak.y + ( 1 - P ) * point.y );
+      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
 
     // Signal that this Curve has changed.
@@ -252,7 +243,6 @@ export default class OriginalCurve extends Curve {
 
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
-   * TODO: this was copied from flash. Understand and improve?
    */
   public createTriangleAt( peak: Vector2 ): void {
 
