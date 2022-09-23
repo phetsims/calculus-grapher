@@ -52,7 +52,9 @@ export default class CurveNode extends Node {
 
     super( options );
 
-    this.path = new Path( null, options.pathOptions );
+    // the shape will be updated later
+    this.path = new Path( new Shape(), options.pathOptions );
+
     this.curve = curve;
     this.modelViewTransformProperty = modelViewTransformProperty;
 
