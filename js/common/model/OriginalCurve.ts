@@ -291,25 +291,24 @@ export default class OriginalCurve extends Curve {
   /**
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    *
-   * TODO: this was copied from flash. Understand and improve?
    */
   public createParabolaAt( peak: Vector2 ): void {
+
+    // full 'width' of the parabola
+    const width = this.curveManipulationWidth;
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
     const deltaY = peak.y - closestPoint.lastSavedY;
 
-    // TODO: hard-coded for now (testing algorithm), but this corresponds to curveManipulationWidthProperty in the future. See the flash source code.
-    // TODO: this is from flash. Understand this and integrate into the algorithm.
-    // const width = 20;
-    // const slopeMin = 1 / 5;
-    // const slopeMax = 15;
-    // const fS = Math.pow( slopeMax / slopeMin, 1 / 10 );
-    // const slope = slopeMin * Math.pow( fS, 1 );
+    const maxY = 5;// TODO, this should be pull from the max Y bounds
+
+    // set the parabola coefficient such that the parabola at y=0 has a 'width' equal to this.curveManipulationWidth when the peak is at maxY
+    const A = maxY * Math.pow( 2 / width, 2 );
 
     this.points.forEach( point => {
-      const newY = peak.y - Math.sign( deltaY ) * Math.pow( point.x - closestPoint.x, 2 );
+      const newY = peak.y - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
 
       // If the point is within the 'width' of the parabola, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
