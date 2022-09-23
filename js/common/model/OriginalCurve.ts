@@ -327,8 +327,6 @@ export default class OriginalCurve extends Curve {
 
   /**
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
-   *
-   * TODO: this was copied from flash. Understand and improve?
    */
   public createPedestalAt( peak: Vector2 ): void {
 
@@ -339,7 +337,7 @@ export default class OriginalCurve extends Curve {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
-    // See https://en.wikipedia.org/wiki/Gaussian_function
+
     this.points.forEach( point => {
       let P;
 
@@ -347,10 +345,12 @@ export default class OriginalCurve extends Curve {
         P = 1;
       }
       else if ( point.x <= closestPoint.x ) {
-        P = Math.exp( -Math.pow( point.x - ( closestPoint.x - width / 2 ), 4 ) / ( 2 * edgeSlopeFactor * edgeSlopeFactor ) );
+
+        // use the square of a gaussian in order to have a very symmetric derivative at the edges
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - width / 2 ) ) / ( edgeSlopeFactor ), 4 ) );
       }
       else {
-        P = Math.exp( -Math.pow( point.x - ( closestPoint.x + width / 2 ), 4 ) / ( 2 * edgeSlopeFactor * edgeSlopeFactor ) );
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + width / 2 ) ) / ( edgeSlopeFactor ), 4 ) );
       }
 
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
