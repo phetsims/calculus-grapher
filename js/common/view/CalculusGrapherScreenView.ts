@@ -31,22 +31,31 @@ export default class CalculusGrapherScreenView extends ScreenView {
     // Create the view-specific properties for the screen.
     const viewProperties = new CalculusGrapherViewProperties( options );
 
+    // TODO the bounds should depends on the number of graphs as well as zoom level (see #43)
+    const modelBounds = new Bounds2( 0, -5, 30, 5 );
 
-    const graphNode = new GraphNode( model.originalCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, true,
+    const graphNode = new GraphNode( model.originalCurve, modelBounds, viewProperties.gridVisibleProperty, true,
       {
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );
 
-    // const integral = new GraphNode( model.integralCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, false );
-    // integral.centerBottom = graphNode.centerTop.minusXY( 0, 10 );
-    // this.addChild( integral );
+
+    const integral = new GraphNode( model.integralCurve, modelBounds, viewProperties.gridVisibleProperty, false,
+      {
+        tandem: options.tandem.createTandem( 'integralGraphNode' )
+      } );
+    integral.centerBottom = graphNode.centerTop.minusXY( 0, 10 );
+    this.addChild( integral );
 
 
-    // const derivative = new GraphNode( model.derivativeCurve, new Bounds2( 0, -5, 30, 5 ), viewProperties.gridVisibleProperty, false );
-    // derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
-    // this.addChild( derivative );
+    const derivative = new GraphNode( model.derivativeCurve, modelBounds, viewProperties.gridVisibleProperty, false,
+      {
+        tandem: options.tandem.createTandem( 'derivativeGraphNode' )
+      } );
+    derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
+    this.addChild( derivative );
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
