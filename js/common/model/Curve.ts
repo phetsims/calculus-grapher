@@ -48,7 +48,7 @@ export default class Curve {
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public readonly curveChangedEmitter: Emitter;
 
-  public cusps: CurvePoint[] | null;
+  public cusps: CurvePoint[];
 
   public constructor( providedOptions?: CurveOptions ) {
 
@@ -72,7 +72,7 @@ export default class Curve {
     this.curveChangedEmitter = new Emitter();
 
     // a collection of cusps points if present
-    this.cusps = null; // {CurvePoint[]|null}
+    this.cusps = []; // {CurvePoint[]}
   }
 
   /**
