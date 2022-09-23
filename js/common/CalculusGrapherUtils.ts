@@ -30,18 +30,18 @@ const CalculusGrapherUtils = {
 
   /**
    * Iterates through an array in trios, passing the previous value, the current value, and the next value, if they
-   * exist, to the iterator function. NOTE: this function will pass in boundaries; for instance,
-   * forEachAdjacentTrio( [ 1, 2, 3, 4 ], f ) would invoke f( null, 1, 2  ), f( 1, 2, 3 ), f( 2, 3, 4 ),
-   * and f( 3, 4, null).
+   * exist, to the iterator function.
+   * forEachAdjacentTrio( [ 1, 2, 3, 4 ], f ) would invoke  f( 1, 2, 3 ) and  f( 2, 3, 4 ),
+   * .
    *
    */
   forEachAdjacentTrio( array: ( CurvePoint )[],
-                       iterator: ( previousPoint: CurvePoint | null, point: CurvePoint, nextPoint: CurvePoint | null, index: number ) => void ): void {
+                       iterator: ( previousPoint: CurvePoint, point: CurvePoint, nextPoint: CurvePoint, index: number ) => void ): void {
 
-    for ( let i = 0; i < array.length; i++ ) {
+    for ( let i = 1; i < array.length - 1; i++ ) {
       const value = array[ i ];
-      const previousValue = i > 0 ? array[ i - 1 ] : null;
-      const nextValue = i < array.length ? array[ i + 1 ] : null;
+      const previousValue = array[ i - 1 ];
+      const nextValue = array[ i + 1 ];
 
       iterator( previousValue, value, nextValue, i );
     }

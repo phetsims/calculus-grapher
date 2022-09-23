@@ -37,6 +37,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type DerivativeCurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
+// noinspection JSSuspiciousNameCombination
 export default class DerivativeCurve extends Curve {
 
   // reference to the 'base' Curve that was passed-in.
@@ -106,85 +107,77 @@ export default class DerivativeCurve extends Curve {
     // Loop through each trio of adjacent Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentTrio( this.baseCurve.points, ( previousPoint, point, nextPoint, index ) => {
 
-      if ( !point.exists ) {
+      // Flags of the slopes of the secant lines from the left and right adjacent sides of the Point. Set later.
+      let leftSlope;
+      let rightSlope;
 
-        // If the Point of the 'base' curve does not exist, set the y-value to null to indicate that there is a
-        // hole in the DerivativeCurve.
-        this.points[ index ].y = null;
+      // Compute the leftSlope and rightSlope.
+      if ( previousPoint && previousPoint.exists ) {
+
+        // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
+
+        // @ts-ignore
+        leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
+        assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
+      }
+      if ( nextPoint && nextPoint.exists ) {
+
+        // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
+        // @ts-ignore
+        rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
+        assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
+      }
+
+      //----------------------------------------------------------------------------------------
+
+      // Set the y-value of the corresponding Point of the DerivativeCurve.
+      if ( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+
+        // @ts-ignore
+        const p0 = new Vector2( previousPoint.x, previousPoint.y );
+        // @ts-ignore
+        const p1 = new Vector2( point.x, point.y );
+        // @ts-ignore
+        const p2 = new Vector2( nextPoint.x, nextPoint.y );
+
+        const dx1 = p1.x - p0.x;
+        const dy1 = p1.y - p0.y;
+        const dx2 = p2.x - p0.x;
+        const dy2 = p2.y - p0.y;
+        const area = dx1 * dy2 - dy1 * dx2;
+        const len0 = p0.distance( p1 );
+        const len1 = p1.distance( p2 );
+        const len2 = p2.distance( p0 );
+
+        const K = 4 * Math.abs( area ) / ( len0 * len1 * len2 );
+        if ( K >= DERIVATIVE_THRESHOLD ) {
+          // @ts-ignore
+          this.baseCurve.cusps.push( point );
+        }
+
+        // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
+        // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
+        // @ts-ignore
+        this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
+      }
+      else if ( Number.isFinite( leftSlope ) ) {
+
+        // If only the slope of the left side exists, use that as the derivative.
+        // @ts-ignore
+        this.points[ index ].y = leftSlope;
+      }
+      else if ( Number.isFinite( rightSlope ) ) {
+
+        // If only the slope of the right side exists, use that as the derivative.
+        // @ts-ignore
+        this.points[ index ].y = rightSlope;
       }
       else {
 
-        // Flags of the slopes of the secant lines from the left and right adjacent sides of the Point. Set later.
-        let leftSlope;
-        let rightSlope;
-
-        // Compute the leftSlope and rightSlope.
-        if ( previousPoint && previousPoint.exists ) {
-
-          // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
-
-          // @ts-ignore
-          leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
-          assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
-        }
-        if ( nextPoint && nextPoint.exists ) {
-
-          // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
-          // @ts-ignore
-          rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
-          assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
-        }
-
-        //----------------------------------------------------------------------------------------
-
-        // Set the y-value of the corresponding Point of the DerivativeCurve.
-        if ( Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-
-          // @ts-ignore
-          const p0 = new Vector2( previousPoint.x, previousPoint.y );
-          // @ts-ignore
-          const p1 = new Vector2( point.x, point.y );
-          // @ts-ignore
-          const p2 = new Vector2( nextPoint.x, nextPoint.y );
-
-          const dx1 = p1.x - p0.x;
-          const dy1 = p1.y - p0.y;
-          const dx2 = p2.x - p0.x;
-          const dy2 = p2.y - p0.y;
-          const area = dx1 * dy2 - dy1 * dx2;
-          const len0 = p0.distance( p1 );
-          const len1 = p1.distance( p2 );
-          const len2 = p2.distance( p0 );
-
-          const K = 4 * Math.abs( area ) / ( len0 * len1 * len2 );
-          if ( K >= DERIVATIVE_THRESHOLD ) {
-            // @ts-ignore
-            this.baseCurve.cusps.push( point );
-          }
-
-          // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
-          // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
-          // @ts-ignore
-          this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
-        }
-        else if ( Number.isFinite( leftSlope ) ) {
-
-          // If only the slope of the left side exists, use that as the derivative.
-          // @ts-ignore
-          this.points[ index ].y = leftSlope;
-        }
-        else if ( Number.isFinite( rightSlope ) ) {
-
-          // If only the slope of the right side exists, use that as the derivative.
-          // @ts-ignore
-          this.points[ index ].y = rightSlope;
-        }
-        else {
-
-          // Otherwise, both adjacent Points don't exist, meaning the derivative also doesn't exist
-          this.points[ index ].y = null;
-        }
+        // Otherwise, both adjacent Points don't exist, meaning the derivative also doesn't exist
+        this.points[ index ].y = null;
       }
+
     } );
 
     // Signal once that this Curve has changed.
