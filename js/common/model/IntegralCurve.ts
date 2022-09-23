@@ -83,7 +83,6 @@ export default class IntegralCurve extends Curve {
       const trapezoidalArea = ( point.y + previousPoint.y ) / 2 * ( point.x - previousPoint.x );
 
       // Add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
-      // @ts-ignore
       this.points[ index ].y = this.points[ index - 1 ].y + trapezoidalArea;
 
       // Sanity check that verifies that the Integral exists at the current Point.

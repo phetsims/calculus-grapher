@@ -35,6 +35,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
+import CurvePoint from './CurvePoint.js';
 
 
 // constants
@@ -57,6 +58,9 @@ export default class OriginalCurve extends Curve {
   // user-manipulation.
   public curveManipulationWidthProperty: NumberProperty;
 
+  // last point manipulated by user.
+  private last: CurvePoint | null;
+
   public constructor( providedOptions?: OriginalCurveOptions ) {
 
     const options = optionize<OriginalCurveOptions, SelfOptions>()( {}, providedOptions );
@@ -71,6 +75,8 @@ export default class OriginalCurve extends Curve {
       range: CURVE_MANIPULATION_WIDTH_RANGE,
       tandem: options.tandem.createTandem( 'curveManipulationWidthProperty' )
     } );
+
+    this.last = null; // find a better way to track the last point manipulated by user.
   }
 
   /**
@@ -368,28 +374,22 @@ export default class OriginalCurve extends Curve {
     closestPoint.y = position.y;
 
     // TODO: this was copied from flash. Understand and improve?
-    // @ts-ignore
     if ( this.last ) {
-      // @ts-ignore
       const distX = Math.abs( closestPoint.x - this.last.x );
 
       if ( distX > 1 / POINTS_PER_COORDINATE ) {
 
         for ( let dx = 1 / POINTS_PER_COORDINATE; dx < distX; dx += 1 / POINTS_PER_COORDINATE ) {
           const W = dx / distX;
-          // @ts-ignore
           if ( closestPoint.x > this.last.x ) {
-            // @ts-ignore
             this.getClosestPointAt( this.last.x + dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
           }
           else {
-            // @ts-ignore
             this.getClosestPointAt( this.last.x - dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
           }
         }
       }
     }
-    // @ts-ignore
     this.last = closestPoint;
 
     // Signal that this Curve has changed.

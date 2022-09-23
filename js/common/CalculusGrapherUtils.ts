@@ -17,7 +17,7 @@ const CalculusGrapherUtils = {
    *
    */
   forEachAdjacentPair( array: ( CurvePoint )[], iterator: {
-    ( point: CurvePoint, previousPoint: CurvePoint, index?: number ): void;
+    ( point: CurvePoint, previousPoint: CurvePoint, index: number ): void;
   } ): void {
 
     for ( let i = 1; i < array.length; i++ ) {

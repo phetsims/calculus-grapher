@@ -31,7 +31,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     // Create the view-specific properties for the screen.
     const viewProperties = new CalculusGrapherViewProperties( options );
 
-    // TODO the bounds should depends on the number of graphs as well as zoom level (see #43)
+    // TODO the bounds should depend on the number of graphs as well as zoom level (see #43)
     const modelBounds = new Bounds2( 0, -5, 30, 5 );
 
     const graphNode = new GraphNode( model.originalCurve, modelBounds, viewProperties.gridVisibleProperty, true,
