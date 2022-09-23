@@ -81,19 +81,15 @@ export default class CurveNode extends Node {
     // Loop through each pair of Points of the base Curve.
     CalculusGrapherUtils.forEachAdjacentPair( this.curve.points, ( point, previousPoint ) => {
 
-      // @ts-ignore
       if ( point.exists && previousPoint.exists ) {
         pathShape.lineTo(
-          // @ts-ignore
           this.modelViewTransformProperty.value.modelToViewX( point.x ),
           // @ts-ignore
           this.modelViewTransformProperty.value.modelToViewY( point.y )
         );
       }
-      // @ts-ignore
       else if ( point.exists && !previousPoint.exists ) {
         pathShape.moveTo(
-          // @ts-ignore
           this.modelViewTransformProperty.value.modelToViewX( point.x ),
           // @ts-ignore
           this.modelViewTransformProperty.value.modelToViewY( point.y )
