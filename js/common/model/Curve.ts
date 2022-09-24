@@ -95,11 +95,20 @@ export default class Curve {
   public getClosestPointAt( x: number ): CurvePoint {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
+    return this.points[ this.getClosestIndexAt( x ) ];
+  }
+
+  /**
+   * Gets the index of the array whose x-value is closest to the given x-value.
+   */
+  public getClosestIndexAt( x: number ): number {
+    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
+
     // Use dimensional analysis to convert the x-value to the index of the Point.
     const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
 
     // Clamp the index to a point inside our range.
-    return this.points[ Utils.clamp( index, 0, this.points.length - 1 ) ];
+    return Utils.clamp( index, 0, this.points.length - 1 );
   }
 }
 

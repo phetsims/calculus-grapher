@@ -385,30 +385,44 @@ export default class OriginalCurve extends Curve {
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-   * TODO: this was copied from flash. Understand and improve?
+   * TODO: this is a bit of a mess, simplify and/or document properly
    */
   public createSineAt( position: Vector2 ): void {
 
-    // const closestPoint = this.getClosestPointAt( position.x );
-
-    // Amount to shift the CurvePoint closest to the passed-in position.
-    // const deltaY = position.y - closestPoint.lastSavedY;
+    const closestIndex = this.getClosestIndexAt( position.x );
+    const closestPoint = this.getClosestPointAt( position.x );
 
     // width of the hill
     const width = this.curveManipulationWidth;
 
-    this.points.forEach( point => {
-      const newY = position.y * Math.cos( point.x * width / ( Math.PI * 2 ) );
+    const arrayLength = this.points.length;
 
+    let isClear: boolean;
+
+    // update point
+    const updatePoint = ( index: number ): void => {
+      const point = this.points[ index ];
+      const newY = position.y * Math.cos( ( closestPoint.x - point.x ) * width / ( Math.PI * 2 ) );
       const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
 
-      if ( clearForSine ) {
+      if ( clearForSine && isClear ) {
         point.y = newY;
       }
       else {
         point.y = point.lastSavedY;
+        isClear = false;
       }
-    } );
+    };
+
+    isClear = true;
+    for ( let index = closestIndex; index < arrayLength; ++index ) {
+      updatePoint( index );
+    }
+
+    isClear = true;
+    for ( let index = closestIndex; index >= 0; --index ) {
+      updatePoint( index );
+    }
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
