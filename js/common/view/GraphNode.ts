@@ -46,13 +46,6 @@ export default class GraphNode extends Node {
     // TODO: this will need to be a Property, based on how many other curves are visible.
     const viewBounds = new Bounds2( 0, 0, 30 * 20, 10 * 20 );
 
-    const modelViewTransform = ModelViewTransform2.createSinglePointXYScaleMapping(
-      Vector2.ZERO,
-      viewBounds.leftCenter,
-      20,
-      -20
-    );
-
     const chartTransform = new ChartTransform( {
       viewWidth: 600,
       viewHeight: 200,
@@ -73,8 +66,8 @@ export default class GraphNode extends Node {
     // link visibility of the gridNode
     gridVisibleProperty.linkAttribute( gridNode, 'visible' );
 
-    // tracks changes of modelViewTransform
-    const transformProperty = new Property( modelViewTransform );
+    // tracks changes of modelViewTransform, initial value will be updated later
+    const transformProperty = new Property( ModelViewTransform2.createIdentity() );
 
     // zoom level
     this.zoomLevelProperty = new NumberProperty(
@@ -116,6 +109,7 @@ export default class GraphNode extends Node {
       };
     }
 
+
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
 
@@ -126,6 +120,15 @@ export default class GraphNode extends Node {
 
     this.zoomLevelProperty.link( zoomLevel => {
       chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
+
+      // TODO: see #54
+      const yScale = -20 / Math.pow( 2, zoomLevel - CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      transformProperty.value = ModelViewTransform2.createSinglePointXYScaleMapping(
+        Vector2.ZERO,
+        viewBounds.leftCenter,
+        20,
+        yScale
+      );
     } );
 
     // add children to this node
