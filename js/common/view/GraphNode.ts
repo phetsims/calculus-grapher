@@ -21,6 +21,7 @@ import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
 import Curve from '../model/Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 type GraphNodeOptions = SelfOptions & NodeOptions;
@@ -29,6 +30,7 @@ export default class GraphNode extends Node {
 
   public curveNode: CurveNode | OriginalCurveNode;
 
+  public zoomLevelProperty: NumberProperty;
 
   public constructor( curve: Curve, bounds: Bounds2,
                       gridVisibleProperty: Property<boolean>,
@@ -54,8 +56,7 @@ export default class GraphNode extends Node {
     const chartTransform = new ChartTransform( {
       viewWidth: 600,
       viewHeight: 200,
-      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-      modelYRange: new Range( -5, 5 )
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
 
     // grid lines
@@ -74,6 +75,14 @@ export default class GraphNode extends Node {
 
     // tracks changes of modelViewTransform
     const transformProperty = new Property( modelViewTransform );
+
+    // zoom level
+    this.zoomLevelProperty = new NumberProperty(
+      CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue, {
+        range: CalculusGrapherConstants.ZOOM_LEVEL_RANGE,
+        tandem: options.tandem.createTandem( 'zoomLevelProperty' )
+      } );
+
 
     let chartRectangleOptions;
     if ( original ) {
@@ -109,6 +118,15 @@ export default class GraphNode extends Node {
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
+
+    const getModelYRange = ( zoomLevel: number ) => {
+      const maxY = 5 * Math.pow( 2, zoomLevel - CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      return new Range( -maxY, maxY );
+    };
+
+    this.zoomLevelProperty.link( zoomLevel => {
+      chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
+    } );
 
     // add children to this node
     this.children = [

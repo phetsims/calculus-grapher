@@ -14,8 +14,10 @@ const CalculusGrapherConstants = {
 
   // Ranges
   CURVE_X_RANGE: new Range( 0, 30 ),
-  CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 )
+  CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 ),
 
+  // zoom level ranges
+  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 10, 5 )
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
