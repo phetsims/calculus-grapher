@@ -5,8 +5,10 @@
  * simulation. CurveNodes are implemented to work for all Curve subtypes, so no CurveNode subtypes are needed.
  *
  * Primary responsibilities are:
- *  - TODO
- *
+ *  - Create a path from the shape of the curve
+ *  - Update itself when curveChangeEmitter sends a signal
+ *  - Update itself if the modelViewTransform changes
+ *  - Create circles representing cusps points
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation. Thus,
  * CurveNodes persist for the lifetime of the simulation and links are left as-is. See Curve.js for more background.
