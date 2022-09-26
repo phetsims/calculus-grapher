@@ -33,7 +33,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     const graphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty, true,
       {
-        tandem: options.tandem.createTandem( 'originalGraphNode' )
+        visibleProperty: viewProperties.originalCurveVisibleProperty,
+        tandem: options.tandem.createTandem( 'originalGraphNode' ),
+        phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
     graphNode.center = this.layoutBounds.center;
     this.addChild( graphNode );

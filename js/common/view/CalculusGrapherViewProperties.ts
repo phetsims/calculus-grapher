@@ -27,6 +27,9 @@ export default class CalculusGrapherViewProperties {
   //indicates if the reference line is visible.
   public readonly referenceLineVisibleProperty: Property<boolean>;
 
+  //indicates if the original curve is visible.
+  public readonly originalCurveVisibleProperty: Property<boolean>;
+
   //indicates if the integral curve is visible.
   public readonly integralCurveVisibleProperty: Property<boolean>;
 
@@ -47,6 +50,12 @@ export default class CalculusGrapherViewProperties {
     this.referenceLineVisibleProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
+
+    this.originalCurveVisibleProperty = new BooleanProperty( true,
+      {
+        tandem: options.tandem.createTandem( 'originalCurveVisibleProperty' ),
+        phetioDocumentation: 'PhET-iO only, not settable in the sim'
+      } );
 
     this.integralCurveVisibleProperty = new BooleanProperty( false,
       {
@@ -71,6 +80,7 @@ export default class CalculusGrapherViewProperties {
     this.gridVisibleProperty.reset();
     this.referenceLineVisibleProperty.reset();
     this.integralCurveVisibleProperty.reset();
+    this.originalCurveVisibleProperty.reset();
     this.derivativeCurveVisibleProperty.reset();
     this.secondDerivativeCurveVisibleProperty.reset();
   }
