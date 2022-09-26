@@ -32,7 +32,7 @@ export default class GraphNode extends Node {
 
   public zoomLevelProperty: NumberProperty;
 
-  public constructor( curve: Curve, bounds: Bounds2,
+  public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
                       original: boolean,
                       providedOptions: GraphNodeOptions ) {
@@ -43,8 +43,9 @@ export default class GraphNode extends Node {
 
     //----------------------------------------------------------------------------------------
 
+
     // TODO: this will need to be a Property, based on how many other curves are visible.
-    const viewBounds = new Bounds2( 0, 0, 30 * 20, 10 * 20 );
+    const viewBounds = new Bounds2( 0, 0, 600, 200 );
 
     const chartTransform = new ChartTransform( {
       viewWidth: 600,

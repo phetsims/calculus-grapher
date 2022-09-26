@@ -6,7 +6,6 @@
  * @author Brandon Li
  */
 
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
@@ -31,10 +30,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
     // Create the view-specific properties for the screen.
     const viewProperties = new CalculusGrapherViewProperties( options );
 
-    // TODO the bounds should depend on the number of graphs as well as zoom level (see #43)
-    const modelBounds = new Bounds2( 0, -5, 30, 5 );
 
-    const graphNode = new GraphNode( model.originalCurve, modelBounds, viewProperties.gridVisibleProperty, true,
+    const graphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty, true,
       {
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
@@ -42,17 +39,19 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.addChild( graphNode );
 
 
-    const integral = new GraphNode( model.integralCurve, modelBounds, viewProperties.gridVisibleProperty, false,
+    const integral = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty, false,
       {
-        tandem: options.tandem.createTandem( 'integralGraphNode' )
+        tandem: options.tandem.createTandem( 'integralGraphNode' ),
+        visibleProperty: viewProperties.integralCurveVisibleProperty
       } );
     integral.centerBottom = graphNode.centerTop.minusXY( 0, 10 );
     this.addChild( integral );
 
 
-    const derivative = new GraphNode( model.derivativeCurve, modelBounds, viewProperties.gridVisibleProperty, false,
+    const derivative = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty, false,
       {
-        tandem: options.tandem.createTandem( 'derivativeGraphNode' )
+        tandem: options.tandem.createTandem( 'derivativeGraphNode' ),
+        visibleProperty: viewProperties.derivativeCurveVisibleProperty
       } );
     derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
     this.addChild( derivative );
