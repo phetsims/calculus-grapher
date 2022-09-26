@@ -5,20 +5,20 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
+import LinkableProperty from '../../axon/js/LinkableProperty.js';
 import calculusGrapher from './calculusGrapher.js';
 
 type StringsType = {
   'calculus-grapher': {
-    'titleStringProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': LinkableProperty<string>;
   };
   'screen': {
-    'introStringProperty': TReadOnlyProperty<string>;
-    'derivativeLabStringProperty': TReadOnlyProperty<string>;
-    'integralLabStringProperty': TReadOnlyProperty<string>;
+    'introStringProperty': LinkableProperty<string>;
+    'derivativeLabStringProperty': LinkableProperty<string>;
+    'integralLabStringProperty': LinkableProperty<string>;
   };
-  'resetStringProperty': TReadOnlyProperty<string>;
-  'smoothStringProperty': TReadOnlyProperty<string>;
+  'resetStringProperty': LinkableProperty<string>;
+  'smoothStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
