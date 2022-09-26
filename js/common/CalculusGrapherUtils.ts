@@ -33,12 +33,12 @@ const CalculusGrapherUtils = {
    * forEachAdjacentTrio( [ 1, 2, 3, 4, 5 ], f ) would invoke  f( 1, 2, 3 ), f( 2, 3, 4 ), f( 3, 4, 5 )
    */
   forEachAdjacentTrio( array: ( CurvePoint )[],
-                       iterator: ( previousPoint: CurvePoint, point: CurvePoint, nextPoint: CurvePoint, index: number ) => void ): void {
+                       iterator: ( previousPoint: CurvePoint | null, point: CurvePoint, nextPoint: CurvePoint | null, index: number ) => void ): void {
 
-    for ( let i = 1; i < array.length - 1; i++ ) {
+    for ( let i = 0; i < array.length; i++ ) {
       const value = array[ i ];
-      const previousValue = array[ i - 1 ];
-      const nextValue = array[ i + 1 ];
+      const previousValue = i > 0 ? array[ i - 1 ] : null;
+      const nextValue = i < array.length ? array[ i + 1 ] : null;
 
       iterator( previousValue, value, nextValue, i );
     }
