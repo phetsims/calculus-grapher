@@ -364,9 +364,12 @@ export default class OriginalCurve extends Curve {
     if ( this.last ) {
       const distX = Math.abs( closestPoint.x - this.last.x );
 
-      if ( distX > 1 / POINTS_PER_COORDINATE ) {
+      // x separation between two adjacent points
+      const deltaX = 1 / POINTS_PER_COORDINATE;
 
-        for ( let dx = 1 / POINTS_PER_COORDINATE; dx < distX; dx += 1 / POINTS_PER_COORDINATE ) {
+      if ( distX > deltaX ) {
+
+        for ( let dx = deltaX; dx < distX; dx += deltaX ) {
           const W = dx / distX;
           if ( closestPoint.x > this.last.x ) {
             this.getClosestPointAt( this.last.x + dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
