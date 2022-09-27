@@ -343,6 +343,9 @@ export default class OriginalCurve extends Curve {
 
   /**
    * Allows the user to drag Points in the Curve to any desired position to create custom Curves shapes.
+   * This method will update the curve with the new position value.
+   * In addition, it will fill the all points (using a weighted average) between the selected x position and the old
+   * selected x position.
    *
    * @param position - in model coordinates
    * @param oldPosition - in model coordinates
@@ -350,41 +353,48 @@ export default class OriginalCurve extends Curve {
   public drawFreeformToPosition( position: Vector2, oldPosition: Vector2 ): void {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
+    //  closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     closestPoint.y = position.y;
 
+    // point associated with the last drag event
     const lastPoint = this.getClosestPointAt( oldPosition.x );
 
+    // x distance between the new and old point
     const distX = Math.abs( closestPoint.x - lastPoint.x );
 
-    // x separation between two adjacent points
+    // x separation between two adjacent points in curve array
     const deltaX = 1 / POINTS_PER_COORDINATE;
 
+    // check if the separation between the new and old point exceeds the discretization of the curve array
     if ( distX > deltaX ) {
 
       for ( let dx = deltaX; dx < distX; dx += deltaX ) {
+
+        // the xPosition of the point to be interpolated, is either to the left or right of the closestPoint
+        const xPosition = closestPoint.x > lastPoint.x ? lastPoint.x + dx : lastPoint.x - dx;
+
+        // weight needed to interpolate the y-values, weight will never exceed 1.
         const W = dx / distX;
-        if ( closestPoint.x > lastPoint.x ) {
-          this.getClosestPointAt( lastPoint.x + dx ).y = ( 1 - W ) * lastPoint.y + W * closestPoint.y;
-        }
-        else {
-          this.getClosestPointAt( lastPoint.x - dx ).y = ( 1 - W ) * lastPoint.y + W * closestPoint.y;
-        }
+
+        // update the y value of an intermediate point
+        this.getClosestPointAt( xPosition ).y = ( 1 - W ) * lastPoint.y + W * closestPoint.y;
+
       }
+
+      // Signal that this Curve has changed.
+      this.curveChangedEmitter.emit();
     }
-
-
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    * TODO: this is a bit of a mess, simplify and/or document properly
    */
-  public createSineAt( position: Vector2 ): void {
+  public createSineAt( position: Vector2 ):
+    void {
 
     const closestIndex = this.getClosestIndexAt( position.x );
     const closestPoint = this.getClosestPointAt( position.x );
