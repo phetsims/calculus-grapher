@@ -31,7 +31,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const viewProperties = new CalculusGrapherViewProperties( options );
 
 
-    const graphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty, true,
+    const graphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty,
       {
         visibleProperty: viewProperties.originalCurveVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
@@ -41,7 +41,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.addChild( graphNode );
 
 
-    const integral = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty, false,
+    const integral = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty,
       {
         tandem: options.tandem.createTandem( 'integralGraphNode' ),
         visibleProperty: viewProperties.integralCurveVisibleProperty
@@ -50,7 +50,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.addChild( integral );
 
 
-    const derivative = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty, false,
+    const derivative = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty,
       {
         tandem: options.tandem.createTandem( 'derivativeGraphNode' ),
         visibleProperty: viewProperties.derivativeCurveVisibleProperty

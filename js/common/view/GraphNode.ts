@@ -22,19 +22,19 @@ import OriginalCurveNode from './OriginalCurveNode.js';
 import Curve from '../model/Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import OriginalCurve from '../model/OriginalCurve.js';
 
 type SelfOptions = EmptySelfOptions;
 type GraphNodeOptions = SelfOptions & NodeOptions;
 
 export default class GraphNode extends Node {
 
-  public curveNode: CurveNode | OriginalCurveNode;
+  public readonly curveNode: CurveNode | OriginalCurveNode;
 
-  public zoomLevelProperty: NumberProperty;
+  public readonly zoomLevelProperty: NumberProperty;
 
-  public constructor( curve: Curve,
+  public constructor( curve: Curve | OriginalCurve,
                       gridVisibleProperty: Property<boolean>,
-                      original: boolean,
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
@@ -79,9 +79,8 @@ export default class GraphNode extends Node {
 
 
     let chartRectangleOptions;
-    if ( original ) {
+    if ( curve instanceof OriginalCurve ) {
 
-      // @ts-ignore
       this.curveNode = new OriginalCurveNode( curve, transformProperty, {
         pathOptions: {
           stroke: 'blue'

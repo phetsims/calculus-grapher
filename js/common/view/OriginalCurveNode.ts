@@ -18,17 +18,12 @@ import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import Property from '../../../../axon/js/Property.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Curve from '../model/Curve.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
-type SelfOptions = {
-  pathOptions: {
-    cursor: string;
-  };
-};
+type SelfOptions = EmptySelfOptions;
 
-type OriginalCurveNodeOptions = SelfOptions & PickRequired<CurveNodeOptions, 'tandem'>;
+type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 // constants
 const CURVE_DRAG_DILATION = 0.4; // in model units
@@ -40,7 +35,8 @@ export default class OriginalCurveNode extends CurveNode {
     const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
       pathOptions: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        stroke: 'black'
       }
     }, providedOptions );
 
