@@ -125,8 +125,7 @@ export default class DerivativeCurve extends Curve {
       }
       //----------------------------------------------------------------------------------------
 
-
-      if ( previousPoint && previousPoint.exists && nextPoint && nextPoint.exists && leftSlope && rightSlope && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+      if ( leftSlope && rightSlope && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
         // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
         // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
         this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
@@ -143,7 +142,7 @@ export default class DerivativeCurve extends Curve {
       }
 
       // Set the y-value of the corresponding Point of the DerivativeCurve.
-      if ( previousPoint && previousPoint.exists && nextPoint && nextPoint.exists && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+      if ( previousPoint && previousPoint.exists && nextPoint && nextPoint.exists ) {
 
         const p0 = new Vector2( previousPoint.x, previousPoint.y );
         const p1 = new Vector2( point.x, point.y );
@@ -162,7 +161,6 @@ export default class DerivativeCurve extends Curve {
         if ( K >= DERIVATIVE_THRESHOLD ) {
           this.baseCurve.cusps.push( point );
         }
-
       }
     } );
 
