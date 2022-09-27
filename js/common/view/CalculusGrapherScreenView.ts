@@ -31,32 +31,34 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const viewProperties = new CalculusGrapherViewProperties( options );
 
 
-    const graphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty,
+    const originalGraphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty,
       {
         visibleProperty: viewProperties.originalCurveVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
-        phetioDocumentation: 'PhET-iO only, not settable in the sim'
+        phetioDocumentation: 'PhET-iO only, not settable in the sim',
+        center: this.layoutBounds.center
       } );
-    graphNode.center = this.layoutBounds.center;
-    this.addChild( graphNode );
+
+    this.addChild( originalGraphNode );
 
 
-    const integral = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty,
+    const integralGraphNode = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty,
       {
         tandem: options.tandem.createTandem( 'integralGraphNode' ),
-        visibleProperty: viewProperties.integralCurveVisibleProperty
+        visibleProperty: viewProperties.integralCurveVisibleProperty,
+        centerBottom: originalGraphNode.centerTop.minusXY( 0, 10 )
       } );
-    integral.centerBottom = graphNode.centerTop.minusXY( 0, 10 );
-    this.addChild( integral );
+    this.addChild( integralGraphNode );
 
 
-    const derivative = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty,
+    const derivativeGraphNode = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty,
       {
         tandem: options.tandem.createTandem( 'derivativeGraphNode' ),
-        visibleProperty: viewProperties.derivativeCurveVisibleProperty
+        visibleProperty: viewProperties.derivativeCurveVisibleProperty,
+        centerTop: originalGraphNode.centerBottom.addXY( 0, 10 )
       } );
-    derivative.centerTop = graphNode.centerBottom.addXY( 0, 10 );
-    this.addChild( derivative );
+    this.addChild( derivativeGraphNode );
+
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
