@@ -7,17 +7,16 @@
  * @author Brandon Li
  */
 
-import { Text, VBox } from '../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../sun/js/AquaRadioButtonGroup.js';
+import { VBox } from '../../../../scenery/js/imports.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -40,26 +39,11 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, provideOptions );
 
-    // Create the content Node of the Control Panel.
-    const contentNode = new VBox( { spacing: options.contentSpacing } );
-
-    const radioButtonGroupTandem = options.tandem.createTandem( 'radioButtonGroup' );
-
-    // Create radio button group items
-    const aquaRadioButtonGroupItems: AquaRadioButtonGroupItem<CurveManipulationMode>[] = CurveManipulationMode.enumeration.values.map(
-      mode => {
-        return {
-          value: mode,
-          node: new Text( mode.toString() ),
-          tandem: radioButtonGroupTandem.createTandem( mode.toString() )
-        };
-      }
-    );
-
     // Radio Buttons that control the curveManipulationModeProperty.
-    const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup<CurveManipulationMode>(
-      originalCurve.curveManipulationModeProperty, aquaRadioButtonGroupItems,
-      { tandem: radioButtonGroupTandem } );
+    const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
+      originalCurve.curveManipulationModeProperty, {
+        tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
+      } );
 
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
@@ -73,11 +57,14 @@ export default class CalculusGrapherControlPanel extends Panel {
       tandem: options.tandem.createTandem( 'resetButton' )
     } );
 
-    contentNode.children = [
-      curveManipulationModeRadioButtonGroup,
-      smoothButton,
-      resetButton
-    ];
+    const contentNode = new VBox( {
+      spacing: options.contentSpacing,
+      children: [
+        curveManipulationModeRadioButtonGroup,
+        smoothButton,
+        resetButton
+      ]
+    } );
 
     super( contentNode, options );
   }
