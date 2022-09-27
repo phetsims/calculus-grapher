@@ -47,14 +47,18 @@ export default class OriginalCurveNode extends CurveNode {
     super( curve, modelViewTransformProperty, options );
 
     //----------------------------------------------------------------------------------------
-
     // Add a DragListener to the path for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
     this.path.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
       applyOffset: false,
       drag( event, listener ) {
+
+        // current modelPosition
         const modelPosition = modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint );
+
+        // previous (model) position the drag
+        const oldModelPosition = modelViewTransformProperty.value.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
         if ( curve.curveManipulationMode === CurveManipulationMode.HILL ) {
           curve.createHillAt( modelPosition );
@@ -75,14 +79,14 @@ export default class OriginalCurveNode extends CurveNode {
           curve.shiftToPosition( modelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationMode.FREEFORM ) {
-          curve.drawFreeformToPosition( modelPosition );
+          curve.drawFreeformToPosition( modelPosition, oldModelPosition );
         }
         if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
           curve.createSineAt( modelPosition );
         }
+
       },
       start() {
-
         // Save the current values of the Points for the next undoToLastSave call.
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         curve.saveCurrentPoints();

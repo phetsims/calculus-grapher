@@ -35,7 +35,6 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
-import CurvePoint from './CurvePoint.js';
 
 
 // constants
@@ -58,9 +57,6 @@ export default class OriginalCurve extends Curve {
   // user-manipulation.
   public curveManipulationWidthProperty: NumberProperty;
 
-  // last point manipulated by user.
-  private last: CurvePoint | null;
-
   public constructor( providedOptions?: OriginalCurveOptions ) {
 
     const options = optionize<OriginalCurveOptions, SelfOptions>()( {}, providedOptions );
@@ -75,8 +71,6 @@ export default class OriginalCurve extends Curve {
       range: CURVE_MANIPULATION_WIDTH_RANGE,
       tandem: options.tandem.createTandem( 'curveManipulationWidthProperty' )
     } );
-
-    this.last = null; // find a better way to track the last point manipulated by user.
   }
 
   /**
@@ -351,8 +345,9 @@ export default class OriginalCurve extends Curve {
    * Allows the user to drag Points in the Curve to any desired position to create custom Curves shapes.
    *
    * @param position - in model coordinates
+   * @param oldPosition - in model coordinates
    */
-  public drawFreeformToPosition( position: Vector2 ): void {
+  public drawFreeformToPosition( position: Vector2, oldPosition: Vector2 ): void {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
     const closestPoint = this.getClosestPointAt( position.x );
@@ -360,27 +355,26 @@ export default class OriginalCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in position.
     closestPoint.y = position.y;
 
-    // TODO: this was copied from flash. Understand and improve?
-    if ( this.last ) {
-      const distX = Math.abs( closestPoint.x - this.last.x );
+    const lastPoint = this.getClosestPointAt( oldPosition.x );
 
-      // x separation between two adjacent points
-      const deltaX = 1 / POINTS_PER_COORDINATE;
+    const distX = Math.abs( closestPoint.x - lastPoint.x );
 
-      if ( distX > deltaX ) {
+    // x separation between two adjacent points
+    const deltaX = 1 / POINTS_PER_COORDINATE;
 
-        for ( let dx = deltaX; dx < distX; dx += deltaX ) {
-          const W = dx / distX;
-          if ( closestPoint.x > this.last.x ) {
-            this.getClosestPointAt( this.last.x + dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
-          }
-          else {
-            this.getClosestPointAt( this.last.x - dx ).y = ( 1 - W ) * this.last.y + W * closestPoint.y;
-          }
+    if ( distX > deltaX ) {
+
+      for ( let dx = deltaX; dx < distX; dx += deltaX ) {
+        const W = dx / distX;
+        if ( closestPoint.x > lastPoint.x ) {
+          this.getClosestPointAt( lastPoint.x + dx ).y = ( 1 - W ) * lastPoint.y + W * closestPoint.y;
+        }
+        else {
+          this.getClosestPointAt( lastPoint.x - dx ).y = ( 1 - W ) * lastPoint.y + W * closestPoint.y;
         }
       }
     }
-    this.last = closestPoint;
+
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
