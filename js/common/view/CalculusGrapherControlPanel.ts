@@ -15,14 +15,13 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 
 type SelfOptions = {
   contentSpacing?: number;
 };
 
-type CalculusGrapherControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
+type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 

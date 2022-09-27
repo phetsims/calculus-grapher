@@ -30,40 +30,35 @@ export default class CalculusGrapherScreenView extends ScreenView {
     // Create the view-specific properties for the screen.
     const viewProperties = new CalculusGrapherViewProperties( options );
 
-
     const originalGraphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty,
       {
+        center: this.layoutBounds.center,
         visibleProperty: viewProperties.originalCurveVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
-        phetioDocumentation: 'PhET-iO only, not settable in the sim',
-        center: this.layoutBounds.center
+        phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
-
     this.addChild( originalGraphNode );
-
 
     const integralGraphNode = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty,
       {
-        tandem: options.tandem.createTandem( 'integralGraphNode' ),
+        centerBottom: originalGraphNode.centerTop.minusXY( 0, 10 ),
         visibleProperty: viewProperties.integralCurveVisibleProperty,
-        centerBottom: originalGraphNode.centerTop.minusXY( 0, 10 )
+        tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
     this.addChild( integralGraphNode );
 
-
     const derivativeGraphNode = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty,
       {
-        tandem: options.tandem.createTandem( 'derivativeGraphNode' ),
+        centerTop: originalGraphNode.centerBottom.addXY( 0, 10 ),
         visibleProperty: viewProperties.derivativeCurveVisibleProperty,
-        centerTop: originalGraphNode.centerBottom.addXY( 0, 10 )
+        tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
     this.addChild( derivativeGraphNode );
 
-
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
+      rightCenter: this.layoutBounds.rightCenter,
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
     } );
-    controlPanel.rightCenter = this.layoutBounds.rightCenter;
     this.addChild( controlPanel );
   }
 }
