@@ -70,8 +70,4 @@ export default class CalculusGrapherControlPanel extends Panel {
   }
 }
 
-calculusGrapher
-  .register(
-    'CalculusGrapherControlPanel',
-    CalculusGrapherControlPanel
-  );
+calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
