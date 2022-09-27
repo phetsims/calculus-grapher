@@ -8,7 +8,7 @@
  */
 
 import { Text, VBox } from '../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup from '../../../../sun/js/AquaRadioButtonGroup.js';
+import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../sun/js/AquaRadioButtonGroup.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -43,18 +43,23 @@ export default class CalculusGrapherControlPanel extends Panel {
     // Create the content Node of the Control Panel.
     const contentNode = new VBox( { spacing: options.contentSpacing } );
 
+    const radioButtonGroupTandem = options.tandem.createTandem( 'radioButtonGroup' );
+
     // Create radio button group items
-    const aquaRadioButtonGroupItems = CurveManipulationMode.enumeration.values.map(
-      mode => ( {
-        value: mode,
-        node: new Text( mode.toString() )
-      } )
+    const aquaRadioButtonGroupItems: AquaRadioButtonGroupItem<CurveManipulationMode>[] = CurveManipulationMode.enumeration.values.map(
+      mode => {
+        return {
+          value: mode,
+          node: new Text( mode.toString() ),
+          tandem: radioButtonGroupTandem.createTandem( mode.toString() )
+        };
+      }
     );
 
     // Radio Buttons that control the curveManipulationModeProperty.
-    const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup(
+    const curveManipulationModeRadioButtonGroup = new AquaRadioButtonGroup<CurveManipulationMode>(
       originalCurve.curveManipulationModeProperty, aquaRadioButtonGroupItems,
-      { tandem: options.tandem.createTandem( 'radioButtonGroup' ) } );
+      { tandem: radioButtonGroupTandem } );
 
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
@@ -78,4 +83,8 @@ export default class CalculusGrapherControlPanel extends Panel {
   }
 }
 
-calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
+calculusGrapher
+  .register(
+    'CalculusGrapherControlPanel',
+    CalculusGrapherControlPanel
+  );
