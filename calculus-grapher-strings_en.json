@@ -16,5 +16,8 @@
   },
   "smooth": {
     "value": "Smooth"
+  },
+  "undo": {
+    "value": "Undo"
   }
 }

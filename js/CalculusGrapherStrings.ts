@@ -19,6 +19,7 @@ type StringsType = {
   };
   'resetStringProperty': LinkableProperty<string>;
   'smoothStringProperty': LinkableProperty<string>;
+  'undoStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

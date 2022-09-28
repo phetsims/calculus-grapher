@@ -44,6 +44,13 @@ export default class CalculusGrapherControlPanel extends Panel {
         tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
       } );
 
+
+    // Undo Button
+    const undoButton = new TextPushButton( CalculusGrapherStrings.undoStringProperty, {
+      listener: () => originalCurve.undoToLastSave(),
+      tandem: options.tandem.createTandem( 'undoButton' )
+    } );
+
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
       listener: () => originalCurve.smooth(),
@@ -60,6 +67,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       spacing: options.contentSpacing,
       children: [
         curveManipulationModeRadioButtonGroup,
+        undoButton,
         smoothButton,
         resetButton
       ]
