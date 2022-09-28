@@ -23,6 +23,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
   private viewProperties: CalculusGrapherViewProperties;
   private model: CalculusGrapherModel;
+  private originalGraphNode: GraphNode;
+  private derivativeGraphNode: GraphNode;
+  private integralGraphNode: GraphNode;
+
 
   public constructor( model: CalculusGrapherModel, providedOptions?: CalculusGrapherScreenViewOptions ) {
 
@@ -34,27 +38,27 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.viewProperties = new CalculusGrapherViewProperties( options );
     this.model = model;
 
-    const originalGraphNode = new GraphNode( model.originalCurve, this.viewProperties.gridVisibleProperty,
+    this.originalGraphNode = new GraphNode( model.originalCurve, this.viewProperties.gridVisibleProperty,
       {
         visibleProperty: this.viewProperties.originalGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
-    originalGraphNode.center = this.layoutBounds.center;
+    this.originalGraphNode.center = this.layoutBounds.center;
 
-    const integralGraphNode = new GraphNode( model.integralCurve, this.viewProperties.gridVisibleProperty,
+    this.integralGraphNode = new GraphNode( model.integralCurve, this.viewProperties.gridVisibleProperty,
       {
         visibleProperty: this.viewProperties.integralGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
-    integralGraphNode.centerBottom = originalGraphNode.centerTop.minusXY( 0, 10 );
+    this.integralGraphNode.centerBottom = this.originalGraphNode.centerTop.minusXY( 0, 10 );
 
-    const derivativeGraphNode = new GraphNode( model.derivativeCurve, this.viewProperties.gridVisibleProperty,
+    this.derivativeGraphNode = new GraphNode( model.derivativeCurve, this.viewProperties.gridVisibleProperty,
       {
         visibleProperty: this.viewProperties.derivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
-    derivativeGraphNode.centerTop = originalGraphNode.centerBottom.addXY( 0, 10 );
+    this.derivativeGraphNode.centerTop = this.originalGraphNode.centerBottom.addXY( 0, 10 );
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
       rightCenter: this.layoutBounds.rightCenter,
@@ -68,9 +72,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    this.addChild( integralGraphNode );
-    this.addChild( derivativeGraphNode );
-    this.addChild( originalGraphNode );
+    this.addChild( this.integralGraphNode );
+    this.addChild( this.derivativeGraphNode );
+    this.addChild( this.originalGraphNode );
     this.addChild( controlPanel );
     this.addChild( resetAllButton );
   }
@@ -80,6 +84,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
    */
   public reset(): void {
     this.model.reset();
+    this.originalGraphNode.reset();
+    this.derivativeGraphNode.reset();
+    this.integralGraphNode.reset();
   }
 }
 

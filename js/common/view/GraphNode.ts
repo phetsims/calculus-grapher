@@ -140,6 +140,13 @@ export default class GraphNode extends Node {
       this.curveNode
     ];
   }
+
+  /**
+   * Reset all
+   */
+  public reset(): void {
+    this.zoomLevelProperty.reset();
+  }
 }
 
 calculusGrapher.register( 'GraphNode', GraphNode );
