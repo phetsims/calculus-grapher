@@ -125,17 +125,17 @@ export default class DerivativeCurve extends Curve {
       }
       //----------------------------------------------------------------------------------------
 
-      if ( leftSlope && rightSlope && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+      if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
         // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
         // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
         this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
       }
-      else if ( leftSlope && Number.isFinite( leftSlope ) ) {
+      else if ( typeof leftSlope === 'number' && Number.isFinite( leftSlope ) ) {
 
         // If only the slope of the left side exists, use that as the derivative.
         this.points[ index ].y = leftSlope;
       }
-      else if ( rightSlope && Number.isFinite( rightSlope ) ) {
+      else if ( typeof rightSlope === 'number' && Number.isFinite( rightSlope ) ) {
 
         // If only the slope of the right side exists, use that as the derivative.
         this.points[ index ].y = rightSlope;
