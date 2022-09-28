@@ -26,6 +26,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   private originalGraphNode: GraphNode;
   private derivativeGraphNode: GraphNode;
   private integralGraphNode: GraphNode;
+  private secondDerivativeGraphNode: GraphNode;
 
 
   public constructor( model: CalculusGrapherModel, providedOptions?: CalculusGrapherScreenViewOptions ) {
@@ -44,7 +45,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
-    this.originalGraphNode.center = this.layoutBounds.center;
+    this.originalGraphNode.center = this.layoutBounds.center.minusXY( 0, 200 );
 
     this.integralGraphNode = new GraphNode( model.integralCurve, this.viewProperties.gridVisibleProperty,
       {
@@ -60,6 +61,14 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
     this.derivativeGraphNode.centerTop = this.originalGraphNode.centerBottom.addXY( 0, 10 );
 
+    this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve, this.viewProperties.gridVisibleProperty,
+      {
+        visibleProperty: this.viewProperties.secondDerivativeGraphNodeVisibleProperty,
+        tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
+      } );
+    this.secondDerivativeGraphNode.centerTop = this.derivativeGraphNode.centerBottom.addXY( 0, 10 );
+
+
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
       rightCenter: this.layoutBounds.rightCenter,
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
@@ -72,9 +81,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    this.addChild( this.integralGraphNode );
-    this.addChild( this.derivativeGraphNode );
     this.addChild( this.originalGraphNode );
+    // this.addChild( this.integralGraphNode );
+    this.addChild( this.derivativeGraphNode );
+    this.addChild( this.secondDerivativeGraphNode );
     this.addChild( controlPanel );
     this.addChild( resetAllButton );
   }
