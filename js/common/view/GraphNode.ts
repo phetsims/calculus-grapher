@@ -29,8 +29,6 @@ type GraphNodeOptions = SelfOptions & NodeOptions;
 
 export default class GraphNode extends Node {
 
-  public readonly curveNode: CurveNode | OriginalCurveNode;
-
   public readonly zoomLevelProperty: NumberProperty;
 
   public constructor( curve: Curve | OriginalCurve,
@@ -79,9 +77,10 @@ export default class GraphNode extends Node {
 
 
     let chartRectangleOptions;
+    let curveNode: CurveNode;
     if ( curve instanceof OriginalCurve ) {
 
-      this.curveNode = new OriginalCurveNode( curve, transformProperty, {
+      curveNode = new OriginalCurveNode( curve, transformProperty, {
         pathOptions: {
           stroke: 'blue'
         },
@@ -96,7 +95,7 @@ export default class GraphNode extends Node {
     }
     else {
 
-      this.curveNode = new CurveNode( curve, transformProperty, {
+      curveNode = new CurveNode( curve, transformProperty, {
         pathOptions: {
           stroke: 'green'
         },
@@ -137,7 +136,7 @@ export default class GraphNode extends Node {
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
-      this.curveNode
+      curveNode
     ];
   }
 
