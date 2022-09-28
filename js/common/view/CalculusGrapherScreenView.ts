@@ -13,13 +13,16 @@ import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
 import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
 import GraphNode from './GraphNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 
 type SelfOptions = EmptySelfOptions;
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 
 export default class CalculusGrapherScreenView extends ScreenView {
+
+  private viewProperties: CalculusGrapherViewProperties;
+  private model: CalculusGrapherModel;
 
   public constructor( model: CalculusGrapherModel, providedOptions?: CalculusGrapherScreenViewOptions ) {
 
@@ -28,26 +31,27 @@ export default class CalculusGrapherScreenView extends ScreenView {
     super( options );
 
     // Create the view-specific properties for the screen.
-    const viewProperties = new CalculusGrapherViewProperties( options );
+    this.viewProperties = new CalculusGrapherViewProperties( options );
+    this.model = model;
 
-    const originalGraphNode = new GraphNode( model.originalCurve, viewProperties.gridVisibleProperty,
+    const originalGraphNode = new GraphNode( model.originalCurve, this.viewProperties.gridVisibleProperty,
       {
-        visibleProperty: viewProperties.originalGraphNodeVisibleProperty,
+        visibleProperty: this.viewProperties.originalGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
     originalGraphNode.center = this.layoutBounds.center;
 
-    const integralGraphNode = new GraphNode( model.integralCurve, viewProperties.gridVisibleProperty,
+    const integralGraphNode = new GraphNode( model.integralCurve, this.viewProperties.gridVisibleProperty,
       {
-        visibleProperty: viewProperties.integralGraphNodeVisibleProperty,
+        visibleProperty: this.viewProperties.integralGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
     integralGraphNode.centerBottom = originalGraphNode.centerTop.minusXY( 0, 10 );
 
-    const derivativeGraphNode = new GraphNode( model.derivativeCurve, viewProperties.gridVisibleProperty,
+    const derivativeGraphNode = new GraphNode( model.derivativeCurve, this.viewProperties.gridVisibleProperty,
       {
-        visibleProperty: viewProperties.derivativeGraphNodeVisibleProperty,
+        visibleProperty: this.viewProperties.derivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
     derivativeGraphNode.centerTop = originalGraphNode.centerBottom.addXY( 0, 10 );
@@ -57,10 +61,25 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
     } );
 
+
+    const resetAllButton = new ResetAllButton( {
+      rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
+      listener: () => this.reset(),
+      tandem: options.tandem.createTandem( 'resetAllButton' )
+    } );
+
     this.addChild( integralGraphNode );
     this.addChild( derivativeGraphNode );
     this.addChild( originalGraphNode );
     this.addChild( controlPanel );
+    this.addChild( resetAllButton );
+  }
+
+  /**
+   * Reset all
+   */
+  public reset(): void {
+    this.model.reset();
   }
 }
 

@@ -20,6 +20,7 @@ export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjec
 
 export default class CalculusGrapherModel {
 
+  // the model of the various curves
   public readonly originalCurve: OriginalCurve;
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
@@ -35,6 +36,18 @@ export default class CalculusGrapherModel {
     this.integralCurve = new IntegralCurve( this.originalCurve, options );
 
   }
+
+
+  /**
+   * Reset all
+   */
+  public reset(): void {
+    this.originalCurve.reset();
+    this.derivativeCurve.reset();
+    this.secondDerivativeCurve.reset();
+    this.integralCurve.reset();
+  }
 }
+
 
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
