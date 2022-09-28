@@ -49,7 +49,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum difference between the slope of the left and right secant lines of a Point on a curve for it to be
+   * The maximum difference between the angle of the left and right secant lines of a Point on a curve for it to be
    * considered differentiable.
    * See https://github.com/phetsims/calculus-grapher/issues/28
    *
@@ -58,7 +58,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   derivativeThreshold: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 12
+    defaultValue: 25 * Math.PI / 180
   }
 } );
 

@@ -20,7 +20,6 @@
  * @author Brandon Li
  */
 
-import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -141,27 +140,17 @@ export default class DerivativeCurve extends Curve {
         this.points[ index ].y = rightSlope;
       }
 
-      // Set the y-value of the corresponding Point of the DerivativeCurve.
-      if ( previousPoint && previousPoint.exists && nextPoint && nextPoint.exists ) {
+      // TODO: prototype to determine the cusp points
+      if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
 
-        const p0 = new Vector2( previousPoint.x, previousPoint.y );
-        const p1 = new Vector2( point.x, point.y );
-        const p2 = new Vector2( nextPoint.x, nextPoint.y );
+        // evaluate the difference in the angle of the left and right slope
+        const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
 
-        const dx1 = p1.x - p0.x;
-        const dy1 = p1.y - p0.y;
-        const dx2 = p2.x - p0.x;
-        const dy2 = p2.y - p0.y;
-        const area = dx1 * dy2 - dy1 * dx2;
-        const len0 = p0.distance( p1 );
-        const len1 = p1.distance( p2 );
-        const len2 = p2.distance( p0 );
-
-        const K = 4 * Math.abs( area ) / ( len0 * len1 * len2 );
         if ( K >= DERIVATIVE_THRESHOLD ) {
           this.baseCurve.cusps.push( point );
         }
       }
+
     } );
 
     // Signal once that this Curve has changed.
