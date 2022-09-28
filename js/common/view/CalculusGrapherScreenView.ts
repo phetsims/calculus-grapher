@@ -82,7 +82,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     } );
 
     this.addChild( this.originalGraphNode );
-    // this.addChild( this.integralGraphNode );
+    this.addChild( this.integralGraphNode );
     this.addChild( this.derivativeGraphNode );
     this.addChild( this.secondDerivativeGraphNode );
     this.addChild( controlPanel );
