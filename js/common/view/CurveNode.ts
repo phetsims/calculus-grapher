@@ -36,9 +36,9 @@ export type CurveNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 export default class CurveNode extends Node {
 
   // Path of the lines in between each CurvePoint.
-  protected readonly path: Path;
-  protected readonly curve: Curve;
-  protected readonly modelViewTransformProperty: TReadOnlyProperty<ModelViewTransform2>;
+  private readonly path: Path;
+  private readonly curve: Curve;
+  private readonly modelViewTransformProperty: TReadOnlyProperty<ModelViewTransform2>;
   private readonly cuspContainer: Node;
 
   public constructor( curve: Curve, modelViewTransformProperty: TReadOnlyProperty<ModelViewTransform2>,
