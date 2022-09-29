@@ -38,7 +38,7 @@ export default class OriginalCurveNode extends CurveNode {
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
-    // TODO: the listener should be on the linePlot instead.
+    // TODO: the listener should be on the linePlot instead (#see 55).
     this.scatterPlot.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
       applyOffset: false,
