@@ -9,11 +9,8 @@ import AxisLine from '../../../../bamboo/js/AxisLine.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
@@ -41,10 +38,6 @@ export default class GraphNode extends Node {
 
     //----------------------------------------------------------------------------------------
 
-
-    // TODO: this will need to be a Property, based on how many other curves are visible.
-    const viewBounds = new Bounds2( 0, 0, 600, 200 );
-
     const chartTransform = new ChartTransform( {
       viewWidth: 600,
       viewHeight: 200,
@@ -59,16 +52,12 @@ export default class GraphNode extends Node {
     const horizontalAxisLine = new AxisLine( chartTransform, Orientation.HORIZONTAL );
     const verticalAxisLine = new AxisLine( chartTransform, Orientation.VERTICAL );
 
-
     const gridNode = new Node( { children: [ horizontalGridLines, verticalGridLines ] } );
 
     // link visibility of the gridNode
     gridVisibleProperty.linkAttribute( gridNode, 'visible' );
 
-    // tracks changes of modelViewTransform, initial value will be updated later
-    const transformProperty = new Property( ModelViewTransform2.createIdentity() );
-
-    // zoom level
+      // zoom level
     this.zoomLevelProperty = new NumberProperty(
       CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue, {
         range: CalculusGrapherConstants.ZOOM_LEVEL_RANGE,
@@ -80,7 +69,7 @@ export default class GraphNode extends Node {
     let curveNode: CurveNode;
     if ( curve instanceof OriginalCurve ) {
 
-      curveNode = new OriginalCurveNode( curve, transformProperty, {
+      curveNode = new OriginalCurveNode( curve, chartTransform, {
         pathOptions: {
           stroke: 'blue'
         },
@@ -95,7 +84,7 @@ export default class GraphNode extends Node {
     }
     else {
 
-      curveNode = new CurveNode( curve, transformProperty, {
+      curveNode = new CurveNode( curve, chartTransform, {
         pathOptions: {
           stroke: 'green'
         },
@@ -119,15 +108,6 @@ export default class GraphNode extends Node {
 
     this.zoomLevelProperty.link( zoomLevel => {
       chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
-
-      // TODO: see #54
-      const yScale = -20 / Math.pow( 2, zoomLevel - CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
-      transformProperty.value = ModelViewTransform2.createSinglePointXYScaleMapping(
-        Vector2.ZERO,
-        viewBounds.leftCenter,
-        20,
-        yScale
-      );
     } );
 
     // add children to this node
