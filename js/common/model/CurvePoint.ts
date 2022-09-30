@@ -34,7 +34,7 @@ export default class CurvePoint {
   private readonly initialY: number;
 
   // an array of all of this Point's saved y-values.
-  private savedYValues: ( number )[]; //TODO when would we be saving null?
+  private savedYValues: ( number )[];
 
   public constructor( x: number, y = 0 ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
