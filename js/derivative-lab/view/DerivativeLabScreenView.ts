@@ -21,7 +21,6 @@ export default class DerivativeLabScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       isIntegralGraphVisible: false,
-      isOriginalGraphVisible: true,
       isDerivativeGraphVisible: true,
       isSecondDerivativeGraphVisible: true
     }, providedOptions );

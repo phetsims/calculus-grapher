@@ -21,7 +21,6 @@ export default class IntroScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       isIntegralGraphVisible: false,
-      isOriginalGraphVisible: true,
       isDerivativeGraphVisible: false,
       isSecondDerivativeGraphVisible: false
     }, providedOptions );

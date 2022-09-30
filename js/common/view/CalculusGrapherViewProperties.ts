@@ -20,7 +20,6 @@ type SelfOptions = {
   isGridVisible?: boolean;
   isReferenceLineVisible?: boolean;
   isIntegralGraphVisible?: boolean;
-  isOriginalGraphVisible?: boolean;
   isDerivativeGraphVisible?: boolean;
   isSecondDerivativeGraphVisible?: boolean;
 };
@@ -52,7 +51,6 @@ export default class CalculusGrapherViewProperties {
       isGridVisible: true,
       isReferenceLineVisible: false,
       isIntegralGraphVisible: false,
-      isOriginalGraphVisible: true,
       isDerivativeGraphVisible: true,
       isSecondDerivativeGraphVisible: false
     }, providedOptions );
@@ -65,7 +63,7 @@ export default class CalculusGrapherViewProperties {
       tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
 
-    this.originalGraphNodeVisibleProperty = new BooleanProperty( options.isOriginalGraphVisible,
+    this.originalGraphNodeVisibleProperty = new BooleanProperty( true,
       {
         tandem: options.tandem.createTandem( 'originalGraphNodeVisibleProperty' ),
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
