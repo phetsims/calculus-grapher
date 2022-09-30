@@ -43,8 +43,8 @@ export type CurveNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 
 export default class CurveNode extends Node {
 
-  public curve: Curve;
-  protected readonly linePlot: LinePlot; //TODO check if you need to expose that much
+  protected readonly linePlot: LinePlot;
+  private readonly curve: Curve;
   protected readonly scatterPlot: ScatterPlot;
   private readonly linePlotDataSet: LinePlotDataSet;
   private readonly scatterPlotDataSet: ScatterPlotDataSet;
