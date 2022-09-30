@@ -20,12 +20,10 @@ export default class DerivativeLabScreenView extends CalculusGrapherScreenView {
   public constructor( model: DerivativeLabModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      isGraphIncluded: {
-        integralGraph: false,
-        originalGraph: true,
-        derivativeGraph: true,
-        secondDerivativeGraph: true
-      }
+      isIntegralGraphVisible: false,
+      isOriginalGraphVisible: true,
+      isDerivativeGraphVisible: true,
+      isSecondDerivativeGraphVisible: true
     }, providedOptions );
 
     super( model, options );

@@ -11,12 +11,19 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  isGridVisible?: boolean;
+  isReferenceLineVisible?: boolean;
+  isIntegralGraphVisible?: boolean;
+  isOriginalGraphVisible?: boolean;
+  isDerivativeGraphVisible?: boolean;
+  isSecondDerivativeGraphVisible?: boolean;
+};
 export type CalculusGrapherViewPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class CalculusGrapherViewProperties {
@@ -41,33 +48,40 @@ export default class CalculusGrapherViewProperties {
 
   public constructor( providedOptions: CalculusGrapherViewPropertiesOptions ) {
 
-    const options = optionize<CalculusGrapherViewPropertiesOptions, SelfOptions>()( {}, providedOptions );
+    const options = optionize<CalculusGrapherViewPropertiesOptions, SelfOptions>()( {
+      isGridVisible: true,
+      isReferenceLineVisible: false,
+      isIntegralGraphVisible: false,
+      isOriginalGraphVisible: true,
+      isDerivativeGraphVisible: true,
+      isSecondDerivativeGraphVisible: false
+    }, providedOptions );
 
-    this.gridVisibleProperty = new BooleanProperty( true, {
+    this.gridVisibleProperty = new BooleanProperty( options.isGridVisible, {
       tandem: options.tandem.createTandem( 'gridVisibleProperty' )
     } );
 
-    this.referenceLineVisibleProperty = new BooleanProperty( false, {
+    this.referenceLineVisibleProperty = new BooleanProperty( options.isReferenceLineVisible, {
       tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
 
-    this.originalGraphNodeVisibleProperty = new BooleanProperty( true,
+    this.originalGraphNodeVisibleProperty = new BooleanProperty( options.isOriginalGraphVisible,
       {
         tandem: options.tandem.createTandem( 'originalGraphNodeVisibleProperty' ),
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
 
-    this.integralGraphNodeVisibleProperty = new BooleanProperty( true,
+    this.integralGraphNodeVisibleProperty = new BooleanProperty( options.isIntegralGraphVisible,
       {
         tandem: options.tandem.createTandem( 'integralGraphNodeVisibleProperty' )
       } );
 
-    this.derivativeGraphNodeVisibleProperty = new BooleanProperty( true,
+    this.derivativeGraphNodeVisibleProperty = new BooleanProperty( options.isDerivativeGraphVisible,
       {
         tandem: options.tandem.createTandem( 'derivativeGraphNodeVisibleProperty' )
       } );
 
-    this.secondDerivativeGraphNodeVisibleProperty = new BooleanProperty( true,
+    this.secondDerivativeGraphNodeVisibleProperty = new BooleanProperty( options.isSecondDerivativeGraphVisible,
       {
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNodeVisibleProperty' )
       } );

@@ -10,20 +10,21 @@ import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.j
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
-import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
+import CalculusGrapherViewProperties, { CalculusGrapherViewPropertiesOptions } from './CalculusGrapherViewProperties.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import GraphsNode, { GraphNodesOptions } from './GraphsNode.js';
+import GraphsNode from './GraphsNode.js';
 
 type SelfOptions = EmptySelfOptions;
-export type CalculusGrapherScreenViewOptions = SelfOptions & GraphNodesOptions & ScreenViewOptions;
+export type CalculusGrapherScreenViewOptions = SelfOptions &
+  CalculusGrapherViewPropertiesOptions & ScreenViewOptions;
 
 
 export default class CalculusGrapherScreenView extends ScreenView {
 
   protected readonly viewProperties: CalculusGrapherViewProperties;
   private model: CalculusGrapherModel;
-  private graphsNode: GraphsNode;
+  private readonly graphsNode: GraphsNode;
 
   public constructor( model: CalculusGrapherModel, providedOptions?: CalculusGrapherScreenViewOptions ) {
 
@@ -42,7 +43,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphsNode = new GraphsNode( model, this.viewProperties,
       {
-        isGraphIncluded: options.isGraphIncluded,
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
@@ -64,6 +64,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
    */
   public reset(): void {
     this.model.reset();
+    this.viewProperties.reset();
     this.graphsNode.reset();
   }
 }

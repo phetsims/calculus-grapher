@@ -14,20 +14,14 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 
-type SelfOptions = {
-  isGraphIncluded?: {
-    integralGraph: boolean;
-    originalGraph: boolean;
-    derivativeGraph: boolean;
-    secondDerivativeGraph: boolean;
-  };
-};
+type SelfOptions = EmptySelfOptions;
+
 export type GraphNodesOptions = SelfOptions & NodeOptions;
 
 export default class GraphNodes extends Node {
@@ -39,14 +33,7 @@ export default class GraphNodes extends Node {
 
   public constructor( model: CalculusGrapherModel, viewProperties: CalculusGrapherViewProperties, providedOptions?: GraphNodesOptions ) {
 
-    const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {
-      isGraphIncluded: {
-        integralGraph: true,
-        originalGraph: true,
-        derivativeGraph: true,
-        secondDerivativeGraph: true
-      }
-    }, providedOptions );
+    const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 
     super( options );
 
@@ -107,10 +94,10 @@ export default class GraphNodes extends Node {
 
       content = [];
 
-      pushElement( options.isGraphIncluded.integralGraph && integralVisible, this.integralGraphNode );
-      pushElement( options.isGraphIncluded.originalGraph && originalVisible, this.originalGraphNode );
-      pushElement( options.isGraphIncluded.derivativeGraph && derivativeVisible, this.derivativeGraphNode );
-      pushElement( options.isGraphIncluded.secondDerivativeGraph && secondDerivativeVisible, this.secondDerivativeGraphNode );
+      pushElement( integralVisible, this.integralGraphNode );
+      pushElement( originalVisible, this.originalGraphNode );
+      pushElement( derivativeVisible, this.derivativeGraphNode );
+      pushElement( secondDerivativeVisible, this.secondDerivativeGraphNode );
 
 
       initialMaxYProperty.value = initialMaxYArray[ content.length - 1 ];
