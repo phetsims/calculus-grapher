@@ -111,7 +111,9 @@ export default class GraphNode extends Node {
       ( zoomLevel, initialMaxY ) => {
         chartTransform.setModelYRange( getModelYRange( zoomLevel, initialMaxY ) );
         chartTransform.setViewHeight( initialMaxY * 35 );
+        curveNode.clipArea = chartRectangle.getShape();
       } );
+
 
     // add children to this node
     this.children = [
