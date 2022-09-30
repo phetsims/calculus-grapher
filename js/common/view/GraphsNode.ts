@@ -1,16 +1,11 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- *  Class for the all the graphs in the 'Calculus Grapher' simulation.
+ * Class for the all the graphs in the 'Calculus Grapher' simulation.
  *
  * @author Martin Veillette
  */
 
-/**
- *  Class for the all the graphs in the 'Calculus Grapher' simulation.
- *
- * @author Martin Veillette
- */
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
@@ -74,18 +69,13 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );
 
-    // array of Node content of this class
-    let content: Node[] = [];
-
     // convenience function to add element to content array
-    const pushElement = ( condition: boolean, node: Node ): void => {
+    const pushElement = ( array: Node[], condition: boolean, node: Node ): void => {
       if ( condition ) {
-        content.push( node );
+        array.push( node );
       }
     };
 
-    // vertical (model) height of the initial graph
-    const initialMaxYArray = [ 14, 7, 5, 3 ];
 
     Multilink.multilink( [
       viewProperties.integralGraphNodeVisibleProperty,
@@ -94,17 +84,23 @@ export default class GraphNodes extends Node {
       viewProperties.secondDerivativeGraphNodeVisibleProperty
     ], ( integralVisible, originalVisible, derivativeVisible, secondDerivativeVisible ) => {
 
-      content = [];
+      // array of Node content of this class
+      const content: Node[] = [];
 
-      pushElement( integralVisible, this.integralGraphNode );
-      pushElement( originalVisible, this.originalGraphNode );
-      pushElement( derivativeVisible, this.derivativeGraphNode );
-      pushElement( secondDerivativeVisible, this.secondDerivativeGraphNode );
+      pushElement( content, integralVisible, this.integralGraphNode );
+      pushElement( content, originalVisible, this.originalGraphNode );
+      pushElement( content, derivativeVisible, this.derivativeGraphNode );
+      pushElement( content, secondDerivativeVisible, this.secondDerivativeGraphNode );
 
 
+      // vertical (model) height of the initial graph
+      const initialMaxYArray = [ 14, 7, 5, 3 ];
+
+      // set the initialMaxY value of the graph based on the number of graphs
       this.initialMaxYProperty.value = initialMaxYArray[ content.length - 1 ];
 
       // layout of all the nodes
+
       if ( content.length > 0 ) {
         content[ 0 ].top = 100;
       }
