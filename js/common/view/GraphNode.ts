@@ -20,6 +20,7 @@ import Curve from '../model/Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import OriginalCurve from '../model/OriginalCurve.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = EmptySelfOptions;
 type GraphNodeOptions = SelfOptions & NodeOptions;
@@ -30,6 +31,7 @@ export default class GraphNode extends Node {
 
   public constructor( curve: Curve | OriginalCurve,
                       gridVisibleProperty: Property<boolean>,
+                      initialMaxYProperty: Property<number>,
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
@@ -39,8 +41,7 @@ export default class GraphNode extends Node {
     //----------------------------------------------------------------------------------------
 
     const chartTransform = new ChartTransform( {
-      viewWidth: 600,
-      viewHeight: 200,
+      viewWidth: 700,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
 
@@ -57,7 +58,7 @@ export default class GraphNode extends Node {
     // link visibility of the gridNode
     gridVisibleProperty.linkAttribute( gridNode, 'visible' );
 
-      // zoom level
+    // zoom level
     this.zoomLevelProperty = new NumberProperty(
       CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue, {
         range: CalculusGrapherConstants.ZOOM_LEVEL_RANGE,
@@ -101,14 +102,16 @@ export default class GraphNode extends Node {
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
 
-    const getModelYRange = ( zoomLevel: number ) => {
-      const maxY = 5 * Math.pow( 2, zoomLevel - CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+    const getModelYRange = ( zoomLevel: number, initialMaxY: number ) => {
+      const maxY = initialMaxY * Math.pow( 2, zoomLevel - CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
       return new Range( -maxY, maxY );
     };
 
-    this.zoomLevelProperty.link( zoomLevel => {
-      chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
-    } );
+    Multilink.multilink( [ this.zoomLevelProperty, initialMaxYProperty ],
+      ( zoomLevel, initialMaxY ) => {
+        chartTransform.setModelYRange( getModelYRange( zoomLevel, initialMaxY ) );
+        chartTransform.setViewHeight( initialMaxY * 35 );
+      } );
 
     // add children to this node
     this.children = [

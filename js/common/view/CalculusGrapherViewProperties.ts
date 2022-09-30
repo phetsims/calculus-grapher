@@ -57,7 +57,7 @@ export default class CalculusGrapherViewProperties {
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
 
-    this.integralGraphNodeVisibleProperty = new BooleanProperty( false,
+    this.integralGraphNodeVisibleProperty = new BooleanProperty( true,
       {
         tandem: options.tandem.createTandem( 'integralGraphNodeVisibleProperty' )
       } );

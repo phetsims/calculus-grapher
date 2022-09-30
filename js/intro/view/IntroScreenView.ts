@@ -19,9 +19,18 @@ export default class IntroScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: IntroModel, providedOptions?: IntroScreenViewOptions ) {
 
-    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {}, providedOptions );
+    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+      isGraphIncluded: {
+        integralGraph: true,
+        originalGraph: true,
+        derivativeGraph: true,
+        secondDerivativeGraph: false
+      }
+    }, providedOptions );
 
     super( model, options );
+
+    this.viewProperties.integralGraphNodeVisibleProperty.value = false;
   }
 }
 

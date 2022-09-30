@@ -11,7 +11,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeLabModel from '../model/DerivativeLabModel.js';
 
-
 type SelfOptions = EmptySelfOptions;
 
 export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
@@ -20,7 +19,14 @@ export default class DerivativeLabScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: DerivativeLabModel, providedOptions: IntroScreenViewOptions ) {
 
-    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {}, providedOptions );
+    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+      isGraphIncluded: {
+        integralGraph: false,
+        originalGraph: true,
+        derivativeGraph: true,
+        secondDerivativeGraph: true
+      }
+    }, providedOptions );
 
     super( model, options );
   }
