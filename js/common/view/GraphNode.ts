@@ -21,6 +21,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 
 type SelfOptions = EmptySelfOptions;
 type GraphNodeOptions = SelfOptions & NodeOptions;
@@ -98,9 +99,16 @@ export default class GraphNode extends Node {
       };
     }
 
-
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
+
+    // zoom Button to the top left of the graph
+    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(), {
+      orientation: 'vertical',
+      right: chartRectangle.left - 10,
+      top: chartRectangle.top,
+      tandem: options.tandem.createTandem( 'zoomButtonGroup' )
+    } );
 
     const getModelYRange = ( zoomLevel: number, initialMaxY: number ) => {
       const maxY = initialMaxY * Math.pow( 2, zoomLevel - CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
@@ -121,6 +129,7 @@ export default class GraphNode extends Node {
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
+      zoomButtonGroup,
       curveNode
     ];
   }
