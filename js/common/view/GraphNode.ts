@@ -107,6 +107,9 @@ export default class GraphNode extends Node {
       orientation: 'vertical',
       right: chartRectangle.left - 10,
       top: chartRectangle.top,
+      buttonOptions: {
+        stroke: 'black'
+      },
       tandem: options.tandem.createTandem( 'zoomButtonGroup' )
     } );
 
