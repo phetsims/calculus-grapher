@@ -8,16 +8,25 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  curveManipulationModeChoices?: CurveManipulationMode[];
+};
 
 export type IntroModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class IntroModel extends CalculusGrapherModel {
 
   public constructor( providedOptions?: IntroModelOptions ) {
-    const options = optionize<IntroModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {}, providedOptions );
+    const options = optionize<IntroModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {
+      curveManipulationModeChoices: [
+        CurveManipulationMode.HILL,
+        CurveManipulationMode.TILT,
+        CurveManipulationMode.SHIFT
+      ]
+    }, providedOptions );
 
     super( options );
 

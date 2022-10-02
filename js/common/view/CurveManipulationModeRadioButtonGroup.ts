@@ -28,7 +28,7 @@ export default class CurveManipulationModeRadioButtonGroup extends AquaRadioButt
     const options = providedOptions;
 
     const aquaRadioButtonGroupItems: AquaRadioButtonGroupItem<CurveManipulationMode>[] =
-      CurveManipulationMode.enumeration.values.map(
+      curveManipulationModeProperty.validValues!.map(
         mode => {
           return {
             value: mode,

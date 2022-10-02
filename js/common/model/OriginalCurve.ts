@@ -28,13 +28,12 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
+import { CalculusGrapherModelOptions } from './CalculusGrapherModel.js';
 
 
 // constants
@@ -44,18 +43,18 @@ const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate
 
 type SelfOptions = EmptySelfOptions;
 
-export type OriginalCurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type OriginalCurveOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class OriginalCurve extends Curve {
 
   // the 'mode' that user is in for manipulating curves. This
   // is manipulated by the view.
-  public curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>;
+  public readonly curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>;
 
   // the width of the curve-manipulation. This only applies to some CurveManipulationModes
   // and the value is interpreted differently for each response algorithm to curve
   // user-manipulation.
-  public curveManipulationWidthProperty: NumberProperty;
+  private readonly curveManipulationWidthProperty: NumberProperty;
 
   public constructor( providedOptions?: OriginalCurveOptions ) {
 
@@ -64,6 +63,7 @@ export default class OriginalCurve extends Curve {
     super( options );
 
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL, {
+      validValues: options.curveManipulationModeChoices,
       tandem: options.tandem.createTandem( 'curveManipulationModeProperty' )
     } );
 
