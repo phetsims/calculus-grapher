@@ -14,6 +14,7 @@ import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOpt
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
+import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -40,3 +41,5 @@ export default class CurveManipulationModeRadioButtonGroup extends AquaRadioButt
     super( curveManipulationModeProperty, aquaRadioButtonGroupItems, options );
   }
 }
+
+calculusGrapher.register( 'CurveManipulationModeRadioButtonGroup', CurveManipulationModeRadioButtonGroup );
