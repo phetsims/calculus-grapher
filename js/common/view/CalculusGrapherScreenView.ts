@@ -47,11 +47,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
 
-    const visibilityCheckboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
+    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
       isGraphCheckboxIncluded: options.isGraphCheckboxIncluded,
-      tandem: options.tandem.createTandem( 'visibilityCheckboxGroup' )
+      tandem: options.tandem.createTandem( 'checkboxGroup' )
     } );
-    visibilityCheckboxGroup.leftCenter = this.layoutBounds.leftCenter.addXY( 30, 0 );
+    checkboxGroup.leftCenter = this.layoutBounds.leftCenter.addXY( 30, 0 );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
@@ -60,7 +60,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     } );
 
     this.addChild( this.graphsNode );
-    this.addChild( visibilityCheckboxGroup );
+    this.addChild( checkboxGroup );
     this.addChild( controlPanel );
     this.addChild( resetAllButton );
   }
