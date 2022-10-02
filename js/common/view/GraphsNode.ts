@@ -11,7 +11,7 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
-import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 
@@ -27,7 +27,7 @@ export default class GraphNodes extends Node {
   private readonly secondDerivativeGraphNode: GraphNode;
   private readonly initialMaxYProperty: NumberProperty;
 
-  public constructor( model: CalculusGrapherModel, viewProperties: CalculusGrapherViewProperties, providedOptions?: GraphNodesOptions ) {
+  public constructor( model: CalculusGrapherModel, visibleProperties: CalculusGrapherVisibleProperties, providedOptions?: GraphNodesOptions ) {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 
@@ -36,36 +36,36 @@ export default class GraphNodes extends Node {
     this.initialMaxYProperty = new NumberProperty( 5 );
 
     this.integralGraphNode = new GraphNode( model.integralCurve,
-      viewProperties.gridVisibleProperty,
+      visibleProperties.gridVisibleProperty,
       this.initialMaxYProperty,
       {
-        visibleProperty: viewProperties.integralGraphNodeVisibleProperty,
+        visibleProperty: visibleProperties.integralGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
 
 
     this.originalGraphNode = new GraphNode( model.originalCurve,
-      viewProperties.gridVisibleProperty,
+      visibleProperties.gridVisibleProperty,
       this.initialMaxYProperty,
       {
-        visibleProperty: viewProperties.originalGraphNodeVisibleProperty,
+        visibleProperty: visibleProperties.originalGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
         phetioDocumentation: 'PhET-iO only, not settable in the sim'
       } );
 
     this.derivativeGraphNode = new GraphNode( model.derivativeCurve,
-      viewProperties.gridVisibleProperty,
+      visibleProperties.gridVisibleProperty,
       this.initialMaxYProperty,
       {
-        visibleProperty: viewProperties.derivativeGraphNodeVisibleProperty,
+        visibleProperty: visibleProperties.derivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
 
     this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
-      viewProperties.gridVisibleProperty,
+      visibleProperties.gridVisibleProperty,
       this.initialMaxYProperty,
       {
-        visibleProperty: viewProperties.secondDerivativeGraphNodeVisibleProperty,
+        visibleProperty: visibleProperties.secondDerivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );
 
@@ -78,10 +78,10 @@ export default class GraphNodes extends Node {
 
 
     Multilink.multilink( [
-      viewProperties.integralGraphNodeVisibleProperty,
-      viewProperties.originalGraphNodeVisibleProperty,
-      viewProperties.derivativeGraphNodeVisibleProperty,
-      viewProperties.secondDerivativeGraphNodeVisibleProperty
+      visibleProperties.integralGraphNodeVisibleProperty,
+      visibleProperties.originalGraphNodeVisibleProperty,
+      visibleProperties.derivativeGraphNodeVisibleProperty,
+      visibleProperties.secondDerivativeGraphNodeVisibleProperty
     ], ( integralVisible, originalVisible, derivativeVisible, secondDerivativeVisible ) => {
 
       // array of Node content of this class

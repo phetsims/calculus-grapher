@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * VisibilityCheckboxGroup is a group of checkboxes for controlling visibility of graph nodes
+ * CalculusGrapherCheckboxGroup is a group of checkboxes for controlling visibility of graph nodes
  *
  * @author Martin Veillette
  */
@@ -15,7 +15,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherViewProperties from './CalculusGrapherViewProperties.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 
 type SelfOptions = {
   isGraphCheckboxIncluded?: {
@@ -25,14 +25,14 @@ type SelfOptions = {
   };
 };
 
-export type VisibilityCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
+export type CalculusGrapherCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
 
-export default class VisibilityCheckboxGroup extends VerticalCheckboxGroup {
+export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup {
 
-  public constructor( viewProperties: CalculusGrapherViewProperties,
-                      providedOptions: VisibilityCheckboxGroupOptions ) {
+  public constructor( visibleProperties: CalculusGrapherVisibleProperties,
+                      providedOptions: CalculusGrapherCheckboxGroupOptions ) {
 
-    const options = optionize<VisibilityCheckboxGroupOptions, SelfOptions, VerticalCheckboxGroupOptions>()(
+    const options = optionize<CalculusGrapherCheckboxGroupOptions, SelfOptions, VerticalCheckboxGroupOptions>()(
       {
         isGraphCheckboxIncluded: {
           integralGraph: true,
@@ -50,7 +50,7 @@ export default class VisibilityCheckboxGroup extends VerticalCheckboxGroup {
       // Integral checkbox
       const integralItem = createItem(
         CalculusGrapherStrings.checkbox.integralStringProperty,
-        viewProperties.integralGraphNodeVisibleProperty, {
+        visibleProperties.integralGraphNodeVisibleProperty, {
           tandemName: 'integralGraphNodeCheckbox'
         } );
 
@@ -62,7 +62,7 @@ export default class VisibilityCheckboxGroup extends VerticalCheckboxGroup {
       // First Derivative checkbox
       const derivativeItem = createItem(
         CalculusGrapherStrings.checkbox.derivativeStringProperty,
-        viewProperties.derivativeGraphNodeVisibleProperty, {
+        visibleProperties.derivativeGraphNodeVisibleProperty, {
           tandemName: 'derivativeGraphNodeCheckbox'
         } );
 
@@ -74,7 +74,7 @@ export default class VisibilityCheckboxGroup extends VerticalCheckboxGroup {
       // Second Derivative checkbox
       const secondDerivativeItem = createItem(
         CalculusGrapherStrings.checkbox.secondDerivativeStringProperty,
-        viewProperties.secondDerivativeGraphNodeVisibleProperty, {
+        visibleProperties.secondDerivativeGraphNodeVisibleProperty, {
           tandemName: 'secondDerivativeGraphNodeCheckbox'
         } );
 
@@ -101,4 +101,4 @@ function createItem( labelStringProperty: TReadOnlyProperty<string>,
   };
 }
 
-calculusGrapher.register( 'VisibilityCheckboxGroup', VisibilityCheckboxGroup );
+calculusGrapher.register( 'CalculusGrapherCheckboxGroup', CalculusGrapherCheckboxGroup );

@@ -23,9 +23,9 @@ type SelfOptions = {
   isDerivativeGraphVisible?: boolean;
   isSecondDerivativeGraphVisible?: boolean;
 };
-export type CalculusGrapherViewPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type CalculusGrapherVisiblePropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class CalculusGrapherViewProperties {
+export default class CalculusGrapherVisibleProperties {
 
   // indicates if the graph grid is visible.
   public readonly gridVisibleProperty: Property<boolean>;
@@ -45,9 +45,9 @@ export default class CalculusGrapherViewProperties {
   //indicates if the second derivative curve is visible.
   public readonly secondDerivativeGraphNodeVisibleProperty: Property<boolean>;
 
-  public constructor( providedOptions: CalculusGrapherViewPropertiesOptions ) {
+  public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
-    const options = optionize<CalculusGrapherViewPropertiesOptions, SelfOptions>()( {
+    const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions>()( {
       isGridVisible: true,
       isReferenceLineVisible: false,
       isIntegralGraphVisible: false,
@@ -98,4 +98,4 @@ export default class CalculusGrapherViewProperties {
   }
 }
 
-calculusGrapher.register( 'CalculusGrapherViewProperties', CalculusGrapherViewProperties );
+calculusGrapher.register( 'CalculusGrapherVisibleProperties', CalculusGrapherVisibleProperties );
