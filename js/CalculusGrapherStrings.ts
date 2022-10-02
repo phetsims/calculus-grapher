@@ -20,6 +20,11 @@ type StringsType = {
   'resetStringProperty': LinkableProperty<string>;
   'smoothStringProperty': LinkableProperty<string>;
   'undoStringProperty': LinkableProperty<string>;
+  'checkbox': {
+    'derivativeStringProperty': LinkableProperty<string>;
+    'secondDerivativeStringProperty': LinkableProperty<string>;
+    'integralStringProperty': LinkableProperty<string>;
+  }
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

@@ -14,11 +14,11 @@ import CalculusGrapherViewProperties, { CalculusGrapherViewPropertiesOptions } f
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
+import VisibilityCheckboxGroup, { VisibilityCheckboxGroupOptions } from './VisibilityCheckboxGroup.js';
 
 type SelfOptions = EmptySelfOptions;
-export type CalculusGrapherScreenViewOptions = SelfOptions &
-  CalculusGrapherViewPropertiesOptions & ScreenViewOptions;
 
+export type CalculusGrapherScreenViewOptions = SelfOptions & VisibilityCheckboxGroupOptions & CalculusGrapherViewPropertiesOptions & ScreenViewOptions;
 
 export default class CalculusGrapherScreenView extends ScreenView {
 
@@ -47,6 +47,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
 
+    const visibilityCheckboxGroup = new VisibilityCheckboxGroup( this.viewProperties, {
+      isGraphCheckboxIncluded: options.isGraphCheckboxIncluded,
+      tandem: options.tandem.createTandem( 'visibilityCheckboxGroup' )
+    } );
+    visibilityCheckboxGroup.leftCenter = this.layoutBounds.leftCenter.addXY( 30, 0 );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
@@ -55,6 +60,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     } );
 
     this.addChild( this.graphsNode );
+    this.addChild( visibilityCheckboxGroup );
     this.addChild( controlPanel );
     this.addChild( resetAllButton );
   }
