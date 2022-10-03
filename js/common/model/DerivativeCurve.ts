@@ -103,55 +103,54 @@ export default class DerivativeCurve extends Curve {
   private updateDerivative(): void {
     this.baseCurve.cusps = [];
     // Loop through each trio of adjacent Points of the base Curve.
-    this.forEachAdjacentTrio( this.baseCurve.points,
-      ( previousPoint, point, nextPoint, index ) => {
+    this.baseCurve.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
 
-        let leftSlope: null | number = null;
-        let rightSlope: null | number = null;
+      let leftSlope: null | number = null;
+      let rightSlope: null | number = null;
 
-        // Compute the leftSlope and rightSlope.
+      // Compute the leftSlope and rightSlope.
 
-        // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
-        if ( previousPoint && previousPoint.exists ) {
-          leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
-          assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
+      // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
+      if ( previousPoint && previousPoint.exists ) {
+        leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
+        assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
+      }
+
+      if ( nextPoint && nextPoint.exists ) {
+        // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
+        rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
+        assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
+      }
+      //----------------------------------------------------------------------------------------
+
+      if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+        // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
+        // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
+        this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
+      }
+      else if ( typeof leftSlope === 'number' && Number.isFinite( leftSlope ) ) {
+
+        // If only the slope of the left side exists, use that as the derivative.
+        this.points[ index ].y = leftSlope;
+      }
+      else if ( typeof rightSlope === 'number' && Number.isFinite( rightSlope ) ) {
+
+        // If only the slope of the right side exists, use that as the derivative.
+        this.points[ index ].y = rightSlope;
+      }
+
+      // TODO: prototype to determine the cusp points
+      if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+
+        // evaluate the difference in the angle of the left and right slope
+        const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
+
+        if ( K >= DERIVATIVE_THRESHOLD ) {
+          this.baseCurve.cusps.push( point );
         }
+      }
 
-        if ( nextPoint && nextPoint.exists ) {
-          // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
-          rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
-          assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
-        }
-        //----------------------------------------------------------------------------------------
-
-        if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-          // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
-          // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
-          this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
-        }
-        else if ( typeof leftSlope === 'number' && Number.isFinite( leftSlope ) ) {
-
-          // If only the slope of the left side exists, use that as the derivative.
-          this.points[ index ].y = leftSlope;
-        }
-        else if ( typeof rightSlope === 'number' && Number.isFinite( rightSlope ) ) {
-
-          // If only the slope of the right side exists, use that as the derivative.
-          this.points[ index ].y = rightSlope;
-        }
-
-        // TODO: prototype to determine the cusp points
-        if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-
-          // evaluate the difference in the angle of the left and right slope
-          const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
-
-          if ( K >= DERIVATIVE_THRESHOLD ) {
-            this.baseCurve.cusps.push( point );
-          }
-        }
-
-      } );
+    } );
 
     // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();

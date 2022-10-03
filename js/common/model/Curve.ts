@@ -115,13 +115,12 @@ export default class Curve {
    * Iterates through an array in trios, passing the previous value, the current value, and the next value, to the iterator function.
    * forEachAdjacentTrio( [ 1, 2, 3, 4], f ) would invoke f(null, 1, 2),  f( 1, 2, 3 ), f( 2, 3, 4 ), f( 3, 4, null )
    */
-  public forEachAdjacentTrio( array: ( CurvePoint )[],
-                              iterator: ( previousPoint: CurvePoint | null, point: CurvePoint, nextPoint: CurvePoint | null, index: number ) => void ): void {
+  public forEachAdjacentTrio( iterator: ( previousPoint: CurvePoint | null, point: CurvePoint, nextPoint: CurvePoint | null, index: number ) => void ): void {
 
-    for ( let i = 0; i < array.length; i++ ) {
-      const value = array[ i ];
-      const previousValue = i > 0 ? array[ i - 1 ] : null;
-      const nextValue = i < array.length ? array[ i + 1 ] : null;
+    for ( let i = 0; i < this.points.length; i++ ) {
+      const value = this.points[ i ];
+      const previousValue = i > 0 ? this.points[ i - 1 ] : null;
+      const nextValue = i < this.points.length ? this.points[ i + 1 ] : null;
 
       iterator( previousValue, value, nextValue, i );
     }
@@ -132,13 +131,13 @@ export default class Curve {
    * For instance, forEachAdjacentPair( [ 1, 2, 3, 4 ], f ) would invoke f( 2, 1 ), f( 3, 2 ), and f( 4, 3 ).
    *
    */
-  public forEachAdjacentPair( array: ( CurvePoint )[], iterator: {
+  public forEachAdjacentPair( iterator: {
     ( point: CurvePoint, previousPoint: CurvePoint, index: number ): void;
   } ): void {
 
-    for ( let i = 1; i < array.length; i++ ) {
-      const value = array[ i ];
-      const previousValue = array[ i - 1 ];
+    for ( let i = 1; i < this.points.length; i++ ) {
+      const value = this.points[ i ];
+      const previousValue = this.points[ i - 1 ];
 
       iterator( value, previousValue, i );
     }

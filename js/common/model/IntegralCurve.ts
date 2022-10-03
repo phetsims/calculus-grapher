@@ -74,7 +74,7 @@ export default class IntegralCurve extends Curve {
   private updateIntegral(): void {
 
     // Loop through each pair of adjacent Points of the base Curve.
-    this.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
+    this.baseCurve.forEachAdjacentPair( ( point, previousPoint, index ) => {
       assert && assert( point.exists && previousPoint.exists );
 
       // Take the integral from the minimum of the domain of Curves to the x-value of the current point using a
