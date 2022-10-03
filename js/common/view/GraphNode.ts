@@ -11,19 +11,23 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, PathOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
 import OriginalCurveNode from './OriginalCurveNode.js';
 import Curve from '../model/Curve.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  gridLineSetOptions?: PathOptions;
+};
 type GraphNodeOptions = SelfOptions & NodeOptions;
 
 export default class GraphNode extends Node {
@@ -32,23 +36,32 @@ export default class GraphNode extends Node {
 
   public constructor( curve: Curve | OriginalCurve,
                       gridVisibleProperty: Property<boolean>,
-                      initialMaxYProperty: Property<number>,
+                      initialMaxYProperty: TReadOnlyProperty<number>,
                       providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
+    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+
+      gridLineSetOptions: {
+        stroke: CalculusGrapherColors.GRIDLINES_STROKE
+      }
+
+    }, providedOptions );
 
     super( options );
 
     //----------------------------------------------------------------------------------------
 
+    // number of view coordinates for one horizontal model units
+    const horizontalModelToViewFactor = CalculusGrapherConstants.GRAPH_VIEW_WIDTH / CalculusGrapherConstants.CURVE_X_RANGE.getLength();
+
     const chartTransform = new ChartTransform( {
-      viewWidth: 700,
+      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
 
     // grid lines
-    const horizontalGridLines = new GridLineSet( chartTransform, Orientation.HORIZONTAL, 1, { stroke: 'lightGray' } );
-    const verticalGridLines = new GridLineSet( chartTransform, Orientation.VERTICAL, 1, { stroke: 'lightGray' } );
+    const horizontalGridLines = new GridLineSet( chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
+    const verticalGridLines = new GridLineSet( chartTransform, Orientation.VERTICAL, 1, options.gridLineSetOptions );
 
     // Axes nodes are clipped in the chart
     const horizontalAxisLine = new AxisLine( chartTransform, Orientation.HORIZONTAL );
@@ -67,37 +80,24 @@ export default class GraphNode extends Node {
       } );
 
 
-    let chartRectangleOptions;
     let curveNode: CurveNode;
     if ( curve instanceof OriginalCurve ) {
 
       curveNode = new OriginalCurveNode( curve, chartTransform, {
-        pathOptions: {
-          stroke: 'blue'
+        linePlotOptions: {
+          stroke: CalculusGrapherColors.ORIGINAL_CURVE_STROKE
         },
         tandem: options.tandem.createTandem( 'originalCurveNode' )
       } );
-
-      chartRectangleOptions = {
-        fill: 'white',
-        stroke: 'black'
-      };
 
     }
     else {
 
       curveNode = new CurveNode( curve, chartTransform, {
-        pathOptions: {
-          stroke: 'green'
-        },
         tandem: options.tandem.createTandem( 'curveNode' )
       } );
-      chartRectangleOptions = {
-        fill: 'white',
-        opacity: 0.2,
-        stroke: 'black'
-      };
     }
+    const chartRectangleOptions = curve instanceof OriginalCurve ? CalculusGrapherColors.ORIGINAL_CHART_BACKGROUND : CalculusGrapherColors.DEFAULT_CHART_BACKGROUND;
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
@@ -118,10 +118,11 @@ export default class GraphNode extends Node {
       return new Range( -maxY, maxY );
     };
 
+
     Multilink.multilink( [ this.zoomLevelProperty, initialMaxYProperty ],
       ( zoomLevel, initialMaxY ) => {
         chartTransform.setModelYRange( getModelYRange( zoomLevel, initialMaxY ) );
-        chartTransform.setViewHeight( initialMaxY * 35 );
+        chartTransform.setViewHeight( 2 * initialMaxY * horizontalModelToViewFactor );
         curveNode.clipArea = chartRectangle.getShape();
       } );
 

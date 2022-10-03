@@ -28,7 +28,7 @@ export default class OriginalCurveNode extends CurveNode {
 
     const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
-      pathOptions: {
+      linePlotOptions: {
         cursor: 'pointer'
       }
     }, providedOptions );

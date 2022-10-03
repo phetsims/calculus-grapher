@@ -18,8 +18,23 @@ const CalculusGrapherColors = {
   PANEL_STROKE: 'rgb( 190, 190, 190 )',
   PANEL_FILL: 'rgb( 240, 240, 240 )',
 
+  // Graph
+  ORIGINAL_CHART_BACKGROUND: {
+    fill: 'white',
+    stroke: 'black'
+  },
+
+  DEFAULT_CHART_BACKGROUND: {
+    fill: 'rgb( 240, 240, 240 )',
+    stroke: 'black'
+  },
+
+  GRIDLINES_STROKE: 'lightGray',
+
   // Curves
-  ORIGINAL_CURVE_COLOR: Color.BLUE
+  ORIGINAL_CURVE_STROKE: Color.BLUE,
+  DEFAULT_CURVE_STROKE: Color.GREEN
+
 };
 
 calculusGrapher.register( 'CalculusGrapherColors', CalculusGrapherColors );

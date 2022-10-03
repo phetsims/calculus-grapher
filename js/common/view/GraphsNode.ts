@@ -13,7 +13,9 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -25,7 +27,7 @@ export default class GraphNodes extends Node {
   private readonly derivativeGraphNode: GraphNode;
   private readonly integralGraphNode: GraphNode;
   private readonly secondDerivativeGraphNode: GraphNode;
-  private readonly initialMaxYProperty: NumberProperty;
+  private readonly initialMaxYProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel, visibleProperties: CalculusGrapherVisibleProperties, providedOptions?: GraphNodesOptions ) {
 
@@ -33,7 +35,21 @@ export default class GraphNodes extends Node {
 
     super( options );
 
-    this.initialMaxYProperty = new NumberProperty( 5 );
+    // determine the initial height of the graph based on the number of visible graphs.
+    this.initialMaxYProperty = new DerivedProperty( [
+      visibleProperties.integralGraphNodeVisibleProperty,
+      visibleProperties.originalGraphNodeVisibleProperty,
+      visibleProperties.derivativeGraphNodeVisibleProperty,
+      visibleProperties.secondDerivativeGraphNodeVisibleProperty
+    ], ( integralVisible, originalVisible, derivativeVisible, secondDerivativeVisible ) => {
+      let numberOfVisibleGraphs = 0;
+      numberOfVisibleGraphs += ( integralVisible ) ? 1 : 0;
+      numberOfVisibleGraphs += ( originalVisible ) ? 1 : 0;
+      numberOfVisibleGraphs += ( derivativeVisible ) ? 1 : 0;
+      numberOfVisibleGraphs += ( secondDerivativeVisible ) ? 1 : 0;
+      return CalculusGrapherConstants.INITIAL_MAX_Y[ numberOfVisibleGraphs - 1 ];
+    } );
+
 
     this.integralGraphNode = new GraphNode( model.integralCurve,
       visibleProperties.gridVisibleProperty,
@@ -92,20 +108,15 @@ export default class GraphNodes extends Node {
       pushElement( content, derivativeVisible, this.derivativeGraphNode );
       pushElement( content, secondDerivativeVisible, this.secondDerivativeGraphNode );
 
-
-      // vertical (model) height of the initial graph
-      const initialMaxYArray = [ 14, 7, 5, 3 ];
-
-      // set the initialMaxY value of the graph based on the number of graphs
-      this.initialMaxYProperty.value = initialMaxYArray[ content.length - 1 ];
+      const numberOfVisibleGraphs = content.length;
 
       // layout of all the nodes
 
-      if ( content.length > 0 ) {
+      if ( numberOfVisibleGraphs > 0 ) {
         content[ 0 ].top = 100;
       }
 
-      for ( let i = 1; i < content.length; i++ ) {
+      for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
         content[ i ].rightTop = content[ i - 1 ].rightBottom.addXY( 0, 10 );
       }
 
@@ -121,7 +132,6 @@ export default class GraphNodes extends Node {
     this.derivativeGraphNode.reset();
     this.integralGraphNode.reset();
     this.secondDerivativeGraphNode.reset();
-    this.initialMaxYProperty.reset();
   }
 }
 

@@ -26,6 +26,7 @@ import LinePlot from '../../../../bamboo/js/LinePlot.js';
 import ScatterPlot from '../../../../bamboo/js/ScatterPlot.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
@@ -36,7 +37,7 @@ type SelfOptions = {
     stroke: TColor;
     lineWidth: number;
   };
-  pathOptions?: PathOptions;
+  linePlotOptions?: PathOptions;
 };
 
 export type CurveNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
@@ -59,8 +60,8 @@ export default class CurveNode extends Node {
         lineWidth: 1
       },
 
-      // SelfOptions
-      pathOptions: {
+      linePlotOptions: {
+        stroke: CalculusGrapherColors.DEFAULT_CURVE_STROKE,
         lineWidth: 2
       }
     }, provideOptions );
@@ -73,7 +74,7 @@ export default class CurveNode extends Node {
     this.scatterPlotDataSet = this.getScatterPlotDataSet();
 
     this.scatterPlot = new ScatterPlot( chartTransform, this.scatterPlotDataSet, options.scatterPlotOptions );
-    this.linePlot = new LinePlot( chartTransform, this.linePlotDataSet, options.pathOptions );
+    this.linePlot = new LinePlot( chartTransform, this.linePlotDataSet, options.linePlotOptions );
 
     this.addChild( this.scatterPlot );
     this.addChild( this.linePlot );
