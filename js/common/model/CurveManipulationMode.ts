@@ -18,14 +18,14 @@ export default class CurveManipulationMode extends EnumerationValue {
 
   public readonly tandemPrefix: string;
 
-  public static HILL = new CurveManipulationMode( 'hill' );
-  public static TRIANGLE = new CurveManipulationMode( 'triangle' );
-  public static PEDESTAL = new CurveManipulationMode( 'pedestal' );
-  public static PARABOLA = new CurveManipulationMode( 'parabola' );
-  public static SINE = new CurveManipulationMode( 'sine' );
-  public static FREEFORM = new CurveManipulationMode( 'freeform' );
-  public static TILT = new CurveManipulationMode( 'tilt' );
-  public static SHIFT = new CurveManipulationMode( 'shift' );
+  public static readonly HILL = new CurveManipulationMode( 'hill' );
+  public static readonly TRIANGLE = new CurveManipulationMode( 'triangle' );
+  public static readonly PEDESTAL = new CurveManipulationMode( 'pedestal' );
+  public static readonly PARABOLA = new CurveManipulationMode( 'parabola' );
+  public static readonly SINE = new CurveManipulationMode( 'sine' );
+  public static readonly FREEFORM = new CurveManipulationMode( 'freeform' );
+  public static readonly TILT = new CurveManipulationMode( 'tilt' );
+  public static readonly SHIFT = new CurveManipulationMode( 'shift' );
 
   public static enumeration = new Enumeration( CurveManipulationMode );
 
