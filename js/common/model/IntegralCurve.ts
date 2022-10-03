@@ -19,7 +19,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherUtils from '../CalculusGrapherUtils.js';
 import Curve from './Curve.js';
 import OriginalCurve from './OriginalCurve.js';
 
@@ -75,7 +74,7 @@ export default class IntegralCurve extends Curve {
   private updateIntegral(): void {
 
     // Loop through each pair of adjacent Points of the base Curve.
-    CalculusGrapherUtils.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
+    this.forEachAdjacentPair( this.baseCurve.points, ( point, previousPoint, index ) => {
       assert && assert( point.exists && previousPoint.exists );
 
       // Take the integral from the minimum of the domain of Curves to the x-value of the current point using a
