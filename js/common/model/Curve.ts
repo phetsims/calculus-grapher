@@ -23,9 +23,8 @@
 
 import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PhetioObject from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -35,11 +34,7 @@ import CurvePoint from './CurvePoint.js';
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
-type SelfOptions = EmptySelfOptions;
-
-export type CurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
-
-export default class Curve {
+export default class Curve extends PhetioObject {
 
   public readonly points: CurvePoint[];
 
@@ -50,10 +45,12 @@ export default class Curve {
 
   public cusps: CurvePoint[];
 
-  public constructor( providedOptions?: CurveOptions ) {
+  public constructor( tandem: Tandem ) {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const options = optionize<CurveOptions, SelfOptions>()( {}, providedOptions );
+    super( {
+      tandem: tandem,
+      phetioState: false
+    } );
 
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.

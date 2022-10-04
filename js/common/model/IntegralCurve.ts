@@ -15,16 +15,10 @@
  * @author Brandon Li
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
 import OriginalCurve from './OriginalCurve.js';
-
-type SelfOptions = EmptySelfOptions;
-
-export type IntegralCurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class IntegralCurve extends Curve {
 
@@ -33,13 +27,11 @@ export default class IntegralCurve extends Curve {
 
   /**
    * @param baseCurve - the curve to integrate to get the values of this IntegralCurve.
-   * @param providedOptions
+   * @param tandem
    */
-  public constructor( baseCurve: OriginalCurve, providedOptions?: IntegralCurveOptions ) {
+  public constructor( baseCurve: OriginalCurve, tandem: Tandem ) {
 
-    const options = optionize<IntegralCurveOptions, SelfOptions>()( {}, providedOptions );
-
-    super( options );
+    super( tandem );
 
     this.baseCurve = baseCurve;
 

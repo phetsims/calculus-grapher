@@ -35,13 +35,11 @@ export default class CalculusGrapherModel {
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
-    this.originalCurve = new OriginalCurve( options );
-    this.derivativeCurve = new DerivativeCurve( this.originalCurve, options );
-    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, options );
-    this.integralCurve = new IntegralCurve( this.originalCurve, options );
-
+    this.originalCurve = new OriginalCurve( options.curveManipulationModeChoices, options.tandem.createTandem( 'originalCurve' ) );
+    this.derivativeCurve = new DerivativeCurve( this.originalCurve, options.tandem.createTandem( 'derivativeCurve' ) );
+    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, options.tandem.createTandem( 'secondDerivativeCurve' ) );
+    this.integralCurve = new IntegralCurve( this.originalCurve, options.tandem.createTandem( 'integralCurve' ) );
   }
-
 
   /**
    * Reset all

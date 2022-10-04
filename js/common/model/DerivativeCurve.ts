@@ -20,20 +20,13 @@
  * @author Brandon Li
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve from './Curve.js';
-import { IntegralCurveOptions } from './IntegralCurve.js';
 
 // constants
 const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
-
-type SelfOptions = EmptySelfOptions;
-
-export type DerivativeCurveOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 // noinspection JSSuspiciousNameCombination
 export default class DerivativeCurve extends Curve {
@@ -43,13 +36,11 @@ export default class DerivativeCurve extends Curve {
 
   /**
    * @param baseCurve - the curve to differentiate to get the values of this DerivativeCurve
-   * @param providedOptions
+   * @param tandem
    */
-  public constructor( baseCurve: Curve, providedOptions?: DerivativeCurveOptions ) {
+  public constructor( baseCurve: Curve, tandem: Tandem ) {
 
-    const options = optionize<IntegralCurveOptions, SelfOptions>()( {}, providedOptions );
-
-    super( options );
+    super( tandem );
 
     this.baseCurve = baseCurve;
 
