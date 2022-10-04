@@ -33,7 +33,7 @@ const CalculusGrapherColors = {
 
   // Curves
   ORIGINAL_CURVE_STROKE: Color.BLUE,
-  DEFAULT_CURVE_STROKE: Color.GREEN
+  DEFAULT_CURVE_STROKE: Color.RED
 
 };
 
