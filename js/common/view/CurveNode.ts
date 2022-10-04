@@ -45,10 +45,8 @@ export type CurveNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 export default class CurveNode extends Node {
 
   protected readonly linePlot: LinePlot;
-  private readonly curve: Curve;
+  protected readonly curve: Curve;
   protected readonly scatterPlot: ScatterPlot;
-  private readonly linePlotDataSet: LinePlotDataSet;
-  private readonly scatterPlotDataSet: ScatterPlotDataSet;
 
   public constructor( curve: Curve, chartTransform: ChartTransform,
                       provideOptions?: CurveNodeOptions ) {
@@ -70,16 +68,17 @@ export default class CurveNode extends Node {
 
     this.curve = curve;
 
-    this.linePlotDataSet = this.getLinePlotDataSet();
-    this.scatterPlotDataSet = this.getScatterPlotDataSet();
+    const linePlotDataSet = this.getLinePlotDataSet();
+    const scatterPlotDataSet = this.getScatterPlotDataSet();
 
-    this.scatterPlot = new ScatterPlot( chartTransform, this.scatterPlotDataSet, options.scatterPlotOptions );
-    this.linePlot = new LinePlot( chartTransform, this.linePlotDataSet, options.linePlotOptions );
+    this.scatterPlot = new ScatterPlot( chartTransform, scatterPlotDataSet, options.scatterPlotOptions );
+    this.linePlot = new LinePlot( chartTransform, linePlotDataSet, options.linePlotOptions );
 
     this.addChild( this.scatterPlot );
     this.addChild( this.linePlot );
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
+
   }
 
   protected updateCurveNode(): void {
