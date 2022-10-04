@@ -54,7 +54,7 @@ export default class CurveNode extends Node {
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
       scatterPlotOptions: {
         fill: null,
-        stroke: 'red',
+        stroke: 'green',
         lineWidth: 1
       },
 
@@ -74,7 +74,7 @@ export default class CurveNode extends Node {
     this.scatterPlot = new ScatterPlot( chartTransform, scatterPlotDataSet, options.scatterPlotOptions );
     this.linePlot = new LinePlot( chartTransform, linePlotDataSet, options.linePlotOptions );
 
-    // this.addChild( this.scatterPlot );
+    this.addChild( this.scatterPlot );
     this.addChild( this.linePlot );
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
@@ -87,7 +87,7 @@ export default class CurveNode extends Node {
   }
 
   private getScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.points.map( point => new Vector2( point.x, point.y ) );
+    return this.curve.cusps.map( point => new Vector2( point.x, point.y ) );
   }
 
   private getLinePlotDataSet(): LinePlotDataSet {
