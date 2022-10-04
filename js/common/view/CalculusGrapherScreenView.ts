@@ -11,14 +11,18 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
 import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptions } from './CalculusGrapherVisibleProperties.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
 import CalculusGrapherCheckboxGroup, { CalculusGrapherCheckboxGroupOptions } from './CalculusGrapherCheckboxGroup.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
+  checkboxGroupOptions?: StrictOmit<CalculusGrapherCheckboxGroupOptions, 'tandem'>;
+};
 
-export type CalculusGrapherScreenViewOptions = SelfOptions & CalculusGrapherCheckboxGroupOptions & CalculusGrapherVisiblePropertiesOptions & ScreenViewOptions;
+export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class CalculusGrapherScreenView extends ScreenView {
 
@@ -26,14 +30,18 @@ export default class CalculusGrapherScreenView extends ScreenView {
   private model: CalculusGrapherModel;
   private readonly graphsNode: GraphsNode;
 
-  public constructor( model: CalculusGrapherModel, providedOptions?: CalculusGrapherScreenViewOptions ) {
+  public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
-    const options = optionize<CalculusGrapherScreenViewOptions, SelfOptions, ScreenViewOptions>()( {}, providedOptions );
+    const options = optionize<CalculusGrapherScreenViewOptions,
+      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'checkboxGroupOptions'>, ScreenViewOptions>()( {
+    }, providedOptions );
 
     super( options );
 
     // Create the view-specific properties for the screen.
-    this.visibleProperties = new CalculusGrapherVisibleProperties( options );
+    this.visibleProperties = new CalculusGrapherVisibleProperties( combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
+      tandem: options.tandem.createTandem( 'visibleProperties' )
+    }, options.visiblePropertiesOptions ) );
     this.model = model;
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
@@ -41,17 +49,17 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
     } );
 
-    this.graphsNode = new GraphsNode( model, this.visibleProperties,
-      {
-        tandem: options.tandem.createTandem( 'graphsNode' )
-      } );
+    this.graphsNode = new GraphsNode( model, this.visibleProperties, {
+      tandem: options.tandem.createTandem( 'graphsNode' )
+    } );
+    //TODO this doesn't work correctly if done via options
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
 
-    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
-      isGraphCheckboxIncluded: options.isGraphCheckboxIncluded,
-      tandem: options.tandem.createTandem( 'checkboxGroup' )
-    } );
-    checkboxGroup.leftCenter = this.layoutBounds.leftCenter.addXY( 30, 0 );
+    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties,
+      combineOptions<CalculusGrapherCheckboxGroupOptions>( {
+        leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
+        tandem: options.tandem.createTandem( 'checkboxGroup' )
+      }, options.checkboxGroupOptions ) );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
