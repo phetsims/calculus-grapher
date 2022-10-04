@@ -121,28 +121,26 @@ export default class OriginalCurveNode extends CurveNode {
 
     const pathShape = new Shape();
 
-    const pointX = this.chartTransform.modelToViewX( this.curve.points[ 0 ].x );
-    const pointY = this.chartTransform.modelToViewY( this.curve.points[ 0 ].y );
+    const point = this.chartTransform.modelToViewXY( this.curve.points[ 0 ].x, this.curve.points[ 0 ].y );
 
-    pathShape.moveTo( pointX, pointY );
+    pathShape.moveToPoint( point );
 
     // Draw the curve shape slightly BELOW the true y-value.
     this.curve.points.forEach( point => {
       if ( point.exists ) {
-        const pointX = this.chartTransform.modelToViewX( point.x );
-        const pointY = this.chartTransform.modelToViewY( point.y );
+        const viewPoint = this.chartTransform.modelToViewXY( point.x, point.y );
 
-        pathShape.lineTo( pointX, pointY - CURVE_DRAG_DILATION );
+        pathShape.lineToPoint( viewPoint.addXY( 0, CURVE_DRAG_DILATION ) );
       }
     } );
 
     // Draw the curve shape slightly ABOVE the true y-value.
     _.forEachRight( this.curve.points, point => {
       if ( point.exists ) {
-        const pointX = this.chartTransform.modelToViewX( point.x );
-        const pointY = this.chartTransform.modelToViewY( point.y );
+        const viewPoint = this.chartTransform.modelToViewXY( point.x, point.y );
 
-        pathShape.lineTo( pointX, pointY + CURVE_DRAG_DILATION );
+        pathShape.lineToPoint( viewPoint.addXY( 0, -CURVE_DRAG_DILATION ) );
+
       }
     } );
 
