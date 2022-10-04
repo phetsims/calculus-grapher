@@ -17,12 +17,15 @@ import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import { Shape } from '../../../../kite/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
 type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 export default class OriginalCurveNode extends CurveNode {
+
+  private chartTransform: ChartTransform;
 
   public constructor( curve: OriginalCurve, chartTransform: ChartTransform, providedOptions?: OriginalCurveNodeOptions ) {
 
@@ -35,6 +38,8 @@ export default class OriginalCurveNode extends CurveNode {
 
     super( curve, chartTransform, options );
 
+
+    this.chartTransform = chartTransform;
 
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
@@ -91,16 +96,57 @@ export default class OriginalCurveNode extends CurveNode {
    */
   public override updateCurveNode(): void {
     super.updateCurveNode();
-
     this.setTouchMouseArea();
   }
 
   /**
    * set the touch/mouse area of this node
    */
-  private setTouchMouseArea(): void {
-    this.touchArea = this.scatterPlot.shape;
-    this.mouseArea = this.scatterPlot.shape;
+  public setTouchMouseArea(): void {
+
+    const pathShape = this.getDilatedCurveShape();
+    this.touchArea = pathShape;
+    this.mouseArea = pathShape;
+  }
+
+
+  /**
+   * Creates a (rough) dilated shape for a Curve.
+   * //TODO simplify
+   */
+  private getDilatedCurveShape(): Shape {
+
+    // in view coordinates
+    const CURVE_DRAG_DILATION = 5;
+
+    const pathShape = new Shape();
+
+    const pointX = this.chartTransform.modelToViewX( this.curve.points[ 0 ].x );
+    const pointY = this.chartTransform.modelToViewY( this.curve.points[ 0 ].y );
+
+    pathShape.moveTo( pointX, pointY );
+
+    // Draw the curve shape slightly BELOW the true y-value.
+    this.curve.points.forEach( point => {
+      if ( point.exists ) {
+        const pointX = this.chartTransform.modelToViewX( point.x );
+        const pointY = this.chartTransform.modelToViewY( point.y );
+
+        pathShape.lineTo( pointX, pointY - CURVE_DRAG_DILATION );
+      }
+    } );
+
+    // Draw the curve shape slightly ABOVE the true y-value.
+    _.forEachRight( this.curve.points, point => {
+      if ( point.exists ) {
+        const pointX = this.chartTransform.modelToViewX( point.x );
+        const pointY = this.chartTransform.modelToViewY( point.y );
+
+        pathShape.lineTo( pointX, pointY + CURVE_DRAG_DILATION );
+      }
+    } );
+
+    return pathShape.close().makeImmutable();
   }
 }
 

@@ -124,6 +124,9 @@ export default class GraphNode extends Node {
         chartTransform.setModelYRange( getModelYRange( zoomLevel, initialMaxY ) );
         chartTransform.setViewHeight( 2 * initialMaxY * horizontalModelToViewFactor );
         curveNode.clipArea = chartRectangle.getShape();
+
+        // TODO: find a way to update touch/mouse area without resorting to this
+        curve.curveChangedEmitter.emit();
       } );
 
 
