@@ -96,13 +96,13 @@ export default class OriginalCurveNode extends CurveNode {
    */
   public override updateCurveNode(): void {
     super.updateCurveNode();
-    this.setTouchMouseArea();
+    this.setPointerAreas();
   }
 
   /**
    * set the touch/mouse area of this node
    */
-  public setTouchMouseArea(): void {
+  public setPointerAreas(): void {
 
     const pathShape = this.getDilatedCurveShape();
     this.touchArea = pathShape;
@@ -112,7 +112,7 @@ export default class OriginalCurveNode extends CurveNode {
 
   /**
    * Creates a (rough) dilated shape for a Curve.
-   * //TODO simplify
+   * //TODO simplify: Talk to JO about why this is necessary in the first place.
    */
   private getDilatedCurveShape(): Shape {
 
