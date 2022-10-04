@@ -45,6 +45,8 @@ export default class OriginalCurveNode extends CurveNode {
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
     // TODO: the listener should be on the linePlot instead (#see 59).
+
+
     this.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
       applyOffset: false,
@@ -59,26 +61,29 @@ export default class OriginalCurveNode extends CurveNode {
         if ( curve.curveManipulationMode === CurveManipulationMode.HILL ) {
           curve.createHillAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.PARABOLA ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.PARABOLA ) {
           curve.createParabolaAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.PEDESTAL ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.PEDESTAL ) {
           curve.createPedestalAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.TRIANGLE ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.TRIANGLE ) {
           curve.createTriangleAt( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.TILT ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.TILT ) {
           curve.tiltToPosition( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.SHIFT ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.SHIFT ) {
           curve.shiftToPosition( modelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.FREEFORM ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.FREEFORM ) {
           curve.drawFreeformToPosition( modelPosition, oldModelPosition );
         }
-        if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
+        else if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
           curve.createSineAt( modelPosition );
+        }
+        else {
+          throw new Error( 'Unsupported Curve Manipulation Mode' );
         }
 
       },
