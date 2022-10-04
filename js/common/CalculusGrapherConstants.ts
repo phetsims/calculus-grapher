@@ -18,7 +18,7 @@ const CalculusGrapherConstants = {
   // Ranges
   CURVE_X_RANGE: new Range( 0, 40 ),
 
-  // vertical height of the graph according to the number of graphs show on the screen
+  // vertical height of the graph in model coordinates according to the number of graphs show on the screen
   INITIAL_MAX_Y: [ 14, 7, 5, 3 ],
 
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 ),

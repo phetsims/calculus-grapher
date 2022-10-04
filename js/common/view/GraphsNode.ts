@@ -35,20 +35,20 @@ export default class GraphNodes extends Node {
 
     super( options );
 
-    // determine the initial height of the graph based on the number of visible graphs.
-    this.initialMaxYProperty = new DerivedProperty( [
+
+    const initialMaxYDependencies = [
       visibleProperties.integralGraphNodeVisibleProperty,
       visibleProperties.originalGraphNodeVisibleProperty,
       visibleProperties.derivativeGraphNodeVisibleProperty,
       visibleProperties.secondDerivativeGraphNodeVisibleProperty
-    ], ( integralVisible, originalVisible, derivativeVisible, secondDerivativeVisible ) => {
-      let numberOfVisibleGraphs = 0;
-      numberOfVisibleGraphs += ( integralVisible ) ? 1 : 0;
-      numberOfVisibleGraphs += ( originalVisible ) ? 1 : 0;
-      numberOfVisibleGraphs += ( derivativeVisible ) ? 1 : 0;
-      numberOfVisibleGraphs += ( secondDerivativeVisible ) ? 1 : 0;
-      return CalculusGrapherConstants.INITIAL_MAX_Y[ numberOfVisibleGraphs - 1 ];
-    } );
+    ];
+
+    // determine the initial height of the graph based on the number of visible graphs.
+    this.initialMaxYProperty = DerivedProperty.deriveAny( initialMaxYDependencies,
+      () => {
+        const numberOfVisibleGraphs = _.filter( initialMaxYDependencies, property => property.value ).length;
+        return CalculusGrapherConstants.INITIAL_MAX_Y[ numberOfVisibleGraphs - 1 ];
+      } );
 
 
     this.integralGraphNode = new GraphNode( model.integralCurve,
