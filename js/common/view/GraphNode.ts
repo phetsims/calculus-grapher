@@ -23,57 +23,69 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, PathOptions } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, PathOptions, RectangleOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import CurveNode from './CurveNode.js';
-import OriginalCurveNode from './OriginalCurveNode.js';
+import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import Curve from '../model/Curve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import OriginalCurve from '../model/OriginalCurve.js';
 import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
+  chartRectangleOptions?: RectangleOptions;
+  curveNodeOptions?: CurveNodeOptions;
 };
-type GraphNodeOptions = SelfOptions & NodeOptions;
+export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'visibleProperty' | 'tandem'>;
 
 export default class GraphNode extends Node {
 
   public readonly zoomLevelProperty: NumberProperty;
+  protected readonly chartTransform: ChartTransform;
+  protected curveNode: CurveNode;
 
-  public constructor( curve: Curve | OriginalCurve,
+  public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       providedOptions: GraphNodeOptions ) {
+
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
 
       gridLineSetOptions: {
         stroke: CalculusGrapherColors.GRIDLINES_STROKE
+      },
+      chartRectangleOptions: CalculusGrapherColors.DEFAULT_CHART_BACKGROUND,
+      curveNodeOptions: {
+        linePlotOptions: {
+          stroke: CalculusGrapherColors.ORIGINAL_CURVE_STROKE
+        },
+        tandem: providedOptions.tandem.createTandem( 'curveNode' )
       }
 
     }, providedOptions );
 
     super( options );
 
+
     //----------------------------------------------------------------------------------------
 
-    const chartTransform = new ChartTransform( {
+    this.chartTransform = new ChartTransform( {
       viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
 
     // grid lines
-    const horizontalGridLines = new GridLineSet( chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
-    const verticalGridLines = new GridLineSet( chartTransform, Orientation.VERTICAL, 1, options.gridLineSetOptions );
+    const horizontalGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
+    const verticalGridLines = new GridLineSet( this.chartTransform, Orientation.VERTICAL, 1, options.gridLineSetOptions );
 
     // Axes nodes are clipped in the chart
-    const horizontalAxisLine = new AxisLine( chartTransform, Orientation.HORIZONTAL );
-    const verticalAxisLine = new AxisLine( chartTransform, Orientation.VERTICAL );
+    const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
+    const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
 
     const gridNode = new Node( { children: [ horizontalGridLines, verticalGridLines ] } );
 
@@ -87,28 +99,12 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'zoomLevelProperty' )
       } );
 
+    // curve associated with this graph
 
-    let curveNode: CurveNode;
-    if ( curve instanceof OriginalCurve ) {
-
-      curveNode = new OriginalCurveNode( curve, chartTransform, {
-        linePlotOptions: {
-          stroke: CalculusGrapherColors.ORIGINAL_CURVE_STROKE
-        },
-        tandem: options.tandem.createTandem( 'originalCurveNode' )
-      } );
-
-    }
-    else {
-
-      curveNode = new CurveNode( curve, chartTransform, {
-        tandem: options.tandem.createTandem( 'curveNode' )
-      } );
-    }
-    const chartRectangleOptions = curve instanceof OriginalCurve ? CalculusGrapherColors.ORIGINAL_CHART_BACKGROUND : CalculusGrapherColors.DEFAULT_CHART_BACKGROUND;
+    this.curveNode = this.getCurveNode( curve, this.chartTransform, options.curveNodeOptions );
 
     // chart Rectangle for the graph
-    const chartRectangle = new ChartRectangle( chartTransform, chartRectangleOptions );
+    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
     // zoom Button to the top left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(), {
@@ -129,15 +125,15 @@ export default class GraphNode extends Node {
     };
 
     this.zoomLevelProperty.link( zoomLevel => {
-      chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
+      this.chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
 
       // TODO: find a way to update touch/mouse area without resorting to this
       curve.curveChangedEmitter.emit();
     } );
 
     graphHeightProperty.link( height => {
-      chartTransform.setViewHeight( height );
-      curveNode.clipArea = chartRectangle.getShape();
+      this.chartTransform.setViewHeight( height );
+      this.curveNode.clipArea = chartRectangle.getShape();
 
       // TODO: find a way to update touch/mouse area without resorting to this
       curve.curveChangedEmitter.emit();
@@ -151,7 +147,7 @@ export default class GraphNode extends Node {
       horizontalAxisLine,
       verticalAxisLine,
       zoomButtonGroup,
-      curveNode
+      this.curveNode
     ];
   }
 
@@ -160,6 +156,11 @@ export default class GraphNode extends Node {
    */
   public reset(): void {
     this.zoomLevelProperty.reset();
+  }
+
+  public getCurveNode( curve: Curve, chartTransform: ChartTransform, options: CurveNodeOptions ): CurveNode {
+
+    return new CurveNode( curve, chartTransform, options );
   }
 }
 

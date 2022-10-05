@@ -16,6 +16,7 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import OriginalGraphNode from './OriginalGraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -23,7 +24,7 @@ export type GraphNodesOptions = SelfOptions & NodeOptions;
 
 export default class GraphNodes extends Node {
 
-  private readonly originalGraphNode: GraphNode;
+  private readonly originalGraphNode: OriginalGraphNode;
   private readonly derivativeGraphNode: GraphNode;
   private readonly integralGraphNode: GraphNode;
   private readonly secondDerivativeGraphNode: GraphNode;
@@ -60,13 +61,12 @@ export default class GraphNodes extends Node {
       } );
 
 
-    this.originalGraphNode = new GraphNode( model.originalCurve,
+    this.originalGraphNode = new OriginalGraphNode( model.originalCurve,
       visibleProperties.gridVisibleProperty,
       this.graphHeightProperty,
       {
         visibleProperty: visibleProperties.originalGraphNodeVisibleProperty,
-        tandem: options.tandem.createTandem( 'originalGraphNode' ),
-        phetioDocumentation: 'PhET-iO only, not settable in the sim'
+        tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
 
     this.derivativeGraphNode = new GraphNode( model.derivativeCurve,

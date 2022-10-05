@@ -21,10 +21,11 @@ import { Shape } from '../../../../kite/js/imports.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
+export type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 export default class OriginalCurveNode extends CurveNode {
 
@@ -35,7 +36,8 @@ export default class OriginalCurveNode extends CurveNode {
     const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
       linePlotOptions: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        stroke: CalculusGrapherColors.ORIGINAL_CURVE_STROKE
       }
     }, providedOptions );
 
