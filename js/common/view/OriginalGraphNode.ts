@@ -47,6 +47,12 @@ export default class OriginalGraphNode extends GraphNode {
 
     super( curve, gridVisibleProperty, graphHeightProperty, options );
 
+    graphHeightProperty.link( height => {
+
+      // @ts-ignore
+      this.curveNode.dragBoundsProperty.value = this.curveNode.dragBoundsProperty.value.setMaxY( height );
+    } );
+
   }
 
   /**

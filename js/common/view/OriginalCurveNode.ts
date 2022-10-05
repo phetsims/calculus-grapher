@@ -30,6 +30,7 @@ export type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
 export default class OriginalCurveNode extends CurveNode {
 
   private chartTransform: ChartTransform;
+  public dragBoundsProperty: Property<Bounds2>;
 
   public constructor( curve: OriginalCurve, chartTransform: ChartTransform, providedOptions?: OriginalCurveNodeOptions ) {
 
@@ -46,17 +47,20 @@ export default class OriginalCurveNode extends CurveNode {
 
     this.chartTransform = chartTransform;
 
+
+    // the viewBounds of this graph, the maxY is arbitrary, its value will be updated later
+    const graphViewBounds = new Bounds2( 0, 0, CalculusGrapherConstants.GRAPH_VIEW_WIDTH, 100 );
+
+    // create dragBounds based on the graph View
+    this.dragBoundsProperty = new Property( graphViewBounds );
+
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
 
-    // TODO: the maxY should be updated based on the size of graph.
-    const graphViewNode = new Bounds2( 0, 0, CalculusGrapherConstants.GRAPH_VIEW_WIDTH, 300 );
-    const dragBoundsProperty = new Property( graphViewNode );
-
     this.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
-      dragBoundsProperty: dragBoundsProperty,
+      dragBoundsProperty: this.dragBoundsProperty,
       applyOffset: false,
       start() {
         // Save the current values of the Points for the next undoToLastSave call.
