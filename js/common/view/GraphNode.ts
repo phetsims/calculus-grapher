@@ -61,9 +61,6 @@ export default class GraphNode extends Node {
       },
       chartRectangleOptions: CalculusGrapherColors.DEFAULT_CHART_BACKGROUND,
       curveNodeOptions: {
-        linePlotOptions: {
-          stroke: CalculusGrapherColors.ORIGINAL_CURVE_STROKE
-        },
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       }
 
