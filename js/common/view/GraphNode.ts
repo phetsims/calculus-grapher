@@ -122,6 +122,8 @@ export default class GraphNode extends Node {
     } );
 
     const getModelYRange = ( zoomLevel: number ) => {
+
+      //TODO replace the constant 5
       const maxY = 5 * Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
       return new Range( -maxY, maxY );
     };
