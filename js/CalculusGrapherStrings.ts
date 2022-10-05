@@ -21,9 +21,10 @@ type StringsType = {
   'smoothStringProperty': LinkableProperty<string>;
   'undoStringProperty': LinkableProperty<string>;
   'checkbox': {
+    'integralStringProperty': LinkableProperty<string>;
+    'originalStringProperty': LinkableProperty<string>;
     'derivativeStringProperty': LinkableProperty<string>;
     'secondDerivativeStringProperty': LinkableProperty<string>;
-    'integralStringProperty': LinkableProperty<string>;
   }
 };
 

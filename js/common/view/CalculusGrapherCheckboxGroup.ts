@@ -21,6 +21,7 @@ type SelfOptions = {
   isGraphCheckboxIncluded?: {
     integralGraph: boolean;
     derivativeGraph: boolean;
+    originalGraph?: boolean;
     secondDerivativeGraph: boolean;
   };
 };
@@ -36,6 +37,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
       {
         isGraphCheckboxIncluded: {
           integralGraph: true,
+          originalGraph: false,
           derivativeGraph: true,
           secondDerivativeGraph: false
         }
@@ -47,7 +49,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
     if ( options.isGraphCheckboxIncluded.integralGraph ) {
 
-      // Integral checkbox
+      // Item for integral checkbox
       const integralItem = createItem(
         CalculusGrapherStrings.checkbox.integralStringProperty,
         visibleProperties.integralGraphNodeVisibleProperty, {
@@ -57,9 +59,21 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
       items.push( integralItem );
     }
 
+    if ( options.isGraphCheckboxIncluded.originalGraph ) {
+
+      // Item for original function checkbox
+      const originalItem = createItem(
+        CalculusGrapherStrings.checkbox.originalStringProperty,
+        visibleProperties.originalGraphNodeVisibleProperty, {
+          tandemName: 'originalGraphNodeCheckbox'
+        } );
+
+      items.push( originalItem );
+    }
+
     if ( options.isGraphCheckboxIncluded.derivativeGraph ) {
 
-      // First Derivative checkbox
+      // Item for first Derivative checkbox
       const derivativeItem = createItem(
         CalculusGrapherStrings.checkbox.derivativeStringProperty,
         visibleProperties.derivativeGraphNodeVisibleProperty, {
@@ -69,9 +83,10 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
       items.push( derivativeItem );
     }
 
+
     if ( options.isGraphCheckboxIncluded.secondDerivativeGraph ) {
 
-      // Second Derivative checkbox
+      // Item for second Derivative checkbox
       const secondDerivativeItem = createItem(
         CalculusGrapherStrings.checkbox.secondDerivativeStringProperty,
         visibleProperties.secondDerivativeGraphNodeVisibleProperty, {

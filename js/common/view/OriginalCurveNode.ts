@@ -50,6 +50,11 @@ export default class OriginalCurveNode extends CurveNode {
     this.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
       applyOffset: false,
+      start() {
+        // Save the current values of the Points for the next undoToLastSave call.
+        // This must be called once at the start of dragging (and not on each micro drag-position change).
+        curve.saveCurrentPoints();
+      },
       drag( event, listener ) {
 
         // current modelPosition
@@ -86,11 +91,6 @@ export default class OriginalCurveNode extends CurveNode {
           throw new Error( 'Unsupported Curve Manipulation Mode' );
         }
 
-      },
-      start() {
-        // Save the current values of the Points for the next undoToLastSave call.
-        // This must be called once at the start of dragging (and not on each micro drag-position change).
-        curve.saveCurrentPoints();
       }
     } ) );
 
@@ -117,7 +117,7 @@ export default class OriginalCurveNode extends CurveNode {
 
   /**
    * Creates a (rough) dilated shape for a Curve.
-   * //TODO simplify: Talk to JO about why this is necessary in the first place.
+   * TODO simplify: Talk to JO about why this is necessary in the first place.
    */
   private getDilatedCurveShape(): Shape {
 
