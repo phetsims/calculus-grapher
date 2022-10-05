@@ -1,6 +1,18 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
+ * GraphNode is the view representation of a Graph, which includes a curve, a chart ( grid and axes) and zoom buttons
+ *
+ * Primary responsibilities are:
+ * - Create an associated CurveNode
+ * - Create a zoomButtonGroup with an associated property
+ * - Create AxisLines, GridLines and Rectangle Chart
+ * - Create a Chart Transform
+ * - Updating the model y Range of the graph based on the zoom level
+ * - Toggling the visibility of the gridlines
+ * - Set the height of the graph
+ *
+ * @author Martin Veillette
  * @author Brandon Li
  */
 
