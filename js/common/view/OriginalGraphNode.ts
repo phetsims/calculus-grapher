@@ -49,7 +49,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     graphHeightProperty.link( height => {
 
-      // @ts-ignore
+      // @ts-ignore (see #66)
       this.curveNode.dragBoundsProperty.value = this.curveNode.dragBoundsProperty.value.setMaxY( height );
     } );
 
