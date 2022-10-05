@@ -27,7 +27,7 @@ export default class GraphNodes extends Node {
   private readonly derivativeGraphNode: GraphNode;
   private readonly integralGraphNode: GraphNode;
   private readonly secondDerivativeGraphNode: GraphNode;
-  private readonly initialMaxYProperty: TReadOnlyProperty<number>;
+  private readonly graphHeightProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel, visibleProperties: CalculusGrapherVisibleProperties, providedOptions?: GraphNodesOptions ) {
 
@@ -43,17 +43,17 @@ export default class GraphNodes extends Node {
       visibleProperties.secondDerivativeGraphNodeVisibleProperty
     ];
 
-    // determine the initial height of the graph based on the number of visible graphs.
-    this.initialMaxYProperty = DerivedProperty.deriveAny( initialMaxYDependencies,
+    // determine the (view) height of the graph based on the number of visible graphs.
+    this.graphHeightProperty = DerivedProperty.deriveAny( initialMaxYDependencies,
       () => {
         const numberOfVisibleGraphs = _.filter( initialMaxYDependencies, property => property.value ).length;
-        return CalculusGrapherConstants.INITIAL_MAX_Y[ numberOfVisibleGraphs - 1 ];
+        return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
       } );
 
 
     this.integralGraphNode = new GraphNode( model.integralCurve,
       visibleProperties.gridVisibleProperty,
-      this.initialMaxYProperty,
+      this.graphHeightProperty,
       {
         visibleProperty: visibleProperties.integralGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
@@ -62,7 +62,7 @@ export default class GraphNodes extends Node {
 
     this.originalGraphNode = new GraphNode( model.originalCurve,
       visibleProperties.gridVisibleProperty,
-      this.initialMaxYProperty,
+      this.graphHeightProperty,
       {
         visibleProperty: visibleProperties.originalGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' ),
@@ -71,7 +71,7 @@ export default class GraphNodes extends Node {
 
     this.derivativeGraphNode = new GraphNode( model.derivativeCurve,
       visibleProperties.gridVisibleProperty,
-      this.initialMaxYProperty,
+      this.graphHeightProperty,
       {
         visibleProperty: visibleProperties.derivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
@@ -79,7 +79,7 @@ export default class GraphNodes extends Node {
 
     this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       visibleProperties.gridVisibleProperty,
-      this.initialMaxYProperty,
+      this.graphHeightProperty,
       {
         visibleProperty: visibleProperties.secondDerivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )

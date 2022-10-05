@@ -32,7 +32,6 @@ import Curve from '../model/Curve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import OriginalCurve from '../model/OriginalCurve.js';
-import Multilink from '../../../../axon/js/Multilink.js';
 import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -48,7 +47,7 @@ export default class GraphNode extends Node {
 
   public constructor( curve: Curve | OriginalCurve,
                       gridVisibleProperty: Property<boolean>,
-                      initialMaxYProperty: TReadOnlyProperty<number>,
+                      graphHeightProperty: TReadOnlyProperty<number>,
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
@@ -62,9 +61,6 @@ export default class GraphNode extends Node {
     super( options );
 
     //----------------------------------------------------------------------------------------
-
-    // number of view coordinates for one horizontal model units
-    const horizontalModelToViewFactor = CalculusGrapherConstants.GRAPH_VIEW_WIDTH / CalculusGrapherConstants.CURVE_X_RANGE.getLength();
 
     const chartTransform = new ChartTransform( {
       viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
@@ -125,21 +121,25 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'zoomButtonGroup' )
     } );
 
-    const getModelYRange = ( zoomLevel: number, initialMaxY: number ) => {
-      const maxY = initialMaxY * Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+    const getModelYRange = ( zoomLevel: number ) => {
+      const maxY = 5 * Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
       return new Range( -maxY, maxY );
     };
 
+    this.zoomLevelProperty.link( zoomLevel => {
+      chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
 
-    Multilink.multilink( [ this.zoomLevelProperty, initialMaxYProperty ],
-      ( zoomLevel, initialMaxY ) => {
-        chartTransform.setModelYRange( getModelYRange( zoomLevel, initialMaxY ) );
-        chartTransform.setViewHeight( 2 * initialMaxY * horizontalModelToViewFactor );
-        curveNode.clipArea = chartRectangle.getShape();
+      // TODO: find a way to update touch/mouse area without resorting to this
+      curve.curveChangedEmitter.emit();
+    } );
 
-        // TODO: find a way to update touch/mouse area without resorting to this
-        curve.curveChangedEmitter.emit();
-      } );
+    graphHeightProperty.link( height => {
+      chartTransform.setViewHeight( height );
+      curveNode.clipArea = chartRectangle.getShape();
+
+      // TODO: find a way to update touch/mouse area without resorting to this
+      curve.curveChangedEmitter.emit();
+    } );
 
 
     // add children to this node
