@@ -18,6 +18,9 @@ import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Shape } from '../../../../kite/js/imports.js';
+import Property from '../../../../axon/js/Property.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -44,11 +47,14 @@ export default class OriginalCurveNode extends CurveNode {
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
-    // TODO: the listener should be on the linePlot instead (#see 59).
 
+    // TODO: the maxY should be updated based on the size of graph.
+    const graphViewNode = new Bounds2( 0, 0, CalculusGrapherConstants.GRAPH_VIEW_WIDTH, 300 );
+    const dragBoundsProperty = new Property( graphViewNode );
 
     this.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
+      dragBoundsProperty: dragBoundsProperty,
       applyOffset: false,
       start() {
         // Save the current values of the Points for the next undoToLastSave call.
