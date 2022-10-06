@@ -59,7 +59,7 @@ export default class CurveNode extends Node {
       },
 
       linePlotOptions: {
-        stroke: CalculusGrapherColors.DEFAULT_CURVE_STROKE,
+        stroke: CalculusGrapherColors.defaultCurveStrokeProperty,
         lineWidth: 2
       }
     }, provideOptions );

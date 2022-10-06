@@ -38,7 +38,7 @@ export default class OriginalCurveNode extends CurveNode {
       // super-class options
       linePlotOptions: {
         cursor: 'pointer',
-        stroke: CalculusGrapherColors.ORIGINAL_CURVE_STROKE
+        stroke: CalculusGrapherColors.originalCurveStrokeProperty
       }
     }, providedOptions );
 

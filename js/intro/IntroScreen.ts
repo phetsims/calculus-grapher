@@ -6,7 +6,6 @@
  * @author Brandon Li
  */
 
-import Property from '../../../axon/js/Property.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
@@ -31,7 +30,7 @@ export default class IntroScreen extends Screen {
 
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.introStringProperty,
-      backgroundColorProperty: new Property( CalculusGrapherColors.SCREEN_BACKGROUND ),
+      backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       tandem: options.tandem
     } );
   }

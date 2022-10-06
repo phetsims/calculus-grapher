@@ -39,7 +39,10 @@ export default class OriginalGraphNode extends GraphNode {
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
-      chartRectangleOptions: CalculusGrapherColors.ORIGINAL_CHART_BACKGROUND,
+      chartRectangleOptions: {
+        fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
+        stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
+      },
       curveNodeOptions: {
         tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
       }

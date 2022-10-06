@@ -4,19 +4,38 @@
  * Colors for the 'Calculus Grapher' sim.
  *
  * @author Brandon Li
+ * @Martin Veillette
  */
 
-import { Color } from '../../../scenery/js/imports.js';
+import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
 import calculusGrapher from '../calculusGrapher.js';
 
 const CalculusGrapherColors = {
 
-  // General
-  SCREEN_BACKGROUND: 'rgb( 240, 240, 240 )',
+  // Background color used for all screens
+  screenBackgroundColorProperty: new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
+    default: 'rgb( 240, 240, 240 )'
+  } ),
 
-  // Panel-like Containers
-  PANEL_STROKE: 'rgb( 190, 190, 190 )',
-  PANEL_FILL: 'rgb( 240, 240, 240 )',
+  // Stroke for Panel-like Containers
+  panelStrokeProperty: new ProfileColorProperty( calculusGrapher, 'panelStroke', {
+    default: 'rgb( 190, 190, 190 )'
+  } ),
+
+  // Fill for Panel-like Containers
+  panelFillProperty: new ProfileColorProperty( calculusGrapher, 'panelFill', {
+    default: 'rgb( 240, 240, 240 )'
+  } ),
+
+  // Fill for the background of Original Graph
+  originalChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundFill', {
+    default: 'white'
+  } ),
+
+  // Stroke for the background of Original Graph
+  originalChartBackgroundStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundStroke', {
+    default: 'black'
+  } ),
 
   // Graph
   ORIGINAL_CHART_BACKGROUND: {
@@ -24,16 +43,36 @@ const CalculusGrapherColors = {
     stroke: 'black'
   },
 
+  // Fill for the background of all Graphs (besides Original)
+  defaultChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
+    default: 'rgb( 240, 240, 240 )'
+  } ),
+
+  // Stroke for the background of all Graphs (besides Original)
+  defaultChartBackgroundStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundStroke', {
+    default: 'black'
+  } ),
+
   DEFAULT_CHART_BACKGROUND: {
     fill: 'rgb( 240, 240, 240 )',
     stroke: 'black'
   },
 
-  GRIDLINES_STROKE: 'lightGray',
+  // Stroke for the gridlines of graph
+  gridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'gridlinesStroke', {
+    default: 'lightGray'
+  } ),
 
-  // Curves
-  ORIGINAL_CURVE_STROKE: Color.BLUE,
-  DEFAULT_CURVE_STROKE: Color.RED
+  // Stroke for the original curve
+  originalCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
+    default: Color.BLUE
+  } ),
+
+  // Stroke for all curves (besides original)
+  defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
+    default: Color.RED
+  } )
+
 
 };
 

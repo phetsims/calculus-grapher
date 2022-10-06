@@ -22,7 +22,10 @@
     ],
     "simulation": true,
     "supportsOutputJS": true,
-    "supportsDynamicLocale": true
+    "supportsDynamicLocale": true,
+    "colorProfiles": [
+      "default"
+    ]
   },
   "eslintConfig": {
     "extends": "../chipper/eslint/sim_eslintrc.js"

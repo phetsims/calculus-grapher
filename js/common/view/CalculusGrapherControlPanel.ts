@@ -33,8 +33,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       contentSpacing: 7,
 
       // super-class options
-      stroke: CalculusGrapherColors.PANEL_STROKE,
-      fill: CalculusGrapherColors.PANEL_FILL
+      stroke: CalculusGrapherColors.panelStrokeProperty,
+      fill: CalculusGrapherColors.panelFillProperty
 
     }, provideOptions );
 

@@ -57,9 +57,12 @@ export default class GraphNode extends Node {
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
 
       gridLineSetOptions: {
-        stroke: CalculusGrapherColors.GRIDLINES_STROKE
+        stroke: CalculusGrapherColors.gridlinesStrokeProperty
       },
-      chartRectangleOptions: CalculusGrapherColors.DEFAULT_CHART_BACKGROUND,
+      chartRectangleOptions: {
+        fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
+        stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
+      },
       curveNodeOptions: {
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       }
