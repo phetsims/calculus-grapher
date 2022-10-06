@@ -37,12 +37,6 @@ const CalculusGrapherColors = {
     default: 'black'
   } ),
 
-  // Graph
-  ORIGINAL_CHART_BACKGROUND: {
-    fill: 'white',
-    stroke: 'black'
-  },
-
   // Fill for the background of all Graphs (besides Original)
   defaultChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
     default: 'rgb( 240, 240, 240 )'
@@ -52,11 +46,6 @@ const CalculusGrapherColors = {
   defaultChartBackgroundStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundStroke', {
     default: 'black'
   } ),
-
-  DEFAULT_CHART_BACKGROUND: {
-    fill: 'rgb( 240, 240, 240 )',
-    stroke: 'black'
-  },
 
   // Stroke for the gridlines of graph
   gridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'gridlinesStroke', {
@@ -72,7 +61,6 @@ const CalculusGrapherColors = {
   defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
     default: Color.RED
   } )
-
 
 };
 
