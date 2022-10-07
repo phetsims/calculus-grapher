@@ -29,10 +29,25 @@ const CurveLabelsNode = {
   // label for df/dx
   getDerivativeLabel(): Node {
 
-    const numeratorString = CalculusGrapherSymbols.dfStringProperty;
-    const denominatorString = CalculusGrapherSymbols.dxStringProperty;
+    const hairSpaceString = '\u200A';
 
-    return getFractionLabel( numeratorString, denominatorString );
+    const numeratorStringProperty = new DerivedProperty(
+      [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
+      ( d, f ) => {
+
+        // string for df
+        return `${d}${hairSpaceString}${f}`;
+      } );
+
+    const denominatorStringProperty =
+      new DerivedProperty(
+        [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.xStringProperty ],
+        ( d, x ) => {
+
+          // string for dx
+          return `${d}${x}`;
+        } );
+    return getFractionLabel( numeratorStringProperty, denominatorStringProperty );
   },
 
   // label for d^2f/dx^2
@@ -71,11 +86,11 @@ const CurveLabelsNode = {
     const labelStringProperty = new DerivedProperty(
       [ CalculusGrapherSymbols.fStringProperty,
         CalculusGrapherSymbols.xStringProperty,
-        CalculusGrapherSymbols.dxStringProperty ],
-      ( f, x, dx ) => {
+        CalculusGrapherSymbols.dStringProperty ],
+      ( f, x, d ) => {
 
         // string for  \int f(x) dx
-        return `${integrationString} ${f}(${x}) ${dx} `;
+        return `${integrationString} ${f}(${x}) ${d}${x} `;
       } );
 
     return new RichText( labelStringProperty );

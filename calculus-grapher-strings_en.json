@@ -28,11 +28,5 @@
   },
   "symbol.x": {
     "value": "x"
-  },
-  "symbol.dx": {
-    "value": "dx"
-  },
-  "symbol.df": {
-    "value": "df"
   }
 }
