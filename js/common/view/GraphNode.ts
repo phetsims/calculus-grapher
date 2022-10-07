@@ -51,6 +51,7 @@ export default class GraphNode extends Node {
   public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
+                      labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
 
@@ -139,6 +140,7 @@ export default class GraphNode extends Node {
       curve.curveChangedEmitter.emit();
     } );
 
+    labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
 
     // add children to this node
     this.children = [
@@ -147,6 +149,7 @@ export default class GraphNode extends Node {
       horizontalAxisLine,
       verticalAxisLine,
       zoomButtonGroup,
+      labelNode,
       this.curveNode
     ];
   }

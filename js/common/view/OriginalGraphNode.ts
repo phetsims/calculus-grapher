@@ -25,6 +25,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import { Node } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -35,6 +36,7 @@ export default class OriginalGraphNode extends GraphNode {
   public constructor( curve: OriginalCurve,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
+                      labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
@@ -48,7 +50,7 @@ export default class OriginalGraphNode extends GraphNode {
       }
     }, providedOptions );
 
-    super( curve, gridVisibleProperty, graphHeightProperty, options );
+    super( curve, gridVisibleProperty, graphHeightProperty, labelNode, options );
 
     graphHeightProperty.link( height => {
 

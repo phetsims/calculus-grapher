@@ -17,6 +17,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
+import CurveLabelsNode from './CurveLabelsNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -55,6 +56,7 @@ export default class GraphNodes extends Node {
     this.integralGraphNode = new GraphNode( model.integralCurve,
       visibleProperties.gridVisibleProperty,
       this.graphHeightProperty,
+      CurveLabelsNode.getIntegralLabel(),
       {
         visibleProperty: visibleProperties.integralGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
@@ -64,6 +66,7 @@ export default class GraphNodes extends Node {
     this.originalGraphNode = new OriginalGraphNode( model.originalCurve,
       visibleProperties.gridVisibleProperty,
       this.graphHeightProperty,
+      CurveLabelsNode.getOriginalLabel(),
       {
         visibleProperty: visibleProperties.originalGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'originalGraphNode' )
@@ -72,6 +75,7 @@ export default class GraphNodes extends Node {
     this.derivativeGraphNode = new GraphNode( model.derivativeCurve,
       visibleProperties.gridVisibleProperty,
       this.graphHeightProperty,
+      CurveLabelsNode.getDerivativeLabel(),
       {
         visibleProperty: visibleProperties.derivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
@@ -80,6 +84,7 @@ export default class GraphNodes extends Node {
     this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       visibleProperties.gridVisibleProperty,
       this.graphHeightProperty,
+      CurveLabelsNode.getSecondDerivativeLabel(),
       {
         visibleProperty: visibleProperties.secondDerivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
