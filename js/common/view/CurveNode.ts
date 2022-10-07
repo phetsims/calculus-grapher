@@ -74,7 +74,7 @@ export default class CurveNode extends Node {
     this.scatterPlot = new ScatterPlot( chartTransform, scatterPlotDataSet, options.scatterPlotOptions );
     this.linePlot = new LinePlot( chartTransform, linePlotDataSet, options.linePlotOptions );
 
-    this.addChild( this.scatterPlot );
+    // this.addChild( this.scatterPlot );
     this.addChild( this.linePlot );
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
