@@ -6,16 +6,15 @@
  * @author Martin Veillette
  */
 
-import { Text } from '../../../../scenery/js/imports.js';
 import VerticalCheckboxGroup, { VerticalCheckboxGroupItem, VerticalCheckboxGroupOptions } from '../../../../sun/js/VerticalCheckboxGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
+import CurveLabelsNode from './CurveLabelsNode.js';
+import { Node } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = {
   isGraphCheckboxIncluded?: {
@@ -51,7 +50,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
       // Item for integral checkbox
       const integralItem = createItem(
-        CalculusGrapherStrings.checkbox.integralStringProperty,
+        CurveLabelsNode.getIntegralLabel(),
         visibleProperties.integralGraphNodeVisibleProperty, {
           tandemName: 'integralGraphNodeCheckbox'
         } );
@@ -63,7 +62,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
       // Item for original function checkbox
       const originalItem = createItem(
-        CalculusGrapherStrings.checkbox.originalStringProperty,
+        CurveLabelsNode.getOriginalLabel(),
         visibleProperties.originalGraphNodeVisibleProperty, {
           tandemName: 'originalGraphNodeCheckbox'
         } );
@@ -75,7 +74,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
       // Item for first Derivative checkbox
       const derivativeItem = createItem(
-        CalculusGrapherStrings.checkbox.derivativeStringProperty,
+        CurveLabelsNode.getDerivativeLabel(),
         visibleProperties.derivativeGraphNodeVisibleProperty, {
           tandemName: 'derivativeGraphNodeCheckbox'
         } );
@@ -88,7 +87,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
       // Item for second Derivative checkbox
       const secondDerivativeItem = createItem(
-        CalculusGrapherStrings.checkbox.secondDerivativeStringProperty,
+        CurveLabelsNode.getSecondDerivativeLabel(),
         visibleProperties.secondDerivativeGraphNodeVisibleProperty, {
           tandemName: 'secondDerivativeGraphNodeCheckbox'
         } );
@@ -102,13 +101,13 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
 type ItemOptions = PickRequired<VerticalCheckboxGroupItem, 'tandemName'> & PickOptional<VerticalCheckboxGroupItem, 'options'>;
 
-function createItem( labelStringProperty: TReadOnlyProperty<string>,
+function createItem( labelNode: Node,
                      property: Property<boolean>,
                      providedOptions: ItemOptions ): VerticalCheckboxGroupItem {
 
   return {
     createNode: tandem => {
-      return new Text( labelStringProperty, { tandem: tandem.createTandem( 'labelText' ) } );
+      return labelNode;
     },
     property: property,
     options: providedOptions.options,

@@ -20,16 +20,19 @@
   "undo": {
     "value": "Undo"
   },
-  "checkbox.integral": {
-    "value": "int f(x)"
+  "symbol.d": {
+    "value": "d"
   },
-  "checkbox.original": {
-    "value": "f(x)"
+  "symbol.f": {
+    "value": "f"
   },
-  "checkbox.derivative": {
-    "value": "f'(x)"
+  "symbol.x": {
+    "value": "x"
   },
-  "checkbox.secondDerivative": {
-    "value": "f''(x)"
+  "symbol.dx": {
+    "value": "dx"
+  },
+  "symbol.df": {
+    "value": "df"
   }
 }

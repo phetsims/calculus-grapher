@@ -20,11 +20,12 @@ type StringsType = {
   'resetStringProperty': LinkableProperty<string>;
   'smoothStringProperty': LinkableProperty<string>;
   'undoStringProperty': LinkableProperty<string>;
-  'checkbox': {
-    'integralStringProperty': LinkableProperty<string>;
-    'originalStringProperty': LinkableProperty<string>;
-    'derivativeStringProperty': LinkableProperty<string>;
-    'secondDerivativeStringProperty': LinkableProperty<string>;
+  'symbol': {
+    'dStringProperty': LinkableProperty<string>;
+    'fStringProperty': LinkableProperty<string>;
+    'xStringProperty': LinkableProperty<string>;
+    'dxStringProperty': LinkableProperty<string>;
+    'dfStringProperty': LinkableProperty<string>;
   }
 };
 
