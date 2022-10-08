@@ -88,7 +88,11 @@ export default class OriginalCurveNode extends CurveNode {
           curve.createTriangleAt( modelPosition );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.TILT ) {
-          curve.tiltToPosition( modelPosition );
+
+          // Don't try to tilt if it would cause a divide by zero error, see https://github.com/phetsims/calculus-grapher/issues/69
+          if ( modelPosition.x !== 0 ) {
+            curve.tiltToPosition( modelPosition );
+          }
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.SHIFT ) {
           curve.shiftToPosition( modelPosition );
