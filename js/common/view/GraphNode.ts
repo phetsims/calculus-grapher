@@ -28,17 +28,19 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import Curve from '../model/Curve.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
+import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
+  plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
 };
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'visibleProperty' | 'tandem'>;
 
@@ -66,15 +68,19 @@ export default class GraphNode extends Node {
       },
       curveNodeOptions: {
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
+      },
+      plusMinusZoomButtonGroupOptions: {
+        visibleProperty: new BooleanProperty( true ),
+        orientation: 'vertical',
+        buttonOptions: {
+          stroke: 'black'
+        }
       }
-
     }, providedOptions );
 
     super( options );
 
-
-    //----------------------------------------------------------------------------------------
-
+    // chart transform for the graph, the height and Y range will be updated later
     this.chartTransform = new ChartTransform( {
       viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
@@ -101,22 +107,18 @@ export default class GraphNode extends Node {
       } );
 
     // curve associated with this graph
-
     this.curveNode = this.getCurveNode( curve, this.chartTransform, options.curveNodeOptions );
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
     // zoom Button to the top left of the graph
-    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(), {
-      orientation: 'vertical',
-      right: chartRectangle.left - 10,
-      top: chartRectangle.top,
-      buttonOptions: {
-        stroke: 'black'
-      },
-      tandem: options.tandem.createTandem( 'zoomButtonGroup' )
-    } );
+    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
+      combineOptions<PlusMinusZoomButtonGroupOptions>( {
+        right: chartRectangle.left - 10,
+        top: chartRectangle.top,
+        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
+      }, options.plusMinusZoomButtonGroupOptions ) );
 
     const getModelYRange = ( zoomLevel: number ) => {
 

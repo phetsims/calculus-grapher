@@ -47,10 +47,14 @@ export default class OriginalGraphNode extends GraphNode {
       },
       curveNodeOptions: {
         tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
+      },
+      plusMinusZoomButtonGroupOptions: {
+        visibleProperty: new Property( false )
       }
     }, providedOptions );
 
     super( curve, gridVisibleProperty, graphHeightProperty, labelNode, options );
+
 
     graphHeightProperty.link( height => {
 
