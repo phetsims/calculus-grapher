@@ -130,16 +130,11 @@ export default class GraphNode extends Node {
     this.zoomLevelProperty.link( zoomLevel => {
       this.chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
 
-      // TODO: find a way to update touch/mouse area without resorting to this
-      curve.curveChangedEmitter.emit();
     } );
 
     graphHeightProperty.link( height => {
       this.chartTransform.setViewHeight( height );
       this.curveNode.clipArea = chartRectangle.getShape();
-
-      // TODO: find a way to update touch/mouse area without resorting to this
-      curve.curveChangedEmitter.emit();
     } );
 
     labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );

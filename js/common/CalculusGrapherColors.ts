@@ -60,8 +60,12 @@ const CalculusGrapherColors = {
   // Stroke for all curves (besides original)
   defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
     default: Color.RED
-  } )
+  } ),
 
+  // fill for up and down arrows on original graph
+  arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
+    default: Color.ORANGE
+  } )
 };
 
 calculusGrapher.register( 'CalculusGrapherColors', CalculusGrapherColors );

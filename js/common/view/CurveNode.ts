@@ -81,7 +81,7 @@ export default class CurveNode extends Node {
 
   }
 
-  protected updateCurveNode(): void {
+  public updateCurveNode(): void {
     this.scatterPlot.setDataSet( this.getScatterPlotDataSet() );
     this.linePlot.setDataSet( this.getLinePlotDataSet() );
   }

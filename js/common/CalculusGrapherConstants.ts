@@ -8,8 +8,16 @@
 
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
+import { ArrowNodeOptions } from '../../../scenery-phet/js/ArrowNode.js';
 import calculusGrapher from '../calculusGrapher.js';
 
+
+const ARROW_NODE_OPTIONS: ArrowNodeOptions = {
+  headWidth: 25,
+  headHeight: 21,
+  tailWidth: 12,
+  fractionalHeadHeight: 0.5
+};
 
 const CalculusGrapherConstants = {
 
@@ -25,8 +33,12 @@ const CalculusGrapherConstants = {
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 ),
 
   // zoom level ranges
-  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 10, 5 )
+  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 10, 5 ),
 
+
+  // arrow
+  ARROW_LENGTH: 50,
+  ARROW_NODE_OPTIONS: ARROW_NODE_OPTIONS
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
