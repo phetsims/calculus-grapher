@@ -14,12 +14,12 @@ import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptio
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
-import CalculusGrapherCheckboxGroup, { CalculusGrapherCheckboxGroupOptions } from './CalculusGrapherCheckboxGroup.js';
+import GraphsCheckboxGroup, { GraphsCheckboxGroupOptions } from './GraphsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
-  checkboxGroupOptions?: StrictOmit<CalculusGrapherCheckboxGroupOptions, 'tandem'>;
+  checkboxGroupOptions?: StrictOmit<GraphsCheckboxGroupOptions, 'tandem'>;
 };
 
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
@@ -55,10 +55,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
     //TODO this doesn't work correctly if done via options
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
 
-    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties,
-      combineOptions<CalculusGrapherCheckboxGroupOptions>( {
+    const graphsCheckboxGroup = new GraphsCheckboxGroup( this.visibleProperties,
+      combineOptions<GraphsCheckboxGroupOptions>( {
         leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
-        tandem: options.tandem.createTandem( 'checkboxGroup' )
+        tandem: options.tandem.createTandem( 'graphsCheckboxGroup' )
       }, options.checkboxGroupOptions ) );
 
     const resetAllButton = new ResetAllButton( {
@@ -68,7 +68,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     } );
 
     this.addChild( this.graphsNode );
-    this.addChild( checkboxGroup );
+    this.addChild( graphsCheckboxGroup );
     this.addChild( controlPanel );
     this.addChild( resetAllButton );
   }

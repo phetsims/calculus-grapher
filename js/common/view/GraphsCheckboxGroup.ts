@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * CalculusGrapherCheckboxGroup is a group of checkboxes for controlling visibility of graph nodes
+ * GraphsCheckboxGroup is a group of checkboxes for controlling visibility of graph nodes
  *
  * @author Martin Veillette
  */
@@ -25,14 +25,14 @@ type SelfOptions = {
   };
 };
 
-export type CalculusGrapherCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
+export type GraphsCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
 
-export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup {
+export default class GraphsCheckboxGroup extends VerticalCheckboxGroup {
 
   public constructor( visibleProperties: CalculusGrapherVisibleProperties,
-                      providedOptions: CalculusGrapherCheckboxGroupOptions ) {
+                      providedOptions: GraphsCheckboxGroupOptions ) {
 
-    const options = optionize<CalculusGrapherCheckboxGroupOptions, SelfOptions, VerticalCheckboxGroupOptions>()(
+    const options = optionize<GraphsCheckboxGroupOptions, SelfOptions, VerticalCheckboxGroupOptions>()(
       {
         isGraphCheckboxIncluded: {
           integralGraph: true,
@@ -115,4 +115,4 @@ function createItem( labelNode: Node,
   };
 }
 
-calculusGrapher.register( 'CalculusGrapherCheckboxGroup', CalculusGrapherCheckboxGroup );
+calculusGrapher.register( 'GraphsCheckboxGroup', GraphsCheckboxGroup );
