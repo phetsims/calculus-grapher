@@ -64,7 +64,8 @@ export default class GraphNode extends Node {
       },
       chartRectangleOptions: {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
-        stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
+        stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty,
+        opacity: 0.4
       },
       curveNodeOptions: {
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
@@ -141,8 +142,8 @@ export default class GraphNode extends Node {
 
     // add children to this node
     this.children = [
-      chartRectangle,
       gridNode,
+      chartRectangle,
       horizontalAxisLine,
       verticalAxisLine,
       zoomButtonGroup,
