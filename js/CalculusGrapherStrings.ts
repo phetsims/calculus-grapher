@@ -24,8 +24,7 @@ type StringsType = {
     'dStringProperty': LinkableProperty<string>;
     'fStringProperty': LinkableProperty<string>;
     'xStringProperty': LinkableProperty<string>;
-    'dxStringProperty': LinkableProperty<string>;
-    'dfStringProperty': LinkableProperty<string>;
+    'tStringProperty': LinkableProperty<string>;
   }
 };
 

@@ -17,7 +17,9 @@ const CalculusGrapherSymbols = {
 
   dStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.dStringProperty ), // d
   xStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.xStringProperty ), // x
-  fStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.fStringProperty ) // f
+  fStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.fStringProperty ), // f
+  tStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.tStringProperty ), // t
+  integral: MathSymbolFont.getRichTextMarkup( '\u222B', 'normal' )
 };
 
 
