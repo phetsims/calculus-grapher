@@ -26,6 +26,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Node } from '../../../../scenery/js/imports.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -49,7 +50,7 @@ export default class OriginalGraphNode extends GraphNode {
         tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
       },
       plusMinusZoomButtonGroupOptions: {
-        visibleProperty: new Property( false )
+        visibleProperty: new BooleanProperty( false )
       }
     }, providedOptions );
 
