@@ -30,20 +30,24 @@ export default class CurvePoint {
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public y: number;
 
+  public isDiscontinuous: boolean;
+
   // the initial y-coordinate passed into the CurvePoint, for resetting purposes.
   private readonly initialY: number;
 
   // an array of all of this Point's saved y-values.
   private savedYValues: ( number )[];
 
-  public constructor( x: number, y = 0 ) {
+  public constructor( x: number, y = 0, isDiscontinuous = false ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
     assert && assert( y === null || Number.isFinite( y ), `invalid y: ${y}` );
 
     this.x = x;
     this.y = y;
+    this.isDiscontinuous = isDiscontinuous;
 
     this.initialY = y;
+
     this.savedYValues = [];
   }
 

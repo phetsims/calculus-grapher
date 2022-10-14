@@ -36,7 +36,7 @@ export default class OriginalCurveNode extends CurveNode {
 
     const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
-      linePlotOptions: {
+      continuousLinePlotOptions: {
         cursor: 'pointer',
         stroke: CalculusGrapherColors.originalCurveStrokeProperty
       }
