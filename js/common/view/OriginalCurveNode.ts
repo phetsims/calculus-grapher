@@ -123,7 +123,7 @@ export default class OriginalCurveNode extends CurveNode {
   /**
    * set the touch/mouse area of this node
    */
-  public setPointerAreas(): void {
+  public override setPointerAreas(): void {
 
     const pathShape = this.getDilatedCurveShape();
     this.touchArea = pathShape;

@@ -93,6 +93,10 @@ export default class CurveNode extends Node {
   private getLinePlotDataSet(): LinePlotDataSet {
     return this.curve.points.map( point => new Vector2( point.x, point.y ) );
   }
+
+  public setPointerAreas(): void {
+    throw new Error( 'Set Pointer Areas not handled on base class' );
+  }
 }
 
 calculusGrapher.register( 'CurveNode', CurveNode );

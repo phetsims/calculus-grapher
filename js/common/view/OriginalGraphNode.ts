@@ -98,7 +98,6 @@ export default class OriginalGraphNode extends GraphNode {
       upAndDownArrow.centerY = this.chartTransform.modelToViewY( 0 );
 
       // TODO: find a way to update touch/mouse area without resorting to this
-      // @ts-ignore
       this.curveNode.setPointerAreas();
     } );
 
@@ -106,7 +105,6 @@ export default class OriginalGraphNode extends GraphNode {
     this.zoomLevelProperty.link( () => {
 
       // TODO: find a way to update touch/mouse area without resorting to this
-      // @ts-ignore
       this.curveNode.setPointerAreas();
     } );
 
