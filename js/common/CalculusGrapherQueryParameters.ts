@@ -59,6 +59,26 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     type: 'number',
     isValidValue: value => value > 0,
     defaultValue: 25 * Math.PI / 180
+  },
+
+  /**
+   * Shows all the curve points as circles in a scatter plot
+   *
+   * For internal use.
+   */
+  allPoints: {
+    type: 'boolean',
+    defaultValue: false
+  },
+
+  /**
+   * Shows the cusps points on a curve as circles in a scatter plot
+   *
+   * For internal use.
+   */
+  cuspsPoints: {
+    type: 'boolean',
+    defaultValue: false
   }
 } );
 

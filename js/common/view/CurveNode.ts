@@ -19,7 +19,7 @@
 
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Color, Node, NodeOptions, PathOptions, TColor } from '../../../../scenery/js/imports.js';
+import { Color, Node, NodeOptions, PathOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
 import LinePlot from '../../../../bamboo/js/LinePlot.js';
@@ -27,16 +27,20 @@ import ScatterPlot from '../../../../bamboo/js/ScatterPlot.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
 
+type radiusOptions = {
+  radius?: number;
+};
+type ScatterPlotOptions = radiusOptions & PathOptions;
+
 type SelfOptions = {
-  scatterPlotOptions?: {
-    fill: TColor;
-    stroke: TColor;
-    lineWidth: number;
-  };
+  discontinuousPointsScatterPlotOptions?: ScatterPlotOptions;
+  cuspsScatterPlotOptions?: ScatterPlotOptions;
+  allPointsScatterPlotOptions?: ScatterPlotOptions;
   continuousLinePlotOptions?: PathOptions;
   discontinuousLinePlotOptions?: PathOptions;
 };
@@ -47,23 +51,39 @@ export default class CurveNode extends Node {
 
   private readonly continuousLinePlot: LinePlot;
   private readonly discontinuousLinePlot: LinePlot;
-  private readonly scatterPlot: ScatterPlot;
+  private readonly discontinuousPointsScatterPlot: ScatterPlot;
+  private readonly allPointsScatterPlot: ScatterPlot;
+  private readonly cuspsScatterPlot: ScatterPlot;
   protected readonly curve: Curve;
 
   public constructor( curve: Curve, chartTransform: ChartTransform,
                       provideOptions?: CurveNodeOptions ) {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
-      scatterPlotOptions: {
+      discontinuousPointsScatterPlotOptions: {
         fill: null,
+        stroke: Color.MAGENTA,
+        lineWidth: 2
+      },
+
+      cuspsScatterPlotOptions: {
+        fill: Color.BLACK,
         stroke: Color.GREEN,
-        lineWidth: 1
+        lineWidth: 1,
+        radius: 2
+      },
+
+      allPointsScatterPlotOptions: {
+        fill: Color.RED,
+        stroke: Color.YELLOW,
+        radius: 1
       },
 
       continuousLinePlotOptions: {
         stroke: CalculusGrapherColors.defaultCurveStrokeProperty,
         lineWidth: 2
       },
+
       discontinuousLinePlotOptions: {
         stroke: Color.ORANGE,
         lineWidth: 3
@@ -74,32 +94,53 @@ export default class CurveNode extends Node {
 
     this.curve = curve;
 
-    const continuousLinePlotDataSet = this.getContinuousLinePlotDataSet();
+    const allPointsScatterPlotDataSet = this.getAllPointsScatterPlotDataSet();
+    const cuspsScatterPlotDataSet = this.getCuspsScatterPlotDataSet();
     const discontinuousLinePlotDataSet = this.getDiscontinuousLinePlotDataSet();
-    const discontinuousScatterPlotDataSet = this.getDiscontinuousScatterPlotDataSet();
+    const continuousLinePlotDataSet = this.getContinuousLinePlotDataSet();
+    const discontinuousPointScatterPlotDataSet = this.getDiscontinuousPointsScatterPlotDataSet();
 
-    this.scatterPlot = new ScatterPlot( chartTransform, discontinuousScatterPlotDataSet, options.scatterPlotOptions );
+    this.allPointsScatterPlot = new ScatterPlot( chartTransform, allPointsScatterPlotDataSet, options.allPointsScatterPlotOptions );
+    this.cuspsScatterPlot = new ScatterPlot( chartTransform, cuspsScatterPlotDataSet, options.cuspsScatterPlotOptions );
+    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, discontinuousPointScatterPlotDataSet, options.discontinuousPointsScatterPlotOptions );
     this.continuousLinePlot = new LinePlot( chartTransform, continuousLinePlotDataSet, options.continuousLinePlotOptions );
     this.discontinuousLinePlot = new LinePlot( chartTransform, discontinuousLinePlotDataSet, options.discontinuousLinePlotOptions );
 
-    this.addChild( this.scatterPlot );
     this.addChild( this.continuousLinePlot );
     this.addChild( this.discontinuousLinePlot );
 
-    curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
+    if ( CalculusGrapherQueryParameters.allPoints ) {
+      this.addChild( this.allPointsScatterPlot );
+    }
+    if ( CalculusGrapherQueryParameters.cuspsPoints ) {
+      this.addChild( this.cuspsScatterPlot );
+    }
+    this.addChild( this.discontinuousPointsScatterPlot );
 
+
+    curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
   }
 
   public updateCurveNode(): void {
-    this.scatterPlot.setDataSet( this.getDiscontinuousScatterPlotDataSet() );
+    this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
     this.discontinuousLinePlot.setDataSet( this.getDiscontinuousLinePlotDataSet() );
+
+    if ( CalculusGrapherQueryParameters.allPoints ) {
+      this.allPointsScatterPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );
+    }
+
+    if ( CalculusGrapherQueryParameters.cuspsPoints ) {
+      this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
+    }
+
+
   }
 
   // data set for continuous portion of curve
   private getContinuousLinePlotDataSet(): LinePlotDataSet {
     return this.curve.points.map( ( point, index, points ) => {
-      if ( point.isDiscontinuous && points[ index + 1 ].isDiscontinuous && index + 1 < points.length ) {
+      if ( point.isDiscontinuous && index + 1 < points.length ) {
         return [ new Vector2( point.x, point.y ), null ];
       }
       else {
@@ -121,9 +162,19 @@ export default class CurveNode extends Node {
   }
 
   // data set for discontinuous scatter plot ( sets of circles )
-  private getDiscontinuousScatterPlotDataSet(): ScatterPlotDataSet {
+  private getDiscontinuousPointsScatterPlotDataSet(): ScatterPlotDataSet {
     return this.curve.points.filter( point => point.isDiscontinuous )
       .map( point => new Vector2( point.x, point.y ) );
+  }
+
+  // data set for cusps points
+  private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
+    return this.curve.cusps.map( point => new Vector2( point.x, point.y ) );
+  }
+
+  // data set for all points
+  private getAllPointsScatterPlotDataSet(): ScatterPlotDataSet {
+    return this.curve.points.map( point => new Vector2( point.x, point.y ) );
   }
 
   public setPointerAreas(): void {
