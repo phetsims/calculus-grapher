@@ -20,7 +20,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
-  checkboxGroupOptions?: StrictOmit<GraphsCheckboxGroupOptions, 'tandem'>;
+  graphsCheckboxGroupOptions?: StrictOmit<GraphsCheckboxGroupOptions, 'tandem'>;
 };
 
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
@@ -34,7 +34,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
-      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'checkboxGroupOptions'>, ScreenViewOptions>()( {}, providedOptions );
+      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsCheckboxGroupOptions'>, ScreenViewOptions>()( {}, providedOptions );
 
     super( options );
 
@@ -59,7 +59,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       combineOptions<GraphsCheckboxGroupOptions>( {
         leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
         tandem: options.tandem.createTandem( 'graphsCheckboxGroup' )
-      }, options.checkboxGroupOptions ) );
+      }, options.graphsCheckboxGroupOptions ) );
 
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
       {
