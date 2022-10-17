@@ -15,6 +15,7 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
 import GraphsCheckboxGroup, { GraphsCheckboxGroupOptions } from './GraphsCheckboxGroup.js';
+import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
@@ -33,8 +34,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
-      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'checkboxGroupOptions'>, ScreenViewOptions>()( {
-    }, providedOptions );
+      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'checkboxGroupOptions'>, ScreenViewOptions>()( {}, providedOptions );
 
     super( options );
 
@@ -45,7 +45,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.model = model;
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
-      rightCenter: this.layoutBounds.rightCenter,
+      rightCenter: this.layoutBounds.rightCenter.minusXY( 10, 0 ),
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
     } );
 
@@ -61,6 +61,14 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'graphsCheckboxGroup' )
       }, options.checkboxGroupOptions ) );
 
+    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
+      {
+        right: this.layoutBounds.right - 10,
+        top: controlPanel.bottom + 10,
+        tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
+      } );
+
+
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
       listener: () => this.reset(),
@@ -70,6 +78,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.addChild( this.graphsNode );
     this.addChild( graphsCheckboxGroup );
     this.addChild( controlPanel );
+    this.addChild( toolsCheckboxGroup );
     this.addChild( resetAllButton );
   }
 
