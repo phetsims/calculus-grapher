@@ -11,17 +11,18 @@ The reader is encouraged to read the model document before proceeding:
 
 ### Model-View Transforms
 
-A model-view transform is used for each graph. The model has +x to the left, and +y up, and scaling is isometric in both
-directions. The scaling changes based on the zoom level.
+A model-view transform is used for each graph. The model has +x to the left, and +y up. The scaling changes based on the zoom level.
 
 ### Query Parameters
 
-There are a number of query parameters for internal use. 
+There are a number of query parameters for internal use.
 
-- `pointsPerCoordinate` sets the number of curves points per coordinates. The default value is 12. 
+- `pointsPerCoordinate` sets the number of curves points per coordinates. The default value is 12.
 - `smoothingWindowWidth` sets the window width used in the smoothing function. The default value is 1.2 .
 - `maxTilt` sets the maximum tilting angle of curves relative to the horizontal. The default value is 45.
 - `derivativeThreshold` sets the maximum difference between the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
+- `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
+- `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
 
 ### Curve Hierarchy
 
@@ -30,7 +31,7 @@ functionality that is common to all types of curves, which are 'integrals', 'ori
 intended to be sub-classed for type-specific features.
 
 Curves are modeled by segmenting the curve into a finite number of CurvePoints that are close together and map out
-the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be infinitesimally close
+the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
 `OriginalCurve` is a `Curve` subtype for the main curve that the user interacts with and manipulates, which then
