@@ -79,6 +79,16 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   cuspsPoints: {
     type: 'boolean',
     defaultValue: false
+  },
+
+  /**
+   * Shows axes with tick mark and numerical labels
+   *
+   * For internal use.
+   */
+  numericalLabels: {
+    type: 'boolean',
+    defaultValue: false
   }
 } );
 
