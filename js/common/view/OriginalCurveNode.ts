@@ -72,6 +72,7 @@ export default class OriginalCurveNode extends CurveNode {
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         curve.saveCurrentPoints();
 
+        // set the second to last position to null, since it is a new drag.
         antepenultimatePosition = null;
       },
       drag( event, listener ) {
@@ -118,12 +119,6 @@ export default class OriginalCurveNode extends CurveNode {
         // update antepenultimatePosition
         antepenultimatePosition = penultimatePosition;
 
-      },
-
-      end() {
-
-        // set the antepenultimatePosition at the end of drag
-        antepenultimatePosition = null;
       }
     } ) );
 
