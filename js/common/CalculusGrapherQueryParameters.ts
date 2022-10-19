@@ -51,6 +51,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   /**
    * The pedestal mode creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    * The rounded corners are set by a constant called edgeSlopeFactor.
+   * A larger value creates a wider edge.
    * https://github.com/phetsims/calculus-grapher/issues/75
    *
    * For internal use.
