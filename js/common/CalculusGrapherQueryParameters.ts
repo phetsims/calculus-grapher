@@ -49,6 +49,19 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
+   * The pedestal mode creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
+   * The rounded corners are set by a constant called edgeSlopeFactor.
+   * https://github.com/phetsims/calculus-grapher/issues/75
+   *
+   * For internal use.
+   */
+  edgeSlopeFactor: {
+    type: 'number',
+    isValidValue: value => value >= 0,
+    defaultValue: 1.5
+  },
+
+  /**
    * The maximum difference between the angle of the left and right secant lines of a Point on a curve for it to be
    * considered differentiable.
    * See https://github.com/phetsims/calculus-grapher/issues/28

@@ -39,6 +39,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
+const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
 
 type ParabolaParameters = { A: number; B: number; C: number };
 
@@ -309,10 +310,7 @@ export default class OriginalCurve extends Curve {
     // width of the hill
     const width = this.curveManipulationWidth;
 
-    const edgeSlopeFactor = 1.5;
-
     const closestPoint = this.getClosestPointAt( peak.x );
-
 
     this.points.forEach( point => {
       let P;
@@ -323,10 +321,10 @@ export default class OriginalCurve extends Curve {
       else if ( point.x <= closestPoint.x ) {
 
         // use the square of a gaussian in order to have a very symmetric derivative at the edges
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - width / 2 ) ) / ( edgeSlopeFactor ), 4 ) );
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
       }
       else {
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + width / 2 ) ) / ( edgeSlopeFactor ), 4 ) );
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
       }
 
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
@@ -350,6 +348,7 @@ export default class OriginalCurve extends Curve {
                                  antepenultimatePosition: Vector2 | null ): void {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
+    //  closest point associated with the position
     //  closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
 
