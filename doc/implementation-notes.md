@@ -19,7 +19,7 @@ There are a number of query parameters for internal use.
 
 - `pointsPerCoordinate` sets the number of curves points per coordinates. The default value is 10.
 - `smoothingWindowWidth` sets the window width used in the smoothing function. The default value is 1.2 .
-- `maxTilt` sets the maximum tilting angle of curves relative to the horizontal. The default value is 45.
+- `maxTilt` sets the maximum tilting angle (in tilt mode) of curves relative to the horizontal. The default value is 45.
 - `edgeSlopeFactor` sets the width of the rounded corner in pedestal mode (continuous trapezoidal-shaped curve with
   rounded corners). A larger value creates a wider edge. The default value is 1.5
 - `derivativeThreshold` sets the maximum difference between the slope of the left and right secant lines of a Point on a
