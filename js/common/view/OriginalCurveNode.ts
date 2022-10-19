@@ -18,9 +18,6 @@ import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import Property from '../../../../axon/js/Property.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
@@ -31,7 +28,6 @@ export type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
 export default class OriginalCurveNode extends CurveNode {
 
   private chartTransform: ChartTransform;
-  public dragBoundsProperty: Property<Bounds2>;
 
   public constructor( curve: OriginalCurve, chartTransform: ChartTransform, providedOptions?: OriginalCurveNodeOptions ) {
 
@@ -47,13 +43,6 @@ export default class OriginalCurveNode extends CurveNode {
 
 
     this.chartTransform = chartTransform;
-
-
-    // the viewBounds of this graph, the maxY is arbitrary, its value will be updated later
-    const graphViewBounds = new Bounds2( 0, 0, CalculusGrapherConstants.GRAPH_VIEW_WIDTH, 100 );
-
-    // create dragBounds based on the graph View
-    this.dragBoundsProperty = new Property( graphViewBounds );
 
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since

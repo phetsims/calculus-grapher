@@ -28,6 +28,9 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Property from '../../../../axon/js/Property.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
@@ -55,6 +58,7 @@ export default class CurveNode extends Node {
   private readonly allPointsScatterPlot: ScatterPlot;
   private readonly cuspsScatterPlot: ScatterPlot;
   protected readonly curve: Curve;
+  public dragBoundsProperty: Property<Bounds2>;
 
   public constructor( curve: Curve, chartTransform: ChartTransform,
                       provideOptions?: CurveNodeOptions ) {
@@ -93,6 +97,12 @@ export default class CurveNode extends Node {
     super( options );
 
     this.curve = curve;
+
+    // the viewBounds of this graph, the maxY is arbitrary, its value will be updated later
+    const graphViewBounds = new Bounds2( 0, 0, CalculusGrapherConstants.GRAPH_VIEW_WIDTH, 100 );
+
+    // create dragBounds based on the graph View
+    this.dragBoundsProperty = new Property( graphViewBounds );
 
     const allPointsScatterPlotDataSet = this.getAllPointsScatterPlotDataSet();
     const cuspsScatterPlotDataSet = this.getCuspsScatterPlotDataSet();
