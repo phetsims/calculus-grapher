@@ -22,6 +22,7 @@ import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -58,6 +59,10 @@ export default class OriginalCurveNode extends CurveNode {
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
 
+
+    let penultimatePosition: Vector2;
+    let antepenultimatePosition: Vector2 | null = null;
+
     this.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
       dragBoundsProperty: this.dragBoundsProperty,
@@ -66,6 +71,8 @@ export default class OriginalCurveNode extends CurveNode {
         // Save the current values of the Points for the next undoToLastSave call.
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         curve.saveCurrentPoints();
+
+        antepenultimatePosition = null;
       },
       drag( event, listener ) {
 
@@ -73,7 +80,7 @@ export default class OriginalCurveNode extends CurveNode {
         const modelPosition = chartTransform.viewToModelPosition( listener.modelPoint );
 
         // previous (model) position the drag
-        const oldModelPosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
+        penultimatePosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
         if ( curve.curveManipulationMode === CurveManipulationMode.HILL ) {
           curve.createHillAt( modelPosition );
@@ -98,7 +105,8 @@ export default class OriginalCurveNode extends CurveNode {
           curve.shiftToPosition( modelPosition );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.FREEFORM ) {
-          curve.drawFreeformToPosition( modelPosition, oldModelPosition );
+
+          curve.drawFreeformToPosition( modelPosition, penultimatePosition, antepenultimatePosition );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
           curve.createSineAt( modelPosition );
@@ -107,6 +115,15 @@ export default class OriginalCurveNode extends CurveNode {
           throw new Error( 'Unsupported Curve Manipulation Mode' );
         }
 
+        // update antepenultimatePosition
+        antepenultimatePosition = penultimatePosition;
+
+      },
+
+      end() {
+
+        // set the antepenultimatePosition at the end of drag
+        antepenultimatePosition = null;
       }
     } ) );
 
