@@ -55,9 +55,9 @@ export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'visibleP
 
 export default class GraphNode extends Node {
 
-  public readonly zoomLevelProperty: NumberProperty;
-  public readonly curveVisibleProperty: BooleanProperty;
-  public readonly graphVisibleProperty: BooleanProperty;
+  protected readonly zoomLevelProperty: NumberProperty;
+  private readonly curveVisibleProperty: BooleanProperty;
+  private readonly graphVisibleProperty: BooleanProperty;
   protected readonly chartTransform: ChartTransform;
   protected readonly curveNode: CurveNode;
   protected readonly graphContent: Node;

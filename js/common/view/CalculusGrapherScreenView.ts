@@ -28,7 +28,7 @@ export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
 export default class CalculusGrapherScreenView extends ScreenView {
 
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
-  private model: CalculusGrapherModel;
+  private readonly model: CalculusGrapherModel;
   private readonly graphsNode: GraphsNode;
 
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
