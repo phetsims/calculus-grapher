@@ -265,6 +265,7 @@ export default class GraphNode extends Node {
   public reset(): void {
     this.zoomLevelProperty.reset();
     this.curveVisibleProperty.reset();
+    this.graphVisibleProperty.reset();
   }
 
   public getCurveNode( curve: Curve, chartTransform: ChartTransform, options: CurveNodeOptions ): CurveNode {
