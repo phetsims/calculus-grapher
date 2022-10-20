@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * Top level view for the 'Intro' screen.
+ * Top level view for the 'Advanced' screen.
  *
  * @author BrandonLi
  */
@@ -9,17 +9,17 @@
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
-import IntroModel from '../model/IntroModel.js';
+import AdvancedModel from '../model/AdvancedModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+export type AdvancedScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
-export default class IntroScreenView extends CalculusGrapherScreenView {
+export default class AdvancedScreenView extends CalculusGrapherScreenView {
 
-  public constructor( model: IntroModel, providedOptions?: IntroScreenViewOptions ) {
+  public constructor( model: AdvancedModel, providedOptions?: AdvancedScreenViewOptions ) {
 
-    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+    const options = optionize<AdvancedScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphsCheckboxGroupOptions: {
         isGraphCheckboxIncluded: {
           integralGraph: true,
@@ -29,7 +29,7 @@ export default class IntroScreenView extends CalculusGrapherScreenView {
       },
       visiblePropertiesOptions: {
         isIntegralGraphVisible: false,
-        isDerivativeGraphVisible: false,
+        isDerivativeGraphVisible: true,
         isSecondDerivativeGraphVisible: false
       }
     }, providedOptions );
@@ -39,4 +39,4 @@ export default class IntroScreenView extends CalculusGrapherScreenView {
   }
 }
 
-calculusGrapher.register( 'IntroScreenView', IntroScreenView );
+calculusGrapher.register( 'AdvancedScreenView', AdvancedScreenView );

@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * The 'Intro' screen. Conforms to the contract specified in joist/Screen.
+ * The 'Lab' screen. Conforms to the contract specified in joist/Screen.
  *
  * @author Brandon Li
  */
@@ -10,30 +10,30 @@ import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
-import IntroModel from './model/IntroModel.js';
-import IntroScreenView from './view/IntroScreenView.js';
+import LabModel from './model/LabModel.js';
+import LabScreenView from './view/LabScreenView.js';
 import { CalculusGrapherScreenViewOptions } from '../common/view/CalculusGrapherScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 
 type SelfOptions = EmptySelfOptions;
-export type IntroScreenOptions = SelfOptions & ScreenOptions;
+export type LabScreenOptions = SelfOptions & ScreenOptions;
 
-export default class IntroScreen extends Screen {
+export default class LabScreen extends Screen {
 
-  public constructor( providedOptions: IntroScreenOptions ) {
+  public constructor( providedOptions: LabScreenOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
-    const createModel = () => new IntroModel( { tandem: options.tandem.createTandem( 'model' ) } );
+    const createModel = () => new LabModel( { tandem: options.tandem.createTandem( 'model' ) } );
 
-    const createView = ( model: IntroModel ) => new IntroScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
+    const createView = ( model: LabModel ) => new LabScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.introStringProperty,
+      name: CalculusGrapherStrings.screen.labStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       tandem: options.tandem
     } );
   }
 }
 
-calculusGrapher.register( 'IntroScreen', IntroScreen );
+calculusGrapher.register( 'LabScreen', LabScreen );

@@ -1,7 +1,7 @@
-// Copyright 2020-2022, University of Colorado Boulder
+// Copyright 2022, University of Colorado Boulder
 
 /**
- * Top level model for the 'Intro' screen.
+ * Top level model for the 'Derivative Lab' screen.
  *
  * @author Brandon Li
  */
@@ -14,18 +14,19 @@ import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 type SelfOptions = {
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
+export type DerivativeModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
-export type IntroModelOptions = SelfOptions & CalculusGrapherModelOptions;
+export default class DerivativeModel extends CalculusGrapherModel {
 
-export default class IntroModel extends CalculusGrapherModel {
-
-  public constructor( providedOptions?: IntroModelOptions ) {
-    const options = optionize<IntroModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {
+  public constructor( providedOptions: DerivativeModelOptions ) {
+    const options = optionize<DerivativeModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {
       curveManipulationModeChoices: [
         CurveManipulationMode.HILL,
+        CurveManipulationMode.PEDESTAL,
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ]
+
     }, providedOptions );
 
     super( options );
@@ -33,4 +34,4 @@ export default class IntroModel extends CalculusGrapherModel {
   }
 }
 
-calculusGrapher.register( 'IntroModel', IntroModel );
+calculusGrapher.register( 'DerivativeModel', DerivativeModel );

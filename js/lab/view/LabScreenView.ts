@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * Top level view for the 'Integral Lab' screen.
+ * Top level view for the 'Lab' screen.
  *
  * @author BrandonLi
  */
@@ -9,18 +9,17 @@
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
-import IntegralLabModel from '../model/IntegralLabModel.js';
-
+import LabModel from '../model/LabModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+export type LabScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
-export default class IntegralLabScreenView extends CalculusGrapherScreenView {
+export default class LabScreenView extends CalculusGrapherScreenView {
 
-  public constructor( model: IntegralLabModel, providedOptions: IntroScreenViewOptions ) {
+  public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
-    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+    const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphsCheckboxGroupOptions: {
         isGraphCheckboxIncluded: {
           integralGraph: true,
@@ -31,12 +30,13 @@ export default class IntegralLabScreenView extends CalculusGrapherScreenView {
       visiblePropertiesOptions: {
         isIntegralGraphVisible: false,
         isDerivativeGraphVisible: true,
-        isSecondDerivativeGraphVisible: false
+        isSecondDerivativeGraphVisible: true
       }
     }, providedOptions );
 
     super( model, options );
+
   }
 }
 
-calculusGrapher.register( 'IntegralLabScreenView', IntegralLabScreenView );
+calculusGrapher.register( 'LabScreenView', LabScreenView );
