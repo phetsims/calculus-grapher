@@ -33,6 +33,7 @@ import Curve from '../model/Curve.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
+import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -40,20 +41,26 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import ExpandCollapseButton, { ExpandCollapseButtonOptions } from '../../../../sun/js/ExpandCollapseButton.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
+  eyeToggleButtonOptions?: EyeToggleButtonOptions;
+  expandCollapseButtonOptions?: ExpandCollapseButtonOptions;
 };
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'visibleProperty' | 'tandem'>;
 
 export default class GraphNode extends Node {
 
   public readonly zoomLevelProperty: NumberProperty;
+  public readonly curveVisibleProperty: BooleanProperty;
+  public readonly graphVisibleProperty: BooleanProperty;
   protected readonly chartTransform: ChartTransform;
   public curveNode: CurveNode;
+  protected graphContent: Node;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
@@ -81,6 +88,12 @@ export default class GraphNode extends Node {
         buttonOptions: {
           stroke: 'black'
         }
+      },
+      eyeToggleButtonOptions: {
+        scale: 0.5
+      },
+      expandCollapseButtonOptions: {
+        scale: 0.8
       }
     }, providedOptions );
 
@@ -113,19 +126,11 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'zoomLevelProperty' )
       } );
 
+    this.curveVisibleProperty = new BooleanProperty( true,
+      { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
+
     // curve associated with this graph
     this.curveNode = this.getCurveNode( curve, this.chartTransform, options.curveNodeOptions );
-
-    // chart Rectangle for the graph
-    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
-
-    // zoom Button to the top left of the graph
-    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
-      combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        right: chartRectangle.left - 10,
-        top: chartRectangle.top,
-        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
-      }, options.plusMinusZoomButtonGroupOptions ) );
 
     const getModelYRange = ( zoomLevel: number ): Range => {
 
@@ -134,29 +139,86 @@ export default class GraphNode extends Node {
       return new Range( -maxY, maxY );
     };
 
-
     this.zoomLevelProperty.link( zoomLevel => {
       this.chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
     } );
 
+    // chart Rectangle for the graph
+    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
+
+    this.graphVisibleProperty = new BooleanProperty( true,
+      { tandem: options.tandem.createTandem( 'graphVisibleProperty' ) } );
+
+
+    const expandCollapseButton = new ExpandCollapseButton( this.graphVisibleProperty,
+      combineOptions<ExpandCollapseButtonOptions>( {
+        right: chartRectangle.left - 10,
+        top: chartRectangle.top,
+        tandem: options.tandem.createTandem( 'expandCollapseButton' )
+      }, options.expandCollapseButtonOptions ) );
+
+
+    // create eye toggle button that controls the visibility of the curve
+    const eyeToggleButton = new EyeToggleButton( this.curveVisibleProperty,
+      combineOptions<EyeToggleButtonOptions>( {
+        right: chartRectangle.left - 10,
+        bottom: chartRectangle.bottom,
+        tandem: options.tandem.createTandem( 'eyeToggleButton' )
+      }, options.eyeToggleButtonOptions ) );
+
+
+    this.curveVisibleProperty.link( visible => {
+
+      // TODO: is that what we want? hoist colors?
+      // change the button color
+      eyeToggleButton.setBaseColor( visible ? 'white' : 'yellow' );
+
+      this.curveNode.visible = visible;
+
+    } );
+
+
+    // zoom Button to the center left of the graph
+    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
+      combineOptions<PlusMinusZoomButtonGroupOptions>( {
+        right: chartRectangle.left - 10,
+        centerY: chartRectangle.centerY,
+        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
+      }, options.plusMinusZoomButtonGroupOptions ) );
+
     graphHeightProperty.link( height => {
       this.chartTransform.setViewHeight( height );
       this.curveNode.clipArea = chartRectangle.getShape();
+      expandCollapseButton.top = chartRectangle.top;
+      eyeToggleButton.bottom = chartRectangle.bottom;
+      zoomButtonGroup.centerY = chartRectangle.centerY;
     } );
 
     labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
 
+    // TODO: find better name
+    this.graphContent = new Node( {
+      children: [
+        gridNode,
+        chartRectangle,
+        horizontalAxisLine,
+        verticalAxisLine,
+        zoomButtonGroup,
+        eyeToggleButton,
+        labelNode,
+        this.curveNode
+      ]
+    } );
+
+    this.graphVisibleProperty.link( visible => {
+      this.graphContent.visible = visible;
+    } );
+
     // add children to this node
     this.children = [
-      gridNode,
-      chartRectangle,
-      horizontalAxisLine,
-      verticalAxisLine,
-      zoomButtonGroup,
-      labelNode,
-      this.curveNode
+      expandCollapseButton,
+      this.graphContent
     ];
-
 
     // add tick and numerical labels if true
     if ( CalculusGrapherQueryParameters.numericalLabels ) {
@@ -190,10 +252,10 @@ export default class GraphNode extends Node {
       } );
 
       // add children to this node
-      this.addChild( horizontalTickMarkSet );
-      this.addChild( horizontalTickLabelSet );
-      this.addChild( verticalTickMarkSet );
-      this.addChild( verticalTickLabelSet );
+      this.graphContent.addChild( horizontalTickMarkSet );
+      this.graphContent.addChild( horizontalTickLabelSet );
+      this.graphContent.addChild( verticalTickMarkSet );
+      this.graphContent.addChild( verticalTickLabelSet );
     }
   }
 
@@ -202,6 +264,7 @@ export default class GraphNode extends Node {
    */
   public reset(): void {
     this.zoomLevelProperty.reset();
+    this.curveVisibleProperty.reset();
   }
 
   public getCurveNode( curve: Curve, chartTransform: ChartTransform, options: CurveNodeOptions ): CurveNode {
