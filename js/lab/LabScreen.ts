@@ -3,7 +3,7 @@
 /**
  * The 'Lab' screen. Conforms to the contract specified in joist/Screen.
  *
- * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';

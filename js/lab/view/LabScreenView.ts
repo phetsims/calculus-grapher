@@ -3,7 +3,7 @@
 /**
  * Top level view for the 'Lab' screen.
  *
- * @author BrandonLi
+ * @author Martin Veillette
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';

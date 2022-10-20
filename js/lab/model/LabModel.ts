@@ -3,7 +3,7 @@
 /**
  * Top level model for the 'Lab' screen.
  *
- * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
