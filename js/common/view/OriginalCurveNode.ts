@@ -27,7 +27,7 @@ export type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 export default class OriginalCurveNode extends CurveNode {
 
-  private chartTransform: ChartTransform;
+  private readonly chartTransform: ChartTransform;
 
   public constructor( curve: OriginalCurve, chartTransform: ChartTransform, providedOptions?: OriginalCurveNodeOptions ) {
 

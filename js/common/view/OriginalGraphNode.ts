@@ -36,7 +36,7 @@ type OriginalGraphNodeOptions = SelfOptions & GraphNodeOptions;
 
 export default class OriginalGraphNode extends GraphNode {
 
-  public upAndDownArrowVisibleProperty: BooleanProperty;
+  private readonly upAndDownArrowVisibleProperty: BooleanProperty;
 
 
   public constructor( curve: OriginalCurve,
@@ -91,7 +91,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     graphHeightProperty.link( height => {
 
-      this.curveNode.dragBoundsProperty.value = this.curveNode.dragBoundsProperty.value.setMaxY( height );
+      this.curveNode.dragBoundsProperty.value.setMaxY( height );
 
       // center the vertical position of the up and down arrow
       upAndDownArrow.centerY = this.chartTransform.modelToViewY( 0 );

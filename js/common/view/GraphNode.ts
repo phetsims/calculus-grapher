@@ -59,8 +59,8 @@ export default class GraphNode extends Node {
   public readonly curveVisibleProperty: BooleanProperty;
   public readonly graphVisibleProperty: BooleanProperty;
   protected readonly chartTransform: ChartTransform;
-  public curveNode: CurveNode;
-  protected graphContent: Node;
+  protected readonly curveNode: CurveNode;
+  protected readonly graphContent: Node;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,

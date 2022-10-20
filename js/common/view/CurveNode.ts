@@ -58,7 +58,7 @@ export default class CurveNode extends Node {
   private readonly allPointsScatterPlot: ScatterPlot;
   private readonly cuspsScatterPlot: ScatterPlot;
   protected readonly curve: Curve;
-  public dragBoundsProperty: Property<Bounds2>;
+  public readonly dragBoundsProperty: Property<Bounds2>;
 
   public constructor( curve: Curve, chartTransform: ChartTransform,
                       provideOptions?: CurveNodeOptions ) {
