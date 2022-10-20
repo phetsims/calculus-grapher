@@ -28,7 +28,6 @@ import Curve from './Curve.js';
 // constants
 const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
 
-// noinspection JSSuspiciousNameCombination
 export default class DerivativeCurve extends Curve {
 
   // reference to the 'base' Curve that was passed-in.
