@@ -18,6 +18,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import CurveLabelsNode from './CurveLabelsNode.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -59,7 +60,12 @@ export default class GraphNodes extends Node {
       CurveLabelsNode.getIntegralLabel(),
       {
         visibleProperty: visibleProperties.integralGraphNodeVisibleProperty,
-        tandem: options.tandem.createTandem( 'integralGraphNode' )
+        tandem: options.tandem.createTandem( 'integralGraphNode' ),
+        curveNodeOptions: {
+          continuousLinePlotOptions: {
+            stroke: CalculusGrapherColors.integralCurveStrokeProperty
+          }
+        }
       } );
 
 
@@ -69,7 +75,12 @@ export default class GraphNodes extends Node {
       CurveLabelsNode.getOriginalLabel(),
       {
         visibleProperty: visibleProperties.originalGraphNodeVisibleProperty,
-        tandem: options.tandem.createTandem( 'originalGraphNode' )
+        tandem: options.tandem.createTandem( 'originalGraphNode' ),
+        curveNodeOptions: {
+          continuousLinePlotOptions: {
+            stroke: CalculusGrapherColors.originalCurveStrokeProperty
+          }
+        }
       } );
 
     this.derivativeGraphNode = new GraphNode( model.derivativeCurve,
@@ -77,8 +88,14 @@ export default class GraphNodes extends Node {
       this.graphHeightProperty,
       CurveLabelsNode.getDerivativeLabel(),
       {
+        curveNodeOptions: {
+          continuousLinePlotOptions: {
+            stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
+          }
+        },
         visibleProperty: visibleProperties.derivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
+
       } );
 
     this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
@@ -86,6 +103,11 @@ export default class GraphNodes extends Node {
       this.graphHeightProperty,
       CurveLabelsNode.getSecondDerivativeLabel(),
       {
+        curveNodeOptions: {
+          continuousLinePlotOptions: {
+            stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty
+          }
+        },
         visibleProperty: visibleProperties.secondDerivativeGraphNodeVisibleProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );

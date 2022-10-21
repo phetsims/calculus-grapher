@@ -18,12 +18,11 @@
  */
 
 import optionize from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Color, Node, NodeOptions, PathOptions } from '../../../../scenery/js/imports.js';
+import { Color, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
-import LinePlot from '../../../../bamboo/js/LinePlot.js';
-import ScatterPlot from '../../../../bamboo/js/ScatterPlot.js';
+import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
+import ScatterPlot, { ScatterPlotOptions } from '../../../../bamboo/js/ScatterPlot.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -35,20 +34,15 @@ import Property from '../../../../axon/js/Property.js';
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
 
-type radiusOptions = {
-  radius?: number;
-};
-type ScatterPlotOptions = radiusOptions & PathOptions;
-
 type SelfOptions = {
   discontinuousPointsScatterPlotOptions?: ScatterPlotOptions;
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
-  continuousLinePlotOptions?: PathOptions;
-  discontinuousLinePlotOptions?: PathOptions;
+  continuousLinePlotOptions?: LinePlotOptions;
+  discontinuousLinePlotOptions?: LinePlotOptions;
 };
 
-export type CurveNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type CurveNodeOptions = SelfOptions & NodeOptions;
 
 export default class CurveNode extends Node {
 

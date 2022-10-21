@@ -62,6 +62,21 @@ const CalculusGrapherColors = {
     default: Color.RED
   } ),
 
+  // Stroke for integral curve
+  integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
+    default: Color.GREEN
+  } ),
+
+  // Stroke for derivative curve
+  derivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'derivativeCurveStroke', {
+    default: Color.RED
+  } ),
+
+  // Stroke for second derivative curve
+  secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
+    default: Color.MAGENTA
+  } ),
+
   // fill for up and down arrows on original graph
   arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
     default: Color.ORANGE

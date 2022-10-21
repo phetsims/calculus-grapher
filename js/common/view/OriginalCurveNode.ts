@@ -18,7 +18,6 @@ import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -34,8 +33,7 @@ export default class OriginalCurveNode extends CurveNode {
     const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
       continuousLinePlotOptions: {
-        cursor: 'pointer',
-        stroke: CalculusGrapherColors.originalCurveStrokeProperty
+        cursor: 'pointer'
       }
     }, providedOptions );
 
