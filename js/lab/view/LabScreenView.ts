@@ -20,13 +20,7 @@ export default class LabScreenView extends CalculusGrapherScreenView {
   public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphsCheckboxGroupOptions: {
-        isGraphCheckboxIncluded: {
-          integralGraph: true,
-          derivativeGraph: true,
-          secondDerivativeGraph: false
-        }
-      },
+      graphsRadioButtonGroupOptions: {},
       visiblePropertiesOptions: {
         isIntegralGraphVisible: false,
         isDerivativeGraphVisible: true,

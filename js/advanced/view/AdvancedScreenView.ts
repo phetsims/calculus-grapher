@@ -20,13 +20,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
   public constructor( model: AdvancedModel, providedOptions?: AdvancedScreenViewOptions ) {
 
     const options = optionize<AdvancedScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphsCheckboxGroupOptions: {
-        isGraphCheckboxIncluded: {
-          integralGraph: true,
-          derivativeGraph: true,
-          secondDerivativeGraph: false
-        }
-      },
+      graphsRadioButtonGroupOptions: {},
       visiblePropertiesOptions: {
         isIntegralGraphVisible: false,
         isDerivativeGraphVisible: true,
