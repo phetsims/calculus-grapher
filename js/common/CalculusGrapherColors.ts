@@ -17,7 +17,7 @@ const CalculusGrapherColors = {
 
   // Background color used for all screens
   screenBackgroundColorProperty: new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
-    default: 'rgb( 240, 240, 240 )'
+    default: 'rgb( 228, 245, 250 )'
   } ),
 
   // Stroke for Panel-like Containers
@@ -27,7 +27,7 @@ const CalculusGrapherColors = {
 
   // Fill for Panel-like Containers
   panelFillProperty: new ProfileColorProperty( calculusGrapher, 'panelFill', {
-    default: 'rgb( 240, 240, 240 )'
+    default: 'white'
   } ),
 
   // Fill for the background of Original Graph
@@ -42,7 +42,7 @@ const CalculusGrapherColors = {
 
   // Fill for the background of all Graphs (besides Original)
   defaultChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
-    default: 'rgb( 240, 240, 240 )'
+    default: 'rgb( 228, 245, 250 )'
   } ),
 
   // Stroke for the background of all Graphs (besides Original)

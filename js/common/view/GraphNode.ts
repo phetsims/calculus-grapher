@@ -199,8 +199,8 @@ export default class GraphNode extends Node {
     // TODO: find better name
     this.graphContent = new Node( {
       children: [
-        gridNode,
         chartRectangle,
+        gridNode,
         horizontalAxisLine,
         verticalAxisLine,
         zoomButtonGroup,
