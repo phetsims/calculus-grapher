@@ -16,6 +16,9 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
+import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
+import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -41,24 +44,30 @@ export default class CalculusGrapherControlPanel extends Panel {
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
       originalCurve.curveManipulationModeProperty, {
-        tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
+        tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' ),
+        spacing: 5,
+        radioButtonOptions: {
+          baseColor: CalculusGrapherColors.panelFillProperty
+        }
       } );
 
 
     // Undo Button
     const undoButton = new TextPushButton( CalculusGrapherStrings.undoStringProperty, {
       listener: () => originalCurve.undoToLastSave(),
+      baseColor: PhetColorScheme.BUTTON_YELLOW,
       tandem: options.tandem.createTandem( 'undoButton' )
     } );
 
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
       listener: () => originalCurve.smooth(),
+      baseColor: PhetColorScheme.BUTTON_YELLOW,
       tandem: options.tandem.createTandem( 'smoothButton' )
     } );
 
     // Reset Button
-    const resetButton = new TextPushButton( CalculusGrapherStrings.resetStringProperty, {
+    const resetButton = new EraserButton( {
       listener: () => originalCurve.reset(),
       tandem: options.tandem.createTandem( 'resetButton' )
     } );
