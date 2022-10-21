@@ -60,7 +60,7 @@ const CalculusGrapherColors = {
       default: Color.BLUE
     },
     {
-      tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
+      tandem: tandem.createTandem( 'originalCurveStrokeColorProperty' )
     } ),
 
   // Stroke for all curves (besides original)
@@ -72,7 +72,7 @@ const CalculusGrapherColors = {
   integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
     default: Color.GREEN
   }, {
-    tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
+    tandem: tandem.createTandem( 'integralCurveStrokeColorProperty' )
   } ),
 
   // Stroke for derivative curve
@@ -80,7 +80,7 @@ const CalculusGrapherColors = {
       default: Color.RED
     },
     {
-      tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' )
+      tandem: tandem.createTandem( 'derivativeCurveStrokeColorProperty' )
     } ),
 
   // Stroke for second derivative curve
@@ -88,7 +88,7 @@ const CalculusGrapherColors = {
       default: Color.MAGENTA
     },
     {
-      tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
+      tandem: tandem.createTandem( 'secondDerivativeCurveStrokeColorProperty' )
     } ),
 
   // fill for up and down arrows on original graph
