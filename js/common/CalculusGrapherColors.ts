@@ -4,11 +4,14 @@
  * Colors for the 'Calculus Grapher' sim.
  *
  * @author Brandon Li
- * @Martin Veillette
+ * @author Martin Veillette
  */
 
 import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
 import calculusGrapher from '../calculusGrapher.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+
+const tandem = Tandem.GLOBAL_VIEW.createTandem( 'colorProfile' );
 
 const CalculusGrapherColors = {
 
@@ -54,8 +57,11 @@ const CalculusGrapherColors = {
 
   // Stroke for the original curve
   originalCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
-    default: Color.BLUE
-  } ),
+      default: Color.BLUE
+    },
+    {
+      tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
+    } ),
 
   // Stroke for all curves (besides original)
   defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
@@ -65,17 +71,25 @@ const CalculusGrapherColors = {
   // Stroke for integral curve
   integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
     default: Color.GREEN
+  }, {
+    tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
   } ),
 
   // Stroke for derivative curve
   derivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'derivativeCurveStroke', {
-    default: Color.RED
-  } ),
+      default: Color.RED
+    },
+    {
+      tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' )
+    } ),
 
   // Stroke for second derivative curve
   secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
-    default: Color.MAGENTA
-  } ),
+      default: Color.MAGENTA
+    },
+    {
+      tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
+    } ),
 
   // fill for up and down arrows on original graph
   arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
