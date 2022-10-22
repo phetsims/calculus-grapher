@@ -25,11 +25,11 @@ export default class LabScreenView extends CalculusGrapherScreenView {
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphChoices: [
         {
-          value: 'derivative',
+          value: 'derivativeGroup',
           graphs: [ 'original', 'derivative', 'secondDerivative' ]
         },
         {
-          value: 'integral',
+          value: 'integralGroup',
           graphs: [ 'integral', 'original', 'derivative' ]
         }
       ]

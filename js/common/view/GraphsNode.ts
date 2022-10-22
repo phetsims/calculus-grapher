@@ -54,12 +54,12 @@ export default class GraphNodes extends Node {
       this.graphHeightProperty,
       CurveLabelsNode.getIntegralLabel(),
       {
-        tandem: options.tandem.createTandem( 'integralGraphNode' ),
         curveNodeOptions: {
           continuousLinePlotOptions: {
             stroke: CalculusGrapherColors.integralCurveStrokeProperty
           }
-        }
+        },
+        tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
 
 
@@ -68,12 +68,12 @@ export default class GraphNodes extends Node {
       this.graphHeightProperty,
       CurveLabelsNode.getOriginalLabel(),
       {
-        tandem: options.tandem.createTandem( 'originalGraphNode' ),
         curveNodeOptions: {
           continuousLinePlotOptions: {
             stroke: CalculusGrapherColors.originalCurveStrokeProperty
           }
-        }
+        },
+        tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
 
     this.derivativeGraphNode = new GraphNode( model.derivativeCurve,

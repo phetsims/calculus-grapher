@@ -24,7 +24,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphChoices: [
         {
-          value: 'integral',
+          value: 'integralGroup',
           graphs: [ 'integral', 'original' ]
         } ]
     }, providedOptions );

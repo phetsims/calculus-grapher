@@ -27,11 +27,11 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
       visiblePropertiesOptions: {},
       graphChoices: [
         {
-          value: 'derivative',
+          value: 'derivativeGroup',
           graphs: [ 'original', 'derivative' ]
         },
         {
-          value: 'integral',
+          value: 'integralGroup',
           graphs: [ 'integral', 'original' ]
         }
       ]

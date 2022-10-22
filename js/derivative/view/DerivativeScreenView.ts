@@ -23,7 +23,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphChoices: [
         {
-          value: 'derivative',
+          value: 'derivativeGroup',
           graphs: [ 'original', 'derivative' ]
         } ]
     }, providedOptions );

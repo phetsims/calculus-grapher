@@ -4,6 +4,7 @@
  * Root class (to be subclassed) for the top-level view of every screen in the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
@@ -19,9 +20,10 @@ import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 
-export type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
-export type GraphArrangement = GraphType[];
-export type GraphChoice = { value: string; graphs: GraphArrangement };
+type GraphGroup = 'integralGroup' | 'derivativeGroup';
+type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
+type GraphArrangement = GraphType[];
+export type GraphChoice = { value: GraphGroup; graphs: GraphArrangement };
 export type GraphChoices = GraphChoice[];
 
 type SelfOptions = {
@@ -46,18 +48,19 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     super( options );
 
+    this.model = model;
+
+    this.graphsSelectedProperty = new Property( options.graphChoices[ 0 ] );
+
     // Create the view-specific properties for the screen.
     this.visibleProperties = new CalculusGrapherVisibleProperties( combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
       tandem: options.tandem.createTandem( 'visibleProperties' )
     }, options.visiblePropertiesOptions ) );
-    this.model = model;
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
       rightCenter: this.layoutBounds.rightCenter.minusXY( 10, 0 ),
       tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
     } );
-
-    this.graphsSelectedProperty = new Property( options.graphChoices[ 0 ] );
 
     this.graphsNode = new GraphsNode( model, this.graphsSelectedProperty, options.graphChoices, this.visibleProperties.gridVisibleProperty, {
       tandem: options.tandem.createTandem( 'graphsNode' )
@@ -65,14 +68,12 @@ export default class CalculusGrapherScreenView extends ScreenView {
     //TODO this doesn't work correctly if done via options
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
 
-
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
       {
         right: this.layoutBounds.right - 10,
         top: controlPanel.bottom + 10,
         tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
       } );
-
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
@@ -93,6 +94,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.model.reset();
     this.visibleProperties.reset();
     this.graphsNode.reset();
+    this.graphsSelectedProperty.reset();
   }
 }
 
