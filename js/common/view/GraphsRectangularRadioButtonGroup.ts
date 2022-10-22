@@ -6,7 +6,7 @@
  * @author Martin Veillette
  */
 
-import RectangularRadioButtonGroup, { RectangularRadioButtonGroupOptions, RectangularRadioButtonItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupOptions, RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -28,7 +28,7 @@ export default class GraphsRectangularRadioButtonGroup extends RectangularRadioB
 
 
     // content array for checkbox items
-    const items: RectangularRadioButtonItem<string>[] = [
+    const items: RectangularRadioButtonGroupItem<string>[] = [
 
       // Item for integral radio button
       createItem(
@@ -49,11 +49,11 @@ export default class GraphsRectangularRadioButtonGroup extends RectangularRadioB
   }
 }
 
-type ItemOptions = PickRequired<RectangularRadioButtonItem<string>, 'tandemName'>;
+type ItemOptions = PickRequired<RectangularRadioButtonGroupItem<string>, 'tandemName'>;
 
 function createItem( labelNode: Node,
                      value: string,
-                     providedOptions: ItemOptions ): RectangularRadioButtonItem<string> {
+                     providedOptions: ItemOptions ): RectangularRadioButtonGroupItem<string> {
 
   return {
     createNode: () => labelNode,

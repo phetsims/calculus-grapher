@@ -9,7 +9,7 @@
 
 import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import RectangularRadioButtonGroup, { RectangularRadioButtonGroupOptions, RectangularRadioButtonItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupOptions, RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
@@ -26,7 +26,7 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
 
     const options = providedOptions;
 
-    const rectangularRadioButtonGroupItems: RectangularRadioButtonItem<CurveManipulationMode>[] =
+    const rectangularRadioButtonGroupItems: RectangularRadioButtonGroupItem<CurveManipulationMode>[] =
       curveManipulationModeProperty.validValues!.map(
         mode => {
           return {
