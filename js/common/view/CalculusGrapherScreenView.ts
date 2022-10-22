@@ -66,7 +66,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'graphsNode' )
     } );
     //TODO this doesn't work correctly if done via options
-    this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 50, 0 );
+    this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 20, 0 );
 
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
       {

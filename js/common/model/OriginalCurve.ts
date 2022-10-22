@@ -52,7 +52,7 @@ export default class OriginalCurve extends Curve {
   // the width of the curve-manipulation. This only applies to some CurveManipulationModes
   // and the value is interpreted differently for each response algorithm to curve
   // user-manipulation.
-  private readonly curveManipulationWidthProperty: NumberProperty;
+  public readonly curveManipulationWidthProperty: NumberProperty;
 
   public constructor( curveManipulationModeChoices: CurveManipulationMode[], tandem: Tandem ) {
 
