@@ -12,7 +12,6 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
-import { CalculusGrapherScreenViewOptions } from '../common/view/CalculusGrapherScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -22,7 +21,7 @@ export default class LabScreen extends Screen {
 
   public constructor( providedOptions: LabScreenOptions ) {
 
-    const options = optionize<CalculusGrapherScreenViewOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
+    const options = optionize<LabScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
     const createModel = () => new LabModel( { tandem: options.tandem.createTandem( 'model' ) } );
 

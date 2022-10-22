@@ -6,29 +6,49 @@
  * @author Martin Veillette
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import LabModel from '../model/LabModel.js';
+import GraphsRectangularRadioButtonGroup, { GraphsRectangularRadioButtonGroupOptions } from '../../common/view/GraphsRectangularRadioButtonGroup.js';
+import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LabScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+export type LabScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphChoices'>;
 
 export default class LabScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphsRadioButtonGroupOptions: {},
-      visiblePropertiesOptions: {
-        isIntegralGraphVisible: false,
-        isDerivativeGraphVisible: true,
-        isSecondDerivativeGraphVisible: true
-      }
+      graphChoices: [
+        {
+          value: 'derivative',
+          graphs: [ 'original', 'derivative', 'secondDerivative' ]
+        },
+        {
+          value: 'integral',
+          graphs: [ 'integral', 'original', 'derivative' ]
+        }
+      ]
     }, providedOptions );
 
     super( model, options );
+
+    const graphsRectangularRadioButtonGroup = new GraphsRectangularRadioButtonGroup( this.graphsSelectedProperty,
+      options.graphChoices,
+      combineOptions<GraphsRectangularRadioButtonGroupOptions>( {
+        leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
+        spacing: 5,
+        radioButtonOptions: {
+          baseColor: CalculusGrapherColors.panelFillProperty
+        },
+        tandem: options.tandem.createTandem( 'graphsRadioButtonGroup' )
+      }, options.graphsRadioButtonGroupOptions ) );
+
+    this.addChild( graphsRectangularRadioButtonGroup );
 
   }
 }

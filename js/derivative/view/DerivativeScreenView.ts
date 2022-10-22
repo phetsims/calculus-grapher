@@ -7,25 +7,25 @@
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphChoices'>;
 
 export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: DerivativeModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphsRadioButtonGroupOptions: {},
-      visiblePropertiesOptions: {
-        isIntegralGraphVisible: false,
-        isDerivativeGraphVisible: true,
-        isSecondDerivativeGraphVisible: false
-      }
+      graphChoices: [
+        {
+          value: 'derivative',
+          graphs: [ 'original', 'derivative' ]
+        } ]
     }, providedOptions );
 
     super( model, options );

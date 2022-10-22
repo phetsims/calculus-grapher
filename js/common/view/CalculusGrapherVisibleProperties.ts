@@ -19,9 +19,6 @@ import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 type SelfOptions = {
   isGridVisible?: boolean;
   isReferenceLineVisible?: boolean;
-  isIntegralGraphVisible?: boolean;
-  isDerivativeGraphVisible?: boolean;
-  isSecondDerivativeGraphVisible?: boolean;
 };
 export type CalculusGrapherVisiblePropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
@@ -33,26 +30,11 @@ export default class CalculusGrapherVisibleProperties {
   //indicates if the reference line is visible.
   public readonly referenceLineVisibleProperty: Property<boolean>;
 
-  //indicates if the original curve is visible.
-  public readonly originalGraphNodeVisibleProperty: Property<boolean>;
-
-  //indicates if the integral curve is visible.
-  public readonly integralGraphNodeVisibleProperty: Property<boolean>;
-
-  // indicates if the derivative curve is visible.
-  public readonly derivativeGraphNodeVisibleProperty: Property<boolean>;
-
-  //indicates if the second derivative curve is visible.
-  public readonly secondDerivativeGraphNodeVisibleProperty: Property<boolean>;
-
   public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
     const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions>()( {
       isGridVisible: true,
-      isReferenceLineVisible: false,
-      isIntegralGraphVisible: false,
-      isDerivativeGraphVisible: true,
-      isSecondDerivativeGraphVisible: false
+      isReferenceLineVisible: false
     }, providedOptions );
 
     this.gridVisibleProperty = new BooleanProperty( options.isGridVisible, {
@@ -63,26 +45,6 @@ export default class CalculusGrapherVisibleProperties {
       tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
 
-    this.originalGraphNodeVisibleProperty = new BooleanProperty( true,
-      {
-        tandem: options.tandem.createTandem( 'originalGraphNodeVisibleProperty' ),
-        phetioDocumentation: 'PhET-iO only, not settable in the sim'
-      } );
-
-    this.integralGraphNodeVisibleProperty = new BooleanProperty( options.isIntegralGraphVisible,
-      {
-        tandem: options.tandem.createTandem( 'integralGraphNodeVisibleProperty' )
-      } );
-
-    this.derivativeGraphNodeVisibleProperty = new BooleanProperty( options.isDerivativeGraphVisible,
-      {
-        tandem: options.tandem.createTandem( 'derivativeGraphNodeVisibleProperty' )
-      } );
-
-    this.secondDerivativeGraphNodeVisibleProperty = new BooleanProperty( options.isSecondDerivativeGraphVisible,
-      {
-        tandem: options.tandem.createTandem( 'secondDerivativeGraphNodeVisibleProperty' )
-      } );
   }
 
   /**
@@ -91,10 +53,6 @@ export default class CalculusGrapherVisibleProperties {
   public reset(): void {
     this.gridVisibleProperty.reset();
     this.referenceLineVisibleProperty.reset();
-    this.integralGraphNodeVisibleProperty.reset();
-    this.originalGraphNodeVisibleProperty.reset();
-    this.derivativeGraphNodeVisibleProperty.reset();
-    this.secondDerivativeGraphNodeVisibleProperty.reset();
   }
 }
 

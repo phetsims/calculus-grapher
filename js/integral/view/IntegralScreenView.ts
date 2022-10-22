@@ -7,6 +7,7 @@
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
@@ -14,19 +15,18 @@ import IntegralModel from '../model/IntegralModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphChoices'>;
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: IntegralModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphsRadioButtonGroupOptions: {},
-      visiblePropertiesOptions: {
-        isIntegralGraphVisible: true,
-        isDerivativeGraphVisible: false,
-        isSecondDerivativeGraphVisible: false
-      }
+      graphChoices: [
+        {
+          value: 'integral',
+          graphs: [ 'integral', 'original' ]
+        } ]
     }, providedOptions );
 
     super( model, options );

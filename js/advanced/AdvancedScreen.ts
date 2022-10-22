@@ -12,7 +12,6 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
-import { CalculusGrapherScreenViewOptions } from '../common/view/CalculusGrapherScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -22,7 +21,7 @@ export default class AdvancedScreen extends Screen {
 
   public constructor( providedOptions: AdvancedScreenOptions ) {
 
-    const options = optionize<CalculusGrapherScreenViewOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
+    const options = optionize<AdvancedScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
     const createModel = () => new AdvancedModel( { tandem: options.tandem.createTandem( 'model' ) } );
 

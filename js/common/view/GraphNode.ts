@@ -51,7 +51,7 @@ type SelfOptions = {
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
   expandCollapseButtonOptions?: ExpandCollapseButtonOptions;
 };
-export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'visibleProperty' | 'tandem'>;
+export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphNode extends Node {
 
