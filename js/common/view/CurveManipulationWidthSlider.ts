@@ -1,4 +1,4 @@
-// Copyright 2020-2022, University of Colorado Boulder
+// Copyright 2022, University of Colorado Boulder
 
 /**
  * Control HSlider at the middle-right of each screen that allows the user to manipulate certain Properties of
