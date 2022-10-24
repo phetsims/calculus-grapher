@@ -18,18 +18,17 @@
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
-import OriginalCurve from './OriginalCurve.js';
 
 export default class IntegralCurve extends Curve {
 
   // reference to the 'base' Curve that was passed-in.
-  private baseCurve: OriginalCurve;
+  private baseCurve: Curve;
 
   /**
    * @param baseCurve - the curve to integrate to get the values of this IntegralCurve.
    * @param tandem
    */
-  public constructor( baseCurve: OriginalCurve, tandem: Tandem ) {
+  public constructor( baseCurve: Curve, tandem: Tandem ) {
 
     super( tandem );
 
