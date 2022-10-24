@@ -20,7 +20,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   pointsPerCoordinate: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 10
+    defaultValue: 25
   },
 
   /**
