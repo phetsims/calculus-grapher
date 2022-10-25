@@ -132,10 +132,17 @@ export default class GraphNode extends Node {
     // curve associated with this graph
     this.curveNode = this.getCurveNode( curve, this.chartTransform, options.curveNodeOptions );
 
+    // factor associated with conversion between model and view along horizontal.
+    const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
+                              this.chartTransform.viewWidth;
+
+    // maintain isometry between x and Y, (factor 1/2 because the y range goes from -maxY to maxY.
+    const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
+
     const getModelYRange = ( zoomLevel: number ): Range => {
 
-      //TODO replace the constant 5
-      const maxY = 5 * Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      const scalingFactor = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      const maxY = initialMaxY * scalingFactor;
       return new Range( -maxY, maxY );
     };
 
@@ -148,7 +155,6 @@ export default class GraphNode extends Node {
 
     this.graphVisibleProperty = new BooleanProperty( true,
       { tandem: options.tandem.createTandem( 'graphVisibleProperty' ) } );
-
 
     const expandCollapseButton = new ExpandCollapseButton( this.graphVisibleProperty,
       combineOptions<ExpandCollapseButtonOptions>( {
