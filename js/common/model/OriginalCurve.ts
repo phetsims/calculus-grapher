@@ -33,6 +33,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import Curve from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import CurvePoint from './CurvePoint.js';
 
 
 // constants
@@ -40,8 +41,6 @@ const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATI
 const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
-
-type ParabolaParameters = { A: number; B: number; C: number };
 
 export default class OriginalCurve extends Curve {
 
@@ -349,19 +348,19 @@ export default class OriginalCurve extends Curve {
     assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
     //  closest point associated with the position
-    //  closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     closestPoint.y = position.y;
 
-    // x separation between two adjacent points in curve array
-    const deltaX = 1 / POINTS_PER_COORDINATE;
+    // point associated with the last drag event
+    const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+
+    this.interpolate( closestPoint, lastPoint );
+
 
     if ( antepenultimatePosition instanceof Vector2 ) {
 
-      // point associated with the last drag event
-      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
       // point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
@@ -369,54 +368,67 @@ export default class OriginalCurve extends Curve {
       // ensure that lastPoint is in between closestPoint and lastPoint
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 
-        const P = this.parabolaParameters(
-          closestPoint.x, closestPoint.y,
-          lastPoint.x, lastPoint.y,
-          nextToLastPoint.x, nextToLastPoint.y );
-
-        // x distance between the new and oldest point
-        const distX = Math.abs( closestPoint.x - nextToLastPoint.x );
-
-        const signedOne: number = ( nextToLastPoint.x > closestPoint.x ) ? 1 : -1;
-
-        // perform a quadratic interpolation between closestPoint and nextToLastPoint
-        for ( let dx = deltaX; dx < distX; dx += deltaX ) {
-
-          // the xPosition of the point to be interpolated, is either to the left or right of the closestPoint
-          const xPosition = closestPoint.x + signedOne * dx;
-
-          // update the y value of an intermediate point
-          this.getClosestPointAt( xPosition ).y = P.A * xPosition * xPosition + P.B * xPosition + P.C;
-
-        }
-      }
-      else {
+        // x separation between two adjacent points in curve array
+        const deltaX = 1 / POINTS_PER_COORDINATE;
 
         // x distance between the new and old point
-        const distX = Math.abs( closestPoint.x - lastPoint.x );
+        const distXl = Math.abs( closestPoint.x - lastPoint.x );
 
-        const signedOne: number = ( closestPoint.x > lastPoint.x ) ? 1 : -1;
+        // x distance between the old and very old point
+        const distXR = Math.abs( nextToLastPoint.x - lastPoint.x );
 
-        // perform a linear interpolation between lastPoint and closestPoint
-        for ( let dx = deltaX; dx < distX; dx += deltaX ) {
+        const signedOne: number = ( closestPoint.x < lastPoint.x ) ? -1 : 1;
 
-          // the xPosition of the point to be interpolated, is either to the left or right of the closestPoint
-          const xPosition = closestPoint.x + signedOne * dx;
+        // TODO: explain
+        for ( let j = 0; j < 3; j++ ) {
 
-          // weight needed to interpolate the y-values, weight will never exceed 1.
-          const W = dx / distX;
+          for ( let dx = -distXR / 2; dx < distXl / 2; dx += deltaX ) {
 
-          // update the y value of an intermediate point
-          this.getClosestPointAt( xPosition ).y = ( 1 - W ) * lastPoint.y + W * closestPoint.y;
+            // point to be smoothed
+            const xPosition = nextToLastPoint.x + signedOne * dx;
 
+            // update the y value based on adjacent points
+            this.getClosestPointAt( xPosition ).y =
+              this.getClosestPointAt( xPosition + 2 * deltaX ).y / 5 +
+              this.getClosestPointAt( xPosition - 2 * deltaX ).y / 5 +
+              this.getClosestPointAt( xPosition ).y / 5 +
+              this.getClosestPointAt( xPosition + deltaX ).y / 5 +
+              this.getClosestPointAt( xPosition - deltaX ).y / 5;
+          }
         }
-      }
 
+
+      }
     }
+
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 
+  public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
+
+    // x separation between two adjacent points in curve array
+    const deltaX = 1 / POINTS_PER_COORDINATE;
+
+    // x distance between the new and old point
+    const distX = Math.abs( point1.x - point2.x );
+
+    const signedOne: number = ( point1.x > point2.x ) ? -1 : 1;
+
+    // perform a linear interpolation between lastPoint and closestPoint
+    for ( let dx = deltaX; dx < distX; dx += deltaX ) {
+
+      // the xPosition of the point to be interpolated, is either to the left or right of the closestPoint
+      const xPosition = point1.x + signedOne * dx;
+
+      // weight needed to interpolate the y-values, weight will never exceed 1.
+      const W = dx / distX;
+
+      // update the y value of an intermediate point
+      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * point1.y + W * point2.y;
+
+    }
+  }
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
@@ -462,26 +474,6 @@ export default class OriginalCurve extends Curve {
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
-
-  /**
-   * Find the parameters A, B, C in  'y= A x^2= Bx + C'  from three points (Vector2)
-   * The points must have distinct x values.
-   *
-   */
-  public parabolaParameters( x1: number, y1: number, x2: number, y2: number, x3: number, y3: number ):
-    ParabolaParameters {
-
-    const denominator = ( x1 - x2 ) * ( x1 - x3 ) * ( x2 - x3 );
-
-    assert && assert( denominator !== 0, 'x values of three points must be different' );
-
-    const A = ( x1 * ( y3 - y2 ) + x2 * ( y1 - y3 ) + x3 * ( y2 - y1 ) ) / denominator;
-    const B = ( x1 * x1 * ( y2 - y3 ) + x2 * x2 * ( y3 - y1 ) + x3 * x3 * ( y1 - y2 ) ) / denominator;
-    const C = ( x2 * x3 * ( x2 - x3 ) * y1 + x3 * x1 * ( x3 - x1 ) * y2 + x1 * x2 * ( x1 - x2 ) * y3 ) / denominator;
-
-    return { A: A, B: B, C: C };
-  }
-
 }
 
 calculusGrapher.register( 'OriginalCurve', OriginalCurve );
