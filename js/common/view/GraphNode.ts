@@ -6,6 +6,7 @@
  * Primary responsibilities are:
  * - Create an associated CurveNode
  * - Create a zoomButtonGroup with an associated property
+ * - Create an eye toggle button that control the visibility of curve
  * - Create AxisLines, GridLines and Rectangle Chart
  * - Create a Chart Transform
  * - Updating the model y Range of the graph based on the zoom level
@@ -41,7 +42,6 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import ExpandCollapseButton, { ExpandCollapseButtonOptions } from '../../../../sun/js/ExpandCollapseButton.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -49,7 +49,6 @@ type SelfOptions = {
   curveNodeOptions?: CurveNodeOptions;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
-  expandCollapseButtonOptions?: ExpandCollapseButtonOptions;
 };
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
@@ -60,14 +59,12 @@ export default class GraphNode extends Node {
   private readonly graphVisibleProperty: BooleanProperty;
   protected readonly chartTransform: ChartTransform;
   protected readonly curveNode: CurveNode;
-  protected readonly graphContent: Node;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
-
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
 
@@ -91,9 +88,6 @@ export default class GraphNode extends Node {
       },
       eyeToggleButtonOptions: {
         scale: 0.5
-      },
-      expandCollapseButtonOptions: {
-        scale: 0.8
       }
     }, providedOptions );
 
@@ -156,14 +150,6 @@ export default class GraphNode extends Node {
     this.graphVisibleProperty = new BooleanProperty( true,
       { tandem: options.tandem.createTandem( 'graphVisibleProperty' ) } );
 
-    const expandCollapseButton = new ExpandCollapseButton( this.graphVisibleProperty,
-      combineOptions<ExpandCollapseButtonOptions>( {
-        right: chartRectangle.left - 10,
-        top: chartRectangle.top,
-        tandem: options.tandem.createTandem( 'expandCollapseButton' )
-      }, options.expandCollapseButtonOptions ) );
-
-
     // create eye toggle button that controls the visibility of the curve
     const eyeToggleButton = new EyeToggleButton( this.curveVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
@@ -195,36 +181,26 @@ export default class GraphNode extends Node {
     graphHeightProperty.link( height => {
       this.chartTransform.setViewHeight( height );
       this.curveNode.clipArea = chartRectangle.getShape();
-      expandCollapseButton.top = chartRectangle.top;
       eyeToggleButton.bottom = chartRectangle.bottom;
       zoomButtonGroup.centerY = chartRectangle.centerY;
     } );
 
     labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
 
-    // TODO: find better name
-    this.graphContent = new Node( {
-      children: [
-        chartRectangle,
-        gridNode,
-        horizontalAxisLine,
-        verticalAxisLine,
-        zoomButtonGroup,
-        eyeToggleButton,
-        labelNode,
-        this.curveNode
-      ]
-    } );
+    this.setChildren( [
+      chartRectangle,
+      gridNode,
+      horizontalAxisLine,
+      verticalAxisLine,
+      zoomButtonGroup,
+      eyeToggleButton,
+      labelNode,
+      this.curveNode
+    ] );
 
     this.graphVisibleProperty.link( visible => {
-      this.graphContent.visible = visible;
+      this.visible = visible;
     } );
-
-    // add children to this node
-    this.children = [
-      expandCollapseButton,
-      this.graphContent
-    ];
 
     // add tick and numerical labels if true
     if ( CalculusGrapherQueryParameters.numericalLabels ) {
@@ -258,10 +234,10 @@ export default class GraphNode extends Node {
       } );
 
       // add children to this node
-      this.graphContent.addChild( horizontalTickMarkSet );
-      this.graphContent.addChild( horizontalTickLabelSet );
-      this.graphContent.addChild( verticalTickMarkSet );
-      this.graphContent.addChild( verticalTickLabelSet );
+      this.addChild( horizontalTickMarkSet );
+      this.addChild( horizontalTickLabelSet );
+      this.addChild( verticalTickMarkSet );
+      this.addChild( verticalTickLabelSet );
     }
   }
 
