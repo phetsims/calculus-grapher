@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * GraphsCheckboxGroup is a group of checkboxes for controlling visibility of graph nodes
+ * GraphsRectangularRadioButtonGroup is a group of buttons for controlling visibility of graph nodes
  *
  * @author Martin Veillette
  */
@@ -29,7 +29,7 @@ export default class GraphsRectangularRadioButtonGroup extends RectangularRadioB
       {}, providedOptions );
 
 
-    // content array for checkbox items
+    // content array for items in radio button group
     const items: RectangularRadioButtonGroupItem<GraphChoice>[] = [
 
       // Item for integral radio button
