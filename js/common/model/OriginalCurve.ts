@@ -93,10 +93,23 @@ export default class OriginalCurve extends Curve {
    * Resets the OriginalCurve.
    * Called when the reset-all button is pressed.
    */
-  public override reset(): void {
-    super.reset();
+  public reset(): void {
+
+    this.resetCurvePoints();
+
     this.curveManipulationModeProperty.reset();
     this.curveManipulationWidthProperty.reset();
+  }
+
+
+  // reset the curve points to their initial values
+  private resetCurvePoints(): void {
+
+    // Reset every CurvePoint to its initial state.
+    this.points.forEach( point => point.reset() );
+
+    // Signal once that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
   /**

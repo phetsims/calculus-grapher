@@ -56,14 +56,6 @@ export default class DerivativeCurve extends Curve {
   }
 
   /**
-   * The derivative curve is subordinate to the baseCurve, no need to reset it.
-   * Called when the reset-all button is pressed.
-   */
-  public override reset(): void {
-    throw new Error( 'DerivativeCurve is not resettable' );
-  }
-
-  /**
    * Updates the y-values of the DerivativeCurve to represent the derivative of the 'base' Curve.
    *
    * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the slope of
