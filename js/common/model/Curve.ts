@@ -70,8 +70,8 @@ export default class Curve extends PhetioObject {
       xRange: CURVE_X_RANGE,
       pointsPerCoordinate: POINTS_PER_COORDINATE,
       mathFunction: x => 0,
-      phetioState: false,
-      initialPoints: [ [ 0, 0 ] ]
+      initialPoints: [ [ 0, 0 ] ],
+      phetioState: false
     }, providedOptions );
 
     super( options );
@@ -83,14 +83,10 @@ export default class Curve extends PhetioObject {
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.
 
-    this.points = [];
+    this.points = ( options.initialPoints.length > 1 ) ?
+                  this.getFromSimplePoints( options.initialPoints ) :
+                  this.getFromMathFunction( options.mathFunction );
 
-    if ( options.initialPoints.length > 1 ) {
-      this.points = this.getFromSimplePoints( options.initialPoints );
-    }
-    else {
-      this.points = this.getFromMathFunction( options.mathFunction );
-    }
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
     // of every CurvePoint, which was deemed invasive to the performance of the sim, we
