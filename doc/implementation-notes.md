@@ -18,7 +18,7 @@ A model-view transform is used for each graph. The model has +x to the left, and
 There are a number of query parameters for internal use.
 
 - `pointsPerCoordinate` sets the number of curves points per coordinates. The default value is 10.
-- `smoothingWindowWidth` sets the window width used in the smoothing function. The default value is 1.2 .
+- `smoothingStandardDeviation` sets the width used in the smoothing function. The default value is 0.25 .
 - `maxTilt` sets the maximum tilting angle (in tilt mode) of curves relative to the horizontal. The default value is 45.
 - `edgeSlopeFactor` sets the width of the rounded corner in pedestal mode (continuous trapezoidal-shaped curve with
   rounded corners). A larger value creates a wider edge. The default value is 1.5

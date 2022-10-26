@@ -37,7 +37,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
-const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
+const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDeviation;
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
 
 type SelfOptions = EmptySelfOptions;
@@ -143,37 +143,48 @@ export default class OriginalCurve extends Curve {
    *----------------------------------------------------------------------------*/
 
   /**
-   * Smooths the curve. Called when the user presses the 'smooth' button.
-   *
-   * This method uses the simple moving-average algorithm for 'smoothing' a curve, which is described in
-   * https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This algorithm was adapted but significantly
-   * improved from the flash implementation of calculus grapher.
+   * Smooths the curve. Called when the user presses the 'smooth' button
+   * This method uses a weighted-average algorithm for 'smoothing' a curve, using a gaussian kernel
+   * see https://en.wikipedia.org/wiki/Kernel_smoother
    */
   public smooth(): void {
 
-    // Save the current values of our Points for the next undoToLastSave call. Note that the current y-values are the
-    // same as the previous y-values for all Points in the OriginalCurve.
+    // Save the current values of our Points for the next undoToLastSave call.
+    // Note that the current y-values are the same as the previous y-values
+    // for all Points in the OriginalCurve.
     this.saveCurrentPoints();
 
-    // Loop through each Point and set the Point's new y-value.
+    // gaussian kernel that will be used in the convolution of our curve
+    const gaussianFunction = ( x: number ) => Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 ) /
+                                              ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+
+    // Loop through each Point of the curve and set the new y-value.
     this.points.forEach( point => {
 
-      // Flag that tracks the sum of the y-values of all Points within the moving window.
-      let movingTotal = 0;
-      let addedPoints = 0;
+      // Flag that tracks the sum of the weighted y-values of all Points
+      let weightedY = 0;
+      let totalWeight = 0;
+
+      // we want to use the kernel over a number of standard deviations
+      // beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so it becomes irrelevant.
+      const numberOfStandardDeviations = 3;
 
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 /
-                                                                                         this.pointsPerCoordinate ) {
+      for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
+            dx < numberOfStandardDeviations * STANDARD_DEVIATION;
+            dx += 1 / this.pointsPerCoordinate ) {
+
+        // weight of the point
+        const weight = gaussianFunction( dx );
+
+        totalWeight += weight;
 
         // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
-        movingTotal += this.getClosestPointAt( point.x + dx ).lastSavedY;
-
-        addedPoints += 1;
+        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
       }
 
-      // Set the Point's new y-value to the moving average.
-      point.y = movingTotal / addedPoints;
+      // Set the Point's new y-value to the weighted average.
+      point.y = weightedY / totalWeight;
     } );
 
     // Signal that this Curve has changed.

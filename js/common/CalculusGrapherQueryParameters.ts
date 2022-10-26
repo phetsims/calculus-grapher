@@ -24,16 +24,16 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The 'window' width for smoothing, in model coordinates (x-values). The smooth algorithm for 'Calculus Grapher' uses
-   * the moving average algorithm described in https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average. This
-   * value is the width of the window to sample (on each side) for each Point's value.
+   * The smooth algorithm for 'Calculus Grapher' uses a procedure described in https://en.wikipedia.org/wiki/Kernel_smoother.
+   * using a gaussian kernel. The value below is the standard deviation of the gaussian function kernel.
+   * The larger the standard deviation is, the smoother the function.
    *
    * For internal use.
    */
-  smoothingWindowWidth: {
+  smoothingStandardDeviation: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 1.2
+    defaultValue: 0.25
   },
 
   /**
