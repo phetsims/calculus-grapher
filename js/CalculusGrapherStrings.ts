@@ -20,7 +20,6 @@ type StringsType = {
   };
   'resetStringProperty': LinkableProperty<string>;
   'smoothStringProperty': LinkableProperty<string>;
-  'undoStringProperty': LinkableProperty<string>;
   'symbol': {
     'dStringProperty': LinkableProperty<string>;
     'fStringProperty': LinkableProperty<string>;

@@ -9,6 +9,7 @@
 
 import { VBox } from '../../../../scenery/js/imports.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
+import UndoButton from '../../../../scenery-phet/js/buttons/UndoButton.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -19,7 +20,6 @@ import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioB
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
-
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -59,9 +59,8 @@ export default class CalculusGrapherControlPanel extends Panel {
 
 
     // Undo Button
-    const undoButton = new TextPushButton( CalculusGrapherStrings.undoStringProperty, {
+    const undoButton = new UndoButton( {
       listener: () => originalCurve.undoToLastSave(),
-      baseColor: PhetColorScheme.BUTTON_YELLOW,
       tandem: options.tandem.createTandem( 'undoButton' )
     } );
 
