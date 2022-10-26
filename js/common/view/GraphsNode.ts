@@ -27,9 +27,6 @@ export type GraphNodesOptions = SelfOptions & NodeOptions;
 export default class GraphNodes extends Node {
 
   private readonly originalGraphNode: OriginalGraphNode;
-  private readonly derivativeGraphNode: GraphNode;
-  private readonly integralGraphNode: GraphNode;
-  private readonly secondDerivativeGraphNode: GraphNode;
   private readonly graphHeightProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel,
@@ -49,7 +46,7 @@ export default class GraphNodes extends Node {
     } );
 
 
-    this.integralGraphNode = new GraphNode( model.integralCurve,
+    const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       this.graphHeightProperty,
       CurveLabelsNode.getIntegralLabel(),
@@ -76,7 +73,7 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
 
-    this.derivativeGraphNode = new GraphNode( model.derivativeCurve,
+    const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
       this.graphHeightProperty,
       CurveLabelsNode.getDerivativeLabel(),
@@ -90,7 +87,7 @@ export default class GraphNodes extends Node {
 
       } );
 
-    this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
+    const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
       this.graphHeightProperty,
       CurveLabelsNode.getSecondDerivativeLabel(),
@@ -110,16 +107,16 @@ export default class GraphNodes extends Node {
       // array of Node content of this class
       const content = graphChoice.graphs.map( graphType => {
           if ( graphType === 'integral' ) {
-            return this.integralGraphNode;
+            return integralGraphNode;
           }
           else if ( graphType === 'original' ) {
             return this.originalGraphNode;
           }
           else if ( graphType === 'derivative' ) {
-            return this.derivativeGraphNode;
+            return derivativeGraphNode;
           }
           else if ( graphType === 'secondDerivative' ) {
-            return this.secondDerivativeGraphNode;
+            return secondDerivativeGraphNode;
           }
           else {
             throw new Error( 'Unsupported graphType' );
@@ -143,9 +140,6 @@ export default class GraphNodes extends Node {
    */
   public reset(): void {
     this.originalGraphNode.reset();
-    this.derivativeGraphNode.reset();
-    this.integralGraphNode.reset();
-    this.secondDerivativeGraphNode.reset();
   }
 }
 

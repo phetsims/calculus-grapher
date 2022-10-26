@@ -47,12 +47,11 @@ export default class IntegralCurve extends Curve {
   }
 
   /**
-   * Resets the IntegralCurve. Ensures that IntegralCurve matches the 'base' Curve regardless of resetting order.
+   * The integralCurve is subordinate to the baseCurve, no need to reset it.
    * Called when the reset-all button is pressed.
    */
   public override reset(): void {
-    super.reset();
-    this.updateIntegral();
+    throw new Error( 'IntegralCurve is not resettable' );
   }
 
   /**

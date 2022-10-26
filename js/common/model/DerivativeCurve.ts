@@ -56,12 +56,11 @@ export default class DerivativeCurve extends Curve {
   }
 
   /**
-   * Resets the DerivativeCurve. Ensures that DerivativeCurve matches the 'base' Curve regardless of resetting order.
+   * The derivative curve is subordinate to the baseCurve, no need to reset it.
    * Called when the reset-all button is pressed.
    */
   public override reset(): void {
-    super.reset();
-    this.updateDerivative();
+    throw new Error( 'DerivativeCurve is not resettable' );
   }
 
   /**
