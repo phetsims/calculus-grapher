@@ -12,7 +12,7 @@
  * Responsibilities are:
  *   - Create an array of CurvePoints for each partition of the Curve.
  *   - Create convenience methods to reference and mutate CurvePoints at a given x-value.
- *   - Provide the reset method and other convenience methods.
+ *   - Provide other convenience methods to set the initial value of the curve points.
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation, so no
  * dispose method is necessary. For an overview of the class hierarchy of Curves, see
@@ -96,20 +96,6 @@ export default class Curve extends PhetioObject {
 
     // a collection of cusps points if present
     this.cusps = []; // {CurvePoint[]}
-  }
-
-  /**
-   * Resets the Curve to its initial state.
-   */
-  public reset(): void {
-
-    // Reset every CurvePoint to its initial state.
-    this.points.forEach( point => {
-      point.reset();
-    } );
-
-    // Signal once that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**

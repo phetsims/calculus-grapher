@@ -44,7 +44,7 @@ export default class GraphNodes extends Node {
 
     // determine the (view) height of the graph based on the number of visible graphs.
     this.graphHeightProperty = new DerivedProperty( [ graphsSelectedProperty ], graphsSelected => {
-      const numberOfVisibleGraphs = graphsSelectedProperty.value.length;
+      const numberOfVisibleGraphs = graphsSelected.length;
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 

@@ -47,14 +47,6 @@ export default class IntegralCurve extends Curve {
   }
 
   /**
-   * The integralCurve is subordinate to the baseCurve, no need to reset it.
-   * Called when the reset-all button is pressed.
-   */
-  public override reset(): void {
-    throw new Error( 'IntegralCurve is not resettable' );
-  }
-
-  /**
    * Updates the y-values of the IntegralCurve to represent the integral of the 'base' Curve.
    *
    * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the
