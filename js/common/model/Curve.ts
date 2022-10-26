@@ -23,16 +23,24 @@
 
 import Emitter from '../../../../axon/js/Emitter.js';
 import Utils from '../../../../dot/js/Utils.js';
-import PhetioObject from '../../../../tandem/js/PhetioObject.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurvePoint from './CurvePoint.js';
+import Range from '../../../../dot/js/Range.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
+
+type SelfOptions = {
+  xRange?: Range;
+  pointsPerCoordinate?: number;
+};
+
+export type CurveOptions = SelfOptions & PhetioObjectOptions;
 
 export default class Curve extends PhetioObject {
 
@@ -45,12 +53,21 @@ export default class Curve extends PhetioObject {
 
   public cusps: CurvePoint[];
 
-  public constructor( tandem: Tandem ) {
+  public readonly xRange: Range;
+  public readonly pointsPerCoordinate: number;
 
-    super( {
-      tandem: tandem,
-      phetioState: false
-    } );
+  public constructor( providedOptions: CurveOptions ) {
+
+    const options = optionize<CurveOptions, SelfOptions, PhetioObjectOptions>()( {
+      xRange: CURVE_X_RANGE,
+      pointsPerCoordinate: POINTS_PER_COORDINATE
+    }, providedOptions );
+
+    super( options );
+
+
+    this.xRange = options.xRange;
+    this.pointsPerCoordinate = options.pointsPerCoordinate;
 
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.
@@ -58,7 +75,7 @@ export default class Curve extends PhetioObject {
 
     // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
     // start of the simulation here and are never disposed.
-    for ( let x = CURVE_X_RANGE.min; x <= CURVE_X_RANGE.max; x += 1 / POINTS_PER_COORDINATE ) {
+    for ( let x = options.xRange.min; x <= options.xRange.max; x += 1 / options.pointsPerCoordinate ) {
       this.points.push( new CurvePoint( x ) );
     }
 
@@ -102,7 +119,7 @@ export default class Curve extends PhetioObject {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
     // Use dimensional analysis to convert the x-value to the index of the Point.
-    const index = Utils.roundSymmetric( ( x - CURVE_X_RANGE.min ) * POINTS_PER_COORDINATE );
+    const index = Utils.roundSymmetric( ( x - this.xRange.min ) * this.pointsPerCoordinate );
 
     // Clamp the index to a point inside our range.
     return Utils.clamp( index, 0, this.points.length - 1 );

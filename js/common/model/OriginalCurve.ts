@@ -30,17 +30,19 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import Curve from './Curve.js';
+import Curve, { CurveOptions } from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import CurvePoint from './CurvePoint.js';
-
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const SMOOTHING_WINDOW_WIDTH = CalculusGrapherQueryParameters.smoothingWindowWidth;
-const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
+
+type SelfOptions = EmptySelfOptions;
+
+export type OriginalCurveOptions = SelfOptions & CurveOptions;
 
 export default class OriginalCurve extends Curve {
 
@@ -53,18 +55,22 @@ export default class OriginalCurve extends Curve {
   // user-manipulation.
   public readonly curveManipulationWidthProperty: NumberProperty;
 
-  public constructor( curveManipulationModeChoices: CurveManipulationMode[], tandem: Tandem ) {
+  public constructor( curveManipulationModeChoices: CurveManipulationMode[],
+                      providedOptions: OriginalCurveOptions ) {
 
-    super( tandem );
+
+    const options = optionize<OriginalCurveOptions, SelfOptions, CurveOptions>()( {}, providedOptions );
+
+    super( options );
 
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL, {
       validValues: curveManipulationModeChoices,
-      tandem: tandem.createTandem( 'curveManipulationModeProperty' )
+      tandem: options.tandem.createTandem( 'curveManipulationModeProperty' )
     } );
 
     this.curveManipulationWidthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
       range: CURVE_MANIPULATION_WIDTH_RANGE,
-      tandem: tandem.createTandem( 'curveManipulationWidthProperty' )
+      tandem: options.tandem.createTandem( 'curveManipulationWidthProperty' )
     } );
   }
 
@@ -144,7 +150,8 @@ export default class OriginalCurve extends Curve {
       let addedPoints = 0;
 
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 / POINTS_PER_COORDINATE ) {
+      for ( let dx = -SMOOTHING_WINDOW_WIDTH / 2; dx < SMOOTHING_WINDOW_WIDTH / 2; dx += 1 /
+                                                                                         this.pointsPerCoordinate ) {
 
         // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
         movingTotal += this.getClosestPointAt( point.x + dx ).lastSavedY;
@@ -369,7 +376,7 @@ export default class OriginalCurve extends Curve {
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 
         // x separation between two adjacent points in curve array
-        const deltaX = 1 / POINTS_PER_COORDINATE;
+        const deltaX = 1 / this.pointsPerCoordinate;
 
         // x distance between the new and old point
         const distXl = Math.abs( closestPoint.x - lastPoint.x );
@@ -408,7 +415,7 @@ export default class OriginalCurve extends Curve {
   public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
 
     // x separation between two adjacent points in curve array
-    const deltaX = 1 / POINTS_PER_COORDINATE;
+    const deltaX = 1 / this.pointsPerCoordinate;
 
     // x distance between the new and old point
     const distX = Math.abs( point1.x - point2.x );

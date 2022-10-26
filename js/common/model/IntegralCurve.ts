@@ -30,7 +30,11 @@ export default class IntegralCurve extends Curve {
    */
   public constructor( baseCurve: Curve, tandem: Tandem ) {
 
-    super( tandem );
+    super( {
+      xRange: baseCurve.xRange,
+      pointsPerCoordinate: baseCurve.pointsPerCoordinate,
+      tandem: tandem
+    } );
 
     this.baseCurve = baseCurve;
 
