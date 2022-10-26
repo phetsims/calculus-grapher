@@ -35,10 +35,12 @@ import optionize from '../../../../phet-core/js/optionize.js';
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
+type mathFunction = ( x: number ) => number;
+
 type SelfOptions = {
   xRange?: Range;
   pointsPerCoordinate?: number;
-  mathFunction?: ( arg0: number ) => number;
+  mathFunction?: mathFunction;
 };
 
 export type CurveOptions = SelfOptions & PhetioObjectOptions;
@@ -62,12 +64,13 @@ export default class Curve extends PhetioObject {
     const options = optionize<CurveOptions, SelfOptions, PhetioObjectOptions>()( {
       xRange: CURVE_X_RANGE,
       pointsPerCoordinate: POINTS_PER_COORDINATE,
-      mathFunction: x => 0
+      mathFunction: x => 0,
+      phetioState: false
     }, providedOptions );
 
     super( options );
 
-
+    // create a reference to these option fields
     this.xRange = options.xRange;
     this.pointsPerCoordinate = options.pointsPerCoordinate;
 
