@@ -48,9 +48,6 @@ export default class CalculusGrapherModel {
    */
   public reset(): void {
     this.originalCurve.reset();
-    this.derivativeCurve.reset();
-    this.secondDerivativeCurve.reset();
-    this.integralCurve.reset();
   }
 }
 
