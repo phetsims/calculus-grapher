@@ -38,6 +38,7 @@ const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate
 type SelfOptions = {
   xRange?: Range;
   pointsPerCoordinate?: number;
+  mathFunction?: ( arg0: number ) => number;
 };
 
 export type CurveOptions = SelfOptions & PhetioObjectOptions;
@@ -60,7 +61,8 @@ export default class Curve extends PhetioObject {
 
     const options = optionize<CurveOptions, SelfOptions, PhetioObjectOptions>()( {
       xRange: CURVE_X_RANGE,
-      pointsPerCoordinate: POINTS_PER_COORDINATE
+      pointsPerCoordinate: POINTS_PER_COORDINATE,
+      mathFunction: x => 0
     }, providedOptions );
 
     super( options );
@@ -76,7 +78,7 @@ export default class Curve extends PhetioObject {
     // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
     // start of the simulation here and are never disposed.
     for ( let x = options.xRange.min; x <= options.xRange.max; x += 1 / options.pointsPerCoordinate ) {
-      this.points.push( new CurvePoint( x ) );
+      this.points.push( new CurvePoint( x, options.mathFunction( x ) ) );
     }
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
