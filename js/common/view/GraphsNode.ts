@@ -127,6 +127,12 @@ export default class GraphNodes extends Node {
       const numberOfVisibleGraphs = graphChoice.graphs.length;
 
       // layout of all the nodes
+
+      if ( numberOfVisibleGraphs > 0 ) {
+        content[ 0 ].top = 100;
+        content[ 0 ].left = 0;
+      }
+
       for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
         content[ i ].rightTop = content[ i - 1 ].rightBottom.addXY( 0, 10 );
       }
