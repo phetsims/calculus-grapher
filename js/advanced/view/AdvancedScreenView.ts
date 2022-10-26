@@ -26,16 +26,13 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
       graphsRadioButtonGroupOptions: {},
       visiblePropertiesOptions: {},
       graphChoices: [
-        {
-          value: 'derivativeGroup',
-          graphs: [ 'original', 'derivative' ]
-        },
-        {
-          value: 'integralGroup',
-          graphs: [ 'integral', 'original' ]
-        }
+        [ 'integral', 'original' ],
+        [ 'original', 'derivative' ]
+
       ]
     }, providedOptions );
+
+    assert && assert( options.graphChoices.length === 2, 'there must be two valid graphChoices for this screen' );
 
     super( model, options );
 

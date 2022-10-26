@@ -20,10 +20,8 @@ import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 
-type GraphGroup = 'integralGroup' | 'derivativeGroup';
 type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
-type GraphArrangement = GraphType[];
-export type GraphChoice = { value: GraphGroup; graphs: GraphArrangement };
+export type GraphChoice = GraphType[];
 export type GraphChoices = GraphChoice[];
 
 type SelfOptions = {
@@ -47,6 +45,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
       StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphChoices'>, ScreenViewOptions>()( {}, providedOptions );
 
     super( options );
+
+    assert && assert( options.graphChoices.length > 0, 'there must be at least one valid graphChoice' );
+
+    assert && assert( options.graphChoices.filter( ( x, i, a ) => a.indexOf( x ) === i ).length === options.graphChoices.length, 'the graphChoices must be unique' );
+
 
     this.model = model;
 

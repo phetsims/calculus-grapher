@@ -24,16 +24,12 @@ export default class LabScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphChoices: [
-        {
-          value: 'derivativeGroup',
-          graphs: [ 'original', 'derivative', 'secondDerivative' ]
-        },
-        {
-          value: 'integralGroup',
-          graphs: [ 'integral', 'original', 'derivative' ]
-        }
+        [ 'integral', 'original', 'derivative' ],
+        [ 'original', 'derivative', 'secondDerivative' ]
       ]
     }, providedOptions );
+
+    assert && assert( options.graphChoices.length === 2, 'there must be two valid graphChoices for this screen' );
 
     super( model, options );
 

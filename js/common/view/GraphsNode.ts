@@ -41,7 +41,7 @@ export default class GraphNodes extends Node {
 
     // determine the (view) height of the graph based on the number of visible graphs.
     this.graphHeightProperty = new DerivedProperty( [ graphsSelectedProperty ], graphsSelected => {
-      const numberOfVisibleGraphs = graphsSelectedProperty.value.graphs.length;
+      const numberOfVisibleGraphs = graphsSelectedProperty.value.length;
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 
@@ -105,17 +105,17 @@ export default class GraphNodes extends Node {
 
 
       // array of Node content of this class
-      const content = graphChoice.graphs.map( graphType => {
-          if ( graphType === 'integral' ) {
-            return integralGraphNode;
-          }
-          else if ( graphType === 'original' ) {
-            return this.originalGraphNode;
-          }
-          else if ( graphType === 'derivative' ) {
-            return derivativeGraphNode;
-          }
-          else if ( graphType === 'secondDerivative' ) {
+      const content = graphChoice.map( graphType => {
+        if ( graphType === 'integral' ) {
+          return integralGraphNode;
+        }
+        else if ( graphType === 'original' ) {
+          return this.originalGraphNode;
+        }
+        else if ( graphType === 'derivative' ) {
+          return derivativeGraphNode;
+        }
+        else if ( graphType === 'secondDerivative' ) {
             return secondDerivativeGraphNode;
           }
           else {
@@ -124,7 +124,7 @@ export default class GraphNodes extends Node {
         }
       );
 
-      const numberOfVisibleGraphs = graphChoice.graphs.length;
+      const numberOfVisibleGraphs = graphChoice.length;
 
       // layout of all the nodes
 
