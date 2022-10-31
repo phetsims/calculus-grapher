@@ -42,6 +42,7 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -163,7 +164,7 @@ export default class GraphNode extends Node {
 
       // TODO: is that what we want? hoist colors?
       // change the button color
-      eyeToggleButton.setBaseColor( visible ? 'white' : 'yellow' );
+      eyeToggleButton.setBaseColor( visible ? 'white' : PhetColorScheme.BUTTON_YELLOW );
 
       this.curveNode.visible = visible;
 
