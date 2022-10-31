@@ -244,6 +244,8 @@ export default class OriginalCurve extends Curve {
    */
   public createHillAt( peak: Vector2 ): void {
 
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.HILL );
+
     // width of the hill
     const width = this.curveManipulationWidth;
 
@@ -265,6 +267,8 @@ export default class OriginalCurve extends Curve {
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
   public createTriangleAt( peak: Vector2 ): void {
+
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.TRIANGLE );
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -302,6 +306,8 @@ export default class OriginalCurve extends Curve {
    */
   public createParabolaAt( peak: Vector2 ): void {
 
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.PARABOLA );
+
     // full 'width' of the parabola
     const width = this.curveManipulationWidth;
 
@@ -336,6 +342,8 @@ export default class OriginalCurve extends Curve {
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    */
   public createPedestalAt( peak: Vector2 ): void {
+
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.PEDESTAL );
 
     // width of the hill
     const width = this.curveManipulationWidth;
@@ -376,6 +384,7 @@ export default class OriginalCurve extends Curve {
   public drawFreeformToPosition( position: Vector2,
                                  penultimatePosition: Vector2,
                                  antepenultimatePosition: Vector2 | null ): void {
+
     assert && assert( this.curveManipulationMode === CurveManipulationMode.FREEFORM );
 
     //  closest point associated with the position
@@ -391,7 +400,6 @@ export default class OriginalCurve extends Curve {
 
 
     if ( antepenultimatePosition instanceof Vector2 ) {
-
 
       // point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
@@ -466,6 +474,9 @@ export default class OriginalCurve extends Curve {
    * TODO: this is a bit of a mess, simplify and/or document properly
    */
   public createSineAt( position: Vector2 ): void {
+
+    assert && assert( this.curveManipulationMode === CurveManipulationMode.SINE );
+
 
     const closestIndex = this.getClosestIndexAt( position.x );
     const closestPoint = this.getClosestPointAt( position.x );
