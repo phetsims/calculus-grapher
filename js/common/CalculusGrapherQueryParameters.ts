@@ -37,7 +37,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum tilting of curves relative to the horizontal. See
+   * The maximum tilting of curves relative to the horizontal in degrees. See
    * https://github.com/phetsims/calculus-grapher/issues/26
    *
    * For internal use.
