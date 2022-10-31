@@ -220,12 +220,11 @@ export default class OriginalCurve extends Curve {
     assert && assert( position.x !== 0, 'x position cannot be zero' );
     assert && assert( this.curveManipulationMode === CurveManipulationMode.TILT );
 
+    // maximum tilt converted from degrees to radians
+    const maxTilt = Utils.toRadians( CalculusGrapherQueryParameters.maxTilt );
+
     // Find the angle of the tile, based on where the user dragged the Curve.
-    const angle = Utils.toRadians( Utils.clamp(
-      Utils.toDegrees( Math.atan( position.y / position.x ) ),
-      -CalculusGrapherQueryParameters.maxTilt,
-      CalculusGrapherQueryParameters.maxTilt
-    ) );
+    const angle = Utils.clamp( Math.atan( position.y / position.x ), -maxTilt, maxTilt );
 
     // Amount to shift the CurvePoint closest to the passed-in position.
     const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
