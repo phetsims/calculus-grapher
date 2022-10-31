@@ -7,15 +7,15 @@
  * @author Brandon Li
  */
 
-import { VBox } from '../../../../scenery/js/imports.js';
-import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
+import { HBox, VBox } from '../../../../scenery/js/imports.js';
+import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
 import UndoButton from '../../../../scenery-phet/js/buttons/UndoButton.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import OriginalCurve from '../model/OriginalCurve.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
@@ -23,9 +23,10 @@ import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
 
 type SelfOptions = {
   contentSpacing?: number;
+  smoothButtonOptions?: TextPushButtonOptions;
 };
 
-type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
+export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
@@ -35,6 +36,10 @@ export default class CalculusGrapherControlPanel extends Panel {
 
       //  the spacing between the content Nodes of the Panel
       contentSpacing: 7,
+
+      smoothButtonOptions: {
+        baseColor: PhetColorScheme.BUTTON_YELLOW
+      },
 
       // super-class options
       stroke: CalculusGrapherColors.panelStrokeProperty,
@@ -58,23 +63,36 @@ export default class CalculusGrapherControlPanel extends Panel {
       } );
 
 
+    // Smooth Button
+    const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty,
+      combineOptions<TextPushButtonOptions>(
+        {
+          listener: () => originalCurve.smooth(),
+          tandem: options.tandem.createTandem( 'smoothButton' )
+        }, options.smoothButtonOptions
+      ) );
+
     // Undo Button
     const undoButton = new UndoButton( {
       listener: () => originalCurve.undoToLastSave(),
-      tandem: options.tandem.createTandem( 'undoButton' )
-    } );
-
-    // Smooth Button
-    const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
-      listener: () => originalCurve.smooth(),
-      baseColor: PhetColorScheme.BUTTON_YELLOW,
-      tandem: options.tandem.createTandem( 'smoothButton' )
+      tandem: options.tandem.createTandem( 'undoButton' ),
+      iconOptions: { height: 15 }
     } );
 
     // Reset Button
     const resetButton = new EraserButton( {
       listener: () => originalCurve.reset(),
-      tandem: options.tandem.createTandem( 'resetButton' )
+      tandem: options.tandem.createTandem( 'resetButton' ),
+      iconWidth: 20
+    } );
+
+    // the undo and reset buttons should have the same height
+    undoButton.scale( resetButton.height / undoButton.height );
+
+    // scenery node to align the undo and reset buttons
+    const buttonIconGroup = new HBox( {
+      spacing: 10,
+      children: [ undoButton, resetButton ]
     } );
 
     const contentNode = new VBox( {
@@ -82,9 +100,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       children: [
         curveManipulationWidthSlider,
         curveManipulationModeRadioButtonGroup,
-        undoButton,
         smoothButton,
-        resetButton
+        buttonIconGroup
       ]
     } );
 

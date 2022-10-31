@@ -13,6 +13,7 @@ import AdvancedModel from '../model/AdvancedModel.js';
 import GraphsRectangularRadioButtonGroup, { GraphsRectangularRadioButtonGroupOptions } from '../../common/view/GraphsRectangularRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -28,8 +29,12 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
       graphChoices: [
         [ 'integral', 'original' ],
         [ 'original', 'derivative' ]
-
-      ]
+      ],
+      controlPanelOptions: {
+        smoothButtonOptions: {
+          visibleProperty: new BooleanProperty( true )
+        }
+      }
     }, providedOptions );
 
     assert && assert( options.graphChoices.length === 2, 'there must be two valid graphChoices for this screen' );

@@ -10,7 +10,7 @@
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
+import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
 import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptions } from './CalculusGrapherVisibleProperties.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
@@ -19,6 +19,7 @@ import { GraphsRectangularRadioButtonGroupOptions } from './GraphsRectangularRad
 import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
 export type GraphChoice = GraphType[];
@@ -28,6 +29,7 @@ type SelfOptions = {
   visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
   graphsRadioButtonGroupOptions?: StrictOmit<GraphsRectangularRadioButtonGroupOptions, 'tandem'>;
   graphChoices: GraphChoices;
+  controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
 
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
@@ -42,7 +44,14 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
-      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphChoices'>, ScreenViewOptions>()( {}, providedOptions );
+      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphChoices'>, ScreenViewOptions>()( {
+      controlPanelOptions: {
+        smoothButtonOptions: {
+          visibleProperty: new BooleanProperty( false )
+        }
+
+      }
+    }, providedOptions );
 
     super( options );
 
@@ -60,10 +69,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'visibleProperties' )
     }, options.visiblePropertiesOptions ) );
 
-    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve, {
-      rightCenter: this.layoutBounds.rightCenter.minusXY( 10, 0 ),
-      tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
-    } );
+    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve,
+      combineOptions<CalculusGrapherControlPanelOptions>( {
+        rightCenter: this.layoutBounds.rightCenter.minusXY( 10, 0 ),
+        tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
+      }, options.controlPanelOptions ) );
 
     this.graphsNode = new GraphsNode( model, this.graphsSelectedProperty, options.graphChoices, this.visibleProperties.gridVisibleProperty, {
       tandem: options.tandem.createTandem( 'graphsNode' )
