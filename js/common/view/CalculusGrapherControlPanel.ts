@@ -86,6 +86,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       iconWidth: 20
     } );
 
+    // TODO: ideally the two buttons should have the same dimensions (height and width)
     // the undo and reset buttons should have the same height
     undoButton.scale( resetButton.height / undoButton.height );
 
