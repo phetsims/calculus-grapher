@@ -235,6 +235,8 @@ export default class GraphNode extends Node {
       this.addChild( horizontalTickLabelSet );
       this.addChild( verticalTickMarkSet );
       this.addChild( verticalTickLabelSet );
+
+      this.mutate( options );
     }
   }
 

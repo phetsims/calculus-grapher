@@ -112,21 +112,21 @@ export default class GraphNodes extends Node {
 
       // array of Node content of this class
       const content = graphChoice.map( graphType => {
-        if ( graphType === 'integral' ) {
-          return integralGraphNode;
-        }
-        else if ( graphType === 'original' ) {
-          return originalGraphNode;
-        }
-        else if ( graphType === 'derivative' ) {
-          return derivativeGraphNode;
-        }
-        else if ( graphType === 'secondDerivative' ) {
-          return secondDerivativeGraphNode;
-        }
-        else {
-          throw new Error( 'Unsupported graphType' );
-        }
+          if ( graphType === 'integral' ) {
+            return integralGraphNode;
+          }
+          else if ( graphType === 'original' ) {
+            return originalGraphNode;
+          }
+          else if ( graphType === 'derivative' ) {
+            return derivativeGraphNode;
+          }
+          else if ( graphType === 'secondDerivative' ) {
+            return secondDerivativeGraphNode;
+          }
+          else {
+            throw new Error( 'Unsupported graphType' );
+          }
         }
       );
 
@@ -135,12 +135,13 @@ export default class GraphNodes extends Node {
       // layout of all the nodes
 
       if ( numberOfVisibleGraphs > 0 ) {
+        content[ 0 ].x = 0;
         content[ 0 ].top = 100;
-        content[ 0 ].left = 0;
       }
 
       for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
-        content[ i ].rightTop = content[ i - 1 ].rightBottom.addXY( 0, 10 );
+        content[ i ].x = content[ i - 1 ].x;
+        content[ i ].top = content[ i - 1 ].bottom + 10;
       }
 
       graphSet.setChildren( content );
