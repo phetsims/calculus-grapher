@@ -33,7 +33,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     }, provideOptions );
 
     const curve = new Curve( {
-      pointsPerCoordinate: 1,
+      pointsPerCoordinate: 2,
       tandem: options.tandem.createTandem( 'displayCurve' )
     } );
 
