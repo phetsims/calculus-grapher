@@ -83,7 +83,9 @@ export default class OriginalGraphNode extends GraphNode {
     const upArrow = new ArrowNode( 0, -downArrowTailY, 0, -downArrowTipY, arrowOptions );
 
     const upAndDownArrow = new Node( { children: [ upArrow, downArrow ], centerX: tailX } );
-    this.addChild( upAndDownArrow );
+
+    // attach the up and down arrow to the curveNode to inherit its visibility.
+    this.curveNode.addChild( upAndDownArrow );
 
     // set the visibility of up and down arrow to invisible if the curve has been touched once.
     curve.curveChangedEmitter.addListener( () => {
