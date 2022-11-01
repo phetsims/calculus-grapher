@@ -130,7 +130,7 @@ export default class GraphNode extends Node {
     const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
                               this.chartTransform.viewWidth;
 
-    // maintain isometry between x and Y, (factor 1/2 because the y range goes from -maxY to maxY.
+    // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
     const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
 
     const getModelYRange = ( zoomLevel: number ): Range => {
