@@ -36,6 +36,7 @@ const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 
 type MathFunction = ( x: number ) => number;
+// TODO describe why such a simple data structure
 type SimplePoint = [ x: number, y: number ];
 
 type SelfOptions = {
@@ -83,7 +84,7 @@ export default class Curve extends PhetioObject {
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.
 
-    this.points = ( options.initialPoints.length > 1 ) ?
+    this.points = ( providedOptions.initialPoints ) ?
                   this.getFromSimplePoints( options.initialPoints ) :
                   this.getFromMathFunction( options.mathFunction );
 
