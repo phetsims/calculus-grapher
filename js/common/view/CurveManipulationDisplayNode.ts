@@ -16,10 +16,11 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type CurveManipulationDisplayOptions = SelfOptions & CurveNodeOptions;
+type CurveManipulationDisplayOptions = SelfOptions & PickRequired<CurveNodeOptions, 'tandem'>;
 
 export default class CurveManipulationDisplayNode extends CurveNode {
 
