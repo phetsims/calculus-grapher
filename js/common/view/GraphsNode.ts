@@ -9,7 +9,7 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -27,10 +27,7 @@ export type GraphNodesOptions = SelfOptions & NodeOptions;
 
 export default class GraphNodes extends Node {
 
-  private readonly originalGraphNode: OriginalGraphNode;
-  private readonly derivativeGraphNode: GraphNode;
-  private readonly secondDerivativeGraphNode: GraphNode;
-  private readonly integralGraphNode: GraphNode;
+  private readonly resetGraphNodes: () => void;
   private readonly graphHeightProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel,
@@ -42,17 +39,15 @@ export default class GraphNodes extends Node {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 
-    super( options );
-
     // determine the (view) height of the graph based on the number of visible graphs.
-    this.graphHeightProperty = new DerivedProperty( [ graphsSelectedProperty ], graphsSelected => {
+    const graphHeightProperty = new DerivedProperty( [ graphsSelectedProperty ], graphsSelected => {
       const numberOfVisibleGraphs = graphsSelected.length;
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 
-    this.integralGraphNode = new GraphNode( model.integralCurve,
+    const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
-      this.graphHeightProperty,
+      graphHeightProperty,
       CurveLabelsNode.getIntegralLabel(),
       {
         curveNodeOptions: {
@@ -63,9 +58,9 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
 
-    this.originalGraphNode = new OriginalGraphNode( model.originalCurve,
+    const originalGraphNode = new OriginalGraphNode( model.originalCurve,
       gridVisibleProperty,
-      this.graphHeightProperty,
+      graphHeightProperty,
       CurveLabelsNode.getOriginalLabel(),
       {
         curveNodeOptions: {
@@ -76,9 +71,9 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
 
-    this.derivativeGraphNode = new GraphNode( model.derivativeCurve,
+    const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
-      this.graphHeightProperty,
+      graphHeightProperty,
       CurveLabelsNode.getDerivativeLabel(),
       {
         curveNodeOptions: {
@@ -90,9 +85,9 @@ export default class GraphNodes extends Node {
 
       } );
 
-    this.secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
+    const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
-      this.graphHeightProperty,
+      graphHeightProperty,
       CurveLabelsNode.getSecondDerivativeLabel(),
       {
         curveNodeOptions: {
@@ -105,35 +100,33 @@ export default class GraphNodes extends Node {
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
       referenceLineVisibleProperty,
-      this.originalGraphNode.chartTransform,
+      originalGraphNode.chartTransform,
       {
         cursor: 'pointer',
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
 
     const graphSet = new Node();
-    this.addChild( graphSet );
-    this.addChild( referenceLineNode );
 
     graphsSelectedProperty.link( graphChoice => {
 
       // array of Node content of this class
       const content = graphChoice.map( graphType => {
         if ( graphType === 'integral' ) {
-          return this.integralGraphNode;
+          return integralGraphNode;
         }
         else if ( graphType === 'original' ) {
-            return this.originalGraphNode;
-          }
-          else if ( graphType === 'derivative' ) {
-            return this.derivativeGraphNode;
-          }
-          else if ( graphType === 'secondDerivative' ) {
-            return this.secondDerivativeGraphNode;
-          }
-          else {
-            throw new Error( 'Unsupported graphType' );
-          }
+          return originalGraphNode;
+        }
+        else if ( graphType === 'derivative' ) {
+          return derivativeGraphNode;
+        }
+        else if ( graphType === 'secondDerivative' ) {
+          return secondDerivativeGraphNode;
+        }
+        else {
+          throw new Error( 'Unsupported graphType' );
+        }
         }
       );
 
@@ -156,16 +149,25 @@ export default class GraphNodes extends Node {
       referenceLineNode.setLineTop( graphSet.top );
 
     } );
+
+    super( combineOptions<NodeOptions>( { children: [ graphSet, referenceLineNode ] }, options ) );
+
+    this.graphHeightProperty = graphHeightProperty;
+
+    this.resetGraphNodes = () => {
+      originalGraphNode.reset();
+      derivativeGraphNode.reset();
+      integralGraphNode.reset();
+      secondDerivativeGraphNode.reset();
+    };
+
   }
 
   /**
    * Reset all
    */
   public reset(): void {
-    this.originalGraphNode.reset();
-    this.derivativeGraphNode.reset();
-    this.secondDerivativeGraphNode.reset();
-    this.integralGraphNode.reset();
+    this.resetGraphNodes();
   }
 }
 

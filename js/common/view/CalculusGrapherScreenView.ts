@@ -79,10 +79,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
       options.graphChoices,
       this.visibleProperties.gridVisibleProperty,
       this.visibleProperties.referenceLineVisibleProperty, {
+        rightCenter: controlPanel.leftCenter.minusXY( 20, 0 ),
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
-    //TODO this doesn't work correctly if done via options
-    this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 20, 0 );
 
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
       {
