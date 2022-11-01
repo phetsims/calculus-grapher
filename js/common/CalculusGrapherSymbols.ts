@@ -22,6 +22,5 @@ const CalculusGrapherSymbols = {
   integral: MathSymbolFont.getRichTextMarkup( '\u222B', 'normal' )
 };
 
-
 calculusGrapher.register( 'CalculusGrapherSymbols', CalculusGrapherSymbols );
 export default CalculusGrapherSymbols;

@@ -58,7 +58,6 @@ export default class OriginalCurve extends Curve {
   public constructor( curveManipulationModeChoices: CurveManipulationMode[],
                       providedOptions: OriginalCurveOptions ) {
 
-
     const options = optionize<OriginalCurveOptions, SelfOptions, CurveOptions>()( {}, providedOptions );
 
     super( options );
@@ -100,7 +99,6 @@ export default class OriginalCurve extends Curve {
     this.curveManipulationModeProperty.reset();
     this.curveManipulationWidthProperty.reset();
   }
-
 
   // reset the curve points to their initial values
   private resetCurvePoints(): void {
@@ -397,7 +395,6 @@ export default class OriginalCurve extends Curve {
 
     this.interpolate( closestPoint, lastPoint );
 
-
     if ( antepenultimatePosition instanceof Vector2 ) {
 
       // point associated with the last drag event
@@ -434,7 +431,6 @@ export default class OriginalCurve extends Curve {
               this.getClosestPointAt( xPosition - deltaX ).y / 5;
           }
         }
-
 
       }
     }
@@ -475,7 +471,6 @@ export default class OriginalCurve extends Curve {
   public createSineAt( position: Vector2 ): void {
 
     assert && assert( this.curveManipulationMode === CurveManipulationMode.SINE );
-
 
     const closestIndex = this.getClosestIndexAt( position.x );
     const closestPoint = this.getClosestPointAt( position.x );

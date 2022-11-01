@@ -17,7 +17,6 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
-
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
@@ -37,13 +36,11 @@ export default class CalculusGrapherModel {
   // value to track the x position of the reference line
   public readonly referenceLineXCoordinateProperty: NumberProperty;
 
-
   public constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
-
 
     this.referenceLineXCoordinateProperty = new NumberProperty( CURVE_X_RANGE.getCenter(), {
       range: CURVE_X_RANGE,
@@ -66,6 +63,5 @@ export default class CalculusGrapherModel {
     this.referenceLineXCoordinateProperty.reset();
   }
 }
-
 
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );

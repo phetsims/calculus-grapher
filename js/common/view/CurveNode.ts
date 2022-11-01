@@ -121,7 +121,6 @@ export default class CurveNode extends Node {
     }
     this.addChild( this.discontinuousPointsScatterPlot );
 
-
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
   }
 
@@ -137,7 +136,6 @@ export default class CurveNode extends Node {
     if ( CalculusGrapherQueryParameters.cuspsPoints ) {
       this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
     }
-
 
   }
 

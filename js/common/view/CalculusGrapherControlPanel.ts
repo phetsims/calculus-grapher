@@ -47,7 +47,6 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, provideOptions );
 
-
     const curveManipulationWidthSlider = new CurveManipulationWidthSlider( originalCurve.curveManipulationWidthProperty, {
       tandem: options.tandem.createTandem( 'slider' )
     } );
@@ -61,7 +60,6 @@ export default class CalculusGrapherControlPanel extends Panel {
           baseColor: CalculusGrapherColors.panelFillProperty
         }
       } );
-
 
     // Smooth Button
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty,

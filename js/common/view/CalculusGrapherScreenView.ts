@@ -59,7 +59,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     assert && assert( options.graphChoices.filter( ( x, i, a ) => a.indexOf( x ) === i ).length === options.graphChoices.length, 'the graphChoices must be unique' );
 
-
     this.model = model;
 
     this.graphsSelectedProperty = new Property( options.graphChoices[ 0 ] );

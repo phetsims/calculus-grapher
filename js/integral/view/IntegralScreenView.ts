@@ -12,7 +12,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
 
-
 type SelfOptions = EmptySelfOptions;
 
 export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphChoices'>;

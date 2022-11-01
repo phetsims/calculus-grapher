@@ -39,13 +39,11 @@ export default class OriginalCurveNode extends CurveNode {
 
     super( curve, chartTransform, options );
 
-
     this.chartTransform = chartTransform;
 
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
     // OriginalCurveNodes are never disposed.
-
 
     let penultimatePosition: Vector2;
     let antepenultimatePosition: Vector2 | null = null;
@@ -128,7 +126,6 @@ export default class OriginalCurveNode extends CurveNode {
     this.touchArea = pathShape;
     this.mouseArea = pathShape;
   }
-
 
   /**
    * Creates a (rough) dilated shape for a Curve.

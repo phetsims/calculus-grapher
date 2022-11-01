@@ -17,7 +17,6 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 
-
 type SelfOptions = EmptySelfOptions;
 
 type CurveManipulationWidthSliderOptions = SelfOptions & HSliderOptions;
@@ -35,13 +34,11 @@ export default class CurveManipulationWidthSlider extends HSlider {
       // super-class options
     }, provideOptions );
 
-
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
 
     super.addMajorTick( WIDTH_RANGE.min );
     super.addMajorTick( WIDTH_RANGE.max );
     super.addMajorTick( WIDTH_RANGE.getCenter() );
-
 
     for ( let i = 1; i < 9; i++ ) {
       super.addMinorTick( WIDTH_RANGE.min + i * ( WIDTH_RANGE.max - WIDTH_RANGE.min ) / 8 );

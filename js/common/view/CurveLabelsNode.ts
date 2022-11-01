@@ -78,13 +78,11 @@ const CurveLabelsNode = {
           return `${d}${x}<sup style="font-size:10pt; font-family:Times">2</sup>`;
         } );
 
-
     return getFractionLabel( numeratorStringProperty, denominatorStringProperty );
   },
 
   // label for \int_0^x f(t) dt
   getIntegralLabel(): Node {
-
 
     // The symbol for integral
     const integralSymbolNode = new RichText( CalculusGrapherSymbols.integral, {
@@ -112,7 +110,6 @@ const CurveLabelsNode = {
         return `${f}(${t}) ${d}${t} `;
       } );
     const integrandNode = new RichText( integrandStringProperty, { font: DEFAULT_FONT } );
-
 
     // laying out the various nodes
     lowerBoundNode.left = integralSymbolNode.right - 2;

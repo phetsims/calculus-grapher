@@ -50,7 +50,6 @@ export default class GraphNodes extends Node {
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 
-
     this.integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       this.graphHeightProperty,
@@ -63,7 +62,6 @@ export default class GraphNodes extends Node {
         },
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
-
 
     this.originalGraphNode = new OriginalGraphNode( model.originalCurve,
       gridVisibleProperty,
@@ -105,7 +103,6 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );
 
-
     const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
       referenceLineVisibleProperty,
       this.originalGraphNode.chartTransform,
@@ -119,7 +116,6 @@ export default class GraphNodes extends Node {
     this.addChild( referenceLineNode );
 
     graphsSelectedProperty.link( graphChoice => {
-
 
       // array of Node content of this class
       const content = graphChoice.map( graphType => {
@@ -155,7 +151,6 @@ export default class GraphNodes extends Node {
       }
 
       graphSet.setChildren( content );
-
 
       referenceLineNode.setLineBottom( graphSet.bottom );
       referenceLineNode.setLineTop( graphSet.top );

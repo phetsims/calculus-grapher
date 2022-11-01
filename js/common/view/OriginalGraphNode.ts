@@ -38,7 +38,6 @@ export default class OriginalGraphNode extends GraphNode {
 
   private readonly upAndDownArrowVisibleProperty: BooleanProperty;
 
-
   public constructor( curve: OriginalCurve,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
@@ -103,13 +102,11 @@ export default class OriginalGraphNode extends GraphNode {
       this.curveNode.setPointerAreas();
     } );
 
-
     this.zoomLevelProperty.link( () => {
 
       // TODO: find a way to update touch/mouse area without resorting to this
       this.curveNode.setPointerAreas();
     } );
-
 
   }
 

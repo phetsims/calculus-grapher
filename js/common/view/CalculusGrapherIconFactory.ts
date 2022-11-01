@@ -20,12 +20,9 @@ import { Node } from '../../../../scenery/js/imports.js';
 // const CURVE_MANIPULATION_ICON_WIDTH = 10;
 // const CURVE_MANIPULATION_ICON_HEIGHT = 5;
 
-
 const CalculusGrapherIconFactory = {
 
-
   /*--------------------------- Screen Icons ---------------------------------*/
-
 
   /*--------------------- Curve Manipulation Icons ---------------------------*/
 

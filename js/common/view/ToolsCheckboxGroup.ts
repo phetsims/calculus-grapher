@@ -28,7 +28,6 @@ export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
     const options = optionize<ToolsCheckboxGroupOptions, SelfOptions, VerticalCheckboxGroupOptions>()(
       {}, providedOptions );
 
-
     const items: VerticalCheckboxGroupItem[] = [
 
       // Item for grid checkbox

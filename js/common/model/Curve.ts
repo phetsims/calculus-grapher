@@ -87,7 +87,6 @@ export default class Curve extends PhetioObject {
                   this.getFromSimplePoints( options.initialPoints ) :
                   this.getFromMathFunction( options.mathFunction );
 
-
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
     // of every CurvePoint, which was deemed invasive to the performance of the sim, we
     // use an Emitter that emits once after all CurvePoints are set upon manipulation.
@@ -106,7 +105,6 @@ export default class Curve extends PhetioObject {
 
     return this.points[ this.getClosestIndexAt( x ) ];
   }
-
 
   /**
    * Gets the index of the array whose x-value is closest to the given x-value.

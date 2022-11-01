@@ -44,7 +44,6 @@ export default class ReferenceLineNode extends Node {
     this.addChild( this.verticalLine );
     this.addChild( this.circle );
 
-
     // add dragListener
     this.addInputListener( new DragListener( {
       drag( event, listener ) {

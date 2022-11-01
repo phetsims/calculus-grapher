@@ -104,7 +104,6 @@ export default class GraphNode extends Node {
     const horizontalGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
     const verticalGridLines = new GridLineSet( this.chartTransform, Orientation.VERTICAL, 1, options.gridLineSetOptions );
 
-
     // Axes nodes are clipped in the chart
     const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
     const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
@@ -159,7 +158,6 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
 
-
     this.curveVisibleProperty.link( visible => {
 
       // TODO: is that what we want? hoist colors?
@@ -169,7 +167,6 @@ export default class GraphNode extends Node {
       this.curveNode.visible = visible;
 
     } );
-
 
     // zoom Button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
@@ -225,7 +222,6 @@ export default class GraphNode extends Node {
       const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 1, {
         value: CalculusGrapherConstants.CURVE_X_RANGE.max
       } );
-
 
       // change the vertical spacing of the ticks such that there are a constant number of them
       this.zoomLevelProperty.link( zoomLevel => {
