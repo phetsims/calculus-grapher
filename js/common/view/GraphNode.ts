@@ -58,7 +58,7 @@ export default class GraphNode extends Node {
   protected readonly zoomLevelProperty: NumberProperty;
   private readonly curveVisibleProperty: BooleanProperty;
   private readonly graphVisibleProperty: BooleanProperty;
-  protected readonly chartTransform: ChartTransform;
+  public readonly chartTransform: ChartTransform;
   protected readonly curveNode: CurveNode;
 
   public constructor( curve: Curve,

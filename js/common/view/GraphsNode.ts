@@ -19,6 +19,7 @@ import CurveLabelsNode from './CurveLabelsNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { GraphChoice, GraphChoices } from './CalculusGrapherScreenView.js';
 import Property from '../../../../axon/js/Property.js';
+import ReferenceLineNode from './ReferenceLineNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -36,6 +37,7 @@ export default class GraphNodes extends Node {
                       graphsSelectedProperty: Property<GraphChoice>,
                       graphChoices: GraphChoices,
                       gridVisibleProperty: Property<boolean>,
+                      referenceLineVisibleProperty: Property<boolean>,
                       providedOptions?: GraphNodesOptions ) {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
@@ -104,15 +106,27 @@ export default class GraphNodes extends Node {
       } );
 
 
+    const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
+      referenceLineVisibleProperty,
+      this.originalGraphNode.chartTransform,
+      {
+        cursor: 'pointer',
+        tandem: options.tandem.createTandem( 'referenceLineNode' )
+      } );
+
+    const graphSet = new Node();
+    this.addChild( graphSet );
+    this.addChild( referenceLineNode );
+
     graphsSelectedProperty.link( graphChoice => {
 
 
       // array of Node content of this class
       const content = graphChoice.map( graphType => {
-          if ( graphType === 'integral' ) {
-            return this.integralGraphNode;
-          }
-          else if ( graphType === 'original' ) {
+        if ( graphType === 'integral' ) {
+          return this.integralGraphNode;
+        }
+        else if ( graphType === 'original' ) {
             return this.originalGraphNode;
           }
           else if ( graphType === 'derivative' ) {
@@ -140,7 +154,12 @@ export default class GraphNodes extends Node {
         content[ i ].rightTop = content[ i - 1 ].rightBottom.addXY( 0, 10 );
       }
 
-      this.setChildren( content );
+      graphSet.setChildren( content );
+
+
+      referenceLineNode.setLineBottom( graphSet.bottom );
+      referenceLineNode.setLineTop( graphSet.top );
+
     } );
   }
 

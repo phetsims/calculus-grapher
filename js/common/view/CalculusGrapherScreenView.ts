@@ -75,9 +75,13 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
       }, options.controlPanelOptions ) );
 
-    this.graphsNode = new GraphsNode( model, this.graphsSelectedProperty, options.graphChoices, this.visibleProperties.gridVisibleProperty, {
-      tandem: options.tandem.createTandem( 'graphsNode' )
-    } );
+    this.graphsNode = new GraphsNode( model,
+      this.graphsSelectedProperty,
+      options.graphChoices,
+      this.visibleProperties.gridVisibleProperty,
+      this.visibleProperties.referenceLineVisibleProperty, {
+        tandem: options.tandem.createTandem( 'graphsNode' )
+      } );
     //TODO this doesn't work correctly if done via options
     this.graphsNode.rightCenter = controlPanel.leftCenter.minusXY( 20, 0 );
 
