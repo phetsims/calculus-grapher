@@ -33,6 +33,8 @@ export default class CalculusGrapherModel {
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
+
+  // value to track the x position of the reference line
   public readonly referenceLineXCoordinateProperty: NumberProperty;
 
 
