@@ -294,9 +294,7 @@ export default class TransformedCurve extends Curve {
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
 
     // Shift each of the CurvePoints by deltaY.
-    this.points.forEach( point => {
-      point.y += deltaY;
-    } );
+    this.points.forEach( point => {point.y += deltaY;} );
   }
 
   /**
