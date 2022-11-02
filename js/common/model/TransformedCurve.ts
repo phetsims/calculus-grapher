@@ -40,28 +40,20 @@ export default class TransformedCurve extends Curve {
     super( options );
   }
 
-  /**
-   * Shifts the curve to the specified drag Position.
-   *
-   * @param position - in model coordinates
-   */
-  public shiftToPosition( position: Vector2 ): void {
+  // reset the curve points to their initial values
+  protected resetCurvePoints(): void {
 
-    // Amount to shift the entire curve.
-    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+    // Reset every CurvePoint to its initial state.
+    this.points.forEach( point => point.reset() );
 
-    // Shift each of the CurvePoints by deltaY.
-    this.points.forEach( point => {
-      point.y += deltaY;
-    } );
-
-
+    // Signal once that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
   /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    */
-  public createHillAt( width: number, peak: Vector2 ): void {
+  private createHillAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
@@ -76,33 +68,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Tilts the curve to the specified drag Position.
-   *
-   * @param position - in model coordinates
-   */
-  public tiltToPosition( position: Vector2 ): void {
-    assert && assert( position.x !== 0, 'x position cannot be zero' );
-
-    // maximum tilt converted from degrees to radians
-    const maxTilt = Utils.toRadians( CalculusGrapherQueryParameters.maxTilt );
-
-    // Find the angle of the tile, based on where the user dragged the Curve.
-    const angle = Utils.clamp( Math.atan( position.y / position.x ), -maxTilt, maxTilt );
-
-    // Amount to shift the CurvePoint closest to the passed-in position.
-    const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
-
-    // Shift each of the CurvePoints by a factor of deltaY.
-    this.points.forEach( point => {
-      point.y = point.lastSavedY + deltaY * point.x / position.x;
-    } );
-
-  }
-
-  /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
-  public createTriangleAt( width: number, peak: Vector2 ): void {
+  private createTriangleAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -130,10 +98,37 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
+   */
+  private createPedestalAt( width: number, peak: Vector2 ): void {
+
+    const closestPoint = this.getClosestPointAt( peak.x );
+
+    this.points.forEach( point => {
+      let P;
+
+      if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
+        P = 1;
+      }
+      else if ( point.x <= closestPoint.x ) {
+
+        // use the square of a gaussian in order to have a very symmetric derivative at the edges
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
+      }
+      else {
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
+      }
+
+      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
+    } );
+
+  }
+
+  /**
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    *
    */
-  public createParabolaAt( width: number, peak: Vector2 ): void {
+  private createParabolaAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -160,37 +155,10 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
-   */
-  public createPedestalAt( width: number, peak: Vector2 ): void {
-
-    const closestPoint = this.getClosestPointAt( peak.x );
-
-    this.points.forEach( point => {
-      let P;
-
-      if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
-        P = 1;
-      }
-      else if ( point.x <= closestPoint.x ) {
-
-        // use the square of a gaussian in order to have a very symmetric derivative at the edges
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
-      }
-      else {
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
-      }
-
-      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
-    } );
-
-  }
-
-  /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    * TODO: this is a bit of a mess, simplify and/or document properly
    */
-  public createSineAt( width: number, position: Vector2 ): void {
+  private createSineAt( width: number, position: Vector2 ): void {
 
     const closestIndex = this.getClosestIndexAt( position.x );
     const closestPoint = this.getClosestPointAt( position.x );
@@ -234,9 +202,9 @@ export default class TransformedCurve extends Curve {
    * @param penultimatePosition - in model coordinates
    * @param antepenultimatePosition - in model coordinates
    */
-  public drawFreeformToPosition( position: Vector2,
-                                 penultimatePosition: Vector2,
-                                 antepenultimatePosition: Vector2 | null ): void {
+  private drawFreeformToPosition( position: Vector2,
+                                  penultimatePosition: Vector2,
+                                  antepenultimatePosition: Vector2 | null ): void {
 
     //  closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
@@ -290,7 +258,7 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
+  private interpolate( point1: CurvePoint, point2: CurvePoint ): void {
 
     // x separation between two adjacent points in curve array
     const deltaX = 1 / this.pointsPerCoordinate;
@@ -313,6 +281,45 @@ export default class TransformedCurve extends Curve {
       this.getClosestPointAt( xPosition ).y = ( 1 - W ) * point1.y + W * point2.y;
 
     }
+  }
+
+  /**
+   * Shifts the curve to the specified drag Position.
+   *
+   * @param position - in model coordinates
+   */
+  private shiftToPosition( position: Vector2 ): void {
+
+    // Amount to shift the entire curve.
+    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+
+    // Shift each of the CurvePoints by deltaY.
+    this.points.forEach( point => {
+      point.y += deltaY;
+    } );
+  }
+
+  /**
+   * Tilts the curve to the specified drag Position.
+   *
+   * @param position - in model coordinates
+   */
+  private tiltToPosition( position: Vector2 ): void {
+    assert && assert( position.x !== 0, 'x position cannot be zero' );
+
+    // maximum tilt converted from degrees to radians
+    const maxTilt = Utils.toRadians( CalculusGrapherQueryParameters.maxTilt );
+
+    // Find the angle of the tile, based on where the user dragged the Curve.
+    const angle = Utils.clamp( Math.atan( position.y / position.x ), -maxTilt, maxTilt );
+
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
+
+    // Shift each of the CurvePoints by a factor of deltaY.
+    this.points.forEach( point => {
+      point.y = point.lastSavedY + deltaY * point.x / position.x;
+    } );
   }
 
   public transformedCurve( mode: CurveManipulationMode,
@@ -350,16 +357,6 @@ export default class TransformedCurve extends Curve {
     }
 
     // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
-  }
-
-  // reset the curve points to their initial values
-  protected resetCurvePoints(): void {
-
-    // Reset every CurvePoint to its initial state.
-    this.points.forEach( point => point.reset() );
-
-    // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 }
