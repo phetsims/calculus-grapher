@@ -11,10 +11,6 @@
  *   - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
  *     and SINE, and the value is interpreted differently for each response algorithm to curve user-manipulation.
  *
- *   - Implementing the response algorithms that are used when the user drags on the OriginalCurve. The response is
- *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
- *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
- *
  *   - Implementing smoothing, saving, undoing, and other interactions.
  *
  * Like Curve, OriginalCurve is created at the start and persists for the lifetime of the simulation. Links
@@ -58,6 +54,9 @@ export default class OriginalCurve extends TransformedCurve {
 
     super( options );
 
+    assert && assert( curveManipulationModeChoices.includes( CurveManipulationMode.HILL ),
+      'curveManipulationModeChoices must include initial value' );
+
     this.curveManipulationModeProperty = new EnumerationProperty( CurveManipulationMode.HILL, {
       validValues: curveManipulationModeChoices,
       tandem: options.tandem.createTandem( 'curveManipulationModeProperty' )
@@ -94,16 +93,6 @@ export default class OriginalCurve extends TransformedCurve {
 
     this.curveManipulationModeProperty.reset();
     this.curveManipulationWidthProperty.reset();
-  }
-
-  // reset the curve points to their initial values
-  private resetCurvePoints(): void {
-
-    // Reset every CurvePoint to its initial state.
-    this.points.forEach( point => point.reset() );
-
-    // Signal once that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**

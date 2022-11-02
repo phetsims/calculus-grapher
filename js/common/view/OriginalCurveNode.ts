@@ -12,7 +12,6 @@
 
 import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -68,40 +67,13 @@ export default class OriginalCurveNode extends CurveNode {
         // previous (model) position the drag
         penultimatePosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
-        const width = curve.curveManipulationWidth;
-
-        if ( curve.curveManipulationMode === CurveManipulationMode.HILL ) {
-          curve.createHillAt( modelPosition, width );
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.PARABOLA ) {
-          curve.createParabolaAt( modelPosition, width );
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.PEDESTAL ) {
-          curve.createPedestalAt( modelPosition, width );
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.TRIANGLE ) {
-          curve.createTriangleAt( modelPosition, width );
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.TILT ) {
-
-          // Don't try to tilt if it would cause a divide by zero error, see https://github.com/phetsims/calculus-grapher/issues/69
-          if ( modelPosition.x !== 0 ) {
-            curve.tiltToPosition( modelPosition );
-          }
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.SHIFT ) {
-          curve.shiftToPosition( modelPosition );
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.FREEFORM ) {
-
-          curve.drawFreeformToPosition( modelPosition, penultimatePosition, antepenultimatePosition );
-        }
-        else if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
-          curve.createSineAt( modelPosition, width );
-        }
-        else {
-          throw new Error( 'Unsupported Curve Manipulation Mode' );
-        }
+        // update curve based on mode and width
+        curve.transformedCurve(
+          curve.curveManipulationMode,
+          curve.curveManipulationWidth,
+          modelPosition,
+          penultimatePosition,
+          antepenultimatePosition );
 
         // update antepenultimatePosition
         antepenultimatePosition = penultimatePosition;

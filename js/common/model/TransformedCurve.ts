@@ -22,6 +22,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import Curve, { CurveOptions } from './Curve.js';
 import CurvePoint from './CurvePoint.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import CurveManipulationMode from './CurveManipulationMode.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -54,8 +55,24 @@ export default class TransformedCurve extends Curve {
       point.y += deltaY;
     } );
 
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
+
+  }
+
+  /**
+   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
+   */
+  public createHillAt( width: number, peak: Vector2 ): void {
+
+    const closestPoint = this.getClosestPointAt( peak.x );
+    assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
+
+    this.points.forEach( point => {
+
+      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
+
+      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
+    } );
+
   }
 
   /**
@@ -80,33 +97,12 @@ export default class TransformedCurve extends Curve {
       point.y = point.lastSavedY + deltaY * point.x / position.x;
     } );
 
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
-  }
-
-  /**
-   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
-   */
-  public createHillAt( peak: Vector2, width: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peak.x );
-    assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
-
-    this.points.forEach( point => {
-
-      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
-
-      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
-    } );
-
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
-  public createTriangleAt( peak: Vector2, width: number ): void {
+  public createTriangleAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -131,15 +127,13 @@ export default class TransformedCurve extends Curve {
       }
     } );
 
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    *
    */
-  public createParabolaAt( peak: Vector2, width: number ): void {
+  public createParabolaAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -163,15 +157,12 @@ export default class TransformedCurve extends Curve {
         point.y = point.lastSavedY;
       }
     } );
-
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    */
-  public createPedestalAt( peak: Vector2, width: number ): void {
+  public createPedestalAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -193,8 +184,45 @@ export default class TransformedCurve extends Curve {
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
 
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
+  }
+
+  /**
+   * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
+   * TODO: this is a bit of a mess, simplify and/or document properly
+   */
+  public createSineAt( width: number, position: Vector2 ): void {
+
+    const closestIndex = this.getClosestIndexAt( position.x );
+    const closestPoint = this.getClosestPointAt( position.x );
+
+    const arrayLength = this.points.length;
+
+    let isClear: boolean;
+
+    // update point
+    const updatePoint = ( index: number ): void => {
+      const point = this.points[ index ];
+      const newY = position.y * Math.cos( ( closestPoint.x - point.x ) * width / ( Math.PI * 2 ) );
+      const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
+
+      if ( clearForSine && isClear ) {
+        point.y = newY;
+      }
+      else {
+        point.y = point.lastSavedY;
+        isClear = false;
+      }
+    };
+
+    isClear = true;
+    for ( let index = closestIndex; index < arrayLength; ++index ) {
+      updatePoint( index );
+    }
+
+    isClear = true;
+    for ( let index = closestIndex; index >= 0; --index ) {
+      updatePoint( index );
+    }
   }
 
   /**
@@ -260,9 +288,6 @@ export default class TransformedCurve extends Curve {
 
       }
     }
-
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
@@ -290,45 +315,51 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  /**
-   * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-   * TODO: this is a bit of a mess, simplify and/or document properly
-   */
-  public createSineAt( position: Vector2, width: number ): void {
+  public transformedCurve( mode: CurveManipulationMode,
+                           width: number,
+                           position: Vector2,
+                           penultimatePosition: Vector2,
+                           antepenultimatePosition: Vector2 | null ): void {
 
-    const closestIndex = this.getClosestIndexAt( position.x );
-    const closestPoint = this.getClosestPointAt( position.x );
-
-    const arrayLength = this.points.length;
-
-    let isClear: boolean;
-
-    // update point
-    const updatePoint = ( index: number ): void => {
-      const point = this.points[ index ];
-      const newY = position.y * Math.cos( ( closestPoint.x - point.x ) * width / ( Math.PI * 2 ) );
-      const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
-
-      if ( clearForSine && isClear ) {
-        point.y = newY;
-      }
-      else {
-        point.y = point.lastSavedY;
-        isClear = false;
-      }
-    };
-
-    isClear = true;
-    for ( let index = closestIndex; index < arrayLength; ++index ) {
-      updatePoint( index );
+    if ( mode === CurveManipulationMode.HILL ) {
+      this.createHillAt( width, position );
     }
-
-    isClear = true;
-    for ( let index = closestIndex; index >= 0; --index ) {
-      updatePoint( index );
+    else if ( mode === CurveManipulationMode.PARABOLA ) {
+      this.createParabolaAt( width, position );
+    }
+    else if ( mode === CurveManipulationMode.PEDESTAL ) {
+      this.createPedestalAt( width, position );
+    }
+    else if ( mode === CurveManipulationMode.TRIANGLE ) {
+      this.createTriangleAt( width, position );
+    }
+    else if ( mode === CurveManipulationMode.SINE ) {
+      this.createSineAt( width, position );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+    }
+    else if ( mode === CurveManipulationMode.TILT ) {
+      this.tiltToPosition( position );
+    }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+      this.shiftToPosition( position );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
     }
 
     // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  // reset the curve points to their initial values
+  protected resetCurvePoints(): void {
+
+    // Reset every CurvePoint to its initial state.
+    this.points.forEach( point => point.reset() );
+
+    // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 }

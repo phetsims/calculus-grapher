@@ -36,7 +36,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     }, provideOptions );
 
     const curve = new TransformedCurve( {
-      pointsPerCoordinate: 2,
+      pointsPerCoordinate: 3,
       tandem: options.tandem.createTandem( 'displayCurve' )
     } );
 
@@ -54,41 +54,8 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     const middlePosition = new Vector2( xCenter, yMax );
     Multilink.multilink( [ curveManipulationModeProperty, curveManipulationWidthProperty ],
       ( mode, width ) => {
-
-        if ( mode === CurveManipulationMode.HILL ) {
-          curve.createHillAt( middlePosition, width );
-        }
-        else if ( mode === CurveManipulationMode.PARABOLA ) {
-          curve.createParabolaAt( middlePosition, width );
-        }
-        else if ( mode === CurveManipulationMode.PEDESTAL ) {
-          curve.createPedestalAt( middlePosition, width );
-        }
-        else if ( mode === CurveManipulationMode.TRIANGLE ) {
-          curve.createTriangleAt( middlePosition, width );
-        }
-        else if ( mode === CurveManipulationMode.TILT ) {
-
-          // Don't try to tilt if it would cause a divide by zero error, see https://github.com/phetsims/calculus-grapher/issues/69
-          if ( middlePosition.x !== 0 ) {
-            curve.tiltToPosition( middlePosition );
-          }
-        }
-        else if ( mode === CurveManipulationMode.SHIFT ) {
-          curve.shiftToPosition( middlePosition );
-        }
-        else if ( mode === CurveManipulationMode.FREEFORM ) {
-
-          curve.shiftToPosition( middlePosition );
-        }
-        else if ( mode === CurveManipulationMode.SINE ) {
-          curve.createSineAt( middlePosition, width );
-        }
-        else {
-          throw new Error( 'Unsupported Curve Manipulation Mode' );
-        }
+        curve.transformedCurve( mode, width, middlePosition, middlePosition, middlePosition );
       } );
-
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, {} );
