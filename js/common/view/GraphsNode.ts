@@ -106,15 +106,17 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
 
+    referenceLineNode.x = originalGraphNode.x;
+
     const graphSet = new Node();
 
     graphsSelectedProperty.link( graphChoice => {
 
       // array of Node content of this class
       const content = graphChoice.map( graphType => {
-          if ( graphType === 'integral' ) {
-            return integralGraphNode;
-          }
+        if ( graphType === 'integral' ) {
+          return integralGraphNode;
+        }
           else if ( graphType === 'original' ) {
             return originalGraphNode;
           }
@@ -146,8 +148,8 @@ export default class GraphNodes extends Node {
 
       graphSet.setChildren( content );
 
-      referenceLineNode.setLineBottom( graphSet.bottom );
-      referenceLineNode.setLineTop( graphSet.top );
+      referenceLineNode.setLineBottom( graphSet.bottom + 5 );
+      referenceLineNode.setLineTop( graphSet.top - 5 );
 
     } );
 

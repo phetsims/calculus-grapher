@@ -8,7 +8,7 @@
 
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { Circle, CircleOptions, DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 
@@ -34,18 +34,18 @@ export default class ReferenceLineNode extends Node {
       circleOptions: { radius: 9, fill: 'grey', stroke: 'black' }
     }, providedOptions );
 
-    super( options );
-
-    this.circle = new Circle( options.circleOptions );
+    const circle = new Circle( options.circleOptions );
 
     // values will be updated later
-    this.verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
+    const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
-    this.addChild( this.verticalLine );
-    this.addChild( this.circle );
+    const cursorNode = new Node( {
+      children: [ circle, verticalLine ],
+      centerX: chartTransform.modelToViewX( xCoordinateProperty.value )
+    } );
 
     // add dragListener
-    this.addInputListener( new DragListener( {
+    cursorNode.addInputListener( new DragListener( {
       drag( event, listener ) {
 
         // current modelPosition
@@ -56,10 +56,16 @@ export default class ReferenceLineNode extends Node {
     } ) );
 
     xCoordinateProperty.link( xCoordinate => {
-      this.centerX = chartTransform.modelToViewX( xCoordinate );
+
+      cursorNode.centerX = chartTransform.modelToViewX( xCoordinate );
     } );
 
-    referenceLineVisibleProperty.linkAttribute( this, 'visible' );
+    referenceLineVisibleProperty.linkAttribute( cursorNode, 'visible' );
+
+    super( combineOptions<NodeOptions>( { children: [ cursorNode ] }, options ) );
+
+    this.verticalLine = verticalLine;
+    this.circle = circle;
   }
 
   // set Y top position in view coordinates
