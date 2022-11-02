@@ -13,6 +13,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 
@@ -22,7 +24,9 @@ type CurveManipulationWidthSliderOptions = SelfOptions & HSliderOptions;
 
 export default class CurveManipulationWidthSlider extends HSlider {
 
-  public constructor( curveManipulationWidthProperty: NumberProperty, provideOptions?: CurveManipulationWidthSliderOptions ) {
+  public constructor( curveManipulationWidthProperty: NumberProperty,
+                      curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>,
+                      provideOptions?: CurveManipulationWidthSliderOptions ) {
 
     const options = optionize<CurveManipulationWidthSliderOptions, SelfOptions, HSliderOptions>()( {
 
@@ -43,6 +47,11 @@ export default class CurveManipulationWidthSlider extends HSlider {
       super.addMinorTick( WIDTH_RANGE.min + i * ( WIDTH_RANGE.max - WIDTH_RANGE.min ) / 8 );
     }
 
+    const noSliderModes = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
+
+    curveManipulationModeProperty.link( mode => {
+      this.visible = !noSliderModes.includes( mode );
+    } );
   }
 }
 

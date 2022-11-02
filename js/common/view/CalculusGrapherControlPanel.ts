@@ -48,12 +48,15 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, provideOptions );
 
-    const curveManipulationWidthSlider = new CurveManipulationWidthSlider( originalCurve.curveManipulationWidthProperty, {
-      tandem: options.tandem.createTandem( 'slider' )
-    } );
+    const curveManipulationWidthSlider = new CurveManipulationWidthSlider(
+      originalCurve.curveManipulationWidthProperty,
+      originalCurve.curveManipulationModeProperty, {
+        tandem: options.tandem.createTandem( 'slider' )
+      } );
 
 
-    const curveManipulationDisplayNode = new CurveManipulationDisplayNode( originalCurve.curveManipulationWidthProperty,
+    const curveManipulationDisplayNode = new CurveManipulationDisplayNode(
+      originalCurve.curveManipulationWidthProperty,
       originalCurve.curveManipulationModeProperty, {
         tandem: options.tandem.createTandem( 'displayNode' )
       } );
