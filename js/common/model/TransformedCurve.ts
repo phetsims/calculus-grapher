@@ -316,9 +316,7 @@ export default class TransformedCurve extends Curve {
       const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
 
       // Shift each of the CurvePoints by a factor of deltaY.
-      this.points.forEach( point => {
-        point.y = point.lastSavedY + deltaY * point.x / position.x;
-      } );
+      this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / position.x;} );
     }
   }
 
