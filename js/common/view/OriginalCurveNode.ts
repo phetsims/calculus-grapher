@@ -68,17 +68,19 @@ export default class OriginalCurveNode extends CurveNode {
         // previous (model) position the drag
         penultimatePosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
+        const width = curve.curveManipulationWidth;
+
         if ( curve.curveManipulationMode === CurveManipulationMode.HILL ) {
-          curve.createHillAt( modelPosition );
+          curve.createHillAt( modelPosition, width );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.PARABOLA ) {
-          curve.createParabolaAt( modelPosition );
+          curve.createParabolaAt( modelPosition, width );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.PEDESTAL ) {
-          curve.createPedestalAt( modelPosition );
+          curve.createPedestalAt( modelPosition, width );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.TRIANGLE ) {
-          curve.createTriangleAt( modelPosition );
+          curve.createTriangleAt( modelPosition, width );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.TILT ) {
 
@@ -95,7 +97,7 @@ export default class OriginalCurveNode extends CurveNode {
           curve.drawFreeformToPosition( modelPosition, penultimatePosition, antepenultimatePosition );
         }
         else if ( curve.curveManipulationMode === CurveManipulationMode.SINE ) {
-          curve.createSineAt( modelPosition );
+          curve.createSineAt( modelPosition, width );
         }
         else {
           throw new Error( 'Unsupported Curve Manipulation Mode' );

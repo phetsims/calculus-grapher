@@ -20,6 +20,7 @@ import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioB
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
+import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -50,6 +51,13 @@ export default class CalculusGrapherControlPanel extends Panel {
     const curveManipulationWidthSlider = new CurveManipulationWidthSlider( originalCurve.curveManipulationWidthProperty, {
       tandem: options.tandem.createTandem( 'slider' )
     } );
+
+
+    const curveManipulationDisplayNode = new CurveManipulationDisplayNode( originalCurve.curveManipulationWidthProperty,
+      originalCurve.curveManipulationModeProperty, {
+        tandem: options.tandem.createTandem( 'displayNode' )
+      } );
+
 
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
@@ -97,6 +105,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     const contentNode = new VBox( {
       spacing: options.contentSpacing,
       children: [
+        curveManipulationDisplayNode,
         curveManipulationWidthSlider,
         curveManipulationModeRadioButtonGroup,
         smoothButton,

@@ -11,12 +11,14 @@ import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Curve from '../model/Curve.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import TransformedCurve from '../model/TransformedCurve.js';
+import Multilink from '../../../../axon/js/Multilink.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -33,16 +35,60 @@ export default class CurveManipulationDisplayNode extends CurveNode {
       // super-class options
     }, provideOptions );
 
-    const curve = new Curve( {
+    const curve = new TransformedCurve( {
       pointsPerCoordinate: 2,
       tandem: options.tandem.createTandem( 'displayCurve' )
     } );
 
+    const xCenter = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
+    const yMax = 5;
+
     // chart transform for the graph, the height and Y range will be updated later
     const chartTransform = new ChartTransform( {
       viewWidth: 100,
+      viewHeight: 20,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
+
+
+    const middlePosition = new Vector2( xCenter, yMax );
+    Multilink.multilink( [ curveManipulationModeProperty, curveManipulationWidthProperty ],
+      ( mode, width ) => {
+
+        if ( mode === CurveManipulationMode.HILL ) {
+          curve.createHillAt( middlePosition, width );
+        }
+        else if ( mode === CurveManipulationMode.PARABOLA ) {
+          curve.createParabolaAt( middlePosition, width );
+        }
+        else if ( mode === CurveManipulationMode.PEDESTAL ) {
+          curve.createPedestalAt( middlePosition, width );
+        }
+        else if ( mode === CurveManipulationMode.TRIANGLE ) {
+          curve.createTriangleAt( middlePosition, width );
+        }
+        else if ( mode === CurveManipulationMode.TILT ) {
+
+          // Don't try to tilt if it would cause a divide by zero error, see https://github.com/phetsims/calculus-grapher/issues/69
+          if ( middlePosition.x !== 0 ) {
+            curve.tiltToPosition( middlePosition );
+          }
+        }
+        else if ( mode === CurveManipulationMode.SHIFT ) {
+          curve.shiftToPosition( middlePosition );
+        }
+        else if ( mode === CurveManipulationMode.FREEFORM ) {
+
+          curve.shiftToPosition( middlePosition );
+        }
+        else if ( mode === CurveManipulationMode.SINE ) {
+          curve.createSineAt( middlePosition, width );
+        }
+        else {
+          throw new Error( 'Unsupported Curve Manipulation Mode' );
+        }
+      } );
+
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, {} );
