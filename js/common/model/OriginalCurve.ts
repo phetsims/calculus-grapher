@@ -88,9 +88,9 @@ export default class OriginalCurve extends TransformedCurve {
    * Resets the OriginalCurve.
    * Called when the reset-all button is pressed.
    */
-  public reset(): void {
+  public override reset(): void {
 
-    this.resetCurvePoints();
+    super.reset();
 
     this.curveManipulationModeProperty.reset();
     this.curveManipulationWidthProperty.reset();

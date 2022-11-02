@@ -41,7 +41,7 @@ export default class TransformedCurve extends Curve {
   }
 
   // reset the curve points to their initial values
-  protected resetCurvePoints(): void {
+  public reset(): void {
 
     // Reset every CurvePoint to its initial state.
     this.points.forEach( point => point.reset() );
