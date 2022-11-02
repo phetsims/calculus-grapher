@@ -19,6 +19,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import Range from '../../../../dot/js/Range.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -46,22 +47,40 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     // chart transform for the graph, the height and Y range will be updated later
     const chartTransform = new ChartTransform( {
       viewWidth: 100,
-      viewHeight: 20,
-      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
+      viewHeight: 40,
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
+      modelYRange: new Range( -1, 6 )
     } );
 
-
-    const middlePosition = new Vector2( xCenter, yMax );
     Multilink.multilink( [ curveManipulationModeProperty, curveManipulationWidthProperty ],
       ( mode, width ) => {
+
+        curve.reset();
+
+        // TODO explain
+        const middlePosition = ( mode === CurveManipulationMode.TILT ) ?
+                               new Vector2( xCenter, yMax / 2 ) :
+                               new Vector2( xCenter, yMax );
+
+        chartTransform.modelYRange = ( mode === CurveManipulationMode.SINE ) ?
+                                     new Range( -6, 6 ) :
+                                     new Range( -1, 6 );
+
+        if ( mode === CurveManipulationMode.SINE ) {
+          width = width / 2;
+        }
+
         curve.transformedCurve( mode, width, middlePosition, middlePosition, middlePosition );
-      } );
+
+      }
+    );
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, {} );
 
     super( curve, chartTransform, options );
 
+    this.clipArea = chartRectangle.getShape();
     this.addChild( chartRectangle );
   }
 }
