@@ -27,6 +27,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CurveManipulationMode from './CurveManipulationMode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import TransformedCurve, { TransformedCurveOptions } from './TransformedCurve.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
@@ -168,6 +169,17 @@ export default class OriginalCurve extends TransformedCurve {
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
+  }
+
+  public operatedCurve( position: Vector2,
+                        penultimatePosition: Vector2,
+                        antepenultimatePosition: Vector2 | null ): void {
+    this.transformedCurve(
+      this.curveManipulationMode,
+      this.curveManipulationWidth,
+      position,
+      penultimatePosition,
+      antepenultimatePosition );
   }
 }
 

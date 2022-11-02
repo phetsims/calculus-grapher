@@ -68,9 +68,7 @@ export default class OriginalCurveNode extends CurveNode {
         penultimatePosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
         // update curve based on mode and width
-        curve.transformedCurve(
-          curve.curveManipulationMode,
-          curve.curveManipulationWidth,
+        curve.operatedCurve(
           modelPosition,
           penultimatePosition,
           antepenultimatePosition );
