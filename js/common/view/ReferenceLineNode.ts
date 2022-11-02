@@ -40,7 +40,7 @@ export default class ReferenceLineNode extends Node {
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
     const cursorNode = new Node( {
-      children: [ circle, verticalLine ],
+      children: [ verticalLine, circle ],
       centerX: chartTransform.modelToViewX( xCoordinateProperty.value )
     } );
 
