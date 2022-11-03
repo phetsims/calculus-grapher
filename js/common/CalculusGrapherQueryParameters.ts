@@ -4,9 +4,11 @@
  * Query parameters supported by this simulation.
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import calculusGrapher from '../calculusGrapher.js';
+import logGlobal from '../../../phet-core/js/logGlobal.js';
 
 const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
@@ -63,7 +65,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum difference between the angle of the left and right secant lines of a Point on a curve for it to be
+   * The maximum difference between the angle (in radians) of the left and right secant lines of a Point on a curve for it to be
    * considered differentiable.
    * See https://github.com/phetsims/calculus-grapher/issues/28
    *
@@ -102,9 +104,16 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
    */
   numericalLabels: {
     type: 'boolean',
-    defaultValue: false
+    defaultValue: false,
+    public: true
   }
 } );
 
 calculusGrapher.register( 'CalculusGrapherQueryParameters', CalculusGrapherQueryParameters );
+
+// Log query parameters
+logGlobal( 'phet.chipper.queryParameters' );
+logGlobal( 'phet.preloads.phetio.queryParameters' );
+logGlobal( 'phet.calculusGrapher.CalculusGrapherQueryParameters' );
+
 export default CalculusGrapherQueryParameters;
