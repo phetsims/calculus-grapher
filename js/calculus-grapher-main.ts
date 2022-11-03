@@ -15,6 +15,9 @@ import IntegralScreen from './integral/IntegralScreen.js';
 import LabScreen from './lab/LabScreen.js';
 import AdvancedScreen from './advanced/AdvancedScreen.js';
 import { CreditsData } from '../../joist/js/CreditsNode.js';
+import CalculusGrapherPreferencesNode from './common/view/CalculusGrapherPreferencesNode.js';
+import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
+import CalculusGrapherPreferences from './common/model/CalculusGrapherPreferences.js';
 
 const simCredits: CreditsData = {
   leadDesign: '',
@@ -34,7 +37,22 @@ simLauncher.launch( () => {
     new IntegralScreen( { tandem: Tandem.ROOT.createTandem( 'integralScreen' ) } ),
     new AdvancedScreen( { tandem: Tandem.ROOT.createTandem( 'advancedScreen' ) } ),
     new LabScreen( { tandem: Tandem.ROOT.createTandem( 'labScreen' ) } )
-  ], { credits: simCredits } );
+  ], {
+    credits: simCredits,
+    preferencesModel: new PreferencesModel( {
+      simulationOptions: {
+        customPreferences: [ {
+          createContent: tandem => new CalculusGrapherPreferencesNode( {
+            tandem: tandem.createTandem( 'simPreferences' )
+          } ),
+          modelLinkables: [
+            { property: CalculusGrapherPreferences.numericalLabelsEnabledProperty }
+          ]
+        } ]
+      }
+    } )
+
+  } );
 
   sim.start();
 } );

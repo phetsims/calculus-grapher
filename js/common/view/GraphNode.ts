@@ -41,8 +41,8 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -185,59 +185,59 @@ export default class GraphNode extends Node {
 
     labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
 
+    // create horizontal and vertical numerical labels for ticks
+    const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
+      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { fontSize: 8 } )
+    } );
+    const verticalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.VERTICAL, 1,
+      {
+        value: CalculusGrapherConstants.CURVE_X_RANGE.max,
+        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 2 ), { fontSize: 8 } ),
+        positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
+          label.leftCenter = tickBounds.rightCenter.plusXY( 1, 0 );
+          return label;
+        }
+      } );
+
+    // create horizontal and vertical mark ticks
+    const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
+    const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 1, {
+      value: CalculusGrapherConstants.CURVE_X_RANGE.max
+    } );
+
+    // change the vertical spacing of the ticks such that there are a constant number of them
+    this.zoomLevelProperty.link( zoomLevel => {
+      const spacing = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      verticalTickMarkSet.setSpacing( spacing );
+      verticalTickLabelSet.setSpacing( spacing );
+    } );
+
+    const tickSetNode = new Node( {
+      children: [
+        horizontalTickLabelSet,
+        horizontalTickMarkSet,
+        verticalTickMarkSet,
+        verticalTickLabelSet
+      ]
+    } );
+
     this.setChildren( [
       chartRectangle,
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
+      tickSetNode,
       zoomButtonGroup,
       eyeToggleButton,
       labelNode,
       this.curveNode
     ] );
 
-    this.graphVisibleProperty.link( visible => {
-      this.visible = visible;
-    } );
+    this.graphVisibleProperty.linkAttribute( this, 'visible' );
 
-    // add tick and numerical labels if true
-    if ( CalculusGrapherQueryParameters.numericalLabels ) {
+    CalculusGrapherPreferences.numericalLabelsEnabledProperty.linkAttribute( tickSetNode, 'visible' );
 
-      // create horizontal and vertical numerical labels for ticks
-      const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
-        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { fontSize: 8 } )
-      } );
-      const verticalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.VERTICAL, 1,
-        {
-          value: CalculusGrapherConstants.CURVE_X_RANGE.max,
-          createLabel: ( value: number ) => new Text( Utils.toFixed( value, 2 ), { fontSize: 8 } ),
-          positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
-            label.leftCenter = tickBounds.rightCenter.plusXY( 1, 0 );
-            return label;
-          }
-        } );
-
-      // create horizontal and vertical mark ticks
-      const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
-      const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 1, {
-        value: CalculusGrapherConstants.CURVE_X_RANGE.max
-      } );
-
-      // change the vertical spacing of the ticks such that there are a constant number of them
-      this.zoomLevelProperty.link( zoomLevel => {
-        const spacing = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
-        verticalTickMarkSet.setSpacing( spacing );
-        verticalTickLabelSet.setSpacing( spacing );
-      } );
-
-      // add children to this node
-      this.addChild( horizontalTickMarkSet );
-      this.addChild( horizontalTickLabelSet );
-      this.addChild( verticalTickMarkSet );
-      this.addChild( verticalTickLabelSet );
-
-      this.mutate( options );
-    }
+    this.mutate( options );
   }
 
   /**

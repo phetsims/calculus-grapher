@@ -98,7 +98,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   /**
    * Shows axes with tick mark and numerical labels
    *
-   * For internal use.
+   * For public use.
    */
   numericalLabels: {
     type: 'boolean',

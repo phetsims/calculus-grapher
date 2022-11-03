@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * Scenery Node that displays a representation of curve mode being manipulated
+ * Scenery Node that displays a representation of curve mode being manipulated by slider
  *
  * @author Martin Veillette
  */
@@ -61,17 +61,17 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         const middlePosition = ( mode === CurveManipulationMode.TILT ) ?
                                new Vector2( xCenter, yMax / 2 ) :
                                new Vector2( xCenter, yMax );
-
+        // TODO explain
         chartTransform.modelYRange = ( mode === CurveManipulationMode.SINE ) ?
                                      new Range( -6, 6 ) :
                                      new Range( -1, 6 );
 
+        // TODO explain
         if ( mode === CurveManipulationMode.SINE ) {
           width = width / 2;
         }
 
         curve.transformedCurve( mode, width, middlePosition, middlePosition, middlePosition );
-
       }
     );
 
