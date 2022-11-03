@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2020-2022, University of Colorado Boulder
 
 /**
  * TransformedCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then
