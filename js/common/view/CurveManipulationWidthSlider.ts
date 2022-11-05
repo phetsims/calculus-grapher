@@ -30,11 +30,15 @@ export default class CurveManipulationWidthSlider extends HSlider {
 
     const options = optionize<CurveManipulationWidthSliderOptions, SelfOptions, HSliderOptions>()( {
 
+      // super-class options
       trackSize: new Dimension2( 100, 1 ),
+      majorTickLength: 20,
+      minorTickLength: 15,
+      thumbSize: new Dimension2( 15, 30 ),
 
       // Snap to the nearest whole number.
       constrainValue: ( value: number ) => WIDTH_RANGE.constrainValue( Utils.roundSymmetric( value ) )
-      // super-class options
+
     }, providedOptions );
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
