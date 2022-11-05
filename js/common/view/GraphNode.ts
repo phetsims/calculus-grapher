@@ -237,7 +237,6 @@ export default class GraphNode extends Node {
 
     CalculusGrapherPreferences.numericalLabelsEnabledProperty.linkAttribute( tickSetNode, 'visible' );
 
-    this.mutate( options );
   }
 
   /**
