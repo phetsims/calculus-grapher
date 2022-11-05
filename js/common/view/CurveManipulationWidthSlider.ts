@@ -26,7 +26,7 @@ export default class CurveManipulationWidthSlider extends HSlider {
 
   public constructor( curveManipulationWidthProperty: NumberProperty,
                       curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>,
-                      provideOptions?: CurveManipulationWidthSliderOptions ) {
+                      providedOptions?: CurveManipulationWidthSliderOptions ) {
 
     const options = optionize<CurveManipulationWidthSliderOptions, SelfOptions, HSliderOptions>()( {
 
@@ -35,7 +35,7 @@ export default class CurveManipulationWidthSlider extends HSlider {
       // Snap to the nearest whole number.
       constrainValue: ( value: number ) => WIDTH_RANGE.constrainValue( Utils.roundSymmetric( value ) )
       // super-class options
-    }, provideOptions );
+    }, providedOptions );
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
 

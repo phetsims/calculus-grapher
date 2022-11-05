@@ -51,9 +51,21 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Saves the current y-values of the Points for the next undoToLastSave() method.
+   *
+   * This method is invoked when the user starts manipulating the OriginalCurve. When the undo button is pressed,
+   * the Points of the OriginalCurve will be set to their last saved state.
+   */
+  public saveCurrentPoints(): void {
+
+    // Save the current y-value of each CurvePoint.
+    this.points.forEach( point => point.save() );
+  }
+
+  /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    */
-  private createHillAt( width: number, peak: Vector2 ): void {
+  public createHillAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
     assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
@@ -70,7 +82,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
-  private createTriangleAt( width: number, peak: Vector2 ): void {
+  public createTriangleAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -100,7 +112,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    */
-  private createPedestalAt( width: number, peak: Vector2 ): void {
+  public createPedestalAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -128,7 +140,7 @@ export default class TransformedCurve extends Curve {
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    *
    */
-  private createParabolaAt( width: number, peak: Vector2 ): void {
+  public createParabolaAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -158,7 +170,7 @@ export default class TransformedCurve extends Curve {
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    * TODO: this is a bit of a mess, simplify and/or document properly
    */
-  private createSineAt( width: number, position: Vector2 ): void {
+  public createSineAt( width: number, position: Vector2 ): void {
 
     const closestIndex = this.getClosestIndexAt( position.x );
     const closestPoint = this.getClosestPointAt( position.x );
@@ -202,9 +214,9 @@ export default class TransformedCurve extends Curve {
    * @param penultimatePosition - in model coordinates
    * @param antepenultimatePosition - in model coordinates
    */
-  private drawFreeformToPosition( position: Vector2,
-                                  penultimatePosition: Vector2,
-                                  antepenultimatePosition: Vector2 | null ): void {
+  public drawFreeformToPosition( position: Vector2,
+                                 penultimatePosition: Vector2,
+                                 antepenultimatePosition: Vector2 | null ): void {
 
     //  closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
@@ -258,7 +270,7 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  private interpolate( point1: CurvePoint, point2: CurvePoint ): void {
+  public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
 
     // x separation between two adjacent points in curve array
     const deltaX = 1 / this.pointsPerCoordinate;
@@ -288,7 +300,7 @@ export default class TransformedCurve extends Curve {
    *
    * @param position - in model coordinates
    */
-  private shiftToPosition( position: Vector2 ): void {
+  public shiftToPosition( position: Vector2 ): void {
 
     // Amount to shift the entire curve.
     const deltaY = position.y - this.getClosestPointAt( position.x ).y;
@@ -302,7 +314,7 @@ export default class TransformedCurve extends Curve {
    *
    * @param position - in model coordinates
    */
-  private tiltToPosition( position: Vector2 ): void {
+  public tiltToPosition( position: Vector2 ): void {
 
     if ( position.x !== 0 ) {
 
@@ -320,11 +332,9 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  public transformedCurve( mode: CurveManipulationMode,
-                           width: number,
-                           position: Vector2,
-                           penultimatePosition: Vector2,
-                           antepenultimatePosition: Vector2 | null ): void {
+  public widthManipulatedCurve( mode: CurveManipulationMode,
+                                width: number,
+                                position: Vector2 ): void {
 
     if ( mode === CurveManipulationMode.HILL ) {
       this.createHillAt( width, position );
@@ -341,14 +351,44 @@ export default class TransformedCurve extends Curve {
     else if ( mode === CurveManipulationMode.SINE ) {
       this.createSineAt( width, position );
     }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
     }
-    else if ( mode === CurveManipulationMode.TILT ) {
+  }
+
+  public positionManipulatedCurve( mode: CurveManipulationMode,
+                                   position: Vector2 ): void {
+
+    if ( mode === CurveManipulationMode.TILT ) {
       this.tiltToPosition( position );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
       this.shiftToPosition( position );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+  }
+
+  public transformedCurve( mode: CurveManipulationMode,
+                           width: number,
+                           position: Vector2,
+                           penultimatePosition: Vector2,
+                           antepenultimatePosition: Vector2 | null ): void {
+
+    if ( mode === CurveManipulationMode.HILL ||
+         mode === CurveManipulationMode.PARABOLA ||
+         mode === CurveManipulationMode.PEDESTAL ||
+         mode === CurveManipulationMode.TRIANGLE ||
+         mode === CurveManipulationMode.SINE ) {
+      this.widthManipulatedCurve( mode, width, position );
+    }
+    else if ( mode === CurveManipulationMode.TILT ||
+              mode === CurveManipulationMode.SHIFT ) {
+      this.positionManipulatedCurve( mode, position );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );

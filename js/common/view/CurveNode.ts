@@ -55,7 +55,7 @@ export default class CurveNode extends Node {
   public readonly dragBoundsProperty: Property<Bounds2>;
 
   public constructor( curve: Curve, chartTransform: ChartTransform,
-                      provideOptions?: CurveNodeOptions ) {
+                      providedOptions?: CurveNodeOptions ) {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
       discontinuousPointsScatterPlotOptions: {
@@ -86,7 +86,7 @@ export default class CurveNode extends Node {
         stroke: Color.ORANGE,
         lineWidth: 3
       }
-    }, provideOptions );
+    }, providedOptions );
 
     super( options );
 

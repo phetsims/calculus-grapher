@@ -31,7 +31,7 @@ export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
-  public constructor( originalCurve: OriginalCurve, provideOptions?: CalculusGrapherControlPanelOptions ) {
+  public constructor( originalCurve: OriginalCurve, providedOptions: CalculusGrapherControlPanelOptions ) {
 
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
 
@@ -46,7 +46,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty
 
-    }, provideOptions );
+    }, providedOptions );
 
     const curveManipulationWidthSlider = new CurveManipulationWidthSlider(
       originalCurve.curveManipulationWidthProperty,
@@ -54,13 +54,11 @@ export default class CalculusGrapherControlPanel extends Panel {
         tandem: options.tandem.createTandem( 'slider' )
       } );
 
-
     const curveManipulationDisplayNode = new CurveManipulationDisplayNode(
       originalCurve.curveManipulationWidthProperty,
       originalCurve.curveManipulationModeProperty, {
         tandem: options.tandem.createTandem( 'displayNode' )
       } );
-
 
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(

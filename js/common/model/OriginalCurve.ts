@@ -96,17 +96,6 @@ export default class OriginalCurve extends TransformedCurve {
     this.curveManipulationWidthProperty.reset();
   }
 
-  /**
-   * Saves the current y-values of the Points for the next undoToLastSave() method.
-   *
-   * This method is invoked when the user starts manipulating the OriginalCurve. When the undo button is pressed,
-   * the Points of the OriginalCurve will be set to their last saved state.
-   */
-  public saveCurrentPoints(): void {
-
-    // Save the current y-value of each CurvePoint.
-    this.points.forEach( point => point.save() );
-  }
 
   /**
    * Sets the y-values of this CurvedPoints of this Curve to its last saved state.

@@ -8,70 +8,108 @@
 
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import TransformedCurve from '../model/TransformedCurve.js';
+import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Range from '../../../../dot/js/Range.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
-type SelfOptions = EmptySelfOptions;
-
+type SelfOptions = {
+  curveNodeOptions?: CurveNodeOptions;
+  transformedCurveOptions?: TransformedCurveOptions;
+  chartTransformOptions?: ChartTransformOptions;
+};
 type CurveManipulationDisplayOptions = SelfOptions & PickRequired<CurveNodeOptions, 'tandem'>;
 
 export default class CurveManipulationDisplayNode extends CurveNode {
 
-  public constructor( curveManipulationWidthProperty: NumberProperty,
-                      curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>,
-                      provideOptions?: CurveManipulationDisplayOptions ) {
+  public constructor( widthProperty: NumberProperty,
+                      modeProperty: EnumerationProperty<CurveManipulationMode>,
+                      providedOptions?: CurveManipulationDisplayOptions ) {
 
-    const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()( {
+    const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()(
+      {
+        curveNodeOptions: {
+          continuousLinePlotOptions: {
+            stroke: CalculusGrapherColors.originalCurveStrokeProperty,
+            lineWidth: 2
+          }
+        },
+        transformedCurveOptions: {
+          pointsPerCoordinate: 3,
+          xRange: CalculusGrapherConstants.CURVE_X_RANGE
+        },
+        chartTransformOptions: {
+          viewWidth: 100,
+          viewHeight: 40,
+          modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
+          modelYRange: new Range( -1, 6 )
+        }
+      }, providedOptions );
 
-      // super-class options
-    }, provideOptions );
+    const curve = new TransformedCurve(
+      combineOptions<TransformedCurveOptions>( {
+          tandem: options.tandem.createTandem( 'displayCurve' )
+        },
+        options.transformedCurveOptions ) );
 
-    const curve = new TransformedCurve( {
-      pointsPerCoordinate: 3,
-      tandem: options.tandem.createTandem( 'displayCurve' )
-    } );
+    // chart transform for the curve
+    const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    const xCenter = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
-    const yMax = 5;
+    // convinience variables
+    const xCenter = chartTransform.modelXRange.getCenter();
+    const xMax = chartTransform.modelXRange.max;
+    const yMax = chartTransform.modelYRange.max;
+    const yMin = chartTransform.modelYRange.min;
 
-    // chart transform for the graph, the height and Y range will be updated later
-    const chartTransform = new ChartTransform( {
-      viewWidth: 100,
-      viewHeight: 40,
-      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-      modelYRange: new Range( -1, 6 )
-    } );
-
-    Multilink.multilink( [ curveManipulationModeProperty, curveManipulationWidthProperty ],
+    Multilink.multilink( [ modeProperty, widthProperty ],
       ( mode, width ) => {
 
         curve.reset();
 
-        // TODO explain
-        const middlePosition = ( mode === CurveManipulationMode.TILT ) ?
-                               new Vector2( xCenter, yMax / 2 ) :
-                               new Vector2( xCenter, yMax );
-        // TODO explain
-        chartTransform.modelYRange = ( mode === CurveManipulationMode.SINE ) ?
-                                     new Range( -6, 6 ) :
-                                     new Range( -1, 6 );
+        if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
 
-        // TODO explain
-        if ( mode === CurveManipulationMode.SINE ) {
-          width = width / 2;
+          curve.positionManipulatedCurve( mode, new Vector2( xMax, yMax ) );
+        }
+        else if ( mode === CurveManipulationMode.TRIANGLE ||
+                  mode === CurveManipulationMode.PARABOLA ||
+                  mode === CurveManipulationMode.PEDESTAL ||
+                  mode === CurveManipulationMode.HILL ) {
+
+          const middlePosition = new Vector2( xCenter, yMax );
+          curve.widthManipulatedCurve( mode, width, middlePosition );
+        }
+        else if ( mode === CurveManipulationMode.FREEFORM ) {
+
+          const width = 3;
+          curve.createHillAt( width, new Vector2( 5, yMin ) );
+          curve.saveCurrentPoints();
+          curve.createTriangleAt( width, new Vector2( 15, yMax ) );
+          curve.saveCurrentPoints();
+          curve.createParabolaAt( width, new Vector2( 25, yMin ) );
+          curve.saveCurrentPoints();
+          curve.createPedestalAt( width, new Vector2( 35, yMax ) );
+        }
+        else if ( mode === CurveManipulationMode.SINE ) {
+
+          const position = new Vector2( xCenter, yMax / 2 );
+          curve.widthManipulatedCurve( mode, width / 3, position );
+          curve.shiftToPosition( new Vector2( xCenter, yMax ) );
+        }
+        else {
+
+          throw new Error( 'Unsupported Curve Manipulation Mode' );
         }
 
-        curve.transformedCurve( mode, width, middlePosition, middlePosition, middlePosition );
+        curve.curveChangedEmitter.emit();
       }
     );
 

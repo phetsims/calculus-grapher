@@ -9,11 +9,11 @@
 
 import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import RectangularRadioButtonGroup, { RectangularRadioButtonGroupOptions, RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import { Text } from '../../../../scenery/js/imports.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -31,7 +31,8 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
         mode => {
           return {
             value: mode,
-            createNode: () => new Text( mode.toString() ),
+            createNode: tandem => new CurveManipulationIconNode( mode,
+              { tandem: tandem.createTandem( `${mode.tandemPrefix}Icon` ) } ),
             tandemName: `${mode.tandemPrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
           };
         }
