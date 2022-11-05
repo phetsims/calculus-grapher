@@ -114,14 +114,7 @@ export default class CurveManipulationIconNode extends Node {
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
 
-      const width = 3;
-      solidCurve.createHillAt( width, new Vector2( 5, yMin ) );
-      solidCurve.saveCurrentPoints();
-      solidCurve.createTriangleAt( width, new Vector2( 15, yMax ) );
-      solidCurve.saveCurrentPoints();
-      solidCurve.createParabolaAt( width, new Vector2( 25, yMin ) );
-      solidCurve.saveCurrentPoints();
-      solidCurve.createPedestalAt( width, new Vector2( 35, yMax ) );
+      solidCurve.freeformIconCurve( yMin, yMax );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );

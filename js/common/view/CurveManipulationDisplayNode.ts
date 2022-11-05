@@ -64,11 +64,11 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     // chart transform for the curve
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    // convinience variables
+    // convenience variables
     const xCenter = chartTransform.modelXRange.getCenter();
-    const xMax = chartTransform.modelXRange.max;
-    const yMax = chartTransform.modelYRange.max;
-    const yMin = chartTransform.modelYRange.min;
+    const xMax = chartTransform.modelXRange.getMax();
+    const yMax = chartTransform.modelYRange.getMax();
+    const yMin = chartTransform.modelYRange.getMin();
 
     Multilink.multilink( [ modeProperty, widthProperty ],
       ( mode, width ) => {
@@ -89,14 +89,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
 
-          const width = 3;
-          curve.createHillAt( width, new Vector2( 5, yMin ) );
-          curve.saveCurrentPoints();
-          curve.createTriangleAt( width, new Vector2( 15, yMax ) );
-          curve.saveCurrentPoints();
-          curve.createParabolaAt( width, new Vector2( 25, yMin ) );
-          curve.saveCurrentPoints();
-          curve.createPedestalAt( width, new Vector2( 35, yMax ) );
+          curve.freeformIconCurve( yMin, yMax );
         }
         else if ( mode === CurveManipulationMode.SINE ) {
 

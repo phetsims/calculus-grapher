@@ -397,6 +397,22 @@ export default class TransformedCurve extends Curve {
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
+
+  public freeformIconCurve( yMin: number, yMax: number ): void {
+
+    // convenience variables
+    const xLength = this.xRange.getLength();
+    const xMin = this.xRange.getMin();
+    const width = xLength / 4;
+
+    this.createHillAt( width, new Vector2( xMin + xLength / 5, yMin ) );
+    this.saveCurrentPoints();
+    this.createTriangleAt( width, new Vector2( xMin + 2 * xLength / 5, yMax ) );
+    this.saveCurrentPoints();
+    this.createParabolaAt( width, new Vector2( xMin + 3 * xLength / 5, yMin ) );
+    this.saveCurrentPoints();
+    this.createPedestalAt( width, new Vector2( xMin + 4 * xLength / 5, yMax ) );
+  }
 }
 
 calculusGrapher.register( 'TransformedCurve', TransformedCurve );
