@@ -10,7 +10,10 @@
  *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
  *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
  *
+ *   - Saving the curve
+ *   - Resetting all the points of the curve
  *  TransformedCurve is created at the start and persists for the lifetime of the simulation.
+ *
  *
  * @author Martin Veillette
  */
@@ -168,7 +171,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-   * TODO: this is a bit of a mess, simplify and/or document properly
+   * TODO: this is a bit of a mess, but wait for design before simplifiyng and/or documenting properly
    */
   public createSineAt( width: number, position: Vector2 ): void {
 
@@ -270,6 +273,9 @@ export default class TransformedCurve extends Curve {
     }
   }
 
+  /**
+   *  set value of points between point1 and point2 using a linear interpolation
+   */
   public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
 
     // x separation between two adjacent points in curve array
@@ -332,6 +338,10 @@ export default class TransformedCurve extends Curve {
     }
   }
 
+
+  /**
+   * sets the points for all the modes that can be manipulated through their width
+   */
   public widthManipulatedCurve( mode: CurveManipulationMode,
                                 width: number,
                                 position: Vector2 ): void {
@@ -356,6 +366,9 @@ export default class TransformedCurve extends Curve {
     }
   }
 
+  /**
+   * sets the points for all modes that can be manipulated solely through a position argument
+   */
   public positionManipulatedCurve( mode: CurveManipulationMode,
                                    position: Vector2 ): void {
 
@@ -370,11 +383,11 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  public transformedCurve( mode: CurveManipulationMode,
-                           width: number,
-                           position: Vector2,
-                           penultimatePosition: Vector2,
-                           antepenultimatePosition: Vector2 | null ): void {
+  public userManipulatedCurve( mode: CurveManipulationMode,
+                               width: number,
+                               position: Vector2,
+                               penultimatePosition: Vector2,
+                               antepenultimatePosition: Vector2 | null ): void {
 
     if ( mode === CurveManipulationMode.HILL ||
          mode === CurveManipulationMode.PARABOLA ||

@@ -11,7 +11,7 @@
  *   - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
  *     and SINE, and the value is interpreted differently for each response algorithm to curve user-manipulation.
  *
- *   - Implementing smoothing, saving, undoing, and other interactions.
+ *   - Implementing smoothing, undoing, and other interactions.
  *
  * Like Curve, OriginalCurve is created at the start and persists for the lifetime of the simulation. Links
  * are left as-is and OriginalCurves are never disposed.
@@ -163,7 +163,7 @@ export default class OriginalCurve extends TransformedCurve {
   public operatedCurve( position: Vector2,
                         penultimatePosition: Vector2,
                         antepenultimatePosition: Vector2 | null ): void {
-    this.transformedCurve(
+    this.userManipulatedCurve(
       this.curveManipulationMode,
       this.curveManipulationWidth,
       position,
