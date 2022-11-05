@@ -17,7 +17,7 @@ import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type CurveManipulationModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+export type CurveManipulationModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
 export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
 

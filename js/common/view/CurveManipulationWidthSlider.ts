@@ -46,12 +46,6 @@ export default class CurveManipulationWidthSlider extends HSlider {
     for ( let i = 1; i < 9; i++ ) {
       super.addMinorTick( WIDTH_RANGE.min + i * ( WIDTH_RANGE.max - WIDTH_RANGE.min ) / 8 );
     }
-
-    const noSliderModes = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
-
-    curveManipulationModeProperty.link( mode => {
-      this.visible = !noSliderModes.includes( mode );
-    } );
   }
 }
 

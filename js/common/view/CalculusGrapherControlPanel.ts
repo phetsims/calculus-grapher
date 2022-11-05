@@ -16,11 +16,9 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import OriginalCurve from '../model/OriginalCurve.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
-import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
-import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
+import CurveManipulationControls from './CurveManipulationControls.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -48,26 +46,11 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    const curveManipulationWidthSlider = new CurveManipulationWidthSlider(
+
+    const curveManipulationControls = new CurveManipulationControls(
       originalCurve.curveManipulationWidthProperty,
       originalCurve.curveManipulationModeProperty, {
-        tandem: options.tandem.createTandem( 'slider' )
-      } );
-
-    const curveManipulationDisplayNode = new CurveManipulationDisplayNode(
-      originalCurve.curveManipulationWidthProperty,
-      originalCurve.curveManipulationModeProperty, {
-        tandem: options.tandem.createTandem( 'displayNode' )
-      } );
-
-    // Radio Buttons that control the curveManipulationModeProperty.
-    const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
-      originalCurve.curveManipulationModeProperty, {
-        tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' ),
-        spacing: 5,
-        radioButtonOptions: {
-          baseColor: CalculusGrapherColors.panelFillProperty
-        }
+        tandem: options.tandem.createTandem( 'curveManipulationControls' )
       } );
 
     // Smooth Button
@@ -106,9 +89,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     const contentNode = new VBox( {
       spacing: options.contentSpacing,
       children: [
-        curveManipulationDisplayNode,
-        curveManipulationWidthSlider,
-        curveManipulationModeRadioButtonGroup,
+        curveManipulationControls,
         smoothButton,
         buttonIconGroup
       ]
