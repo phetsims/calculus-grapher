@@ -56,7 +56,7 @@ function createItem( labelNode: Node,
                      providedOptions: ItemOptions ): VerticalCheckboxGroupItem {
 
   return {
-    createNode: tandem => {
+    createNode: () => {
       return labelNode;
     },
     property: property,
