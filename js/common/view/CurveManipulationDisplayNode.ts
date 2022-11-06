@@ -109,7 +109,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, {} );
 
-    super( curve, chartTransform, options );
+    super( curve, chartTransform, options.curveNodeOptions );
 
     this.clipArea = chartRectangle.getShape();
     this.addChild( chartRectangle );
