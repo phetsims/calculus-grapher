@@ -7,18 +7,16 @@
  * @author Brandon Li
  */
 
-import { HBox, VBox } from '../../../../scenery/js/imports.js';
-import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
-import UndoButton from '../../../../scenery-phet/js/buttons/UndoButton.js';
+import { VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import OriginalCurve from '../model/OriginalCurve.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
-import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
+import CurvePushButtonGroup from './CurvePushButtonGroup.js';
+import { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
+import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -53,45 +51,12 @@ export default class CalculusGrapherControlPanel extends Panel {
         tandem: options.tandem.createTandem( 'curveManipulationControls' )
       } );
 
-    // Smooth Button
-    const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty,
-      combineOptions<TextPushButtonOptions>(
-        {
-          listener: () => originalCurve.smooth(),
-          tandem: options.tandem.createTandem( 'smoothButton' )
-        }, options.smoothButtonOptions
-      ) );
-
-    // Undo Button
-    const undoButton = new UndoButton( {
-      listener: () => originalCurve.undoToLastSave(),
-      tandem: options.tandem.createTandem( 'undoButton' ),
-      iconOptions: { height: 15 }
-    } );
-
-    // Reset Button
-    const resetButton = new EraserButton( {
-      listener: () => originalCurve.reset(),
-      tandem: options.tandem.createTandem( 'resetButton' ),
-      iconWidth: 20
-    } );
-
-    // TODO: ideally the two buttons should have the same dimensions (height and width)
-    // the undo and reset buttons should have the same height
-    undoButton.scale( resetButton.height / undoButton.height );
-
-    // scenery node to align the undo and reset buttons
-    const buttonIconGroup = new HBox( {
-      spacing: 10,
-      children: [ undoButton, resetButton ]
-    } );
+    const curveButtons = new CurvePushButtonGroup( originalCurve, options );
 
     const contentNode = new VBox( {
       spacing: options.contentSpacing,
-      children: [
-        curveManipulationControls,
-        smoothButton,
-        buttonIconGroup
+      children: [ curveManipulationControls,
+        curveButtons
       ]
     } );
 
