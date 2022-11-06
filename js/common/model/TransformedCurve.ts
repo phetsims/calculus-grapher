@@ -171,7 +171,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-   * TODO: this is a bit of a mess, but wait for design before simplifiyng and/or documenting properly
+   * TODO: this is a bit of a mess, but wait for design before simplifying and/or documenting properly
    */
   public createSineAt( width: number, position: Vector2 ): void {
 

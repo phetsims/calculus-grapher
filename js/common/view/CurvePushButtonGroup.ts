@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * CurvePushButtonGroup allow the user to manipulate the curve pressing buutons that
+ * CurvePushButtonGroup allow the user to manipulate the curve pressing buttons that
  * smooth, erase and undo the original curve
  *
  * @author Martin Veillette
