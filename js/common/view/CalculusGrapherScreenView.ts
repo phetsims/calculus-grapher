@@ -69,9 +69,22 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'visibleProperties' )
     }, options.visiblePropertiesOptions ) );
 
+    const resetAllButton = new ResetAllButton( {
+      rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
+      listener: () => this.reset(),
+      tandem: options.tandem.createTandem( 'resetAllButton' )
+    } );
+
+    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
+      {
+        right: this.layoutBounds.right - 10,
+        bottom: resetAllButton.top - 10,
+        tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
+      } );
+
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve,
       combineOptions<CalculusGrapherControlPanelOptions>( {
-        rightCenter: this.layoutBounds.rightCenter.minusXY( 10, 0 ),
+        rightBottom: toolsCheckboxGroup.rightTop.minusXY( 0, 20 ),
         tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
       }, options.controlPanelOptions ) );
 
@@ -83,19 +96,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
         rightCenter: controlPanel.leftCenter.minusXY( 20, 0 ),
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
-
-    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
-      {
-        right: this.layoutBounds.right - 10,
-        top: controlPanel.bottom + 10,
-        tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
-      } );
-
-    const resetAllButton = new ResetAllButton( {
-      rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
-      listener: () => this.reset(),
-      tandem: options.tandem.createTandem( 'resetAllButton' )
-    } );
 
     this.addChild( this.graphsNode );
     this.addChild( controlPanel );
