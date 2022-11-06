@@ -31,8 +31,10 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
         [ 'original', 'derivative' ]
       ],
       controlPanelOptions: {
-        smoothButtonOptions: {
-          visibleProperty: new BooleanProperty( true )
+        curvePushButtonGroupOptions: {
+          smoothButtonOptions: {
+            visibleProperty: new BooleanProperty( true )
+          }
         }
       }
     }, providedOptions );

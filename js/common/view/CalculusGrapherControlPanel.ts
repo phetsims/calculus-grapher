@@ -12,15 +12,14 @@ import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import OriginalCurve from '../model/OriginalCurve.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
-import CurvePushButtonGroup from './CurvePushButtonGroup.js';
-import { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
+import CurvePushButtonGroup, { CurvePushButtonGroupOptions } from './CurvePushButtonGroup.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 
 type SelfOptions = {
   contentSpacing?: number;
-  smoothButtonOptions?: TextPushButtonOptions;
+  curvePushButtonGroupOptions?: CurvePushButtonGroupOptions;
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
@@ -34,8 +33,10 @@ export default class CalculusGrapherControlPanel extends Panel {
       //  the spacing between the content Nodes of the Panel
       contentSpacing: 7,
 
-      smoothButtonOptions: {
-        baseColor: PhetColorScheme.BUTTON_YELLOW
+      curvePushButtonGroupOptions: {
+        smoothButtonOptions: {
+          baseColor: PhetColorScheme.BUTTON_YELLOW
+        }
       },
 
       // super-class options
@@ -51,7 +52,11 @@ export default class CalculusGrapherControlPanel extends Panel {
         tandem: options.tandem.createTandem( 'curveManipulationControls' )
       } );
 
-    const curveButtons = new CurvePushButtonGroup( originalCurve, options );
+    const curveButtons = new CurvePushButtonGroup( originalCurve,
+      combineOptions<CurvePushButtonGroupOptions>( {
+          tandem: options.tandem.createTandem( 'curveButtons' )
+        },
+        options.curvePushButtonGroupOptions ) );
 
     const contentNode = new VBox( {
       spacing: options.contentSpacing,

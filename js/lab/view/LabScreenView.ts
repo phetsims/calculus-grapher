@@ -29,8 +29,10 @@ export default class LabScreenView extends CalculusGrapherScreenView {
         [ 'original', 'derivative', 'secondDerivative' ]
       ],
       controlPanelOptions: {
-        smoothButtonOptions: {
-          visibleProperty: new BooleanProperty( true )
+        curvePushButtonGroupOptions: {
+          smoothButtonOptions: {
+            visibleProperty: new BooleanProperty( true )
+          }
         }
       }
     }, providedOptions );

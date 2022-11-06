@@ -46,10 +46,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const options = optionize<CalculusGrapherScreenViewOptions,
       StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphChoices'>, ScreenViewOptions>()( {
       controlPanelOptions: {
-        smoothButtonOptions: {
-          visibleProperty: new BooleanProperty( false )
+        curvePushButtonGroupOptions: {
+          smoothButtonOptions: {
+            visibleProperty: new BooleanProperty( false )
+          }
         }
-
       }
     }, providedOptions );
 

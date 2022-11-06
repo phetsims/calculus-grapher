@@ -10,7 +10,6 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { HBox, Node, NodeOptions, VBox } from '../../../../scenery/js/imports.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
 import OriginalCurve from '../model/OriginalCurve.js';
@@ -21,19 +20,17 @@ type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
 };
 
-export type CurvePushButtonsGroupOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type CurvePushButtonGroupOptions = SelfOptions & NodeOptions;
 
 export default class CurvePushButtonGroup extends Node {
 
   public constructor( originalCurve: OriginalCurve,
-                      providedOptions?: CurvePushButtonsGroupOptions ) {
+                      providedOptions?: CurvePushButtonGroupOptions ) {
 
-    const options = optionize<CurvePushButtonsGroupOptions, SelfOptions, NodeOptions>()( {
-
+    const options = optionize<CurvePushButtonGroupOptions, SelfOptions, NodeOptions>()( {
         smoothButtonOptions: {
           textNodeOptions: { fontWeight: 'bold' }
         }
-
       },
       providedOptions
     );
