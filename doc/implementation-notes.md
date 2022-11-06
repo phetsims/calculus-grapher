@@ -26,6 +26,7 @@ There are a number of query parameters for internal use.
   curve for it to be considered differentiable. The default value is 12.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
+- `numericalLabels` shows axes with tick mark and numerical labels. The default value is false.
 
 ### Curve Hierarchy
 
