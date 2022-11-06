@@ -52,7 +52,7 @@ export default class CurvePushButtonGroup extends Node {
     } );
 
     const hBox = new HBox( {
-      spacing: 10,
+      spacing: 5,
       children: [ undoButton, eraserButton ]
     } );
 
@@ -69,7 +69,7 @@ export default class CurvePushButtonGroup extends Node {
       ) );
 
     const vBox = new VBox( {
-      spacing: 10,
+      spacing: 5,
       children: [ smoothButton, hBox ]
     } );
 

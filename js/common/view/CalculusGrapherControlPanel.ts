@@ -45,7 +45,6 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-
     const curveManipulationControls = new CurveManipulationControls(
       originalCurve.curveManipulationWidthProperty,
       originalCurve.curveManipulationModeProperty, {

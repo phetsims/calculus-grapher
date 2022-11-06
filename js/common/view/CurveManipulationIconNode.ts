@@ -53,8 +53,8 @@ export default class CurveManipulationIconNode extends Node {
           xRange: CalculusGrapherConstants.CURVE_X_RANGE
         },
         chartTransformOptions: {
-          viewWidth: 60,
-          viewHeight: 10,
+          viewWidth: 70,
+          viewHeight: 7,
           modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
           modelYRange: new Range( -1, 6 )
         }
