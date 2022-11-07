@@ -237,41 +237,64 @@ export default class TransformedCurve extends Curve {
       // point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
 
-      // ensure that lastPoint is in between closestPoint and lastPoint
+      // check that lastPoint is in between closestPoint and lastPoint
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 
-        // x separation between two adjacent points in curve array
-        const deltaX = 1 / this.pointsPerCoordinate;
+        // find two control points that are approximately midway between our three points
+        const cp1Point = this.getClosestPointAt( ( closestPoint.x + lastPoint.x ) / 2 );
+        const cp2Point = this.getClosestPointAt( ( nextToLastPoint.x + lastPoint.x ) / 2 );
 
-        // x distance between the new and old point
-        const distXl = Math.abs( closestPoint.x - lastPoint.x );
+        // check that the lastPoint is between cp1 and cp2
+        if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
 
-        // x distance between the old and very old point
-        const distXR = Math.abs( nextToLastPoint.x - lastPoint.x );
+          // keep a reference to the last old y Value
+          const oldLastY = lastPoint.y;
 
-        const signedOne: number = ( closestPoint.x < lastPoint.x ) ? -1 : 1;
+          // x separation between two adjacent points in curve array
+          const deltaX = 1 / this.pointsPerCoordinate;
 
-        // TODO: explain
-        for ( let j = 0; j < 3; j++ ) {
+          // x distance between cp1 and lastpoint
+          const distXl = Math.abs( cp1Point.x - lastPoint.x );
 
-          for ( let dx = -distXR / 2; dx < distXl / 2; dx += deltaX ) {
+          // x distance between the cp2 and lastPoint
+          const distXR = Math.abs( cp2Point.x - lastPoint.x );
 
-            // point to be smoothed
-            const xPosition = nextToLastPoint.x + signedOne * dx;
+          // determine if cp1 is to the l
+          const signedOne: number = ( cp1Point.x < lastPoint.x ) ? 1 : -1;
 
-            // update the y value based on adjacent points
-            this.getClosestPointAt( xPosition ).y =
-              this.getClosestPointAt( xPosition + 2 * deltaX ).y / 5 +
-              this.getClosestPointAt( xPosition - 2 * deltaX ).y / 5 +
-              this.getClosestPointAt( xPosition ).y / 5 +
-              this.getClosestPointAt( xPosition + deltaX ).y / 5 +
-              this.getClosestPointAt( xPosition - deltaX ).y / 5;
+          // parameter of a quadratic equation
+          const a = signedOne * ( cp1Point.x - 2 * lastPoint.x + cp2Point.x );
+          const b = 2 * signedOne * ( -cp1Point.x + lastPoint.x );
+
+          // we want to iterate over all the points between cp1 and cp2
+          // and assign them a value associated with a quadratic Bezier curve
+          // P(t) = (1-t^2)*cp1Point +2*(1-t)*lastPoint + t^2 cp2Point where t ranges from 0 to 1
+
+          for ( let dx = deltaX; dx < distXl + distXR; dx += deltaX ) {
+
+            // work backward by solving for the time, given a desired x position
+            // by construction, there will always be two real roots for the time
+            const roots = Utils.solveQuadraticRootsReal( a, b, -dx )!;
+
+            // one of these roots will always be between [0,1]
+            const t = roots.filter( t => t >= 0 && t <= 1 )[ 0 ];
+
+            // sanity check
+            assert && assert( t >= 0 && t <= 1, `t should be between 0 and 1 (inclusive): 
+           ${roots[ 0 ]} and ${roots[ 1 ]}: a:${a}, b:${b}, c:${-dx}` );
+
+            const xPosition = cp1Point.x + signedOne * dx;
+
+            // update the y value: We need to use the y old point value as we iterate on an array of points that includes it.
+            this.getClosestPointAt( xPosition ).y = ( 1 - t ) ** 2 * cp1Point.y +
+                                                    2 * ( 1 - t ) * t * oldLastY +
+                                                    ( t ** 2 ) * cp2Point.y;
           }
         }
-
       }
     }
   }
+
 
   /**
    *  set value of points between point1 and point2 using a linear interpolation
@@ -297,7 +320,7 @@ export default class TransformedCurve extends Curve {
 
       // update the y value of an intermediate point
       this.getClosestPointAt( xPosition ).y = ( 1 - W ) * point1.y + W * point2.y;
-
+      this.getClosestPointAt( xPosition ).isDiscontinuous = false;
     }
   }
 
