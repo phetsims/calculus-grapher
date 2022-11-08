@@ -247,9 +247,6 @@ export default class TransformedCurve extends Curve {
         // check that the lastPoint is between cp1 and cp2
         if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
 
-          // keep a reference to the last old y Value
-          const oldLastY = lastPoint.y;
-
           // x separation between two adjacent points in curve array
           const deltaX = 1 / this.pointsPerCoordinate;
 
@@ -287,7 +284,7 @@ export default class TransformedCurve extends Curve {
 
             // update the y value: We need to use the y old point value as we iterate on an array of points that includes it.
             this.getClosestPointAt( xPosition ).y = ( 1 - t ) ** 2 * cp1Point.y +
-                                                    2 * ( 1 - t ) * t * oldLastY +
+                                                    2 * ( 1 - t ) * t * penultimatePosition.y +
                                                     ( t ** 2 ) * cp2Point.y;
           }
         }
