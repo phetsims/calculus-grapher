@@ -30,7 +30,6 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CurvePoint from './CurvePoint.js';
 import Range from '../../../../dot/js/Range.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import createObservableArray, { ObservableArray } from '../../../../axon/js/createObservableArray.js';
 
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -51,7 +50,7 @@ export type CurveOptions = SelfOptions & PhetioObjectOptions;
 
 export default class Curve extends PhetioObject {
 
-  public readonly points: ObservableArray<CurvePoint>;
+  public readonly points: CurvePoint[];
 
   // Using an observable Property for the y-value was considered, but it was deemed to be
   // invasive to the performance of the simulation as observers had to listen to the yProperty
@@ -85,12 +84,9 @@ export default class Curve extends PhetioObject {
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.
 
-    this.points = createObservableArray( {
-      elements: ( providedOptions.initialPoints ) ?
-                this.getFromSimplePoints( options.initialPoints ) :
-                this.getFromMathFunction( options.mathFunction )
-      //   tandem: options.tandem.createTandem( 'points' )
-    } );
+    this.points = ( providedOptions.initialPoints ) ?
+                  this.getFromSimplePoints( options.initialPoints ) :
+                  this.getFromMathFunction( options.mathFunction );
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
     // of every CurvePoint, which was deemed invasive to the performance of the sim, we

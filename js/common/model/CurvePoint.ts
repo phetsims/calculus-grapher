@@ -18,8 +18,18 @@
  * @author Brandon Li
  */
 
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import IOType from '../../../../tandem/js/types/IOType.js';
+import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+
+export type CurvePointStateObject = {
+  x: number;
+  y: number;
+  isDiscontinuous: boolean;
+  initialY: number;
+};
 
 export default class CurvePoint {
 
@@ -106,6 +116,38 @@ export default class CurvePoint {
   public dispose(): void {
     assert && assert( false, 'CurvePoint cannot be disposed (exists for the lifetime of the sim)' );
   }
-}
 
+  public static readonly CurvePointIO = new IOType<CurvePoint, CurvePointStateObject>( 'CurvePointIO', {
+    valueType: CurvePoint,
+    stateSchema: {
+      x: NumberIO,
+      y: NumberIO,
+      isDiscontinuous: BooleanIO,
+      initialY: NumberIO
+    },
+    toStateObject: ( curvePoint: CurvePoint ) => curvePoint.toStateObject(),
+    fromStateObject: ( stateObject: CurvePointStateObject ) => CurvePoint.fromStateObject( stateObject ),
+    documentation: 'describe the point on a curve'
+  } );
+
+  public static fromStateObject( stateObject: CurvePointStateObject ): CurvePoint {
+    const curvePoint = new CurvePoint(
+      stateObject.x,
+      stateObject.initialY,
+      stateObject.isDiscontinuous
+    );
+    curvePoint.y = stateObject.y;
+
+    return curvePoint;
+  }
+
+  public toStateObject(): CurvePointStateObject {
+    return {
+      x: this.x,
+      y: this.y,
+      isDiscontinuous: this.isDiscontinuous,
+      initialY: this.initialY
+    };
+  }
+}
 calculusGrapher.register( 'CurvePoint', CurvePoint );
