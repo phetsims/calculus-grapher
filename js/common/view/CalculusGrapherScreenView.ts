@@ -93,7 +93,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       options.graphChoices,
       this.visibleProperties.gridVisibleProperty,
       this.visibleProperties.referenceLineVisibleProperty, {
-        rightCenter: controlPanel.leftCenter.minusXY( 20, 0 ),
+        centerTop: this.layoutBounds.centerTop.plusXY( -10, 10 ),
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
 
