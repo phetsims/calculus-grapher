@@ -1,11 +1,11 @@
 {
-  "comment": "# calculus-grapher 1.0.0-dev.3 Mon Nov 07 2022 17:00:14 GMT-0500 (Eastern Standard Time)",
+  "comment": "# calculus-grapher 1.0.0-dev.4 Wed Nov 09 2022 16:35:05 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "master"
   },
   "axon": {
-    "sha": "c11072799db6056220e5922d1b30f71447868bc0",
+    "sha": "b04fe3c1aa6176c44f6b033d827166c388b78afa",
     "branch": "master"
   },
   "bamboo": {
@@ -17,11 +17,11 @@
     "branch": "master"
   },
   "calculus-grapher": {
-    "sha": "41f845375cc875aabb18f6e516adffce23d61b03",
+    "sha": "5d31b2fc485c942c8f8a4aede2d9e50285985b2c",
     "branch": "master"
   },
   "chipper": {
-    "sha": "846483609b9fc4db926983715de18e01cceff1e5",
+    "sha": "6ce9bf076772c2c7094bfed1a1efc3a2e5fa0325",
     "branch": "master"
   },
   "dot": {
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "0d162fab6359e197a55a634316e0a02e3008ffb0",
+    "sha": "948113fb3cb5268e8593cbaecf9c3d70344e3f19",
     "branch": "master"
   },
   "kite": {
@@ -49,11 +49,11 @@
     "branch": "master"
   },
   "phet-io-sim-specific": {
-    "sha": "ea8a0847efa7f2abd1aef0082a9d9669ba7f5962",
+    "sha": "5cf91cad26dcf1828e1882ba00e7257e5d5591d3",
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "8fb8234a61a7a2e387d23976f37f18fbe8951c0a",
+    "sha": "4561b5ea8c137661654d6ebafb0c72218141769e",
     "branch": "master"
   },
   "phetcommon": {
@@ -69,11 +69,11 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "db2acc03529c4088cccfc963796b6ad3427b55dd",
+    "sha": "4bd140960a2da61f10286d9182dd251b9ea7e9c3",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "d55f169bbba78aad5fdf7298e6b165b569384a9e",
+    "sha": "66487128e39357a47a28c4ed53436b0e8238c5bf",
     "branch": "master"
   },
   "sherpa": {
@@ -93,7 +93,7 @@
     "branch": "master"
   },
   "tandem": {
-    "sha": "f73cdb9a86a568f955a52a15616ed8235f2b9e37",
+    "sha": "112e3b29a8d3e0d5c759981870466fa0252923d1",
     "branch": "master"
   },
   "twixt": {
@@ -101,7 +101,7 @@
     "branch": "master"
   },
   "utterance-queue": {
-    "sha": "87cccf9f05dbf4514f606004e31809a31a693abb",
+    "sha": "d734eb009a613f76b0a12d530883c0fd89f36652",
     "branch": "master"
   }
 }
