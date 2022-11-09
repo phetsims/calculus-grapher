@@ -39,15 +39,15 @@ export default class CurvePushButtonGroup extends Node {
     // Undo Button
     const undoButton = new UndoButton( {
       listener: () => originalCurve.undoToLastSave(),
-      iconOptions: { height: 17 },
+      iconOptions: { height: 13 },
       tandem: options.tandem.createTandem( 'undoButton' )
     } );
 
     // Eraser Button
     const eraserButton = new EraserButton( {
       listener: () => originalCurve.reset(),
-      iconWidth: 21,
-      xMargin: 11,
+      iconWidth: 16,
+      xMargin: 10,
       tandem: options.tandem.createTandem( 'resetButton' )
     } );
 
@@ -61,7 +61,7 @@ export default class CurvePushButtonGroup extends Node {
       combineOptions<TextPushButtonOptions>(
         {
           listener: () => originalCurve.smooth(),
-          yMargin: 8,
+          yMargin: 6,
           maxWidth: hBox.width,
           minWidth: hBox.width,
           tandem: options.tandem.createTandem( 'smoothButton' )
