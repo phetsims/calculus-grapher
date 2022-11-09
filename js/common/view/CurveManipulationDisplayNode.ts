@@ -64,11 +64,15 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     // chart transform for the curve
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    // convenience variables
+    // convenience variables for drawing curves, making sure the
+    // curves will not be clipped  (see #89)
+    const verticalMargin = 1;
     const xCenter = chartTransform.modelXRange.getCenter();
     const xMax = chartTransform.modelXRange.getMax();
-    const yMax = chartTransform.modelYRange.getMax();
-    const yMin = chartTransform.modelYRange.getMin();
+    const yMax = chartTransform.modelYRange.getMax() - verticalMargin;
+    const yMin = chartTransform.modelYRange.getMin() + verticalMargin;
+
+    assert && assert( yMax > yMin, 'yMax value should be greater than yMin' );
 
     Multilink.multilink( [ modeProperty, widthProperty ],
       ( mode, width ) => {
