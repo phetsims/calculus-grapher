@@ -33,7 +33,7 @@ export default class CurveManipulationControls extends Node {
     const options = optionize<CurveManipulationControlsOptions, SelfOptions, NodeOptions>()( {
 
       curveManipulationModeRadioButtonGroupOptions: {
-        spacing: 2,
+        spacing: 3,
         radioButtonOptions: {
           baseColor: CalculusGrapherColors.panelFillProperty
         }
