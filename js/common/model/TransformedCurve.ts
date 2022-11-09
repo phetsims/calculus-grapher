@@ -23,7 +23,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve, { CurveOptions } from './Curve.js';
-import CurvePoint from './CurvePoint.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 
@@ -230,7 +229,8 @@ export default class TransformedCurve extends Curve {
     // point associated with the last drag event
     const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
-    this.interpolate( closestPoint, lastPoint );
+    // TODO: explain why we dont want lastPoint
+    this.interpolate( closestPoint.toVector(), new Vector2( lastPoint.x, penultimatePosition.y ) );
 
     if ( antepenultimatePosition instanceof Vector2 ) {
 
@@ -294,29 +294,29 @@ export default class TransformedCurve extends Curve {
 
 
   /**
-   *  set value of points between point1 and point2 using a linear interpolation
+   *  set value of points between position1 and position2 using a linear interpolation
    */
-  public interpolate( point1: CurvePoint, point2: CurvePoint ): void {
+  public interpolate( position1: Vector2, position2: Vector2 ): void {
 
     // x separation between two adjacent points in curve array
     const deltaX = 1 / this.pointsPerCoordinate;
 
     // x distance between the new and old point
-    const distX = Math.abs( point1.x - point2.x );
+    const distX = Math.abs( position1.x - position2.x );
 
-    const signedOne: number = ( point1.x > point2.x ) ? -1 : 1;
+    const signedOne: number = ( position1.x > position2.x ) ? -1 : 1;
 
     // perform a linear interpolation between lastPoint and closestPoint
     for ( let dx = deltaX; dx < distX; dx += deltaX ) {
 
       // the xPosition of the point to be interpolated, is either to the left or right of the closestPoint
-      const xPosition = point1.x + signedOne * dx;
+      const xPosition = position1.x + signedOne * dx;
 
       // weight needed to interpolate the y-values, weight will never exceed 1.
       const W = dx / distX;
 
       // update the y value of an intermediate point
-      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * point1.y + W * point2.y;
+      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * position1.y + W * position2.y;
       this.getClosestPointAt( xPosition ).isDiscontinuous = false;
     }
   }

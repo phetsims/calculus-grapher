@@ -18,6 +18,7 @@
  * @author Brandon Li
  */
 
+import Vector2 from '../../../../dot/js/Vector2.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
@@ -64,6 +65,10 @@ export default class CurvePoint {
   public reset(): void {
     this.y = this.initialY;
     this.savedYValues = [];
+  }
+
+  public toVector(): Vector2 {
+    return new Vector2( this.x, this.y );
   }
 
   /**
