@@ -143,10 +143,10 @@ export default class CurveNode extends Node {
   private getContinuousLinePlotDataSet(): LinePlotDataSet {
     return this.curve.points.map( ( point, index, points ) => {
       if ( point.isDiscontinuous && index + 1 < points.length ) {
-        return [ new Vector2( point.x, point.y ), null ];
+        return [ point.toVector(), null ];
       }
       else {
-        return new Vector2( point.x, point.y );
+        return point.toVector();
       }
     } ).flat();
   }
@@ -154,29 +154,24 @@ export default class CurveNode extends Node {
   // data set for discontinuous line plot (a set of vertical lines)
   private getDiscontinuousLinePlotDataSet(): LinePlotDataSet {
     return this.curve.points.map( point => {
-      if ( point.isDiscontinuous ) {
-        return new Vector2( point.x, point.y );
-      }
-      else {
-        return null;
-      }
+      return point.isDiscontinuous ? point.toVector() : null;
     } );
   }
 
   // data set for discontinuous scatter plot ( sets of circles )
   private getDiscontinuousPointsScatterPlotDataSet(): ScatterPlotDataSet {
     return this.curve.points.filter( point => point.isDiscontinuous )
-      .map( point => new Vector2( point.x, point.y ) );
+      .map( point => point.toVector() );
   }
 
   // data set for cusps points
   private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.cusps.map( point => new Vector2( point.x, point.y ) );
+    return this.curve.cusps.map( point => point.toVector() );
   }
 
   // data set for all points
   private getAllPointsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.points.map( point => new Vector2( point.x, point.y ) );
+    return this.curve.points.map( point => point.toVector() );
   }
 
   public setPointerAreas(): void {
