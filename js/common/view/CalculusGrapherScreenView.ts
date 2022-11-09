@@ -77,16 +77,19 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
       {
-        right: this.layoutBounds.right - 10,
         bottom: resetAllButton.top - 10,
         tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
       } );
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve,
       combineOptions<CalculusGrapherControlPanelOptions>( {
-        rightBottom: toolsCheckboxGroup.rightTop.minusXY( 0, 20 ),
+        bottom: toolsCheckboxGroup.top - 20,
+        right: this.layoutBounds.right - 10,
         tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
       }, options.controlPanelOptions ) );
+
+    toolsCheckboxGroup.left = controlPanel.left;
+
 
     this.graphsNode = new GraphsNode( model,
       this.graphsSelectedProperty,
