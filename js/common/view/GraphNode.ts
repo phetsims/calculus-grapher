@@ -191,10 +191,10 @@ export default class GraphNode extends Node {
     } );
     const verticalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.VERTICAL, 1,
       {
-        value: CalculusGrapherConstants.CURVE_X_RANGE.max,
+        value: CalculusGrapherConstants.CURVE_X_RANGE.min,
         createLabel: ( value: number ) => new Text( Utils.toFixed( value, 2 ), { fontSize: 8 } ),
         positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
-          label.leftCenter = tickBounds.rightCenter.plusXY( 1, 0 );
+          label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
           return label;
         }
       } );
@@ -202,7 +202,7 @@ export default class GraphNode extends Node {
     // create horizontal and vertical mark ticks
     const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
     const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 1, {
-      value: CalculusGrapherConstants.CURVE_X_RANGE.max
+      value: CalculusGrapherConstants.CURVE_X_RANGE.min
     } );
 
     // change the vertical spacing of the ticks such that there are a constant number of them
