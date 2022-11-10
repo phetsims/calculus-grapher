@@ -30,7 +30,7 @@ export default class CalculusGrapherVisibleProperties {
   public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
     const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions>()( {
-      isGridVisible: true,
+      isGridVisible: false,
       isReferenceLineVisible: false
     }, providedOptions );
 
