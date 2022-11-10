@@ -35,7 +35,10 @@ const CalculusGrapherConstants = {
 
   // arrow
   ARROW_LENGTH: 50,
-  ARROW_NODE_OPTIONS: ARROW_NODE_OPTIONS
+  ARROW_NODE_OPTIONS: ARROW_NODE_OPTIONS,
+
+  // maximum of undo actions (See https://github.com/phetsims/calculus-grapher/issues/64)
+  MAX_UNDO: 20
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

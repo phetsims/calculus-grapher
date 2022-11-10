@@ -96,6 +96,14 @@ export default class CurvePoint {
 
     // Save the current y-value of the CurvePoint.
     this.savedYValues.push( this.y );
+
+    // empty first element of array if the number of saved values exceed MAX_UNDO
+    while ( this.savedYValues.length > CalculusGrapherConstants.MAX_UNDO ) {
+
+      // remove first value from array
+      this.savedYValues.shift();
+    }
+
   }
 
   /**
