@@ -9,12 +9,14 @@
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import { Circle, CircleOptions, DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
-  circleOptions?: CircleOptions;
+  sphereOptions?: ShadedSphereNodeOptions;
+  sphereDiameter?: number;
 };
 
 type ReferenceLineNodeOptions = SelfOptions & NodeOptions;
@@ -22,7 +24,7 @@ type ReferenceLineNodeOptions = SelfOptions & NodeOptions;
 export default class ReferenceLineNode extends Node {
 
   private readonly verticalLine;
-  private readonly circle;
+  private readonly sphere;
 
   public constructor( xCoordinateProperty: Property<number>,
                       referenceLineVisibleProperty: Property<boolean>,
@@ -31,16 +33,17 @@ export default class ReferenceLineNode extends Node {
 
     const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
       lineOptions: { stroke: 'black' },
-      circleOptions: { radius: 9, fill: 'grey', stroke: 'black' }
+      sphereOptions: { mainColor: 'rgb(0,0,255)' },
+      sphereDiameter: 18
     }, providedOptions );
 
-    const circle = new Circle( options.circleOptions );
+    const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
 
     // values will be updated later
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
     const cursorNode = new Node( {
-      children: [ verticalLine, circle ],
+      children: [ verticalLine, sphere ],
       centerX: chartTransform.modelToViewX( xCoordinateProperty.value )
     } );
 
@@ -65,7 +68,7 @@ export default class ReferenceLineNode extends Node {
     super( combineOptions<NodeOptions>( { children: [ cursorNode ] }, options ) );
 
     this.verticalLine = verticalLine;
-    this.circle = circle;
+    this.sphere = sphere;
   }
 
   // set Y top position in view coordinates
@@ -76,7 +79,7 @@ export default class ReferenceLineNode extends Node {
   // set Y bottom position of line in view coordinates
   public setLineBottom( value: number ): void {
     this.verticalLine.setY1( value );
-    this.circle.setCenterY( value );
+    this.sphere.setCenterY( value );
   }
 }
 
