@@ -101,7 +101,7 @@ export default class CurveManipulationIconNode extends Node {
     else if ( mode === CurveManipulationMode.SINE ) {
 
       const position = new Vector2( xCenter, yMax / 2 );
-      const width = xLength / 10;
+      const width = xLength / 4.5;
       solidCurve.widthManipulatedCurve( mode, width, position );
       solidCurve.shiftToPosition( position );
     }

@@ -98,7 +98,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         else if ( mode === CurveManipulationMode.SINE ) {
 
           const position = new Vector2( xCenter, yMax / 2 );
-          curve.widthManipulatedCurve( mode, width / 3, position );
+          curve.widthManipulatedCurve( mode, width, position );
           curve.shiftToPosition( new Vector2( xCenter, yMax ) );
         }
         else {

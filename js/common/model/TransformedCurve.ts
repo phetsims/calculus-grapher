@@ -181,10 +181,12 @@ export default class TransformedCurve extends Curve {
 
     let isClear: boolean;
 
+    const wavelength = width;
+
     // update point
     const updatePoint = ( index: number ): void => {
       const point = this.points[ index ];
-      const newY = position.y * Math.cos( ( closestPoint.x - point.x ) * width / ( Math.PI * 2 ) );
+      const newY = position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - point.x ) ) / wavelength );
       const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
 
       if ( clearForSine && isClear ) {
