@@ -17,7 +17,7 @@ const CalculusGrapherColors = {
 
   // Background color used for all screens
   screenBackgroundColorProperty: new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
-    default: 'rgb( 228, 245, 250 )'
+    default: 'rgb( 243, 252, 254 )'
   } ),
 
   // Stroke for Panel-like Containers
@@ -52,7 +52,7 @@ const CalculusGrapherColors = {
 
   // Stroke for the gridlines of graph
   gridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'gridlinesStroke', {
-    default: 'lightGray'
+    default: 'rgb(80,80,80)'
   } ),
 
   // Stroke for the original curve
@@ -70,7 +70,7 @@ const CalculusGrapherColors = {
 
   // Stroke for integral curve
   integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
-    default: Color.GREEN
+    default: 'rgb(0,146,69)'
   }, {
     tandem: tandem.createTandem( 'integralCurveStrokeColorProperty' )
   } ),
@@ -85,7 +85,7 @@ const CalculusGrapherColors = {
 
   // Stroke for second derivative curve
   secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
-      default: Color.MAGENTA
+      default: 'rgb(102,45,145)'
     },
     {
       tandem: tandem.createTandem( 'secondDerivativeCurveStrokeColorProperty' )
