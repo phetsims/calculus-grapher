@@ -52,7 +52,7 @@ const CalculusGrapherColors = {
 
   // Stroke for the gridlines of graph
   gridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'gridlinesStroke', {
-    default: 'rgb(80,80,80)'
+    default: 'lightgray'
   } ),
 
   // Stroke for the original curve
