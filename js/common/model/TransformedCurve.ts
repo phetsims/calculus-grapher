@@ -174,39 +174,32 @@ export default class TransformedCurve extends Curve {
    */
   public createSineAt( width: number, position: Vector2 ): void {
 
-    const closestIndex = this.getClosestIndexAt( position.x );
     const closestPoint = this.getClosestPointAt( position.x );
-
-    const arrayLength = this.points.length;
-
-    let isClear: boolean;
 
     const wavelength = width;
 
-    // update point
-    const updatePoint = ( index: number ): void => {
-      const point = this.points[ index ];
-      const newY = position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - point.x ) ) / wavelength );
-      const clearForSine = Math.abs( newY ) > Math.abs( point.lastSavedY );
+    const sineFunction = ( x: number ) =>
+      position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
+    this.points.forEach( point => {
+      let P;
 
-      if ( clearForSine && isClear ) {
-        point.y = newY;
+      const edgeLength = wavelength * 2.25;
+
+      if ( Math.abs( point.x - closestPoint.x ) < edgeLength ) {
+        P = 1;
+      }
+      else if ( point.x <= closestPoint.x ) {
+
+        // use the square of a gaussian in order to have a very symmetric derivative at the edges
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - edgeLength ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
       }
       else {
-        point.y = point.lastSavedY;
-        isClear = false;
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + edgeLength ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
       }
-    };
 
-    isClear = true;
-    for ( let index = closestIndex; index < arrayLength; ++index ) {
-      updatePoint( index );
-    }
+      point.y = P * sineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
+    } );
 
-    isClear = true;
-    for ( let index = closestIndex; index >= 0; --index ) {
-      updatePoint( index );
-    }
   }
 
   /**
