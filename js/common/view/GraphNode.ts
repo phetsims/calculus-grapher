@@ -126,24 +126,6 @@ export default class GraphNode extends Node {
     // curve associated with this graph
     this.curveNode = this.getCurveNode( curve, this.chartTransform, options.curveNodeOptions );
 
-    // factor associated with conversion between model and view along horizontal.
-    const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
-                              this.chartTransform.viewWidth;
-
-    // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
-    const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
-
-    const getModelYRange = ( zoomLevel: number ): Range => {
-
-      const scalingFactor = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
-      const maxY = initialMaxY * scalingFactor;
-      return new Range( -maxY, maxY );
-    };
-
-    this.zoomLevelProperty.link( zoomLevel => {
-      this.chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
-    } );
-
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
@@ -204,12 +186,10 @@ export default class GraphNode extends Node {
       value: CalculusGrapherConstants.CURVE_X_RANGE.min
     } );
 
-    // change the vertical spacing of the ticks such that there are a constant number of them
-    this.zoomLevelProperty.link( zoomLevel => {
-      const spacing = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
-      verticalTickMarkSet.setSpacing( spacing );
-      verticalTickLabelSet.setSpacing( spacing );
-    } );
+
+    // factor associated with conversion between model and view along horizontal.
+    const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
+                              this.chartTransform.viewWidth;
 
     const tickSetNode = new Node( {
       children: [
@@ -240,6 +220,28 @@ export default class GraphNode extends Node {
 
     this.graphVisibleProperty.linkAttribute( this, 'visible' );
 
+    // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
+    const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
+
+    const getModelYRange = ( zoomLevel: number ): Range => {
+
+      const scalingFactor = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      const maxY = initialMaxY * scalingFactor;
+      return new Range( -maxY, maxY );
+    };
+
+
+    this.zoomLevelProperty.link( zoomLevel => {
+
+      // change the vertical spacing of the ticks such that there are a constant number of them
+      const spacing = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      verticalTickMarkSet.setSpacing( spacing );
+      verticalTickLabelSet.setSpacing( spacing );
+
+      // set new y range
+      this.chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
+    } );
+
     CalculusGrapherPreferences.numericalLabelsEnabledProperty.link( numericalLabelsEnabled => {
         tickSetNode.visible = numericalLabelsEnabled;
 
@@ -248,6 +250,8 @@ export default class GraphNode extends Node {
         buttonSetNode.right = rightNode.left - 12;
       }
     );
+
+
   }
 
   /**
