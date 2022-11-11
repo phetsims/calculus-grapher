@@ -153,7 +153,6 @@ export default class GraphNode extends Node {
     // create eye toggle button that controls the visibility of the curve
     const eyeToggleButton = new EyeToggleButton( this.curveVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
-        right: chartRectangle.left - 10,
         bottom: chartRectangle.bottom,
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
@@ -171,8 +170,8 @@ export default class GraphNode extends Node {
     // zoom Button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        right: chartRectangle.left - 10,
         centerY: chartRectangle.centerY,
+        right: eyeToggleButton.right,
         tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
 
@@ -221,22 +220,34 @@ export default class GraphNode extends Node {
       ]
     } );
 
+    const buttonSetNode = new Node( {
+      children: [
+        zoomButtonGroup,
+        eyeToggleButton
+      ]
+    } );
+
     this.setChildren( [
       chartRectangle,
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
       tickSetNode,
-      zoomButtonGroup,
-      eyeToggleButton,
+      buttonSetNode,
       labelNode,
       this.curveNode
     ] );
 
     this.graphVisibleProperty.linkAttribute( this, 'visible' );
 
-    CalculusGrapherPreferences.numericalLabelsEnabledProperty.linkAttribute( tickSetNode, 'visible' );
+    CalculusGrapherPreferences.numericalLabelsEnabledProperty.link( numericalLabelsEnabled => {
+        tickSetNode.visible = numericalLabelsEnabled;
 
+        // find object immediately to the right of the buttons
+        const rightNode = tickSetNode.visible ? tickSetNode : chartRectangle;
+        buttonSetNode.right = rightNode.left - 12;
+      }
+    );
   }
 
   /**
