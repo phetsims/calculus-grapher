@@ -183,7 +183,9 @@ export default class TransformedCurve extends Curve {
     this.points.forEach( point => {
       let P;
 
-      const edgeLength = wavelength * 2.25;
+      const edgeLength = wavelength * 2.0;
+
+      const edgeRound = wavelength / 4;
 
       if ( Math.abs( point.x - closestPoint.x ) < edgeLength ) {
         P = 1;
@@ -191,10 +193,10 @@ export default class TransformedCurve extends Curve {
       else if ( point.x <= closestPoint.x ) {
 
         // use the square of a gaussian in order to have a very symmetric derivative at the edges
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - edgeLength ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - edgeLength ) ) / ( edgeRound ), 4 ) );
       }
       else {
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + edgeLength ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
+        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + edgeLength ) ) / ( edgeRound ), 4 ) );
       }
 
       point.y = P * sineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
