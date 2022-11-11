@@ -220,26 +220,25 @@ export default class GraphNode extends Node {
 
     this.graphVisibleProperty.linkAttribute( this, 'visible' );
 
+
     // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
     const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
-
-    const getModelYRange = ( zoomLevel: number ): Range => {
-
-      const scalingFactor = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
-      const maxY = initialMaxY * scalingFactor;
-      return new Range( -maxY, maxY );
-    };
 
 
     this.zoomLevelProperty.link( zoomLevel => {
 
-      // change the vertical spacing of the ticks such that there are a constant number of them
+      // spacing between ticks
       const spacing = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+
+      const maxY = initialMaxY * spacing;
+
+      // set new y range
+      this.chartTransform.setModelYRange( new Range( -maxY, maxY ) );
+
+      // change the vertical spacing of the ticks such that there are a constant number of them
       verticalTickMarkSet.setSpacing( spacing );
       verticalTickLabelSet.setSpacing( spacing );
 
-      // set new y range
-      this.chartTransform.setModelYRange( getModelYRange( zoomLevel ) );
     } );
 
     CalculusGrapherPreferences.numericalLabelsEnabledProperty.link( numericalLabelsEnabled => {
