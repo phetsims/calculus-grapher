@@ -18,7 +18,6 @@ type StringsType = {
     'derivativeStringProperty': LinkableProperty<string>;
     'integralStringProperty': LinkableProperty<string>;
   };
-  'resetStringProperty': LinkableProperty<string>;
   'smoothStringProperty': LinkableProperty<string>;
   'symbol': {
     'dStringProperty': LinkableProperty<string>;
