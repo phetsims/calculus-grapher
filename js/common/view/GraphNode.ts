@@ -170,10 +170,24 @@ export default class GraphNode extends Node {
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
       createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { fontSize: 8 } )
     } );
+
     const verticalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.VERTICAL, 1,
       {
         value: CalculusGrapherConstants.CURVE_X_RANGE.min,
-        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 2 ), { fontSize: 8 } ),
+        createLabel: ( value: number ) => {
+
+          const text = new Text( '', { fontSize: 8 } );
+
+          this.zoomLevelProperty.link( zoomLevel => {
+
+            // spacing between ticks
+            const spacing = Math.pow( 2, -zoomLevel +
+                                         CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+            const decimalPlaces = spacing >= 1 ? 0 : 2;
+            text.setText( Utils.toFixed( value, decimalPlaces ) );
+          } );
+          return text;
+        },
         positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
           label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
           return label;
