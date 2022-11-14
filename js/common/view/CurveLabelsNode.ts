@@ -13,6 +13,7 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
+const HAIR_SPACE_STRING = '\u200A';
 const DEFAULT_FONT = new PhetFont( 16 );
 const INTEGRAL_SYMBOL_FONT = new PhetFont( 24 );
 const UPPER_LOWER_BOUNDS_FONT = new PhetFont( 8 );
@@ -26,7 +27,7 @@ const CurveLabelsNode = {
     const labelStringProperty = new DerivedProperty(
       [ CalculusGrapherSymbols.fStringProperty, CalculusGrapherSymbols.xStringProperty ],
       ( f, x ) => {
-        return `${f}(${x})`;
+        return `${f}${HAIR_SPACE_STRING}(${x})`;
       } );
 
     return new RichText( labelStringProperty, { font: DEFAULT_FONT } );
@@ -35,14 +36,12 @@ const CurveLabelsNode = {
   // label for df/dx
   getDerivativeLabel(): Node {
 
-    const hairSpaceString = '\u200A';
-
     const numeratorStringProperty = new DerivedProperty(
       [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
       ( d, f ) => {
 
         // string for df
-        return `${d}${hairSpaceString}${f}`;
+        return `${d}${HAIR_SPACE_STRING}${f}`;
       } );
 
     const denominatorStringProperty =
@@ -59,14 +58,12 @@ const CurveLabelsNode = {
   // label for d^2f/dx^2
   getSecondDerivativeLabel(): Node {
 
-    const hairSpaceString = '\u200A';
-
     const numeratorStringProperty = new DerivedProperty(
       [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
       ( d, f ) => {
 
         // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
-        return `${d}${hairSpaceString}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`;
+        return `${d}${HAIR_SPACE_STRING}}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`;
       } );
 
     const denominatorStringProperty =
@@ -107,7 +104,7 @@ const CurveLabelsNode = {
       ( f, t, d ) => {
 
         // string for  f(t) dt
-        return `${f}(${t}) ${d}${t} `;
+        return `${f}${HAIR_SPACE_STRING}(${t}) ${d}${t} `;
       } );
     const integrandNode = new RichText( integrandStringProperty, { font: DEFAULT_FONT } );
 
