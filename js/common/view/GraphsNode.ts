@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import CurveLabelsNode from './CurveLabelsNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import { GraphChoice, GraphChoices } from './CalculusGrapherScreenView.js';
+import { GraphChoice } from './CalculusGrapherScreenView.js';
 import Property from '../../../../axon/js/Property.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 
@@ -32,7 +32,6 @@ export default class GraphNodes extends Node {
 
   public constructor( model: CalculusGrapherModel,
                       graphsSelectedProperty: Property<GraphChoice>,
-                      graphChoices: GraphChoices,
                       gridVisibleProperty: Property<boolean>,
                       referenceLineVisibleProperty: Property<boolean>,
                       providedOptions?: GraphNodesOptions ) {

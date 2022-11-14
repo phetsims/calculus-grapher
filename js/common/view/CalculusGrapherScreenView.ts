@@ -93,7 +93,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphsNode = new GraphsNode( model,
       this.graphsSelectedProperty,
-      options.graphChoices,
       this.visibleProperties.gridVisibleProperty,
       this.visibleProperties.referenceLineVisibleProperty, {
         centerTop: this.layoutBounds.centerTop.plusXY( -10, 10 ),
