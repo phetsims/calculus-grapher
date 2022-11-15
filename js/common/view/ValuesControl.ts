@@ -8,11 +8,11 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import PreferencesToggleSwitch from '../../../../joist/js/preferences/PreferencesToggleSwitch.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import { HBox, HBoxOptions, Text, TextOptions } from '../../../../scenery/js/imports.js';
-import OnOffSwitch from '../../../../sun/js/OnOffSwitch.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = {
@@ -27,18 +27,18 @@ export default class ValuesControl extends HBox {
     const options = optionize<ValuesControlOptions, StrictOmit<SelfOptions, 'textOptions'>, HBoxOptions>()( {
 
       // HBoxOptions
-      spacing: 15
+      spacing: 10
     }, providedOptions );
 
     const labelText = new Text( 'Values:', combineOptions<TextOptions>( {
       tandem: options.tandem.createTandem( 'labelText' )
     }, options.textOptions ) );
 
-    const onOffSwitch = new OnOffSwitch( valuesVisibleProperty, {
-      tandem: options.tandem.createTandem( 'onOffSwitch' )
+    const toggleSwitch = new PreferencesToggleSwitch( valuesVisibleProperty, false, true, {
+      tandem: options.tandem.createTandem( 'toggleSwitch' )
     } );
 
-    options.children = [ labelText, onOffSwitch ];
+    options.children = [ labelText, toggleSwitch ];
 
     super( options );
   }
