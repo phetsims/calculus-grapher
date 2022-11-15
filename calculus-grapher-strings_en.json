@@ -31,5 +31,8 @@
   },
   "discontinuities": {
     "value": "Discontinuities:"
+  },
+  "values": {
+    "value": "Values:"
   }
 }

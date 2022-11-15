@@ -14,6 +14,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import { HBox, HBoxOptions, Text, TextOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 type SelfOptions = {
   textOptions?: StrictOmit<TextOptions, 'tandem'>;
@@ -30,7 +31,7 @@ export default class ValuesControl extends HBox {
       spacing: 10
     }, providedOptions );
 
-    const labelText = new Text( 'Values:', combineOptions<TextOptions>( {
+    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, combineOptions<TextOptions>( {
       tandem: options.tandem.createTandem( 'labelText' )
     }, options.textOptions ) );
 
