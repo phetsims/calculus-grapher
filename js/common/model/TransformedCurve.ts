@@ -119,6 +119,8 @@ export default class TransformedCurve extends Curve {
     const closestPoint = this.getClosestPointAt( peak.x );
 
     this.points.forEach( point => {
+
+      // weight for point transformation
       let P;
 
       if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
@@ -170,36 +172,31 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
-   * TODO: this is a bit of a mess, but wait for design before simplifying and/or documenting properly
    */
   public createSineAt( width: number, position: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( position.x );
 
+    // wavelength associated with the sinusoidal function
     const wavelength = width;
 
-    const sineFunction = ( x: number ) =>
+    // cosine function to apply to points. cosine function passes through `position`
+    const cosineFunction = ( x: number ) =>
       position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
+
+    // base width where we apply the sinusoidal function - ideally should be a multiple of half wavelengths
+    const sineBase = 7 * ( wavelength / 2 );
+
     this.points.forEach( point => {
-      let P;
 
-      const edgeLength = wavelength * 2.0;
-
-      const edgeRound = wavelength / 4;
-
-      if ( Math.abs( point.x - closestPoint.x ) < edgeLength ) {
-        P = 1;
-      }
-      else if ( point.x <= closestPoint.x ) {
-
-        // use the square of a gaussian in order to have a very symmetric derivative at the edges
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - edgeLength ) ) / ( edgeRound ), 4 ) );
+      if ( Math.abs( point.x - closestPoint.x ) < sineBase / 2 ) {
+        point.y = cosineFunction( point.x );
       }
       else {
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + edgeLength ) ) / ( edgeRound ), 4 ) );
-      }
 
-      point.y = P * sineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
+        // point is set to the previously saved y Value
+        point.y = point.lastSavedY;
+      }
     } );
 
   }
