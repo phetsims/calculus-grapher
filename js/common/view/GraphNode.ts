@@ -255,8 +255,8 @@ export default class GraphNode extends Node {
 
     } );
 
-    CalculusGrapherPreferences.numericalLabelsEnabledProperty.link( numericalLabelsEnabled => {
-        tickSetNode.visible = numericalLabelsEnabled;
+    CalculusGrapherPreferences.valuesVisibleProperty.link( valuesVisible => {
+        tickSetNode.visible = valuesVisible;
 
         // find object immediately to the right of the buttons
         const rightNode = tickSetNode.visible ? tickSetNode : chartRectangle;

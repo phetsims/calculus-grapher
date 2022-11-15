@@ -98,11 +98,9 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * Shows axes with tick mark and numerical labels
-   *
-   * For public use.
+   * Shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.
    */
-  numericalLabels: {
+  valuesVisible: {
     type: 'boolean',
     defaultValue: false,
     public: true

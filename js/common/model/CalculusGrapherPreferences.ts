@@ -14,9 +14,9 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 const CalculusGrapherPreferences = {
 
-  numericalLabelsEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.numericalLabels, {
-    tandem: Tandem.PREFERENCES.createTandem( 'numericalLabelsEnabledProperty' ),
-    phetioDocumentation: 'shows numerical labels on graphs'
+  valuesVisibleProperty: new BooleanProperty( CalculusGrapherQueryParameters.valuesVisible, {
+    tandem: Tandem.PREFERENCES.createTandem( 'valuesVisibleProperty' ),
+    phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
   } ),
 
   connectDiscontinuitiesProperty: new BooleanProperty( CalculusGrapherQueryParameters.connectDiscontinuities, {

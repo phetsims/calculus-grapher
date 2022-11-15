@@ -15,9 +15,9 @@ import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import OnOffSwitch from '../../../../sun/js/OnOffSwitch.js';
 import DiscontinuitiesControl from './DiscontinuitiesControl.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
+import ValuesControl from './ValuesControl.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -40,13 +40,11 @@ export default class CalculusGrapherPreferencesNode extends VBox {
 
     super( options );
 
-    // const title = new Text( CalculusGrapherStrings.showNumericalLabels, {
-    //   font: PreferencesDialog.CONTENT_FONT
-    // } );
-
-    // Add switch to enable numerical labels on graphs
-    const numericalLabelsEnabledSwitch = new OnOffSwitch( CalculusGrapherPreferences.numericalLabelsEnabledProperty, {
-      tandem: options.tandem.createTandem( 'numericalLabelsEnabledSwitch' )
+    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty, {
+      textOptions: {
+        font: PreferencesDialog.CONTENT_FONT
+      },
+      tandem: options.tandem.createTandem( 'valuesControl' )
     } );
 
     const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty, {
@@ -56,10 +54,10 @@ export default class CalculusGrapherPreferencesNode extends VBox {
       tandem: options.tandem.createTandem( 'discontinuitiesControl' )
     } );
 
-    this.children = [ numericalLabelsEnabledSwitch, discontinuitiesControl ];
+    this.children = [ valuesControl, discontinuitiesControl ];
 
     this.disposeCalculusGrapherPreferencesNode = (): void => {
-      numericalLabelsEnabledSwitch.dispose();
+      valuesControl.dispose();
       discontinuitiesControl.dispose();
     };
   }
