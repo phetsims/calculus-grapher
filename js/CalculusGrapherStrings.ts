@@ -24,7 +24,8 @@ type StringsType = {
     'fStringProperty': LinkableProperty<string>;
     'xStringProperty': LinkableProperty<string>;
     'tStringProperty': LinkableProperty<string>;
-  }
+  };
+  'discontinuitiesStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

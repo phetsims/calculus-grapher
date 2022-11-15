@@ -17,6 +17,11 @@ const CalculusGrapherPreferences = {
   numericalLabelsEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.numericalLabels, {
     tandem: Tandem.PREFERENCES.createTandem( 'numericalLabelsEnabledProperty' ),
     phetioDocumentation: 'shows numerical labels on graphs'
+  } ),
+
+  connectDiscontinuitiesProperty: new BooleanProperty( CalculusGrapherQueryParameters.connectDiscontinuities, {
+    tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
+    phetioDocumentation: 'Whether to connect discontinuities with a dashed line (true) or leave a gap (false)'
   } )
 };
 

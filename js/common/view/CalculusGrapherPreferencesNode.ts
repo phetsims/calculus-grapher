@@ -16,6 +16,8 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import OnOffSwitch from '../../../../sun/js/OnOffSwitch.js';
+import DiscontinuitiesControl from './DiscontinuitiesControl.js';
+import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -47,10 +49,18 @@ export default class CalculusGrapherPreferencesNode extends VBox {
       tandem: options.tandem.createTandem( 'numericalLabelsEnabledSwitch' )
     } );
 
-    this.children = [ numericalLabelsEnabledSwitch ];
+    const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty, {
+      textOptions: {
+        font: PreferencesDialog.CONTENT_FONT
+      },
+      tandem: options.tandem.createTandem( 'discontinuitiesControl' )
+    } );
+
+    this.children = [ numericalLabelsEnabledSwitch, discontinuitiesControl ];
 
     this.disposeCalculusGrapherPreferencesNode = (): void => {
       numericalLabelsEnabledSwitch.dispose();
+      discontinuitiesControl.dispose();
     };
   }
 

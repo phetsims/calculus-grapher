@@ -28,5 +28,8 @@
   },
   "symbol.t": {
     "value": "t"
+  },
+  "discontinuities": {
+    "value": "Discontinuities:"
   }
 }
