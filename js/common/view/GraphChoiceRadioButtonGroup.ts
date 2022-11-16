@@ -22,25 +22,25 @@ export type GraphChoiceRadioButtonGroupOptions = SelfOptions & RectangularRadioB
 export default class GraphChoiceRadioButtonGroup extends RectangularRadioButtonGroup<GraphChoice> {
 
   public constructor( graphsSelectionProperty: Property<GraphChoice>,
-                      graphsChoices: GraphChoices,
+                      graphChoices: GraphChoices,
                       providedOptions: GraphChoiceRadioButtonGroupOptions ) {
 
     const options = optionize<GraphChoiceRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
       {}, providedOptions );
 
-    assert && assert( graphsChoices[ 0 ][ 0 ] === 'integral', 'first button matches integral graph choice' );
+    assert && assert( graphChoices[ 0 ][ 0 ] === 'integral', 'first button matches integral graph choice' );
 
     // Item for integral radio button
     const integralRadioButtonItem = createItem(
       CurveLabelsNode.getIntegralLabel(),
-      graphsChoices[ 0 ], {
+      graphChoices[ 0 ], {
         tandemName: 'integralRadioButton'
       } );
 
     // Item for integral radio button
     const derivativeRadioButtonItem = createItem(
       CurveLabelsNode.getDerivativeLabel(),
-      graphsChoices[ 1 ], {
+      graphChoices[ 1 ], {
         tandemName: 'derivativeRadioButton'
       } );
 
