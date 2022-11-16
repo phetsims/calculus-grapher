@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * GraphsRectangularRadioButtonGroup is a group of buttons for controlling visibility of graph nodes
+ * GraphChoiceRadioButtonGroup is a group of buttons for controlling visibility of graph nodes
  *
  * @author Martin Veillette
  */
@@ -17,15 +17,15 @@ import { GraphChoice, GraphChoices } from './CalculusGrapherScreenView.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphsRectangularRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+export type GraphChoiceRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
-export default class GraphsRectangularRadioButtonGroup extends RectangularRadioButtonGroup<GraphChoice> {
+export default class GraphChoiceRadioButtonGroup extends RectangularRadioButtonGroup<GraphChoice> {
 
   public constructor( graphsSelectionProperty: Property<GraphChoice>,
                       graphsChoices: GraphChoices,
-                      providedOptions: GraphsRectangularRadioButtonGroupOptions ) {
+                      providedOptions: GraphChoiceRadioButtonGroupOptions ) {
 
-    const options = optionize<GraphsRectangularRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
+    const options = optionize<GraphChoiceRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
       {}, providedOptions );
 
     assert && assert( graphsChoices[ 0 ][ 0 ] === 'integral', 'first button matches integral graph choice' );
@@ -61,4 +61,4 @@ function createItem( labelNode: Node,
   };
 }
 
-calculusGrapher.register( 'GraphsRectangularRadioButtonGroup', GraphsRectangularRadioButtonGroup );
+calculusGrapher.register( 'GraphChoiceRadioButtonGroup', GraphChoiceRadioButtonGroup );

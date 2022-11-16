@@ -10,7 +10,7 @@ import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-co
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import AdvancedModel from '../model/AdvancedModel.js';
-import GraphsRectangularRadioButtonGroup, { GraphsRectangularRadioButtonGroupOptions } from '../../common/view/GraphsRectangularRadioButtonGroup.js';
+import GraphChoiceRadioButtonGroup, { GraphChoiceRadioButtonGroupOptions } from '../../common/view/GraphChoiceRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
@@ -43,9 +43,9 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    const graphsRectangularRadioButtonGroup = new GraphsRectangularRadioButtonGroup( this.graphsSelectedProperty,
+    const graphChoiceRadioButtonGroup = new GraphChoiceRadioButtonGroup( this.graphsSelectedProperty,
       options.graphChoices,
-      combineOptions<GraphsRectangularRadioButtonGroupOptions>( {
+      combineOptions<GraphChoiceRadioButtonGroupOptions>( {
         leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
         spacing: 5,
         radioButtonOptions: {
@@ -54,7 +54,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
         tandem: options.tandem.createTandem( 'graphsRadioButtonGroup' )
       }, options.graphsRadioButtonGroupOptions ) );
 
-    this.addChild( graphsRectangularRadioButtonGroup );
+    this.addChild( graphChoiceRadioButtonGroup );
   }
 }
 

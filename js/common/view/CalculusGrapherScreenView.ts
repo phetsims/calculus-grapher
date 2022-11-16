@@ -15,7 +15,7 @@ import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptio
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
-import { GraphsRectangularRadioButtonGroupOptions } from './GraphsRectangularRadioButtonGroup.js';
+import { GraphChoiceRadioButtonGroupOptions } from './GraphChoiceRadioButtonGroup.js';
 import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
@@ -27,7 +27,7 @@ export type GraphChoices = GraphChoice[];
 
 type SelfOptions = {
   visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
-  graphsRadioButtonGroupOptions?: StrictOmit<GraphsRectangularRadioButtonGroupOptions, 'tandem'>;
+  graphsRadioButtonGroupOptions?: StrictOmit<GraphChoiceRadioButtonGroupOptions, 'tandem'>;
   graphChoices: GraphChoices;
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
