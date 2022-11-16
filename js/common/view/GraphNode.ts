@@ -166,33 +166,13 @@ export default class GraphNode extends Node {
 
     labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
 
-    // create horizontal and vertical numerical labels for ticks
+    // create horizontal numerical labels for ticks
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
       createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { fontSize: 8 } )
     } );
 
-    const verticalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.VERTICAL, 1,
-      {
-        value: CalculusGrapherConstants.CURVE_X_RANGE.min,
-        createLabel: ( value: number ) => {
-
-          const text = new Text( '', { fontSize: 8 } );
-
-          this.zoomLevelProperty.link( zoomLevel => {
-
-            // spacing between ticks
-            const spacing = Math.pow( 2, -zoomLevel +
-                                         CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
-            const decimalPlaces = spacing >= 1 ? 0 : 2;
-            text.setText( Utils.toFixed( value, decimalPlaces ) );
-          } );
-          return text;
-        },
-        positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
-          label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
-          return label;
-        }
-      } );
+    // create vertical numerical labels for ticks at the
+    let verticalTickLabelSet = this.getVerticalLabelSet( 1 );
 
     // create horizontal and vertical mark ticks
     const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
@@ -251,7 +231,14 @@ export default class GraphNode extends Node {
 
       // change the vertical spacing of the ticks such that there are a constant number of them
       verticalTickMarkSet.setSpacing( spacing );
-      verticalTickLabelSet.setSpacing( spacing );
+
+      // remove previous verticalTickLabelSet and dispose of it
+      tickSetNode.removeChild( verticalTickLabelSet );
+      verticalTickLabelSet.dispose();
+
+      // create and add new vertical label with the appropriate label spacing
+      verticalTickLabelSet = this.getVerticalLabelSet( spacing );
+      tickSetNode.addChild( verticalTickLabelSet );
 
     } );
 
@@ -279,6 +266,47 @@ export default class GraphNode extends Node {
   public getCurveNode( curve: Curve, chartTransform: ChartTransform, options: CurveNodeOptions ): CurveNode {
 
     return new CurveNode( curve, chartTransform, options );
+  }
+
+
+  /**
+   * Returns a TickLabelSet that appear on the left hand side of the chart.
+   * Responsible for determining the appropriate number of decimal places for the label
+   *
+   * @param spacing - the separation ( in model coordinates) of the labels
+   */
+  private getVerticalLabelSet( spacing: number ): TickLabelSet {
+
+    // the number of decimal places for the labels
+    let decimalPlaces: number;
+
+    if ( Number.isInteger( spacing ) ) {
+
+      // the number of decimal is zero since the labels are multiple of integers
+      decimalPlaces = 0;
+    }
+    else if ( Number.isInteger( spacing * 10 ) ) {
+
+      // the spacing has only one decimal
+      decimalPlaces = 1;
+    }
+    else {
+
+      // two decimal places is sufficient for our zoom range
+      decimalPlaces = 2;
+    }
+
+
+    return new TickLabelSet( this.chartTransform, Orientation.VERTICAL, spacing,
+      {
+        value: CalculusGrapherConstants.CURVE_X_RANGE.min,
+        createLabel: ( value: number ) =>
+          new Text( Utils.toFixed( value, decimalPlaces ), { fontSize: 8 } ),
+        positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
+          label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
+          return label;
+        }
+      } );
   }
 }
 
