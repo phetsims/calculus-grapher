@@ -172,7 +172,7 @@ export default class GraphNode extends Node {
     } );
 
     // create vertical numerical labels for ticks at the
-    let verticalTickLabelSet = this.getVerticalLabelSet( 1 );
+    let verticalTickLabelSet = this.getVerticalTickLabelSet( 1 );
 
     // create horizontal and vertical mark ticks
     const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
@@ -236,8 +236,8 @@ export default class GraphNode extends Node {
       tickSetNode.removeChild( verticalTickLabelSet );
       verticalTickLabelSet.dispose();
 
-      // create and add new vertical label with the appropriate label spacing
-      verticalTickLabelSet = this.getVerticalLabelSet( spacing );
+      // create and add a new vertical tick label set with the appropriate label spacing
+      verticalTickLabelSet = this.getVerticalTickLabelSet( spacing );
       tickSetNode.addChild( verticalTickLabelSet );
 
     } );
@@ -275,7 +275,7 @@ export default class GraphNode extends Node {
    *
    * @param spacing - the separation ( in model coordinates) of the labels
    */
-  private getVerticalLabelSet( spacing: number ): TickLabelSet {
+  private getVerticalTickLabelSet( spacing: number ): TickLabelSet {
 
     // the number of decimal places for the labels
     let decimalPlaces: number;
