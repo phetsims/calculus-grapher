@@ -60,7 +60,7 @@ triggers a change in the CurvePoints and the OriginalCurve's integral, derivativ
 as both the first derivative and second derivative of the OriginalCurve. Derivatives are computed by considering the
 slope of the secant lines from both sides of every point.
 
-DerivativeCurves's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
+DerivativeCurve's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
 the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
 of every point.
 
