@@ -178,7 +178,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    */
-  public createSineAt( width: number, position: Vector2 ): void {
+  public createSinusoidalAt( width: number, position: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( position.x );
 
@@ -189,44 +189,64 @@ export default class TransformedCurve extends Curve {
     const cosineFunction = ( x: number ) =>
       position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
 
-    // base width where we apply the sinusoidal function - ideally should be a multiple of wavelengths
-    const sineBase = 2 * wavelength;
+    // weight function that goes from 1 to 0 from HighX to LowX
+    // the fact that it is a cosine function is happenstance
+    const weightFunction = ( point: CurvePoint, highX: number, lowX: number ) =>
+      Math.cos( Math.PI / 2 * ( point.x - highX ) / Math.abs( lowX - highX ) ) ** 2;
 
-    const envelopeDistance = wavelength / 4;
+    // base width where we apply the sinusoidal function - ideally it should be an odd multiple of half wavelengths
+    const cosineBase = 7 * ( wavelength / 2 );
 
-    // gaussian weight function associated based on the distance from centerX: weight is between 0 and 1
-    const weightFunction = ( point: CurvePoint, centerX: number ) =>
-      Math.cos( ( Math.PI / 2 ) * ( point.x - centerX ) / envelopeDistance ) ** 2;
+    // width of the transition region to the left and right - ideally should be less than a quarter wavelength
+    const edgeWidth = wavelength / 8;
 
-    //TODO: explain
-    const rightMin = closestPoint.x + sineBase / 2;
-    const rightMax = rightMin + envelopeDistance;
+    //             |<---------------cosineBase-------------------->|
+    //   ----------|--------------|-----------------|--------------|----------
+    //          leftMin        leftMax         rightMin        rightMax
+    //   ----------|--------------|-----------------|--------------|----------
+    //             |<-edgeWidth-->|                 |<-edgeWidth-->|
 
-    const leftMax = closestPoint.x - sineBase / 2;
-    const leftMin = leftMax - envelopeDistance;
+    // bounds to the transition regions to the right and the left for the sinusoidal function
+    const rightMax = closestPoint.x + cosineBase / 2;
+    const leftMin = closestPoint.x - cosineBase / 2;
+    const rightMin = rightMax - edgeWidth;
+    const leftMax = leftMin + edgeWidth;
 
-    const isRightRegionZero = this.isRegionZero( rightMin, rightMax );
+    // is the transition region to the left currently zero (or nearly zero)
     const isLeftRegionZero = this.isRegionZero( leftMin, leftMax );
+
+    // is the transition region to the right currently zero (or nearly zero)
+    const isRightRegionZero = this.isRegionZero( rightMin, rightMax );
 
     this.points.forEach( point => {
 
-        let P: number;
+      // weight associated with the sinusoidal function:  0<=P<=1
+      // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
+      // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
+      let P: number;
 
-        if ( point.x >= leftMax && point.x <= rightMin ) {
-          P = 1;
-        }
-        else if ( point.x > leftMin && point.x < leftMax ) {
+      if ( point.x >= leftMax && point.x <= rightMin ) {
 
-          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax );
-        }
+        // in the inner region, always have a pure sinusoidal, weight of 1
+        P = 1;
+      }
+      else if ( point.x > leftMin && point.x < leftMax ) {
+
+        // in the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+        P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+      }
         else if ( point.x > rightMin && point.x < rightMax ) {
 
-          P = isRightRegionZero ? 1 : weightFunction( point, rightMin );
-        }
+        // in the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+        P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+      }
         else {
-          P = 0;
-        }
 
+        // outside the cosine base, the weight is zero
+        P = 0;
+      }
+
+      // assign the y value with the correct weight
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
       }
     );
@@ -435,7 +455,7 @@ export default class TransformedCurve extends Curve {
       this.createTriangleAt( width, position );
     }
     else if ( mode === CurveManipulationMode.SINE ) {
-      this.createSineAt( width, position );
+      this.createSinusoidalAt( width, position );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
