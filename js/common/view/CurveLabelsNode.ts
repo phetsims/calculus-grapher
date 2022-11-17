@@ -63,7 +63,7 @@ const CurveLabelsNode = {
       ( d, f ) => {
 
         // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
-        return `${d}${HAIR_SPACE_STRING}}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`;
+        return `${d}${HAIR_SPACE_STRING}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`;
       } );
 
     const denominatorStringProperty =
