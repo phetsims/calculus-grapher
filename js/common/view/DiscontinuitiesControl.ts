@@ -26,6 +26,8 @@ type DiscontinuitiesControlOptions = SelfOptions & PickRequired<HBoxOptions, 'ta
 
 export default class DiscontinuitiesControl extends HBox {
 
+  private readonly disposeDiscontinuitiesControl: () => void;
+
   public constructor( connectDiscontinuitiesProperty: Property<boolean>, providedOptions: DiscontinuitiesControlOptions ) {
 
     const options = optionize<DiscontinuitiesControlOptions, StrictOmit<SelfOptions, 'textOptions'>, HBoxOptions>()( {
@@ -45,6 +47,16 @@ export default class DiscontinuitiesControl extends HBox {
     options.children = [ labelText, radioButtonGroup ];
 
     super( options );
+
+    this.disposeDiscontinuitiesControl = () => {
+      labelText.dispose();
+      radioButtonGroup.dispose();
+    };
+  }
+
+  public override dispose(): void {
+    this.disposeDiscontinuitiesControl();
+    super.dispose();
   }
 }
 
