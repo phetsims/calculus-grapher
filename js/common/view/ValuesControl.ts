@@ -23,6 +23,9 @@ type SelfOptions = {
 type ValuesControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
 
 export default class ValuesControl extends HBox {
+
+  private readonly disposeValuesControl: () => void;
+
   public constructor( valuesVisibleProperty: Property<boolean>, providedOptions: ValuesControlOptions ) {
 
     const options = optionize<ValuesControlOptions, StrictOmit<SelfOptions, 'textOptions'>, HBoxOptions>()( {
@@ -42,6 +45,16 @@ export default class ValuesControl extends HBox {
     options.children = [ labelText, toggleSwitch ];
 
     super( options );
+
+    this.disposeValuesControl = () => {
+      labelText.dispose();
+      toggleSwitch.dispose();
+    };
+  }
+
+  public override dispose(): void {
+    this.disposeValuesControl();
+    super.dispose();
   }
 }
 
