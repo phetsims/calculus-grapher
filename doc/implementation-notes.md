@@ -26,7 +26,8 @@ There are a number of query parameters for internal use.
   curve for it to be considered differentiable. The default value is 12.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
-- `numericalLabels` shows axes with tick mark and numerical labels. The default value is false.
+- `valuesVisible` shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.. The default value is false.
+- `connectDiscontinuities` connects curve discontinuities with a dashed line (true) or leave a gap (false). The default value is true.
 
 ### Curve Hierarchy
 
@@ -59,7 +60,7 @@ triggers a change in the CurvePoints and the OriginalCurve's integral, derivativ
 as both the first derivative and second derivative of the OriginalCurve. Derivatives are computed by considering the
 slope of the secant lines from both sides of every point.
 
-DerivativeCurves's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
+DerivativeCurve's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
 the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
 of every point.
 
