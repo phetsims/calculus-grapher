@@ -39,8 +39,7 @@ Curves are modeled by segmenting the curve into a finite number of CurvePoints t
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
-`OriginalCurve` is a `Curve` subtype for the main curve that the user interacts with and manipulates, which then
-triggers a change in the CurvePoints and the OriginalCurve's integral, derivative, and second-derivative Curves.
+`OriginalCurve` is a `TransformedCurve` subtype for the main curve that the user interacts with and manipulates, which then triggers a change in the CurvePoints and the OriginalCurve's integral, derivative, and second-derivative Curves.
 
 `OriginalCurve` is mainly responsible for:
 
@@ -50,15 +49,18 @@ triggers a change in the CurvePoints and the OriginalCurve's integral, derivativ
 - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
   and SINE, and the value is interpreted differently for each response algorithm to curve user-manipulation.
 
-- Implementing the response algorithms that are used when the user drags on the OriginalCurve. The response is
-  affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
-  manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
+- The response algorithms that are used when the user drags are found in TransformedCurve. The response is
+  affected by the CurveManipulationMode and the 'width' of the curve-manipulation.
 
-- Implementing smoothing, saving, undoing, and other interactions
+- Implementing smoothing, undoing, and other interactions
 
-`DerivativeCurve` is a Curve subtype for a curve that represents the derivative of a 'base' curve. It is used
-as both the first derivative and second derivative of the OriginalCurve. Derivatives are computed by considering the
-slope of the secant lines from both sides of every point.
+`TransformedCurve` is a `Curve` subtype for the main curve that the user interacts with and manipulates.
+`TransformedCurve` is mainly responsible for:
+  - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
+    affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
+    manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
+  - Saving the curve
+  - Resetting all the points of the curve
 
 DerivativeCurve's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
 the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
