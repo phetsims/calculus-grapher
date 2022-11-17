@@ -119,6 +119,10 @@ export default class TransformedCurve extends Curve {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
+    // super gaussian function centered at `mu`, with min amplitude of 0 and max of 1;
+    const gaussianWeight = ( x: number, mu: number ) =>
+      Math.exp( -1 * ( ( x - mu ) / EDGE_SLOPE_FACTOR ) ** 4 );
+
     this.points.forEach( point => {
 
       // weight for point transformation
@@ -130,10 +134,10 @@ export default class TransformedCurve extends Curve {
       else if ( point.x <= closestPoint.x ) {
 
         // use the square of a gaussian in order to have a very symmetric derivative at the edges
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x - width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
+        P = gaussianWeight( point.x, closestPoint.x - width / 2 );
       }
       else {
-        P = Math.exp( -Math.pow( ( point.x - ( closestPoint.x + width / 2 ) ) / ( EDGE_SLOPE_FACTOR ), 4 ) );
+        P = gaussianWeight( point.x, closestPoint.x + width / 2 );
       }
 
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
@@ -226,7 +230,6 @@ export default class TransformedCurve extends Curve {
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
       }
     );
-
 
   }
 
