@@ -71,7 +71,6 @@ export default class TransformedCurve extends Curve {
   public createHillAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
-    assert && assert( closestPoint && closestPoint.exists, `invalid closestPoint: ${closestPoint}` );
 
     this.points.forEach( point => {
 
@@ -120,6 +119,7 @@ export default class TransformedCurve extends Curve {
     const closestPoint = this.getClosestPointAt( peak.x );
 
     // super gaussian function centered at `mu`, with min amplitude of 0 and max of 1;
+    // use the square of a gaussian in order to have a very symmetric derivative at the edges
     const gaussianWeight = ( x: number, mu: number ) =>
       Math.exp( -1 * ( ( x - mu ) / EDGE_SLOPE_FACTOR ) ** 4 );
 
@@ -133,10 +133,13 @@ export default class TransformedCurve extends Curve {
       }
       else if ( point.x <= closestPoint.x ) {
 
-        // use the square of a gaussian in order to have a very symmetric derivative at the edges
+        // gaussian weight transitions smoothly from 0 to 1 as x increases
         P = gaussianWeight( point.x, closestPoint.x - width / 2 );
       }
       else {
+
+        // must be to the right of closestPoint
+        // gaussian weight transitions smoothly from 1 to 0 as x increases
         P = gaussianWeight( point.x, closestPoint.x + width / 2 );
       }
 
@@ -235,12 +238,12 @@ export default class TransformedCurve extends Curve {
         // in the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
         P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
       }
-        else if ( point.x > rightMin && point.x < rightMax ) {
+      else if ( point.x > rightMin && point.x < rightMax ) {
 
         // in the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
         P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
       }
-        else {
+      else {
 
         // outside the cosine base, the weight is zero
         P = 0;
