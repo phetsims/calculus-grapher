@@ -25,6 +25,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import Curve, { CurveOptions } from './Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
+import CurvePoint from './CurvePoint.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -184,20 +185,48 @@ export default class TransformedCurve extends Curve {
     const cosineFunction = ( x: number ) =>
       position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
 
-    // base width where we apply the sinusoidal function - ideally should be a multiple of half wavelengths
-    const sineBase = 7 * ( wavelength / 2 );
+    // base width where we apply the sinusoidal function - ideally should be a multiple of wavelengths
+    const sineBase = 2 * wavelength;
+
+    const envelopeDistance = wavelength / 4;
+
+    // gaussian weight function associated based on the distance from centerX: weight is between 0 and 1
+    const weightFunction = ( point: CurvePoint, centerX: number ) =>
+      Math.cos( ( Math.PI / 2 ) * ( point.x - centerX ) / envelopeDistance ) ** 2;
+
+    //TODO: explain
+    const rightMin = closestPoint.x + sineBase / 2;
+    const rightMax = rightMin + envelopeDistance;
+
+    const leftMax = closestPoint.x - sineBase / 2;
+    const leftMin = leftMax - envelopeDistance;
+
+    const isRightRegionZero = this.isRegionZero( rightMin, rightMax );
+    const isLeftRegionZero = this.isRegionZero( leftMin, leftMax );
 
     this.points.forEach( point => {
 
-      if ( Math.abs( point.x - closestPoint.x ) < sineBase / 2 ) {
-        point.y = cosineFunction( point.x );
-      }
-      else {
+        let P: number;
 
-        // point is set to the previously saved y Value
-        point.y = point.lastSavedY;
+        if ( point.x >= leftMax && point.x <= rightMin ) {
+          P = 1;
+        }
+        else if ( point.x > leftMin && point.x < leftMax ) {
+
+          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax );
+        }
+        else if ( point.x > rightMin && point.x < rightMax ) {
+
+          P = isRightRegionZero ? 1 : weightFunction( point, rightMin );
+        }
+        else {
+          P = 0;
+        }
+
+        point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
       }
-    } );
+    );
+
 
   }
 
@@ -226,7 +255,8 @@ export default class TransformedCurve extends Curve {
     // TODO: explain why we dont want lastPoint
     this.interpolate( closestPoint.toVector(), new Vector2( lastPoint.x, penultimatePosition.y ) );
 
-    if ( antepenultimatePosition instanceof Vector2 ) {
+    if ( antepenultimatePosition instanceof Vector2
+    ) {
 
       // point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
@@ -284,6 +314,35 @@ export default class TransformedCurve extends Curve {
         }
       }
     }
+  }
+
+  public userManipulatedCurve( mode: CurveManipulationMode,
+                               width: number,
+                               position: Vector2,
+                               penultimatePosition: Vector2,
+                               antepenultimatePosition: Vector2 | null ): void {
+
+    if ( mode === CurveManipulationMode.HILL ||
+         mode === CurveManipulationMode.PARABOLA ||
+         mode === CurveManipulationMode.PEDESTAL ||
+         mode === CurveManipulationMode.TRIANGLE ||
+         mode === CurveManipulationMode.SINE
+    ) {
+      this.widthManipulatedCurve( mode, width, position );
+    }
+    else if ( mode === CurveManipulationMode.TILT ||
+              mode === CurveManipulationMode.SHIFT ) {
+      this.positionManipulatedCurve( mode, position );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
 
@@ -397,32 +456,19 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  public userManipulatedCurve( mode: CurveManipulationMode,
-                               width: number,
-                               position: Vector2,
-                               penultimatePosition: Vector2,
-                               antepenultimatePosition: Vector2 | null ): void {
+  /**
+   * Are the points between xMin and xMax have all y values of zero.
+   */
+  private isRegionZero( xMin: number, xMax: number ): boolean {
 
-    if ( mode === CurveManipulationMode.HILL ||
-         mode === CurveManipulationMode.PARABOLA ||
-         mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.SINE ) {
-      this.widthManipulatedCurve( mode, width, position );
-    }
-    else if ( mode === CurveManipulationMode.TILT ||
-              mode === CurveManipulationMode.SHIFT ) {
-      this.positionManipulatedCurve( mode, position );
-    }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
+    assert && assert( xMin <= xMax, 'xMin must be less than xMax' );
 
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
+    return this.points.every( point => {
+
+      const isOutsideBounds = point.x < xMin || point.x > xMax;
+
+      return isOutsideBounds || Math.abs( point.lastSavedY ) < 1e-3;
+    } );
   }
 
   public freeformIconCurve( yMin: number, yMax: number ): void {
