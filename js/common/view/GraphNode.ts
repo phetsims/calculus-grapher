@@ -277,25 +277,8 @@ export default class GraphNode extends Node {
    */
   private getVerticalTickLabelSet( spacing: number ): TickLabelSet {
 
-    // the number of decimal places for the labels
-    let decimalPlaces: number;
-
-    if ( Number.isInteger( spacing ) ) {
-
-      // the number of decimal is zero since the labels are multiple of integers
-      decimalPlaces = 0;
-    }
-    else if ( Number.isInteger( spacing * 10 ) ) {
-
-      // the spacing has only one decimal
-      decimalPlaces = 1;
-    }
-    else {
-
-      // two decimal places is sufficient for our zoom range
-      decimalPlaces = 2;
-    }
-
+    // no more than two decimal places
+    const decimalPlaces = Math.min( 2, Utils.numberOfDecimalPlaces( spacing ) );
 
     return new TickLabelSet( this.chartTransform, Orientation.VERTICAL, spacing,
       {
