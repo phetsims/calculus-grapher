@@ -323,11 +323,12 @@ export default class TransformedCurve extends Curve {
             // by construction, there will always be two real roots for the time
             const roots = Utils.solveQuadraticRootsReal( a, b, -dx )!;
 
-            // one of these roots will always be between [0,1]
-            const t = roots.filter( t => t >= 0 && t <= 1 )[ 0 ];
+            // one of these roots will always be between [0,1], allow for a bit of rounding errors (see #92)
+            const epsilon = 0.00001;
+            const t = roots.filter( t => t >= -epsilon && t <= 1 + epsilon )[ 0 ];
 
             // sanity check
-            assert && assert( t >= 0 && t <= 1, `t should be between 0 and 1 (inclusive): 
+            assert && assert( t >= -epsilon && t <= 1 + epsilon, `t should be between 0 and 1 (inclusive): 
            ${roots[ 0 ]} and ${roots[ 1 ]}: a:${a}, b:${b}, c:${-dx}` );
 
             const xPosition = cp1Point.x + signedOne * dx;
