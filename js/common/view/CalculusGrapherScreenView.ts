@@ -57,7 +57,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
 
-    assert && assert( options.graphSets.filter( ( x, i, a ) => a.indexOf( x ) === i ).length === options.graphSets.length, 'the graphSets must be unique' );
+    assert && assert( options.graphSets.every( graphSet =>
+      graphSet.length === _.uniq( graphSet ).length ), 'each element of the graphSet must be unique' );
 
     this.model = model;
 
