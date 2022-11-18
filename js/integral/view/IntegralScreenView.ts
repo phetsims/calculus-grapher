@@ -14,14 +14,14 @@ import IntegralModel from '../model/IntegralModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphChoices'>;
+export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphSets'>;
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: IntegralModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphChoices: [
+      graphSets: [
         [ 'integral', 'original' ]
       ]
     }, providedOptions );

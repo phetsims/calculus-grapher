@@ -10,21 +10,21 @@ import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-co
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import LabModel from '../model/LabModel.js';
-import GraphChoiceRadioButtonGroup, { GraphChoiceRadioButtonGroupOptions } from '../../common/view/GraphChoiceRadioButtonGroup.js';
+import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupOptions } from '../../common/view/GraphSetRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LabScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphChoices'>;
+export type LabScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphSets'>;
 
 export default class LabScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphChoices: [
+      graphSets: [
         [ 'integral', 'original', 'derivative' ],
         [ 'original', 'derivative', 'secondDerivative' ]
       ],
@@ -37,13 +37,13 @@ export default class LabScreenView extends CalculusGrapherScreenView {
       }
     }, providedOptions );
 
-    assert && assert( options.graphChoices.length === 2, 'there must be two valid graphChoices for this screen' );
+    assert && assert( options.graphSets.length === 2, 'there must be two valid graphSets for this screen' );
 
     super( model, options );
 
-    const graphChoiceRadioButtonGroup = new GraphChoiceRadioButtonGroup( this.graphsSelectedProperty,
-      options.graphChoices,
-      combineOptions<GraphChoiceRadioButtonGroupOptions>( {
+    const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
+      options.graphSets,
+      combineOptions<GraphSetRadioButtonGroupOptions>( {
         leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
         spacing: 5,
         radioButtonOptions: {
@@ -52,7 +52,7 @@ export default class LabScreenView extends CalculusGrapherScreenView {
         tandem: options.tandem.createTandem( 'graphsRadioButtonGroup' )
       }, options.graphsRadioButtonGroupOptions ) );
 
-    this.addChild( graphChoiceRadioButtonGroup );
+    this.addChild( graphSetRadioButtonGroup );
 
   }
 }

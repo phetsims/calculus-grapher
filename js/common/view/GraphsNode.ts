@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import CurveLabelsNode from './CurveLabelsNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import { GraphChoice } from './CalculusGrapherScreenView.js';
+import { GraphSet } from './CalculusGrapherScreenView.js';
 import Property from '../../../../axon/js/Property.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 
@@ -31,7 +31,7 @@ export default class GraphNodes extends Node {
   private readonly graphHeightProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel,
-                      graphsSelectedProperty: Property<GraphChoice>,
+                      graphSetProperty: Property<GraphSet>,
                       gridVisibleProperty: Property<boolean>,
                       referenceLineVisibleProperty: Property<boolean>,
                       providedOptions?: GraphNodesOptions ) {
@@ -39,7 +39,7 @@ export default class GraphNodes extends Node {
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 
     // determine the (view) height of the graph based on the number of visible graphs.
-    const graphHeightProperty = new DerivedProperty( [ graphsSelectedProperty ], graphsSelected => {
+    const graphHeightProperty = new DerivedProperty( [ graphSetProperty ], graphsSelected => {
       const numberOfVisibleGraphs = graphsSelected.length;
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
@@ -107,31 +107,31 @@ export default class GraphNodes extends Node {
 
     referenceLineNode.x = originalGraphNode.x;
 
-    const graphSet = new Node();
+    const graphSetNode = new Node();
 
-    graphsSelectedProperty.link( graphChoice => {
+    graphSetProperty.link( graphSet => {
 
       // array of Node content of this class
-      const content = graphChoice.map( graphType => {
+      const content = graphSet.map( graphType => {
         if ( graphType === 'integral' ) {
           return integralGraphNode;
         }
-          else if ( graphType === 'original' ) {
-            return originalGraphNode;
-          }
-          else if ( graphType === 'derivative' ) {
-            return derivativeGraphNode;
-          }
-          else if ( graphType === 'secondDerivative' ) {
-            return secondDerivativeGraphNode;
-          }
-          else {
-            throw new Error( 'Unsupported graphType' );
-          }
+        else if ( graphType === 'original' ) {
+          return originalGraphNode;
+        }
+        else if ( graphType === 'derivative' ) {
+          return derivativeGraphNode;
+        }
+        else if ( graphType === 'secondDerivative' ) {
+          return secondDerivativeGraphNode;
+        }
+        else {
+          throw new Error( 'Unsupported graphType' );
+        }
         }
       );
 
-      const numberOfVisibleGraphs = graphChoice.length;
+      const numberOfVisibleGraphs = graphSet.length;
 
       // layout of all the nodes
 
@@ -145,14 +145,14 @@ export default class GraphNodes extends Node {
         content[ i ].top = content[ i - 1 ].bottom + 10;
       }
 
-      graphSet.setChildren( content );
+      graphSetNode.setChildren( content );
 
-      referenceLineNode.setLineBottom( graphSet.bottom + 5 );
-      referenceLineNode.setLineTop( graphSet.top - 5 );
+      referenceLineNode.setLineBottom( graphSetNode.bottom + 5 );
+      referenceLineNode.setLineTop( graphSetNode.top - 5 );
 
     } );
 
-    super( combineOptions<NodeOptions>( { children: [ graphSet, referenceLineNode ] }, options ) );
+    super( combineOptions<NodeOptions>( { children: [ graphSetNode, referenceLineNode ] }, options ) );
 
     this.graphHeightProperty = graphHeightProperty;
 

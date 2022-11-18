@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * GraphChoiceRadioButtonGroup is a group of buttons for controlling visibility of graph nodes
+ * GraphSetRadioButtonGroup is a group of buttons for controlling visibility of a set of graph nodes
  *
  * @author Martin Veillette
  */
@@ -13,34 +13,35 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Property from '../../../../axon/js/Property.js';
 import CurveLabelsNode from './CurveLabelsNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
-import { GraphChoice, GraphChoices } from './CalculusGrapherScreenView.js';
+import { GraphSet } from './CalculusGrapherScreenView.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphChoiceRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+export type GraphSetRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
-export default class GraphChoiceRadioButtonGroup extends RectangularRadioButtonGroup<GraphChoice> {
+export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGroup<GraphSet> {
 
-  public constructor( graphsSelectionProperty: Property<GraphChoice>,
-                      graphChoices: GraphChoices,
-                      providedOptions: GraphChoiceRadioButtonGroupOptions ) {
+  public constructor( graphsSelectionProperty: Property<GraphSet>,
+                      graphSets: GraphSet[],
+                      providedOptions: GraphSetRadioButtonGroupOptions ) {
 
-    const options = optionize<GraphChoiceRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
+    const options = optionize<GraphSetRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
       {}, providedOptions );
 
-    assert && assert( graphChoices[ 0 ][ 0 ] === 'integral', 'first button matches integral graph choice' );
+
+    assert && assert( graphSets[ 0 ][ 0 ] === 'integral', 'first button matches integral of graph set' );
 
     // Item for integral radio button
     const integralRadioButtonItem = createItem(
       CurveLabelsNode.getIntegralLabel(),
-      graphChoices[ 0 ], {
+      graphSets[ 0 ], {
         tandemName: 'integralRadioButton'
       } );
 
     // Item for integral radio button
     const derivativeRadioButtonItem = createItem(
       CurveLabelsNode.getDerivativeLabel(),
-      graphChoices[ 1 ], {
+      graphSets[ 1 ], {
         tandemName: 'derivativeRadioButton'
       } );
 
@@ -48,11 +49,11 @@ export default class GraphChoiceRadioButtonGroup extends RectangularRadioButtonG
   }
 }
 
-type ItemOptions = PickRequired<RectangularRadioButtonGroupItem<GraphChoice>, 'tandemName'>;
+type ItemOptions = PickRequired<RectangularRadioButtonGroupItem<GraphSet>, 'tandemName'>;
 
 function createItem( labelNode: Node,
-                     value: GraphChoice,
-                     providedOptions: ItemOptions ): RectangularRadioButtonGroupItem<GraphChoice> {
+                     value: GraphSet,
+                     providedOptions: ItemOptions ): RectangularRadioButtonGroupItem<GraphSet> {
 
   return {
     createNode: () => labelNode,
@@ -61,4 +62,4 @@ function createItem( labelNode: Node,
   };
 }
 
-calculusGrapher.register( 'GraphChoiceRadioButtonGroup', GraphChoiceRadioButtonGroup );
+calculusGrapher.register( 'GraphSetRadioButtonGroup', GraphSetRadioButtonGroup );

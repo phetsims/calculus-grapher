@@ -15,20 +15,19 @@ import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptio
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
-import { GraphChoiceRadioButtonGroupOptions } from './GraphChoiceRadioButtonGroup.js';
+import { GraphSetRadioButtonGroupOptions } from './GraphSetRadioButtonGroup.js';
 import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
-export type GraphChoice = GraphType[];
-export type GraphChoices = GraphChoice[];
+export type GraphSet = GraphType[];
 
 type SelfOptions = {
   visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
-  graphsRadioButtonGroupOptions?: StrictOmit<GraphChoiceRadioButtonGroupOptions, 'tandem'>;
-  graphChoices: GraphChoices;
+  graphsRadioButtonGroupOptions?: StrictOmit<GraphSetRadioButtonGroupOptions, 'tandem'>;
+  graphSets: GraphSet[];
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
 
@@ -39,12 +38,12 @@ export default class CalculusGrapherScreenView extends ScreenView {
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
   private readonly graphsNode: GraphsNode;
-  protected readonly graphsSelectedProperty: Property<GraphChoice>;
+  protected readonly graphSetProperty: Property<GraphSet>;
 
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
-      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphChoices'>, ScreenViewOptions>()( {
+      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphSets'>, ScreenViewOptions>()( {
       controlPanelOptions: {
         curvePushButtonGroupOptions: {
           smoothButtonOptions: {
@@ -56,13 +55,13 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     super( options );
 
-    assert && assert( options.graphChoices.length > 0, 'there must be at least one valid graphChoice' );
+    assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
 
-    assert && assert( options.graphChoices.filter( ( x, i, a ) => a.indexOf( x ) === i ).length === options.graphChoices.length, 'the graphChoices must be unique' );
+    assert && assert( options.graphSets.filter( ( x, i, a ) => a.indexOf( x ) === i ).length === options.graphSets.length, 'the graphSets must be unique' );
 
     this.model = model;
 
-    this.graphsSelectedProperty = new Property( options.graphChoices[ 0 ] );
+    this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
     // Create the view-specific properties for the screen.
     this.visibleProperties = new CalculusGrapherVisibleProperties( combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
@@ -92,7 +91,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
 
     this.graphsNode = new GraphsNode( model,
-      this.graphsSelectedProperty,
+      this.graphSetProperty,
       this.visibleProperties.gridVisibleProperty,
       this.visibleProperties.referenceLineVisibleProperty, {
         centerTop: this.layoutBounds.centerTop.plusXY( -10, 10 ),
@@ -112,7 +111,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.model.reset();
     this.visibleProperties.reset();
     this.graphsNode.reset();
-    this.graphsSelectedProperty.reset();
+    this.graphSetProperty.reset();
   }
 }
 
