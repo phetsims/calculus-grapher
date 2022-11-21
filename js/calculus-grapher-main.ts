@@ -46,7 +46,8 @@ simLauncher.launch( () => {
             tandem: tandem.createTandem( 'simPreferences' )
           } ),
           modelLinkables: [
-            { property: CalculusGrapherPreferences.valuesVisibleProperty }
+            { property: CalculusGrapherPreferences.valuesVisibleProperty },
+            { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty }
           ]
         } ]
       }
