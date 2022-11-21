@@ -9,7 +9,6 @@
  *  - Create a dataSet of curve points that can be consumed by LinePlot
  *  - Update itself when curveChangeEmitter sends a signal
  *  - Create a scatterPlot representing cusps points
- *  - Create a
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation. Thus,
  * CurveNodes persist for the lifetime of the simulation and links are left as-is. See Curve.js for more background.
@@ -166,7 +165,7 @@ export default class CurveNode extends Node {
 
   // data set for cusps points
   private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.cusps.map( point => point.toVector() );
+    return this.curve.points.filter( point => point.isCusp ).map( point => point.toVector() );
   }
 
   // data set for all points

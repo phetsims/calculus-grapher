@@ -86,7 +86,6 @@ export default class DerivativeCurve extends Curve {
    *         * Both adjacent Points don't exist, meaning the derivative also doesn't exist.
    */
   private updateDerivative(): void {
-    this.baseCurve.cusps = [];
     // Loop through each trio of adjacent Points of the base Curve.
     this.baseCurve.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
 
@@ -131,7 +130,7 @@ export default class DerivativeCurve extends Curve {
         const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
 
         if ( K >= DERIVATIVE_THRESHOLD ) {
-          this.baseCurve.cusps.push( point );
+          point.isCusp = true;
         }
       }
 

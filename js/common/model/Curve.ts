@@ -57,8 +57,6 @@ export default class Curve extends PhetioObject {
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public readonly curveChangedEmitter: Emitter;
 
-  public cusps: CurvePoint[];
-
   public readonly xRange: Range;
   public readonly pointsPerCoordinate: number;
 
@@ -94,8 +92,6 @@ export default class Curve extends PhetioObject {
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
-    // a collection of cusps points if present
-    this.cusps = []; // {CurvePoint[]}
   }
 
   /**

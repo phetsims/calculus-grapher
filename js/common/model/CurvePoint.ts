@@ -29,6 +29,7 @@ export type CurvePointStateObject = {
   x: number;
   y: number;
   isDiscontinuous: boolean;
+  isCusp: boolean;
   initialY: number;
 };
 
@@ -43,6 +44,8 @@ export default class CurvePoint {
 
   public isDiscontinuous: boolean;
 
+  public isCusp: boolean;
+
   // the initial y-coordinate passed into the CurvePoint, for resetting purposes.
   private readonly initialY: number;
 
@@ -56,6 +59,7 @@ export default class CurvePoint {
     this.x = x;
     this.y = y;
     this.isDiscontinuous = isDiscontinuous;
+    this.isCusp = false;
 
     this.initialY = y;
 
@@ -150,6 +154,7 @@ export default class CurvePoint {
       stateObject.isDiscontinuous
     );
     curvePoint.y = stateObject.y;
+    curvePoint.isCusp = stateObject.isCusp;
 
     return curvePoint;
   }
@@ -159,6 +164,7 @@ export default class CurvePoint {
       x: this.x,
       y: this.y,
       isDiscontinuous: this.isDiscontinuous,
+      isCusp: this.isCusp,
       initialY: this.initialY
     };
   }
