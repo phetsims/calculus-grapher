@@ -165,7 +165,8 @@ export default class CurveNode extends Node {
 
   // data set for cusps points
   private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.points.filter( point => point.isCusp ).map( point => point.toVector() );
+    return this.curve.points.filter( point => point.isCusp )
+      .map( point => point.toVector() );
   }
 
   // data set for all points

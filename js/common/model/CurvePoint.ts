@@ -52,6 +52,20 @@ export default class CurvePoint {
   // an array of all of this Point's saved y-values.
   private savedYValues: ( number )[];
 
+  public static readonly CurvePointIO = new IOType<CurvePoint, CurvePointStateObject>( 'CurvePointIO', {
+    valueType: CurvePoint,
+    stateSchema: {
+      x: NumberIO,
+      y: NumberIO,
+      isDiscontinuous: BooleanIO,
+      isCusp: BooleanIO,
+      initialY: NumberIO
+    },
+    toStateObject: ( curvePoint: CurvePoint ) => curvePoint.toStateObject(),
+    fromStateObject: ( stateObject: CurvePointStateObject ) => CurvePoint.fromStateObject( stateObject ),
+    documentation: 'describe the point on a curve'
+  } );
+
   public constructor( x: number, y = 0, isDiscontinuous = false ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
     assert && assert( y === null || Number.isFinite( y ), `invalid y: ${y}` );
@@ -59,15 +73,12 @@ export default class CurvePoint {
     this.x = x;
     this.y = y;
     this.isDiscontinuous = isDiscontinuous;
+
+    // TODO: allow use to set state
     this.isCusp = false;
 
     this.initialY = y;
 
-    this.savedYValues = [];
-  }
-
-  public reset(): void {
-    this.y = this.initialY;
     this.savedYValues = [];
   }
 
@@ -134,18 +145,14 @@ export default class CurvePoint {
     assert && assert( false, 'CurvePoint cannot be disposed (exists for the lifetime of the sim)' );
   }
 
-  public static readonly CurvePointIO = new IOType<CurvePoint, CurvePointStateObject>( 'CurvePointIO', {
-    valueType: CurvePoint,
-    stateSchema: {
-      x: NumberIO,
-      y: NumberIO,
-      isDiscontinuous: BooleanIO,
-      initialY: NumberIO
-    },
-    toStateObject: ( curvePoint: CurvePoint ) => curvePoint.toStateObject(),
-    fromStateObject: ( stateObject: CurvePointStateObject ) => CurvePoint.fromStateObject( stateObject ),
-    documentation: 'describe the point on a curve'
-  } );
+  public reset(): void {
+    this.y = this.initialY;
+    this.savedYValues = [];
+
+    // TODO: save initially state
+    this.isDiscontinuous = false;
+    this.isCusp = false;
+  }
 
   public static fromStateObject( stateObject: CurvePointStateObject ): CurvePoint {
     const curvePoint = new CurvePoint(
