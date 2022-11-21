@@ -34,6 +34,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
+const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
 
 type MathFunction = ( x: number ) => number;
 // TODO describe why such a simple data structure
@@ -91,6 +92,11 @@ export default class Curve extends PhetioObject {
     // use an Emitter that emits once after all CurvePoints are set upon manipulation.
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
+
+    this.curveChangedEmitter.addListener( () => {
+      this.assignCusps();
+      this.assignDiscontinuities();
+    } );
 
   }
 
@@ -255,6 +261,76 @@ export default class Curve extends PhetioObject {
     return xSlice.map( x => [ x, y( x ) ] );
   }
 
+  private assignCusps(): void {
+
+    // Loop through each trio of adjacent Points of the curve.
+    this.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
+
+        let leftSlope: null | number = null;
+        let rightSlope: null | number = null;
+
+        // Compute the leftSlope and rightSlope.
+
+        // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
+        if ( previousPoint && previousPoint.exists ) {
+          leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
+          assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
+        }
+
+        if ( nextPoint && nextPoint.exists ) {
+          // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
+          rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
+          assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
+        }
+        //----------------------------------------------------------------------------------------
+
+        // TODO: prototype to determine the cusp points
+        if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' &&
+             Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+
+          // evaluate the difference in the angle of the left and right slope
+          const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
+
+          point.isCusp = ( K >= DERIVATIVE_THRESHOLD );
+        }
+      }
+    );
+  }
+
+  private assignDiscontinuities(): void {
+
+
+    // TODO avoid repetition from assignCusps
+    // Loop through each trio of adjacent Points of the curve.
+    this.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
+
+        let leftSideDifference: null | number = null;
+        let rightSideDifference: null | number = null;
+
+        // Compute the leftDifference and rightDifference.
+
+        if ( previousPoint && previousPoint.exists ) {
+          leftSideDifference = ( point.y - previousPoint.y );
+          assert && assert( Number.isFinite( leftSideDifference ), 'non finite slope' );
+        }
+
+        if ( nextPoint && nextPoint.exists ) {
+          rightSideDifference = ( nextPoint.y - point.y );
+          assert && assert( Number.isFinite( rightSideDifference ), 'non finite slope' );
+        }
+        //----------------------------------------------------------------------------------------
+
+        if ( typeof leftSideDifference === 'number' && typeof rightSideDifference === 'number' &&
+             Number.isFinite( leftSideDifference ) && Number.isFinite( rightSideDifference ) ) {
+
+          // find jump
+          const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
+
+          point.isDiscontinuous = ( jump >= 2 );
+        }
+      }
+    );
+  }
 }
 
 calculusGrapher.register( 'Curve', Curve );
