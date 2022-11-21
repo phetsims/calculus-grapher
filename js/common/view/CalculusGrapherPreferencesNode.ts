@@ -58,7 +58,7 @@ export default class CalculusGrapherPreferencesNode extends VBox {
 
     const notationControl = new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty,
       CalculusGrapherPreferences.functionVariableProperty, {
-        tandem: options.tandem.createTandem( 'discontinuitiesControl' )
+        tandem: options.tandem.createTandem( 'notationControl' )
       } );
 
     const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty, {
