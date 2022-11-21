@@ -27,6 +27,10 @@ type StringsType = {
   };
   'discontinuitiesStringProperty': LinkableProperty<string>;
   'valuesStringProperty': LinkableProperty<string>;
+  'notationStringProperty': LinkableProperty<string>;
+  'LagrangeStringProperty': LinkableProperty<string>;
+  'LeibnizStringProperty': LinkableProperty<string>;
+  'variableStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

@@ -11,6 +11,12 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
+import { DerivativeNotation, DerivativeNotationValues } from './DerivativeNotation.js';
+import { FunctionVariable, FunctionVariableValues } from './FunctionVariable.js';
+
+const derivationNotation: DerivativeNotation = CalculusGrapherQueryParameters.derivativeNotation === 'lagrange' ? 'lagrange' : 'leibniz';
+const functionVariable: FunctionVariable = CalculusGrapherQueryParameters.functionVariable === 'x' ? 'x' : 't';
 
 const CalculusGrapherPreferences = {
 
@@ -22,6 +28,18 @@ const CalculusGrapherPreferences = {
   connectDiscontinuitiesProperty: new BooleanProperty( CalculusGrapherQueryParameters.connectDiscontinuities, {
     tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
     phetioDocumentation: 'Whether to connect discontinuities with a dashed line (true) or leave a gap (false)'
+  } ),
+
+  derivativeNotationProperty: new StringEnumerationProperty( derivationNotation, {
+    validValues: DerivativeNotationValues,
+    tandem: Tandem.PREFERENCES.createTandem( 'derivativeNotationProperty' ),
+    phetioDocumentation: 'the notation used for functions'
+  } ),
+
+  functionVariableProperty: new StringEnumerationProperty( functionVariable, {
+    validValues: FunctionVariableValues,
+    tandem: Tandem.PREFERENCES.createTandem( 'functionVariableProperty' ),
+    phetioDocumentation: 'the variable used in functions'
   } )
 };
 

@@ -9,6 +9,8 @@
 
 import calculusGrapher from '../calculusGrapher.js';
 import logGlobal from '../../../phet-core/js/logGlobal.js';
+import { DerivativeNotationValues } from './model/DerivativeNotation.js';
+import { FunctionVariableValues } from './model/FunctionVariable.js';
 
 const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
@@ -110,6 +112,22 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   connectDiscontinuities: {
     type: 'boolean',
     defaultValue: true,
+    public: true
+  },
+
+  // The derivative notation to be used throughout the simulation
+  derivativeNotation: {
+    type: 'string',
+    defaultValue: 'lagrange',
+    validValues: DerivativeNotationValues,
+    public: true
+  },
+
+  // The function variable to be used throughout the simulation
+  functionVariable: {
+    type: 'string',
+    defaultValue: 'x',
+    validValues: FunctionVariableValues,
     public: true
   }
 } );
