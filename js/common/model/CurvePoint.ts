@@ -74,7 +74,7 @@ export default class CurvePoint {
     this.y = y;
     this.isDiscontinuous = isDiscontinuous;
 
-    // TODO: allow use to set state
+    // TODO: allow user to set state
     this.isCusp = false;
 
     this.initialY = y;
@@ -149,7 +149,7 @@ export default class CurvePoint {
     this.y = this.initialY;
     this.savedYValues = [];
 
-    // TODO: save initially state
+    // TODO: save initial state
     this.isDiscontinuous = false;
     this.isCusp = false;
   }
