@@ -29,6 +29,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Property from '../../../../axon/js/Property.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
@@ -83,7 +84,8 @@ export default class CurveNode extends Node {
 
       discontinuousLinePlotOptions: {
         stroke: Color.ORANGE,
-        lineWidth: 3
+        lineWidth: 2,
+        lineDash: [ 2, 2 ]
       }
     }, providedOptions );
 
@@ -110,6 +112,7 @@ export default class CurveNode extends Node {
     this.discontinuousLinePlot = new LinePlot( chartTransform, discontinuousLinePlotDataSet, options.discontinuousLinePlotOptions );
 
     this.addChild( this.continuousLinePlot );
+
     this.addChild( this.discontinuousLinePlot );
 
     if ( CalculusGrapherQueryParameters.allPoints ) {
@@ -121,11 +124,14 @@ export default class CurveNode extends Node {
     this.addChild( this.discontinuousPointsScatterPlot );
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
+
+    CalculusGrapherPreferences.connectDiscontinuitiesProperty.linkAttribute( this.discontinuousLinePlot, 'visible' );
   }
 
   public updateCurveNode(): void {
     this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
+
     this.discontinuousLinePlot.setDataSet( this.getDiscontinuousLinePlotDataSet() );
 
     if ( CalculusGrapherQueryParameters.allPoints ) {
