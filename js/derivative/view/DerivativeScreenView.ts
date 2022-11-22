@@ -6,6 +6,7 @@
  * @author BrandonLi
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -23,7 +24,12 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphSets: [
         [ 'original', 'derivative' ]
-      ]
+      ],
+      controlPanelOptions: {
+        checkboxGroup: {
+          areaUnderCurveCheckboxProperty: new BooleanProperty( true )
+        }
+      }
     }, providedOptions );
 
     super( model, options );

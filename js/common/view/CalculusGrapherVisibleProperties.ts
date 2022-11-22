@@ -16,6 +16,8 @@ import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 type SelfOptions = {
   isGridVisible?: boolean;
   isReferenceLineVisible?: boolean;
+  isTangentVisible?: boolean;
+  isAreaUnderCurveVisible?: boolean;
 };
 export type CalculusGrapherVisiblePropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
@@ -27,11 +29,19 @@ export default class CalculusGrapherVisibleProperties {
   //indicates if the reference line is visible.
   public readonly referenceLineVisibleProperty: Property<boolean>;
 
+  // indicates if the tangent of f(x) is visible.
+  public readonly tangentVisibleProperty: Property<boolean>;
+
+  // indicates if the area under the f(x) is visible.
+  public readonly areaUnderCurveVisibleProperty: Property<boolean>;
+
   public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
     const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions>()( {
       isGridVisible: false,
-      isReferenceLineVisible: false
+      isReferenceLineVisible: false,
+      isTangentVisible: false,
+      isAreaUnderCurveVisible: false
     }, providedOptions );
 
     this.gridVisibleProperty = new BooleanProperty( options.isGridVisible, {
@@ -42,6 +52,14 @@ export default class CalculusGrapherVisibleProperties {
       tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
 
+    this.tangentVisibleProperty = new BooleanProperty( options.isTangentVisible, {
+      tandem: options.tandem.createTandem( 'tangentVisibleProperty' )
+    } );
+
+    this.areaUnderCurveVisibleProperty = new BooleanProperty( options.isAreaUnderCurveVisible, {
+      tandem: options.tandem.createTandem( 'areaUnderCurveVisibleProperty' )
+    } );
+
   }
 
   /**
@@ -50,6 +68,8 @@ export default class CalculusGrapherVisibleProperties {
   public reset(): void {
     this.gridVisibleProperty.reset();
     this.referenceLineVisibleProperty.reset();
+    this.tangentVisibleProperty.reset();
+    this.areaUnderCurveVisibleProperty.reset();
   }
 }
 

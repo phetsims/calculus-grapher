@@ -46,5 +46,11 @@
   },
   "variable": {
     "value": "Variable:"
+  },
+  "areaUnderCurve": {
+    "value": "Area under curve"
+  },
+  "tangent": {
+    "value": "Tangent"
   }
 }

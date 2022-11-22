@@ -31,6 +31,8 @@ type StringsType = {
   'LagrangeStringProperty': LinkableProperty<string>;
   'LeibnizStringProperty': LinkableProperty<string>;
   'variableStringProperty': LinkableProperty<string>;
+  'areaUnderCurveStringProperty': LinkableProperty<string>;
+  'tangentStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

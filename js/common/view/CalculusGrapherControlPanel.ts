@@ -7,7 +7,7 @@
  * @author Brandon Li
  */
 
-import { VBox } from '../../../../scenery/js/imports.js';
+import { HSeparator, Text, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -16,17 +16,27 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup, { CurvePushButtonGroupOptions } from './CurvePushButtonGroup.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
+import Checkbox from '../../../../sun/js/Checkbox.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 type SelfOptions = {
   contentSpacing?: number;
   curvePushButtonGroupOptions?: CurvePushButtonGroupOptions;
+  checkboxGroup?: {
+    areaUnderCurveCheckboxProperty?: BooleanProperty;
+    tangentCheckboxProperty?: BooleanProperty;
+  };
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
-  public constructor( originalCurve: OriginalCurve, providedOptions: CalculusGrapherControlPanelOptions ) {
+  public constructor( originalCurve: OriginalCurve,
+                      visibleProperties: CalculusGrapherVisibleProperties,
+                      providedOptions: CalculusGrapherControlPanelOptions ) {
 
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
 
@@ -37,6 +47,11 @@ export default class CalculusGrapherControlPanel extends Panel {
         smoothButtonOptions: {
           baseColor: PhetColorScheme.BUTTON_YELLOW
         }
+      },
+
+      checkboxGroup: {
+        areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
+        tangentCheckboxProperty: new BooleanProperty( false )
       },
 
       // super-class options
@@ -57,10 +72,25 @@ export default class CalculusGrapherControlPanel extends Panel {
         },
         options.curvePushButtonGroupOptions ) );
 
+    const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
+      new Text( CalculusGrapherStrings.tangentStringProperty ), {
+        visibleProperty: options.checkboxGroup.tangentCheckboxProperty
+      }
+    );
+
+    const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
+      new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
+        visibleProperty: options.checkboxGroup.areaUnderCurveCheckboxProperty
+      }
+    );
+
     const contentNode = new VBox( {
       spacing: options.contentSpacing,
       children: [ curveManipulationControls,
-        curveButtons
+        curveButtons,
+        new HSeparator(),
+        tangentCheckbox,
+        areaUnderCurveCheckbox
       ]
     } );
 
