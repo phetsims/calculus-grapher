@@ -55,6 +55,11 @@ const CalculusGrapherColors = {
     default: 'lightgray'
   } ),
 
+  // default stroke for curves
+  defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
+    default: Color.RED
+  } ),
+
   // Stroke for the original curve
   originalCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
       default: Color.BLUE
@@ -63,10 +68,13 @@ const CalculusGrapherColors = {
       tandem: tandem.createTandem( 'originalCurveStrokeColorProperty' )
     } ),
 
-  // Stroke for all curves (besides original)
-  defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
-    default: Color.RED
-  } ),
+  // Stroke for the original curve
+  predictCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'predictCurveStroke', {
+      default: 'rgb(128, 128, 128)'
+    },
+    {
+      tandem: tandem.createTandem( 'predictCurveStrokeColorProperty' )
+    } ),
 
   // Stroke for integral curve
   integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
