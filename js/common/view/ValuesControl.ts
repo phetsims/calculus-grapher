@@ -9,18 +9,16 @@
 
 import Property from '../../../../axon/js/Property.js';
 import PreferencesToggleSwitch, { PreferencesToggleSwitchOptions } from '../../../../joist/js/preferences/PreferencesToggleSwitch.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Font, Text } from '../../../../scenery/js/imports.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../sun/js/ToggleSwitch.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 
-type SelfOptions = {
-  font?: Font;
-};
+type SelfOptions = EmptySelfOptions;
 
 type ValuesControlOptions = SelfOptions & PickRequired<PreferencesToggleSwitchOptions, 'tandem'>;
 
@@ -32,15 +30,12 @@ export default class ValuesControl extends PreferencesToggleSwitch {
 
     const options = optionize<ValuesControlOptions, SelfOptions, PreferencesToggleSwitchOptions>()( {
 
-      // SelfOptions
-      font: PreferencesDialog.CONTENT_FONT,
-
       // PreferencesToggleSwitchOptions
       labelSpacing: 10
     }, providedOptions );
 
     const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, {
-      font: options.font
+      font: PreferencesDialog.CONTENT_FONT
     } );
     options.labelNode = labelText;
 

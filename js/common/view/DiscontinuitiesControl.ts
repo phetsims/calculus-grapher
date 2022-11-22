@@ -10,7 +10,7 @@
 import Property from '../../../../axon/js/Property.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Circle, Font, HBox, HBoxOptions, Line, LineOptions, Node, Text } from '../../../../scenery/js/imports.js';
+import { Circle, HBox, HBoxOptions, Line, LineOptions, Node, Text } from '../../../../scenery/js/imports.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -18,9 +18,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 
-type SelfOptions = {
-  font?: Font;
-};
+type SelfOptions = EmptySelfOptions;
 
 type DiscontinuitiesControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
 
@@ -32,15 +30,12 @@ export default class DiscontinuitiesControl extends HBox {
 
     const options = optionize<DiscontinuitiesControlOptions, SelfOptions, HBoxOptions>()( {
 
-      // SelfOptions
-      font: PreferencesDialog.CONTENT_FONT,
-
       // HBoxOptions
       spacing: 15
     }, providedOptions );
 
     const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty, {
-      font: options.font
+      font: PreferencesDialog.CONTENT_FONT
     } );
 
     const radioButtonGroup = new DiscontinuitiesRadioButtonGroup( connectDiscontinuitiesProperty, {

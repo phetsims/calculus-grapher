@@ -9,7 +9,7 @@
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Font, HBox, HBoxOptions, Node, RichText, Text } from '../../../../scenery/js/imports.js';
+import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -20,11 +20,7 @@ import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialo
 import { FunctionVariable } from '../model/FunctionVariable.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 
-const FONT = PreferencesDialog.CONTENT_FONT;
-
-type SelfOptions = {
-  font?: Font;
-};
+type SelfOptions = EmptySelfOptions;
 
 type VariableControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
 
@@ -37,16 +33,13 @@ export default class VariableControl extends HBox {
 
     const options = optionize<VariableControlOptions, SelfOptions, HBoxOptions>()( {
 
-      // SelfOptions
-      font: PreferencesDialog.CONTENT_FONT,
-
       // HBoxOptions
       align: 'top',
       spacing: 15
     }, providedOptions );
 
     const labelText = new Text( CalculusGrapherStrings.variableStringProperty, {
-      font: options.font
+      font: PreferencesDialog.CONTENT_FONT
     } );
 
     const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty, {
@@ -111,7 +104,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
  */
 function createLabel( functionVariableStringProperty: TReadOnlyProperty<string> ): Node {
   return new RichText( functionVariableStringProperty, {
-    font: FONT
+    font: PreferencesDialog.CONTENT_FONT
   } );
 }
 
