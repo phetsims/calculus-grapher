@@ -125,7 +125,9 @@ export default class CurveNode extends Node {
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
 
-    CalculusGrapherPreferences.connectDiscontinuitiesProperty.linkAttribute( this.discontinuousLinePlot, 'visible' );
+    CalculusGrapherPreferences.connectDiscontinuitiesProperty.link( connectDiscontinuities => {
+      this.discontinuousLinePlot.visible = ( connectDiscontinuities === 'dashedLine' );
+    } );
   }
 
   public updateCurveNode(): void {

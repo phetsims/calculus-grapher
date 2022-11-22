@@ -13,15 +13,14 @@ import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../scenery/js/
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import { DerivativeNotation } from '../model/DerivativeNotation.js';
 import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
 import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
-import { FunctionVariable } from '../model/FunctionVariable.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
 
 type SelfOptions = EmptySelfOptions;
 

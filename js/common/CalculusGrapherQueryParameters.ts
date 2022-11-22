@@ -9,8 +9,15 @@
 
 import calculusGrapher from '../calculusGrapher.js';
 import logGlobal from '../../../phet-core/js/logGlobal.js';
-import { DerivativeNotationValues } from './model/DerivativeNotation.js';
-import { FunctionVariableValues } from './model/FunctionVariable.js';
+
+export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ];
+export type ConnectDiscontinuities = ( typeof ConnectDiscontinuitiesValues )[ number ];
+
+export const DerivativeNotationValues = [ 'lagrange', 'leibniz' ] as const;
+export type DerivativeNotation = ( typeof DerivativeNotationValues )[number];
+
+export const FunctionVariableValues = [ 'x', 't' ] as const;
+export type FunctionVariable = ( typeof FunctionVariableValues )[number];
 
 const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
@@ -108,10 +115,11 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     public: true
   },
 
-  // Whether to connect discontinuities with a dashed line (true) or leave a gap (false).
+  // Whether to connect discontinuities with nothing or a dashed line
   connectDiscontinuities: {
-    type: 'boolean',
-    defaultValue: false,
+    type: 'string',
+    defaultValue: 'noLine',
+    validValues: ConnectDiscontinuitiesValues,
     public: true
   },
 

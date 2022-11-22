@@ -9,12 +9,11 @@
 
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import CalculusGrapherQueryParameters, { ConnectDiscontinuities, ConnectDiscontinuitiesValues, DerivativeNotation, DerivativeNotationValues, FunctionVariable, FunctionVariableValues } from '../CalculusGrapherQueryParameters.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
-import { DerivativeNotation, DerivativeNotationValues } from './DerivativeNotation.js';
-import { FunctionVariable, FunctionVariableValues } from './FunctionVariable.js';
 
+const connectDiscontinuities: ConnectDiscontinuities = CalculusGrapherQueryParameters.connectDiscontinuities === 'noLine' ? 'noLine' : 'dashedLine';
 const derivationNotation: DerivativeNotation = CalculusGrapherQueryParameters.derivativeNotation === 'lagrange' ? 'lagrange' : 'leibniz';
 const functionVariable: FunctionVariable = CalculusGrapherQueryParameters.functionVariable === 'x' ? 'x' : 't';
 
@@ -25,9 +24,10 @@ const CalculusGrapherPreferences = {
     phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
   } ),
 
-  connectDiscontinuitiesProperty: new BooleanProperty( CalculusGrapherQueryParameters.connectDiscontinuities, {
+  connectDiscontinuitiesProperty: new StringEnumerationProperty( connectDiscontinuities, {
+    validValues: ConnectDiscontinuitiesValues,
     tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
-    phetioDocumentation: 'Whether to connect discontinuities with a dashed line (true) or leave a gap (false)'
+    phetioDocumentation: 'Whether to leave a gap between discontinuities, or connect them with a dashed line'
   } ),
 
   derivativeNotationProperty: new StringEnumerationProperty( derivationNotation, {

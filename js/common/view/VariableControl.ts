@@ -17,8 +17,8 @@ import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProp
 import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
-import { FunctionVariable } from '../model/FunctionVariable.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import { FunctionVariable } from '../CalculusGrapherQueryParameters.js';
 
 type SelfOptions = EmptySelfOptions;
 

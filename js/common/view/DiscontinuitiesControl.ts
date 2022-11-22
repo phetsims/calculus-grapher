@@ -17,6 +17,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
+import { ConnectDiscontinuities, ConnectDiscontinuitiesValues } from '../CalculusGrapherQueryParameters.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -26,7 +27,7 @@ export default class DiscontinuitiesControl extends HBox {
 
   private readonly disposeDiscontinuitiesControl: () => void;
 
-  public constructor( connectDiscontinuitiesProperty: Property<boolean>, providedOptions: DiscontinuitiesControlOptions ) {
+  public constructor( connectDiscontinuitiesProperty: Property<ConnectDiscontinuities>, providedOptions: DiscontinuitiesControlOptions ) {
 
     const options = optionize<DiscontinuitiesControlOptions, SelfOptions, HBoxOptions>()( {
 
@@ -66,9 +67,9 @@ type DiscontinuitiesRadioButtonGroupSelfOptions = EmptySelfOptions;
 
 type DiscontinuitiesRadioButtonGroupOptions = SelfOptions & PickRequired<RectangularRadioButtonGroupOptions, 'tandem'>;
 
-class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
+class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<ConnectDiscontinuities> {
 
-  public constructor( connectDiscontinuitiesProperty: Property<boolean>, providedOptions: DiscontinuitiesRadioButtonGroupOptions ) {
+  public constructor( connectDiscontinuitiesProperty: Property<ConnectDiscontinuities>, providedOptions: DiscontinuitiesRadioButtonGroupOptions ) {
 
     const options = optionize<DiscontinuitiesRadioButtonGroupOptions, DiscontinuitiesRadioButtonGroupSelfOptions, RectangularRadioButtonGroupOptions>()( {
 
@@ -84,8 +85,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<boolea
       }
     }, providedOptions );
 
-    const values = [ false, true ];
-    const items: RectangularRadioButtonGroupItem<boolean>[] = values.map( value => {
+    const items: RectangularRadioButtonGroupItem<ConnectDiscontinuities>[] = ConnectDiscontinuitiesValues.map( value => {
       return {
         value: value,
         createNode: tandem => createIcon( value ),
@@ -100,7 +100,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<boolea
 /**
  * Creates the icon for a radio button.
  */
-function createIcon( connectDiscontinuities: boolean ): Node {
+function createIcon( value: ConnectDiscontinuities ): Node {
 
   const lineWidth = 2;
   const verticalGap = 25;
@@ -134,7 +134,7 @@ function createIcon( connectDiscontinuities: boolean ): Node {
   const children = [ leftLine, rightLine, leftCircle, rightCircle ];
 
   // optional vertical dashed line, connecting the 2 circles
-  if ( connectDiscontinuities ) {
+  if ( value === 'dashedLine' ) {
     children.push( new Line( leftCircle.centerX, leftCircle.top, rightCircle.centerX, rightCircle.bottom,
       combineOptions<LineOptions>( {
         lineDash: [ 2, 2 ]
