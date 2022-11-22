@@ -2,17 +2,17 @@
   "calculus-grapher.title": {
     "value": "Calculus Grapher"
   },
-  "screen.advanced": {
-    "value": "Advanced"
-  },
-  "screen.lab": {
-    "value": "Lab"
-  },
   "screen.derivative": {
     "value": "Derivative"
   },
   "screen.integral": {
     "value": "Integral"
+  },
+  "screen.advanced": {
+    "value": "Advanced"
+  },
+  "screen.lab": {
+    "value": "Lab"
   },
   "smooth": {
     "value": "Smooth"
