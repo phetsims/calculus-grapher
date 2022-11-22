@@ -111,7 +111,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   // Whether to connect discontinuities with a dashed line (true) or leave a gap (false).
   connectDiscontinuities: {
     type: 'boolean',
-    defaultValue: true,
+    defaultValue: false,
     public: true
   },
 

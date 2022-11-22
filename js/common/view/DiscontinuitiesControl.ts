@@ -84,7 +84,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<boolea
       }
     }, providedOptions );
 
-    const values = [ true, false ];
+    const values = [ false, true ];
     const items: RectangularRadioButtonGroupItem<boolean>[] = values.map( value => {
       return {
         value: value,
