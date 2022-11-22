@@ -39,10 +39,10 @@
     "value": "Notation:"
   },
   "Lagrange": {
-    "value": "Lagrange (e.g. {{f}}'({{variable}}))"
+    "value": "Lagrange: {{f}}'({{variable}})"
   },
   "Leibniz": {
-    "value": "Leibniz (e.g. {{d}}{{f}}/{{d}}{{variable}}))"
+    "value": "Leibniz: {{d}}{{f}}/{{d}}{{variable}}"
   },
   "variable": {
     "value": "Variable:"

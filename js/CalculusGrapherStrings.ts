@@ -13,10 +13,10 @@ type StringsType = {
     'titleStringProperty': LinkableProperty<string>;
   };
   'screen': {
-    'advancedStringProperty': LinkableProperty<string>;
-    'labStringProperty': LinkableProperty<string>;
     'derivativeStringProperty': LinkableProperty<string>;
     'integralStringProperty': LinkableProperty<string>;
+    'advancedStringProperty': LinkableProperty<string>;
+    'labStringProperty': LinkableProperty<string>;
   };
   'smoothStringProperty': LinkableProperty<string>;
   'symbol': {
