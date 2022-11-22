@@ -16,7 +16,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DiscontinuitiesControl from './DiscontinuitiesControl.js';
-import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import ValuesControl from './ValuesControl.js';
 import NotationControl from './NotationControl.js';
 import VariableControl from './VariableControl.js';
@@ -43,16 +42,10 @@ export default class CalculusGrapherPreferencesNode extends VBox {
     super( options );
 
     const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty, {
-      textOptions: {
-        font: PreferencesDialog.CONTENT_FONT
-      },
       tandem: options.tandem.createTandem( 'valuesControl' )
     } );
 
     const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty, {
-      textOptions: {
-        font: PreferencesDialog.CONTENT_FONT
-      },
       tandem: options.tandem.createTandem( 'discontinuitiesControl' )
     } );
 

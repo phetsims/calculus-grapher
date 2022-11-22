@@ -9,17 +9,17 @@
 
 import Property from '../../../../axon/js/Property.js';
 import PreferencesToggleSwitch, { PreferencesToggleSwitchOptions } from '../../../../joist/js/preferences/PreferencesToggleSwitch.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import { Text, TextOptions } from '../../../../scenery/js/imports.js';
+import { Font, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import ToggleSwitch from '../../../../sun/js/ToggleSwitch.js';
+import ToggleSwitch, { ToggleSwitchOptions } from '../../../../sun/js/ToggleSwitch.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
+import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 
 type SelfOptions = {
-  textOptions?: StrictOmit<TextOptions, 'tandem'>;
+  font?: Font;
 };
 
 type ValuesControlOptions = SelfOptions & PickRequired<PreferencesToggleSwitchOptions, 'tandem'>;
@@ -30,23 +30,27 @@ export default class ValuesControl extends PreferencesToggleSwitch {
 
   public constructor( valuesVisibleProperty: Property<boolean>, providedOptions: ValuesControlOptions ) {
 
-    const options = optionize<ValuesControlOptions, StrictOmit<SelfOptions, 'textOptions'>, PreferencesToggleSwitchOptions>()( {
+    const options = optionize<ValuesControlOptions, SelfOptions, PreferencesToggleSwitchOptions>()( {
+
+      // SelfOptions
+      font: PreferencesDialog.CONTENT_FONT,
 
       // PreferencesToggleSwitchOptions
       labelSpacing: 10
     }, providedOptions );
 
-    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, options.textOptions );
+    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, {
+      font: options.font
+    } );
     options.labelNode = labelText;
 
-    const toggleSwitch = new ToggleSwitch( valuesVisibleProperty, false, true, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS );
+    const toggleSwitch = new ToggleSwitch( valuesVisibleProperty, false, true,
+      combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
+        tandem: options.tandem.createTandem( 'toggleSwitch' )
+      } ) );
     options.controlNode = toggleSwitch;
 
     super( options );
-
-    this.addLinkedElement( valuesVisibleProperty, {
-      tandem: options.tandem.createTandem( valuesVisibleProperty.tandem.name )
-    } );
 
     this.disposeValuesControl = () => {
       labelText.dispose();

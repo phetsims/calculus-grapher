@@ -7,10 +7,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import { HBox, HBoxOptions, Node, RichText, Text, TextOptions } from '../../../../scenery/js/imports.js';
+import { Font, HBox, HBoxOptions, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -24,7 +23,7 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 const FONT = PreferencesDialog.CONTENT_FONT;
 
 type SelfOptions = {
-  textOptions?: StrictOmit<TextOptions, 'tandem'>;
+  font?: Font;
 };
 
 type VariableControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
@@ -36,17 +35,19 @@ export default class VariableControl extends HBox {
   public constructor( functionVariableProperty: StringEnumerationProperty<FunctionVariable>,
                       providedOptions: VariableControlOptions ) {
 
-    const options = optionize<VariableControlOptions, StrictOmit<SelfOptions, 'textOptions'>, HBoxOptions>()( {
+    const options = optionize<VariableControlOptions, SelfOptions, HBoxOptions>()( {
+
+      // SelfOptions
+      font: PreferencesDialog.CONTENT_FONT,
 
       // HBoxOptions
       align: 'top',
       spacing: 15
     }, providedOptions );
 
-    const labelText = new Text( CalculusGrapherStrings.variableStringProperty, combineOptions<TextOptions>( {
-      font: FONT,
-      tandem: options.tandem.createTandem( 'labelText' )
-    }, options.textOptions ) );
+    const labelText = new Text( CalculusGrapherStrings.variableStringProperty, {
+      font: options.font
+    } );
 
     const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )
