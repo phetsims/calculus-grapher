@@ -8,7 +8,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import PreferencesToggleSwitch, { PreferencesToggleSwitchOptions } from '../../../../joist/js/preferences/PreferencesToggleSwitch.js';
+import PreferencesControl, { PreferencesToggleSwitchOptions } from '../../../../joist/js/preferences/PreferencesControl.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Text } from '../../../../scenery/js/imports.js';
@@ -22,7 +22,7 @@ type SelfOptions = EmptySelfOptions;
 
 type ValuesControlOptions = SelfOptions & PickRequired<PreferencesToggleSwitchOptions, 'tandem'>;
 
-export default class ValuesControl extends PreferencesToggleSwitch {
+export default class ValuesControl extends PreferencesControl {
 
   private readonly disposeValuesControl: () => void;
 
