@@ -28,6 +28,7 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import TransformedCurve, { TransformedCurveOptions } from './TransformedCurve.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 // constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
@@ -35,7 +36,7 @@ const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDevia
 
 type SelfOptions = EmptySelfOptions;
 
-export type OriginalCurveOptions = SelfOptions & TransformedCurveOptions;
+export type OriginalCurveOptions = SelfOptions & StrictOmit<TransformedCurveOptions, 'pointsPropertyReadOnly'>;
 
 export default class OriginalCurve extends TransformedCurve {
 
@@ -51,7 +52,9 @@ export default class OriginalCurve extends TransformedCurve {
   public constructor( curveManipulationModeChoices: CurveManipulationMode[],
                       providedOptions: OriginalCurveOptions ) {
 
-    const options = optionize<OriginalCurveOptions, SelfOptions, TransformedCurveOptions>()( {}, providedOptions );
+    const options = optionize<OriginalCurveOptions, SelfOptions, TransformedCurveOptions>()( {
+      pointsPropertyReadOnly: false
+    }, providedOptions );
 
     super( options );
 

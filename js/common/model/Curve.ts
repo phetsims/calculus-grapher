@@ -30,6 +30,8 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CurvePoint from './CurvePoint.js';
 import Range from '../../../../dot/js/Range.js';
 import optionize from '../../../../phet-core/js/optionize.js';
+import Property from '../../../../axon/js/Property.js';
+import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -45,13 +47,17 @@ type SelfOptions = {
   pointsPerCoordinate?: number;
   mathFunction?: MathFunction;
   initialPoints?: SimplePoint[];
+  pointsPropertyReadOnly?: boolean;
 };
 
 export type CurveOptions = SelfOptions & PhetioObjectOptions;
 
 export default class Curve extends PhetioObject {
 
-  public readonly points: CurvePoint[];
+  // The collection of points that describe the curve. This is an array of CurvePoint instances that are typically
+  // mutated in place, so that we have acceptable performance. If Curve was instantiated with positionPropertyReadOnly:true,
+  // then it is possible to set pointsProperty via PhET-iO.
+  private readonly pointsProperty: Property<CurvePoint[]>;
 
   // Using an observable Property for the y-value was considered, but it was deemed to be
   // invasive to the performance of the simulation as observers had to listen to the yProperty
@@ -71,7 +77,8 @@ export default class Curve extends PhetioObject {
       pointsPerCoordinate: POINTS_PER_COORDINATE,
       mathFunction: () => 0,
       initialPoints: [ [ 0, 0 ] ],
-      phetioState: false
+      phetioState: false,
+      pointsPropertyReadOnly: true
     }, providedOptions );
 
     super( options );
@@ -83,9 +90,16 @@ export default class Curve extends PhetioObject {
     // the Points that map out the curve at a finite number of partitions within
     // the domain. See the comment at the top of this file for full context.
 
-    this.points = ( providedOptions.initialPoints ) ?
-                  this.getFromSimplePoints( options.initialPoints ) :
-                  this.getFromMathFunction( options.mathFunction );
+    const initialPoints = ( providedOptions.initialPoints ) ?
+                          this.getFromSimplePoints( options.initialPoints ) :
+                          this.getFromMathFunction( options.mathFunction );
+
+    this.pointsProperty = new Property( initialPoints, {
+      isValidValue: points => isValidPoints( initialPoints, points ),
+      tandem: options.tandem.createTandem( 'pointsProperty' ),
+      phetioValueType: ArrayIO( CurvePoint.CurvePointIO ),
+      phetioReadOnly: options.pointsPropertyReadOnly
+    } );
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
     // of every CurvePoint, which was deemed invasive to the performance of the sim, we
@@ -93,11 +107,41 @@ export default class Curve extends PhetioObject {
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
+    // Use this to short-circuit reentrant behavior where curveChangedEmitter and pointsProperty listeners (below)
+    // call each other.
+    let notifyListeners = true;
+
+    // This is needed to notify Studio that pointsProperty has effectively changed.
+    this.curveChangedEmitter.addListener( () => {
+      if ( notifyListeners ) {
+        this.pointsProperty.notifyListenersStatic();
+      }
+    } );
+
+    // For Curve instances created with positionPropertyReadOnly:true, pointsProperty may be set via PhET-iO.
+    // If that happens, notify listeners.
+    this.pointsProperty.link( ( newPoints, oldPoints ) => {
+      if ( newPoints !== oldPoints ) {
+        notifyListeners = false;
+        this.curveChangedEmitter.emit();
+        notifyListeners = true;
+      }
+    } );
+
     this.curveChangedEmitter.addListener( () => {
       this.assignCusps();
       this.assignDiscontinuities();
     } );
 
+  }
+
+  /**
+   * Since pointsProperty is private, use this method to access the points. It is expected that callers will mutate
+   * these points; do not add/remove points. If you mutate these points, be certain that they conform to function
+   * isValidPoints, and call curveChangedEmitter.emit() after you have finished mutating.
+   */
+  public get points(): CurvePoint[] {
+    return this.pointsProperty.value;
   }
 
   /**
@@ -331,6 +375,21 @@ export default class Curve extends PhetioObject {
       }
     );
   }
+}
+
+/**
+ * Determines whether a new set of points is value.
+ */
+function isValidPoints( initialPoints: CurvePoint[], points: CurvePoint[] ): boolean {
+
+  // The number of points must be the same.
+  let isValid = ( initialPoints.length === points.length );
+
+  // All x coordinates must be the same.
+  for ( let i = 0; i < initialPoints.length && isValid; i++ ) {
+    isValid = ( initialPoints[ i ].x === points[ i ].x );
+  }
+  return isValid;
 }
 
 calculusGrapher.register( 'Curve', Curve );
