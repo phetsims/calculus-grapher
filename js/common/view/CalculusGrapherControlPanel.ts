@@ -74,13 +74,15 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
       new Text( CalculusGrapherStrings.tangentStringProperty ), {
-        visibleProperty: options.checkboxGroup.tangentCheckboxProperty
+        visibleProperty: options.checkboxGroup.tangentCheckboxProperty,
+        tandem: options.tandem.createTandem( 'tangentCheckbox' )
       }
     );
 
     const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
       new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
-        visibleProperty: options.checkboxGroup.areaUnderCurveCheckboxProperty
+        visibleProperty: options.checkboxGroup.areaUnderCurveCheckboxProperty,
+        tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
       }
     );
 
