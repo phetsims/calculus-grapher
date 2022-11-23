@@ -13,7 +13,6 @@ import LabModel from '../model/LabModel.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupOptions } from '../../common/view/GraphSetRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -31,7 +30,7 @@ export default class LabScreenView extends CalculusGrapherScreenView {
       controlPanelOptions: {
         curvePushButtonGroupOptions: {
           smoothButtonOptions: {
-            visibleProperty: new BooleanProperty( true )
+            visible: true
           }
         }
       }

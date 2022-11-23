@@ -19,7 +19,6 @@ import { GraphSetRadioButtonGroupOptions } from './GraphSetRadioButtonGroup.js';
 import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
 export type GraphSet = GraphType[];
@@ -47,7 +46,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       controlPanelOptions: {
         curvePushButtonGroupOptions: {
           smoothButtonOptions: {
-            visibleProperty: new BooleanProperty( false )
+            visible: false
           }
         }
       }
