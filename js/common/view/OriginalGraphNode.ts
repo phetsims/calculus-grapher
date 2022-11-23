@@ -18,7 +18,7 @@
 
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import TransformedCurveNode from './TransformedCurveNode.js';
+import TransformedCurveNode, { TransformedCurveNodeOptions } from './TransformedCurveNode.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -63,7 +63,9 @@ export default class OriginalGraphNode extends GraphNode {
     const transformedCurveNode = new TransformedCurveNode( curve,
       curveManipulationProperties,
       this.chartTransform,
-      { tandem: options.tandem.createTandem( 'originalCurveNode' ) } );
+      combineOptions<TransformedCurveNodeOptions>(
+        { tandem: options.tandem.createTandem( 'originalCurveNode' ) },
+        options.curveNodeOptions ) );
 
     this.replaceChild( this.curveNode, transformedCurveNode );
     this.curveNode = transformedCurveNode;
