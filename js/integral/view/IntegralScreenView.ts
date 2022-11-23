@@ -26,9 +26,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         [ 'integral', 'original' ]
       ],
       controlPanelOptions: {
-        checkboxGroup: {
-          areaUnderCurveCheckboxProperty: new BooleanProperty( true )
-        }
+        areaUnderCurveCheckboxProperty: new BooleanProperty( true )
       }
     }, providedOptions );
 

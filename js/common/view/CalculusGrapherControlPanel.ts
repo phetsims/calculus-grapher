@@ -24,10 +24,9 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 type SelfOptions = {
   contentSpacing?: number;
   curvePushButtonGroupOptions?: CurvePushButtonGroupOptions;
-  checkboxGroup?: {
-    areaUnderCurveCheckboxProperty?: BooleanProperty;
-    tangentCheckboxProperty?: BooleanProperty;
-  };
+  areaUnderCurveCheckboxProperty?: BooleanProperty;
+  tangentCheckboxProperty?: BooleanProperty;
+
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
@@ -45,14 +44,13 @@ export default class CalculusGrapherControlPanel extends Panel {
 
       curvePushButtonGroupOptions: {
         smoothButtonOptions: {
-          baseColor: PhetColorScheme.BUTTON_YELLOW
+          baseColor: PhetColorScheme.BUTTON_YELLOW,
+          visible: false
         }
       },
 
-      checkboxGroup: {
-        areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
-        tangentCheckboxProperty: new BooleanProperty( false )
-      },
+      areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
+      tangentCheckboxProperty: new BooleanProperty( false ),
 
       // super-class options
       stroke: CalculusGrapherColors.panelStrokeProperty,
@@ -74,14 +72,14 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
       new Text( CalculusGrapherStrings.tangentStringProperty ), {
-        visibleProperty: options.checkboxGroup.tangentCheckboxProperty,
+        visibleProperty: options.tangentCheckboxProperty,
         tandem: options.tandem.createTandem( 'tangentCheckbox' )
       }
     );
 
     const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
       new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
-        visibleProperty: options.checkboxGroup.areaUnderCurveCheckboxProperty,
+        visibleProperty: options.areaUnderCurveCheckboxProperty,
         tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
       }
     );

@@ -26,9 +26,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         [ 'original', 'derivative' ]
       ],
       controlPanelOptions: {
-        checkboxGroup: {
-          tangentCheckboxProperty: new BooleanProperty( true )
-        }
+        tangentCheckboxProperty: new BooleanProperty( true )
       }
     }, providedOptions );
 
