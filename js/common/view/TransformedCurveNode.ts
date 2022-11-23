@@ -1,35 +1,39 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * OriginalCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then
- * triggers a change in the model OriginalCurve's points.
+ * TransformedCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then
+ * triggers a change in the model TransformedCurve's points.
  *
- * Like CurveNode, OriginalCurveNode is created at the start and persists for the lifetime of the simulation. Links
- * are left as-is and OriginalCurves are never disposed.
+ * Like CurveNode, TransformedCurveNode is created at the start and persists for the lifetime of the simulation. Links
+ * are left as-is and TransformedCurves are never disposed.
  *
  * @author Brandon Li
  */
 
 import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import OriginalCurve from '../model/OriginalCurve.js';
+import TransformedCurve from '../model/TransformedCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type OriginalCurveNodeOptions = SelfOptions & CurveNodeOptions;
+export type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
-export default class OriginalCurveNode extends CurveNode {
+export default class TransformedCurveNode extends CurveNode {
 
   private readonly chartTransform: ChartTransform;
 
-  public constructor( curve: OriginalCurve, chartTransform: ChartTransform, providedOptions?: OriginalCurveNodeOptions ) {
+  public constructor( curve: TransformedCurve,
+                      curveManipulationProperties: CurveManipulationProperties,
+                      chartTransform: ChartTransform,
+                      providedOptions?: TransformedCurveNodeOptions ) {
 
-    const options = optionize<OriginalCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
+    const options = optionize<TransformedCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
       // super-class options
       continuousLinePlotOptions: {
         cursor: 'pointer'
@@ -41,8 +45,8 @@ export default class OriginalCurveNode extends CurveNode {
     this.chartTransform = chartTransform;
 
     //----------------------------------------------------------------------------------------
-    // Add a DragListener to the linePlot for manipulating the OriginalCurve model. Listener is never removed since
-    // OriginalCurveNodes are never disposed.
+    // Add a DragListener to the linePlot for manipulating the TransformedCurve model. Listener is never removed since
+    // TransformedCurveNodes are never disposed.
 
     let penultimatePosition: Vector2;
     let antepenultimatePosition: Vector2 | null = null;
@@ -68,7 +72,9 @@ export default class OriginalCurveNode extends CurveNode {
         penultimatePosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
         // update curve based on mode and width
-        curve.operatedCurve(
+        curve.userManipulatedCurve(
+          curveManipulationProperties.mode,
+          curveManipulationProperties.width,
           modelPosition,
           penultimatePosition,
           antepenultimatePosition );
@@ -137,4 +143,4 @@ export default class OriginalCurveNode extends CurveNode {
   }
 }
 
-calculusGrapher.register( 'OriginalCurveNode', OriginalCurveNode );
+calculusGrapher.register( 'TransformedCurveNode', TransformedCurveNode );

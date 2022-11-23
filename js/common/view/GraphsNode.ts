@@ -58,6 +58,7 @@ export default class GraphNodes extends Node {
       } );
 
     const originalGraphNode = new OriginalGraphNode( model.originalCurve,
+      model.curveManipulationProperties,
       gridVisibleProperty,
       graphHeightProperty,
       CurveLabelsNode.getOriginalLabel(),
@@ -113,21 +114,21 @@ export default class GraphNodes extends Node {
 
       // array of Node content of this class
       const content = graphSet.map( graphType => {
-        if ( graphType === 'integral' ) {
-          return integralGraphNode;
-        }
-        else if ( graphType === 'original' ) {
-          return originalGraphNode;
-        }
-        else if ( graphType === 'derivative' ) {
-          return derivativeGraphNode;
-        }
-        else if ( graphType === 'secondDerivative' ) {
-          return secondDerivativeGraphNode;
-        }
-        else {
-          throw new Error( 'Unsupported graphType' );
-        }
+          if ( graphType === 'integral' ) {
+            return integralGraphNode;
+          }
+          else if ( graphType === 'original' ) {
+            return originalGraphNode;
+          }
+          else if ( graphType === 'derivative' ) {
+            return derivativeGraphNode;
+          }
+          else if ( graphType === 'secondDerivative' ) {
+            return secondDerivativeGraphNode;
+          }
+          else {
+            throw new Error( 'Unsupported graphType' );
+          }
         }
       );
 

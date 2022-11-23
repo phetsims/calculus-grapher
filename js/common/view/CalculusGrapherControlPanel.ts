@@ -11,7 +11,6 @@ import { HSeparator, Text, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import OriginalCurve from '../model/OriginalCurve.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup, { CurvePushButtonGroupOptions } from './CurvePushButtonGroup.js';
@@ -20,20 +19,22 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import TransformedCurve from '../model/TransformedCurve.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 
 type SelfOptions = {
   contentSpacing?: number;
   curvePushButtonGroupOptions?: CurvePushButtonGroupOptions;
   areaUnderCurveCheckboxProperty?: BooleanProperty;
   tangentCheckboxProperty?: BooleanProperty;
-
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
-  public constructor( originalCurve: OriginalCurve,
+  public constructor( originalCurve: TransformedCurve,
+                      curveManipulationProperties: CurveManipulationProperties,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
@@ -52,7 +53,6 @@ export default class CalculusGrapherControlPanel extends Panel {
       areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
       tangentCheckboxProperty: new BooleanProperty( false ),
 
-
       // super-class options
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty
@@ -61,8 +61,8 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls(
-      originalCurve.curveManipulationWidthProperty,
-      originalCurve.curveManipulationModeProperty, {
+      curveManipulationProperties.widthProperty,
+      curveManipulationProperties.modeProperty, {
         tandem: options.tandem.createTandem( 'curveManipulationControls' )
       } );
 

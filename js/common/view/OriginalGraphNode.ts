@@ -18,17 +18,17 @@
 
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import OriginalCurveNode, { OriginalCurveNodeOptions } from './OriginalCurveNode.js';
+import TransformedCurveNode from './TransformedCurveNode.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import OriginalCurve from '../model/OriginalCurve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import TransformedCurve from '../model/TransformedCurve.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -38,7 +38,8 @@ export default class OriginalGraphNode extends GraphNode {
 
   private readonly upAndDownArrowVisibleProperty: BooleanProperty;
 
-  public constructor( curve: OriginalCurve,
+  public constructor( curve: TransformedCurve,
+                      curveManipulationProperties: CurveManipulationProperties,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
@@ -51,15 +52,21 @@ export default class OriginalGraphNode extends GraphNode {
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty,
         opacity: 1
       },
-      curveNodeOptions: {
-        tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
-      },
       plusMinusZoomButtonGroupOptions: {
         visibleProperty: new BooleanProperty( false )
       }
     }, providedOptions );
 
     super( curve, gridVisibleProperty, graphHeightProperty, labelNode, options );
+
+
+    const transformedCurveNode = new TransformedCurveNode( curve,
+      curveManipulationProperties,
+      this.chartTransform,
+      { tandem: options.tandem.createTandem( 'originalCurveNode' ) } );
+
+    this.replaceChild( this.curveNode, transformedCurveNode );
+    this.curveNode = transformedCurveNode;
 
     // set up and down arrow
     const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
@@ -108,6 +115,7 @@ export default class OriginalGraphNode extends GraphNode {
       this.curveNode.setPointerAreas();
     } );
 
+
   }
 
   /**
@@ -116,13 +124,6 @@ export default class OriginalGraphNode extends GraphNode {
   public override reset(): void {
     super.reset();
     this.upAndDownArrowVisibleProperty.reset();
-  }
-
-  public override getCurveNode( curve: OriginalCurve,
-                                chartTransform: ChartTransform,
-                                options: OriginalCurveNodeOptions ): OriginalCurveNode {
-
-    return new OriginalCurveNode( curve, chartTransform, options );
   }
 }
 

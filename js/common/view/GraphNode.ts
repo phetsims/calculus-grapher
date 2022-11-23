@@ -59,7 +59,7 @@ export default class GraphNode extends Node {
   private readonly curveVisibleProperty: BooleanProperty;
   private readonly graphVisibleProperty: BooleanProperty;
   public readonly chartTransform: ChartTransform;
-  protected readonly curveNode: CurveNode;
+  protected curveNode: CurveNode;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
@@ -124,7 +124,7 @@ export default class GraphNode extends Node {
       { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
 
     // curve associated with this graph
-    this.curveNode = this.getCurveNode( curve, this.chartTransform, options.curveNodeOptions );
+    this.curveNode = new CurveNode( curve, this.chartTransform, options.curveNodeOptions );
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
@@ -261,11 +261,6 @@ export default class GraphNode extends Node {
     this.zoomLevelProperty.reset();
     this.curveVisibleProperty.reset();
     this.graphVisibleProperty.reset();
-  }
-
-  public getCurveNode( curve: Curve, chartTransform: ChartTransform, options: CurveNodeOptions ): CurveNode {
-
-    return new CurveNode( curve, chartTransform, options );
   }
 
 

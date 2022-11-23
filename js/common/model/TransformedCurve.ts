@@ -11,9 +11,9 @@
  *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
  *
  *   - Saving the curve
+ *   - Implementing smoothing, undoing, and other interactions.
  *   - Resetting all the points of the curve
  *  TransformedCurve is created at the start and persists for the lifetime of the simulation.
- *
  *
  * @author Martin Veillette
  */
@@ -29,6 +29,7 @@ import CurvePoint from './CurvePoint.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
+const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDeviation;
 
 type SelfOptions = EmptySelfOptions;
 
@@ -38,7 +39,9 @@ export default class TransformedCurve extends Curve {
 
   public constructor( providedOptions: TransformedCurveOptions ) {
 
-    const options = optionize<TransformedCurveOptions, SelfOptions, CurveOptions>()( {}, providedOptions );
+    const options = optionize<TransformedCurveOptions, SelfOptions, CurveOptions>()( {
+      pointsPropertyReadOnly: false
+    }, providedOptions );
 
     super( options );
   }
@@ -56,8 +59,8 @@ export default class TransformedCurve extends Curve {
   /**
    * Saves the current y-values of the Points for the next undoToLastSave() method.
    *
-   * This method is invoked when the user starts manipulating the OriginalCurve. When the undo button is pressed,
-   * the Points of the OriginalCurve will be set to their last saved state.
+   * This method is invoked when the user starts manipulating the TransformedCurve. When the undo button is pressed,
+   * the Points of the TransformedCurve will be set to their last saved state.
    */
   public saveCurrentPoints(): void {
 
@@ -496,6 +499,70 @@ export default class TransformedCurve extends Curve {
 
       return isOutsideBounds || Math.abs( point.lastSavedY ) < 1e-3;
     } );
+  }
+
+
+  /**
+   * Sets the y-values of this CurvedPoints of this Curve to its last saved state.
+   *
+   * This method is invoked when the undo button is pressed, which successively undos the last action.
+   */
+  public undoToLastSave(): void {
+
+    // Revert to the saved y-value of each CurvePoint.
+    this.points.forEach( point => point.undoToLastSave() );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
+   * Smooths the curve. Called when the user presses the 'smooth' button
+   * This method uses a weighted-average algorithm for 'smoothing' a curve, using a gaussian kernel
+   * see https://en.wikipedia.org/wiki/Kernel_smoother
+   */
+  public smooth(): void {
+
+    // Save the current values of our Points for the next undoToLastSave call.
+    // Note that the current y-values are the same as the previous y-values
+    // for all Points in the TransformedCurve.
+    this.saveCurrentPoints();
+
+    // gaussian kernel that will be used in the convolution of our curve
+    const gaussianFunction = ( x: number ) => Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 ) /
+                                              ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+
+    // Loop through each Point of the curve and set the new y-value.
+    this.points.forEach( point => {
+
+      // Flag that tracks the sum of the weighted y-values of all Points
+      let weightedY = 0;
+      let totalWeight = 0;
+
+      // we want to use the kernel over a number of standard deviations
+      // beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so it becomes irrelevant.
+      const numberOfStandardDeviations = 3;
+
+      // Loop through each point on BOTH sides of the window, adding the y-value to our total.
+      for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
+            dx < numberOfStandardDeviations * STANDARD_DEVIATION;
+            dx += 1 / this.pointsPerCoordinate ) {
+
+        // weight of the point
+        const weight = gaussianFunction( dx );
+
+        totalWeight += weight;
+
+        // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
+        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
+      }
+
+      // Set the Point's new y-value to the weighted average.
+      point.y = weightedY / totalWeight;
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
   public freeformIconCurve( yMin: number, yMax: number ): void {

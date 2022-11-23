@@ -2,17 +2,13 @@
 
 /**
  * DerivativeCurve is a Curve sub-type for a curve that represents the derivative of a 'base' curve. It is used
- * as both the first derivative and second derivative of the OriginalCurve.
+ * as both the first derivative and second derivative of the TransformedCurve.
  *
  * DerivativeCurves' main responsibility is to observe when the 'base' Curve changes and differentiates it and update
  * the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
  * of every point. For a general background on differentiation, see
  * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition.
  *
- * For the 'Calculus Grapher' simulation, there are no vertical tangents. However, it is possible for the 'base' Curve
- * to have cusps that are not differentiable. See https://en.wikipedia.org/wiki/Cusp_(singularity). Cusps imply that the
- * Point is non-differentiable and non-twice-differentiable. Cusps are detected when the slope of the left secant line
- * and the slope of the right secant line differ by more than a set threshold.
  *
  * Like Curve, DerivativeCurve is created at the start and persists for the lifetime of the simulation. Links
  * are left as-is and DerivativeCurves are never disposed.

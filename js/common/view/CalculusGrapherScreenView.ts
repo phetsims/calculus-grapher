@@ -73,6 +73,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
 
     const controlPanel = new CalculusGrapherControlPanel( model.originalCurve,
+      model.curveManipulationProperties,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         bottom: toolsCheckboxGroup.top - 20,

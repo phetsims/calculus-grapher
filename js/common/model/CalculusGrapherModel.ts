@@ -8,7 +8,6 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivativeCurve from './DerivativeCurve.js';
-import OriginalCurve from './OriginalCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import IntegralCurve from './IntegralCurve.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -16,6 +15,8 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CurveManipulationProperties from './CurveManipulationProperties.js';
+import TransformedCurve from './TransformedCurve.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
@@ -27,14 +28,17 @@ export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjec
 
 export default class CalculusGrapherModel {
 
-  // the model of the various curves
-  public readonly originalCurve: OriginalCurve;
-  public readonly derivativeCurve: DerivativeCurve;
-  public readonly integralCurve: IntegralCurve;
-  public readonly secondDerivativeCurve: DerivativeCurve;
+  // create properties associated with the curve such at the width and mode
+  public readonly curveManipulationProperties: CurveManipulationProperties;
 
   // value to track the x position of the reference line
   public readonly referenceLineXCoordinateProperty: NumberProperty;
+
+  // the model of the various curves
+  public readonly originalCurve: TransformedCurve;
+  public readonly derivativeCurve: DerivativeCurve;
+  public readonly integralCurve: IntegralCurve;
+  public readonly secondDerivativeCurve: DerivativeCurve;
 
   public constructor( providedOptions: CalculusGrapherModelOptions ) {
 
@@ -42,14 +46,20 @@ export default class CalculusGrapherModel {
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
+    this.curveManipulationProperties = new CurveManipulationProperties(
+      options.curveManipulationModeChoices,
+      { tandem: options.tandem.createTandem( 'curveManipulationProperties' ) }
+    );
+
     this.referenceLineXCoordinateProperty = new NumberProperty( CURVE_X_RANGE.getCenter(), {
       range: CURVE_X_RANGE,
       tandem: options.tandem.createTandem( 'referenceLineXCoordinateProperty' )
     } );
 
-    this.originalCurve = new OriginalCurve( options.curveManipulationModeChoices, {
+    this.originalCurve = new TransformedCurve( {
       tandem: options.tandem.createTandem( 'originalCurve' )
     } );
+
     this.derivativeCurve = new DerivativeCurve( this.originalCurve, options.tandem.createTandem( 'derivativeCurve' ) );
     this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, options.tandem.createTandem( 'secondDerivativeCurve' ) );
     this.integralCurve = new IntegralCurve( this.originalCurve, options.tandem.createTandem( 'integralCurve' ) );
@@ -59,8 +69,9 @@ export default class CalculusGrapherModel {
    * Reset all
    */
   public reset(): void {
-    this.originalCurve.reset();
+    this.curveManipulationProperties.reset();
     this.referenceLineXCoordinateProperty.reset();
+    this.originalCurve.reset();
   }
 }
 

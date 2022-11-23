@@ -7,8 +7,8 @@
  * Each CurvePoint contains the following information:
  *   - The corresponding y-value of the Point.
  *   - Whether the Point exists. A Point that isn't defined means that the Curve has a hole or a discontinuity.
- *   - All of its previously 'saved' y-values. When the user finishes manipulating the OriginalCurve, the y-value of
- *     CurvePoints in the OriginalCurve are saved.
+ *   - All of its previously 'saved' y-values. When the user finishes manipulating the TransformedCurve, the y-value of
+ *     CurvePoints in the TransformedCurve are saved.
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve (and its subtypes) to partition the curve
  * into a finite number of close points that map out the general shape and curvature. Adjacent CurvePoints are
@@ -104,8 +104,8 @@ export default class CurvePoint {
 
   /**
    * Saves the current y-value of the Point for the next undoToLastSave() method.
-   * This method is invoked when the user finishes manipulating the OriginalCurve. When the undo button is pressed,
-   * the Points of the OriginalCurve will be set to their last saved state.
+   * This method is invoked when the user finishes manipulating the TransformedCurve. When the undo button is pressed,
+   * the Points of the TransformedCurve will be set to their last saved state.
    */
   public save(): void {
 

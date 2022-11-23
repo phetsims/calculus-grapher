@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * IntegralCurve is a Curve sub-type for the curve that represents the integral of the OriginalCurve. The OriginalCurve
+ * IntegralCurve is a Curve sub-type for the curve that represents the integral of the TransformedCurve. The TransformedCurve
  * is referenced as the 'base' Curve of the IntegralCurve.
  *
  * IntegralCurve's main responsibility is to observe when the 'base' Curve changes and integrate it and update the
@@ -54,7 +54,7 @@ export default class IntegralCurve extends Curve {
    * trapezoidal areas correctly matches one of the definitions of an Integral where each y-value represents the 'area'
    * under the 'base' Curve. See https://en.wikipedia.org/wiki/Integral#Riemann_integral
    *
-   * The IntegralCurve exists at all points since OriginalCurve is finite at all points, so we don't need to consider
+   * The IntegralCurve exists at all points since TransformedCurve is finite at all points, so we don't need to consider
    * non-differentiable or non-finite points of the 'base' curve.
    */
   private updateIntegral(): void {

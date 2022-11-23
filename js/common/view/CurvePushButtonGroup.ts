@@ -12,9 +12,9 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import { HBox, Node, NodeOptions, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
-import OriginalCurve from '../model/OriginalCurve.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import UndoButton from '../../../../scenery-phet/js/buttons/UndoButton.js';
+import TransformedCurve from '../model/TransformedCurve.js';
 
 type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
@@ -24,7 +24,7 @@ export type CurvePushButtonGroupOptions = SelfOptions & NodeOptions;
 
 export default class CurvePushButtonGroup extends Node {
 
-  public constructor( originalCurve: OriginalCurve,
+  public constructor( originalCurve: TransformedCurve,
                       providedOptions?: CurvePushButtonGroupOptions ) {
 
     const options = optionize<CurvePushButtonGroupOptions, SelfOptions, NodeOptions>()( {
