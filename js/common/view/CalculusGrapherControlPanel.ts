@@ -52,24 +52,29 @@ export default class CalculusGrapherControlPanel extends Panel {
       areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
       tangentCheckboxProperty: new BooleanProperty( false ),
 
+
       // super-class options
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty
 
     }, providedOptions );
 
+    // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls(
       originalCurve.curveManipulationWidthProperty,
       originalCurve.curveManipulationModeProperty, {
         tandem: options.tandem.createTandem( 'curveManipulationControls' )
       } );
 
+    // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
     const curveButtons = new CurvePushButtonGroup( originalCurve,
       combineOptions<CurvePushButtonGroupOptions>( {
           tandem: options.tandem.createTandem( 'curveButtons' )
         },
         options.curvePushButtonGroupOptions ) );
 
+
+    // create tangent checkbox, with visibility tied to option field
     const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
       new Text( CalculusGrapherStrings.tangentStringProperty ), {
         visibleProperty: options.tangentCheckboxProperty,
@@ -77,6 +82,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       }
     );
 
+    // create area under curve checkbox, with visibility tied to option field
     const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
       new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
         visibleProperty: options.areaUnderCurveCheckboxProperty,
@@ -84,6 +90,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       }
     );
 
+    // assemble all the scenery nodes
     const contentNode = new VBox( {
       spacing: options.contentSpacing,
       children: [ curveManipulationControls,
