@@ -19,7 +19,9 @@ const CalculusGrapherSymbols = {
   xStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.xStringProperty ), // x
   fStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.fStringProperty ), // f
   tStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.tStringProperty ), // t
-  integral: MathSymbolFont.getRichTextMarkup( '\u222B', 'normal' )
+  integral: MathSymbolFont.getRichTextMarkup( '\u222B', 'normal' ),
+  prime: MathSymbolFont.getRichTextMarkup( '\'' ),
+  doublePrime: MathSymbolFont.getRichTextMarkup( '"' )
 };
 
 calculusGrapher.register( 'CalculusGrapherSymbols', CalculusGrapherSymbols );

@@ -75,13 +75,13 @@ export default class CurveLabelNode extends Node {
     }
   }
 
-  // label for f(x), f'(x) and f''(x)
-  public getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, primeString: string ): Node {
+  // label for f(x), f'(x) and f"(x)
+  public getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, primeString = '' ): Node {
 
     const labelStringProperty = new DerivedProperty(
       [ CalculusGrapherSymbols.fStringProperty, variableStringProperty ],
       ( f, x ) => {
-        return `${f}${primeString}(${x})`;
+        return `${f}${HAIR_SPACE_STRING}${primeString}(${x})`;
       } );
 
     return new RichText( labelStringProperty, { font: DEFAULT_FONT } );
@@ -90,26 +90,19 @@ export default class CurveLabelNode extends Node {
   // label for f(x)
   private getOriginal( variableStringProperty: TReadOnlyProperty<string> ): Node {
 
-    // insert a thin space between f and the parenthesis
-    return this.getPrimeLabel( variableStringProperty, HAIR_SPACE_STRING );
+    return this.getPrimeLabel( variableStringProperty );
   }
 
   // label for f'(x)
   private getLagrangeDerivative( variableStringProperty: TReadOnlyProperty<string> ): Node {
 
-    // space followed by a single apostrophe
-    const singleApostrophe = ' \'';
-
-    return this.getPrimeLabel( variableStringProperty, singleApostrophe );
+    return this.getPrimeLabel( variableStringProperty, CalculusGrapherSymbols.prime );
   }
 
   // label for f"(x)
   private getLagrangeSecondDerivative( variableStringProperty: TReadOnlyProperty<string> ): Node {
 
-    // space followed by a double apostrophe
-    const doubleApostrophe = ' "';
-
-    return this.getPrimeLabel( variableStringProperty, doubleApostrophe );
+    return this.getPrimeLabel( variableStringProperty, CalculusGrapherSymbols.doublePrime );
   }
 
   // label for df/dx, or df/dt
