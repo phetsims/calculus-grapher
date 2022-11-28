@@ -15,7 +15,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
-import CurveLabelsNode from './CurveLabelsNode.js';
+import CurveLabelNode from './CurveLabelNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { GraphSet } from './CalculusGrapherScreenView.js';
 import Property from '../../../../axon/js/Property.js';
@@ -47,7 +47,7 @@ export default class GraphNodes extends Node {
     const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      CurveLabelsNode.getIntegralLabel(),
+      new CurveLabelNode( { graphType: 'integral' } ),
       {
         curveNodeOptions: {
           continuousLinePlotOptions: {
@@ -61,7 +61,7 @@ export default class GraphNodes extends Node {
       model.curveManipulationProperties,
       gridVisibleProperty,
       graphHeightProperty,
-      CurveLabelsNode.getOriginalLabel(),
+      new CurveLabelNode( { graphType: 'original' } ),
       {
         curveNodeOptions: {
           continuousLinePlotOptions: {
@@ -74,7 +74,7 @@ export default class GraphNodes extends Node {
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      CurveLabelsNode.getDerivativeLabel(),
+      new CurveLabelNode( { graphType: 'derivative' } ),
       {
         curveNodeOptions: {
           continuousLinePlotOptions: {
@@ -88,7 +88,7 @@ export default class GraphNodes extends Node {
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      CurveLabelsNode.getSecondDerivativeLabel(),
+      new CurveLabelNode( { graphType: 'secondDerivative' } ),
       {
         curveNodeOptions: {
           continuousLinePlotOptions: {

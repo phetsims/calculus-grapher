@@ -11,7 +11,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Property from '../../../../axon/js/Property.js';
-import CurveLabelsNode from './CurveLabelsNode.js';
+import CurveLabelNode from './CurveLabelNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import { GraphSet } from './CalculusGrapherScreenView.js';
 
@@ -33,14 +33,14 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
 
     // Item for integral radio button
     const integralRadioButtonItem = createItem(
-      CurveLabelsNode.getIntegralLabel(),
+      new CurveLabelNode( { graphType: 'integral' } ),
       graphSets[ 0 ], {
         tandemName: 'integralRadioButton'
       } );
 
     // Item for integral radio button
     const derivativeRadioButtonItem = createItem(
-      CurveLabelsNode.getDerivativeLabel(),
+      new CurveLabelNode( { graphType: 'derivative' } ),
       graphSets[ 1 ], {
         tandemName: 'derivativeRadioButton'
       } );

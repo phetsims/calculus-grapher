@@ -20,7 +20,7 @@ import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 
-type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
+export type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
 export type GraphSet = GraphType[];
 
 type SelfOptions = {

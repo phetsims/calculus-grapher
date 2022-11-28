@@ -16,11 +16,9 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
 import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
-import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
+import { DerivativeNotation, DerivativeNotationValues, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
+import CurveLabelNode from './CurveLabelNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -89,12 +87,16 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
         value: 'lagrange',
-        createNode: tandem => createLabel( CalculusGrapherStrings.LagrangeStringProperty, functionVariableProperty ),
+        createNode: tandem => createLabel( CalculusGrapherStrings.LagrangeStringProperty,
+          new StringEnumerationProperty( 'lagrange', { validValues: DerivativeNotationValues } ),
+          functionVariableProperty ),
         tandemName: `lagrange${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 'leibniz',
-        createNode: tandem => createLabel( CalculusGrapherStrings.LeibnizStringProperty, functionVariableProperty ),
+        createNode: tandem => createLabel( CalculusGrapherStrings.LeibnizStringProperty,
+          new StringEnumerationProperty( 'leibniz', { validValues: DerivativeNotationValues } ),
+          functionVariableProperty ),
         tandemName: `leibniz${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
@@ -107,21 +109,22 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
  * Creates the label for a radio button.
  */
 function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
+                      derivativeNotationProperty: StringEnumerationProperty<DerivativeNotation>,
                       functionVariableProperty: StringEnumerationProperty<FunctionVariable> ): Node {
 
-  const functionVariableStringProperty = new DerivedProperty(
-    [ functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
-    ( functionVariable, xString, tString ) => ( functionVariable === 'x' ) ? xString : tString
-  );
-
-  const stringProperty = new PatternStringProperty( derivedNotationStringProperty, {
-    variable: functionVariableStringProperty,
-    f: CalculusGrapherSymbols.fStringProperty,
-    d: CalculusGrapherSymbols.dStringProperty
+  const curveLabelNode = new CurveLabelNode( {
+    graphType: 'derivative',
+    derivativeNotationProperty: derivativeNotationProperty,
+    functionVariableProperty: functionVariableProperty
   } );
 
-  return new RichText( stringProperty, {
+  const text = new RichText( derivedNotationStringProperty, {
     font: PreferencesDialog.CONTENT_FONT
+  } );
+
+  return new HBox( {
+    children: [ text, curveLabelNode ],
+    spacing: 15
   } );
 }
 
