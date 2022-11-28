@@ -49,14 +49,13 @@ export default class CalculusGrapherPreferencesNode extends VBox {
       tandem: options.tandem.createTandem( 'discontinuitiesControl' )
     } );
 
-    const notationControl = new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty,
-      CalculusGrapherPreferences.functionVariableProperty, {
-        tandem: options.tandem.createTandem( 'notationControl' )
-      } );
+    const notationControl = new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty, {
+      tandem: options.tandem.createTandem( 'notationControl' )
+    } );
 
     const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty, {
-        tandem: options.tandem.createTandem( 'variableControl' )
-      } );
+      tandem: options.tandem.createTandem( 'variableControl' )
+    } );
 
     this.children = [ valuesControl, discontinuitiesControl, notationControl, variableControl ];
 
