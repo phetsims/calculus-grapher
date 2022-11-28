@@ -42,15 +42,26 @@ export default class CurveLabelNode extends Node {
       functionVariableProperty: CalculusGrapherPreferences.functionVariableProperty
     }, providedOptions );
 
-    super( options );
+
+    super();
 
     // get variable as a StringProperty
     const variableStringProperty = this.getVariableStringProperty( options.functionVariableProperty );
 
+    // create and add content for the node, based on graphType, notation and variable
+    let labelNode = this.getContent( options.graphType, options.derivativeNotationProperty.value, variableStringProperty );
+    this.addChild( labelNode );
+
+
     options.derivativeNotationProperty.link( derivationNotation => {
-      this.removeAllChildren();
-      const content = this.getContent( options.graphType, derivationNotation, variableStringProperty );
-      this.addChild( content );
+
+      // remove and dispose previous labelNode
+      this.removeChild( labelNode );
+      labelNode.dispose();
+
+      // create and add new label
+      labelNode = this.getContent( options.graphType, derivationNotation, variableStringProperty );
+      this.addChild( labelNode );
     } );
   }
 
