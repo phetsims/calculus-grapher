@@ -1,16 +1,8 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * GraphNode is the view representation of a Graph, which includes a curve, a chart ( grid and axes) and zoom buttons
- *
- * Primary responsibilities are:
- * - Create an associated CurveNode
- * - Create a zoomButtonGroup with an associated property
- * - Create AxisLines, GridLines and Rectangle Chart
- * - Create a Chart Transform
- * - Updating the model y Range of the graph based on the zoom level
- * - Toggling the visibility of the gridlines
- * - Set the height of the graph
+ * OriginalGraphNode is the view representation of an Original Graph, which includes two curves,
+ *  an
  *
  * @author Martin Veillette
  * @author Brandon Li
@@ -40,7 +32,8 @@ export default class OriginalGraphNode extends GraphNode {
 
   private readonly upAndDownArrowVisibleProperty: BooleanProperty;
 
-  public constructor( curve: TransformedCurve,
+  public constructor( originalCurve: TransformedCurve,
+                      predictCurve: TransformedCurve,
                       curveManipulationProperties: CurveManipulationProperties,
                       gridVisibleProperty: Property<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
@@ -51,7 +44,7 @@ export default class OriginalGraphNode extends GraphNode {
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
         createCurveNode: ( chartTransform: ChartTransform,
-                           providedOptions?: CurveNodeOptions ) => new TransformedCurveNode( curve,
+                           providedOptions?: CurveNodeOptions ) => new TransformedCurveNode( originalCurve,
           curveManipulationProperties, chartTransform, providedOptions ),
         curveNodeOptions: {
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
@@ -67,7 +60,18 @@ export default class OriginalGraphNode extends GraphNode {
       },
       providedOptions
     );
-    super( curve, gridVisibleProperty, graphHeightProperty, labelNode, options );
+    super( originalCurve, gridVisibleProperty, graphHeightProperty, labelNode, options );
+
+
+    const predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform,
+      {
+        tandem: providedOptions.tandem.createTandem( 'predictCurveNode' ),
+
+        // temporary
+        visible: false
+      } );
+
+    this.addChild( predictCurveNode );
 
     // set up and down arrow
     const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
@@ -95,7 +99,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveNode.addChild( upAndDownArrow );
 
     // set the visibility of up and down arrow to invisible if the curve has been touched once.
-    curve.curveChangedEmitter.addListener( () => {
+    originalCurve.curveChangedEmitter.addListener( () => {
       this.upAndDownArrowVisibleProperty.value = false;
     } );
 
@@ -108,12 +112,14 @@ export default class OriginalGraphNode extends GraphNode {
 
       // TODO: find a way to update touch/mouse area without resorting to this
       this.curveNode.setPointerAreas();
+      predictCurveNode.setPointerAreas();
     } );
 
     this.zoomLevelProperty.link( () => {
 
       // TODO: find a way to update touch/mouse area without resorting to this
       this.curveNode.setPointerAreas();
+      predictCurveNode.setPointerAreas();
     } );
 
 

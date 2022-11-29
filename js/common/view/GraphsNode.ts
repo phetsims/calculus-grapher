@@ -58,6 +58,7 @@ export default class GraphNodes extends Node {
       } );
 
     const originalGraphNode = new OriginalGraphNode( model.originalCurve,
+      model.predictCurve,
       model.curveManipulationProperties,
       gridVisibleProperty,
       graphHeightProperty,
