@@ -272,8 +272,8 @@ export default class GraphNode extends Node {
    */
   private getVerticalTickLabelSet( spacing: number ): TickLabelSet {
 
-    // no more than two decimal places
-    const decimalPlaces = Math.min( 2, Utils.numberOfDecimalPlaces( spacing ) );
+    // no more than three decimal places
+    const decimalPlaces = Math.min( 3, Utils.numberOfDecimalPlaces( spacing ) );
 
     return new TickLabelSet( this.chartTransform, Orientation.VERTICAL, spacing,
       {
