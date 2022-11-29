@@ -36,6 +36,7 @@ export default class CalculusGrapherModel {
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
+  public readonly predictCurve: TransformedCurve;
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
@@ -59,10 +60,14 @@ export default class CalculusGrapherModel {
     this.originalCurve = new TransformedCurve( {
       tandem: options.tandem.createTandem( 'originalCurve' )
     } );
+    this.predictCurve = new TransformedCurve( {
+      tandem: options.tandem.createTandem( 'predictCurve' )
+    } );
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve, options.tandem.createTandem( 'derivativeCurve' ) );
     this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, options.tandem.createTandem( 'secondDerivativeCurve' ) );
     this.integralCurve = new IntegralCurve( this.originalCurve, options.tandem.createTandem( 'integralCurve' ) );
+
   }
 
   /**
@@ -72,6 +77,7 @@ export default class CalculusGrapherModel {
     this.curveManipulationProperties.reset();
     this.referenceLineXCoordinateProperty.reset();
     this.originalCurve.reset();
+    this.predictCurve.reset();
   }
 }
 
