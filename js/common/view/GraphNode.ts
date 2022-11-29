@@ -69,12 +69,6 @@ export default class GraphNode extends Node {
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
-    // chart transform for the graph, the height and Y range will be updated later
-    const chartTransform = new ChartTransform( {
-      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
-      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
-    } );
-
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
       createCurveNode: ( chartTransform: ChartTransform,
                          providedOptions?: CurveNodeOptions ) => new CurveNode( curve, chartTransform, providedOptions ),
@@ -103,7 +97,11 @@ export default class GraphNode extends Node {
 
     super( options );
 
-    this.chartTransform = chartTransform;
+    // chart transform for the graph, the height and Y range will be updated later
+    this.chartTransform = new ChartTransform( {
+      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
+    } );
 
     // grid lines
     const horizontalGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
