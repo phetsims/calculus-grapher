@@ -18,7 +18,7 @@
 
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import TransformedCurveNode, { TransformedCurveNodeOptions } from './TransformedCurveNode.js';
+import TransformedCurveNode from './TransformedCurveNode.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -29,6 +29,8 @@ import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNo
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import { CurveNodeOptions } from './CurveNode.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -45,30 +47,27 @@ export default class OriginalGraphNode extends GraphNode {
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
+
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
-      chartRectangleOptions: {
-        fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
-        stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty,
-        opacity: 1
+        createCurveNode: ( chartTransform: ChartTransform,
+                           providedOptions?: CurveNodeOptions ) => new TransformedCurveNode( curve,
+          curveManipulationProperties, chartTransform, providedOptions ),
+        curveNodeOptions: {
+          tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
+        },
+        chartRectangleOptions: {
+          fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
+          stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty,
+          opacity: 1
+        },
+        plusMinusZoomButtonGroupOptions: {
+          visibleProperty: new BooleanProperty( false )
+        }
       },
-      plusMinusZoomButtonGroupOptions: {
-        visibleProperty: new BooleanProperty( false )
-      }
-    }, providedOptions );
-
+      providedOptions
+    );
     super( curve, gridVisibleProperty, graphHeightProperty, labelNode, options );
-
-
-    const transformedCurveNode = new TransformedCurveNode( curve,
-      curveManipulationProperties,
-      this.chartTransform,
-      combineOptions<TransformedCurveNodeOptions>(
-        { tandem: options.tandem.createTandem( 'originalCurveNode' ) },
-        options.curveNodeOptions ) );
-
-    this.replaceChild( this.curveNode, transformedCurveNode );
-    this.curveNode = transformedCurveNode;
 
     // set up and down arrow
     const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();

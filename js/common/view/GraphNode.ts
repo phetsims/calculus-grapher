@@ -48,6 +48,8 @@ type SelfOptions = {
   gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
+  createCurveNode?: ( chartTransform: ChartTransform,
+                      providedOptions?: CurveNodeOptions ) => CurveNode;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
 };
@@ -67,8 +69,15 @@ export default class GraphNode extends Node {
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+    // chart transform for the graph, the height and Y range will be updated later
+    const chartTransform = new ChartTransform( {
+      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
+    } );
 
+    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+      createCurveNode: ( chartTransform: ChartTransform,
+                         providedOptions?: CurveNodeOptions ) => new CurveNode( curve, chartTransform, providedOptions ),
       gridLineSetOptions: {
         stroke: CalculusGrapherColors.gridlinesStrokeProperty
       },
@@ -94,11 +103,7 @@ export default class GraphNode extends Node {
 
     super( options );
 
-    // chart transform for the graph, the height and Y range will be updated later
-    this.chartTransform = new ChartTransform( {
-      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
-      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
-    } );
+    this.chartTransform = chartTransform;
 
     // grid lines
     const horizontalGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
@@ -123,9 +128,7 @@ export default class GraphNode extends Node {
     this.curveVisibleProperty = new BooleanProperty( true,
       { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
 
-    // curve associated with this graph
-    this.curveNode = new CurveNode( curve, this.chartTransform, options.curveNodeOptions );
-
+    this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
