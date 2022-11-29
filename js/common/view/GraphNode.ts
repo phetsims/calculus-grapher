@@ -126,7 +126,9 @@ export default class GraphNode extends Node {
     this.curveVisibleProperty = new BooleanProperty( true,
       { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
 
+    // create a curveNode associated with this graph
     this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
+
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
