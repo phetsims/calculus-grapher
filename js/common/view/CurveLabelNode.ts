@@ -18,14 +18,15 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
 
-const HAIR_SPACE_STRING = '\u200A';
+// The size of the font sizes are all related, change carefully.
 const DEFAULT_FONT = new PhetFont( 16 );
 const INTEGRAL_SYMBOL_FONT = new PhetFont( 24 );
 const UPPER_LOWER_BOUNDS_FONT = new PhetFont( 8 );
 const FRACTION_FONT = new PhetFont( 12 );
+const HAIR_SPACE_STRING = '\u200A';
 
 type SelfOptions = {
-  graphType?: GraphType;
+  graphType: GraphType;
   derivativeNotationProperty?: StringEnumerationProperty<DerivativeNotation>;
   functionVariableProperty?: StringEnumerationProperty<FunctionVariable>;
 };
@@ -37,12 +38,11 @@ export default class CurveLabelNode extends Node {
   public constructor( providedOptions: CurveLabelNodeOptions ) {
 
     const options = optionize<CurveLabelNodeOptions, SelfOptions, NodeOptions>()( {
-      graphType: 'original',
       derivativeNotationProperty: CalculusGrapherPreferences.derivativeNotationProperty,
       functionVariableProperty: CalculusGrapherPreferences.functionVariableProperty
     }, providedOptions );
 
-    super();
+    super( options );
 
     // get variable as a StringProperty
     const variableStringProperty = getVariableStringProperty( options.functionVariableProperty );
@@ -54,7 +54,6 @@ export default class CurveLabelNode extends Node {
     options.derivativeNotationProperty.link( derivationNotation => {
 
       // remove and dispose previous labelNode
-      this.removeChild( labelNode );
       labelNode.dispose();
 
       // create and add new label
