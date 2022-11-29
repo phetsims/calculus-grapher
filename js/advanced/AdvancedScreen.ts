@@ -17,7 +17,7 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 type SelfOptions = EmptySelfOptions;
 export type AdvancedScreenOptions = SelfOptions & ScreenOptions;
 
-export default class AdvancedScreen extends Screen {
+export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreenView> {
 
   public constructor( providedOptions: AdvancedScreenOptions ) {
 

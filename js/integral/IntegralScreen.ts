@@ -17,7 +17,7 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 type SelfOptions = EmptySelfOptions;
 export type IntegralScreenOptions = SelfOptions & ScreenOptions;
 
-export default class IntegralScreen extends Screen {
+export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 
   public constructor( providedOptions: IntegralScreenOptions ) {
 

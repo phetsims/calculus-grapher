@@ -17,7 +17,7 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 type SelfOptions = EmptySelfOptions;
 export type DerivativeScreenOptions = SelfOptions & ScreenOptions;
 
-export default class DerivativeScreen extends Screen {
+export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 
   public constructor( providedOptions: DerivativeScreenOptions ) {
 

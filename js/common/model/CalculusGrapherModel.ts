@@ -17,6 +17,7 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
+import TModel from '../../../../joist/js/TModel.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
@@ -26,7 +27,7 @@ type SelfOptions = {
 
 export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class CalculusGrapherModel {
+export default class CalculusGrapherModel implements TModel {
 
   // create properties associated with the curve such at the width and mode
   public readonly curveManipulationProperties: CurveManipulationProperties;

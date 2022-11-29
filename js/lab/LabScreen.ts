@@ -17,7 +17,7 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 type SelfOptions = EmptySelfOptions;
 export type LabScreenOptions = SelfOptions & ScreenOptions;
 
-export default class LabScreen extends Screen {
+export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
   public constructor( providedOptions: LabScreenOptions ) {
 
