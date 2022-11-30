@@ -38,7 +38,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
         tandemName: 'integralRadioButton'
       } );
 
-    // Item for integral radio button
+    // Item for derivative radio button
     const derivativeRadioButtonItem = createItem(
       new CurveLabelNode( { graphType: 'derivative' } ),
       graphSets[ 1 ], {
