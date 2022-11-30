@@ -26,7 +26,7 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, PathOptions, RectangleOptions, Text } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, PathOptions, RectangleOptions, TColor, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
@@ -52,6 +52,8 @@ type SelfOptions = {
                       providedOptions?: CurveNodeOptions ) => CurveNode;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
+
+  continuousLinePlotStroke?: TColor;
 };
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
@@ -92,7 +94,8 @@ export default class GraphNode extends Node {
       },
       eyeToggleButtonOptions: {
         scale: 0.5
-      }
+      },
+      continuousLinePlotStroke: CalculusGrapherColors.defaultCurveStrokeProperty
     }, providedOptions );
 
     super( options );
@@ -127,7 +130,13 @@ export default class GraphNode extends Node {
       { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
 
     // create a curveNode associated with this graph
-    this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
+    this.curveNode = options.createCurveNode( this.chartTransform,
+      combineOptions<CurveNodeOptions>( {
+          continuousLinePlotOptions: {
+            stroke: options.continuousLinePlotStroke
+          }
+        },
+        options.curveNodeOptions ) );
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );

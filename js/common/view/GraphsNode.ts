@@ -54,11 +54,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new CurveLabelNode( { graphType: 'integral' } ),
       {
-        curveNodeOptions: {
-          continuousLinePlotOptions: {
-            stroke: CalculusGrapherColors.integralCurveStrokeProperty
-          }
-        },
+        continuousLinePlotStroke: CalculusGrapherColors.integralCurveStrokeProperty,
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
@@ -69,11 +65,8 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new CurveLabelNode( { graphType: 'original' } ),
       {
-        curveNodeOptions: {
-          continuousLinePlotOptions: {
-            stroke: CalculusGrapherColors.originalCurveStrokeProperty
-          }
-        },
+        continuousLinePlotStroke: CalculusGrapherColors.originalCurveStrokeProperty,
+
         // originalGraphNode is always instrumented, because it should always be present.
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
@@ -83,11 +76,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new CurveLabelNode( { graphType: 'derivative' } ),
       {
-        curveNodeOptions: {
-          continuousLinePlotOptions: {
-            stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
-          }
-        },
+        continuousLinePlotStroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
@@ -96,11 +85,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new CurveLabelNode( { graphType: 'secondDerivative' } ),
       {
-        curveNodeOptions: {
-          continuousLinePlotOptions: {
-            stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty
-          }
-        },
+        continuousLinePlotStroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
         tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 

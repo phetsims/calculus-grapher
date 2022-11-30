@@ -24,7 +24,6 @@ import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
 import ScatterPlot, { ScatterPlotOptions } from '../../../../bamboo/js/ScatterPlot.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
@@ -78,7 +77,6 @@ export default class CurveNode extends Node {
       },
 
       continuousLinePlotOptions: {
-        stroke: CalculusGrapherColors.defaultCurveStrokeProperty,
         lineWidth: 2
       },
 
