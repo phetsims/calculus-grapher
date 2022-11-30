@@ -69,10 +69,7 @@ export default class OriginalGraphNode extends GraphNode {
     // create a predictCurveNode
     const predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform,
       {
-        tandem: providedOptions.tandem.createTandem( 'predictCurveNode' ),
-
-        // temporary
-        visible: false
+        tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
       } );
 
     this.addChild( predictCurveNode );
