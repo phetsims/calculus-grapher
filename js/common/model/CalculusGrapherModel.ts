@@ -18,10 +18,13 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
+import { GraphSet } from './GraphType.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
+  graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
 
@@ -59,16 +62,25 @@ export default class CalculusGrapherModel implements TModel {
     } );
 
     this.originalCurve = new TransformedCurve( {
+      // originalCurve is always instrumented, because it should always be present.
       tandem: options.tandem.createTandem( 'originalCurve' )
     } );
+
     this.predictCurve = new TransformedCurve( {
+      // predictCurve is always instrumented, because it should always be present.
       tandem: options.tandem.createTandem( 'predictCurve' )
     } );
 
-    this.derivativeCurve = new DerivativeCurve( this.originalCurve, options.tandem.createTandem( 'derivativeCurve' ) );
-    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, options.tandem.createTandem( 'secondDerivativeCurve' ) );
-    this.integralCurve = new IntegralCurve( this.originalCurve, options.tandem.createTandem( 'integralCurve' ) );
+    const graphTypes = _.flatten( options.graphSets );
 
+    this.derivativeCurve = new DerivativeCurve( this.originalCurve,
+      graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
+
+    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve,
+      graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeCurve' ) : Tandem.OPT_OUT );
+
+    this.integralCurve = new IntegralCurve( this.originalCurve,
+      graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
   }
 
   /**

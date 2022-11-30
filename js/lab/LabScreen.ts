@@ -13,6 +13,7 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import { GraphSet } from '../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 export type LabScreenOptions = SelfOptions & ScreenOptions;
@@ -23,9 +24,20 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     const options = optionize<LabScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
-    const createModel = () => new LabModel( { tandem: options.tandem.createTandem( 'model' ) } );
+    const graphSets: GraphSet[] = [
+      [ 'integral', 'original', 'derivative' ],
+      [ 'original', 'derivative', 'secondDerivative' ]
+    ];
 
-    const createView = ( model: LabModel ) => new LabScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
+    const createModel = () => new LabModel( {
+      graphSets: graphSets,
+      tandem: options.tandem.createTandem( 'model' )
+    } );
+
+    const createView = ( model: LabModel ) => new LabScreenView( model, {
+      graphSets: graphSets,
+      tandem: options.tandem.createTandem( 'view' )
+    } );
 
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.labStringProperty,

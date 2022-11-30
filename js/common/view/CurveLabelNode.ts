@@ -12,11 +12,11 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { GraphType } from './CalculusGrapherScreenView.js';
 import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
+import { GraphType } from '../model/GraphType.js';
 
 // The size of the font sizes are all related, change carefully.
 const DEFAULT_FONT = new PhetFont( 16 );

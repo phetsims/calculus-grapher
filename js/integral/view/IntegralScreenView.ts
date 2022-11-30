@@ -8,23 +8,19 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphSets'>;
+export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: IntegralModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphSets: [
-        [ 'integral', 'original' ]
-      ],
       controlPanelOptions: {
         areaUnderCurveCheckboxProperty: new BooleanProperty( true )
       }

@@ -12,11 +12,10 @@ import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../
 import AdvancedModel from '../model/AdvancedModel.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupOptions } from '../../common/view/GraphSetRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type AdvancedScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphSets'>;
+export type AdvancedScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class AdvancedScreenView extends CalculusGrapherScreenView {
 
@@ -25,10 +24,6 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
     const options = optionize<AdvancedScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphsRadioButtonGroupOptions: {},
       visiblePropertiesOptions: {},
-      graphSets: [
-        [ 'integral', 'original' ],
-        [ 'original', 'derivative' ]
-      ],
       controlPanelOptions: {
         curvePushButtonGroupOptions: {
           smoothButtonOptions: {

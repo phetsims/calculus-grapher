@@ -13,6 +13,7 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import { GraphSet } from '../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 export type AdvancedScreenOptions = SelfOptions & ScreenOptions;
@@ -23,9 +24,20 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     const options = optionize<AdvancedScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
-    const createModel = () => new AdvancedModel( { tandem: options.tandem.createTandem( 'model' ) } );
+    const graphSets: GraphSet[] = [
+      [ 'integral', 'original' ],
+      [ 'original', 'derivative' ]
+    ];
 
-    const createView = ( model: AdvancedModel ) => new AdvancedScreenView( model, { tandem: options.tandem.createTandem( 'view' ) } );
+    const createModel = () => new AdvancedModel( {
+      graphSets: graphSets,
+      tandem: options.tandem.createTandem( 'model' )
+    } );
+
+    const createView = ( model: AdvancedModel ) => new AdvancedScreenView( model, {
+      graphSets: graphSets,
+      tandem: options.tandem.createTandem( 'view' )
+    } );
 
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.advancedStringProperty,

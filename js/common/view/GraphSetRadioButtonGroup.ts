@@ -13,7 +13,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Property from '../../../../axon/js/Property.js';
 import CurveLabelNode from './CurveLabelNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
-import { GraphSet } from './CalculusGrapherScreenView.js';
+import { GraphSet } from '../model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 

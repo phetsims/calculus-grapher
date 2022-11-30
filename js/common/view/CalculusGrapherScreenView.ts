@@ -19,14 +19,12 @@ import { GraphSetRadioButtonGroupOptions } from './GraphSetRadioButtonGroup.js';
 import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
-
-export type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
-export type GraphSet = GraphType[];
+import { GraphSet } from '../model/GraphType.js';
 
 type SelfOptions = {
+  graphSets: GraphSet[];
   visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
   graphsRadioButtonGroupOptions?: StrictOmit<GraphSetRadioButtonGroupOptions, 'tandem'>;
-  graphSets: GraphSet[];
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
 
@@ -42,7 +40,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
-      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'graphSets' | 'controlPanelOptions'>, ScreenViewOptions>()( {}, providedOptions );
+      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'controlPanelOptions'>,
+      ScreenViewOptions>()( {}, providedOptions );
 
     super( options );
 
@@ -83,11 +82,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     toolsCheckboxGroup.left = controlPanel.left;
 
-
     this.graphsNode = new GraphsNode( model,
       this.graphSetProperty,
       this.visibleProperties.gridVisibleProperty,
       this.visibleProperties.referenceLineVisibleProperty, {
+        graphSets: options.graphSets,
         centerTop: this.layoutBounds.centerTop.plusXY( -10, 10 ),
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );

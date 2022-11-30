@@ -12,21 +12,16 @@ import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../
 import LabModel from '../model/LabModel.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupOptions } from '../../common/view/GraphSetRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LabScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphSets'>;
+export type LabScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class LabScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphSets: [
-        [ 'integral', 'original', 'derivative' ],
-        [ 'original', 'derivative', 'secondDerivative' ]
-      ],
       controlPanelOptions: {
         curvePushButtonGroupOptions: {
           smoothButtonOptions: {

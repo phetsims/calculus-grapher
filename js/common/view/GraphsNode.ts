@@ -9,7 +9,7 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -17,11 +17,14 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import CurveLabelNode from './CurveLabelNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import { GraphSet } from './CalculusGrapherScreenView.js';
 import Property from '../../../../axon/js/Property.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
+import { GraphSet } from '../model/GraphType.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  graphSets: GraphSet[];
+};
 
 export type GraphNodesOptions = SelfOptions & NodeOptions;
 
@@ -44,6 +47,8 @@ export default class GraphNodes extends Node {
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 
+    const graphTypes = _.flatten( options.graphSets );
+
     const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       graphHeightProperty,
@@ -54,7 +59,7 @@ export default class GraphNodes extends Node {
             stroke: CalculusGrapherColors.integralCurveStrokeProperty
           }
         },
-        tandem: options.tandem.createTandem( 'integralGraphNode' )
+        tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
     const originalGraphNode = new OriginalGraphNode( model.originalCurve,
@@ -69,6 +74,7 @@ export default class GraphNodes extends Node {
             stroke: CalculusGrapherColors.originalCurveStrokeProperty
           }
         },
+        // originalGraphNode is always instrumented, because it should always be present.
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       } );
 
@@ -82,8 +88,7 @@ export default class GraphNodes extends Node {
             stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
           }
         },
-        tandem: options.tandem.createTandem( 'derivativeGraphNode' )
-
+        tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
@@ -96,7 +101,7 @@ export default class GraphNodes extends Node {
             stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty
           }
         },
-        tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
+        tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,

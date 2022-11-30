@@ -8,23 +8,19 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & StrictOmit<CalculusGrapherScreenViewOptions, 'graphSets'>;
+type DerivativeScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
-  public constructor( model: DerivativeModel, providedOptions: IntroScreenViewOptions ) {
+  public constructor( model: DerivativeModel, providedOptions: DerivativeScreenViewOptions ) {
 
-    const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      graphSets: [
-        [ 'original', 'derivative' ]
-      ],
+    const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
         tangentCheckboxProperty: new BooleanProperty( true )
       }
