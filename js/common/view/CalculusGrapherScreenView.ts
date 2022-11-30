@@ -81,8 +81,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphsNode = new GraphsNode( model,
       this.graphSetProperty,
-      this.visibleProperties.gridVisibleProperty,
-      this.visibleProperties.referenceLineVisibleProperty, {
+      this.visibleProperties, {
         graphSets: options.graphSets,
         centerTop: this.layoutBounds.centerTop.plusXY( -10, 10 ),
         tandem: options.tandem.createTandem( 'graphsNode' )

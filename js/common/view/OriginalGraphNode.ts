@@ -9,7 +9,6 @@
  * @author Brandon Li
  */
 
-import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurveNode from './TransformedCurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -20,10 +19,10 @@ import { Node } from '../../../../scenery/js/imports.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import TransformedCurve from '../model/TransformedCurve.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -34,14 +33,14 @@ export default class OriginalGraphNode extends GraphNode {
   // property that tracks the visibility of the cueingArrows
   private readonly cueingArrowsNodeVisibleProperty: BooleanProperty;
 
-  public constructor( originalCurve: TransformedCurve,
-                      predictCurve: TransformedCurve,
-                      curveManipulationProperties: CurveManipulationProperties,
-                      gridVisibleProperty: Property<boolean>,
+  public constructor( model: CalculusGrapherModel,
+                      visibleProperties: CalculusGrapherVisibleProperties,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
+    // destructuring the calculus grapher model
+    const { originalCurve, predictCurve, curveManipulationProperties } = model;
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
@@ -62,7 +61,9 @@ export default class OriginalGraphNode extends GraphNode {
       },
       providedOptions
     );
-    super( originalCurve, gridVisibleProperty, graphHeightProperty, labelNode, options );
+
+
+    super( originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
 
     // create a predictCurveNode
     const predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform,

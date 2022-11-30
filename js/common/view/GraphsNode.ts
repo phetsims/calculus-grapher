@@ -21,6 +21,7 @@ import Property from '../../../../axon/js/Property.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import { GraphSet } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -35,11 +36,13 @@ export default class GraphNodes extends Node {
 
   public constructor( model: CalculusGrapherModel,
                       graphSetProperty: Property<GraphSet>,
-                      gridVisibleProperty: Property<boolean>,
-                      referenceLineVisibleProperty: Property<boolean>,
+                      visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
+
+    // is the grid of each graph node visible
+    const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
     // determine the (view) height of the graph based on the number of visible graphs.
     const graphHeightProperty = new DerivedProperty( [ graphSetProperty ], graphsSelected => {
@@ -58,10 +61,8 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
-    const originalGraphNode = new OriginalGraphNode( model.originalCurve,
-      model.predictCurve,
-      model.curveManipulationProperties,
-      gridVisibleProperty,
+    const originalGraphNode = new OriginalGraphNode( model,
+      visibleProperties,
       graphHeightProperty,
       new CurveLabelNode( { graphType: 'original' } ),
       {
@@ -69,7 +70,8 @@ export default class GraphNodes extends Node {
 
         // originalGraphNode is always instrumented, because it should always be present.
         tandem: options.tandem.createTandem( 'originalGraphNode' )
-      } );
+      }
+    );
 
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
@@ -90,7 +92,7 @@ export default class GraphNodes extends Node {
       } );
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
-      referenceLineVisibleProperty,
+      visibleProperties.referenceLineVisibleProperty,
       originalGraphNode.chartTransform,
       {
         cursor: 'pointer',
