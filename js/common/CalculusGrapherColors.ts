@@ -55,11 +55,6 @@ const CalculusGrapherColors = {
     default: 'lightgray'
   } ),
 
-  // default stroke for curves
-  defaultCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultCurveStroke', {
-    default: Color.RED
-  } ),
-
   // Stroke for the original curve
   originalCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
       default: Color.BLUE

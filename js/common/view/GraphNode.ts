@@ -53,7 +53,7 @@ type SelfOptions = {
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
 
-  continuousLinePlotStroke?: TColor;
+  continuousLinePlotStroke: TColor;
 };
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
@@ -94,8 +94,7 @@ export default class GraphNode extends Node {
       },
       eyeToggleButtonOptions: {
         scale: 0.5
-      },
-      continuousLinePlotStroke: CalculusGrapherColors.defaultCurveStrokeProperty
+      }
     }, providedOptions );
 
     super( options );
