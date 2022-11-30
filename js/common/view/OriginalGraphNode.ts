@@ -75,7 +75,9 @@ export default class OriginalGraphNode extends GraphNode {
 
     this.addChild( predictCurveNode );
 
-    this.cueingArrowsNodeVisibleProperty = new BooleanProperty( true );
+    this.cueingArrowsNodeVisibleProperty = new BooleanProperty( true, {
+      tandem: providedOptions.tandem.createTandem( 'cueingArrowsNodeVisibleProperty' )
+    } );
 
     // xPosition for cueing arrows in model coordinate
     const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
@@ -83,7 +85,8 @@ export default class OriginalGraphNode extends GraphNode {
     // create cueing arrows, y position will be set later
     const cueingArrowsNode = new CueingArrowsNode( {
       centerX: this.chartTransform.modelToViewX( centerX ),
-      visibleProperty: this.cueingArrowsNodeVisibleProperty
+      visibleProperty: this.cueingArrowsNodeVisibleProperty,
+      tandem: providedOptions.tandem.createTandem( 'cueingArrowsNode' )
     } );
 
     // attach the cueingArrowsNode to the original curve node to inherit its visibility.
