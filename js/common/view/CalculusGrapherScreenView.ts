@@ -19,6 +19,7 @@ import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -31,6 +32,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
+
+  // is the predict mode enabled for the original graph
+  public readonly predictModeEnabledProperty: Property<boolean>;
   private readonly graphsNode: GraphsNode;
   protected readonly graphSetProperty: Property<GraphSet>;
 
@@ -51,6 +55,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
+    this.predictModeEnabledProperty = new BooleanProperty( false );
+
     // Create the view-specific properties for the screen.
     this.visibleProperties = new CalculusGrapherVisibleProperties( {
       tandem: options.tandem.createTandem( 'visibleProperties' )
@@ -69,6 +75,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
 
     const controlPanel = new CalculusGrapherControlPanel( model,
+      this.predictModeEnabledProperty,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         bottom: toolsCheckboxGroup.top - 20,
@@ -79,6 +86,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     toolsCheckboxGroup.left = controlPanel.left;
 
     this.graphsNode = new GraphsNode( model,
+      this.predictModeEnabledProperty,
       this.graphSetProperty,
       this.visibleProperties, {
         graphSets: options.graphSets,
@@ -100,6 +108,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.visibleProperties.reset();
     this.graphsNode.reset();
     this.graphSetProperty.reset();
+    this.predictModeEnabledProperty.reset();
   }
 }
 

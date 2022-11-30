@@ -19,6 +19,7 @@ import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
+import Property from '../../../../axon/js/Property.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -32,6 +33,7 @@ export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 export default class CalculusGrapherControlPanel extends Panel {
 
   public constructor( model: CalculusGrapherModel,
+                      predictModeEnabledProperty: Property<boolean>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 

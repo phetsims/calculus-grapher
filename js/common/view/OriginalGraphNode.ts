@@ -34,6 +34,7 @@ export default class OriginalGraphNode extends GraphNode {
   private readonly cueingArrowsNodeVisibleProperty: BooleanProperty;
 
   public constructor( model: CalculusGrapherModel,
+                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
@@ -75,6 +76,8 @@ export default class OriginalGraphNode extends GraphNode {
       } );
 
     this.addChild( predictCurveNode );
+
+    predictModeEnabledProperty.linkAttribute( predictCurveNode, 'visible' );
 
     this.cueingArrowsNodeVisibleProperty = new BooleanProperty( true, {
       tandem: providedOptions.tandem.createTandem( 'cueingArrowsNodeVisibleProperty' )
