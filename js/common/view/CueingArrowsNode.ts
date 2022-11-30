@@ -9,7 +9,7 @@
 
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import { Node, NodeOptions, TColor, VBox } from '../../../../scenery/js/imports.js';
+import { TColor, VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -17,19 +17,20 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 type SelfOptions = {
   fill?: TColor; // {Color|string} background fill
   stroke?: TColor; // {Color|string} background stroke
-  spacing?: number; // vertical spacing between arrows
 };
 
-export type CueingArrowsNodeOptions = SelfOptions & NodeOptions;
+export type CueingArrowsNodeOptions = SelfOptions & VBoxOptions;
 
-export default class CueingArrowsNode extends Node {
+export default class CueingArrowsNode extends VBox {
 
   public constructor( providedOptions?: CueingArrowsNodeOptions ) {
 
-    const options = optionize<CueingArrowsNodeOptions, SelfOptions, NodeOptions>()(
+    const options = optionize<CueingArrowsNodeOptions, SelfOptions, VBoxOptions>()(
       {
         fill: CalculusGrapherColors.arrowFillProperty,
         stroke: null,
+
+        // VBox Options
         spacing: 15
       }, providedOptions );
 
@@ -43,12 +44,9 @@ export default class CueingArrowsNode extends Node {
     const upArrow = new ArrowNode( 0, 0, 0, -CalculusGrapherConstants.ARROW_LENGTH, arrowOptions );
     const downArrow = new ArrowNode( 0, 0, 0, CalculusGrapherConstants.ARROW_LENGTH, arrowOptions );
 
-    options.children = [ new VBox( {
-      children: [ upArrow, downArrow ],
-      spacing: options.spacing
-    } ) ];
-
-    super( options );
+    super( combineOptions<VBoxOptions>( {
+      children: [ upArrow, downArrow ]
+    }, options ) );
   }
 }
 
