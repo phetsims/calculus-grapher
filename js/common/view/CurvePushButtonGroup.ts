@@ -15,6 +15,7 @@ import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/button
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import UndoButton from '../../../../scenery-phet/js/buttons/UndoButton.js';
 import TransformedCurve from '../model/TransformedCurve.js';
+import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 
 type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
@@ -29,7 +30,8 @@ export default class CurvePushButtonGroup extends Node {
 
     const options = optionize<CurvePushButtonGroupOptions, SelfOptions, NodeOptions>()( {
         smoothButtonOptions: {
-          textNodeOptions: { fontWeight: 'bold' }
+          textNodeOptions: { fontWeight: 'bold' },
+          baseColor: PhetColorScheme.BUTTON_YELLOW
         }
       },
       providedOptions

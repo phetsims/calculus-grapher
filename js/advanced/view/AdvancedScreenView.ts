@@ -25,11 +25,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
       graphsRadioButtonGroupOptions: {},
       visiblePropertiesOptions: {},
       controlPanelOptions: {
-        curvePushButtonGroupOptions: {
-          smoothButtonOptions: {
-            visible: true
-          }
-        }
+        smoothButtonVisible: true
       }
     }, providedOptions );
 

@@ -23,11 +23,7 @@ export default class LabScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
-        curvePushButtonGroupOptions: {
-          smoothButtonOptions: {
-            visible: true
-          }
-        }
+        smoothButtonVisible: true
       }
     }, providedOptions );
 

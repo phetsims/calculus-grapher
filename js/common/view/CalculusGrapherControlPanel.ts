@@ -11,10 +11,9 @@ import { HSeparator, Text, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
-import CurvePushButtonGroup, { CurvePushButtonGroupOptions } from './CurvePushButtonGroup.js';
-import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
@@ -24,9 +23,9 @@ import CurveManipulationProperties from '../model/CurveManipulationProperties.js
 
 type SelfOptions = {
   contentSpacing?: number;
-  curvePushButtonGroupOptions?: CurvePushButtonGroupOptions;
   areaUnderCurveCheckboxProperty?: BooleanProperty;
   tangentCheckboxProperty?: BooleanProperty;
+  smoothButtonVisible?: boolean;
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
@@ -43,15 +42,9 @@ export default class CalculusGrapherControlPanel extends Panel {
       //  the spacing between the content Nodes of the Panel
       contentSpacing: 7,
 
-      curvePushButtonGroupOptions: {
-        smoothButtonOptions: {
-          baseColor: PhetColorScheme.BUTTON_YELLOW,
-          visible: false
-        }
-      },
-
       areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
       tangentCheckboxProperty: new BooleanProperty( false ),
+      smoothButtonVisible: false,
 
       // super-class options
       stroke: CalculusGrapherColors.panelStrokeProperty,
@@ -67,11 +60,12 @@ export default class CalculusGrapherControlPanel extends Panel {
       } );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const curveButtons = new CurvePushButtonGroup( originalCurve,
-      combineOptions<CurvePushButtonGroupOptions>( {
-          tandem: options.tandem.createTandem( 'curveButtons' )
-        },
-        options.curvePushButtonGroupOptions ) );
+    const curveButtons = new CurvePushButtonGroup( originalCurve, {
+      smoothButtonOptions: {
+        visible: options.smoothButtonVisible
+      },
+      tandem: options.tandem.createTandem( 'curveButtons' )
+    } );
 
 
     // create tangent checkbox, with visibility tied to option field
