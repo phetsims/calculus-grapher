@@ -17,7 +17,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 type SelfOptions = {
   fill?: TColor; // {Color|string} background fill
   stroke?: TColor; // {Color|string} background stroke
-
   spacing?: number; // vertical spacing between arrows
 };
 
