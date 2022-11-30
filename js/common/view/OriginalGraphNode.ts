@@ -11,13 +11,13 @@
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurveNode from './TransformedCurveNode.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
+import CueingArrowsNode from './CueingArrowsNode.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
@@ -30,7 +30,8 @@ type OriginalGraphNodeOptions = SelfOptions & GraphNodeOptions;
 
 export default class OriginalGraphNode extends GraphNode {
 
-  private readonly upAndDownArrowVisibleProperty: BooleanProperty;
+  // property that tracks the visibility of the cueingArrows
+  private readonly cueingArrowsNodeVisibleProperty: BooleanProperty;
 
   public constructor( originalCurve: TransformedCurve,
                       predictCurve: TransformedCurve,
@@ -62,7 +63,7 @@ export default class OriginalGraphNode extends GraphNode {
     );
     super( originalCurve, gridVisibleProperty, graphHeightProperty, labelNode, options );
 
-
+    // create a predictCurveNode
     const predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform,
       {
         tandem: providedOptions.tandem.createTandem( 'predictCurveNode' ),
@@ -73,42 +74,31 @@ export default class OriginalGraphNode extends GraphNode {
 
     this.addChild( predictCurveNode );
 
-    // set up and down arrow
+    this.cueingArrowsNodeVisibleProperty = new BooleanProperty( true );
+
+    // xPosition for cueing arrows in model coordinate
     const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
-    const tailX = this.chartTransform.modelToViewX( centerX );
 
-    const downArrowTailY = 5;
-    const downArrowTipY = CalculusGrapherConstants.ARROW_LENGTH + downArrowTailY;
+    // create cueing arrows, y position will be set later
+    const cueingArrowsNode = new CueingArrowsNode( {
+      centerX: this.chartTransform.modelToViewX( centerX ),
+      visibleProperty: this.cueingArrowsNodeVisibleProperty
+    } );
 
-    // property that track the visibility of the up and down arrow
-    this.upAndDownArrowVisibleProperty = new BooleanProperty( true );
+    // attach the cueingArrowsNode to the curveNode to inherit its visibility.
+    this.curveNode.addChild( cueingArrowsNode );
 
-    // arrow options
-    const arrowOptions = combineOptions<ArrowNodeOptions>( {
-        fill: CalculusGrapherColors.arrowFillProperty,
-        stroke: null,
-        visibleProperty: this.upAndDownArrowVisibleProperty
-      }, CalculusGrapherConstants.ARROW_NODE_OPTIONS
-    );
-    const downArrow = new ArrowNode( 0, downArrowTailY, 0, downArrowTipY, arrowOptions );
-    const upArrow = new ArrowNode( 0, -downArrowTailY, 0, -downArrowTipY, arrowOptions );
-
-    const upAndDownArrow = new Node( { children: [ upArrow, downArrow ], centerX: tailX } );
-
-    // attach the up and down arrow to the curveNode to inherit its visibility.
-    this.curveNode.addChild( upAndDownArrow );
-
-    // set the visibility of up and down arrow to invisible if the curve has been touched once.
+    // set the visibility of cueingArrowsNode  to invisible if the curve has been touched once.
     originalCurve.curveChangedEmitter.addListener( () => {
-      this.upAndDownArrowVisibleProperty.value = false;
+      this.cueingArrowsNodeVisibleProperty.value = false;
     } );
 
     graphHeightProperty.link( height => {
 
       this.curveNode.dragBoundsProperty.value.setMaxY( height );
 
-      // center the vertical position of the up and down arrow
-      upAndDownArrow.centerY = this.chartTransform.modelToViewY( 0 );
+      // center the vertical position of the cueingArrows
+      cueingArrowsNode.centerY = this.chartTransform.modelToViewY( 0 );
 
       // TODO: find a way to update touch/mouse area without resorting to this
       this.curveNode.setPointerAreas();
@@ -130,7 +120,7 @@ export default class OriginalGraphNode extends GraphNode {
    */
   public override reset(): void {
     super.reset();
-    this.upAndDownArrowVisibleProperty.reset();
+    this.cueingArrowsNodeVisibleProperty.reset();
   }
 }
 
