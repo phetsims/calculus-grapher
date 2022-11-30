@@ -1,8 +1,9 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * OriginalGraphNode is the view representation of an Original Graph, which includes two curves,
- *  an
+ * OriginalGraphNode is the view representation of an Original Graph, which includes two curves
+ *  that can be user-manipulated as well as cueing arrows. OriginalGraphNode extends GraphNode.
+ * The zoom Button of GraphNode is set to invisible for OriginalGraphNode
  *
  * @author Martin Veillette
  * @author Brandon Li
@@ -85,7 +86,7 @@ export default class OriginalGraphNode extends GraphNode {
       visibleProperty: this.cueingArrowsNodeVisibleProperty
     } );
 
-    // attach the cueingArrowsNode to the curveNode to inherit its visibility.
+    // attach the cueingArrowsNode to the original curve node to inherit its visibility.
     this.curveNode.addChild( cueingArrowsNode );
 
     // set the visibility of cueingArrowsNode  to invisible if the curve has been touched once.
@@ -111,8 +112,6 @@ export default class OriginalGraphNode extends GraphNode {
       this.curveNode.setPointerAreas();
       predictCurveNode.setPointerAreas();
     } );
-
-
   }
 
   /**
