@@ -17,6 +17,8 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 type SelfOptions = {
   fill?: TColor; // {Color|string} background fill
   stroke?: TColor; // {Color|string} background stroke
+
+  spacing?: number; // vertical spacing between arrows
 };
 
 export type CueingArrowsNodeOptions = SelfOptions & NodeOptions;
@@ -28,7 +30,8 @@ export default class CueingArrowsNode extends Node {
     const options = optionize<CueingArrowsNodeOptions, SelfOptions, NodeOptions>()(
       {
         fill: CalculusGrapherColors.arrowFillProperty,
-        stroke: null
+        stroke: null,
+        spacing: 15
       }, providedOptions );
 
     // arrow options
@@ -43,7 +46,7 @@ export default class CueingArrowsNode extends Node {
 
     options.children = [ new VBox( {
       children: [ upArrow, downArrow ],
-      spacing: 5
+      spacing: options.spacing
     } ) ];
 
     super( options );
