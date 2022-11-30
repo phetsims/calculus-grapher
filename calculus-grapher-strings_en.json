@@ -52,5 +52,8 @@
   },
   "tangent": {
     "value": "Tangent"
+  },
+  "predict": {
+    "value": "Predict"
   }
 }

@@ -33,6 +33,7 @@ type StringsType = {
   'variableStringProperty': LinkableProperty<string>;
   'areaUnderCurveStringProperty': LinkableProperty<string>;
   'tangentStringProperty': LinkableProperty<string>;
+  'predictStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
