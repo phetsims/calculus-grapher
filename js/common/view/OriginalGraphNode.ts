@@ -72,7 +72,7 @@ export default class OriginalGraphNode extends GraphNode {
         tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
       } );
 
-    this.addChild( predictCurveNode );
+    this.curveLayer.addChild( predictCurveNode );
 
     predictModeEnabledProperty.linkAttribute( predictCurveNode, 'visible' );
 

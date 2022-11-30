@@ -60,10 +60,16 @@ export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 export default class GraphNode extends Node {
 
   protected readonly zoomLevelProperty: NumberProperty;
-  private readonly curveVisibleProperty: BooleanProperty;
-  private readonly graphVisibleProperty: BooleanProperty;
-  public readonly chartTransform: ChartTransform;
+
+  // create a node layer to host all the curveNodes
+  protected readonly curveLayer: Node;
+  // create a curveNode associated with this graph
   protected readonly curveNode: CurveNode;
+  // visibility of the layer hosting all the curveNodes
+  private readonly curveLayerVisibleProperty: BooleanProperty;
+  public readonly chartTransform: ChartTransform;
+  // visibility of this node
+  private readonly graphVisibleProperty: BooleanProperty;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: Property<boolean>,
@@ -125,10 +131,9 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'zoomLevelProperty' )
       } );
 
-    this.curveVisibleProperty = new BooleanProperty( true,
+    this.curveLayerVisibleProperty = new BooleanProperty( true,
       { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
 
-    // create a curveNode associated with this graph
     this.curveNode = options.createCurveNode( this.chartTransform,
       combineOptions<CurveNodeOptions>( {
           continuousLinePlotOptions: {
@@ -137,6 +142,8 @@ export default class GraphNode extends Node {
         },
         options.curveNodeOptions ) );
 
+    this.curveLayer = new Node( { children: [ this.curveNode ] } );
+
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
@@ -144,19 +151,19 @@ export default class GraphNode extends Node {
       { tandem: options.tandem.createTandem( 'graphVisibleProperty' ) } );
 
     // create eye toggle button that controls the visibility of the curve
-    const eyeToggleButton = new EyeToggleButton( this.curveVisibleProperty,
+    const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
         bottom: chartRectangle.bottom,
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
 
-    this.curveVisibleProperty.link( visible => {
+    this.curveLayerVisibleProperty.link( visible => {
 
       // TODO: is that what we want? hoist colors?
       // change the button color
       eyeToggleButton.setBaseColor( visible ? 'white' : PhetColorScheme.BUTTON_YELLOW );
 
-      this.curveNode.visible = visible;
+      this.curveLayer.visible = visible;
 
     } );
 
@@ -220,7 +227,7 @@ export default class GraphNode extends Node {
       tickSetNode,
       buttonSetNode,
       labelNode,
-      this.curveNode
+      this.curveLayer
     ] );
 
     this.graphVisibleProperty.linkAttribute( this, 'visible' );
@@ -270,7 +277,7 @@ export default class GraphNode extends Node {
    */
   public reset(): void {
     this.zoomLevelProperty.reset();
-    this.curveVisibleProperty.reset();
+    this.curveLayerVisibleProperty.reset();
     this.graphVisibleProperty.reset();
   }
 
