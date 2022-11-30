@@ -18,8 +18,7 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import TransformedCurve from '../model/TransformedCurve.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -32,8 +31,7 @@ export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
-  public constructor( originalCurve: TransformedCurve,
-                      curveManipulationProperties: CurveManipulationProperties,
+  public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
@@ -51,6 +49,10 @@ export default class CalculusGrapherControlPanel extends Panel {
       fill: CalculusGrapherColors.panelFillProperty
 
     }, providedOptions );
+
+
+    // destructuring the calculus grapher model
+    const { originalCurve, curveManipulationProperties } = model;
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls(

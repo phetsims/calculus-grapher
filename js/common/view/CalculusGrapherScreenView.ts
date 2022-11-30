@@ -68,8 +68,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
       } );
 
-    const controlPanel = new CalculusGrapherControlPanel( model.originalCurve,
-      model.curveManipulationProperties,
+    const controlPanel = new CalculusGrapherControlPanel( model,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         bottom: toolsCheckboxGroup.top - 20,
