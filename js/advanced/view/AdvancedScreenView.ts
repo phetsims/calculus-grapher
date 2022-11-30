@@ -23,10 +23,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<AdvancedScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       graphsRadioButtonGroupOptions: {},
-      visiblePropertiesOptions: {},
-      controlPanelOptions: {
-        smoothButtonVisible: true
-      }
+      visiblePropertiesOptions: {}
     }, providedOptions );
 
     assert && assert( options.graphSets.length === 2, 'there must be two valid graphSets for this screen' );

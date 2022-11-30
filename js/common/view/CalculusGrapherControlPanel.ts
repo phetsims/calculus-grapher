@@ -44,7 +44,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
       areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
       tangentCheckboxProperty: new BooleanProperty( false ),
-      smoothButtonVisible: false,
+      smoothButtonVisible: true,
 
       // super-class options
       stroke: CalculusGrapherColors.panelStrokeProperty,

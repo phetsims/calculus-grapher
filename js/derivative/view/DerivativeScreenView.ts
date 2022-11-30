@@ -22,7 +22,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
-        tangentCheckboxProperty: new BooleanProperty( true )
+        tangentCheckboxProperty: new BooleanProperty( true ),
+        smoothButtonVisible: false
       }
     }, providedOptions );
 

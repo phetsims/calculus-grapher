@@ -21,11 +21,7 @@ export default class LabScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
-    const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-      controlPanelOptions: {
-        smoothButtonVisible: true
-      }
-    }, providedOptions );
+    const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {}, providedOptions );
 
     assert && assert( options.graphSets.length === 2, 'there must be two valid graphSets for this screen' );
 

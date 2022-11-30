@@ -22,7 +22,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
-        areaUnderCurveCheckboxProperty: new BooleanProperty( true )
+        areaUnderCurveCheckboxProperty: new BooleanProperty( true ),
+        smoothButtonVisible: false
       }
     }, providedOptions );
 
