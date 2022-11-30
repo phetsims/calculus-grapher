@@ -47,7 +47,10 @@ simLauncher.launch( () => {
           } ),
           modelLinkables: [
             { property: CalculusGrapherPreferences.valuesVisibleProperty },
-            { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty }
+            { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },
+            { property: CalculusGrapherPreferences.derivativeNotationProperty },
+            { property: CalculusGrapherPreferences.functionVariableProperty }
+
           ]
         } ]
       }
