@@ -11,11 +11,10 @@ import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.j
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
-import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptions } from './CalculusGrapherVisibleProperties.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
-import { GraphSetRadioButtonGroupOptions } from './GraphSetRadioButtonGroup.js';
 import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
@@ -23,8 +22,6 @@ import { GraphSet } from '../model/GraphType.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
-  visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
-  graphsRadioButtonGroupOptions?: StrictOmit<GraphSetRadioButtonGroupOptions, 'tandem'>;
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
 
@@ -40,7 +37,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
-      StrictOmit<SelfOptions, 'visiblePropertiesOptions' | 'graphsRadioButtonGroupOptions' | 'controlPanelOptions'>,
+      StrictOmit<SelfOptions, 'controlPanelOptions'>,
       ScreenViewOptions>()( {}, providedOptions );
 
     super( options );
@@ -55,9 +52,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
     // Create the view-specific properties for the screen.
-    this.visibleProperties = new CalculusGrapherVisibleProperties( combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
+    this.visibleProperties = new CalculusGrapherVisibleProperties( {
       tandem: options.tandem.createTandem( 'visibleProperties' )
-    }, options.visiblePropertiesOptions ) );
+    } );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),

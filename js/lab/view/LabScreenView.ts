@@ -6,11 +6,11 @@
  * @author Martin Veillette
  */
 
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import LabModel from '../model/LabModel.js';
-import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupOptions } from '../../common/view/GraphSetRadioButtonGroup.js';
+import GraphSetRadioButtonGroup from '../../common/view/GraphSetRadioButtonGroup.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -21,7 +21,8 @@ export default class LabScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: LabModel, providedOptions?: LabScreenViewOptions ) {
 
-    const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {}, providedOptions );
+    const options = optionize<LabScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()(
+      {}, providedOptions );
 
     assert && assert( options.graphSets.length === 2, 'there must be two valid graphSets for this screen' );
 
@@ -29,14 +30,14 @@ export default class LabScreenView extends CalculusGrapherScreenView {
 
     const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
       options.graphSets,
-      combineOptions<GraphSetRadioButtonGroupOptions>( {
+      {
         leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
         spacing: 5,
         radioButtonOptions: {
           baseColor: CalculusGrapherColors.panelFillProperty
         },
         tandem: options.tandem.createTandem( 'graphsRadioButtonGroup' )
-      }, options.graphsRadioButtonGroupOptions ) );
+      } );
 
     this.addChild( graphSetRadioButtonGroup );
 
