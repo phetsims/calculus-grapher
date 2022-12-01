@@ -303,7 +303,7 @@ export default class TransformedCurve extends Curve {
           // x separation between two adjacent points in curve array
           const deltaX = 1 / this.pointsPerCoordinate;
 
-          // x distance between cp1 and lastpoint
+          // x distance between cp1 and lastPoint
           const distXl = Math.abs( cp1Point.x - lastPoint.x );
 
           // x distance between the cp2 and lastPoint
