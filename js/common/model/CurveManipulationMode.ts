@@ -27,7 +27,7 @@ export default class CurveManipulationMode extends EnumerationValue {
   public static readonly TILT = new CurveManipulationMode( 'tilt' );
   public static readonly SHIFT = new CurveManipulationMode( 'shift' );
 
-  public static enumeration = new Enumeration( CurveManipulationMode );
+  public static readonly enumeration = new Enumeration( CurveManipulationMode );
 
   public constructor( tandemPrefix: string ) {
     super();
