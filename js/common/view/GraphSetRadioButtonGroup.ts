@@ -28,7 +28,6 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
     const options = optionize<GraphSetRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
       {}, providedOptions );
 
-
     assert && assert( graphSets[ 0 ][ 0 ] === 'integral', 'first button matches integral of graph set' );
 
     // Item for integral radio button

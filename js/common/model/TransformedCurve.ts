@@ -375,7 +375,6 @@ export default class TransformedCurve extends Curve {
     this.curveChangedEmitter.emit();
   }
 
-
   /**
    *  set value of points between position1 and position2 using a linear interpolation
    */
@@ -441,7 +440,6 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-
   /**
    * sets the points for all the modes that can be manipulated through their width
    */
@@ -500,7 +498,6 @@ export default class TransformedCurve extends Curve {
       return isOutsideBounds || Math.abs( point.lastSavedY ) < 1e-3;
     } );
   }
-
 
   /**
    * Sets the y-values of this CurvedPoints of this Curve to its last saved state.

@@ -63,7 +63,6 @@ export default class OriginalGraphNode extends GraphNode {
       providedOptions
     );
 
-
     super( originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
 
     // create a predictCurveNode

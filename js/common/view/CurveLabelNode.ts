@@ -171,7 +171,6 @@ function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<s
   return getFractionLabel( numeratorStringProperty, denominatorStringProperty );
 }
 
-
 /**
  * Gets the derivative label, appropriate for the chose derivative notation.
  */

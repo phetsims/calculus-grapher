@@ -52,7 +52,6 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-
     // destructuring the calculus grapher model
     const { originalCurve, curveManipulationProperties } = model;
 
@@ -70,7 +69,6 @@ export default class CalculusGrapherControlPanel extends Panel {
       },
       tandem: options.tandem.createTandem( 'curveButtons' )
     } );
-
 
     // create tangent checkbox, with visibility tied to option field
     const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,

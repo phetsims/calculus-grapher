@@ -56,7 +56,6 @@ export default class CurveManipulationControls extends Node {
         centerX: curveManipulationDisplayNode.centerX
       } );
 
-
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
       modeProperty, combineOptions<CurveManipulationModeRadioButtonGroupOptions>( {

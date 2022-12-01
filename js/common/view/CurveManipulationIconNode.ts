@@ -60,7 +60,6 @@ export default class CurveManipulationIconNode extends Node {
         }
       }, providedOptions );
 
-
     assert && assert( options.chartTransformOptions.modelXRange === options.transformedCurveOptions.xRange, ' x range should be the same' );
 
     // chart transform for the graph, the height and Y range will be updated later
@@ -87,12 +86,10 @@ export default class CurveManipulationIconNode extends Node {
     const yMax = chartTransform.modelYRange.getMax();
     const yMin = chartTransform.modelYRange.getMin();
 
-
     if ( mode === CurveManipulationMode.TRIANGLE ||
          mode === CurveManipulationMode.PARABOLA ||
          mode === CurveManipulationMode.PEDESTAL ||
          mode === CurveManipulationMode.HILL ) {
-
 
       const position = new Vector2( xCenter, yMax );
       const width = xLength / 4;

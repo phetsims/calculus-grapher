@@ -37,7 +37,6 @@ export default class CurvePushButtonGroup extends Node {
       providedOptions
     );
 
-
     // Undo Button
     const undoButton = new UndoButton( {
       listener: () => originalCurve.undoToLastSave(),

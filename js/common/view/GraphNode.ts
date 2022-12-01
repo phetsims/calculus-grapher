@@ -198,7 +198,6 @@ export default class GraphNode extends Node {
       value: CalculusGrapherConstants.CURVE_X_RANGE.min
     } );
 
-
     // factor associated with conversion between model and view along horizontal.
     const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
                               this.chartTransform.viewWidth;
@@ -232,10 +231,8 @@ export default class GraphNode extends Node {
 
     this.graphVisibleProperty.linkAttribute( this, 'visible' );
 
-
     // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
     const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
-
 
     this.zoomLevelProperty.link( zoomLevel => {
 
@@ -269,7 +266,6 @@ export default class GraphNode extends Node {
       }
     );
 
-
   }
 
   /**
@@ -280,7 +276,6 @@ export default class GraphNode extends Node {
     this.curveLayerVisibleProperty.reset();
     this.graphVisibleProperty.reset();
   }
-
 
   /**
    * Returns a TickLabelSet that appear on the left hand side of the chart.

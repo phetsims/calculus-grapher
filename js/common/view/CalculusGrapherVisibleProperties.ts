@@ -61,7 +61,6 @@ export default class CalculusGrapherVisibleProperties {
       tandem: options.tandem.createTandem( 'tangentVisibleProperty' )
     } );
 
-
     this.tangentVisibleProperty = new BooleanProperty( options.isTangentVisible, {
       tandem: options.tandem.createTandem( 'tangentVisibleProperty' )
     } );

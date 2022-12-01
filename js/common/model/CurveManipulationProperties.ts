@@ -42,7 +42,6 @@ export default class CurveManipulationProperties {
     const options = optionize<CurveManipulationPropertiesOptions, SelfOptions>()(
       {}, providedOptions );
 
-
     // initial mode of the simulation
     const initialMode = CurveManipulationMode.HILL;
 

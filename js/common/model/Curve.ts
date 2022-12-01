@@ -343,7 +343,6 @@ export default class Curve extends PhetioObject {
 
   private assignDiscontinuities(): void {
 
-
     // TODO avoid repetition from assignCusps
     // Loop through each trio of adjacent Points of the curve.
     this.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
