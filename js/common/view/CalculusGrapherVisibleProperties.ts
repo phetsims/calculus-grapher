@@ -58,7 +58,7 @@ export default class CalculusGrapherVisibleProperties {
     } );
 
     this.allOriginalCurvesVisibleProperty = new BooleanProperty( options.areAllOriginalCurvesVisible, {
-      tandem: options.tandem.createTandem( 'tangentVisibleProperty' )
+      tandem: options.tandem.createTandem( 'allOriginalCurvesVisibleProperty' )
     } );
 
     this.tangentVisibleProperty = new BooleanProperty( options.isTangentVisible, {
