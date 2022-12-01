@@ -13,8 +13,9 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
-import { Node, Text } from '../../../../scenery/js/imports.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
+import ReferenceLineNode from './ReferenceLineNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -39,7 +40,7 @@ export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
 
       // Item for reference line checkbox
       createItem(
-        new Text( 'referenceLine' ),
+        ReferenceLineNode.getIcon(),
         visibleProperties.referenceLineVisibleProperty, {
           tandemName: 'referenceLineCheckbox'
         } )

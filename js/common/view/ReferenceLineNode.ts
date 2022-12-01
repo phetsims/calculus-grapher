@@ -81,6 +81,29 @@ export default class ReferenceLineNode extends Node {
     this.verticalLine.setY1( value );
     this.sphere.setCenterY( value );
   }
+
+  /**
+   * Returns an icon for a ReferenceLine
+   */
+  public static getIcon( providedOptions?: ReferenceLineNodeOptions ): Node {
+
+    const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
+      sphereOptions: { mainColor: 'rgb(0,0,255)' },
+      lineOptions: {
+        stroke: 'black',
+        y2: -15
+      },
+      sphereDiameter: 8
+    }, providedOptions );
+
+    const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
+
+    const verticalLine = new Line( options.lineOptions );
+
+    options.children = [ verticalLine, sphere ];
+
+    return new Node( options );
+  }
 }
 
 calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );
