@@ -11,7 +11,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import AdvancedModel from '../model/AdvancedModel.js';
 import GraphSetRadioButtonGroup from '../../common/view/GraphSetRadioButtonGroup.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -31,10 +30,6 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
       options.graphSets,
       {
         leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
-        spacing: 5,
-        radioButtonOptions: {
-          baseColor: CalculusGrapherColors.panelFillProperty
-        },
         tandem: options.tandem.createTandem( 'graphsRadioButtonGroup' )
       } );
 

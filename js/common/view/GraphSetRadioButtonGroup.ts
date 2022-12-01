@@ -14,6 +14,7 @@ import Property from '../../../../axon/js/Property.js';
 import CurveLabelNode from './CurveLabelNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import { GraphSet } from '../model/GraphType.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -26,7 +27,14 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
                       providedOptions: GraphSetRadioButtonGroupOptions ) {
 
     const options = optionize<GraphSetRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()(
-      {}, providedOptions );
+      {
+
+        // RectangularRadioButtonGroupOptions
+        spacing: 5,
+        radioButtonOptions: {
+          baseColor: CalculusGrapherColors.panelFillProperty
+        }
+      }, providedOptions );
 
     assert && assert( graphSets[ 0 ][ 0 ] === 'integral', 'first button matches integral of graph set' );
 
