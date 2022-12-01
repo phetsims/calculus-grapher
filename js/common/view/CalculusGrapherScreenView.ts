@@ -78,10 +78,13 @@ export default class CalculusGrapherScreenView extends ScreenView {
       this.predictModeEnabledProperty,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
-        bottom: toolsCheckboxGroup.top - 20,
-        right: this.layoutBounds.right - 10,
         tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
       }, options.controlPanelOptions ) );
+
+    controlPanel.boundsProperty.link( () => {
+      controlPanel.right = this.layoutBounds.right - 10;
+      controlPanel.bottom = toolsCheckboxGroup.top - 20;
+    } );
 
     toolsCheckboxGroup.left = controlPanel.left;
 
