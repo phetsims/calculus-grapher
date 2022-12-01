@@ -10,17 +10,16 @@ import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Range from '../../../../dot/js/Range.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = {
   curveNodeOptions?: CurveNodeOptions;
@@ -31,8 +30,8 @@ type CurveManipulationDisplayOptions = SelfOptions & PickRequired<CurveNodeOptio
 
 export default class CurveManipulationDisplayNode extends CurveNode {
 
-  public constructor( widthProperty: NumberProperty,
-                      modeProperty: EnumerationProperty<CurveManipulationMode>,
+  public constructor( widthProperty: TReadOnlyProperty<number>,
+                      modeProperty: TReadOnlyProperty<CurveManipulationMode>,
                       providedOptions?: CurveManipulationDisplayOptions ) {
 
     const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()(

@@ -17,7 +17,6 @@
  * @author Brandon Li
  */
 
-import Property from '../../../../axon/js/Property.js';
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -72,7 +71,7 @@ export default class GraphNode extends Node {
   private readonly graphVisibleProperty: BooleanProperty;
 
   public constructor( curve: Curve,
-                      gridVisibleProperty: Property<boolean>,
+                      gridVisibleProperty: TReadOnlyProperty<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {

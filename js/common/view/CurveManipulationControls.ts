@@ -9,7 +9,6 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
@@ -17,6 +16,7 @@ import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
 import CurveManipulationModeRadioButtonGroup, { CurveManipulationModeRadioButtonGroupOptions } from './CurveManipulationModeRadioButtonGroup.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import Property from '../../../../axon/js/Property.js';
 
 type SelfOptions = {
   curveManipulationModeRadioButtonGroupOptions?: CurveManipulationModeRadioButtonGroupOptions;
@@ -26,7 +26,7 @@ export type CurveManipulationControlsOptions = SelfOptions & PickRequired<NodeOp
 
 export default class CurveManipulationControls extends Node {
 
-  public constructor( widthProperty: NumberProperty,
+  public constructor( widthProperty: Property<number>,
                       modeProperty: EnumerationProperty<CurveManipulationMode>,
                       providedOptions?: CurveManipulationControlsOptions ) {
 
@@ -49,7 +49,6 @@ export default class CurveManipulationControls extends Node {
 
     const curveManipulationWidthSlider = new CurveManipulationWidthSlider(
       widthProperty,
-      modeProperty,
       {
         tandem: options.tandem.createTandem( 'curveManipulationSlider' ),
         top: curveManipulationDisplayNode.bottom + 10,

@@ -15,7 +15,6 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
 import { GraphType } from '../model/GraphType.js';
 
 // The size of the font sizes are all related, change carefully.
@@ -27,8 +26,8 @@ const HAIR_SPACE_STRING = '\u200A';
 
 type SelfOptions = {
   graphType: GraphType;
-  derivativeNotationProperty?: StringEnumerationProperty<DerivativeNotation>;
-  functionVariableProperty?: StringEnumerationProperty<FunctionVariable>;
+  derivativeNotationProperty?: TReadOnlyProperty<DerivativeNotation>;
+  functionVariableProperty?: TReadOnlyProperty<FunctionVariable>;
 };
 
 export type CurveLabelNodeOptions = SelfOptions & NodeOptions;
@@ -261,7 +260,7 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
 /**
  * Get the function variable as a StringProperty (rather than StringEnumeration).
  */
-function getVariableStringProperty( functionVariableProperty: StringEnumerationProperty<FunctionVariable> ):
+function getVariableStringProperty( functionVariableProperty: TReadOnlyProperty<FunctionVariable> ):
   TReadOnlyProperty<string> {
   return new DerivedProperty(
     [ functionVariableProperty,

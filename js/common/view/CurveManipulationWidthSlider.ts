@@ -12,9 +12,8 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
+import Property from '../../../../axon/js/Property.js';
+
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 
@@ -24,8 +23,7 @@ type CurveManipulationWidthSliderOptions = SelfOptions & HSliderOptions;
 
 export default class CurveManipulationWidthSlider extends HSlider {
 
-  public constructor( curveManipulationWidthProperty: NumberProperty,
-                      curveManipulationModeProperty: EnumerationProperty<CurveManipulationMode>,
+  public constructor( curveManipulationWidthProperty: Property<number>,
                       providedOptions?: CurveManipulationWidthSliderOptions ) {
 
     const options = optionize<CurveManipulationWidthSliderOptions, SelfOptions, HSliderOptions>()( {

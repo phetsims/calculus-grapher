@@ -17,7 +17,6 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import CurveLabelNode from './CurveLabelNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import Property from '../../../../axon/js/Property.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import { GraphSet } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -36,7 +35,7 @@ export default class GraphNodes extends Node {
 
   public constructor( model: CalculusGrapherModel,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
-                      graphSetProperty: Property<GraphSet>,
+                      graphSetProperty: TReadOnlyProperty<GraphSet>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
 
