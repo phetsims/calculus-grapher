@@ -32,8 +32,10 @@ export default class ReferenceLineNode extends Node {
                       providedOptions?: ReferenceLineNodeOptions ) {
 
     const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
-      lineOptions: { stroke: 'black' },
-      sphereOptions: { mainColor: 'rgb(0,0,255)' },
+      lineOptions: {
+        stroke: 'black'
+      },
+      sphereOptions: { mainColor: 'blue' },
       sphereDiameter: 18
     }, providedOptions );
 
@@ -88,11 +90,11 @@ export default class ReferenceLineNode extends Node {
   public static getIcon( providedOptions?: ReferenceLineNodeOptions ): Node {
 
     const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
-      sphereOptions: { mainColor: 'rgb(0,0,255)' },
       lineOptions: {
         stroke: 'black',
         y2: -15
       },
+      sphereOptions: { mainColor: 'blue' },
       sphereDiameter: 8
     }, providedOptions );
 
