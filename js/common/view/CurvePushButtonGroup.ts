@@ -9,7 +9,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import { HBox, VBox, VBoxOPtions } from '../../../../scenery/js/imports.js';
+import { HBox, VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/buttons/TextPushButton.js';
 import EraserButton, { EraserButtonOptions } from '../../../../scenery-phet/js/buttons/EraserButton.js';
@@ -20,17 +20,17 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
   undoButtonOptions?: UndoButtonOptions;
-  ereserButtonOptions?: EraserButtonOptions;
+  eraserButtonOptions?: EraserButtonOptions;
 };
 
-export type CurvePushButtonGroupOptions = SelfOptions & VBoxOPtions;
+export type CurvePushButtonGroupOptions = SelfOptions & VBoxOptions;
 
 export default class CurvePushButtonGroup extends VBox {
 
   public constructor( originalCurve: TransformedCurve,
                       providedOptions?: CurvePushButtonGroupOptions ) {
 
-    const options = optionize<CurvePushButtonGroupOptions, SelfOptions, VBoxOPtions>()( {
+    const options = optionize<CurvePushButtonGroupOptions, SelfOptions, VBoxOptions>()( {
         smoothButtonOptions: {
           textNodeOptions: { fontWeight: 'bold' },
           baseColor: PhetColorScheme.BUTTON_YELLOW
@@ -42,7 +42,7 @@ export default class CurvePushButtonGroup extends VBox {
         eraserButtonOptions: {
           iconWidth: 16,
           xMargin: 10
-        }
+        },
 
         //VBoxOptions
         spacing: 6
@@ -50,14 +50,14 @@ export default class CurvePushButtonGroup extends VBox {
       providedOptions
     );
 
-    // Undo Button
+    // create an undo Button
     const undoButton = new UndoButton(
       combineOptions<UndoButtonOptions>( {
         listener: () => originalCurve.undoToLastSave(),
         tandem: options.tandem.createTandem( 'undoButton' )
       }, options.undoButtonOptions ) );
 
-    // Eraser Button
+    // create an eraser Button
     const eraserButton = new EraserButton(
       combineOptions<EraserButtonOptions>( {
         listener: () => originalCurve.reset(),
@@ -70,7 +70,7 @@ export default class CurvePushButtonGroup extends VBox {
       children: [ undoButton, eraserButton ]
     } );
 
-    // Smooth Button, with witdh matching the hbox
+    // create a smooth Button, with width matching the hbox
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty,
       combineOptions<TextPushButtonOptions>( {
           listener: () => originalCurve.smooth(),
