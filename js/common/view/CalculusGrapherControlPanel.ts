@@ -18,8 +18,8 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-import Property from '../../../../axon/js/Property.js';
+import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 
 type SelfOptions = {
   contentSpacing?: number;
@@ -32,8 +32,8 @@ export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
-  public constructor( model: CalculusGrapherModel,
-                      predictModeEnabledProperty: Property<boolean>,
+  public constructor( curveManipulationProperties: CurveManipulationProperties,
+                      predictModeEnabledProperty: PredictModeEnabledProperty,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
@@ -52,9 +52,6 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    // destructuring the calculus grapher model
-    const { originalCurve, curveManipulationProperties } = model;
-
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls(
       curveManipulationProperties.widthProperty,
@@ -63,7 +60,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       } );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const curveButtons = new CurvePushButtonGroup( originalCurve, {
+    const curveButtons = new CurvePushButtonGroup( predictModeEnabledProperty, {
       smoothButtonOptions: {
         visible: options.smoothButtonVisible
       },

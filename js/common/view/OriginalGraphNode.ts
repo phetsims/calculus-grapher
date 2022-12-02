@@ -34,14 +34,13 @@ export default class OriginalGraphNode extends GraphNode {
   private readonly cueingArrowsNodeVisibleProperty: BooleanProperty;
 
   public constructor( model: CalculusGrapherModel,
-                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
     // destructuring the calculus grapher model
-    const { originalCurve, predictCurve, curveManipulationProperties } = model;
+    const { originalCurve, predictCurve, curveManipulationProperties, predictModeEnabledProperty } = model;
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
@@ -49,6 +48,7 @@ export default class OriginalGraphNode extends GraphNode {
                            providedOptions?: CurveNodeOptions ) => new TransformedCurveNode( originalCurve,
           curveManipulationProperties, chartTransform, providedOptions ),
         curveNodeOptions: {
+          visibleProperty: predictModeEnabledProperty,
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
         },
         chartRectangleOptions: {
@@ -72,8 +72,6 @@ export default class OriginalGraphNode extends GraphNode {
       } );
 
     this.curveLayer.addChild( predictCurveNode );
-
-    predictModeEnabledProperty.linkAttribute( predictCurveNode, 'visible' );
 
     this.cueingArrowsNodeVisibleProperty = new BooleanProperty( true, {
       tandem: providedOptions.tandem.createTandem( 'cueingArrowsNodeVisibleProperty' )

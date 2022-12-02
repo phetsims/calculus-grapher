@@ -20,6 +20,7 @@ import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
 import { GraphSet } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import PredictModeEnabledProperty from './PredictModeEnabledProperty.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
@@ -37,6 +38,9 @@ export default class CalculusGrapherModel implements TModel {
 
   // value to track the x position of the reference line
   public readonly referenceLineXCoordinateProperty: NumberProperty;
+
+  // is the predict mode enabled for the original graph
+  public readonly predictModeEnabledProperty: PredictModeEnabledProperty;
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -71,6 +75,10 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'predictCurve' )
     } );
 
+    this.predictModeEnabledProperty = new PredictModeEnabledProperty( false,
+      this.originalCurve, this.predictCurve,
+      { tandem: options.tandem.createTandem( 'predictModeEnabledProperty' ) } );
+
     const graphTypes = _.flatten( options.graphSets );
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,
@@ -91,6 +99,7 @@ export default class CalculusGrapherModel implements TModel {
     this.referenceLineXCoordinateProperty.reset();
     this.originalCurve.reset();
     this.predictCurve.reset();
+    this.predictModeEnabledProperty.reset();
   }
 }
 

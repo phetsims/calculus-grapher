@@ -19,7 +19,6 @@ import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -32,9 +31,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
-
-  // is the predict mode enabled for the original graph
-  public readonly predictModeEnabledProperty: Property<boolean>;
   private readonly graphsNode: GraphsNode;
   protected readonly graphSetProperty: Property<GraphSet>;
 
@@ -55,7 +51,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
-    this.predictModeEnabledProperty = new BooleanProperty( false );
 
     // Create the view-specific properties for the screen.
     this.visibleProperties = new CalculusGrapherVisibleProperties( {
@@ -74,8 +69,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
       } );
 
-    const controlPanel = new CalculusGrapherControlPanel( model,
-      this.predictModeEnabledProperty,
+    const controlPanel = new CalculusGrapherControlPanel(
+      model.curveManipulationProperties,
+      model.predictModeEnabledProperty,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
@@ -89,7 +85,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
     toolsCheckboxGroup.left = controlPanel.left;
 
     this.graphsNode = new GraphsNode( model,
-      this.predictModeEnabledProperty,
       this.graphSetProperty,
       this.visibleProperties, {
         graphSets: options.graphSets,
@@ -111,7 +106,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.visibleProperties.reset();
     this.graphsNode.reset();
     this.graphSetProperty.reset();
-    this.predictModeEnabledProperty.reset();
   }
 }
 

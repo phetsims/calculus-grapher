@@ -34,7 +34,6 @@ export default class GraphNodes extends Node {
   private readonly graphHeightProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel,
-                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphSetProperty: TReadOnlyProperty<GraphSet>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
@@ -62,7 +61,6 @@ export default class GraphNodes extends Node {
       } );
 
     const originalGraphNode = new OriginalGraphNode( model,
-      predictModeEnabledProperty,
       visibleProperties,
       graphHeightProperty,
       new CurveLabelNode( { graphType: 'original' } ),
