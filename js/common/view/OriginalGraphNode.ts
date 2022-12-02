@@ -15,7 +15,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { HBox, Node, Text } from '../../../../scenery/js/imports.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -24,6 +24,9 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Checkbox from '../../../../sun/js/Checkbox.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CurveLabelNode from './CurveLabelNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -106,9 +109,30 @@ export default class OriginalGraphNode extends GraphNode {
       this.cueingArrowsNodeVisibleProperty.value = false;
     } );
 
+
+    const showOriginalCurveCheckboxContent = new HBox( {
+      children: [
+        new Text( CalculusGrapherStrings.showStringProperty ),
+        new CurveLabelNode( { graphType: 'original' } )
+      ],
+      spacing: 10
+    } );
+
+    const showOriginalCurveCheckbox = new Checkbox( visibleProperties.allOriginalCurvesVisibleProperty,
+      showOriginalCurveCheckboxContent, {
+        visibleProperty: predictModeEnabledProperty,
+        top: 10,
+        right: this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10,
+        tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
+      } );
+
+    this.addChild( showOriginalCurveCheckbox );
+
     graphHeightProperty.link( height => {
 
+      // TODO : too much repetition
       this.curveNode.dragBoundsProperty.value.setMaxY( height );
+      predictCurveNode.dragBoundsProperty.value.setMaxY( height );
 
       // center the vertical position of the cueingArrows
       cueingArrowsNode.centerY = this.chartTransform.modelToViewY( 0 );
