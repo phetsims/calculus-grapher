@@ -42,6 +42,7 @@ import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -141,7 +142,10 @@ export default class GraphNode extends Node {
         },
         options.curveNodeOptions ) );
 
-    this.curveLayer = new Node( { children: [ this.curveNode ] } );
+    this.curveLayer = new Node( {
+      children: [ this.curveNode ],
+      visibleProperty: this.curveLayerVisibleProperty
+    } );
 
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
@@ -152,19 +156,11 @@ export default class GraphNode extends Node {
     // create eye toggle button that controls the visibility of the curve
     const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
+        baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ], visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
         bottom: chartRectangle.bottom,
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
 
-    this.curveLayerVisibleProperty.link( visible => {
-
-      // TODO: is that what we want? hoist colors?
-      // change the button color
-      eyeToggleButton.setBaseColor( visible ? 'white' : PhetColorScheme.BUTTON_YELLOW );
-
-      this.curveLayer.visible = visible;
-
-    } );
 
     // zoom Button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
