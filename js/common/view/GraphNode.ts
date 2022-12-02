@@ -90,7 +90,6 @@ export default class GraphNode extends Node {
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       },
       plusMinusZoomButtonGroupOptions: {
-        visibleProperty: new BooleanProperty( true ),
         orientation: 'vertical',
         buttonOptions: {
           stroke: 'black'

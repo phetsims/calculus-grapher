@@ -64,11 +64,10 @@ export default class OriginalGraphNode extends GraphNode {
           opacity: 1
         },
         plusMinusZoomButtonGroupOptions: {
-          visibleProperty: new BooleanProperty( false )
+          visible: false
         }
       },
-      providedOptions
-    );
+      providedOptions );
 
     super( originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
 
