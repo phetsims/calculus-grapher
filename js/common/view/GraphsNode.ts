@@ -91,9 +91,8 @@ export default class GraphNodes extends Node {
       } );
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
-      visibleProperties.referenceLineVisibleProperty,
-      originalGraphNode.chartTransform,
-      {
+      originalGraphNode.chartTransform, {
+        visibleProperty: visibleProperties.referenceLineVisibleProperty,
         cursor: 'pointer',
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );

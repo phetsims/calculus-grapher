@@ -12,7 +12,6 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -28,7 +27,6 @@ export default class ReferenceLineNode extends Node {
   private readonly sphere;
 
   public constructor( xCoordinateProperty: Property<number>,
-                      referenceLineVisibleProperty: TReadOnlyProperty<boolean>,
                       chartTransform: ChartTransform,
                       providedOptions?: ReferenceLineNodeOptions ) {
 
@@ -65,8 +63,6 @@ export default class ReferenceLineNode extends Node {
 
       cursorNode.centerX = chartTransform.modelToViewX( xCoordinate );
     } );
-
-    referenceLineVisibleProperty.linkAttribute( cursorNode, 'visible' );
 
     super( combineOptions<NodeOptions>( { children: [ cursorNode ] }, options ) );
 

@@ -118,10 +118,10 @@ export default class GraphNode extends Node {
     const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
     const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
 
-    const gridNode = new Node( { children: [ horizontalGridLines, verticalGridLines ] } );
-
-    // link visibility of the gridNode
-    gridVisibleProperty.linkAttribute( gridNode, 'visible' );
+    const gridNode = new Node( {
+      children: [ horizontalGridLines, verticalGridLines ],
+      visibleProperty: gridVisibleProperty
+    } );
 
     // zoom level
     this.zoomLevelProperty = new NumberProperty(
