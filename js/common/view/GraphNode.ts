@@ -68,8 +68,6 @@ export default class GraphNode extends Node {
   // visibility of the layer hosting all the curveNodes
   private readonly curveLayerVisibleProperty: BooleanProperty;
   public readonly chartTransform: ChartTransform;
-  // visibility of this node
-  private readonly graphVisibleProperty: BooleanProperty;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
@@ -150,9 +148,6 @@ export default class GraphNode extends Node {
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
-    this.graphVisibleProperty = new BooleanProperty( true,
-      { tandem: options.tandem.createTandem( 'graphVisibleProperty' ) } );
-
     // create eye toggle button that controls the visibility of the curve
     const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
@@ -224,8 +219,6 @@ export default class GraphNode extends Node {
       this.curveLayer
     ] );
 
-    this.graphVisibleProperty.linkAttribute( this, 'visible' );
-
     // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
     const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
 
@@ -269,7 +262,6 @@ export default class GraphNode extends Node {
   public reset(): void {
     this.zoomLevelProperty.reset();
     this.curveLayerVisibleProperty.reset();
-    this.graphVisibleProperty.reset();
   }
 
   /**
