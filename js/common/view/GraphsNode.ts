@@ -49,7 +49,7 @@ export default class GraphNodes extends Node {
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 
-    const graphTypes = _.flatten( options.graphSets );
+    const graphTypes = options.graphSets.flat();
 
     const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,

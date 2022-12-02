@@ -79,7 +79,7 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve, this.predictCurve,
       { tandem: options.tandem.createTandem( 'predictModeEnabledProperty' ) } );
 
-    const graphTypes = _.flatten( options.graphSets );
+    const graphTypes = options.graphSets.flat();
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,
       graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
