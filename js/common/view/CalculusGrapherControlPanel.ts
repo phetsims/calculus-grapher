@@ -14,7 +14,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -23,8 +22,8 @@ import CurveManipulationProperties from '../model/CurveManipulationProperties.js
 
 type SelfOptions = {
   contentSpacing?: number;
-  areaUnderCurveCheckboxProperty?: BooleanProperty;
-  tangentCheckboxProperty?: BooleanProperty;
+  areaUnderCurveCheckboxVisible?: boolean;
+  tangentCheckboxVisible?: boolean;
   smoothButtonVisible?: boolean;
 };
 
@@ -42,8 +41,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       //  the spacing between the content Nodes of the Panel
       contentSpacing: 7,
 
-      areaUnderCurveCheckboxProperty: new BooleanProperty( false ),
-      tangentCheckboxProperty: new BooleanProperty( false ),
+      areaUnderCurveCheckboxVisible: false,
+      tangentCheckboxVisible: false,
       smoothButtonVisible: true,
 
       // super-class options
@@ -70,7 +69,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     // create tangent checkbox, with visibility tied to option field
     const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
       new Text( CalculusGrapherStrings.tangentStringProperty ), {
-        visibleProperty: options.tangentCheckboxProperty,
+        visible: options.tangentCheckboxVisible,
         tandem: options.tandem.createTandem( 'tangentCheckbox' )
       }
     );
@@ -78,7 +77,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     // create area under curve checkbox, with visibility tied to option field
     const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
       new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
-        visibleProperty: options.areaUnderCurveCheckboxProperty,
+        visible: options.areaUnderCurveCheckboxVisible,
         tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
       }
     );

@@ -6,7 +6,6 @@
  * @author BrandonLi
  */
 
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
@@ -22,7 +21,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
-        areaUnderCurveCheckboxProperty: new BooleanProperty( true ),
+        areaUnderCurveCheckboxVisible: true,
         smoothButtonVisible: false
       }
     }, providedOptions );

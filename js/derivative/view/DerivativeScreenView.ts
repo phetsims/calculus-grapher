@@ -6,7 +6,6 @@
  * @author BrandonLi
  */
 
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
@@ -22,7 +21,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
-        tangentCheckboxProperty: new BooleanProperty( true ),
+        tangentCheckboxVisible: true,
         smoothButtonVisible: false
       }
     }, providedOptions );
