@@ -23,6 +23,7 @@ import { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,13 +43,18 @@ export default class OriginalGraphNode extends GraphNode {
     // destructuring the calculus grapher model
     const { originalCurve, predictCurve, curveManipulationProperties, predictModeEnabledProperty } = model;
 
+    // original curve is visible if not in predictMode or allOriginalCurveVisible is true
+    const originalCurveNodeVisibilityProperty = new DerivedProperty( [ predictModeEnabledProperty, visibleProperties.allOriginalCurvesVisibleProperty ],
+      ( predictModeEnabled, allOriginalCurvesVisible ) =>
+        !predictModeEnabled || allOriginalCurvesVisible );
+
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
         createCurveNode: ( chartTransform: ChartTransform,
                            providedOptions?: CurveNodeOptions ) => new TransformedCurveNode( originalCurve,
           curveManipulationProperties, chartTransform, providedOptions ),
         curveNodeOptions: {
-          visibleProperty: predictModeEnabledProperty,
+          visibleProperty: originalCurveNodeVisibilityProperty,
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
         },
         chartRectangleOptions: {
@@ -68,6 +74,7 @@ export default class OriginalGraphNode extends GraphNode {
     // create a predictCurveNode
     const predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform,
       {
+        visibleProperty: predictModeEnabledProperty,
         tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
       } );
 
