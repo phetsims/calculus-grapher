@@ -3,7 +3,7 @@
 /**
  * Top level view for the 'Derivative Lab' screen.
  *
- * @author BrandonLi
+ * @author Brandon Li
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
