@@ -54,8 +54,8 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls(
-      curveManipulationProperties.widthProperty,
-      curveManipulationProperties.modeProperty, {
+      curveManipulationProperties,
+      predictModeEnabledProperty, {
         tandem: options.tandem.createTandem( 'curveManipulationControls' )
       } );
 

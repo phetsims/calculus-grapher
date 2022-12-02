@@ -18,8 +18,8 @@ import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedC
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Range from '../../../../dot/js/Range.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 
 type SelfOptions = {
   curveNodeOptions?: CurveNodeOptions;
@@ -30,15 +30,15 @@ type CurveManipulationDisplayOptions = SelfOptions & PickRequired<CurveNodeOptio
 
 export default class CurveManipulationDisplayNode extends CurveNode {
 
-  public constructor( widthProperty: TReadOnlyProperty<number>,
-                      modeProperty: TReadOnlyProperty<CurveManipulationMode>,
+  public constructor( curveManipulationProperties: CurveManipulationProperties,
+                      predictModeEnabledProperty: PredictModeEnabledProperty,
                       providedOptions?: CurveManipulationDisplayOptions ) {
 
     const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()(
       {
         curveNodeOptions: {
           continuousLinePlotOptions: {
-            stroke: CalculusGrapherColors.originalCurveStrokeProperty,
+            stroke: predictModeEnabledProperty.colorStrokeProperty,
             lineWidth: 2
           }
         },
@@ -73,7 +73,9 @@ export default class CurveManipulationDisplayNode extends CurveNode {
 
     assert && assert( yMax > yMin, 'yMax value should be greater than yMin' );
 
-    Multilink.multilink( [ modeProperty, widthProperty ],
+    Multilink.multilink( [
+        curveManipulationProperties.modeProperty,
+        curveManipulationProperties.widthProperty ],
       ( mode, width ) => {
 
         curve.reset();

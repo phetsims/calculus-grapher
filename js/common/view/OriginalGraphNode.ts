@@ -75,6 +75,10 @@ export default class OriginalGraphNode extends GraphNode {
     const predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform,
       {
         visibleProperty: predictModeEnabledProperty,
+        continuousLinePlotOptions: {
+          stroke: CalculusGrapherColors.predictCurveStrokeProperty,
+          lineWidth: 1.75
+        },
         tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
       } );
 

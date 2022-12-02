@@ -9,15 +9,15 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
 import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
 import CurveManipulationModeRadioButtonGroup, { CurveManipulationModeRadioButtonGroupOptions } from './CurveManipulationModeRadioButtonGroup.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import Property from '../../../../axon/js/Property.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 
 // curve manipulation modes that should not display a curve manipulation width slider
 const NO_SLIDER_MODES = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
@@ -30,8 +30,8 @@ export type CurveManipulationControlsOptions = SelfOptions & PickRequired<NodeOp
 
 export default class CurveManipulationControls extends Node {
 
-  public constructor( widthProperty: Property<number>,
-                      modeProperty: EnumerationProperty<CurveManipulationMode>,
+  public constructor( curveManipulationProperties: CurveManipulationProperties,
+                      predictModeEnabledProperty: PredictModeEnabledProperty,
                       providedOptions?: CurveManipulationControlsOptions ) {
 
     const options = optionize<CurveManipulationControlsOptions, SelfOptions, NodeOptions>()( {
@@ -44,16 +44,20 @@ export default class CurveManipulationControls extends Node {
       }
     }, providedOptions );
 
+    // destructure the properties of curveManipulationProperties for convenience
+    const { modeProperty, widthProperty } = curveManipulationProperties;
+
     const curveManipulationDisplayNode = new CurveManipulationDisplayNode(
-      widthProperty,
-      modeProperty, {
+      curveManipulationProperties,
+      predictModeEnabledProperty, {
         tandem: options.tandem.createTandem( 'displayNode' )
       } );
 
     const curveManipulationWidthSlider = new CurveManipulationWidthSlider(
       widthProperty,
       {
-        visibleProperty: new DerivedProperty( [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
+        visibleProperty: new DerivedProperty(
+          [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
         top: curveManipulationDisplayNode.bottom + 10,
         centerX: curveManipulationDisplayNode.centerX,
         tandem: options.tandem.createTandem( 'curveManipulationSlider' )
@@ -61,7 +65,9 @@ export default class CurveManipulationControls extends Node {
 
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
-      modeProperty, combineOptions<CurveManipulationModeRadioButtonGroupOptions>( {
+      modeProperty,
+      predictModeEnabledProperty,
+      combineOptions<CurveManipulationModeRadioButtonGroupOptions>( {
           top: curveManipulationDisplayNode.bottom + 20 + curveManipulationWidthSlider.height,
           centerX: curveManipulationDisplayNode.centerX,
           tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
