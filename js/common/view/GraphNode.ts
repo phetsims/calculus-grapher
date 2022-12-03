@@ -157,7 +157,7 @@ export default class GraphNode extends Node {
 
 
     // zoom Button to the center left of the graph
-    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty.asRanged(),
+    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
         centerY: chartRectangle.centerY,
         right: eyeToggleButton.right,
