@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * Top level view for the 'Derivative Lab' screen.
+ * Top-level view for the 'Derivative Lab' screen.
  *
  * @author Brandon Li
  */
