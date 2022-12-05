@@ -17,12 +17,12 @@ import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
-  solidCurveNodeOptions?: CurveNodeOptions;
-  dashedCurveNodeOptions?: CurveNodeOptions;
+  solidCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
+  dashedCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
   transformedCurveOptions?: TransformedCurveOptions;
   chartTransformOptions?: ChartTransformOptions;
 };
@@ -38,7 +38,6 @@ export default class CurveManipulationIconNode extends Node {
       {
         solidCurveNodeOptions: {
           continuousLinePlotOptions: {
-            stroke: CalculusGrapherColors.originalCurveStrokeProperty,
             lineWidth: 2
           }
         },
@@ -118,10 +117,11 @@ export default class CurveManipulationIconNode extends Node {
     }
 
     // create the solid curve node
-    const solidCurveNode = new CurveNode( solidCurve, chartTransform, options.solidCurveNodeOptions );
+    const solidCurveNode = new CurveNode( solidCurve, chartTransform,
+      combineOptions<CurveNodeOptions>( { tandem: options.tandem.createTandem( 'solidCurveNode' ) }, options.solidCurveNodeOptions ) );
 
     const dashedCurveNode = new CurveNode( dashedCurve,
-      chartTransform, combineOptions<CurveNodeOptions>( options.solidCurveNodeOptions, options.dashedCurveNodeOptions ) );
+      chartTransform, combineOptions<CurveNodeOptions>( { tandem: options.tandem.createTandem( 'dashedCurveNode' ) }, options.solidCurveNodeOptions, options.dashedCurveNodeOptions ) );
 
     const children = [ chartRectangle, solidCurveNode ];
 
@@ -129,7 +129,7 @@ export default class CurveManipulationIconNode extends Node {
       children.push( dashedCurveNode );
     }
 
-    super( combineOptions<CurveNodeOptions>( { children: children }, options ) );
+    super( combineOptions<NodeOptions>( { children: children }, options ) );
   }
 }
 

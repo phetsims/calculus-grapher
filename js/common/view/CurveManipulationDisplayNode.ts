@@ -20,9 +20,10 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Range from '../../../../dot/js/Range.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
-  curveNodeOptions?: CurveNodeOptions;
+  curveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
   transformedCurveOptions?: TransformedCurveOptions;
   chartTransformOptions?: ChartTransformOptions;
 };
@@ -114,7 +115,10 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform, {} );
 
-    super( curve, chartTransform, options.curveNodeOptions );
+
+    super( curve, chartTransform, combineOptions<CurveNodeOptions>( {
+      tandem: options.tandem.createTandem( 'curveNode' )
+    }, options.curveNodeOptions ) );
 
     this.clipArea = chartRectangle.getShape();
     this.addChild( chartRectangle );
