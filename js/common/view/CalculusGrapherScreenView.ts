@@ -20,6 +20,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
+import { Node } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -100,10 +101,12 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
 
-    this.addChild( this.graphsNode );
-    this.addChild( controlPanel );
-    this.addChild( toolsCheckboxGroup );
-    this.addChild( resetAllButton );
+    const children: Node[] = [
+      this.graphsNode,
+      controlPanel,
+      toolsCheckboxGroup,
+      resetAllButton
+    ];
 
     if ( options.graphSetRadioButtonGroupItems.length > 0 ) {
       const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
@@ -111,8 +114,15 @@ export default class CalculusGrapherScreenView extends ScreenView {
           leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
           tandem: options.tandem.createTandem( 'graphSetRadioButtonGroup' )
         } );
-      this.addChild( graphSetRadioButtonGroup );
+      children.push( graphSetRadioButtonGroup );
     }
+
+    // Instead of adding children directly to the ScreenView, add them to a parent Node, so that we can set
+    // pdomOrder on this Node.  See https://github.com/phetsims/calculus-grapher/issues/123
+    const screenViewRootNode = new Node( {
+      children: children
+    } );
+    this.addChild( screenViewRootNode );
   }
 
   /**
