@@ -20,7 +20,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { Node, VBox } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -73,11 +73,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties, {
-      bottom: resetAllButton.top - 10,
-      tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
-    } );
-
     const controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
       model.predictModeEnabledProperty,
@@ -86,12 +81,20 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
       }, options.controlPanelOptions ) );
 
-    controlPanel.boundsProperty.link( () => {
-      controlPanel.right = this.layoutBounds.right - 10;
-      controlPanel.bottom = toolsCheckboxGroup.top - 20;
+    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties, {
+      tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
     } );
 
-    toolsCheckboxGroup.left = controlPanel.left;
+    const rightVBox = new VBox( {
+      children: [ controlPanel, toolsCheckboxGroup ],
+      spacing: 20,
+      align: 'left'
+    } );
+
+    rightVBox.boundsProperty.link( () => {
+      rightVBox.right = this.layoutBounds.right - 10;
+      rightVBox.bottom = resetAllButton.top - 10;
+    } );
 
     this.graphsNode = new GraphsNode( model,
       this.graphSetProperty,
@@ -103,8 +106,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     const children: Node[] = [
       this.graphsNode,
-      controlPanel,
-      toolsCheckboxGroup,
+      rightVBox,
       resetAllButton
     ];
 
