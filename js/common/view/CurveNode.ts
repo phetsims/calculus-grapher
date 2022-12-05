@@ -29,6 +29,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
@@ -83,7 +84,10 @@ export default class CurveNode extends Node {
       discontinuousLinePlotOptions: {
         stroke: Color.ORANGE,
         lineWidth: 2,
-        lineDash: [ 2, 2 ]
+        lineDash: [ 2, 2 ],
+        visibleProperty: new DerivedProperty( [
+          CalculusGrapherPreferences.connectDiscontinuitiesProperty ], connectDiscontinuities =>
+          connectDiscontinuities === 'dashedLine' )
       }
     }, providedOptions );
 
@@ -110,8 +114,8 @@ export default class CurveNode extends Node {
     this.discontinuousLinePlot = new LinePlot( chartTransform, discontinuousLinePlotDataSet, options.discontinuousLinePlotOptions );
 
     this.addChild( this.continuousLinePlot );
-
     this.addChild( this.discontinuousLinePlot );
+    this.addChild( this.discontinuousPointsScatterPlot );
 
     if ( CalculusGrapherQueryParameters.allPoints ) {
       this.addChild( this.allPointsScatterPlot );
@@ -119,13 +123,9 @@ export default class CurveNode extends Node {
     if ( CalculusGrapherQueryParameters.cuspsPoints ) {
       this.addChild( this.cuspsScatterPlot );
     }
-    this.addChild( this.discontinuousPointsScatterPlot );
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
 
-    CalculusGrapherPreferences.connectDiscontinuitiesProperty.link( connectDiscontinuities => {
-      this.discontinuousLinePlot.visible = ( connectDiscontinuities === 'dashedLine' );
-    } );
   }
 
   public updateCurveNode(): void {
