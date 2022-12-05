@@ -63,13 +63,14 @@ class GraphSetRadioButtonIcon extends VBox {
       group: labelAlignGroup
     } );
 
-    const colorNode = new Line( 0, 0, 40, 0, {
+    // Horizontal line showing the color that is used to stroke graphType.
+    const colorLine = new Line( 0, 0, 40, 0, {
       stroke: getGraphTypeStroke( graphType ),
       lineWidth: 3
     } );
 
     super( {
-      children: [ labelNode, colorNode ],
+      children: [ labelNode, colorLine ],
       spacing: 7,
       align: 'center'
     } );
