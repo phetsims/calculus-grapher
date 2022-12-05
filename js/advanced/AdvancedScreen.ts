@@ -14,6 +14,7 @@ import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { GraphSet } from '../common/model/GraphType.js';
+import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 
 type SelfOptions = EmptySelfOptions;
 export type AdvancedScreenOptions = SelfOptions & ScreenOptions;
@@ -29,6 +30,11 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       [ 'original', 'derivative' ]
     ];
 
+    const graphSetRadioButtonGroupItems = [
+      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral' ),
+      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'derivative' )
+    ];
+
     const createModel = () => new AdvancedModel( {
       graphSets: graphSets,
       tandem: options.tandem.createTandem( 'model' )
@@ -36,6 +42,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     const createView = ( model: AdvancedModel ) => new AdvancedScreenView( model, {
       graphSets: graphSets,
+      graphSetRadioButtonGroupItems: graphSetRadioButtonGroupItems,
       tandem: options.tandem.createTandem( 'view' )
     } );
 

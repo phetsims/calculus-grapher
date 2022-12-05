@@ -19,9 +19,11 @@ import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
+import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
+  graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
 
@@ -38,7 +40,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
       StrictOmit<SelfOptions, 'controlPanelOptions'>,
-      ScreenViewOptions>()( {}, providedOptions );
+      ScreenViewOptions>()( {
+
+      // SelfOptions
+      graphSetRadioButtonGroupItems: []
+    }, providedOptions );
 
     super( options );
 
@@ -46,6 +52,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     assert && assert( options.graphSets.every( graphSet =>
       graphSet.length === _.uniq( graphSet ).length ), 'each element of the graphSet must be unique' );
+
+    assert && assert( ( options.graphSets.length === 1 && options.graphSetRadioButtonGroupItems.length === 0 ) ||
+                      ( options.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
+      'If > 1 graphSets, then there must be a radio button item for each graphSet' );
 
     this.model = model;
 
@@ -94,6 +104,15 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.addChild( controlPanel );
     this.addChild( toolsCheckboxGroup );
     this.addChild( resetAllButton );
+
+    if ( options.graphSetRadioButtonGroupItems.length > 0 ) {
+      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
+        options.graphSetRadioButtonGroupItems, {
+          leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
+          tandem: options.tandem.createTandem( 'graphSetRadioButtonGroup' )
+        } );
+      this.addChild( graphSetRadioButtonGroup );
+    }
   }
 
   /**

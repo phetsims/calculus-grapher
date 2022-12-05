@@ -19,12 +19,12 @@ type SelfOptions = EmptySelfOptions;
 
 export type GraphSetRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
-type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
+export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 
 export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGroup<GraphSet> {
 
   public constructor( graphsSelectionProperty: Property<GraphSet>,
-                      graphSets: GraphSet[],
+                      graphSetRadioButtonGroupItems: GraphSetRadioButtonGroupItem[],
                       providedOptions: GraphSetRadioButtonGroupOptions ) {
 
     const options = optionize<GraphSetRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()( {
@@ -36,21 +36,13 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
       }
     }, providedOptions );
 
-    assert && assert( graphSets[ 0 ][ 0 ] === 'integral', 'first button matches integral of graph set' );
-
-    // Item for integral radio button
-    const integralRadioButtonItem = GraphSetRadioButtonGroup.createItem( 'integral', graphSets[ 0 ] );
-
-    // Item for derivative radio button
-    const derivativeRadioButtonItem = GraphSetRadioButtonGroup.createItem( 'derivative', graphSets[ 1 ] );
-
-    super( graphsSelectionProperty, [ integralRadioButtonItem, derivativeRadioButtonItem ], options );
+    super( graphsSelectionProperty, graphSetRadioButtonGroupItems, options );
   }
 
   /**
    * Creates an item for this radio button group.
    */
-  public static createItem( graphType: GraphType, graphSet: GraphSet ): GraphSetRadioButtonGroupItem {
+  public static createItem( graphSet: GraphSet, graphType: GraphType ): GraphSetRadioButtonGroupItem {
     assert && assert( graphSet.includes( graphType ) );
     return {
       createNode: tandem => new CurveLabelNode( { graphType: graphType } ),
