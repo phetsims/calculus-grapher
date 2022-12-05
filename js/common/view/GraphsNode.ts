@@ -54,7 +54,7 @@ export default class GraphNodes extends Node {
     const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      new CurveLabelNode( { graphType: 'integral' } ),
+      new CurveLabelNode( 'integral' ),
       {
         continuousLinePlotStroke: CalculusGrapherColors.integralCurveStrokeProperty,
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
@@ -63,7 +63,7 @@ export default class GraphNodes extends Node {
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
       graphHeightProperty,
-      new CurveLabelNode( { graphType: 'original' } ),
+      new CurveLabelNode( 'original' ),
       {
         continuousLinePlotStroke: CalculusGrapherColors.originalCurveStrokeProperty,
 
@@ -75,7 +75,7 @@ export default class GraphNodes extends Node {
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      new CurveLabelNode( { graphType: 'derivative' } ),
+      new CurveLabelNode( 'derivative' ),
       {
         continuousLinePlotStroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
@@ -84,7 +84,7 @@ export default class GraphNodes extends Node {
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      new CurveLabelNode( { graphType: 'secondDerivative' } ),
+      new CurveLabelNode( 'secondDerivative' ),
       {
         continuousLinePlotStroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
         tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT

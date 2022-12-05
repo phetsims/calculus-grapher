@@ -11,9 +11,10 @@ import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
 import CurveLabelNode from './CurveLabelNode.js';
-import { GraphSet, GraphType } from '../model/GraphType.js';
+import { getGraphTypeStroke, GraphSet, GraphType } from '../model/GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
+import { AlignBox, AlignGroup, Line, VBox } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -32,7 +33,9 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
       // RectangularRadioButtonGroupOptions
       spacing: 5,
       radioButtonOptions: {
-        baseColor: CalculusGrapherColors.panelFillProperty
+        baseColor: CalculusGrapherColors.panelFillProperty,
+        xMargin: 10,
+        yMargin: 10
       }
     }, providedOptions );
 
@@ -42,13 +45,34 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
   /**
    * Creates an item for this radio button group.
    */
-  public static createItem( graphSet: GraphSet, graphType: GraphType ): GraphSetRadioButtonGroupItem {
+  public static createItem( graphSet: GraphSet, graphType: GraphType, labelAlignGroup: AlignGroup ): GraphSetRadioButtonGroupItem {
     assert && assert( graphSet.includes( graphType ) );
     return {
-      createNode: tandem => new CurveLabelNode( { graphType: graphType } ),
+      createNode: tandem => new GraphSetRadioButtonIcon( graphType, labelAlignGroup ),
       value: graphSet,
       tandemName: `${graphType}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
     };
+  }
+}
+
+class GraphSetRadioButtonIcon extends VBox {
+
+  public constructor( graphType: GraphType, labelAlignGroup: AlignGroup ) {
+
+    const labelNode = new AlignBox( new CurveLabelNode( graphType ), {
+      group: labelAlignGroup
+    } );
+
+    const colorNode = new Line( 0, 0, 40, 0, {
+      stroke: getGraphTypeStroke( graphType ),
+      lineWidth: 3
+    } );
+
+    super( {
+      children: [ labelNode, colorNode ],
+      spacing: 7,
+      align: 'center'
+    } );
   }
 }
 

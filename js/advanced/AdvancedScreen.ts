@@ -15,6 +15,7 @@ import AdvancedScreenView from './view/AdvancedScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
+import { AlignGroup } from '../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 export type AdvancedScreenOptions = SelfOptions & ScreenOptions;
@@ -30,9 +31,10 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       [ 'original', 'derivative' ]
     ];
 
+    const labelAlignGroup = new AlignGroup();
     const graphSetRadioButtonGroupItems = [
-      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral' ),
-      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'derivative' )
+      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral', labelAlignGroup ),
+      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'derivative', labelAlignGroup )
     ];
 
     const createModel = () => new AdvancedModel( {

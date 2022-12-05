@@ -107,8 +107,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
 function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
                       derivativeNotationProperty: StringEnumerationProperty<DerivativeNotation> ): Node {
 
-  const curveLabelNode = new CurveLabelNode( {
-    graphType: 'derivative',
+  const curveLabelNode = new CurveLabelNode( 'derivative', {
     derivativeNotationProperty: derivativeNotationProperty
   } );
 

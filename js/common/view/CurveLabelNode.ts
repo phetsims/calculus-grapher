@@ -25,7 +25,6 @@ const FRACTION_FONT = new PhetFont( 12 );
 const HAIR_SPACE_STRING = '\u200A';
 
 type SelfOptions = {
-  graphType: GraphType;
   derivativeNotationProperty?: TReadOnlyProperty<DerivativeNotation>;
   functionVariableProperty?: TReadOnlyProperty<FunctionVariable>;
 };
@@ -34,7 +33,7 @@ export type CurveLabelNodeOptions = SelfOptions & NodeOptions;
 
 export default class CurveLabelNode extends Node {
 
-  public constructor( providedOptions: CurveLabelNodeOptions ) {
+  public constructor( graphType: GraphType, providedOptions?: CurveLabelNodeOptions ) {
 
     const options = optionize<CurveLabelNodeOptions, SelfOptions, NodeOptions>()( {
       derivativeNotationProperty: CalculusGrapherPreferences.derivativeNotationProperty,
@@ -47,7 +46,7 @@ export default class CurveLabelNode extends Node {
     const variableStringProperty = getVariableStringProperty( options.functionVariableProperty );
 
     // create and add content for the node, based on graphType, notation and variable
-    let labelNode = getLabelNode( options.graphType, options.derivativeNotationProperty.value, variableStringProperty );
+    let labelNode = getLabelNode( graphType, options.derivativeNotationProperty.value, variableStringProperty );
     this.addChild( labelNode );
 
     options.derivativeNotationProperty.link( derivationNotation => {
@@ -56,7 +55,7 @@ export default class CurveLabelNode extends Node {
       labelNode.dispose();
 
       // create and add new label
-      labelNode = getLabelNode( options.graphType, derivationNotation, variableStringProperty );
+      labelNode = getLabelNode( graphType, derivationNotation, variableStringProperty );
       this.addChild( labelNode );
     } );
   }

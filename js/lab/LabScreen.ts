@@ -15,6 +15,7 @@ import LabScreenView from './view/LabScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
+import { AlignGroup } from '../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 export type LabScreenOptions = SelfOptions & ScreenOptions;
@@ -30,9 +31,10 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
       [ 'original', 'derivative', 'secondDerivative' ]
     ];
 
+    const labelAlignGroup = new AlignGroup();
     const graphSetRadioButtonGroupItems = [
-      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral' ),
-      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'secondDerivative' )
+      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral', labelAlignGroup ),
+      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'secondDerivative', labelAlignGroup )
     ];
 
     const createModel = () => new LabModel( {
