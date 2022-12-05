@@ -57,6 +57,10 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
 
 class GraphSetRadioButtonIcon extends VBox {
 
+  /**
+   * @param graphType
+   * @param labelAlignGroup - to give labels the same effective size
+   */
   public constructor( graphType: GraphType, labelAlignGroup: AlignGroup ) {
 
     const labelNode = new AlignBox( new CurveLabelNode( graphType ), {

@@ -31,7 +31,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       [ 'original', 'derivative' ]
     ];
 
-    const labelAlignGroup = new AlignGroup();
+    const labelAlignGroup = new AlignGroup(); // to give labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral', labelAlignGroup ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'derivative', labelAlignGroup )

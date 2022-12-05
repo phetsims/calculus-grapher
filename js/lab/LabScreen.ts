@@ -31,7 +31,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
       [ 'original', 'derivative', 'secondDerivative' ]
     ];
 
-    const labelAlignGroup = new AlignGroup();
+    const labelAlignGroup = new AlignGroup(); // to give labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral', labelAlignGroup ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'secondDerivative', labelAlignGroup )
