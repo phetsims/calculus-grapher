@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * Root class (to be subclassed) for the top-level model of every screen in the 'Calculus Grapher' simulation.
+ * Base class for the top-level model of every screen in the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
  */
@@ -49,7 +49,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-  public constructor( providedOptions: CalculusGrapherModelOptions ) {
+  protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values

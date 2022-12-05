@@ -1,7 +1,7 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * Root class (to be subclassed) for the top-level view of every screen in the 'Calculus Grapher' simulation.
+ * Base class for the top-level view of every screen in the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
  * @author Martin Veillette
@@ -34,7 +34,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   private readonly graphsNode: GraphsNode;
   protected readonly graphSetProperty: Property<GraphSet>;
 
-  public constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
+  protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
     const options = optionize<CalculusGrapherScreenViewOptions,
       StrictOmit<SelfOptions, 'controlPanelOptions'>,
@@ -51,7 +51,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
-
     // Create the view-specific properties for the screen.
     this.visibleProperties = new CalculusGrapherVisibleProperties( {
       tandem: options.tandem.createTandem( 'visibleProperties' )
@@ -63,11 +62,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties,
-      {
-        bottom: resetAllButton.top - 10,
-        tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
-      } );
+    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties, {
+      bottom: resetAllButton.top - 10,
+      tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
+    } );
 
     const controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
