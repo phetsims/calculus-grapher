@@ -64,19 +64,6 @@ export default class CurveNode extends Node {
         lineWidth: 2
       },
 
-      cuspsScatterPlotOptions: {
-        fill: Color.BLACK,
-        stroke: Color.GREEN,
-        lineWidth: 1,
-        radius: 2
-      },
-
-      allPointsScatterPlotOptions: {
-        fill: Color.RED,
-        stroke: Color.YELLOW,
-        radius: 1
-      },
-
       continuousLinePlotOptions: {
         lineWidth: 2
       },
@@ -88,7 +75,21 @@ export default class CurveNode extends Node {
         visibleProperty: new DerivedProperty( [
           CalculusGrapherPreferences.connectDiscontinuitiesProperty ], connectDiscontinuities =>
           connectDiscontinuities === 'dashedLine' )
+      },
+
+      cuspsScatterPlotOptions: {
+        fill: Color.BLACK,
+        stroke: Color.GREEN,
+        lineWidth: 1,
+        radius: 2
+      },
+
+      allPointsScatterPlotOptions: {
+        fill: Color.RED,
+        stroke: Color.YELLOW,
+        radius: 1
       }
+
     }, providedOptions );
 
     super( options );
