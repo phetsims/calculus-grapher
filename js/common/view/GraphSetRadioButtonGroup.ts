@@ -10,11 +10,11 @@ import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, Rectangul
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
-import CurveLabelNode from './CurveLabelNode.js';
-import { getGraphTypeStroke, GraphSet, GraphType } from '../model/GraphType.js';
+import { GraphSet, GraphType } from '../model/GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
-import { AlignBox, AlignGroup, Line, VBox } from '../../../../scenery/js/imports.js';
+import { AlignGroup } from '../../../../scenery/js/imports.js';
+import { GraphTypeRadioButtonIcon } from './GraphTypeIcon.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -48,36 +48,10 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
   public static createItem( graphSet: GraphSet, graphType: GraphType, labelAlignGroup: AlignGroup ): GraphSetRadioButtonGroupItem {
     assert && assert( graphSet.includes( graphType ) );
     return {
-      createNode: tandem => new GraphSetRadioButtonIcon( graphType, labelAlignGroup ),
+      createNode: tandem => new GraphTypeRadioButtonIcon( graphType, labelAlignGroup ),
       value: graphSet,
       tandemName: `${graphType}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
     };
-  }
-}
-
-class GraphSetRadioButtonIcon extends VBox {
-
-  /**
-   * @param graphType
-   * @param labelAlignGroup - to give labels the same effective size
-   */
-  public constructor( graphType: GraphType, labelAlignGroup: AlignGroup ) {
-
-    const labelNode = new AlignBox( new CurveLabelNode( graphType ), {
-      group: labelAlignGroup
-    } );
-
-    // Horizontal line showing the color that is used to stroke graphType.
-    const colorLine = new Line( 0, 0, 40, 0, {
-      stroke: getGraphTypeStroke( graphType ),
-      lineWidth: 3
-    } );
-
-    super( {
-      children: [ labelNode, colorLine ],
-      spacing: 7,
-      align: 'center'
-    } );
   }
 }
 
