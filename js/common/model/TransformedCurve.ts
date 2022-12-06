@@ -399,7 +399,7 @@ export default class TransformedCurve extends Curve {
 
       // update the y value of an intermediate point
       this.getClosestPointAt( xPosition ).y = ( 1 - W ) * position1.y + W * position2.y;
-      this.getClosestPointAt( xPosition ).isDiscontinuous = false;
+      this.getClosestPointAt( xPosition ).pointType = 'smooth';
     }
   }
 

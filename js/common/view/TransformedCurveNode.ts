@@ -122,7 +122,7 @@ export default class TransformedCurveNode extends CurveNode {
 
     // Draw the curve shape slightly BELOW the true y-value.
     this.curve.points.forEach( point => {
-      if ( point.exists ) {
+      if ( point.isFinite ) {
         const viewPoint = this.chartTransform.modelToViewXY( point.x, point.y );
 
         pathShape.lineToPoint( viewPoint.addXY( 0, CURVE_DRAG_DILATION ) );
@@ -131,7 +131,7 @@ export default class TransformedCurveNode extends CurveNode {
 
     // Draw the curve shape slightly ABOVE the true y-value.
     _.forEachRight( this.curve.points, point => {
-      if ( point.exists ) {
+      if ( point.isFinite ) {
         const viewPoint = this.chartTransform.modelToViewXY( point.x, point.y );
 
         pathShape.lineToPoint( viewPoint.addXY( 0, -CURVE_DRAG_DILATION ) );

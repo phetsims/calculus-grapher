@@ -316,12 +316,12 @@ export default class Curve extends PhetioObject {
         // Compute the leftSlope and rightSlope.
 
         // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
-        if ( previousPoint && previousPoint.exists ) {
+        if ( previousPoint && previousPoint.isFinite ) {
           leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
           assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
         }
 
-        if ( nextPoint && nextPoint.exists ) {
+        if ( nextPoint && nextPoint.isFinite ) {
           // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
           rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
           assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
@@ -335,7 +335,7 @@ export default class Curve extends PhetioObject {
           // evaluate the difference in the angle of the left and right slope
           const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
 
-          point.isCusp = ( K >= DERIVATIVE_THRESHOLD );
+          point.pointType = ( K >= DERIVATIVE_THRESHOLD ) ? 'cusp' : 'smooth';
         }
       }
     );
@@ -352,12 +352,12 @@ export default class Curve extends PhetioObject {
 
         // Compute the leftDifference and rightDifference.
 
-        if ( previousPoint && previousPoint.exists ) {
+        if ( previousPoint && previousPoint.isFinite ) {
           leftSideDifference = ( point.y - previousPoint.y );
           assert && assert( Number.isFinite( leftSideDifference ), 'non finite slope' );
         }
 
-        if ( nextPoint && nextPoint.exists ) {
+        if ( nextPoint && nextPoint.isFinite ) {
           rightSideDifference = ( nextPoint.y - point.y );
           assert && assert( Number.isFinite( rightSideDifference ), 'non finite slope' );
         }
@@ -369,7 +369,7 @@ export default class Curve extends PhetioObject {
           // find jump
           const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
 
-          point.isDiscontinuous = ( jump >= 10 );
+          point.pointType = ( jump >= 10 ) ? 'discontinuous' : 'smooth';
         }
       }
     );

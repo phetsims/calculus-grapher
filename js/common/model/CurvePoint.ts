@@ -1,36 +1,40 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
 /**
- * CurvePoint is a single mutable point of a Curve at a given x-value. Inheriting from Vector2 was considered, but it
- * was decided to implement CurvePoints to be minimally invasive and lightweight for performance.
- *
+ * CurvePoint is a single mutable point of a Curve at a given x-value.
  * Each CurvePoint contains the following information:
- *   - The corresponding y-value of the Point.
- *   - Whether the Point exists. A Point that isn't defined means that the Curve has a hole or a discontinuity.
- *   - All of its previously 'saved' y-values. When the user finishes manipulating the TransformedCurve, the y-value of
- *     CurvePoints in the TransformedCurve are saved.
+ *   - The corresponding y-value and type of the Point.
+ *   - All of its previously 'saved' states. When the user finishes manipulating the TransformedCurve, the state of
+ *     CurvePoint in the TransformedCurve is saved.
  *
  * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve (and its subtypes) to partition the curve
- * into a finite number of close points that map out the general shape and curvature. Adjacent CurvePoints are
- * considered to be infinitesimally close enough for derivative and integral computations. Thus, CurvePoints are created
- * at the start of the sim and are mutated when the Curve changes, meaning CurvePoints are never disposed.
+ * into a finite number of close points that map out the general shape and curvature. CurvePoints are created
+ * at the start of the sim and are mutated when the Curve changes. CurvePoints are never disposed.
  *
  * @author Brandon Li
  */
 
 import Vector2 from '../../../../dot/js/Vector2.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
+import StringIO from '../../../../tandem/js/types/StringIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+
+const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
+export type PointType = ( typeof PointTypeValues )[number];
+
+export type PointState = {
+  y: number;
+  pointType: PointType;
+};
 
 export type CurvePointStateObject = {
   x: number;
   y: number;
-  isDiscontinuous: boolean;
-  isCusp: boolean;
+  pointType: PointType;
   initialY: number;
+  initialPointType: PointType;
 };
 
 export default class CurvePoint {
@@ -42,44 +46,28 @@ export default class CurvePoint {
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public y: number;
 
-  public isDiscontinuous: boolean;
-
-  public isCusp: boolean;
+  public pointType: PointType;
 
   // the initial y-coordinate passed into the CurvePoint, for resetting purposes.
-  private readonly initialY: number;
+  private readonly initialState: PointState;
 
-  // an array of all of this Point's saved y-values.
-  private savedYValues: ( number )[];
+  // an array of all of this Point's saved states.
+  private readonly savedStates: PointState [];
 
-  public static readonly CurvePointIO = new IOType<CurvePoint, CurvePointStateObject>( 'CurvePointIO', {
-    valueType: CurvePoint,
-    stateSchema: {
-      x: NumberIO,
-      y: NumberIO,
-      isDiscontinuous: BooleanIO,
-      isCusp: BooleanIO,
-      initialY: NumberIO
-    },
-    toStateObject: ( curvePoint: CurvePoint ) => curvePoint.toStateObject(),
-    fromStateObject: ( stateObject: CurvePointStateObject ) => CurvePoint.fromStateObject( stateObject ),
-    documentation: 'describe the point on a curve'
-  } );
-
-  public constructor( x: number, y = 0, isDiscontinuous = false ) {
+  public constructor( x: number, y = 0, pointType: PointType = 'smooth' ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
     assert && assert( y === null || Number.isFinite( y ), `invalid y: ${y}` );
 
     this.x = x;
     this.y = y;
-    this.isDiscontinuous = isDiscontinuous;
+    this.pointType = pointType;
 
-    // TODO: allow user to set state
-    this.isCusp = false;
+    this.initialState = {
+      y: y,
+      pointType: pointType
+    };
 
-    this.initialY = y;
-
-    this.savedYValues = [];
+    this.savedStates = [];
   }
 
   public toVector(): Vector2 {
@@ -87,10 +75,18 @@ export default class CurvePoint {
   }
 
   /**
-   * Returns a boolean that indicates if the point exists.
+   * Returns a boolean that indicates if the y value of a point is finite.
    */
-  public get exists(): boolean {
+  public get isFinite(): boolean {
     return Number.isFinite( this.y );
+  }
+
+  public get isDiscontinuous(): boolean {
+    return this.pointType === 'discontinuous';
+  }
+
+  public get isCusp(): boolean {
+    return this.pointType === 'cusp';
   }
 
   //----------------------------------------------------------------------------------------
@@ -99,7 +95,7 @@ export default class CurvePoint {
    * Gets the most recently saved y-value.
    */
   public get lastSavedY(): number {
-    return ( this.savedYValues.length === 0 ) ? this.initialY : _.last( this.savedYValues )!;
+    return ( this.savedStates.length === 0 ) ? this.initialState.y : _.last( this.savedStates )!.y;
   }
 
   /**
@@ -109,16 +105,29 @@ export default class CurvePoint {
    */
   public save(): void {
 
-    // Save the current y-value of the CurvePoint.
-    this.savedYValues.push( this.y );
+    // Save the current state of the CurvePoint.
+    this.savedStates.push( {
+      y: this.y,
+      pointType: this.pointType
+    } );
 
     // empty first element of array if the number of saved values exceed MAX_UNDO
-    while ( this.savedYValues.length > CalculusGrapherConstants.MAX_UNDO ) {
+    while ( this.savedStates.length > CalculusGrapherConstants.MAX_UNDO ) {
 
       // remove first value from array
-      this.savedYValues.shift();
+      this.savedStates.shift();
     }
+  }
 
+  /**
+   * Debugging string for the CurvePoint.
+   */
+  public toString(): string {
+    return `CurvePoint[ x: ${this.x}, y: ${this.y}, pointType: ${this.pointType} ]`;
+  }
+
+  public dispose(): void {
+    assert && assert( false, 'CurvePoint cannot be disposed (exists for the lifetime of the sim)' );
   }
 
   /**
@@ -129,41 +138,13 @@ export default class CurvePoint {
 
     // Set the y-value of this CurvedPoint to the last saved state. The y-value is removed from our savedYValues
     // so the next undoToLastSave() call successively reverts to the state before this one.
-    this.y = ( this.savedYValues.length === 0 ) ? this.initialY : this.savedYValues.pop()!;
-  }
-
-  //----------------------------------------------------------------------------------------
-
-  /**
-   * Debugging string for the CurvePoint.
-   */
-  public toString(): string {
-    return `CurvePoint[ x: ${this.x}, y: ${this.y} ]`;
-  }
-
-  public dispose(): void {
-    assert && assert( false, 'CurvePoint cannot be disposed (exists for the lifetime of the sim)' );
+    this.y = ( this.savedStates.length === 0 ) ? this.initialState.y : this.savedStates.pop()!.y;
   }
 
   public reset(): void {
-    this.y = this.initialY;
-    this.savedYValues = [];
-
-    // TODO: save initial state
-    this.isDiscontinuous = false;
-    this.isCusp = false;
-  }
-
-  public static fromStateObject( stateObject: CurvePointStateObject ): CurvePoint {
-    const curvePoint = new CurvePoint(
-      stateObject.x,
-      stateObject.initialY,
-      stateObject.isDiscontinuous
-    );
-    curvePoint.y = stateObject.y;
-    curvePoint.isCusp = stateObject.isCusp;
-
-    return curvePoint;
+    this.y = this.initialState.y;
+    this.pointType = this.initialState.pointType;
+    this.savedStates.length = 0;
   }
 
   // the savedYValues of the curvePoint are purposefully not serialized (see https://github.com/phetsims/calculus-grapher/issues/65 )
@@ -171,10 +152,36 @@ export default class CurvePoint {
     return {
       x: this.x,
       y: this.y,
-      isDiscontinuous: this.isDiscontinuous,
-      isCusp: this.isCusp,
-      initialY: this.initialY
+      pointType: this.pointType,
+      initialY: this.initialState.y,
+      initialPointType: this.initialState.pointType
     };
   }
+
+  public static fromStateObject( stateObject: CurvePointStateObject ): CurvePoint {
+    const curvePoint = new CurvePoint(
+      stateObject.x,
+      stateObject.initialY,
+      stateObject.initialPointType
+    );
+    curvePoint.y = stateObject.y;
+    curvePoint.pointType = stateObject.pointType;
+
+    return curvePoint;
+  }
+
+  public static readonly CurvePointIO = new IOType<CurvePoint, CurvePointStateObject>( 'CurvePointIO', {
+    valueType: CurvePoint,
+    stateSchema: {
+      x: NumberIO,
+      y: NumberIO,
+      pointType: StringIO,
+      initialY: NumberIO,
+      initialPointType: StringIO
+    },
+    toStateObject: ( curvePoint: CurvePoint ) => curvePoint.toStateObject(),
+    fromStateObject: ( stateObject: CurvePointStateObject ) => CurvePoint.fromStateObject( stateObject ),
+    documentation: 'describe the point on a curve'
+  } );
 }
 calculusGrapher.register( 'CurvePoint', CurvePoint );
