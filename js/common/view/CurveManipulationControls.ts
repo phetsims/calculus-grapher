@@ -7,13 +7,12 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
 import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
 import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
-import CurveManipulationModeRadioButtonGroup, { CurveManipulationModeRadioButtonGroupOptions } from './CurveManipulationModeRadioButtonGroup.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
@@ -22,26 +21,20 @@ import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 // curve manipulation modes that should not display a curve manipulation width slider
 const NO_SLIDER_MODES = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
 
-type SelfOptions = {
-  curveManipulationModeRadioButtonGroupOptions?: CurveManipulationModeRadioButtonGroupOptions;
-};
+type SelfOptions = EmptySelfOptions;
 
-export type CurveManipulationControlsOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type CurveManipulationControlsOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'>;
 
-export default class CurveManipulationControls extends Node {
+export default class CurveManipulationControls extends VBox {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       predictModeEnabledProperty: PredictModeEnabledProperty,
                       providedOptions?: CurveManipulationControlsOptions ) {
 
-    const options = optionize<CurveManipulationControlsOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<CurveManipulationControlsOptions, SelfOptions, VBoxOptions>()( {
 
-      curveManipulationModeRadioButtonGroupOptions: {
-        spacing: 3,
-        radioButtonOptions: {
-          baseColor: CalculusGrapherColors.panelFillProperty
-        }
-      }
+      // VBoxOptions
+      spacing: 15
     }, providedOptions );
 
     // destructure the properties of curveManipulationProperties for convenience
@@ -53,32 +46,28 @@ export default class CurveManipulationControls extends Node {
         tandem: options.tandem.createTandem( 'displayNode' )
       } );
 
-    const curveManipulationWidthSlider = new CurveManipulationWidthSlider(
-      widthProperty,
-      {
-        visibleProperty: new DerivedProperty(
-          [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
-        top: curveManipulationDisplayNode.bottom + 10,
-        centerX: curveManipulationDisplayNode.centerX,
-        tandem: options.tandem.createTandem( 'curveManipulationSlider' )
-      } );
+    const curveManipulationWidthSlider = new CurveManipulationWidthSlider( widthProperty, {
+      visibleProperty: new DerivedProperty(
+        [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
+      tandem: options.tandem.createTandem( 'curveManipulationSlider' )
+    } );
+
+    const displayAndSlider = new VBox( {
+      children: [ curveManipulationDisplayNode, curveManipulationWidthSlider ],
+      spacing: 10,
+      excludeInvisibleChildrenFromBounds: false
+    } );
 
     // Radio Buttons that control the curveManipulationModeProperty.
     const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
       modeProperty,
-      predictModeEnabledProperty,
-      combineOptions<CurveManipulationModeRadioButtonGroupOptions>( {
-          top: curveManipulationDisplayNode.bottom + 20 + curveManipulationWidthSlider.height,
-          centerX: curveManipulationDisplayNode.centerX,
-          tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
-        },
-        options.curveManipulationModeRadioButtonGroupOptions
-      ) );
+      predictModeEnabledProperty, {
+        tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
+      } );
 
-    options.children = [ curveManipulationDisplayNode, curveManipulationWidthSlider, curveManipulationModeRadioButtonGroup ];
+    options.children = [ displayAndSlider, curveManipulationModeRadioButtonGroup ];
 
     super( options );
-
   }
 }
 
