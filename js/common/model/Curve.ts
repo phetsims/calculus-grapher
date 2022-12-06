@@ -67,7 +67,7 @@ export default class Curve extends PhetioObject {
   public readonly xRange: Range;
   public readonly pointsPerCoordinate: number;
 
-  public constructor( providedOptions: CurveOptions ) {
+  protected constructor( providedOptions: CurveOptions ) {
 
     assert && assert( !( providedOptions.mathFunction && providedOptions.initialPoints ),
       'Only one way to set the curve is allowed' );
