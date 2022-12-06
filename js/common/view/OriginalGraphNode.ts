@@ -26,7 +26,7 @@ import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CurveLabelNode from './CurveLabelNode.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -114,7 +114,7 @@ export default class OriginalGraphNode extends GraphNode {
     const showOriginalCurveCheckboxContent = new HBox( {
       children: [
         new Text( CalculusGrapherStrings.showStringProperty ),
-        new CurveLabelNode( 'original' )
+        new GraphTypeLabelNode( 'original' )
       ],
       spacing: 10
     } );

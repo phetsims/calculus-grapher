@@ -9,7 +9,7 @@
 
 import { AlignBox, AlignGroup, Line, VBox } from '../../../../scenery/js/imports.js';
 import { getGraphTypeStroke, GraphType } from '../model/GraphType.js';
-import CurveLabelNode from './CurveLabelNode.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 export class GraphTypeRadioButtonIcon extends VBox {
@@ -20,7 +20,7 @@ export class GraphTypeRadioButtonIcon extends VBox {
    */
   public constructor( graphType: GraphType, labelAlignGroup: AlignGroup ) {
 
-    const labelNode = new AlignBox( new CurveLabelNode( graphType ), {
+    const labelNode = new AlignBox( new GraphTypeLabelNode( graphType ), {
       group: labelAlignGroup
     } );
 

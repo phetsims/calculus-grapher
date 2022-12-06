@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * CurveLabelNode is the view representation for graph labels in 'Calculus Grapher'
+ * GraphTypeLabelNode is the view representation for graph labels in 'Calculus Grapher'
  *
  * @author Martin Veillette
  */
@@ -31,7 +31,7 @@ type SelfOptions = {
 
 export type CurveLabelNodeOptions = SelfOptions & NodeOptions;
 
-export default class CurveLabelNode extends Node {
+export default class GraphTypeLabelNode extends Node {
 
   public constructor( graphType: GraphType, providedOptions?: CurveLabelNodeOptions ) {
 
@@ -270,4 +270,4 @@ function getVariableStringProperty( functionVariableProperty: TReadOnlyProperty<
   );
 }
 
-calculusGrapher.register( 'CurveLabelNode', CurveLabelNode );
+calculusGrapher.register( 'GraphTypeLabelNode', GraphTypeLabelNode );

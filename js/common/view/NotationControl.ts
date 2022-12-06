@@ -18,7 +18,7 @@ import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../CalculusGrapherQueryParameters.js';
-import CurveLabelNode from './CurveLabelNode.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -107,16 +107,18 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
 function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
                       derivativeNotationProperty: StringEnumerationProperty<DerivativeNotation> ): Node {
 
-  const curveLabelNode = new CurveLabelNode( 'derivative', {
-    derivativeNotationProperty: derivativeNotationProperty
-  } );
-
+  // Name of the notation
   const text = new RichText( derivedNotationStringProperty, {
     font: PreferencesDialog.CONTENT_FONT
   } );
 
+  // An example of the notation
+  const exampleNode = new GraphTypeLabelNode( 'derivative', {
+    derivativeNotationProperty: derivativeNotationProperty
+  } );
+
   return new HBox( {
-    children: [ text, curveLabelNode ],
+    children: [ text, exampleNode ],
     spacing: 15
   } );
 }

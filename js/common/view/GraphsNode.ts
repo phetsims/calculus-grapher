@@ -15,7 +15,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
-import CurveLabelNode from './CurveLabelNode.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import { GraphSet } from '../model/GraphType.js';
@@ -54,7 +54,7 @@ export default class GraphNodes extends Node {
     const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      new CurveLabelNode( 'integral' ),
+      new GraphTypeLabelNode( 'integral' ),
       {
         curveStroke: CalculusGrapherColors.integralCurveStrokeProperty,
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
@@ -63,7 +63,7 @@ export default class GraphNodes extends Node {
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
       graphHeightProperty,
-      new CurveLabelNode( 'original' ),
+      new GraphTypeLabelNode( 'original' ),
       {
         curveStroke: CalculusGrapherColors.originalCurveStrokeProperty,
 
@@ -75,7 +75,7 @@ export default class GraphNodes extends Node {
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      new CurveLabelNode( 'derivative' ),
+      new GraphTypeLabelNode( 'derivative' ),
       {
         curveStroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
@@ -84,7 +84,7 @@ export default class GraphNodes extends Node {
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
-      new CurveLabelNode( 'secondDerivative' ),
+      new GraphTypeLabelNode( 'secondDerivative' ),
       {
         curveStroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
         tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
