@@ -53,7 +53,7 @@ type SelfOptions = {
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
 
-  continuousLinePlotStroke: TColor;
+  curveStroke: TColor;
 };
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
@@ -134,7 +134,7 @@ export default class GraphNode extends Node {
     this.curveNode = options.createCurveNode( this.chartTransform,
       combineOptions<CurveNodeOptions>( {
           continuousLinePlotOptions: {
-            stroke: options.continuousLinePlotStroke
+            stroke: options.curveStroke
           }
         },
         options.curveNodeOptions ) );
