@@ -17,8 +17,8 @@ import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
   solidCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
@@ -27,7 +27,7 @@ type SelfOptions = {
   chartTransformOptions?: ChartTransformOptions;
 };
 
-export type CurveManipulationIconNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type CurveManipulationIconNodeOptions = SelfOptions;
 
 export default class CurveManipulationIconNode extends Node {
 
@@ -69,13 +69,13 @@ export default class CurveManipulationIconNode extends Node {
 
     // create model for solid curve
     const solidCurve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
-        tandem: options.tandem.createTandem( 'solidIconCurve' )
+        tandem: Tandem.OPT_OUT
       },
       options.transformedCurveOptions ) );
 
     // create model for icon curve
     const dashedCurve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
-        tandem: options.tandem.createTandem( 'dashedIconCurve' )
+        tandem: Tandem.OPT_OUT
       },
       options.transformedCurveOptions ) );
 
@@ -118,10 +118,10 @@ export default class CurveManipulationIconNode extends Node {
 
     // create the solid curve node
     const solidCurveNode = new CurveNode( solidCurve, chartTransform,
-      combineOptions<CurveNodeOptions>( { tandem: options.tandem.createTandem( 'solidCurveNode' ) }, options.solidCurveNodeOptions ) );
+      combineOptions<CurveNodeOptions>( { tandem: Tandem.OPT_OUT }, options.solidCurveNodeOptions ) );
 
     const dashedCurveNode = new CurveNode( dashedCurve,
-      chartTransform, combineOptions<CurveNodeOptions>( { tandem: options.tandem.createTandem( 'dashedCurveNode' ) }, options.solidCurveNodeOptions, options.dashedCurveNodeOptions ) );
+      chartTransform, combineOptions<CurveNodeOptions>( { tandem: Tandem.OPT_OUT }, options.solidCurveNodeOptions, options.dashedCurveNodeOptions ) );
 
     const children = [ chartRectangle, solidCurveNode ];
 

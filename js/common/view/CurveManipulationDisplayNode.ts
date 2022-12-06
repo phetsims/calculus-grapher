@@ -21,6 +21,7 @@ import Range from '../../../../dot/js/Range.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
   curveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
@@ -57,7 +58,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
 
     const curve = new TransformedCurve(
       combineOptions<TransformedCurveOptions>( {
-          tandem: options.tandem.createTandem( 'displayCurve' )
+          tandem: Tandem.OPT_OUT
         },
         options.transformedCurveOptions ) );
 

@@ -41,8 +41,7 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
                 continuousLinePlotOptions: {
                   stroke: predictModeEnabledProperty.colorStrokeProperty
                 }
-              },
-              tandem: tandem.createTandem( `${mode.tandemPrefix}Icon` )
+              }
             } ),
             options: {
               visible: validModes.includes( mode )
