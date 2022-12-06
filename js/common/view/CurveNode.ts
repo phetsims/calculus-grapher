@@ -128,6 +128,13 @@ export default class CurveNode extends Node {
 
   }
 
+  /**
+   * Reset all
+   */
+  public reset(): void {
+    this.dragBoundsProperty.reset();
+  }
+
   public updateCurveNode(): void {
     this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
