@@ -16,8 +16,8 @@
  * @author Brandon Li
  */
 
-import optionize from '../../../../phet-core/js/optionize.js';
-import { Color, Node, NodeOptions, ProfileColorProperty } from '../../../../scenery/js/imports.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import { Color, Node, NodeOptions, ProfileColorProperty, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
 import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
@@ -30,16 +30,23 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
 
 type SelfOptions = {
-  discontinuousPointsScatterPlotOptions?: ScatterPlotOptions;
+
+  stroke: TColor;
+
+  // line plots
+  continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
+  discontinuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
+
+  // scatter plots
+  discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
-  continuousLinePlotOptions?: LinePlotOptions;
-  discontinuousLinePlotOptions?: LinePlotOptions;
 };
 
 export type CurveNodeOptions = SelfOptions & NodeOptions;
@@ -58,23 +65,22 @@ export default class CurveNode extends Node {
                       providedOptions?: CurveNodeOptions ) {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
-      discontinuousPointsScatterPlotOptions: {
-        fill: null,
-        stroke: Color.MAGENTA,
-        lineWidth: 2
-      },
 
       continuousLinePlotOptions: {
         lineWidth: 2
       },
 
       discontinuousLinePlotOptions: {
-        stroke: Color.ORANGE,
         lineWidth: 2,
         lineDash: [ 2, 2 ],
         visibleProperty: new DerivedProperty( [
           CalculusGrapherPreferences.connectDiscontinuitiesProperty ], connectDiscontinuities =>
           connectDiscontinuities === 'dashedLine' )
+      },
+
+      discontinuousPointsScatterPlotOptions: {
+        fill: null,
+        lineWidth: 2
       },
 
       cuspsScatterPlotOptions: {
@@ -110,9 +116,18 @@ export default class CurveNode extends Node {
 
     this.allPointsScatterPlot = new ScatterPlot( chartTransform, allPointsScatterPlotDataSet, options.allPointsScatterPlotOptions );
     this.cuspsScatterPlot = new ScatterPlot( chartTransform, cuspsScatterPlotDataSet, options.cuspsScatterPlotOptions );
-    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, discontinuousPointScatterPlotDataSet, options.discontinuousPointsScatterPlotOptions );
-    this.continuousLinePlot = new LinePlot( chartTransform, continuousLinePlotDataSet, options.continuousLinePlotOptions );
-    this.discontinuousLinePlot = new LinePlot( chartTransform, discontinuousLinePlotDataSet, options.discontinuousLinePlotOptions );
+    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, discontinuousPointScatterPlotDataSet,
+      combineOptions<ScatterPlotOptions>( {
+        stroke: options.stroke
+      }, options.discontinuousPointsScatterPlotOptions ) );
+    this.continuousLinePlot = new LinePlot( chartTransform, continuousLinePlotDataSet,
+      combineOptions<LinePlotOptions>( {
+        stroke: options.stroke
+      }, options.continuousLinePlotOptions ) );
+    this.discontinuousLinePlot = new LinePlot( chartTransform, discontinuousLinePlotDataSet,
+      combineOptions<LinePlotOptions>( {
+        stroke: options.stroke
+      }, options.discontinuousLinePlotOptions ) );
 
     this.addChild( this.continuousLinePlot );
     this.addChild( this.discontinuousLinePlot );
@@ -127,7 +142,7 @@ export default class CurveNode extends Node {
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
 
-    const continuousLinePlotStrokeProperty = options.continuousLinePlotOptions.stroke;
+    const continuousLinePlotStrokeProperty = options.stroke;
 
     // check that curve stroke is a ProfileColorProperty and not a readonly or derived property of color or else
     if ( continuousLinePlotStrokeProperty instanceof ProfileColorProperty ) {

@@ -37,11 +37,7 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
           return {
             value: mode,
             createNode: tandem => new CurveManipulationIconNode( mode, {
-              solidCurveNodeOptions: {
-                continuousLinePlotOptions: {
-                  stroke: predictModeEnabledProperty.colorStrokeProperty
-                }
-              }
+              stroke: predictModeEnabledProperty.colorStrokeProperty
             } ),
             options: {
               visible: validModes.includes( mode )

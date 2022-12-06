@@ -7,7 +7,7 @@
  * */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedCurve.js';
@@ -21,8 +21,9 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
-  solidCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
-  dashedCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
+  stroke: TColor;
+  solidCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'stroke' | 'tandem'>;
+  dashedCurveNodeOptions?: StrictOmit<CurveNodeOptions, 'stroke' | 'tandem'>;
   transformedCurveOptions?: TransformedCurveOptions;
   chartTransformOptions?: ChartTransformOptions;
 };
@@ -34,13 +35,8 @@ export default class CurveManipulationIconNode extends Node {
   public constructor( mode: CurveManipulationMode,
                       providedOptions?: CurveManipulationIconNodeOptions ) {
 
-    const options = optionize<CurveManipulationIconNodeOptions, SelfOptions, NodeOptions>()(
+    const options = optionize<CurveManipulationIconNodeOptions, StrictOmit<SelfOptions, 'solidCurveNodeOptions'>, NodeOptions>()(
       {
-        solidCurveNodeOptions: {
-          continuousLinePlotOptions: {
-            lineWidth: 2
-          }
-        },
         dashedCurveNodeOptions: {
           continuousLinePlotOptions: {
             lineDash: [ 4.5, 2 ],
@@ -117,11 +113,15 @@ export default class CurveManipulationIconNode extends Node {
     }
 
     // create the solid curve node
-    const solidCurveNode = new CurveNode( solidCurve, chartTransform,
-      combineOptions<CurveNodeOptions>( { tandem: Tandem.OPT_OUT }, options.solidCurveNodeOptions ) );
+    const solidCurveNode = new CurveNode( solidCurve, chartTransform, combineOptions<CurveNodeOptions>( {
+      stroke: options.stroke,
+      tandem: Tandem.OPT_OUT
+    }, options.solidCurveNodeOptions ) );
 
-    const dashedCurveNode = new CurveNode( dashedCurve,
-      chartTransform, combineOptions<CurveNodeOptions>( { tandem: Tandem.OPT_OUT }, options.solidCurveNodeOptions, options.dashedCurveNodeOptions ) );
+    const dashedCurveNode = new CurveNode( dashedCurve, chartTransform, combineOptions<CurveNodeOptions>( {
+      stroke: options.stroke,
+      tandem: Tandem.OPT_OUT
+    }, options.dashedCurveNodeOptions ) );
 
     const children = [ chartRectangle, solidCurveNode ];
 

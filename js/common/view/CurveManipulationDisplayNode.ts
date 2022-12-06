@@ -39,10 +39,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()(
       {
         curveNodeOptions: {
-          continuousLinePlotOptions: {
-            stroke: predictModeEnabledProperty.colorStrokeProperty,
-            lineWidth: 2
-          }
+          stroke: predictModeEnabledProperty.colorStrokeProperty
         },
         transformedCurveOptions: {
           pointsPerCoordinate: 3,

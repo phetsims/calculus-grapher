@@ -87,6 +87,7 @@ export default class GraphNode extends Node {
         opacity: 0.4
       },
       curveNodeOptions: {
+        stroke: providedOptions.curveStroke,
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       },
       plusMinusZoomButtonGroupOptions: {
@@ -133,9 +134,7 @@ export default class GraphNode extends Node {
 
     this.curveNode = options.createCurveNode( this.chartTransform,
       combineOptions<CurveNodeOptions>( {
-          continuousLinePlotOptions: {
-            stroke: options.curveStroke
-          }
+          stroke: options.curveStroke
         },
         options.curveNodeOptions ) );
 
