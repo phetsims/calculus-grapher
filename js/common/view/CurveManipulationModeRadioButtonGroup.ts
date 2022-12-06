@@ -1,20 +1,21 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * CurveManipulationModeRadioButtonGroupOptions is the radio button group for choosing a curve manipulation model
+ * CurveManipulationModeRadioButtonGroup is the radio button group for choosing a curve manipulation model
  *
  * @author Martin Veillette (Berea College)
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Property from '../../../../axon/js/Property.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -26,7 +27,14 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
                       predictModeEnabledProperty: PredictModeEnabledProperty,
                       providedOptions: CurveManipulationModeRadioButtonGroupOptions ) {
 
-    const options = providedOptions;
+    const options = optionize<CurveManipulationModeRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()( {
+
+      // RectangularRadioButtonGroupOptions
+      spacing: 3,
+      radioButtonOptions: {
+        baseColor: CalculusGrapherColors.panelFillProperty
+      }
+    }, providedOptions );
 
     const validModes = curveManipulationModeProperty.validValues!;
     assert && assert( validModes );

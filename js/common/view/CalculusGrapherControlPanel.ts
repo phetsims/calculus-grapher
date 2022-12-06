@@ -19,9 +19,9 @@ import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
 
 type SelfOptions = {
-  contentSpacing?: number;
   areaUnderCurveCheckboxVisible?: boolean;
   tangentCheckboxVisible?: boolean;
   smoothButtonVisible?: boolean;
@@ -38,18 +38,20 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
 
-      //  the spacing between the content Nodes of the Panel
-      contentSpacing: 7,
-
+      // SelfOptions
       areaUnderCurveCheckboxVisible: false,
       tangentCheckboxVisible: false,
       smoothButtonVisible: true,
 
-      // super-class options
+      // PanelOptions
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty
 
     }, providedOptions );
+
+    const predictModeRadioButtonGroup = new PredictModeRadioButtonGroup( predictModeEnabledProperty, {
+      tandem: options.tandem.createTandem( 'predictModeRadioButtonGroup' )
+    } );
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls(
@@ -79,13 +81,14 @@ export default class CalculusGrapherControlPanel extends Panel {
       new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
         visible: options.areaUnderCurveCheckboxVisible,
         tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
-      }
-    );
+      } );
 
     // assemble all the scenery nodes
     const contentNode = new VBox( {
-      spacing: options.contentSpacing,
-      children: [ curveManipulationControls,
+      spacing: 10,
+      children: [
+        predictModeRadioButtonGroup,
+        curveManipulationControls,
         curveButtons,
         new HSeparator(),
         tangentCheckbox,
