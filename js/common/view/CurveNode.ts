@@ -17,7 +17,7 @@
  */
 
 import optionize from '../../../../phet-core/js/optionize.js';
-import { Color, Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { Color, Node, NodeOptions, ProfileColorProperty } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
 import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
@@ -126,6 +126,17 @@ export default class CurveNode extends Node {
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
 
+    const continuousLinePlotStrokeProperty = options.continuousLinePlotOptions.stroke;
+
+    // check that curve stroke is a ProfileColorProperty and not a readonly or derived property of color or else
+    if ( continuousLinePlotStrokeProperty instanceof ProfileColorProperty ) {
+
+      // add linked element for stroke
+      this.addLinkedElement( continuousLinePlotStrokeProperty, {
+        tandem: options.tandem.createTandem( 'continuousLinePlotStrokeProperty' )
+      } );
+
+    }
   }
 
   /**
