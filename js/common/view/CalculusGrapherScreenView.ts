@@ -78,7 +78,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.predictModeEnabledProperty,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
-        tandem: options.tandem.createTandem( 'calculusGrapherControlPanel' )
+        tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties, {
