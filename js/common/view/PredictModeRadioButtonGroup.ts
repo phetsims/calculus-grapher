@@ -11,12 +11,12 @@ import { AlignGroup, Text } from '../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
+import Property from '../../../../axon/js/Property.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -24,7 +24,7 @@ export type PredictModeRadioButtonGroupOptions = SelfOptions & RectangularRadioB
 
 export default class PredictModeRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
-  public constructor( predictModeEnabledProperty: PredictModeEnabledProperty,
+  public constructor( predictModeEnabledProperty: Property<boolean>,
                       providedOptions: PredictModeRadioButtonGroupOptions ) {
 
     const options = optionize<PredictModeRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()( {
