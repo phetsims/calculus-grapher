@@ -25,7 +25,6 @@ import ScatterPlot, { ScatterPlotOptions } from '../../../../bamboo/js/ScatterPl
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -102,8 +101,8 @@ export default class CurveNode extends Node {
 
     this.curve = curve;
 
-    // the viewBounds of this graph, the maxY is arbitrary, its value will be updated later
-    const graphViewBounds = new Bounds2( 0, 0, CalculusGrapherConstants.GRAPH_VIEW_WIDTH, 100 );
+    // the viewBounds of this graph
+    const graphViewBounds = new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight );
 
     // create dragBounds based on the graph View
     this.dragBoundsProperty = new Property( graphViewBounds );
