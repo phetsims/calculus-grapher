@@ -52,12 +52,12 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       {
         value: false,
         createNode: tandem => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
-        tandemName: `fx${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: `originalCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: true,
         createNode: tandem => new LabelColorIcon( predictText, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty ),
-        tandemName: `predict${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: `predictCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
 
