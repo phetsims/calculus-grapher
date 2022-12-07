@@ -369,7 +369,7 @@ export default class Curve extends PhetioObject {
           // find jump
           const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
 
-          point.pointType = ( jump >= 10 ) ? 'discontinuous' : 'smooth';
+          point.pointType = ( jump >= 2 ) ? 'discontinuous' : 'smooth';
         }
       }
     );
