@@ -103,9 +103,10 @@ export default class GraphNode extends Node {
 
     super( options );
 
-    // chart transform for the graph, the height and Y range will be updated later
+    // chart transform for the graph, the Y range will be updated later
     this.chartTransform = new ChartTransform( {
       viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
+      viewHeight: graphHeightProperty.value,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
 
@@ -168,9 +169,9 @@ export default class GraphNode extends Node {
       this.curveLayer.clipArea = chartRectangle.getShape();
       eyeToggleButton.bottom = chartRectangle.bottom;
       zoomButtonGroup.centerY = chartRectangle.centerY;
+      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
     } );
 
-    labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
 
     // create horizontal numerical labels for ticks
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
