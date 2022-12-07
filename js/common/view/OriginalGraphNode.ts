@@ -27,6 +27,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -34,7 +35,7 @@ type OriginalGraphNodeOptions = SelfOptions & GraphNodeOptions;
 
 export default class OriginalGraphNode extends GraphNode {
 
-  // property that tracks the visibility of the cueingArrows
+  // Property that tracks the visibility of the cueingArrows
   private readonly cueingArrowsNodeVisibleProperty: BooleanProperty;
 
   public constructor( model: CalculusGrapherModel,
@@ -110,24 +111,28 @@ export default class OriginalGraphNode extends GraphNode {
       this.cueingArrowsNodeVisibleProperty.value = false;
     } );
 
-
     const showOriginalCurveCheckboxContent = new HBox( {
       children: [
-        new Text( CalculusGrapherStrings.showStringProperty ),
+        new Text( CalculusGrapherStrings.showStringProperty, {
+          font: new PhetFont( 14 )
+        } ),
         new GraphTypeLabelNode( 'original' )
       ],
-      spacing: 10
+      spacing: 5
     } );
 
     const showOriginalCurveCheckbox = new Checkbox( visibleProperties.allOriginalCurvesVisibleProperty,
       showOriginalCurveCheckboxContent, {
         visibleProperty: predictModeEnabledProperty,
-        top: 10,
-        right: this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10,
         tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
       } );
-
     this.addChild( showOriginalCurveCheckbox );
+
+    // Upper-right corner of the chart
+    showOriginalCurveCheckbox.boundsProperty.link( () => {
+      showOriginalCurveCheckbox.top = 10;
+      showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
+    } );
 
     graphHeightProperty.link( height => {
 
