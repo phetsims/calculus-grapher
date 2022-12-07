@@ -16,9 +16,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
-import { GraphSet } from '../model/GraphType.js';
+import { getGraphTypeStroke, GraphSet } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 
@@ -56,7 +55,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new GraphTypeLabelNode( 'integral' ),
       {
-        curveStroke: CalculusGrapherColors.integralCurveStrokeProperty,
+        curveStroke: getGraphTypeStroke( 'integral' ),
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
@@ -65,7 +64,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new GraphTypeLabelNode( 'original' ),
       {
-        curveStroke: CalculusGrapherColors.originalCurveStrokeProperty,
+        curveStroke: getGraphTypeStroke( 'original' ),
 
         // originalGraphNode is always instrumented, because it should always be present.
         tandem: options.tandem.createTandem( 'originalGraphNode' )
@@ -77,7 +76,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new GraphTypeLabelNode( 'derivative' ),
       {
-        curveStroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+        curveStroke: getGraphTypeStroke( 'derivative' ),
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
@@ -86,7 +85,7 @@ export default class GraphNodes extends Node {
       graphHeightProperty,
       new GraphTypeLabelNode( 'secondDerivative' ),
       {
-        curveStroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
+        curveStroke: getGraphTypeStroke( 'secondDerivative' ),
         tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
