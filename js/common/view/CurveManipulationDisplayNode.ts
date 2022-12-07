@@ -20,11 +20,9 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Range from '../../../../dot/js/Range.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
-  curveNodeOptions?: StrictOmit<CurveNodeOptions, 'tandem'>;
   transformedCurveOptions?: TransformedCurveOptions;
   chartTransformOptions?: ChartTransformOptions;
 };
@@ -39,9 +37,6 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()( {
 
       // SelfOptions
-      curveNodeOptions: {
-        stroke: predictModeEnabledProperty.colorStrokeProperty
-      },
       transformedCurveOptions: {
         pointsPerCoordinate: 3,
         xRange: CalculusGrapherConstants.CURVE_X_RANGE
@@ -51,7 +46,10 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         viewHeight: 40,
         modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
         modelYRange: new Range( -1, 6 )
-      }
+      },
+
+      // superOptions
+      stroke: predictModeEnabledProperty.colorStrokeProperty
     }, providedOptions );
 
     const curve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
@@ -108,10 +106,10 @@ export default class CurveManipulationDisplayNode extends CurveNode {
       }
     );
 
+    super( curve, chartTransform, options );
+
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform );
-
-    super( curve, chartTransform, options );
 
     this.clipArea = chartRectangle.getShape();
     this.addChild( chartRectangle );
