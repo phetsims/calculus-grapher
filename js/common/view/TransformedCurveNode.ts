@@ -19,12 +19,19 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CueingArrowsNode from './CueingArrowsNode.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
 export type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 export default class TransformedCurveNode extends CurveNode {
+
+  // has this node ever been userDragged, used for tracking the visibility of the cueingArrows
+  private readonly undraggedProperty: BooleanProperty;
 
   private readonly chartTransform: ChartTransform;
 
@@ -42,7 +49,28 @@ export default class TransformedCurveNode extends CurveNode {
 
     super( curve, chartTransform, options );
 
-    this.chartTransform = chartTransform;
+    this.undraggedProperty = new BooleanProperty( true, {
+      tandem: options.tandem.createTandem( 'undraggedProperty' )
+    } );
+
+    // xPosition for cueing arrows in model coordinate
+    const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
+
+    // create cueing arrows, y position will be set later
+    const cueingArrowsNode = new CueingArrowsNode( {
+      center: chartTransform.modelToViewXY( centerX, 0 ),
+
+      // cueing arrow should not be visible if this node is not enabled
+      visibleProperty: DerivedProperty.and( [ this.undraggedProperty, this.enabledProperty ] ),
+      tandem: options.tandem.createTandem( 'cueingArrowsNode' )
+    } );
+
+    this.addChild( cueingArrowsNode );
+
+    // set the visibility of cueingArrowsNode to invisible if the curve has been touched once.
+    curve.curveChangedEmitter.addListener( () => {
+      this.undraggedProperty.value = false;
+    } );
 
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the TransformedCurve model. Listener is never removed since
@@ -85,6 +113,15 @@ export default class TransformedCurveNode extends CurveNode {
       }
     } ) );
 
+    this.chartTransform = chartTransform;
+  }
+
+  /**
+   * Reset all
+   */
+  public override reset(): void {
+    super.reset();
+    this.undraggedProperty.reset();
   }
 
   /**
