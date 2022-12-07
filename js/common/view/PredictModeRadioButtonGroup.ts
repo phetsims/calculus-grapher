@@ -64,6 +64,10 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
   }
 }
 
+/**
+ * Icons for the radio buttons.
+ * Note that there's a bit of duplication here with GraphTypeIcon, but it feels acceptable.
+ */
 class PredictModeRadioButtonIcon extends VBox {
 
   public constructor( labelNode: Node, labelAlignGroup: AlignGroup, stroke: TColor ) {
