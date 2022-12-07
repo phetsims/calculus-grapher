@@ -7,12 +7,15 @@
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { AlignBox, AlignGroup, Line, Node, TColor, Text, VBox } from '../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -35,20 +38,51 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       }
     }, providedOptions );
 
+    const originalCurveLabelNode = new GraphTypeLabelNode( 'original' );
+
+    const predictText = new Text( CalculusGrapherStrings.predictStringProperty, {
+      font: new PhetFont( 12 )
+    } );
+
+    // To give the labels the same effective size
+    const alignGroup = new AlignGroup();
+
     const rectangularRadioButtonGroupItems: RectangularRadioButtonGroupItem<boolean>[] = [
       {
         value: false,
-        createNode: tandem => new Text( 'f(x)' ),
+        createNode: tandem => new PredictModeRadioButtonIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
         tandemName: `fx${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: true,
-        createNode: tandem => new Text( 'Predict' ),
+        createNode: tandem => new PredictModeRadioButtonIcon( predictText, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty ),
         tandemName: `predict${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
 
     super( predictModeEnabledProperty, rectangularRadioButtonGroupItems, options );
+  }
+}
+
+class PredictModeRadioButtonIcon extends VBox {
+
+  public constructor( labelNode: Node, labelAlignGroup: AlignGroup, stroke: TColor ) {
+
+    const alignBox = new AlignBox( labelNode, {
+      group: labelAlignGroup
+    } );
+
+    // Horizontal line showing the color that is used to stroke the curve associated with predict mode.
+    const colorLine = new Line( 0, 0, 40, 0, {
+      stroke: stroke,
+      lineWidth: 3
+    } );
+
+    super( {
+      children: [ alignBox, colorLine ],
+      spacing: 7,
+      align: 'center'
+    } );
   }
 }
 
