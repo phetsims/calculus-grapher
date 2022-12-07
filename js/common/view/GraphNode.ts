@@ -165,7 +165,7 @@ export default class GraphNode extends Node {
 
     graphHeightProperty.link( height => {
       this.chartTransform.setViewHeight( height );
-      this.curveNode.clipArea = chartRectangle.getShape();
+      this.curveLayer.clipArea = chartRectangle.getShape();
       eyeToggleButton.bottom = chartRectangle.bottom;
       zoomButtonGroup.centerY = chartRectangle.centerY;
     } );
@@ -260,6 +260,7 @@ export default class GraphNode extends Node {
   public reset(): void {
     this.zoomLevelProperty.reset();
     this.curveLayerVisibleProperty.reset();
+    this.curveNode.reset();
   }
 
   /**
