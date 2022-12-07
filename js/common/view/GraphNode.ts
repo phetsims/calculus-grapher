@@ -169,9 +169,14 @@ export default class GraphNode extends Node {
       this.curveLayer.clipArea = chartRectangle.getShape();
       eyeToggleButton.bottom = chartRectangle.bottom;
       zoomButtonGroup.centerY = chartRectangle.centerY;
-      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
+      setLabelNodePosition();
     } );
 
+    labelNode.boundsProperty.link( setLabelNodePosition );
+
+    function setLabelNodePosition(): void {
+      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
+    }
 
     // create horizontal numerical labels for ticks
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
