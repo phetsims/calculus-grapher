@@ -101,7 +101,7 @@ export default class CurveNode extends Node {
 
     this.curve = curve;
 
-    // the viewBounds of this graph
+    // the viewBounds of the associated graph to the curve
     const graphViewBounds = new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight );
 
     // create dragBounds based on the graph View
