@@ -147,7 +147,7 @@ export default class CurvePoint {
     this.savedStates.length = 0;
   }
 
-  // the savedYValues of the curvePoint are purposefully not serialized (see https://github.com/phetsims/calculus-grapher/issues/65 )
+  // the savedStates of the curvePoint are purposefully not serialized (see https://github.com/phetsims/calculus-grapher/issues/65 )
   public toStateObject(): CurvePointStateObject {
     return {
       x: this.x,
