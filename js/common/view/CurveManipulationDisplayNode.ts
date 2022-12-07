@@ -36,28 +36,27 @@ export default class CurveManipulationDisplayNode extends CurveNode {
                       predictModeEnabledProperty: PredictModeEnabledProperty,
                       providedOptions?: CurveManipulationDisplayOptions ) {
 
-    const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()(
-      {
-        curveNodeOptions: {
-          stroke: predictModeEnabledProperty.colorStrokeProperty
-        },
-        transformedCurveOptions: {
-          pointsPerCoordinate: 3,
-          xRange: CalculusGrapherConstants.CURVE_X_RANGE
-        },
-        chartTransformOptions: {
-          viewWidth: 100,
-          viewHeight: 40,
-          modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-          modelYRange: new Range( -1, 6 )
-        }
-      }, providedOptions );
+    const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()( {
 
-    const curve = new TransformedCurve(
-      combineOptions<TransformedCurveOptions>( {
-          tandem: Tandem.OPT_OUT
-        },
-        options.transformedCurveOptions ) );
+      // SelfOptions
+      curveNodeOptions: {
+        stroke: predictModeEnabledProperty.colorStrokeProperty
+      },
+      transformedCurveOptions: {
+        pointsPerCoordinate: 3,
+        xRange: CalculusGrapherConstants.CURVE_X_RANGE
+      },
+      chartTransformOptions: {
+        viewWidth: 100,
+        viewHeight: 40,
+        modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
+        modelYRange: new Range( -1, 6 )
+      }
+    }, providedOptions );
+
+    const curve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
+      tandem: Tandem.OPT_OUT
+    }, options.transformedCurveOptions ) );
 
     // chart transform for the curve
     const chartTransform = new ChartTransform( options.chartTransformOptions );
@@ -72,9 +71,8 @@ export default class CurveManipulationDisplayNode extends CurveNode {
 
     assert && assert( yMax > yMin, 'yMax value should be greater than yMin' );
 
-    Multilink.multilink( [
-        curveManipulationProperties.modeProperty,
-        curveManipulationProperties.widthProperty ],
+    Multilink.multilink(
+      [ curveManipulationProperties.modeProperty, curveManipulationProperties.widthProperty ],
       ( mode, width ) => {
 
         curve.reset();
@@ -111,12 +109,9 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     );
 
     // chart Rectangle for the graph
-    const chartRectangle = new ChartRectangle( chartTransform, {} );
+    const chartRectangle = new ChartRectangle( chartTransform );
 
-
-    super( curve, chartTransform, combineOptions<CurveNodeOptions>( {
-      tandem: options.tandem.createTandem( 'curveNode' )
-    }, options.curveNodeOptions ) );
+    super( curve, chartTransform, options );
 
     this.clipArea = chartRectangle.getShape();
     this.addChild( chartRectangle );

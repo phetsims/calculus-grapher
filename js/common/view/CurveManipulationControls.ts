@@ -40,32 +40,31 @@ export default class CurveManipulationControls extends VBox {
     // destructure the properties of curveManipulationProperties for convenience
     const { modeProperty, widthProperty } = curveManipulationProperties;
 
-    const curveManipulationDisplayNode = new CurveManipulationDisplayNode(
+    const displayNode = new CurveManipulationDisplayNode(
       curveManipulationProperties,
       predictModeEnabledProperty, {
         tandem: options.tandem.createTandem( 'displayNode' )
       } );
 
-    const curveManipulationWidthSlider = new CurveManipulationWidthSlider( widthProperty, {
-      visibleProperty: new DerivedProperty(
-        [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
-      tandem: options.tandem.createTandem( 'curveManipulationSlider' )
+    const widthSlider = new CurveManipulationWidthSlider( widthProperty, {
+      visibleProperty: new DerivedProperty( [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
+      tandem: options.tandem.createTandem( 'widthSlider' )
     } );
 
     const displayAndSlider = new VBox( {
-      children: [ curveManipulationDisplayNode, curveManipulationWidthSlider ],
+      children: [ displayNode, widthSlider ],
       spacing: 10,
       excludeInvisibleChildrenFromBounds: false
     } );
 
     // Radio Buttons that control the curveManipulationModeProperty.
-    const curveManipulationModeRadioButtonGroup = new CurveManipulationModeRadioButtonGroup(
+    const radioButtonGroup = new CurveManipulationModeRadioButtonGroup(
       modeProperty,
       predictModeEnabledProperty, {
-        tandem: options.tandem.createTandem( 'curveManipulationModeRadioButtonGroup' )
+        tandem: options.tandem.createTandem( 'radioButtonGroup' )
       } );
 
-    options.children = [ displayAndSlider, curveManipulationModeRadioButtonGroup ];
+    options.children = [ displayAndSlider, radioButtonGroup ];
 
     super( options );
   }
