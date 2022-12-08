@@ -9,7 +9,7 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -20,12 +20,13 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 import { getGraphTypeStroke, GraphSet } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
 };
 
-export type GraphNodesOptions = SelfOptions & NodeOptions;
+export type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class GraphNodes extends Node {
 
@@ -143,7 +144,9 @@ export default class GraphNodes extends Node {
 
     } );
 
-    super( combineOptions<NodeOptions>( { children: [ graphSetNode, referenceLineNode ] }, options ) );
+    options.children = [ graphSetNode, referenceLineNode ];
+
+    super( options );
 
     this.graphHeightProperty = graphHeightProperty;
 
@@ -153,7 +156,6 @@ export default class GraphNodes extends Node {
       integralGraphNode.reset();
       secondDerivativeGraphNode.reset();
     };
-
   }
 
   /**
