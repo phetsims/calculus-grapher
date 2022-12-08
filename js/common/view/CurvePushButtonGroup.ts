@@ -16,6 +16,7 @@ import EraserButton, { EraserButtonOptions } from '../../../../scenery-phet/js/b
 import UndoButton, { UndoButtonOptions } from '../../../../scenery-phet/js/buttons/UndoButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
@@ -23,7 +24,7 @@ type SelfOptions = {
   eraserButtonOptions?: EraserButtonOptions;
 };
 
-export type CurvePushButtonGroupOptions = SelfOptions & VBoxOptions;
+export type CurvePushButtonGroupOptions = SelfOptions & StrictOmit<VBoxOptions, 'children'>;
 
 export default class CurvePushButtonGroup extends VBox {
 

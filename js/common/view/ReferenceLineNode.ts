@@ -8,10 +8,11 @@
 
 import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -19,7 +20,7 @@ type SelfOptions = {
   sphereDiameter?: number;
 };
 
-type ReferenceLineNodeOptions = SelfOptions & NodeOptions;
+type ReferenceLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class ReferenceLineNode extends Node {
 
@@ -64,7 +65,8 @@ export default class ReferenceLineNode extends Node {
       cursorNode.centerX = chartTransform.modelToViewX( xCoordinate );
     } );
 
-    super( combineOptions<NodeOptions>( { children: [ cursorNode ] }, options ) );
+    options.children = [ cursorNode ];
+    super( options );
 
     this.verticalLine = verticalLine;
     this.sphere = sphere;
