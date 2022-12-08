@@ -93,7 +93,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     rightVBox.boundsProperty.link( () => {
       rightVBox.right = this.layoutBounds.right - 10;
-      rightVBox.bottom = resetAllButton.top - 10;
+      rightVBox.top = this.layoutBounds.top + 10;
     } );
 
     this.graphsNode = new GraphsNode( model,
