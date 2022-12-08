@@ -17,10 +17,12 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../sun/js/ToggleSwitch.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type ValuesControlOptions = SelfOptions & PickRequired<PreferencesControlOptions, 'tandem'>;
+type ValuesControlOptions = SelfOptions & PickRequired<PreferencesControlOptions, 'tandem'> &
+  StrictOmit<PreferencesControlOptions, 'labelNode' | 'controlNode'>;
 
 export default class ValuesControl extends PreferencesControl {
 
