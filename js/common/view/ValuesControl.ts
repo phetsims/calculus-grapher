@@ -8,7 +8,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import PreferencesControl, { PreferencesToggleSwitchOptions } from '../../../../joist/js/preferences/PreferencesControl.js';
+import PreferencesControl, { PreferencesControlOptions } from '../../../../joist/js/preferences/PreferencesControl.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Text } from '../../../../scenery/js/imports.js';
@@ -20,7 +20,7 @@ import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialo
 
 type SelfOptions = EmptySelfOptions;
 
-type ValuesControlOptions = SelfOptions & PickRequired<PreferencesToggleSwitchOptions, 'tandem'>;
+type ValuesControlOptions = SelfOptions & PickRequired<PreferencesControlOptions, 'tandem'>;
 
 export default class ValuesControl extends PreferencesControl {
 
@@ -28,9 +28,9 @@ export default class ValuesControl extends PreferencesControl {
 
   public constructor( valuesVisibleProperty: Property<boolean>, providedOptions: ValuesControlOptions ) {
 
-    const options = optionize<ValuesControlOptions, SelfOptions, PreferencesToggleSwitchOptions>()( {
+    const options = optionize<ValuesControlOptions, SelfOptions, PreferencesControlOptions>()( {
 
-      // PreferencesToggleSwitchOptions
+      // PreferencesControlOptions
       labelSpacing: 10
     }, providedOptions );
 
