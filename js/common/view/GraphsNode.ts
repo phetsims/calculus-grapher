@@ -31,7 +31,6 @@ export type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'
 export default class GraphNodes extends Node {
 
   private readonly resetGraphNodes: () => void;
-  private readonly graphHeightProperty: TReadOnlyProperty<number>;
 
   public constructor( model: CalculusGrapherModel,
                       graphSetProperty: TReadOnlyProperty<GraphSet>,
@@ -147,8 +146,6 @@ export default class GraphNodes extends Node {
     options.children = [ graphSetNode, referenceLineNode ];
 
     super( options );
-
-    this.graphHeightProperty = graphHeightProperty;
 
     this.resetGraphNodes = () => {
       originalGraphNode.reset();
