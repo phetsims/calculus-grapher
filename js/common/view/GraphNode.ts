@@ -164,6 +164,10 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
 
+    const setLabelNodePosition = () => {
+      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
+    };
+
     graphHeightProperty.link( height => {
       this.chartTransform.setViewHeight( height );
       this.curveLayer.clipArea = chartRectangle.getShape();
@@ -173,10 +177,6 @@ export default class GraphNode extends Node {
     } );
 
     labelNode.boundsProperty.link( setLabelNodePosition );
-
-    function setLabelNodePosition(): void {
-      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
-    }
 
     // create horizontal numerical labels for ticks
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
