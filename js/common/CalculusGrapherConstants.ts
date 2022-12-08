@@ -20,13 +20,13 @@ const ARROW_NODE_OPTIONS: ArrowNodeOptions = {
 
 const CalculusGrapherConstants = {
 
-  GRAPH_VIEW_WIDTH: 630,
+  GRAPH_VIEW_WIDTH: 612,
 
   // vertical height of the graph in model coordinates according to the number of graphs show on the screen
-  GRAPH_VERTICAL_HEIGHT: [ 14 * 35, 7 * 35, 5 * 35, 3 * 35 ],
+  GRAPH_VERTICAL_HEIGHT: [ 490, 245, 172, 123 ],
 
   // Ranges
-  CURVE_X_RANGE: new Range( 0, 36 ),
+  CURVE_X_RANGE: new Range( 0, 50 ),
 
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 ),
 

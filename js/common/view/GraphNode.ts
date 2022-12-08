@@ -183,12 +183,12 @@ export default class GraphNode extends Node {
       createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { fontSize: 8 } )
     } );
 
-    // create vertical numerical labels for ticks at the
-    let verticalTickLabelSet = this.getVerticalTickLabelSet( 1 );
+    // create vertical numerical labels for ticks
+    let verticalTickLabelSet = this.getVerticalTickLabelSet( 2 );
 
     // create horizontal and vertical mark ticks
     const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
-    const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 1, {
+    const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 2, {
       value: CalculusGrapherConstants.CURVE_X_RANGE.min
     } );
 
@@ -228,8 +228,17 @@ export default class GraphNode extends Node {
 
     this.zoomLevelProperty.link( zoomLevel => {
 
-      // spacing between ticks
-      const spacing = Math.pow( 2, -zoomLevel + CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue );
+      // convert zoomLevel to a spacing value (between ticks).
+      // we want 'nice' spacing:  ..., 0.01, 0.02, 0.05, 0.10, 0.20, 0.5, 1, 2, 5, 10, 20, 50, 100, ....
+      const lookUpArray = [ 1, 2, 5 ];
+      const arrayLength = lookUpArray.length;
+      const zoomDefault = CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue;
+      const zoomDifference = -zoomLevel + zoomDefault;
+      const zoomMultiples = Math.floor( zoomDifference / arrayLength ); // for multiples of 10
+      const zoomModulo = ( zoomDifference - zoomMultiples * arrayLength ) % arrayLength; // result will be 0, 1 or 2
+
+      // @ts-expect-error, complains about number being the index of an array
+      const spacing = Math.pow( 10, zoomMultiples ) * lookUpArray[ [ zoomModulo ] ];
 
       const maxY = initialMaxY * spacing;
 
@@ -237,14 +246,14 @@ export default class GraphNode extends Node {
       this.chartTransform.setModelYRange( new Range( -maxY, maxY ) );
 
       // change the vertical spacing of the ticks such that there are a constant number of them
-      verticalTickMarkSet.setSpacing( spacing );
+      verticalTickMarkSet.setSpacing( spacing * 2 );
 
       // remove previous verticalTickLabelSet and dispose of it
       tickSetNode.removeChild( verticalTickLabelSet );
       verticalTickLabelSet.dispose();
 
       // create and add a new vertical tick label set with the appropriate label spacing
-      verticalTickLabelSet = this.getVerticalTickLabelSet( spacing );
+      verticalTickLabelSet = this.getVerticalTickLabelSet( spacing * 2 );
       tickSetNode.addChild( verticalTickLabelSet );
 
     } );
