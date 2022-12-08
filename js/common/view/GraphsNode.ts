@@ -91,12 +91,12 @@ export default class GraphNodes extends Node {
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
       originalGraphNode.chartTransform, {
+        x: originalGraphNode.x,
         visibleProperty: visibleProperties.referenceLineVisibleProperty,
         cursor: 'pointer',
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
 
-    referenceLineNode.x = originalGraphNode.x;
 
     const graphSetNode = new Node();
 
