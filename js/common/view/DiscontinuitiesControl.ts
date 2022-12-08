@@ -18,10 +18,11 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import { ConnectDiscontinuities, ConnectDiscontinuitiesValues } from '../CalculusGrapherQueryParameters.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type DiscontinuitiesControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
+type DiscontinuitiesControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'> & StrictOmit<HBoxOptions, 'children'>;
 
 export default class DiscontinuitiesControl extends HBox {
 

@@ -19,10 +19,11 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../CalculusGrapherQueryParameters.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type NotationControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
+type NotationControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'> & StrictOmit<HBoxOptions, 'children'>;
 
 export default class NotationControl extends HBox {
 

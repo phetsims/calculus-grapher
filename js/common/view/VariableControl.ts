@@ -19,10 +19,12 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import { FunctionVariable } from '../CalculusGrapherQueryParameters.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type VariableControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'>;
+type VariableControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'> & StrictOmit<HBoxOptions, 'children'>;
+
 
 export default class VariableControl extends HBox {
 
