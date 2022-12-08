@@ -28,7 +28,7 @@ type SelfOptions = {
   chartTransformOptions?: ChartTransformOptions;
 };
 
-export type CurveManipulationIconNodeOptions = SelfOptions;
+export type CurveManipulationIconNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class CurveManipulationIconNode extends Node {
 
@@ -128,8 +128,9 @@ export default class CurveManipulationIconNode extends Node {
     if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
       children.push( dashedCurveNode );
     }
+    options.children = children;
 
-    super( combineOptions<NodeOptions>( { children: children }, options ) );
+    super( options );
   }
 }
 

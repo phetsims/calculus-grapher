@@ -13,12 +13,14 @@ import { VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   arrowNodeOptions?: ArrowNodeOptions;
 };
 
-export type CueingArrowsNodeOptions = SelfOptions & VBoxOptions;
+export type CueingArrowsNodeOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> & StrictOmit<VBoxOptions, 'children'>;
 
 export default class CueingArrowsNode extends VBox {
 
@@ -43,9 +45,8 @@ export default class CueingArrowsNode extends VBox {
     const upArrow = new ArrowNode( 0, 0, 0, -CalculusGrapherConstants.ARROW_LENGTH, arrowOptions );
     const downArrow = new ArrowNode( 0, 0, 0, CalculusGrapherConstants.ARROW_LENGTH, arrowOptions );
 
-    super( combineOptions<VBoxOptions>( {
-      children: [ upArrow, downArrow ]
-    }, options ) );
+    options.children = [ upArrow, downArrow ];
+    super( options );
   }
 }
 
