@@ -70,6 +70,9 @@ export default class IntegralCurve extends Curve {
       // Add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
       this.points[ index ].y = this.points[ index - 1 ].y + trapezoidalArea;
 
+      // integrals smooth out a  point discontinuity into a cusp, a cusp into a smooth,
+      this.points[ index ].pointType = point.isDiscontinuous ? 'cusp' : 'smooth';
+
       // Sanity check that verifies that the Integral exists at the current Point.
       assert && assert( Number.isFinite( trapezoidalArea ) && point.isFinite, 'non-finite trapezoidal area' );
     } );
