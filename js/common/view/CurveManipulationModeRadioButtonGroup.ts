@@ -39,17 +39,15 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
     const validModes = curveManipulationModeProperty.validValues!;
     assert && assert( validModes );
 
+    // Create a radio button for each mode
     const rectangularRadioButtonGroupItems: RectangularRadioButtonGroupItem<CurveManipulationMode>[] =
-      CurveManipulationMode.enumeration.values.map(
+      validModes.map(
         mode => {
           return {
             value: mode,
             createNode: tandem => new CurveManipulationIconNode( mode, {
               stroke: predictModeEnabledProperty.colorStrokeProperty
             } ),
-            options: {
-              visible: validModes.includes( mode )
-            },
             tandemName: `${mode.tandemPrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
           };
         }
