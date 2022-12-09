@@ -24,7 +24,7 @@ export default class ReferenceLine {
   // value to track the x position of the reference line
   public readonly xCoordinateProperty: NumberProperty;
 
-  public constructor( providedOptions?: ReferenceLineOptions ) {
+  public constructor( providedOptions: ReferenceLineOptions ) {
 
     const options = optionize<ReferenceLineOptions, SelfOptions>()(
       {}, providedOptions );
