@@ -6,13 +6,13 @@
  * @author Martin Veillette
  */
 
-import Property from '../../../../axon/js/Property.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import ReferenceLine from '../model/ReferenceLine.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -27,7 +27,7 @@ export default class ReferenceLineNode extends Node {
   private readonly verticalLine;
   private readonly sphere;
 
-  public constructor( xCoordinateProperty: Property<number>,
+  public constructor( referenceLine: ReferenceLine,
                       chartTransform: ChartTransform,
                       providedOptions?: ReferenceLineNodeOptions ) {
 
@@ -38,6 +38,8 @@ export default class ReferenceLineNode extends Node {
       sphereOptions: { mainColor: 'blue' },
       sphereDiameter: 18
     }, providedOptions );
+
+    const xCoordinateProperty = referenceLine.xCoordinateProperty;
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
 

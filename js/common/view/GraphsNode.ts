@@ -89,7 +89,7 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
-    const referenceLineNode = new ReferenceLineNode( model.referenceLineXCoordinateProperty,
+    const referenceLineNode = new ReferenceLineNode( model.referenceLine,
       originalGraphNode.chartTransform, {
         x: originalGraphNode.x,
         visibleProperty: visibleProperties.referenceLineVisibleProperty,

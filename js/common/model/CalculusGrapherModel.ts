@@ -13,16 +13,13 @@ import IntegralCurve from './IntegralCurve.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
 import { GraphSet } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PredictModeEnabledProperty from './PredictModeEnabledProperty.js';
-
-const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
+import ReferenceLine from './ReferenceLine.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -36,11 +33,11 @@ export default class CalculusGrapherModel implements TModel {
   // create properties associated with the curve such at the width and mode
   public readonly curveManipulationProperties: CurveManipulationProperties;
 
-  // value to track the x position of the reference line
-  public readonly referenceLineXCoordinateProperty: NumberProperty;
-
   // is the predict mode enabled for the original graph
   public readonly predictModeEnabledProperty: PredictModeEnabledProperty;
+
+  // model for the reference line
+  public readonly referenceLine: ReferenceLine;
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -59,11 +56,6 @@ export default class CalculusGrapherModel implements TModel {
       options.curveManipulationModeChoices,
       { tandem: options.tandem.createTandem( 'curveManipulationProperties' ) }
     );
-
-    this.referenceLineXCoordinateProperty = new NumberProperty( CURVE_X_RANGE.getCenter(), {
-      range: CURVE_X_RANGE,
-      tandem: options.tandem.createTandem( 'referenceLineXCoordinateProperty' )
-    } );
 
     this.originalCurve = new TransformedCurve( {
       // originalCurve is always instrumented, because it should always be present.
@@ -90,6 +82,11 @@ export default class CalculusGrapherModel implements TModel {
 
     this.integralCurve = new IntegralCurve( this.originalCurve,
       graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
+
+    this.referenceLine = new ReferenceLine(
+      { tandem: options.tandem.createTandem( 'referenceLine' ) }
+    );
+
   }
 
   /**
@@ -97,7 +94,7 @@ export default class CalculusGrapherModel implements TModel {
    */
   public reset(): void {
     this.curveManipulationProperties.reset();
-    this.referenceLineXCoordinateProperty.reset();
+    this.referenceLine.reset();
     this.originalCurve.reset();
     this.predictCurve.reset();
     this.predictModeEnabledProperty.reset();
