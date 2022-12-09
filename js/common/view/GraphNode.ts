@@ -237,8 +237,7 @@ export default class GraphNode extends Node {
       const zoomMultiples = Math.floor( zoomDifference / arrayLength ); // for multiples of 10
       const zoomModulo = ( zoomDifference - zoomMultiples * arrayLength ) % arrayLength; // result will be 0, 1 or 2
 
-      // @ts-expect-error, complains about number being the index of an array
-      const spacing = Math.pow( 10, zoomMultiples ) * lookUpArray[ [ zoomModulo ] ];
+      const spacing = Math.pow( 10, zoomMultiples ) * lookUpArray[ zoomModulo ];
 
       const maxY = initialMaxY * spacing;
 
