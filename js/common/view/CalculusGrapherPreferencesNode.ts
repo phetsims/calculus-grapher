@@ -19,10 +19,12 @@ import DiscontinuitiesControl from './DiscontinuitiesControl.js';
 import ValuesControl from './ValuesControl.js';
 import NotationControl from './NotationControl.js';
 import VariableControl from './VariableControl.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type CalculusGrapherPreferencesNodeOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'>;
+type CalculusGrapherPreferencesNodeOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> &
+  StrictOmit<VBoxOptions, 'children'>;
 
 export default class CalculusGrapherPreferencesNode extends VBox {
 
@@ -38,8 +40,6 @@ export default class CalculusGrapherPreferencesNode extends VBox {
       spacing: 20,
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
-
-    super( options );
 
     const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty, {
       tandem: options.tandem.createTandem( 'valuesControl' )
@@ -57,7 +57,9 @@ export default class CalculusGrapherPreferencesNode extends VBox {
       tandem: options.tandem.createTandem( 'variableControl' )
     } );
 
-    this.children = [ valuesControl, discontinuitiesControl, notationControl, variableControl ];
+    options.children = [ valuesControl, discontinuitiesControl, notationControl, variableControl ];
+
+    super( options );
 
     this.disposeCalculusGrapherPreferencesNode = (): void => {
       valuesControl.dispose();
