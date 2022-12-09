@@ -93,14 +93,15 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     rightVBox.boundsProperty.link( () => {
       rightVBox.right = this.layoutBounds.right - 10;
-      rightVBox.top = this.layoutBounds.top + 10;
+      rightVBox.top = this.layoutBounds.top + 20;
     } );
 
     this.graphsNode = new GraphsNode( model,
       this.graphSetProperty,
       this.visibleProperties, {
         graphSets: options.graphSets,
-        centerTop: this.layoutBounds.centerTop.plusXY( -10, 10 ),
+        centerX: this.layoutBounds.centerX + 10,
+        y: rightVBox.top,
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
 

@@ -128,7 +128,7 @@ export default class GraphNodes extends Node {
 
       if ( numberOfVisibleGraphs > 0 ) {
         content[ 0 ].x = 0;
-        content[ 0 ].top = 100;
+        content[ 0 ].y = 0;
       }
 
       for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
