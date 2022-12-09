@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * ReferenceLine is the model for the vertical line
+ * ReferenceLine is the model for a vertical line that spans multiple curves
  *
  * @author Martin Veillette
  */
