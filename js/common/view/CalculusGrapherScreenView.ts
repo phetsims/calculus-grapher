@@ -91,19 +91,19 @@ export default class CalculusGrapherScreenView extends ScreenView {
       align: 'left'
     } );
 
-    rightVBox.boundsProperty.link( () => {
-      rightVBox.right = this.layoutBounds.right - 10;
-      rightVBox.top = this.layoutBounds.top + 20;
-    } );
-
     this.graphsNode = new GraphsNode( model,
       this.graphSetProperty,
       this.visibleProperties, {
         graphSets: options.graphSets,
         centerX: this.layoutBounds.centerX + 10,
-        y: rightVBox.top,
+        y: this.layoutBounds.top + 20,
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
+
+    rightVBox.boundsProperty.link( () => {
+      rightVBox.right = this.layoutBounds.right - 10;
+      rightVBox.top = this.graphsNode.y;
+    } );
 
     const children: Node[] = [
       this.graphsNode,
