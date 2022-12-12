@@ -100,8 +100,12 @@ export default class Curve extends PhetioObject {
     // call each other.
     let notifyListeners = true;
 
-    // This is needed to notify Studio that pointsProperty has effectively changed.
     this.curveChangedEmitter.addListener( () => {
+
+      // assign point type for entire curve
+      this.assignType();
+
+      // This is needed to notify Studio that pointsProperty has effectively changed.
       if ( notifyListeners ) {
         this.pointsProperty.notifyListenersStatic();
       }
@@ -116,11 +120,6 @@ export default class Curve extends PhetioObject {
         notifyListeners = true;
       }
     } );
-
-    this.curveChangedEmitter.addListener( () => {
-      this.assignType();
-    } );
-
   }
 
   /**
@@ -233,7 +232,9 @@ export default class Curve extends PhetioObject {
         // find jump
         const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
 
+        // find difference in angle of slopes
         const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
+
         if ( jump >= 2 ) {
           point.pointType = 'discontinuous';
         }
