@@ -59,7 +59,7 @@ export default class OriginalGraphNode extends GraphNode {
           curveManipulationProperties, chartTransform, providedOptions ),
         curveNodeOptions: {
           stroke: providedOptions.curveStroke,
-          enabledProperty: predictModeEnabledProperty.notProperty,
+          enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
           visibleProperty: originalCurveNodeVisibilityProperty,
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
         },

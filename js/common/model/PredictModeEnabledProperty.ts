@@ -43,10 +43,6 @@ export default class PredictModeEnabledProperty extends BooleanProperty {
     return this.value ? this.predictCurve : this.originalCurve;
   }
 
-  public get notProperty(): TReadOnlyProperty<boolean> {
-    return new DerivedProperty( [ this ], enabled => !enabled );
-  }
-
   public get colorStrokeProperty(): TReadOnlyProperty<Color> {
     return new DerivedProperty( [ this,
         CalculusGrapherColors.predictCurveStrokeProperty,
