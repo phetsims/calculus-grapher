@@ -50,10 +50,5 @@ export default class PredictModeEnabledProperty extends BooleanProperty {
       ( enabled, predictStroke, originalStroke ) =>
         enabled ? predictStroke : originalStroke );
   }
-
-  // TODO: overkill? or nice to have anyway
-  public override reset(): void {
-    super.reset();
-  }
 }
 calculusGrapher.register( 'PredictModeEnabledProperty', PredictModeEnabledProperty );
