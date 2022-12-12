@@ -118,8 +118,7 @@ export default class Curve extends PhetioObject {
     } );
 
     this.curveChangedEmitter.addListener( () => {
-      this.assignCusps();
-      this.assignDiscontinuities();
+      this.assignType();
     } );
 
   }
@@ -200,74 +199,52 @@ export default class Curve extends PhetioObject {
     return points;
   }
 
-  private assignCusps(): void {
+  private assignType(): void {
 
     // Loop through each trio of adjacent Points of the curve.
     this.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
 
-        let leftSlope: null | number = null;
-        let rightSlope: null | number = null;
+      let leftSideDifference: null | number = null;
+      let rightSideDifference: null | number = null;
 
-        // Compute the leftSlope and rightSlope.
+      let leftSlope: null | number = null;
+      let rightSlope: null | number = null;
 
-        // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
-        if ( previousPoint && previousPoint.isFinite ) {
-          leftSlope = ( point.y - previousPoint.y ) / ( point.x - previousPoint.x );
-          assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
+      // Compute the leftDifference and rightDifference.
+      if ( previousPoint && previousPoint.isFinite ) {
+        leftSideDifference = ( point.y - previousPoint.y );
+        assert && assert( Number.isFinite( leftSideDifference ), 'non finite left side difference' );
+        leftSlope = leftSideDifference / ( point.x - previousPoint.x );
+        assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
+      }
+
+      if ( nextPoint && nextPoint.isFinite ) {
+        rightSideDifference = ( nextPoint.y - point.y );
+        assert && assert( Number.isFinite( rightSideDifference ), 'non finite right side difference' );
+        rightSlope = rightSideDifference / ( nextPoint.x - point.x );
+        assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
+      }
+
+      if ( typeof leftSideDifference === 'number' && typeof rightSideDifference === 'number' &&
+           Number.isFinite( leftSideDifference ) && Number.isFinite( rightSideDifference ) &&
+           typeof leftSlope === 'number' && typeof rightSlope === 'number' &&
+           Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
+
+        // find jump
+        const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
+
+        const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
+        if ( jump >= 2 ) {
+          point.pointType = 'discontinuous';
         }
-
-        if ( nextPoint && nextPoint.isFinite ) {
-          // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
-          rightSlope = ( nextPoint.y - point.y ) / ( nextPoint.x - point.x );
-          assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
+        else if ( K >= DERIVATIVE_THRESHOLD ) {
+          point.pointType = 'cusp';
         }
-        //----------------------------------------------------------------------------------------
-
-        // TODO: prototype to determine the cusp points
-        if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' &&
-             Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-
-          // evaluate the difference in the angle of the left and right slope
-          const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
-
-          point.pointType = ( K >= DERIVATIVE_THRESHOLD ) ? 'cusp' : 'smooth';
+        else {
+          point.pointType = 'smooth';
         }
       }
-    );
-  }
-
-  private assignDiscontinuities(): void {
-
-    // TODO avoid repetition from assignCusps
-    // Loop through each trio of adjacent Points of the curve.
-    this.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
-
-        let leftSideDifference: null | number = null;
-        let rightSideDifference: null | number = null;
-
-        // Compute the leftDifference and rightDifference.
-
-        if ( previousPoint && previousPoint.isFinite ) {
-          leftSideDifference = ( point.y - previousPoint.y );
-          assert && assert( Number.isFinite( leftSideDifference ), 'non finite slope' );
-        }
-
-        if ( nextPoint && nextPoint.isFinite ) {
-          rightSideDifference = ( nextPoint.y - point.y );
-          assert && assert( Number.isFinite( rightSideDifference ), 'non finite slope' );
-        }
-        //----------------------------------------------------------------------------------------
-
-        if ( typeof leftSideDifference === 'number' && typeof rightSideDifference === 'number' &&
-             Number.isFinite( leftSideDifference ) && Number.isFinite( rightSideDifference ) ) {
-
-          // find jump
-          const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
-
-          point.pointType = ( jump >= 2 ) ? 'discontinuous' : 'smooth';
-        }
-      }
-    );
+    } );
   }
 }
 
