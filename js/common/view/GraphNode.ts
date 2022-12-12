@@ -165,7 +165,7 @@ export default class GraphNode extends Node {
       }, options.plusMinusZoomButtonGroupOptions ) );
 
     const setLabelNodePosition = () => {
-      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 5 );
+      labelNode.leftTop = chartRectangle.leftTop.addXY( 10, 10 );
     };
 
     graphHeightProperty.link( height => {

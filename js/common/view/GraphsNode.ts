@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -21,6 +21,8 @@ import { getGraphTypeStroke, GraphSet } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -50,6 +52,18 @@ export default class GraphNodes extends Node {
 
     const graphTypes = options.graphSets.flat();
 
+    // create label for original graph that toggles between 'predict f(x)' and 'f(x)'
+    const originalLabelNode = new HBox( {
+      children: [
+        new Text( CalculusGrapherStrings.predictStringProperty, {
+          font: new PhetFont( 14 ),
+          visibleProperty: model.predictModeEnabledProperty
+        } ),
+        new GraphTypeLabelNode( 'original' ) ],
+      spacing: 5
+    } );
+
+    // create and add content for the node, based on graphType, notation and variable
     const integralGraphNode = new GraphNode( model.integralCurve,
       gridVisibleProperty,
       graphHeightProperty,
@@ -62,7 +76,7 @@ export default class GraphNodes extends Node {
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
       graphHeightProperty,
-      new GraphTypeLabelNode( 'original' ),
+      originalLabelNode,
       {
         curveStroke: getGraphTypeStroke( 'original' ),
 
