@@ -11,10 +11,6 @@ import { PropertyOptions } from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurve from './TransformedCurve.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import { Color } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,14 +37,6 @@ export default class PredictModeEnabledProperty extends BooleanProperty {
 
   public get curve(): TransformedCurve {
     return this.value ? this.predictCurve : this.originalCurve;
-  }
-
-  public get colorStrokeProperty(): TReadOnlyProperty<Color> {
-    return new DerivedProperty( [ this,
-        CalculusGrapherColors.predictCurveStrokeProperty,
-        CalculusGrapherColors.originalCurveStrokeProperty ],
-      ( enabled, predictStroke, originalStroke ) =>
-        enabled ? predictStroke : originalStroke );
   }
 }
 calculusGrapher.register( 'PredictModeEnabledProperty', PredictModeEnabledProperty );

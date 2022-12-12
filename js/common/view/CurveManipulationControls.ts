@@ -18,6 +18,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 // curve manipulation modes that should not display a curve manipulation width slider
 const NO_SLIDER_MODES = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
@@ -41,9 +42,17 @@ export default class CurveManipulationControls extends VBox {
     // destructure the properties of curveManipulationProperties for convenience
     const { modeProperty, widthProperty } = curveManipulationProperties;
 
+    const curveManipulationStrokeProperty = new DerivedProperty( [
+        predictModeEnabledProperty,
+        CalculusGrapherColors.predictCurveStrokeProperty,
+        CalculusGrapherColors.originalCurveStrokeProperty
+      ],
+      ( enabled, predictStroke, originalStroke ) =>
+        enabled ? predictStroke : originalStroke );
+
     const displayNode = new CurveManipulationDisplayNode(
       curveManipulationProperties,
-      predictModeEnabledProperty, {
+      curveManipulationStrokeProperty, {
         tandem: options.tandem.createTandem( 'displayNode' )
       } );
 
@@ -59,11 +68,9 @@ export default class CurveManipulationControls extends VBox {
     } );
 
     // Radio Buttons that control the curveManipulationModeProperty.
-    const radioButtonGroup = new CurveManipulationModeRadioButtonGroup(
-      modeProperty,
-      predictModeEnabledProperty, {
-        tandem: options.tandem.createTandem( 'radioButtonGroup' )
-      } );
+    const radioButtonGroup = new CurveManipulationModeRadioButtonGroup( modeProperty, curveManipulationStrokeProperty, {
+      tandem: options.tandem.createTandem( 'radioButtonGroup' )
+    } );
 
     options.children = [ displayAndSlider, radioButtonGroup ];
 

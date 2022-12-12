@@ -19,8 +19,8 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Range from '../../../../dot/js/Range.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import { TColor } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = {
   transformedCurveOptions?: TransformedCurveOptions;
@@ -31,7 +31,7 @@ type CurveManipulationDisplayOptions = SelfOptions & PickRequired<CurveNodeOptio
 export default class CurveManipulationDisplayNode extends CurveNode {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictModeEnabledProperty: PredictModeEnabledProperty,
+                      curveManipulationStroke: TColor,
                       providedOptions?: CurveManipulationDisplayOptions ) {
 
     const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()( {
@@ -48,8 +48,8 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         modelYRange: new Range( -1, 6 )
       },
 
-      // superOptions
-      stroke: predictModeEnabledProperty.colorStrokeProperty
+      // CurveNodeOptions
+      stroke: curveManipulationStroke
     }, providedOptions );
 
     const curve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {

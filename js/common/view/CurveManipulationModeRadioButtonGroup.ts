@@ -14,8 +14,8 @@ import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
-import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import { TColor } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -24,7 +24,7 @@ export type CurveManipulationModeRadioButtonGroupOptions = SelfOptions & Rectang
 export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
 
   public constructor( curveManipulationModeProperty: Property<CurveManipulationMode>,
-                      predictModeEnabledProperty: PredictModeEnabledProperty,
+                      curveManipulationStroke: TColor,
                       providedOptions: CurveManipulationModeRadioButtonGroupOptions ) {
 
     const options = optionize<CurveManipulationModeRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()( {
@@ -46,7 +46,7 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
           return {
             value: mode,
             createNode: tandem => new CurveManipulationIconNode( mode, {
-              stroke: predictModeEnabledProperty.colorStrokeProperty
+              stroke: curveManipulationStroke
             } ),
             tandemName: `${mode.tandemPrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
           };
