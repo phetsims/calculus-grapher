@@ -10,7 +10,7 @@
  * enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
  *
  * Responsibilities are:
- *   - Create an array of CurvePoints for each partition of the Curve.
+ *   - Create an array of CurvePoints for the Curve.
  *   - Create convenience methods to reference and mutate CurvePoints at a given x-value.
  *   - Provide other convenience methods to set the initial value of the curve points.
  *
@@ -38,15 +38,12 @@ const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
 const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
 
-type MathFunction = ( x: number ) => number;
-// TODO describe why such a simple data structure
-type SimplePoint = [ x: number, y: number ];
+export type MathFunction = ( x: number ) => number;
 
 type SelfOptions = {
   xRange?: Range;
   pointsPerCoordinate?: number;
   mathFunction?: MathFunction;
-  initialPoints?: SimplePoint[];
   pointsPropertyReadOnly?: boolean;
 };
 
@@ -69,14 +66,10 @@ export default class Curve extends PhetioObject {
 
   protected constructor( providedOptions: CurveOptions ) {
 
-    assert && assert( !( providedOptions.mathFunction && providedOptions.initialPoints ),
-      'Only one way to set the curve is allowed' );
-
     const options = optionize<CurveOptions, SelfOptions, PhetioObjectOptions>()( {
       xRange: CURVE_X_RANGE,
       pointsPerCoordinate: POINTS_PER_COORDINATE,
       mathFunction: () => 0,
-      initialPoints: [ [ 0, 0 ] ],
       phetioState: false,
       pointsPropertyReadOnly: true
     }, providedOptions );
@@ -87,12 +80,8 @@ export default class Curve extends PhetioObject {
     this.xRange = options.xRange;
     this.pointsPerCoordinate = options.pointsPerCoordinate;
 
-    // the Points that map out the curve at a finite number of partitions within
-    // the domain. See the comment at the top of this file for full context.
-
-    const initialPoints = ( providedOptions.initialPoints ) ?
-                          this.getFromSimplePoints( options.initialPoints ) :
-                          this.getFromMathFunction( options.mathFunction );
+    // the Points that map out the curve within the domain. See the comment at the top of this file for full context.
+    const initialPoints = this.getFromMathFunction( options.mathFunction );
 
     this.pointsProperty = new Property( initialPoints, {
       isValidValue: points => isValidPoints( initialPoints, points ),
@@ -209,100 +198,6 @@ export default class Curve extends PhetioObject {
       points.push( new CurvePoint( x, mathFunction( x ) ) );
     }
     return points;
-  }
-
-  /**
-   * Returns a complete set of curvePoints, equally x-spaced from an array of simple Points.
-   * The missing points are interpolated from the simplePoints.
-   *
-   * @param simplePoints - eg: [[0,0], [3,3], [5,3], [10,0]]
-   */
-  private getFromSimplePoints( simplePoints: SimplePoint[] ): CurvePoint[] {
-
-    // x separation between two adjacent points in curvePoint array
-    const deltaX = 1 / this.pointsPerCoordinate;
-    const minX = this.xRange.min;
-    const maxX = this.xRange.max;
-
-    // build the x values of the curvePoints; equally space by deltaX
-    const xArray: number[] = [];
-    for ( let x = minX; x <= maxX; x += deltaX ) {
-      xArray.push( x );
-    }
-
-    // sorting callback in terms of the x values of  simple points
-    const sortCallback = ( p1: SimplePoint, p2: SimplePoint ): number => p1[ 0 ] > p2[ 0 ] ? 1 : -1;
-
-    // filter function that remove x duplicates on sorted arrays of simple points
-    const uniqueCallback = ( p1: SimplePoint, index: number, array: SimplePoint[] ): boolean =>
-      !index || p1[ 0 ] !== array[ index - 1 ][ 0 ];
-
-    // sort x values and filter the duplicate x values.
-    const sortedSimplePoints = simplePoints.sort( sortCallback ).filter( uniqueCallback );
-
-    // ensure that there is a point before or at the min x
-    if ( sortedSimplePoints[ 0 ][ 0 ] > minX ) {
-
-      // insert a point with a y value of zero at the minimum x range
-      sortedSimplePoints.unshift( [ minX, 0 ] );
-    }
-
-    // ensure that there is a point after or at the max X value
-    if ( sortedSimplePoints[ sortedSimplePoints.length - 1 ][ 0 ] < maxX ) {
-
-      // insert a point with a y value of zero at the maximum x range
-      sortedSimplePoints.push( [ maxX, 0 ] );
-    }
-
-    // an array of all the points but in SimplePoints format.
-    const allPoints: SimplePoint[] = [];
-
-    // construct allPoints by iterating over the sorted simple points
-    for ( let i = 1; i < sortedSimplePoints.length; i++ ) {
-      const p1 = sortedSimplePoints[ i - 1 ];
-      const p2 = sortedSimplePoints[ i ];
-
-      // an array of simple points that interpolates between p1 and p2 with x value allowed by xArray
-      const partialPoints = this.linearInterpolate( p1, p2, xArray );
-
-      allPoints.push( ...partialPoints );
-    }
-
-    // we may have duplicate x values at the junctions of the segments, filter them out.
-    const sortedUniquePoints = allPoints.filter( uniqueCallback );
-
-    // generate an array of CurvePoints from the simplePoints
-    return sortedUniquePoints.map( point => new CurvePoint( point[ 0 ], point[ 1 ] ) );
-  }
-
-  /**
-   * return an array of SimplePoints that interpolate between p1 and p2, with only x -value that are allowed within x-Array
-   * @param p1 - initial point
-   * @param p2 - final point
-   * @param xArray - array of finely equally spaced x points
-   */
-  private linearInterpolate( p1: SimplePoint, p2: SimplePoint, xArray: number[ ] ): SimplePoint[ ] {
-
-    // convenience variables
-    const x1 = p1[ 0 ];
-    const y1 = p1[ 1 ];
-    const x2 = p2[ 0 ];
-    const y2 = p2[ 1 ];
-
-    // interpolating function
-    const y = ( x: number ): number => Utils.linear( x1, x2, y1, y2, x );
-
-    // function that returns the closest element of xArray to the value x;
-    const closestMatch = ( x: number ): number => xArray.reduce( ( previousX: number, currentX: number ) =>
-      Math.abs( currentX - x ) < Math.abs( previousX - x ) ? currentX : previousX );
-
-    const getIndex = ( xValue: number ): number => xArray.findIndex( x => closestMatch( xValue ) === x )!;
-
-    // get portion of the xArray
-    const xSlice = xArray.slice( getIndex( x1 ), getIndex( x2 ) );
-
-    // map portion of the array to simple points
-    return xSlice.map( x => [ x, y( x ) ] );
   }
 
   private assignCusps(): void {
