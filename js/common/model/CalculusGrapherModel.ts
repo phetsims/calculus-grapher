@@ -18,10 +18,11 @@ import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
 import { GraphSet } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import PredictModeEnabledProperty from './PredictModeEnabledProperty.js';
 import ReferenceLine from './ReferenceLine.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Property from '../../../../axon/js/Property.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -36,7 +37,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly curveManipulationProperties: CurveManipulationProperties;
 
   // is the predict mode enabled for the original graph
-  public readonly predictModeEnabledProperty: PredictModeEnabledProperty;
+  public readonly predictModeEnabledProperty: Property<boolean>;
 
   // which curve to apply operations to
   public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
@@ -73,12 +74,12 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'predictCurve' )
     } );
 
-    this.predictModeEnabledProperty = new PredictModeEnabledProperty( false,
-      this.originalCurve, this.predictCurve,
-      { tandem: options.tandem.createTandem( 'predictModeEnabledProperty' ) } );
+    this.predictModeEnabledProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'predictModeEnabledProperty' )
+    } );
 
     this.curveToTransformProperty = new DerivedProperty( [ this.predictModeEnabledProperty ],
-      predictModeEnabled => predictModeEnabled ? this.originalCurve : this.predictCurve
+      predictModeEnabled => predictModeEnabled ? this.predictCurve : this.originalCurve
     );
 
     const graphTypes = options.graphSets.flat();
