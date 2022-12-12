@@ -47,8 +47,8 @@ export default class CurveManipulationControls extends VBox {
         CalculusGrapherColors.predictCurveStrokeProperty,
         CalculusGrapherColors.originalCurveStrokeProperty
       ],
-      ( enabled, predictStroke, originalStroke ) =>
-        enabled ? predictStroke : originalStroke );
+      ( predictModeEnabled, predictStroke, originalStroke ) =>
+        predictModeEnabled ? predictStroke : originalStroke );
 
     const displayNode = new CurveManipulationDisplayNode(
       curveManipulationProperties,
