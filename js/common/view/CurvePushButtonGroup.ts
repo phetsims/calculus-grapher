@@ -15,8 +15,9 @@ import TextPushButton, { TextPushButtonOptions } from '../../../../sun/js/button
 import EraserButton, { EraserButtonOptions } from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import UndoButton, { UndoButtonOptions } from '../../../../scenery-phet/js/buttons/UndoButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
-import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import TransformedCurve from '../model/TransformedCurve.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
@@ -28,7 +29,7 @@ export type CurvePushButtonGroupOptions = SelfOptions & StrictOmit<VBoxOptions, 
 
 export default class CurvePushButtonGroup extends VBox {
 
-  public constructor( predictModeEnabledProperty: PredictModeEnabledProperty,
+  public constructor( curveToTransformProperty: TReadOnlyProperty<TransformedCurve>,
                       providedOptions?: CurvePushButtonGroupOptions ) {
 
     const options = optionize<CurvePushButtonGroupOptions, SelfOptions, VBoxOptions>()( {
@@ -54,14 +55,14 @@ export default class CurvePushButtonGroup extends VBox {
     // create an undo Button
     const undoButton = new UndoButton(
       combineOptions<UndoButtonOptions>( {
-        listener: () => predictModeEnabledProperty.curve.undoToLastSave(),
+        listener: () => curveToTransformProperty.value.undoToLastSave(),
         tandem: options.tandem.createTandem( 'undoButton' )
       }, options.undoButtonOptions ) );
 
     // create an eraser Button
     const eraserButton = new EraserButton(
       combineOptions<EraserButtonOptions>( {
-        listener: () => predictModeEnabledProperty.curve.reset(),
+        listener: () => curveToTransformProperty.value.reset(),
         tandem: options.tandem.createTandem( 'resetButton' )
       }, options.eraserButtonOptions ) );
 
@@ -74,7 +75,7 @@ export default class CurvePushButtonGroup extends VBox {
     // create a smooth Button, with width matching the hbox
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty,
       combineOptions<TextPushButtonOptions>( {
-          listener: () => predictModeEnabledProperty.curve.smooth(),
+          listener: () => curveToTransformProperty.value.smooth(),
           maxWidth: hBox.width,
           minWidth: hBox.width,
           tandem: options.tandem.createTandem( 'smoothButton' )

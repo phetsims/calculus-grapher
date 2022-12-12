@@ -20,6 +20,8 @@ import { GraphSet } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PredictModeEnabledProperty from './PredictModeEnabledProperty.js';
 import ReferenceLine from './ReferenceLine.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -35,6 +37,9 @@ export default class CalculusGrapherModel implements TModel {
 
   // is the predict mode enabled for the original graph
   public readonly predictModeEnabledProperty: PredictModeEnabledProperty;
+
+  // which curve to apply operations to
+  public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
 
   // model for the reference line
   public readonly referenceLine: ReferenceLine;
@@ -72,6 +77,10 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve, this.predictCurve,
       { tandem: options.tandem.createTandem( 'predictModeEnabledProperty' ) } );
 
+    this.curveToTransformProperty = new DerivedProperty( [ this.predictModeEnabledProperty ],
+      predictModeEnabled => predictModeEnabled ? this.originalCurve : this.predictCurve
+    );
+
     const graphTypes = options.graphSets.flat();
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,
@@ -86,7 +95,6 @@ export default class CalculusGrapherModel implements TModel {
     this.referenceLine = new ReferenceLine(
       { tandem: options.tandem.createTandem( 'referenceLine' ) }
     );
-
   }
 
   /**

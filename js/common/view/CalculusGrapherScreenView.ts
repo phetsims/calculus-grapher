@@ -76,6 +76,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
       model.predictModeEnabledProperty,
+      model.curveToTransformProperty,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         tandem: options.tandem.createTandem( 'controlPanel' )

@@ -16,9 +16,9 @@ import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioB
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import Property from '../../../../axon/js/Property.js';
 
 // curve manipulation modes that should not display a curve manipulation width slider
 const NO_SLIDER_MODES = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
@@ -30,7 +30,7 @@ export type CurveManipulationControlsOptions = SelfOptions & PickRequired<VBoxOp
 export default class CurveManipulationControls extends VBox {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictModeEnabledProperty: PredictModeEnabledProperty,
+                      predictModeEnabledProperty: Property<boolean>,
                       providedOptions?: CurveManipulationControlsOptions ) {
 
     const options = optionize<CurveManipulationControlsOptions, SelfOptions, VBoxOptions>()( {

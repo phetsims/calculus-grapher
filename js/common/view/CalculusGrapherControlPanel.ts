@@ -17,9 +17,11 @@ import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import PredictModeEnabledProperty from '../model/PredictModeEnabledProperty.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
+import TransformedCurve from '../model/TransformedCurve.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import Property from '../../../../axon/js/Property.js';
 
 type SelfOptions = {
   areaUnderCurveCheckboxVisible?: boolean;
@@ -32,7 +34,8 @@ export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 export default class CalculusGrapherControlPanel extends Panel {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictModeEnabledProperty: PredictModeEnabledProperty,
+                      predictModeEnabledProperty: Property<boolean>,
+                      curveToTransformProperty: TReadOnlyProperty<TransformedCurve>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
@@ -61,7 +64,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       } );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const curveButtons = new CurvePushButtonGroup( predictModeEnabledProperty, {
+    const curveButtons = new CurvePushButtonGroup( curveToTransformProperty, {
       smoothButtonOptions: {
         visible: options.smoothButtonVisible
       },

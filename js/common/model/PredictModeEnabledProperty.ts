@@ -34,9 +34,5 @@ export default class PredictModeEnabledProperty extends BooleanProperty {
     this.originalCurve = originalCurve;
     this.predictCurve = predictCurve;
   }
-
-  public get curve(): TransformedCurve {
-    return this.value ? this.predictCurve : this.originalCurve;
-  }
 }
 calculusGrapher.register( 'PredictModeEnabledProperty', PredictModeEnabledProperty );
