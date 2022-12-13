@@ -16,8 +16,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import { HBox, Node, Text } from '../../../../scenery/js/imports.js';
-
-
+import Scrubber from './Scrubber.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -111,6 +110,19 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.top = 10;
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
+
+    const scrubber = new Scrubber( model.xCoordinateProperty, this.chartTransform,
+      {
+        visibleProperty: DerivedProperty.or( [
+          visibleProperties.areaUnderCurveVisibleProperty,
+          visibleProperties.tangentVisibleProperty ] ),
+        lineOptions: {
+          visibleProperty: visibleProperties.areaUnderCurveVisibleProperty
+        },
+        tandem: options.tandem.createTandem( 'scrubber' )
+      } );
+
+    this.addChild( scrubber );
 
     graphHeightProperty.link( height => {
 
