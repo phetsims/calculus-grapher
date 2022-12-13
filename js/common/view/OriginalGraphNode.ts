@@ -131,15 +131,13 @@ export default class OriginalGraphNode extends GraphNode {
       this.predictCurveNode.dragBoundsProperty.value.setMaxY( height );
 
       // TODO: find a way to update touch/mouse area without resorting to this
-      this.curveNode.setPointerAreas();
-      this.predictCurveNode.setPointerAreas();
+      this.setCurvePointerAreas();
     } );
 
     this.zoomLevelProperty.link( () => {
 
       // TODO: find a way to update touch/mouse area without resorting to this
-      this.curveNode.setPointerAreas();
-      this.predictCurveNode.setPointerAreas();
+      this.setCurvePointerAreas();
     } );
   }
 
@@ -149,6 +147,11 @@ export default class OriginalGraphNode extends GraphNode {
   public override reset(): void {
     super.reset();
     this.predictCurveNode.reset();
+  }
+
+  private setCurvePointerAreas(): void {
+    this.curveNode.setPointerAreas();
+    this.predictCurveNode.setPointerAreas();
   }
 }
 
