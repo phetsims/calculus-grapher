@@ -35,6 +35,7 @@ type StringsType = {
   'tangentStringProperty': LinkableProperty<string>;
   'predictStringProperty': LinkableProperty<string>;
   'showStringProperty': LinkableProperty<string>;
+  'slopeOfTangentStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
