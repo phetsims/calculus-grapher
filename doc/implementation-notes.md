@@ -28,6 +28,8 @@ There are a number of query parameters for internal use.
 - `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
 - `valuesVisible` shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.. The default value is false.
 - `connectDiscontinuities` connects curve discontinuities with a dashed line (true) or leave a gap (false). The default value is true.
+- `derivativeNotation` is derivative notation to be used throughout the simulation. Valid values are 'lagrange' and 'leibniz'. The default value is 'lagrange'.
+- `functionVariable` represents the variable that would be used for the horizontal axis of the graph. Valid values are 'x' and 't'. The default value is 'x'.
 
 ### Curve Hierarchy
 
