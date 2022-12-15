@@ -13,7 +13,7 @@ import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../scenery/js/
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
+import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
 import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
@@ -30,7 +30,7 @@ export default class VariableControl extends HBox {
 
   private readonly disposeVariableControl: () => void;
 
-  public constructor( functionVariableProperty: StringEnumerationProperty<FunctionVariable>,
+  public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>,
                       providedOptions: VariableControlOptions ) {
 
     const options = optionize<VariableControlOptions, SelfOptions, HBoxOptions>()( {
@@ -74,7 +74,7 @@ type VariableRadioButtonGroupOptions = SelfOptions & PickRequired<AquaRadioButto
 
 class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 
-  public constructor( functionVariableProperty: StringEnumerationProperty<FunctionVariable>,
+  public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>,
                       providedOptions: VariableRadioButtonGroupOptions ) {
 
     const options = optionize<VariableRadioButtonGroupOptions, VariableRadioButtonGroupSelfOptions, AquaRadioButtonGroupOptions>()( {

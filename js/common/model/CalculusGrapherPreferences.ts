@@ -11,7 +11,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters, { ConnectDiscontinuities, ConnectDiscontinuitiesValues, DerivativeNotation, DerivativeNotationValues, FunctionVariable, FunctionVariableValues } from '../CalculusGrapherQueryParameters.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import StringEnumerationProperty from '../../../../axon/js/StringEnumerationProperty.js';
+import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
 
 //TODO QueryStringMachine needs a string union type
 const connectDiscontinuities: ConnectDiscontinuities = CalculusGrapherQueryParameters.connectDiscontinuities === 'noLine' ? 'noLine' : 'dashedLine';
@@ -25,19 +25,19 @@ const CalculusGrapherPreferences = {
     phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
   } ),
 
-  connectDiscontinuitiesProperty: new StringEnumerationProperty( connectDiscontinuities, {
+  connectDiscontinuitiesProperty: new StringUnionProperty( connectDiscontinuities, {
     validValues: ConnectDiscontinuitiesValues,
     tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
     phetioDocumentation: 'Whether to leave a gap between discontinuities, or connect them with a dashed line'
   } ),
 
-  derivativeNotationProperty: new StringEnumerationProperty( derivationNotation, {
+  derivativeNotationProperty: new StringUnionProperty( derivationNotation, {
     validValues: DerivativeNotationValues,
     tandem: Tandem.PREFERENCES.createTandem( 'derivativeNotationProperty' ),
     phetioDocumentation: 'the notation used for functions'
   } ),
 
-  functionVariableProperty: new StringEnumerationProperty( functionVariable, {
+  functionVariableProperty: new StringUnionProperty( functionVariable, {
     validValues: FunctionVariableValues,
     tandem: Tandem.PREFERENCES.createTandem( 'functionVariableProperty' ),
     phetioDocumentation: 'the variable used in functions'
