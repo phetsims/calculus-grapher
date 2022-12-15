@@ -17,7 +17,7 @@
 import Vector2 from '../../../../dot/js/Vector2.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import StringIO from '../../../../tandem/js/types/StringIO.js';
+import StringUnionIO from '../../../../tandem/js/types/StringUnionIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
@@ -174,13 +174,15 @@ export default class CurvePoint {
     stateSchema: {
       x: NumberIO,
       y: NumberIO,
-      pointType: StringIO,
+      pointType: StringUnionIO( PointTypeValues ),
       initialY: NumberIO,
-      initialPointType: StringIO
+      initialPointType: StringUnionIO( PointTypeValues )
     },
     toStateObject: ( curvePoint: CurvePoint ) => curvePoint.toStateObject(),
     fromStateObject: ( stateObject: CurvePointStateObject ) => CurvePoint.fromStateObject( stateObject ),
     documentation: 'describe the point on a curve'
   } );
 }
+
 calculusGrapher.register( 'CurvePoint', CurvePoint );
+
