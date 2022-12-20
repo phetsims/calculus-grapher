@@ -55,7 +55,7 @@ export default class GraphNodes extends Node {
     const originalLabelNode = new HBox( {
       children: [
         new Text( CalculusGrapherStrings.predictStringProperty, {
-          font: CalculusGrapherConstants.GRAPH_LABEL_FONT,
+          font: CalculusGrapherConstants.CONTROL_FONT,
           visibleProperty: model.predictModeEnabledProperty
         } ),
         new GraphTypeLabelNode( 'original' ) ],

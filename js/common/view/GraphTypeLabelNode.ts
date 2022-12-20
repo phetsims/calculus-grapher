@@ -9,35 +9,57 @@
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import { HSeparator, Node, NodeOptions, RichText, VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { GraphType } from '../model/GraphType.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
-// The size of the font sizes are all related, change carefully.
-const DEFAULT_FONT = new PhetFont( 16 );
-const INTEGRAL_SYMBOL_FONT = new PhetFont( 24 );
-const UPPER_LOWER_BOUNDS_FONT = new PhetFont( 8 );
-const FRACTION_FONT = new PhetFont( 12 );
 const HAIR_SPACE_STRING = '\u200A';
+const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;
+
+// Possible prime symbols that can appear after the 'f' in 'f(x)'
+const PrimeStringValues = [ '', CalculusGrapherSymbols.prime, CalculusGrapherSymbols.doublePrime ] as const;
+type PrimeString = ( typeof PrimeStringValues )[number];
+
+type FontSizeOptions = {
+
+  // This value determines the size of the symbols 'f', 'd', 'x', and 't'. Typically, you'll want to set
+  // nominalFontSize, and the sizes of other parts of the label will be computed proportionally.
+  nominalFontSize?: number;
+
+  // Leave these alone (use the defaults), unless you need to tweak for specific cases.
+  integralSymbolFontSize?: number;
+  limitsFontSize?: number;
+  fractionFontSize?: number;
+};
 
 type SelfOptions = {
   derivativeNotationProperty?: TReadOnlyProperty<DerivativeNotation>;
   functionVariableProperty?: TReadOnlyProperty<FunctionVariable>;
+  fontSizeOptions?: FontSizeOptions;
 };
 
-export type CurveLabelNodeOptions = SelfOptions & NodeOptions;
+export type GraphTypeLabelNodeOptions = SelfOptions & NodeOptions;
 
 export default class GraphTypeLabelNode extends Node {
 
-  public constructor( graphType: GraphType, providedOptions?: CurveLabelNodeOptions ) {
+  public constructor( graphType: GraphType, providedOptions?: GraphTypeLabelNodeOptions ) {
 
-    const options = optionize<CurveLabelNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<GraphTypeLabelNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
       derivativeNotationProperty: CalculusGrapherPreferences.derivativeNotationProperty,
-      functionVariableProperty: CalculusGrapherPreferences.functionVariableProperty
+      functionVariableProperty: CalculusGrapherPreferences.functionVariableProperty,
+      fontSizeOptions: {
+        nominalFontSize: NOMINAL_FONT_SIZE,
+        integralSymbolFontSize: 1.5 * NOMINAL_FONT_SIZE,
+        limitsFontSize: 0.5 * NOMINAL_FONT_SIZE,
+        fractionFontSize: 0.75 * NOMINAL_FONT_SIZE
+      }
     }, providedOptions );
 
     super( options );
@@ -46,7 +68,7 @@ export default class GraphTypeLabelNode extends Node {
     const variableStringProperty = getVariableStringProperty( options.functionVariableProperty );
 
     // create and add content for the node, based on graphType, notation and variable
-    let labelNode = getLabelNode( graphType, options.derivativeNotationProperty.value, variableStringProperty );
+    let labelNode = getLabelNode( graphType, options.derivativeNotationProperty.value, variableStringProperty, options.fontSizeOptions );
     this.addChild( labelNode );
 
     options.derivativeNotationProperty.link( derivationNotation => {
@@ -55,7 +77,7 @@ export default class GraphTypeLabelNode extends Node {
       labelNode.dispose();
 
       // create and add new label
-      labelNode = getLabelNode( graphType, derivationNotation, variableStringProperty );
+      labelNode = getLabelNode( graphType, derivationNotation, variableStringProperty, options.fontSizeOptions );
       this.addChild( labelNode );
     } );
   }
@@ -66,19 +88,20 @@ export default class GraphTypeLabelNode extends Node {
  */
 function getLabelNode( graphType: GraphType,
                        derivativeNotation: DerivativeNotation,
-                       variableStringProperty: TReadOnlyProperty<string> ): Node {
+                       variableStringProperty: TReadOnlyProperty<string>,
+                       fontSizeOptions: FontSizeOptions ): Node {
 
   if ( graphType === 'integral' ) {
-    return getIntegral( variableStringProperty );
+    return getIntegral( variableStringProperty, fontSizeOptions );
   }
   else if ( graphType === 'original' ) {
-    return getOriginal( variableStringProperty );
+    return getOriginal( variableStringProperty, fontSizeOptions );
   }
   else if ( graphType === 'derivative' ) {
-    return getDerivative( derivativeNotation, variableStringProperty );
+    return getDerivative( derivativeNotation, variableStringProperty, fontSizeOptions );
   }
   else if ( graphType === 'secondDerivative' ) {
-    return getSecondDerivative( derivativeNotation, variableStringProperty );
+    return getSecondDerivative( derivativeNotation, variableStringProperty, fontSizeOptions );
   }
   else {
     throw new Error( 'Unsupported graphType' );
@@ -88,7 +111,8 @@ function getLabelNode( graphType: GraphType,
 /**
  * label for f(x), f'(x) and f"(x)
  */
-function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, primeString = '' ): Node {
+function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, primeString: PrimeString,
+                        fontSizeOptions: FontSizeOptions ): Node {
 
   const labelStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.fStringProperty, variableStringProperty ],
@@ -96,34 +120,39 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
       return `${f}${HAIR_SPACE_STRING}${primeString}(${x})`;
     } );
 
-  return new RichText( labelStringProperty, { font: DEFAULT_FONT } );
+  return new RichText( labelStringProperty, {
+    font: new PhetFont( fontSizeOptions.nominalFontSize )
+  } );
 }
 
 /**
  * label for f(x)
  */
-function getOriginal( variableStringProperty: TReadOnlyProperty<string> ): Node {
-  return getPrimeLabel( variableStringProperty );
+function getOriginal( variableStringProperty: TReadOnlyProperty<string>, fontSizeOptions: FontSizeOptions ): Node {
+  return getPrimeLabel( variableStringProperty, '', fontSizeOptions );
 }
 
 /**
  * label for f'(x)
  */
-function getLagrangeDerivative( variableStringProperty: TReadOnlyProperty<string> ): Node {
-  return getPrimeLabel( variableStringProperty, CalculusGrapherSymbols.prime );
+function getLagrangeDerivative( variableStringProperty: TReadOnlyProperty<string>,
+                                fontSizeOptions: FontSizeOptions ): Node {
+  return getPrimeLabel( variableStringProperty, CalculusGrapherSymbols.prime, fontSizeOptions );
 }
 
 /**
  * label for f''(x)
  */
-function getLagrangeSecondDerivative( variableStringProperty: TReadOnlyProperty<string> ): Node {
-  return getPrimeLabel( variableStringProperty, CalculusGrapherSymbols.doublePrime );
+function getLagrangeSecondDerivative( variableStringProperty: TReadOnlyProperty<string>,
+                                      fontSizeOptions: FontSizeOptions ): Node {
+  return getPrimeLabel( variableStringProperty, CalculusGrapherSymbols.doublePrime, fontSizeOptions );
 }
 
 /**
  * label for df/dx or df/dt
  */
-function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string> ): Node {
+function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string>,
+                               fontSizeOptions: FontSizeOptions ): Node {
 
   const numeratorStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
@@ -141,13 +170,14 @@ function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string>
         // string for dx
         return `${d}${x}`;
       } );
-  return getFractionLabel( numeratorStringProperty, denominatorStringProperty );
+  return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
 }
 
 /**
  * label for d^2f/dx^2 or d^2f/dt^2
  */
-function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<string> ): Node {
+function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<string>,
+                                     fontSizeOptions: FontSizeOptions ): Node {
 
   const numeratorStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
@@ -166,51 +196,55 @@ function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<s
         return `${d}${x}<sup style="font-size:10pt; font-family:Times">2</sup>`;
       } );
 
-  return getFractionLabel( numeratorStringProperty, denominatorStringProperty );
+  return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
 }
 
 /**
  * Gets the derivative label, appropriate for the chose derivative notation.
  */
-function getDerivative( derivativeNotation: DerivativeNotation, variableStringProperty: TReadOnlyProperty<string> ): Node {
+function getDerivative( derivativeNotation: DerivativeNotation, variableStringProperty: TReadOnlyProperty<string>,
+                        fontSizeOptions: FontSizeOptions ): Node {
   if ( derivativeNotation === 'leibniz' ) {
-    return getLeibnizDerivative( variableStringProperty );
+    return getLeibnizDerivative( variableStringProperty, fontSizeOptions );
   }
   else {
-    return getLagrangeDerivative( variableStringProperty );
+    return getLagrangeDerivative( variableStringProperty, fontSizeOptions );
   }
 }
 
 /**
  * Gets the second derivative label, appropriate for the chose derivative notation.
  */
-function getSecondDerivative( derivativeNotation: DerivativeNotation, variableStringProperty: TReadOnlyProperty<string> ): Node {
+function getSecondDerivative( derivativeNotation: DerivativeNotation, variableStringProperty: TReadOnlyProperty<string>,
+                              fontSizeOptions: FontSizeOptions ): Node {
   if ( derivativeNotation === 'leibniz' ) {
-    return getLeibnizSecondDerivative( variableStringProperty );
+    return getLeibnizSecondDerivative( variableStringProperty, fontSizeOptions );
   }
   else {
-    return getLagrangeSecondDerivative( variableStringProperty );
+    return getLagrangeSecondDerivative( variableStringProperty, fontSizeOptions );
   }
 }
 
 /**
  * label for \int_0^x f(x) dx or \int_0^t f(t) dt
  */
-function getIntegral( variableStringProperty: TReadOnlyProperty<string> ): Node {
+function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSizeOptions: FontSizeOptions ): Node {
 
   // The symbol for integral
   const integralSymbolNode = new RichText( CalculusGrapherSymbols.integral, {
-    font: INTEGRAL_SYMBOL_FONT
+    font: new PhetFont( fontSizeOptions.integralSymbolFontSize )
   } );
 
-  // lower bound of integral
+  const limitsFont = new PhetFont( fontSizeOptions.limitsFontSize );
+
+  // lower limit of integral
   const lowerBoundNode = new RichText( '0', {
-    font: UPPER_LOWER_BOUNDS_FONT
+    font: limitsFont
   } );
 
-  // upper bound of integral
+  // upper limit of integral
   const upperBoundNode = new RichText( variableStringProperty, {
-    font: UPPER_LOWER_BOUNDS_FONT
+    font: limitsFont
   } );
 
   // integrand of integral: f(x)dx
@@ -223,7 +257,9 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string> ): Node 
       // string for  f(x) dx
       return `${f}${HAIR_SPACE_STRING}(${x}) ${d}${x} `;
     } );
-  const integrandNode = new RichText( integrandStringProperty, { font: DEFAULT_FONT } );
+  const integrandNode = new RichText( integrandStringProperty, {
+    font: new PhetFont( fontSizeOptions.nominalFontSize )
+  } );
 
   // laying out the various nodes
   lowerBoundNode.left = integralSymbolNode.right - 2;
@@ -240,18 +276,20 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string> ): Node 
  * Gets a fraction node, made of a numerator and a denominator separated by a horizontal line.
  */
 function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
-                           denominatorStringProperty: TReadOnlyProperty<string> ): Node {
+                           denominatorStringProperty: TReadOnlyProperty<string>,
+                           fontSizeOptions: FontSizeOptions ): Node {
+  const fractionFont = new PhetFont( fontSizeOptions.fractionFontSize );
   return new VBox( {
     children: [
 
       // numerator
-      new RichText( numeratorStringProperty, { font: FRACTION_FONT } ),
+      new RichText( numeratorStringProperty, { font: fractionFont } ),
 
       // horizontal line between numerator and denominator, resized automatically by VBox
       new HSeparator( { stroke: 'black', lineWidth: 0.5 } ),
 
       // denominator
-      new RichText( denominatorStringProperty, { font: FRACTION_FONT } )
+      new RichText( denominatorStringProperty, { font: fractionFont } )
     ]
   } );
 }
