@@ -22,6 +22,7 @@ import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   areaUnderCurveCheckboxVisible?: boolean;
@@ -73,7 +74,9 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // create tangent checkbox, with visibility tied to option field
     const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
-      new Text( CalculusGrapherStrings.tangentStringProperty ), {
+      new Text( CalculusGrapherStrings.tangentStringProperty, {
+        font: CalculusGrapherConstants.CONTROL_FONT
+      } ), {
         visible: options.tangentCheckboxVisible,
         tandem: options.tandem.createTandem( 'tangentCheckbox' )
       }
@@ -81,7 +84,9 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // create area under curve checkbox, with visibility tied to option field
     const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
-      new Text( CalculusGrapherStrings.areaUnderCurveStringProperty ), {
+      new Text( CalculusGrapherStrings.areaUnderCurveStringProperty, {
+        font: CalculusGrapherConstants.CONTROL_FONT
+      } ), {
         visible: options.areaUnderCurveCheckboxVisible,
         tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
       } );

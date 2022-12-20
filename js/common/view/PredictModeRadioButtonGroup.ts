@@ -13,10 +13,10 @@ import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioB
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
 import Property from '../../../../axon/js/Property.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,7 +42,7 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
     const originalCurveLabelNode = new GraphTypeLabelNode( 'original' );
 
     const predictText = new Text( CalculusGrapherStrings.predictStringProperty, {
-      font: new PhetFont( 12 )
+      font: CalculusGrapherConstants.CONTROL_FONT
     } );
 
     // To give the labels the same effective size

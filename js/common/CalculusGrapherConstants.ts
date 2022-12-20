@@ -9,6 +9,7 @@
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import { ArrowNodeOptions } from '../../../scenery-phet/js/ArrowNode.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 
 const ARROW_NODE_OPTIONS: ArrowNodeOptions = {
@@ -38,7 +39,10 @@ const CalculusGrapherConstants = {
   ARROW_NODE_OPTIONS: ARROW_NODE_OPTIONS,
 
   // maximum of undo actions (See https://github.com/phetsims/calculus-grapher/issues/64)
-  MAX_UNDO: 20
+  MAX_UNDO: 20,
+
+  // fonts
+  CONTROL_FONT: new PhetFont( 12 )
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

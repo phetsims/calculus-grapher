@@ -18,6 +18,7 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   smoothButtonOptions?: TextPushButtonOptions;
@@ -76,6 +77,7 @@ export default class CurvePushButtonGroup extends VBox {
     const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty,
       combineOptions<TextPushButtonOptions>( {
           listener: () => curveToTransformProperty.value.smooth(),
+          font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: hBox.width,
           minWidth: hBox.width,
           tandem: options.tandem.createTandem( 'smoothButton' )
