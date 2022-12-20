@@ -17,10 +17,10 @@ import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Range from '../../../../dot/js/Range.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Utils from '../../../../dot/js/Utils.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -50,7 +50,7 @@ export default class BarometerAccordionBox extends AccordionBox {
           lineWidth: 10
         },
         textOptions: {
-          font: new PhetFont( 16 ),
+          font: CalculusGrapherConstants.ACCORDION_BOX_TITLE_FONT,
           maxWidth: 100 // determined empirically
         },
         chartTransformOptions: {

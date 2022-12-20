@@ -42,7 +42,9 @@ const CalculusGrapherConstants = {
   MAX_UNDO: 20,
 
   // fonts
-  CONTROL_FONT: new PhetFont( 12 )
+  CONTROL_FONT: new PhetFont( 12 ),
+  GRAPH_LABEL_FONT: new PhetFont( 16 ),
+  ACCORDION_BOX_TITLE_FONT: new PhetFont( 16 )
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

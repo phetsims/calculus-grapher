@@ -22,7 +22,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -52,11 +51,11 @@ export default class GraphNodes extends Node {
 
     const graphTypes = options.graphSets.flat();
 
-    // create label for original graph that toggles between 'predict f(x)' and 'f(x)'
+    // create label for original graph that toggles between 'Predict f(x)' and 'f(x)'
     const originalLabelNode = new HBox( {
       children: [
         new Text( CalculusGrapherStrings.predictStringProperty, {
-          font: new PhetFont( 14 ),
+          font: CalculusGrapherConstants.GRAPH_LABEL_FONT,
           visibleProperty: model.predictModeEnabledProperty
         } ),
         new GraphTypeLabelNode( 'original' ) ],

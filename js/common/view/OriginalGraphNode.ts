@@ -26,7 +26,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -91,7 +90,7 @@ export default class OriginalGraphNode extends GraphNode {
     const showOriginalCurveCheckboxContent = new HBox( {
       children: [
         new Text( CalculusGrapherStrings.showStringProperty, {
-          font: new PhetFont( 14 )
+          font: CalculusGrapherConstants.CONTROL_FONT
         } ),
         new GraphTypeLabelNode( 'original' )
       ],
