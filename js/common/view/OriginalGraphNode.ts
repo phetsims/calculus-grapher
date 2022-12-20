@@ -110,7 +110,7 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubber = new Scrubber( model.xCoordinateProperty, this.chartTransform,
+    const scrubber = new Scrubber( model.ancillaryTools.xCoordinateProperty, this.chartTransform,
       {
         visibleProperty: DerivedProperty.or( [
           visibleProperties.areaUnderCurveVisibleProperty,

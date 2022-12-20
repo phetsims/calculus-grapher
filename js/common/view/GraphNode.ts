@@ -43,6 +43,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -63,6 +64,9 @@ export default class GraphNode extends Node {
 
   // create a node layer to host all the curveNodes
   protected readonly curveLayer: Node;
+
+  protected readonly curve: Curve;
+
   // create a curveNode associated with this graph
   protected readonly curveNode: CurveNode;
   // visibility of the layer hosting all the curveNodes
@@ -102,6 +106,8 @@ export default class GraphNode extends Node {
     }, providedOptions );
 
     super( options );
+
+    this.curve = curve;
 
     // chart transform for the graph, the Y range will be updated later
     this.chartTransform = new ChartTransform( {
@@ -298,6 +304,15 @@ export default class GraphNode extends Node {
           return label;
         }
       } );
+  }
+
+  public addFocusCircle( xCoordinateProperty: NumberProperty,
+                         providedOptions: FocusPointNodeOptions ): void {
+
+    const focusCircle = new FocusCircle( xCoordinateProperty, this.curve, this.chartTransform,
+      providedOptions );
+
+    this.curveLayer.addChild( focusCircle );
   }
 }
 

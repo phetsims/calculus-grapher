@@ -23,10 +23,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
-
-const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
+import AncillaryTools from './AncillaryTools.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -49,15 +46,15 @@ export default class CalculusGrapherModel implements TModel {
   // model for the reference line
   public readonly referenceLine: ReferenceLine;
 
-  // value to track the x position of scrubber
-  public readonly xCoordinateProperty: NumberProperty;
-
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
   public readonly predictCurve: TransformedCurve;
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
+
+  // model associated with the scrubber on the original graph
+  public readonly ancillaryTools: AncillaryTools;
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
@@ -104,10 +101,13 @@ export default class CalculusGrapherModel implements TModel {
       { tandem: options.tandem.createTandem( 'referenceLine' ) }
     );
 
-    this.xCoordinateProperty = new NumberProperty( CURVE_X_RANGE.getCenter(), {
-      range: CURVE_X_RANGE,
-      tandem: options.tandem.createTandem( 'xCoordinateProperty' )
-    } );
+    this.ancillaryTools = new AncillaryTools(
+      this.originalCurve,
+      this.derivativeCurve,
+      this.integralCurve, {
+        initialCoordinate: 0,
+        tandem: options.tandem.createTandem( 'ancillaryTools' )
+      } );
   }
 
   /**
@@ -119,6 +119,7 @@ export default class CalculusGrapherModel implements TModel {
     this.originalCurve.reset();
     this.predictCurve.reset();
     this.predictModeEnabledProperty.reset();
+    this.ancillaryTools.reset();
   }
 }
 

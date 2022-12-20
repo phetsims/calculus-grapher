@@ -72,6 +72,11 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
+    integralGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
+      visibleProperty: visibleProperties.areaUnderCurveVisibleProperty,
+      fill: getGraphTypeStroke( 'integral' )
+    } );
+
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
       graphHeightProperty,
@@ -84,6 +89,18 @@ export default class GraphNodes extends Node {
       }
     );
 
+    originalGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
+      visibleProperty: new DerivedProperty( [
+          visibleProperties.areaUnderCurveVisibleProperty,
+          visibleProperties.tangentVisibleProperty,
+          visibleProperties.allOriginalCurvesVisibleProperty,
+          model.predictModeEnabledProperty ],
+        ( area, tangent, allOriginal, predictMode ) =>
+          ( area || tangent ) && ( allOriginal || !predictMode ) ),
+      fill: getGraphTypeStroke( 'original' )
+    } );
+
+
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
@@ -92,6 +109,11 @@ export default class GraphNodes extends Node {
         curveStroke: getGraphTypeStroke( 'derivative' ),
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
       } );
+
+    derivativeGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
+      visibleProperty: visibleProperties.tangentVisibleProperty,
+      fill: getGraphTypeStroke( 'derivative' )
+    } );
 
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
