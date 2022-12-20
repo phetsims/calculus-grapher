@@ -28,8 +28,7 @@ type PrimeString = ( typeof PrimeStringValues )[number];
 type FontSizeOptions = {
 
   // This value determines the size of the symbols 'f', 'd', 'x', and 't' when they do not appear in a fraction.
-  // Typically, you'll want to set nominalFontSize, and the sizes for other parts of the label will be computed
-  // proportionally.
+  // Typically, you'll want to set nominalFontSize, and the other sizes will be computed proportionally.
   nominalFontSize?: number;
 
   // Leave these alone (use the defaults), unless you need to tweak for specific cases.
