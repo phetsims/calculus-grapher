@@ -27,14 +27,15 @@ type PrimeString = ( typeof PrimeStringValues )[number];
 
 type FontSizeOptions = {
 
-  // This value determines the size of the symbols 'f', 'd', 'x', and 't'. Typically, you'll want to set
-  // nominalFontSize, and the sizes of other parts of the label will be computed proportionally.
+  // This value determines the size of the symbols 'f', 'd', 'x', and 't' when they do not appear in a fraction.
+  // Typically, you'll want to set nominalFontSize, and the sizes of other parts of the label will be computed
+  // proportionally.
   nominalFontSize?: number;
 
   // Leave these alone (use the defaults), unless you need to tweak for specific cases.
-  integralSymbolFontSize?: number;
-  limitsFontSize?: number;
-  fractionFontSize?: number;
+  integralSymbolFontSize?: number; // for the integral symbol
+  limitsFontSize?: number; // for the upper and lower limits on the integral symbol
+  fractionFontSize?: number; // for fractions like df/dx
 };
 
 type SelfOptions = {
