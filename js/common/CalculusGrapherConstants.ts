@@ -42,8 +42,8 @@ const CalculusGrapherConstants = {
   MAX_UNDO: 20,
 
   // fonts
-  CONTROL_FONT: new PhetFont( 12 ), // for checkboxes, radio buttons, push buttons, etc.
-  GRAPH_LABEL_FONT: new PhetFont( 16 ), // for graph labels like f(x), f'(x), etc.
+  GRAPH_LABEL_FONT: new PhetFont( 16 ), // wherever graph labels like f(x), f'(x), etc. appear
+  CONTROL_FONT: new PhetFont( 12 ), // for text on checkboxes, radio buttons, push buttons, etc.
   ACCORDION_BOX_TITLE_FONT: new PhetFont( 14 ) // for accordion box titles
 };
 
