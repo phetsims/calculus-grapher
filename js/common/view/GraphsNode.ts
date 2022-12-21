@@ -171,7 +171,7 @@ export default class GraphNodes extends Node {
 
       graphSetNode.setChildren( content );
 
-      referenceLineNode.setLineBottom( graphSetNode.bottom + 5 );
+      referenceLineNode.setLineBottom( graphSetNode.bottom + 10 );
       referenceLineNode.setLineTop( graphSetNode.top - 5 );
 
     } );
