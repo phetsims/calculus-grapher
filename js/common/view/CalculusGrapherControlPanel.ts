@@ -23,6 +23,7 @@ import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
   areaUnderCurveCheckboxVisible?: boolean;
@@ -77,7 +78,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       new Text( CalculusGrapherStrings.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
-        visible: options.tangentCheckboxVisible,
+        visibleProperty: new DerivedProperty( [ predictModeEnabledProperty ],
+          predictModeEnabled => options.tangentCheckboxVisible && !predictModeEnabled ),
         tandem: options.tandem.createTandem( 'tangentCheckbox' )
       }
     );
@@ -87,7 +89,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       new Text( CalculusGrapherStrings.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
-        visible: options.areaUnderCurveCheckboxVisible,
+        visibleProperty: new DerivedProperty( [ predictModeEnabledProperty ],
+          predictModeEnabled => options.areaUnderCurveCheckboxVisible && !predictModeEnabled ),
         tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
       } );
 
