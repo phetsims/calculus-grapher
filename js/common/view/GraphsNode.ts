@@ -73,7 +73,10 @@ export default class GraphNodes extends Node {
       } );
 
     integralGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
-      visibleProperty: visibleProperties.areaUnderCurveVisibleProperty,
+      visibleProperty: new DerivedProperty( [
+          visibleProperties.areaUnderCurveVisibleProperty,
+          model.predictModeEnabledProperty ],
+        ( area, predictMode ) => area && !predictMode ),
       fill: getGraphTypeStroke( 'integral' )
     } );
 
@@ -93,10 +96,9 @@ export default class GraphNodes extends Node {
       visibleProperty: new DerivedProperty( [
           visibleProperties.areaUnderCurveVisibleProperty,
           visibleProperties.tangentVisibleProperty,
-          visibleProperties.allOriginalCurvesVisibleProperty,
           model.predictModeEnabledProperty ],
-        ( area, tangent, allOriginal, predictMode ) =>
-          ( area || tangent ) && ( allOriginal || !predictMode ) ),
+        ( area, tangent, predictMode ) =>
+          ( area || tangent ) && !predictMode ),
       fill: getGraphTypeStroke( 'original' )
     } );
 
@@ -110,7 +112,10 @@ export default class GraphNodes extends Node {
       } );
 
     derivativeGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
-      visibleProperty: visibleProperties.tangentVisibleProperty,
+      visibleProperty: new DerivedProperty( [
+          visibleProperties.tangentVisibleProperty,
+          model.predictModeEnabledProperty ],
+        ( tangent, predictMode ) => tangent && !predictMode ),
       fill: getGraphTypeStroke( 'derivative' )
     } );
 
