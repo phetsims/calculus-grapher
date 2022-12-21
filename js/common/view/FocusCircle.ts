@@ -44,6 +44,7 @@ export default class FocusCircle extends Circle {
 
     xCoordinateProperty.link( updatePosition );
     chartTransform.changedEmitter.addListener( updatePosition );
+    curve.curveChangedEmitter.addListener( updatePosition );
   }
 }
 calculusGrapher.register( 'FocusCircle', FocusCircle );
