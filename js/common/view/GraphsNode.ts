@@ -166,7 +166,7 @@ export default class GraphNodes extends Node {
 
       for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
         content[ i ].x = content[ i - 1 ].x;
-        content[ i ].top = content[ i - 1 ].bottom + 10;
+        content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + 10;
       }
 
       graphSetNode.setChildren( content );
