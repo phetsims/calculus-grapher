@@ -30,6 +30,7 @@ export default class AncillaryTools {
 
   public readonly tangentProperty: NumberProperty;
   public readonly areaUnderCurveProperty: NumberProperty;
+  public readonly originalProperty: NumberProperty;
 
   public constructor(
     originalCurve: Curve,
@@ -46,21 +47,26 @@ export default class AncillaryTools {
     } );
 
     this.tangentProperty = new NumberProperty( this.getY( derivativeCurve ) );
-
     this.areaUnderCurveProperty = new NumberProperty( this.getY( integralCurve ) );
+    this.originalProperty = new NumberProperty( this.getY( originalCurve ) );
+    const addCurveListener = ( curve: Curve, valueProperty: NumberProperty ): void => {
+      curve.curveChangedEmitter.addListener( () => {
+        this.assignYValue( curve, valueProperty );
+      } );
+    };
 
-    derivativeCurve.curveChangedEmitter.addListener( () => {
+    addCurveListener( derivativeCurve, this.tangentProperty );
+    addCurveListener( originalCurve, this.originalProperty );
+    addCurveListener( integralCurve, this.areaUnderCurveProperty );
+
+
+    this.xCoordinateProperty.link( () => {
       this.assignYValue( derivativeCurve, this.tangentProperty );
-    } );
-
-    originalCurve.curveChangedEmitter.addListener( () => {
-      this.assignYValue( originalCurve, this.areaUnderCurveProperty );
-    } );
-
-    this.xCoordinateProperty.link( x => {
-      this.assignYValue( derivativeCurve, this.tangentProperty );
+      this.assignYValue( originalCurve, this.originalProperty );
       this.assignYValue( integralCurve, this.areaUnderCurveProperty );
     } );
+
+
   }
 
   /**
