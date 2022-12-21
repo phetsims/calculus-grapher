@@ -26,6 +26,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import ShadedAreaChart from './ShadedAreaChart.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -123,6 +124,23 @@ export default class OriginalGraphNode extends GraphNode {
 
     this.addChild( scrubber );
 
+    const shadedAreaChart = new ShadedAreaChart(
+      model.originalCurve,
+      this.chartTransform,
+      model.ancillaryTools.xCoordinateProperty, {
+        upFill: new DerivedProperty(
+          [ CalculusGrapherColors.integralCurveStrokeProperty ],
+          color => color.brighterColor( 0.8 ) ),
+        downFill: new DerivedProperty(
+          [ CalculusGrapherColors.integralCurveStrokeProperty ],
+          color => color.brighterColor( 0.9 ) ),
+        visibleProperty: new DerivedProperty( [
+          visibleProperties.areaUnderCurveVisibleProperty,
+          model.predictModeEnabledProperty ], ( areaUnderCurve, predictModeEnabled ) =>
+          areaUnderCurve && !predictModeEnabled )
+      } );
+    this.curveLayer.addChild( shadedAreaChart );
+    shadedAreaChart.moveToBack();
     graphHeightProperty.link( height => {
 
       // TODO : too much repetition
