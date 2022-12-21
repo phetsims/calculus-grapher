@@ -19,7 +19,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = {
 
-  // the lower value of the graph
+  // y-value representing the foundation of the chart
   baseline?: number;
 };
 
