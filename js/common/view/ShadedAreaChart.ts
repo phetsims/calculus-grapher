@@ -38,7 +38,6 @@ export default class ShadedAreaChart extends Node {
 
       }, providedOptions );
 
-
     const upFunction: CurvePointFunction = point => point.y > 0;
     const downFunction: CurvePointFunction = point => point.y < 0;
 

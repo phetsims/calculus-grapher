@@ -27,7 +27,6 @@ export type AreaChartDataSet = ( Vector2 | null )[];
 
 export type AreaChartOptions = SelfOptions & PathOptions;
 
-
 export default class AreaChart extends Path {
 
   // if you change this directly, you are responsible for calling update
@@ -63,7 +62,6 @@ export default class AreaChart extends Path {
 
     this.disposeAreaChart = () => chartTransform.changedEmitter.removeListener( changedListener );
   }
-
 
   public override dispose(): void {
     this.disposeAreaChart();
@@ -110,7 +108,6 @@ export default class AreaChart extends Path {
         }
         moveToNextPoint = true;
       }
-
 
     }
 

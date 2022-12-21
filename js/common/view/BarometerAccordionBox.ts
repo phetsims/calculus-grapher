@@ -62,12 +62,10 @@ export default class BarometerAccordionBox extends AccordionBox {
 
         resize: true,
 
-
         // AccordionBoxOptions
         stroke: CalculusGrapherColors.panelStrokeProperty,
         fill: CalculusGrapherColors.panelFillProperty
       }, providedOptions );
-
 
     const orientation = Orientation.VERTICAL;
 
@@ -76,7 +74,6 @@ export default class BarometerAccordionBox extends AccordionBox {
     const titleNode = new RichText( labelString, options.textOptions );
 
     const axisLine = new AxisLine( chartTransform, orientation );
-
 
     const tickMarkSet = new TickMarkSet( chartTransform, orientation, options.tickSpacing, {
       extent: options.tickMarkSetExtent

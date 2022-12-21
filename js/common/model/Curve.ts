@@ -149,7 +149,6 @@ export default class Curve extends PhetioObject {
     return this.getClosestPointAt( x ).y;
   }
 
-
   /**
    * Gets the index of the array whose x-value is closest to the given x-value.
    */

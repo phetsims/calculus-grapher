@@ -25,7 +25,6 @@ type SelfOptions = EmptySelfOptions;
 
 type VariableControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'> & StrictOmit<HBoxOptions, 'children'>;
 
-
 export default class VariableControl extends HBox {
 
   private readonly disposeVariableControl: () => void;

@@ -161,7 +161,6 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
 
-
     // zoom Button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {

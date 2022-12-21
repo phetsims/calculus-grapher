@@ -14,7 +14,6 @@ import Utils from '../../../../dot/js/Utils.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Property from '../../../../axon/js/Property.js';
 
-
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 
 type SelfOptions = EmptySelfOptions;

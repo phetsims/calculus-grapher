@@ -34,7 +34,6 @@ export default class FocusCircle extends Circle {
 
     super( options );
 
-
     const updatePosition = () => {
 
       const x = xCoordinateProperty.value;

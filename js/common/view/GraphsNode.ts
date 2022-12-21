@@ -100,7 +100,6 @@ export default class GraphNodes extends Node {
       fill: getGraphTypeStroke( 'original' )
     } );
 
-
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
       graphHeightProperty,
@@ -131,7 +130,6 @@ export default class GraphNodes extends Node {
         cursor: 'pointer',
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
-
 
     const graphSetNode = new Node();
 

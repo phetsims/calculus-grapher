@@ -59,13 +59,11 @@ export default class AncillaryTools {
     addCurveListener( originalCurve, this.originalProperty );
     addCurveListener( integralCurve, this.areaUnderCurveProperty );
 
-
     this.xCoordinateProperty.link( () => {
       this.assignYValue( derivativeCurve, this.tangentProperty );
       this.assignYValue( originalCurve, this.originalProperty );
       this.assignYValue( integralCurve, this.areaUnderCurveProperty );
     } );
-
 
   }
 
