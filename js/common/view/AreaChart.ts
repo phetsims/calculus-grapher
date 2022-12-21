@@ -5,7 +5,7 @@
  * An area chart is distinguished from a line chart by the addition of shading between
  * lines and a baseline, like in a bar chart.
  *
- * Null values are skipped and allow you to create separate shaded regions:
+ * Null values are skipped and allow you to create separate shaded regions.
  *
  * @author Martin Veillette
  */
@@ -32,7 +32,10 @@ export default class AreaChart extends Path {
 
   // if you change this directly, you are responsible for calling update
   public dataSet: AreaChartDataSet;
+
+  // a y-value that serves as foundation for the area chart.
   public baseline: number;
+
   private chartTransform: ChartTransform;
   private readonly disposeAreaChart: () => void;
 
@@ -61,18 +64,10 @@ export default class AreaChart extends Path {
     this.disposeAreaChart = () => chartTransform.changedEmitter.removeListener( changedListener );
   }
 
-  /**
-   * Sets the dataSet and redraws the plot. If instead the dataSet array is mutated, it is the client's responsibility
-   * to call `update` or make sure `update` is called elsewhere (say, if the chart scrolls in that frame).
-   */
-  public setDataSet( dataSet: AreaChartDataSet ): void {
-    this.dataSet = dataSet;
-    this.update();
-  }
 
-  public setBaseline( baseline: number ): void {
-    this.baseline = baseline;
-    this.update();
+  public override dispose(): void {
+    this.disposeAreaChart();
+    super.dispose();
   }
 
   // Recomputes the rendered shape.
@@ -95,7 +90,7 @@ export default class AreaChart extends Path {
         const viewPoint = this.chartTransform.modelToViewPosition( dataPoint );
 
         if ( moveToNextPoint ) {
-          const startBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseLine( dataPoint ) );
+          const startBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( dataPoint ) );
           shape.moveToPoint( startBasePoint );
           shape.lineToPoint( viewPoint );
           moveToNextPoint = false;
@@ -108,7 +103,7 @@ export default class AreaChart extends Path {
       }
       else {
         if ( oldDataPoint ) {
-          const endBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseLine( oldDataPoint ) );
+          const endBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( oldDataPoint ) );
           shape.lineToPoint( endBasePoint );
           shape.close();
           oldDataPoint = null;
@@ -122,13 +117,24 @@ export default class AreaChart extends Path {
     this.shape = shape.makeImmutable();
   }
 
-  public override dispose(): void {
-    this.disposeAreaChart();
-    super.dispose();
+  /**
+   * Sets the dataSet and redraws the plot. If instead the dataSet array is mutated, it is the client's responsibility
+   * to call `update` or make sure `update` is called elsewhere (say, if the chart scrolls in that frame).
+   */
+  public setDataSet( dataSet: AreaChartDataSet ): void {
+    this.dataSet = dataSet;
+    this.update();
   }
 
-  private setToBaseLine( dataPoint: Vector2 ): Vector2 {
+  // set the baseline value for the area chart
+  public setBaseline( baseline: number ): void {
+    this.baseline = baseline;
+    this.update();
+  }
+
+  private setToBaseline( dataPoint: Vector2 ): Vector2 {
     return new Vector2( dataPoint.x, this.baseline );
   }
+
 }
 calculusGrapher.register( 'AreaChart', AreaChart );

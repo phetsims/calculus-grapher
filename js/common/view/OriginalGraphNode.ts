@@ -133,7 +133,7 @@ export default class OriginalGraphNode extends GraphNode {
           color => color.brighterColor( 0.8 ) ),
         downFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
-          color => color.brighterColor( 0.9 ) ),
+          color => color.brighterColor( 0.6 ) ),
         visibleProperty: new DerivedProperty( [
           visibleProperties.areaUnderCurveVisibleProperty,
           model.predictModeEnabledProperty ], ( areaUnderCurve, predictModeEnabled ) =>
