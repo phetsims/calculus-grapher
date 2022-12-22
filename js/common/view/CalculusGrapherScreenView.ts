@@ -97,7 +97,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       this.visibleProperties, {
         graphSets: options.graphSets,
         centerX: this.layoutBounds.centerX - 20,
-        top: this.layoutBounds.top + 40,
+        y: this.layoutBounds.top + 40,
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
 
