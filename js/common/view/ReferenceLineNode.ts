@@ -13,6 +13,9 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ReferenceLine from '../model/ReferenceLine.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -46,8 +49,21 @@ export default class ReferenceLineNode extends Node {
     // values will be updated later
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
+    // add numerical label at the top of the reference line
+    const labelNode = new NumberDisplay( xCoordinateProperty,
+      CalculusGrapherConstants.CURVE_X_RANGE, {
+        align: 'center',
+        decimalPlaces: 1,
+        textOptions: {
+          font: CalculusGrapherConstants.CONTROL_FONT
+        },
+        visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
+        bottom: verticalLine.top - 5,
+        centerX: 0
+      } );
+
     const cursorNode = new Node( {
-      children: [ verticalLine, sphere ],
+      children: [ verticalLine, sphere, labelNode ],
       centerX: chartTransform.modelToViewX( xCoordinateProperty.value )
     } );
 
