@@ -21,6 +21,8 @@ import Utils from '../../../../dot/js/Utils.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -31,8 +33,8 @@ type SelfOptions = {
 
   tickMarkSetExtent?: number;
 
-  // spacing of ticks in model coordinate
-  tickSpacing?: number;
+  // number of ticks
+  numberOfTicks?: number;
 };
 
 export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBoxOptions, 'titleNode'>;
@@ -57,8 +59,8 @@ export default class BarometerAccordionBox extends AccordionBox {
           viewHeight: 200,
           modelYRange: new Range( -10, 10 )
         },
-        tickMarkSetExtent: 20,
-        tickSpacing: 30,
+        tickMarkSetExtent: 10,
+        numberOfTicks: 10,
 
         resize: true,
 
@@ -75,23 +77,56 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
-    const tickMarkSet = new TickMarkSet( chartTransform, orientation, options.tickSpacing, {
+    const tickSpacing = Utils.toFixedNumber(
+      options.chartTransformOptions.modelYRange!.getLength() / options.numberOfTicks, 0 );
+
+    const majorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing, {
       extent: options.tickMarkSetExtent
     } );
 
-    const tickLabelSet = new TickLabelSet( chartTransform, orientation, options.tickSpacing, {
+    const minorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing / 4, {
+      extent: options.tickMarkSetExtent / 2
+    } );
+
+    const tickLabelSet = new TickLabelSet( chartTransform, orientation, tickSpacing, {
       createLabel: ( value: number ) => new Text( value, options.textOptions ),
       extent: options.tickMarkSetExtent
     } );
 
-    const plusText = new Text( '+', combineOptions<TextOptions>( {
-      right: tickLabelSet.right,
-      top: axisLine.top + 5
-    }, options.textOptions ) );
-    const minusText = new Text( '-', combineOptions<TextOptions>( {
-      right: tickLabelSet.right,
-      bottom: axisLine.bottom - 5
-    }, options.textOptions ) );
+    const quantitativeLayer = new Node( {
+      children: [ tickLabelSet, majorTickMarkSet, minorTickMarkSet ],
+      visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
+    } );
+
+    function createLabelText( string: string, yPosition: number ): Node {
+      return new Text( string, combineOptions<TextOptions>( {
+        right: zeroX - options.tickMarkSetExtent - 10,
+        centerY: yPosition
+      }, options.textOptions ) );
+    }
+
+    const viewHeight = options.chartTransformOptions.viewHeight!;
+    const zeroY = chartTransform.modelToViewY( 0 );
+    const zeroX = chartTransform.modelToViewX( 0 );
+
+    const qualitativeLabels = new Node( {
+      children: [
+        createLabelText( '+', 10 ),
+        createLabelText( '0', zeroY ),
+        createLabelText( '-', viewHeight - 10 )
+      ]
+    } );
+
+    const zeroTickMark = new Line( zeroX - options.tickMarkSetExtent, zeroY,
+      zeroX + options.tickMarkSetExtent, zeroY, {
+        stroke: 'black',
+        lineWidth: 1
+      } );
+
+    const qualitativeLayer = new Node( {
+      children: [ qualitativeLabels, zeroTickMark ],
+      visibleProperty: DerivedProperty.not( CalculusGrapherPreferences.valuesVisibleProperty )
+    } );
 
     const barRectangle = new Line(
       combineOptions<LineOptions>( {
@@ -102,9 +137,10 @@ export default class BarometerAccordionBox extends AccordionBox {
         options.lineOptions ) );
 
     const barometerNode = new Node(
-      { children: [ axisLine, plusText, minusText, tickMarkSet, tickLabelSet, barRectangle ] } );
+      { children: [ axisLine, quantitativeLayer, qualitativeLayer, barRectangle ] } );
 
     options.titleNode = titleNode;
+
     super( barometerNode, options );
 
     const yRange = options.chartTransformOptions.modelYRange!;
