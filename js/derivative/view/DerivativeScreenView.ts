@@ -10,6 +10,10 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
+import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -27,6 +31,19 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     }, providedOptions );
 
     super( model, options );
+
+    const barometer = new BarometerAccordionBox( model.ancillaryTools.tangentProperty,
+      CalculusGrapherStrings.slopeOfTangentStringProperty, {
+        visibleProperty: new DerivedProperty( [ this.visibleProperties.tangentVisibleProperty,
+            model.predictModeEnabledProperty ],
+          ( tangent, predict ) => tangent && !predict ),
+        lineOptions: {
+          stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
+        },
+        leftTop: this.layoutBounds.leftTop.plusXY( 20, 20 )
+      } );
+
+    this.addChild( barometer );
   }
 }
 
