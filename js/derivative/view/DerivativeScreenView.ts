@@ -14,6 +14,7 @@ import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
+import Range from '../../../../dot/js/Range.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -40,6 +41,9 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         lineOptions: {
           stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
         },
+        chartTransformOptions: {
+          modelYRange: new Range( -8, 8 )
+        },
         leftTop: this.layoutBounds.leftTop.plusXY( 20, 50 ),
         tandem: options.tandem.createTandem( 'tangentAccordionBox' )
       } );
@@ -47,5 +51,4 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.addChild( barometer );
   }
 }
-
 calculusGrapher.register( 'DerivativeScreenView', DerivativeScreenView );
