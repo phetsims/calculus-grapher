@@ -111,16 +111,29 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubber = new Scrubber( model.ancillaryTools.xCoordinateProperty, this.chartTransform,
-      {
-        visibleProperty: DerivedProperty.or( [
-          visibleProperties.areaUnderCurveVisibleProperty,
-          visibleProperties.tangentVisibleProperty ] ),
-        lineOptions: {
-          visibleProperty: visibleProperties.areaUnderCurveVisibleProperty
-        },
-        tandem: options.tandem.createTandem( 'scrubber' )
-      } );
+    const scrubber = new Scrubber( model.ancillaryTools.xCoordinateProperty, this.chartTransform, {
+      visibleProperty: new DerivedProperty( [
+        visibleProperties.areaUnderCurveVisibleProperty,
+        visibleProperties.tangentVisibleProperty,
+        model.predictModeEnabledProperty ], ( areaUnderCurve, tangent, predictModeEnabled ) =>
+        ( areaUnderCurve || tangent ) && !predictModeEnabled ),
+      lineOptions: {
+        visibleProperty: visibleProperties.areaUnderCurveVisibleProperty
+      },
+      fill: new DerivedProperty( [ visibleProperties.areaUnderCurveVisibleProperty,
+        visibleProperties.tangentVisibleProperty ], ( area, tangent ) => {
+        if ( area ) {
+          return CalculusGrapherColors.integralCurveStrokeProperty.value;
+        }
+        else if ( tangent ) {
+          return CalculusGrapherColors.derivativeCurveStrokeProperty.value;
+        }
+        else {
+          return null;
+        }
+      } ),
+      tandem: options.tandem.createTandem( 'scrubber' )
+    } );
 
     this.addChild( scrubber );
 

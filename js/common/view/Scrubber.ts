@@ -12,13 +12,13 @@ import Property from '../../../../axon/js/Property.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
+import { DragListener, Line, LineOptions, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
-  sphereOptions?: ShadedSphereNodeOptions;
+  fill?: TColor;
   sphereDiameter?: number;
 };
 
@@ -33,17 +33,18 @@ export default class Scrubber extends Node {
     const options = optionize<ScrubberOptions, SelfOptions, NodeOptions>()(
       {
         lineOptions: {
-          stroke: 'red',
           visibleProperty: new BooleanProperty( true )
         },
-        sphereOptions: { mainColor: 'red' },
+        fill: 'red',
         sphereDiameter: 18
       }, providedOptions );
 
     const yValue = chartTransform.modelToViewY( chartTransform.modelYRange.min );
 
-    const sphere = new ShadedSphereNode( options.sphereDiameter,
-      combineOptions<ShadedSphereNodeOptions>( { centerY: yValue }, options.sphereOptions ) );
+    const sphere = new ShadedSphereNode( options.sphereDiameter, {
+      centerY: yValue,
+      mainColor: options.fill
+    } );
 
     // add dragListener to scrubber
     sphere.addInputListener( new DragListener( {
@@ -61,7 +62,8 @@ export default class Scrubber extends Node {
       x1: chartTransform.viewToModelX( 0 ),
       x2: chartTransform.viewToModelX( xCoordinateProperty.value ),
       y1: yValue,
-      y2: yValue
+      y2: yValue,
+      stroke: options.fill
     }, options.lineOptions ) );
 
     xCoordinateProperty.link( xCoordinate => {
