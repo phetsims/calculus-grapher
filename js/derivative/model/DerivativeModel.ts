@@ -12,6 +12,8 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 
+const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
+
 type SelfOptions = {
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
@@ -27,7 +29,7 @@ export default class DerivativeModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter()
+      scrubberInitialCoordinate: CURVE_X_RANGE.min + CURVE_X_RANGE.getLength() * 1 / 3
     }, providedOptions );
 
     super( options );
