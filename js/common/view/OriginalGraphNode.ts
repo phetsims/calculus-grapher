@@ -27,6 +27,7 @@ import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import ShadedAreaChart from './ShadedAreaChart.js';
+import TangentArrowNode from './TangentArrowNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -154,6 +155,16 @@ export default class OriginalGraphNode extends GraphNode {
       } );
     this.curveLayer.addChild( shadedAreaChart );
     shadedAreaChart.moveToBack();
+
+    const tangentArrowsNode = new TangentArrowNode( model.ancillaryTools, this.chartTransform, {
+      visibleProperty: new DerivedProperty( [
+        visibleProperties.tangentVisibleProperty,
+        model.predictModeEnabledProperty ], ( tangent, predictModeEnabled ) =>
+        tangent && !predictModeEnabled )
+    } );
+    this.curveLayer.addChild( tangentArrowsNode );
+
+
     graphHeightProperty.link( height => {
 
       // TODO : too much repetition
