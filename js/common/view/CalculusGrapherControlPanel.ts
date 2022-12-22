@@ -7,7 +7,7 @@
  * @author Brandon Li
  */
 
-import { HSeparator, Text, VBox } from '../../../../scenery/js/imports.js';
+import { HSeparator, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -86,7 +86,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // create area under curve checkbox, with visibility tied to option field
     const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
-      new Text( CalculusGrapherStrings.areaUnderCurveStringProperty, {
+      new RichText( CalculusGrapherStrings.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
         visibleProperty: new DerivedProperty( [ predictModeEnabledProperty ],
