@@ -24,8 +24,10 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import AncillaryTools from './AncillaryTools.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
+  scrubberInitialCoordinate?: number;
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
@@ -59,6 +61,7 @@ export default class CalculusGrapherModel implements TModel {
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
+      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
@@ -105,7 +108,7 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve,
       this.derivativeCurve,
       this.integralCurve, {
-        initialCoordinate: 0,
+        initialCoordinate: options.scrubberInitialCoordinate,
         tandem: options.tandem.createTandem( 'ancillaryTools' )
       } );
   }

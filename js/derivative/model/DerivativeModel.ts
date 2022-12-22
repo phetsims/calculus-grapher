@@ -10,6 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
+import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 
 type SelfOptions = {
   curveManipulationModeChoices?: CurveManipulationMode[];
@@ -25,8 +26,8 @@ export default class DerivativeModel extends CalculusGrapherModel {
         CurveManipulationMode.PEDESTAL,
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
-      ]
-
+      ],
+      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter()
     }, providedOptions );
 
     super( options );
