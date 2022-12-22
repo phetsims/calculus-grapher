@@ -41,7 +41,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
           stroke: CalculusGrapherColors.integralCurveStrokeProperty
         },
         leftTop: this.layoutBounds.leftTop.plusXY( 20, 50 ),
-        tandem: options.tandem.createTandem( 'AreaUnderTheCurveBarometer' )
+        tandem: options.tandem.createTandem( 'AreaUnderTheCurveAccordionBox' )
       } );
 
     this.addChild( barometer );
