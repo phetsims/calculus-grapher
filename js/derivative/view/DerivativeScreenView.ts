@@ -40,7 +40,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         lineOptions: {
           stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
         },
-        leftTop: this.layoutBounds.leftTop.plusXY( 20, 20 )
+        leftTop: this.layoutBounds.leftTop.plusXY( 20, 50 )
       } );
 
     this.addChild( barometer );

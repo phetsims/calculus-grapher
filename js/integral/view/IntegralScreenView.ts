@@ -40,7 +40,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         lineOptions: {
           stroke: CalculusGrapherColors.integralCurveStrokeProperty
         },
-        leftTop: this.layoutBounds.leftTop.plusXY( 20, 20 )
+        leftTop: this.layoutBounds.leftTop.plusXY( 20, 50 )
       } );
 
     this.addChild( barometer );

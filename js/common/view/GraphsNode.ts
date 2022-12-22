@@ -169,9 +169,11 @@ export default class GraphNodes extends Node {
         content[ 0 ].y = 0;
       }
 
+      const spacingBetweenGraphs = 20 / numberOfVisibleGraphs + 10; // arbitrary values
+
       for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
         content[ i ].x = content[ i - 1 ].x;
-        content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + 10;
+        content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + spacingBetweenGraphs;
       }
 
       graphSetNode.setChildren( content );
