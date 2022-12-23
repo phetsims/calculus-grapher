@@ -12,10 +12,10 @@ import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import ReferenceLine from '../model/ReferenceLine.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
+import AncillaryTools from '../model/AncillaryTools.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -30,7 +30,7 @@ export default class ReferenceLineNode extends Node {
   private readonly verticalLine;
   private readonly sphere;
 
-  public constructor( referenceLine: ReferenceLine,
+  public constructor( referenceLine: AncillaryTools,
                       chartTransform: ChartTransform,
                       providedOptions?: ReferenceLineNodeOptions ) {
 

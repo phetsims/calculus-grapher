@@ -18,7 +18,6 @@ import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
 import { GraphSet } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import ReferenceLine from './ReferenceLine.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
@@ -46,7 +45,10 @@ export default class CalculusGrapherModel implements TModel {
   public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
 
   // model for the reference line
-  public readonly referenceLine: ReferenceLine;
+  public readonly referenceLine: AncillaryTools;
+
+  // model associated with the scrubber on the original graph
+  public readonly ancillaryTools: AncillaryTools;
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -55,8 +57,6 @@ export default class CalculusGrapherModel implements TModel {
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-  // model associated with the scrubber on the original graph
-  public readonly ancillaryTools: AncillaryTools;
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
@@ -100,9 +100,10 @@ export default class CalculusGrapherModel implements TModel {
     this.integralCurve = new IntegralCurve( this.originalCurve,
       graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
 
-    this.referenceLine = new ReferenceLine(
-      { tandem: options.tandem.createTandem( 'referenceLine' ) }
-    );
+    this.referenceLine = new AncillaryTools( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
+      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
+      tandem: options.tandem.createTandem( 'referenceLine' )
+    } );
 
     this.ancillaryTools = new AncillaryTools( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
       initialCoordinate: options.scrubberInitialCoordinate,
