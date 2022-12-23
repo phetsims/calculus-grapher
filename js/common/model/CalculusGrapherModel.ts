@@ -22,8 +22,11 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import AncillaryTools from './AncillaryTools.js';
+import AncillaryTools, { AncillaryToolsOptions } from './AncillaryTools.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import Range from '../../../../dot/js/Range.js';
+
+const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
   scrubberInitialCoordinate?: number;
@@ -50,6 +53,13 @@ export default class CalculusGrapherModel implements TModel {
   // model associated with the scrubber on the original graph
   public readonly ancillaryTools: AncillaryTools;
 
+  // model associated with the scrubber on the original graph
+  public readonly labelledPoints: AncillaryTools[];
+
+  // model associated with the scrubber on the original graph
+  public readonly labelledVerticalLines: AncillaryTools[];
+
+
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
   public readonly predictCurve: TransformedCurve;
@@ -61,7 +71,7 @@ export default class CalculusGrapherModel implements TModel {
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
-      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
+      scrubberInitialCoordinate: CURVE_X_RANGE.getCenter(),
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
@@ -100,27 +110,60 @@ export default class CalculusGrapherModel implements TModel {
     this.integralCurve = new IntegralCurve( this.originalCurve,
       graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
 
-    this.referenceLine = new AncillaryTools( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
+    this.referenceLine = this.getAncillaryTools( {
+      initialCoordinate: CURVE_X_RANGE.getCenter(),
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.ancillaryTools = new AncillaryTools( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
+    this.ancillaryTools = this.getAncillaryTools( {
       initialCoordinate: options.scrubberInitialCoordinate,
       tandem: options.tandem.createTandem( 'ancillaryTools' )
     } );
+
+    this.labelledPoints = this.getArrayAncillaryTools( 10,
+      options.tandem.createTandem( 'points' ), 'Point' );
+
+    this.labelledVerticalLines = this.getArrayAncillaryTools( 10,
+      options.tandem.createTandem( 'verticalLines' ), 'VerticalLine' );
   }
 
   /**
    * Reset all
    */
   public reset(): void {
-    this.curveManipulationProperties.reset();
-    this.referenceLine.reset();
     this.originalCurve.reset();
     this.predictCurve.reset();
+    this.curveManipulationProperties.reset();
     this.predictModeEnabledProperty.reset();
+
+    this.referenceLine.reset();
     this.ancillaryTools.reset();
+    this.labelledPoints.forEach( point => point.reset() );
+    this.labelledVerticalLines.forEach( line => line.reset() );
+  }
+
+  public getAncillaryTools( providedOptions?: AncillaryToolsOptions ): AncillaryTools {
+
+    const options = optionize<AncillaryToolsOptions>()( {}, providedOptions );
+
+    return new AncillaryTools( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
+      options );
+  }
+
+  // returns an array of 'totalNumber' AncillaryTools, with evenly spaced initialCoordinates,
+  // stamped with alphabetically ordered tandem names.
+  public getArrayAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): AncillaryTools[] {
+
+    assert && assert( ( new Range( 0, 26 ) ).contains( totalNumber ), 'totalNumber must range from 0 to 26' );
+    assert && assert( Number.isInteger( totalNumber ), 'totalNumber must be an integer' );
+
+    // convert an integer to an uppercase letter: 0-> A, 1-> B, 2->C, etc
+    const valueToLetter = ( value: number ): string => String.fromCharCode( value + 'A'.charCodeAt( 0 ) );
+
+    return [ ...Array( totalNumber ).keys() ].map( value => this.getAncillaryTools( {
+      initialCoordinate: CURVE_X_RANGE.expandNormalizedValue( value / totalNumber ),
+      tandem: tandem.createTandem( `${valueToLetter( value )}${tandemSuffix}` )
+    } ) );
   }
 }
 
