@@ -2,7 +2,11 @@
 
 /**
  * AncillaryTools is the model class associated with an x value on the graph
- * properties of the area under the curve and the tangent
+ * it keeps track of all quantities associated with the x value: such as
+ *  - the integral of f(x)
+ *  - the original function f(x)
+ *  - the derivative f'(x)
+ *  - the second derivative of f(x)
  *
  * @author Martin Veillette
  */
@@ -25,7 +29,7 @@ export type AncillaryToolsOptions = SelfOptions & PickRequired<PhetioObjectOptio
 
 export default class AncillaryTools {
 
-  // value to track the x position of scrubber
+  // value to track the x position
   public readonly xCoordinateProperty: NumberProperty;
 
   public readonly areaUnderCurveProperty: NumberProperty;
