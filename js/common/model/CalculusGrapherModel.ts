@@ -107,6 +107,7 @@ export default class CalculusGrapherModel implements TModel {
     this.ancillaryTools = new AncillaryTools(
       this.originalCurve,
       this.derivativeCurve,
+      this.secondDerivativeCurve,
       this.integralCurve, {
         initialCoordinate: options.scrubberInitialCoordinate,
         tandem: options.tandem.createTandem( 'ancillaryTools' )

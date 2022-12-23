@@ -28,13 +28,15 @@ export default class AncillaryTools {
   // value to track the x position of scrubber
   public readonly xCoordinateProperty: NumberProperty;
 
-  public readonly tangentProperty: NumberProperty;
   public readonly areaUnderCurveProperty: NumberProperty;
   public readonly originalProperty: NumberProperty;
+  public readonly tangentProperty: NumberProperty;
+  public readonly curvatureProperty: NumberProperty;
 
   public constructor(
     originalCurve: Curve,
     derivativeCurve: Curve,
+    secondDerivativeCurve: Curve,
     integralCurve: Curve,
     providedOptions: AncillaryToolsOptions ) {
 
@@ -46,23 +48,26 @@ export default class AncillaryTools {
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
     } );
 
-    this.tangentProperty = new NumberProperty( this.getY( derivativeCurve ) );
     this.areaUnderCurveProperty = new NumberProperty( this.getY( integralCurve ) );
     this.originalProperty = new NumberProperty( this.getY( originalCurve ) );
+    this.tangentProperty = new NumberProperty( this.getY( derivativeCurve ) );
+    this.curvatureProperty = new NumberProperty( this.getY( secondDerivativeCurve ) );
     const addCurveListener = ( curve: Curve, valueProperty: NumberProperty ): void => {
       curve.curveChangedEmitter.addListener( () => {
         this.assignYValue( curve, valueProperty );
       } );
     };
 
-    addCurveListener( derivativeCurve, this.tangentProperty );
-    addCurveListener( originalCurve, this.originalProperty );
     addCurveListener( integralCurve, this.areaUnderCurveProperty );
+    addCurveListener( originalCurve, this.originalProperty );
+    addCurveListener( derivativeCurve, this.tangentProperty );
+    addCurveListener( secondDerivativeCurve, this.curvatureProperty );
 
     this.xCoordinateProperty.link( () => {
-      this.assignYValue( derivativeCurve, this.tangentProperty );
-      this.assignYValue( originalCurve, this.originalProperty );
       this.assignYValue( integralCurve, this.areaUnderCurveProperty );
+      this.assignYValue( originalCurve, this.originalProperty );
+      this.assignYValue( derivativeCurve, this.tangentProperty );
+      this.assignYValue( secondDerivativeCurve, this.tangentProperty );
     } );
 
   }
@@ -74,6 +79,7 @@ export default class AncillaryTools {
     this.xCoordinateProperty.reset();
     this.tangentProperty.reset();
     this.areaUnderCurveProperty.reset();
+    this.curvatureProperty.reset();
   }
 
   private getX(): number {
