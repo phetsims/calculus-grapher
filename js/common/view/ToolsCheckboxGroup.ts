@@ -15,7 +15,7 @@ import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
-import ReferenceLineNode from './ReferenceLineNode.js';
+import VerticalLineNode from './VerticalLineNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -40,7 +40,7 @@ export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
 
       // Item for reference line checkbox
       createItem(
-        ReferenceLineNode.getIcon(),
+        VerticalLineNode.getIcon(),
         visibleProperties.referenceLineVisibleProperty, {
           tandemName: 'referenceLineCheckbox'
         } )

@@ -16,7 +16,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import ReferenceLineNode from './ReferenceLineNode.js';
+import VerticalLineNode from './VerticalLineNode.js';
 import { getGraphTypeStroke, GraphSet } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
@@ -128,7 +128,7 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
-    const referenceLineNode = new ReferenceLineNode( model.referenceLine,
+    const referenceLineNode = new VerticalLineNode( model.referenceLine,
       originalGraphNode.chartTransform, {
         x: originalGraphNode.x,
         visibleProperty: visibleProperties.referenceLineVisibleProperty,

@@ -1,14 +1,14 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * ReferenceLineNode is the view representation of a user controlled vertical line that spans multiple graphs.
+ * VerticalLineNode is the view representation of a user controlled vertical line that spans multiple graphs.
  *
  * @author Martin Veillette
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { DragListener, Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -21,25 +21,27 @@ type SelfOptions = {
   lineOptions?: LineOptions;
   sphereOptions?: ShadedSphereNodeOptions;
   sphereDiameter?: number;
+  label?: string | null;
 };
 
-type ReferenceLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type VerticalLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
-export default class ReferenceLineNode extends Node {
+export default class VerticalLineNode extends Node {
 
   private readonly verticalLine;
   private readonly sphere;
 
   public constructor( referenceLine: AncillaryTools,
                       chartTransform: ChartTransform,
-                      providedOptions?: ReferenceLineNodeOptions ) {
+                      providedOptions?: VerticalLineNodeOptions ) {
 
-    const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<VerticalLineNodeOptions, SelfOptions, NodeOptions>()( {
       lineOptions: {
         stroke: 'black'
       },
       sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 18
+      sphereDiameter: 18,
+      label: ''
     }, providedOptions );
 
     const xCoordinateProperty = referenceLine.xCoordinateProperty;
@@ -49,19 +51,28 @@ export default class ReferenceLineNode extends Node {
     // values will be updated later
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
-    // add numerical label at the top of the reference line
-    const labelNode = new NumberDisplay( xCoordinateProperty,
-      CalculusGrapherConstants.CURVE_X_RANGE, {
-        align: 'center',
-        decimalPlaces: 1,
-        textOptions: {
-          font: CalculusGrapherConstants.CONTROL_FONT
-        },
-        visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
+    let labelNode: Node;
+    if ( options.label ) {
+      labelNode = new Text( options.label, {
+        font: CalculusGrapherConstants.CONTROL_FONT,
         bottom: verticalLine.top - 5,
         centerX: 0
       } );
-
+    }
+    else {
+      // add numerical label at the top of the vertical line
+      labelNode = new NumberDisplay( xCoordinateProperty,
+        CalculusGrapherConstants.CURVE_X_RANGE, {
+          align: 'center',
+          decimalPlaces: 1,
+          textOptions: {
+            font: CalculusGrapherConstants.CONTROL_FONT
+          },
+          visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
+          bottom: verticalLine.top - 5,
+          centerX: 0
+        } );
+    }
     const cursorNode = new Node( {
       children: [ verticalLine, sphere, labelNode ],
       centerX: chartTransform.modelToViewX( xCoordinateProperty.value )
@@ -104,15 +115,16 @@ export default class ReferenceLineNode extends Node {
   /**
    * Returns an icon for a ReferenceLine
    */
-  public static getIcon( providedOptions?: ReferenceLineNodeOptions ): Node {
+  public static getIcon( providedOptions?: VerticalLineNodeOptions ): Node {
 
-    const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<VerticalLineNodeOptions, SelfOptions, NodeOptions>()( {
       lineOptions: {
         stroke: 'black',
         y2: -15
       },
       sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 8
+      sphereDiameter: 8,
+      label: ''
     }, providedOptions );
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
@@ -125,4 +137,4 @@ export default class ReferenceLineNode extends Node {
   }
 }
 
-calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );
+calculusGrapher.register( 'VerticalLineNode', VerticalLineNode );
