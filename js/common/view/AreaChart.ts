@@ -76,42 +76,65 @@ export default class AreaChart extends Path {
     // previous dataPoint
     let oldDataPoint: Vector2 | null = null;
 
+
     for ( let i = 0; i < this.dataSet.length; i++ ) {
 
       const dataPoint = this.dataSet[ i ];
 
       assert && assert( dataPoint === null || dataPoint.isFinite(), 'data points must be finite Vector2 or null' );
 
-      // Draw a line segment to the next non-null value.
-      // Null values result in a gap (via move) in the plot.
       if ( dataPoint ) {
         const viewPoint = this.chartTransform.modelToViewPosition( dataPoint );
 
         if ( moveToNextPoint ) {
+
+          // basePoint for the shape
           const startBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( dataPoint ) );
           shape.moveToPoint( startBasePoint );
+
+          // move to the actual data point
           shape.lineToPoint( viewPoint );
           moveToNextPoint = false;
         }
         else {
+
           shape.lineToPoint( viewPoint );
         }
 
+        // keep a record of the last datapoint
         oldDataPoint = dataPoint;
       }
       else {
+
+        // if oldDataPoint exists, it must be the first null value of dataPoint,
         if ( oldDataPoint ) {
-          const endBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( oldDataPoint ) );
-          shape.lineToPoint( endBasePoint );
-          shape.close();
-          oldDataPoint = null;
+
+          // go straight down to baseline using the last valid value and close the shape.
+          this.closeShape( oldDataPoint, shape );
         }
+
+        // set oldDataPoint to null
+        oldDataPoint = null;
+
         moveToNextPoint = true;
       }
+    }
 
+    // close the shape associated with the last point (if non-null)
+    if ( oldDataPoint ) {
+      this.closeShape( oldDataPoint, shape );
     }
 
     this.shape = shape.makeImmutable();
+  }
+
+  /**
+   * Given a point and a shape, first go to the baseline of the point and then close the shape.
+   */
+  private closeShape( dataPoint: Vector2, shape: Shape ): void {
+    const endBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( dataPoint ) );
+    shape.lineToPoint( endBasePoint );
+    shape.close();
   }
 
   /**
