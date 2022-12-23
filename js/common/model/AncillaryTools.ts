@@ -50,12 +50,25 @@ export default class AncillaryTools {
     this.xCoordinateProperty = new NumberProperty( options.initialCoordinate, {
       range: CURVE_X_RANGE,
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
+
     } );
 
-    this.areaUnderCurveProperty = new NumberProperty( this.getY( integralCurve ) );
-    this.originalProperty = new NumberProperty( this.getY( originalCurve ) );
-    this.tangentProperty = new NumberProperty( this.getY( derivativeCurve ) );
-    this.curvatureProperty = new NumberProperty( this.getY( secondDerivativeCurve ) );
+    this.areaUnderCurveProperty = new NumberProperty( this.getY( integralCurve ), {
+      tandem: options.tandem.createTandem( 'integralValueProperty' ),
+      phetioReadOnly: true
+    } );
+    this.originalProperty = new NumberProperty( this.getY( originalCurve ), {
+      tandem: options.tandem.createTandem( 'functionValueProperty' ),
+      phetioReadOnly: true
+    } );
+    this.tangentProperty = new NumberProperty( this.getY( derivativeCurve ), {
+      tandem: options.tandem.createTandem( 'derivativeValueProperty' ),
+      phetioReadOnly: true
+    } );
+    this.curvatureProperty = new NumberProperty( this.getY( secondDerivativeCurve ), {
+      tandem: options.tandem.createTandem( 'secondDerivativeValueProperty' ),
+      phetioReadOnly: true
+    } );
     const addCurveListener = ( curve: Curve, valueProperty: NumberProperty ): void => {
       curve.curveChangedEmitter.addListener( () => {
         this.assignYValue( curve, valueProperty );
@@ -81,8 +94,10 @@ export default class AncillaryTools {
    */
   public reset(): void {
     this.xCoordinateProperty.reset();
-    this.tangentProperty.reset();
+
     this.areaUnderCurveProperty.reset();
+    this.originalProperty.reset();
+    this.tangentProperty.reset();
     this.curvatureProperty.reset();
   }
 
