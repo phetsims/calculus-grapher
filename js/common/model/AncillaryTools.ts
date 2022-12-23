@@ -34,10 +34,10 @@ export default class AncillaryTools {
   public readonly curvatureProperty: NumberProperty;
 
   public constructor(
+    integralCurve: Curve,
     originalCurve: Curve,
     derivativeCurve: Curve,
     secondDerivativeCurve: Curve,
-    integralCurve: Curve,
     providedOptions: AncillaryToolsOptions ) {
 
     const options = optionize<AncillaryToolsOptions, SelfOptions>()(
