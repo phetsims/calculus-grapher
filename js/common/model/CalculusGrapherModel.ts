@@ -154,17 +154,29 @@ export default class CalculusGrapherModel implements TModel {
   // stamped with alphabetically ordered tandem names.
   public getArrayAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): AncillaryTools[] {
 
-    assert && assert( ( new Range( 0, 26 ) ).contains( totalNumber ), 'totalNumber must range from 0 to 26' );
-    assert && assert( Number.isInteger( totalNumber ), 'totalNumber must be an integer' );
-
-    // convert an integer to an uppercase letter: 0-> A, 1-> B, 2->C, etc
-    const valueToLetter = ( value: number ): string => String.fromCharCode( value + 'A'.charCodeAt( 0 ) );
-
-    return [ ...Array( totalNumber ).keys() ].map( value => this.getAncillaryTools( {
+    return CalculusGrapherModel.arrayGenerator( totalNumber ).map( value => this.getAncillaryTools( {
       initialCoordinate: CURVE_X_RANGE.expandNormalizedValue( value / totalNumber ),
-      tandem: tandem.createTandem( `${valueToLetter( value )}${tandemSuffix}` )
+      tandem: tandem.createTandem( `${CalculusGrapherModel.intToUppercaseLetter( value )}${tandemSuffix}` )
     } ) );
   }
-}
 
+  public static intToUppercaseLetter( integer: number ): string {
+    assert && assert( ( new Range( 0, 25 ) ).contains( integer ), `integer must range from 0 to 25: ${integer}` );
+    assert && assert( Number.isInteger( integer ), `must be an integer: ${integer}` );
+
+    return String.fromCharCode( integer + 'A'.charCodeAt( 0 ) );
+  }
+
+  /**
+   * generate an array of consecutive numbers
+   * @param length - length of the array
+   * @param start - initial value of the array
+   */
+  public static arrayGenerator( length: number, start = 0 ): number[] {
+    assert && assert( Number.isInteger( length ), `length must be an integer: ${length}` );
+    assert && assert( length >= 0, `length cannot be negative: ${length}` );
+
+    return [ ...Array( length ).keys() ].map( number => number + start );
+  }
+}
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );

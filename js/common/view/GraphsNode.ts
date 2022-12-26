@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { Color, ColorProperty, HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -22,6 +22,8 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import StringProperty from '../../../../axon/js/StringProperty.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -136,6 +138,36 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
 
+    const verticalLinesLayerTandem = options.tandem.createTandem( 'VerticalLinesLayer' );
+    const verticalLinesNode = model.labelledVerticalLines.map( ( verticalLine, index ) => {
+        const label = CalculusGrapherModel.intToUppercaseLetter( index );
+        const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
+        return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
+          x: originalGraphNode.x,
+          cursor: null,
+          dragListenerEnabled: false,
+          lineOptions: {
+            lineDash: [ 4, 2 ],
+            stroke: new ColorProperty( new Color( 0x000000 ), {
+              tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
+            } )
+          },
+          sphereOptions: { visible: false },
+          labelProperty: new StringProperty( label, {
+            tandem: verticalLineNodeTandem.createTandem( 'labelProperty' )
+          } ),
+          visibleProperty: new BooleanProperty( false,
+            { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } ),
+          tandem: verticalLineNodeTandem
+        } );
+      }
+    );
+
+    const verticalLinesLayer = new Node( {
+      children: verticalLinesNode,
+      tandem: verticalLinesLayerTandem
+    } );
+
     const graphSetNode = new Node();
 
     graphSetProperty.link( graphSet => {
@@ -178,12 +210,17 @@ export default class GraphNodes extends Node {
 
       graphSetNode.setChildren( content );
 
+
+      // TODO: find a better way to set positions
       referenceLineNode.setLineBottom( graphSetNode.bottom + 10 );
       referenceLineNode.setLineTop( graphSetNode.top - 5 );
-
+      verticalLinesNode.forEach( verticalLineNode => {
+        verticalLineNode.setLineBottom( graphSetNode.bottom + 10 );
+        verticalLineNode.setLineTop( graphSetNode.top - 5 );
+      } );
     } );
 
-    options.children = [ graphSetNode, referenceLineNode ];
+    options.children = [ graphSetNode, referenceLineNode, verticalLinesLayer ];
 
     super( options );
 

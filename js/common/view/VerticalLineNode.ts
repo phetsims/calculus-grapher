@@ -16,13 +16,20 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import AncillaryTools from '../model/AncillaryTools.js';
+import StringProperty from '../../../../axon/js/StringProperty.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
   sphereOptions?: ShadedSphereNodeOptions;
   sphereDiameter?: number;
-  label?: string | null;
+  labelProperty?: StringProperty | null;
+
+  dragListenerEnabled?: boolean;
 };
+
+type SelfReferenceLineIconOptions = StrictOmit<SelfOptions, 'labelProperty' | 'dragListenerEnabled'>;
+type ReferenceLineIconOptions = SelfReferenceLineIconOptions & StrictOmit<NodeOptions, 'children'>;
 
 type VerticalLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
@@ -41,7 +48,8 @@ export default class VerticalLineNode extends Node {
       },
       sphereOptions: { mainColor: 'blue' },
       sphereDiameter: 18,
-      label: ''
+      labelProperty: null,
+      dragListenerEnabled: true
     }, providedOptions );
 
     const xCoordinateProperty = referenceLine.xCoordinateProperty;
@@ -52,8 +60,8 @@ export default class VerticalLineNode extends Node {
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
     let labelNode: Node;
-    if ( options.label ) {
-      labelNode = new Text( options.label, {
+    if ( options.labelProperty ) {
+      labelNode = new Text( options.labelProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         bottom: verticalLine.top - 5,
         centerX: 0
@@ -86,7 +94,8 @@ export default class VerticalLineNode extends Node {
         const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
         xCoordinateProperty.value = chartTransform.modelXRange.constrainValue( modelX );
       },
-      tandem: options.tandem.createTandem( 'dragListener' )
+      enabled: options.dragListenerEnabled,
+      tandem: options.dragListenerEnabled ? options.tandem.createTandem( 'dragListener' ) : Tandem.OPT_OUT
     } ) );
 
     xCoordinateProperty.link( xCoordinate => {
@@ -115,16 +124,15 @@ export default class VerticalLineNode extends Node {
   /**
    * Returns an icon for a ReferenceLine
    */
-  public static getIcon( providedOptions?: VerticalLineNodeOptions ): Node {
+  public static getIcon( providedOptions?: ReferenceLineIconOptions ): Node {
 
-    const options = optionize<VerticalLineNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<ReferenceLineIconOptions, SelfReferenceLineIconOptions, NodeOptions>()( {
       lineOptions: {
         stroke: 'black',
         y2: -15
       },
       sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 8,
-      label: ''
+      sphereDiameter: 8
     }, providedOptions );
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
