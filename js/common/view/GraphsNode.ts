@@ -74,13 +74,15 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
-    integralGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
-      visibleProperty: new DerivedProperty( [
-          visibleProperties.areaUnderCurveVisibleProperty,
-          model.predictModeEnabledProperty ],
-        ( area, predictMode ) => area && !predictMode ),
-      fill: getGraphTypeStroke( 'integral' )
-    } );
+    integralGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty,
+      model.ancillaryTools.areaUnderCurveProperty,
+      {
+        visibleProperty: new DerivedProperty( [
+            visibleProperties.areaUnderCurveVisibleProperty,
+            model.predictModeEnabledProperty ],
+          ( area, predictMode ) => area && !predictMode ),
+        fill: getGraphTypeStroke( 'integral' )
+      } );
 
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
@@ -94,15 +96,16 @@ export default class GraphNodes extends Node {
       }
     );
 
-    originalGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
-      visibleProperty: new DerivedProperty( [
-          visibleProperties.areaUnderCurveVisibleProperty,
-          visibleProperties.tangentVisibleProperty,
-          model.predictModeEnabledProperty ],
-        ( area, tangent, predictMode ) =>
-          ( area || tangent ) && !predictMode ),
-      fill: getGraphTypeStroke( 'original' )
-    } );
+    originalGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty,
+      model.ancillaryTools.originalProperty, {
+        visibleProperty: new DerivedProperty( [
+            visibleProperties.areaUnderCurveVisibleProperty,
+            visibleProperties.tangentVisibleProperty,
+            model.predictModeEnabledProperty ],
+          ( area, tangent, predictMode ) =>
+            ( area || tangent ) && !predictMode ),
+        fill: getGraphTypeStroke( 'original' )
+      } );
 
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
@@ -113,13 +116,14 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
       } );
 
-    derivativeGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty, {
-      visibleProperty: new DerivedProperty( [
-          visibleProperties.tangentVisibleProperty,
-          model.predictModeEnabledProperty ],
-        ( tangent, predictMode ) => tangent && !predictMode ),
-      fill: getGraphTypeStroke( 'derivative' )
-    } );
+    derivativeGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty,
+      model.ancillaryTools.tangentProperty, {
+        visibleProperty: new DerivedProperty( [
+            visibleProperties.tangentVisibleProperty,
+            model.predictModeEnabledProperty ],
+          ( tangent, predictMode ) => tangent && !predictMode ),
+        fill: getGraphTypeStroke( 'derivative' )
+      } );
 
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
       gridVisibleProperty,
@@ -149,16 +153,16 @@ export default class GraphNodes extends Node {
         lineOptions: {
           lineDash: [ 4, 2 ],
           stroke: new ColorProperty( new Color( 0x000000 ), {
-              tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
-            } )
-          },
-          sphereOptions: { visible: false },
-          labelProperty: new StringProperty( label, {
-            tandem: verticalLineNodeTandem.createTandem( 'labelProperty' )
-          } ),
-          visibleProperty: new BooleanProperty( false,
-            { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } ),
-          tandem: verticalLineNodeTandem
+            tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
+          } )
+        },
+        sphereOptions: { visible: false },
+        labelProperty: new StringProperty( label, {
+          tandem: verticalLineNodeTandem.createTandem( 'labelProperty' )
+        } ),
+        visibleProperty: new BooleanProperty( false,
+          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } ),
+        tandem: verticalLineNodeTandem
         } );
       }
     );

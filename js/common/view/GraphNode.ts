@@ -305,10 +305,11 @@ export default class GraphNode extends Node {
       } );
   }
 
-  public addFocusCircle( xCoordinateProperty: NumberProperty,
+  public addFocusCircle( xCoordinateProperty: TReadOnlyProperty<number>,
+                         yCoordinateProperty: TReadOnlyProperty<number>,
                          providedOptions: FocusPointNodeOptions ): void {
 
-    const focusCircle = new FocusCircle( xCoordinateProperty, this.curve, this.chartTransform,
+    const focusCircle = new FocusCircle( xCoordinateProperty, yCoordinateProperty, this.chartTransform,
       providedOptions );
 
     this.curveLayer.addChild( focusCircle );

@@ -1,18 +1,16 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * FocusCircle is a representation of a circle located on a curve point.
- * Given an x-position, it positions a circle on the y value of a curve
+ * FocusCircle is a representation of a circle located at (x,y).
  *
  * @author Martin Veillette
  */
 
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Circle, CircleOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import Curve from '../model/Curve.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -20,8 +18,8 @@ export type FocusPointNodeOptions = SelfOptions & CircleOptions;
 
 export default class FocusCircle extends Circle {
 
-  public constructor( xCoordinateProperty: NumberProperty,
-                      curve: Curve,
+  public constructor( xCoordinateProperty: TReadOnlyProperty<number>,
+                      yCoordinateProperty: TReadOnlyProperty<number>,
                       chartTransform: ChartTransform,
                       providedOptions: FocusPointNodeOptions ) {
 
@@ -37,13 +35,13 @@ export default class FocusCircle extends Circle {
     const updatePosition = () => {
 
       const x = xCoordinateProperty.value;
-      const y = curve.getYAt( x );
+      const y = yCoordinateProperty.value;
       this.center = chartTransform.modelToViewXY( x, y );
     };
 
     xCoordinateProperty.link( updatePosition );
     chartTransform.changedEmitter.addListener( updatePosition );
-    curve.curveChangedEmitter.addListener( updatePosition );
+
   }
 }
 calculusGrapher.register( 'FocusCircle', FocusCircle );
