@@ -138,17 +138,17 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
 
-    const verticalLinesLayerTandem = options.tandem.createTandem( 'VerticalLinesLayer' );
+    const verticalLinesLayerTandem = options.tandem.createTandem( 'verticalLinesLayer' );
     const verticalLinesNode = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-        const label = CalculusGrapherModel.intToUppercaseLetter( index );
-        const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
-        return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
-          x: originalGraphNode.x,
-          cursor: null,
-          dragListenerEnabled: false,
-          lineOptions: {
-            lineDash: [ 4, 2 ],
-            stroke: new ColorProperty( new Color( 0x000000 ), {
+      const label = CalculusGrapherModel.intToUppercaseLetter( index );
+      const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
+      return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
+        x: originalGraphNode.x,
+        cursor: null,
+        dragListenerEnabled: false,
+        lineOptions: {
+          lineDash: [ 4, 2 ],
+          stroke: new ColorProperty( new Color( 0x000000 ), {
               tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
             } )
           },
