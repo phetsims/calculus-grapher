@@ -38,7 +38,7 @@ export default class VerticalLineNode extends Node {
   private readonly verticalLine;
   private readonly sphere;
 
-  public constructor( referenceLine: AncillaryTools,
+  public constructor( ancillaryTools: AncillaryTools,
                       chartTransform: ChartTransform,
                       providedOptions?: VerticalLineNodeOptions ) {
 
@@ -52,7 +52,7 @@ export default class VerticalLineNode extends Node {
       dragListenerEnabled: true
     }, providedOptions );
 
-    const xCoordinateProperty = referenceLine.xCoordinateProperty;
+    const xCoordinateProperty = ancillaryTools.xCoordinateProperty;
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
 
