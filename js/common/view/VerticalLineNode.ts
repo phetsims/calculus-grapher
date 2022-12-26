@@ -18,6 +18,7 @@ import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import AncillaryTools from '../model/AncillaryTools.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import Panel from '../../../../sun/js/Panel.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -61,10 +62,21 @@ export default class VerticalLineNode extends Node {
 
     let labelNode: Node;
     if ( options.labelProperty ) {
-      labelNode = new Text( options.labelProperty, {
+
+
+      const textNode = new Text( options.labelProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
-        bottom: verticalLine.top - 5,
         centerX: 0
+      } );
+
+      labelNode = new Panel( textNode, {
+        centerX: 0,
+        align: 'center',
+        bottom: verticalLine.top - 5
+      } );
+
+      options.labelProperty.link( () => {
+        labelNode.centerX = 0;
       } );
     }
     else {
@@ -108,6 +120,29 @@ export default class VerticalLineNode extends Node {
 
     this.verticalLine = verticalLine;
     this.sphere = sphere;
+
+    const model = options.tandem.createTandem( 'model' );
+
+    // add linked elements from model
+    this.addLinkedElement( ancillaryTools.xCoordinateProperty, {
+      tandem: model.createTandem( 'xCoordinateProperty' )
+    } );
+
+    this.addLinkedElement( ancillaryTools.areaUnderCurveProperty, {
+      tandem: model.createTandem( 'integralProperty' )
+    } );
+
+    this.addLinkedElement( ancillaryTools.originalProperty, {
+      tandem: model.createTandem( 'functionProperty' )
+    } );
+
+    this.addLinkedElement( ancillaryTools.tangentProperty, {
+      tandem: model.createTandem( 'derivativeProperty' )
+    } );
+
+    this.addLinkedElement( ancillaryTools.curvatureProperty, {
+      tandem: model.createTandem( 'secondDerivativeProperty' )
+    } );
   }
 
   // set Y top position in view coordinates
