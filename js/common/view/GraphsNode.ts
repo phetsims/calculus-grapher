@@ -97,10 +97,10 @@ export default class GraphNodes extends Node {
       }
     );
 
-    const pointsLabelTandem = options.tandem.createTandem( 'pointsLabel' );
+    const pointLabelsTandem = options.tandem.createTandem( 'pointLabels' );
     model.labelledPoints.forEach( ( ancillaryTool, index ) => {
       const label = CalculusGrapherModel.intToUppercaseLetter( index );
-      const pointLabelTandem = pointsLabelTandem.createTandem( `${label}PointLabel` );
+      const pointLabelTandem = pointLabelsTandem.createTandem( `${label}PointLabel` );
 
       const visibleProperty = new BooleanProperty( false,
         { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } );
@@ -166,10 +166,12 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'referenceLineNode' )
       } );
 
-    const verticalLinesLayerTandem = options.tandem.createTandem( 'verticalLinesLayer' );
-    const verticalLinesNode = model.labelledVerticalLines.map( ( verticalLine, index ) => {
+    // To organize all vertical lines under 1 tandem
+    const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
+
+    const verticalLineNodes = model.labelledVerticalLines.map( ( verticalLine, index ) => {
         const label = CalculusGrapherModel.intToUppercaseLetter( index );
-        const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
+        const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
 
         const colorProperty = new ColorProperty( new Color( 0x000000 ),
           { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
@@ -197,8 +199,7 @@ export default class GraphNodes extends Node {
     );
 
     const verticalLinesLayer = new Node( {
-      children: verticalLinesNode,
-      tandem: verticalLinesLayerTandem
+      children: verticalLineNodes
     } );
 
     const graphSetNode = new Node();
@@ -247,7 +248,7 @@ export default class GraphNodes extends Node {
       // TODO: find a better way to set positions
       referenceLineNode.setLineBottom( graphSetNode.bottom + 10 );
       referenceLineNode.setLineTop( graphSetNode.top - 5 );
-      verticalLinesNode.forEach( verticalLineNode => {
+      verticalLineNodes.forEach( verticalLineNode => {
         verticalLineNode.setLineBottom( graphSetNode.bottom + 10 );
         verticalLineNode.setLineTop( graphSetNode.top - 5 );
       } );

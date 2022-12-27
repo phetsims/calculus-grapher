@@ -91,8 +91,9 @@ export default class PointLabel extends Node {
 
     super( options );
 
-    // add linked elements
-    ancillaryTools.addLinkedElements( this, options.tandem.createTandem( 'model' ) );
+    this.addLinkedElement( ancillaryTools, {
+      tandem: options.tandem.createTandem( ancillaryTools.tandem.name )
+    } );
   }
 }
 calculusGrapher.register( 'PointLabel', PointLabel );

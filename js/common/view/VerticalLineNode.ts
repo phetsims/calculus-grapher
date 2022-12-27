@@ -121,8 +121,9 @@ export default class VerticalLineNode extends Node {
     this.verticalLine = verticalLine;
     this.sphere = sphere;
 
-    // add linked elements from model
-    ancillaryTools.addLinkedElements( this, options.tandem.createTandem( 'model' ) );
+    this.addLinkedElement( ancillaryTools, {
+      tandem: options.tandem.createTandem( ancillaryTools.tandem.name )
+    } );
   }
 
   // set Y top position in view coordinates
