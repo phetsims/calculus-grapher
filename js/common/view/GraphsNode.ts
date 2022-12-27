@@ -101,18 +101,17 @@ export default class GraphNodes extends Node {
     model.labelledPoints.forEach( ( ancillaryTool, index ) => {
       const label = CalculusGrapherModel.intToUppercaseLetter( index );
       const pointLabelTandem = pointsLabelTandem.createTandem( `${label}PointLabel` );
+
       const visibleProperty = new BooleanProperty( false,
         { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } );
+      const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value,
+        { tandem: pointLabelTandem.createTandem( 'colorProperty' ) } );
+      const labelProperty = new StringProperty( label,
+        { tandem: pointLabelTandem.createTandem( 'labelProperty' ) } );
 
       originalGraphNode.addPointLabel( ancillaryTool, {
-        labelProperty: new StringProperty( label, {
-          tandem: pointLabelTandem.createTandem( 'labelProperty' )
-        } ),
-        focusPointNodeOptions: {
-          fill: new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
-            tandem: pointLabelTandem.createTandem( 'colorProperty' )
-          } )
-        },
+        labelProperty: labelProperty,
+        focusPointNodeOptions: { fill: colorProperty },
         visibleProperty: new DerivedProperty( [ visibleProperty,
             model.predictModeEnabledProperty ],
           ( visible, predictMode ) =>
@@ -171,24 +170,29 @@ export default class GraphNodes extends Node {
     const verticalLinesNode = model.labelledVerticalLines.map( ( verticalLine, index ) => {
         const label = CalculusGrapherModel.intToUppercaseLetter( index );
         const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
-        return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
+
+        const colorProperty = new ColorProperty( new Color( 0x000000 ),
+          { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
+        const labelProperty = new StringProperty( label,
+          { tandem: verticalLineNodeTandem.createTandem( 'labelProperty' ) } );
+        const visibleProperty = new BooleanProperty( false,
+          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
+
+        const verticalLineNode = new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
           x: originalGraphNode.x,
           cursor: null,
           dragListenerEnabled: false,
           lineOptions: {
             lineDash: [ 4, 2 ],
-            stroke: new ColorProperty( new Color( 0x000000 ), {
-              tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
-            } )
+            stroke: colorProperty
           },
           sphereOptions: { visible: false },
-          labelProperty: new StringProperty( label, {
-            tandem: verticalLineNodeTandem.createTandem( 'labelProperty' )
-          } ),
-          visibleProperty: new BooleanProperty( false,
-            { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } ),
+          labelProperty: labelProperty,
+          visibleProperty: visibleProperty,
           tandem: verticalLineNodeTandem
         } );
+
+        return verticalLineNode;
       }
     );
 
