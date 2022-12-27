@@ -101,7 +101,7 @@ export default class GraphNodes extends Node {
     model.labelledPoints.forEach( ( ancillaryTool, index ) => {
       const label = CalculusGrapherModel.intToUppercaseLetter( index );
       const pointLabelTandem = pointsLabelTandem.createTandem( `${label}PointLabel` );
-      const visibleProperty = new BooleanProperty( true,
+      const visibleProperty = new BooleanProperty( false,
         { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } );
 
       originalGraphNode.addPointLabel( ancillaryTool, {
