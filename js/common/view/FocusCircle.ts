@@ -40,6 +40,7 @@ export default class FocusCircle extends Circle {
     };
 
     xCoordinateProperty.link( updatePosition );
+    yCoordinateProperty.link( updatePosition );
     chartTransform.changedEmitter.addListener( updatePosition );
 
   }
