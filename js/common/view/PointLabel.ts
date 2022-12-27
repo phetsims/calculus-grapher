@@ -56,7 +56,7 @@ export default class PointLabel extends Node {
       align: 'center',
       stroke: null,
       opacity: 0.5,
-      fill: 'rgb(230,230,230)'
+      fill: 'white'
     } );
 
     const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
