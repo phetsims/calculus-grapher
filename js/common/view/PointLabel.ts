@@ -1,7 +1,8 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * PointLabel is a label for Point
+ * PointLabel is a point on originalCurve, with a label. The point and the label are connected by a small line
+ * The label (and line) update their positions, and are set perpendicular to the tangent of the curve
  *
  * @author Martin Veillette
  */
@@ -16,6 +17,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import Panel from '../../../../sun/js/Panel.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = {
   labelProperty: StringProperty;
@@ -41,43 +43,49 @@ export default class PointLabel extends Node {
         }
       }, providedOptions );
 
-    const focusCircle = new FocusCircle( ancillaryTools.xCoordinateProperty,
+    // small point (disk) on curve - focusCircle is responsible for updating its position
+    const focusCircle = new FocusCircle(
+      ancillaryTools.xCoordinateProperty,
       ancillaryTools.originalProperty, chartTransform,
       options.focusPointNodeOptions );
 
-    const textNode = new Text( options.labelProperty, {
+    // label for the point
+    const labelNode = new Panel( new Text( options.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       centerX: 0
-    } );
-
-    const labelNode = new Panel( textNode, {
-      centerX: focusCircle.x,
-      centerY: focusCircle.y,
+    } ), {
       align: 'center',
       stroke: null,
       opacity: 0.5,
       fill: 'white'
     } );
 
+    // line that connects the focus circle to the label
     const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
 
-    ancillaryTools.originalProperty.link( value => {
+    // update the positions of the line and label Node
+    // use some heuristic algorithm to prevent the label to overlap with the curve
+    const updatePosition = () => {
+
       const tangent = ancillaryTools.tangentProperty.value;
-      const angle = Math.atan( tangent ) + Math.PI / 2;
-      const distance = 20;
-      labelNode.centerX = focusCircle.x + distance * Math.cos( angle );
-      labelNode.centerY = focusCircle.y - distance * Math.sin( angle );
+      const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
-      // TODO: remove magic constants
-      const P2 = focusCircle.center.plusXY( 1.2 * distance / 2 * Math.cos( angle ), -distance / 2 * Math.sin( angle ) );
+      // unit vector perpendicular to tangent in view (hence the minus sign for the angle, since y is inverted)
+      const perpendicular = Vector2.createPolar( 1, -modelPerpendicularTangent );
 
+      const lineRelativeDisplacement = perpendicular.timesScalar( 10 );
+
+      // point P2 for the line
+      const P2 = focusCircle.center.plus( lineRelativeDisplacement );
       line.setPoint1( focusCircle.center );
       line.setPoint2( P2 );
-    } );
 
-    options.labelProperty.link( () => {
-      labelNode.centerX = focusCircle.x;
-    } );
+      // position the label node in same direction as line, but further away
+      labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 2 ) );
+    };
+
+    ancillaryTools.originalProperty.link( updatePosition );
+    options.labelProperty.link( updatePosition );
 
     options.children = [ line, focusCircle, labelNode ];
 
