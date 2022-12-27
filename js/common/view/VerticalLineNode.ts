@@ -121,28 +121,8 @@ export default class VerticalLineNode extends Node {
     this.verticalLine = verticalLine;
     this.sphere = sphere;
 
-    const model = options.tandem.createTandem( 'model' );
-
     // add linked elements from model
-    this.addLinkedElement( ancillaryTools.xCoordinateProperty, {
-      tandem: model.createTandem( 'xCoordinateProperty' )
-    } );
-
-    this.addLinkedElement( ancillaryTools.areaUnderCurveProperty, {
-      tandem: model.createTandem( 'integralProperty' )
-    } );
-
-    this.addLinkedElement( ancillaryTools.originalProperty, {
-      tandem: model.createTandem( 'functionProperty' )
-    } );
-
-    this.addLinkedElement( ancillaryTools.tangentProperty, {
-      tandem: model.createTandem( 'derivativeProperty' )
-    } );
-
-    this.addLinkedElement( ancillaryTools.curvatureProperty, {
-      tandem: model.createTandem( 'secondDerivativeProperty' )
-    } );
+    ancillaryTools.addLinkedElements( this, options.tandem.createTandem( 'model' ) );
   }
 
   // set Y top position in view coordinates

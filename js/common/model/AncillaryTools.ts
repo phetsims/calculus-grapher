@@ -14,7 +14,8 @@
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
@@ -111,6 +112,28 @@ export default class AncillaryTools {
 
   private assignYValue( curve: Curve, valueProperty: NumberProperty ): void {
     valueProperty.value = this.getY( curve );
+  }
+
+  public addLinkedElements( phetioObject: PhetioObject, tandem: Tandem ): void {
+    phetioObject.addLinkedElement( this.xCoordinateProperty, {
+      tandem: tandem.createTandem( 'xCoordinateProperty' )
+    } );
+
+    phetioObject.addLinkedElement( this.areaUnderCurveProperty, {
+      tandem: tandem.createTandem( 'integralProperty' )
+    } );
+
+    phetioObject.addLinkedElement( this.originalProperty, {
+      tandem: tandem.createTandem( 'functionProperty' )
+    } );
+
+    phetioObject.addLinkedElement( this.tangentProperty, {
+      tandem: tandem.createTandem( 'derivativeProperty' )
+    } );
+
+    phetioObject.addLinkedElement( this.curvatureProperty, {
+      tandem: tandem.createTandem( 'secondDerivativeProperty' )
+    } );
   }
 }
 calculusGrapher.register( 'AncillaryTools', AncillaryTools );

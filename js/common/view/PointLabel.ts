@@ -16,7 +16,6 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import Panel from '../../../../sun/js/Panel.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = {
   labelProperty: StringProperty;
@@ -35,9 +34,7 @@ export default class PointLabel extends Node {
 
     const options = optionize<PointLabelOptions, SelfOptions, NodeOptions>()(
       {
-        focusPointNodeOptions: {
-          stroke: CalculusGrapherColors.originalCurveStrokeProperty
-        },
+        focusPointNodeOptions: {},
         lineOptions: {
           stroke: 'black',
           opacity: 0.5
@@ -64,11 +61,6 @@ export default class PointLabel extends Node {
 
     const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
 
-    options.children = [ line, focusCircle, labelNode ];
-
-    super( options );
-
-
     ancillaryTools.originalProperty.link( value => {
       const tangent = ancillaryTools.tangentProperty.value;
       const angle = Math.atan( tangent ) + Math.PI / 2;
@@ -87,6 +79,12 @@ export default class PointLabel extends Node {
       labelNode.centerX = focusCircle.x;
     } );
 
+    options.children = [ line, focusCircle, labelNode ];
+
+    super( options );
+
+    // add linked elements
+    ancillaryTools.addLinkedElements( this, options.tandem.createTandem( 'model' ) );
   }
 }
 calculusGrapher.register( 'PointLabel', PointLabel );
