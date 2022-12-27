@@ -8,13 +8,14 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import Property from '../../../../axon/js/Property.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import { DragListener, Line, LineOptions, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -26,7 +27,7 @@ export type ScrubberOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class Scrubber extends Node {
 
-  public constructor( xCoordinateProperty: Property<number>,
+  public constructor( scrubber: AncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions?: ScrubberOptions ) {
 
@@ -52,7 +53,7 @@ export default class Scrubber extends Node {
 
         // current modelPosition
         const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
-        xCoordinateProperty.value = chartTransform.modelXRange.constrainValue( modelX );
+        scrubber.xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
       },
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
@@ -60,20 +61,25 @@ export default class Scrubber extends Node {
     // horizontal line, that visibility can be optionally be turned off
     const horizontalLine = new Line( combineOptions<LineOptions>( {
       x1: chartTransform.viewToModelX( 0 ),
-      x2: chartTransform.viewToModelX( xCoordinateProperty.value ),
+      x2: chartTransform.viewToModelX( scrubber.xProperty.value ),
       y1: yValue,
       y2: yValue,
       stroke: options.fill
     }, options.lineOptions ) );
 
-    xCoordinateProperty.link( xCoordinate => {
-
-      sphere.centerX = chartTransform.modelToViewX( xCoordinate );
+    scrubber.xProperty.link( x => {
+      sphere.centerX = chartTransform.modelToViewX( x );
       horizontalLine.x2 = sphere.centerX;
     } );
 
     options.children = [ horizontalLine, sphere ];
     super( options );
+
+    if ( scrubber.tandem !== Tandem.OPT_OUT ) {
+      this.addLinkedElement( scrubber, {
+        tandem: options.tandem.createTandem( scrubber.tandem.name )
+      } );
+    }
   }
 }
 calculusGrapher.register( 'Scrubber', Scrubber );

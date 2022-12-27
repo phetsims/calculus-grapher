@@ -30,6 +30,7 @@ import ShadedAreaChart from './ShadedAreaChart.js';
 import TangentArrowNode from './TangentArrowNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import PointLabel, { PointLabelOptions } from './PointLabel.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -114,7 +115,7 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubber = new Scrubber( model.scrubber.xProperty, this.chartTransform, {
+    const scrubber = new Scrubber( model.scrubber, this.chartTransform, {
       visibleProperty: new DerivedProperty( [
         visibleProperties.areaUnderCurveVisibleProperty,
         visibleProperties.tangentVisibleProperty,
@@ -135,7 +136,9 @@ export default class OriginalGraphNode extends GraphNode {
           return null;
         }
       } ),
-      tandem: options.tandem.createTandem( 'scrubber' )
+      tandem: ( model.scrubber.tandem === Tandem.OPT_OUT ) ?
+              Tandem.OPT_OUT :
+              options.tandem.createTandem( `${model.scrubber.tandem.name}Node` )
     } );
 
     this.addChild( scrubber );
