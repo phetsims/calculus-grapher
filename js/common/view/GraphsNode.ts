@@ -24,6 +24,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -100,13 +101,22 @@ export default class GraphNodes extends Node {
     model.labelledPoints.forEach( ( ancillaryTool, index ) => {
       const label = CalculusGrapherModel.intToUppercaseLetter( index );
       const pointLabelTandem = pointsLabelTandem.createTandem( `${label}PointLabel` );
+      const visibleProperty = new BooleanProperty( true,
+        { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } );
 
       originalGraphNode.addPointLabel( ancillaryTool, {
         labelProperty: new StringProperty( label, {
           tandem: pointLabelTandem.createTandem( 'labelProperty' )
         } ),
-        visibleProperty: new BooleanProperty( true,
-          { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } ),
+        focusPointNodeOptions: {
+          fill: new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
+            tandem: pointLabelTandem.createTandem( 'colorProperty' )
+          } )
+        },
+        visibleProperty: new DerivedProperty( [ visibleProperty,
+            model.predictModeEnabledProperty ],
+          ( visible, predictMode ) =>
+            visible && !predictMode ),
         tandem: pointLabelTandem
       } );
     } );
