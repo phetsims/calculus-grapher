@@ -33,7 +33,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    const barometer = new BarometerAccordionBox( model.ancillaryTools.yIntegralProperty,
+    const barometer = new BarometerAccordionBox( model.scrubber.yIntegralProperty,
       CalculusGrapherStrings.areaUnderCurveStringProperty, {
         visibleProperty: new DerivedProperty( [ this.visibleProperties.areaUnderCurveVisibleProperty,
             model.predictModeEnabledProperty ],

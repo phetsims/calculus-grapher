@@ -15,7 +15,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
-import AncillaryTools from '../model/AncillaryTools.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Panel from '../../../../sun/js/Panel.js';
@@ -39,7 +39,7 @@ export default class VerticalLineNode extends Node {
   private readonly verticalLine;
   private readonly sphere;
 
-  public constructor( ancillaryTools: AncillaryTools,
+  public constructor( ancillaryTool: AncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions?: VerticalLineNodeOptions ) {
 
@@ -53,7 +53,7 @@ export default class VerticalLineNode extends Node {
       dragListenerEnabled: true
     }, providedOptions );
 
-    const xCoordinateProperty = ancillaryTools.xProperty;
+    const xCoordinateProperty = ancillaryTool.xProperty;
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
 
@@ -121,8 +121,8 @@ export default class VerticalLineNode extends Node {
     this.verticalLine = verticalLine;
     this.sphere = sphere;
 
-    this.addLinkedElement( ancillaryTools, {
-      tandem: options.tandem.createTandem( ancillaryTools.tandem.name )
+    this.addLinkedElement( ancillaryTool, {
+      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
     } );
   }
 

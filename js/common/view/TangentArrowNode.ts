@@ -12,7 +12,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import AncillaryTools from '../model/AncillaryTools.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -22,7 +22,7 @@ export type TangentArrowNodeOptions = SelfOptions & ArrowNodeOptions;
 
 export default class TangentArrowNode extends ArrowNode {
 
-  public constructor( ancillaryTools: AncillaryTools,
+  public constructor( ancillaryTool: AncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
 
@@ -47,9 +47,9 @@ export default class TangentArrowNode extends ArrowNode {
     // initial theta is zero since the super call is for a horizontal arrow
     let oldTheta = 0;
     const updateArrow = () => {
-      const x = ancillaryTools.xProperty.value;
-      const y = ancillaryTools.yOriginalProperty.value;
-      const m = ancillaryTools.yDerivativeProperty.value;
+      const x = ancillaryTool.xProperty.value;
+      const y = ancillaryTool.yOriginalProperty.value;
+      const m = ancillaryTool.yDerivativeProperty.value;
       const theta = Math.atan( m );
       this.center = chartTransform.modelToViewXY( x, y );
 
@@ -61,9 +61,9 @@ export default class TangentArrowNode extends ArrowNode {
     };
 
     chartTransform.changedEmitter.addListener( updateArrow );
-    ancillaryTools.xProperty.link( updateArrow );
-    ancillaryTools.yDerivativeProperty.link( updateArrow );
-    ancillaryTools.yOriginalProperty.link( updateArrow );
+    ancillaryTool.xProperty.link( updateArrow );
+    ancillaryTool.yDerivativeProperty.link( updateArrow );
+    ancillaryTool.yOriginalProperty.link( updateArrow );
   }
 }
 

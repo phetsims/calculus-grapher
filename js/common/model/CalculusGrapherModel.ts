@@ -22,7 +22,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import AncillaryTools, { AncillaryToolsOptions } from './AncillaryTools.js';
+import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Range from '../../../../dot/js/Range.js';
 
@@ -48,16 +48,16 @@ export default class CalculusGrapherModel implements TModel {
   public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
 
   // model for the reference line
-  public readonly referenceLine: AncillaryTools;
+  public readonly referenceLine: AncillaryTool;
 
   // model associated with the scrubber on the original graph
-  public readonly ancillaryTools: AncillaryTools;
+  public readonly scrubber: AncillaryTool;
 
   // model associated with the scrubber on the original graph
-  public readonly labelledPoints: AncillaryTools[];
+  public readonly labelledPoints: AncillaryTool[];
 
   // model associated with the scrubber on the original graph
-  public readonly labelledVerticalLines: AncillaryTools[];
+  public readonly labelledVerticalLines: AncillaryTool[];
 
 
   // the model of the various curves
@@ -110,20 +110,20 @@ export default class CalculusGrapherModel implements TModel {
     this.integralCurve = new IntegralCurve( this.originalCurve,
       graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
 
-    this.referenceLine = this.getAncillaryTools( {
+    this.referenceLine = this.createAncillaryTool( {
       initialCoordinate: CURVE_X_RANGE.getCenter(),
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.ancillaryTools = this.getAncillaryTools( {
+    this.scrubber = this.createAncillaryTool( {
       initialCoordinate: options.scrubberInitialCoordinate,
-      tandem: options.tandem.createTandem( 'ancillaryTools' )
+      tandem: options.tandem.createTandem( 'scrubber' )
     } );
 
-    this.labelledPoints = this.getArrayAncillaryTools( 10,
+    this.labelledPoints = this.createAncillaryTools( 10,
       options.tandem.createTandem( 'points' ), 'Point' );
 
-    this.labelledVerticalLines = this.getArrayAncillaryTools( 10,
+    this.labelledVerticalLines = this.createAncillaryTools( 10,
       options.tandem.createTandem( 'verticalLines' ), 'VerticalLine' );
   }
 
@@ -137,24 +137,24 @@ export default class CalculusGrapherModel implements TModel {
     this.predictModeEnabledProperty.reset();
 
     this.referenceLine.reset();
-    this.ancillaryTools.reset();
+    this.scrubber.reset();
     this.labelledPoints.forEach( point => point.reset() );
     this.labelledVerticalLines.forEach( line => line.reset() );
   }
 
-  public getAncillaryTools( providedOptions?: AncillaryToolsOptions ): AncillaryTools {
+  private createAncillaryTool( providedOptions?: AncillaryToolOptions ): AncillaryTool {
 
-    const options = optionize<AncillaryToolsOptions>()( {}, providedOptions );
+    const options = optionize<AncillaryToolOptions>()( {}, providedOptions );
 
-    return new AncillaryTools( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
+    return new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
       options );
   }
 
-  // returns an array of 'totalNumber' AncillaryTools, with evenly spaced initialCoordinates,
+  // returns an array of 'totalNumber' AncillaryTool, with evenly spaced initialCoordinates,
   // stamped with alphabetically ordered tandem names.
-  public getArrayAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): AncillaryTools[] {
+  private createAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): AncillaryTool[] {
 
-    return CalculusGrapherModel.arrayGenerator( totalNumber ).map( value => this.getAncillaryTools( {
+    return CalculusGrapherModel.arrayGenerator( totalNumber ).map( value => this.createAncillaryTool( {
       initialCoordinate: CURVE_X_RANGE.expandNormalizedValue( value / totalNumber ),
       tandem: tandem.createTandem( `${CalculusGrapherModel.intToUppercaseLetter( value )}${tandemSuffix}` )
     } ) );

@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * AncillaryTools is the model class associated with an x value on the graph
+ * AncillaryTool is the model class associated with an x value on the graph
  * it keeps track of all quantities associated with the x value: such as
  *  - the integral of f(x)
  *  - the original function f(x)
@@ -28,9 +28,9 @@ type SelfOptions = {
   initialCoordinate: number;
 };
 
-export type AncillaryToolsOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class AncillaryTools extends PhetioObject {
+export default class AncillaryTool extends PhetioObject {
 
   // value to track the x position
   public readonly xProperty: NumberProperty;
@@ -45,9 +45,9 @@ export default class AncillaryTools extends PhetioObject {
     originalCurve: Curve,
     derivativeCurve: Curve,
     secondDerivativeCurve: Curve,
-    providedOptions: AncillaryToolsOptions ) {
+    providedOptions: AncillaryToolOptions ) {
 
-    const options = optionize<AncillaryToolsOptions, SelfOptions, PhetioObjectOptions>()( {
+    const options = optionize<AncillaryToolOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioState: false
     }, providedOptions );
 
@@ -97,4 +97,4 @@ export default class AncillaryTools extends PhetioObject {
   }
 }
 
-calculusGrapher.register( 'AncillaryTools', AncillaryTools );
+calculusGrapher.register( 'AncillaryTool', AncillaryTool );

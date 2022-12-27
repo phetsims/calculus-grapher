@@ -28,7 +28,7 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import ShadedAreaChart from './ShadedAreaChart.js';
 import TangentArrowNode from './TangentArrowNode.js';
-import AncillaryTools from '../model/AncillaryTools.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 import PointLabel, { PointLabelOptions } from './PointLabel.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -114,7 +114,7 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubber = new Scrubber( model.ancillaryTools.xProperty, this.chartTransform, {
+    const scrubber = new Scrubber( model.scrubber.xProperty, this.chartTransform, {
       visibleProperty: new DerivedProperty( [
         visibleProperties.areaUnderCurveVisibleProperty,
         visibleProperties.tangentVisibleProperty,
@@ -143,7 +143,7 @@ export default class OriginalGraphNode extends GraphNode {
     const shadedAreaChart = new ShadedAreaChart(
       model.originalCurve,
       this.chartTransform,
-      model.ancillaryTools.xProperty, {
+      model.scrubber.xProperty, {
         upFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
           color => color.brighterColor( 0.8 ) ),
@@ -158,7 +158,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveLayer.addChild( shadedAreaChart );
     shadedAreaChart.moveToBack();
 
-    const tangentArrowsNode = new TangentArrowNode( model.ancillaryTools, this.chartTransform, {
+    const tangentArrowsNode = new TangentArrowNode( model.scrubber, this.chartTransform, {
       visibleProperty: new DerivedProperty( [
         visibleProperties.tangentVisibleProperty,
         model.predictModeEnabledProperty ], ( tangent, predictModeEnabled ) =>
@@ -192,10 +192,10 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveNode.reset();
   }
 
-  public addPointLabel( ancillaryTools: AncillaryTools,
+  public addPointLabel( ancillaryTool: AncillaryTool,
                         providedOptions: PointLabelOptions ): void {
 
-    const pointLabel = new PointLabel( ancillaryTools, this.chartTransform, providedOptions );
+    const pointLabel = new PointLabel( ancillaryTool, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( pointLabel );
   }

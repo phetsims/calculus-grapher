@@ -11,7 +11,7 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import AncillaryTools from '../model/AncillaryTools.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
@@ -30,7 +30,7 @@ export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'
 
 export default class PointLabel extends Node {
 
-  public constructor( ancillaryTools: AncillaryTools,
+  public constructor( ancillaryTool: AncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions: PointLabelOptions ) {
 
@@ -45,8 +45,8 @@ export default class PointLabel extends Node {
 
     // small point (disk) on curve - focusCircle is responsible for updating its position
     const focusCircle = new FocusCircle(
-      ancillaryTools.xProperty,
-      ancillaryTools.yOriginalProperty, chartTransform,
+      ancillaryTool.xProperty,
+      ancillaryTool.yOriginalProperty, chartTransform,
       options.focusPointNodeOptions );
 
     // label for the point
@@ -67,7 +67,7 @@ export default class PointLabel extends Node {
     // use some heuristic algorithm to prevent the label to overlap with the curve
     const updatePosition = () => {
 
-      const tangent = ancillaryTools.yDerivativeProperty.value;
+      const tangent = ancillaryTool.yDerivativeProperty.value;
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
       // unit vector perpendicular to tangent in view (hence the minus sign for the angle, since y is inverted)
@@ -84,15 +84,15 @@ export default class PointLabel extends Node {
       labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 2 ) );
     };
 
-    ancillaryTools.yOriginalProperty.link( updatePosition );
+    ancillaryTool.yOriginalProperty.link( updatePosition );
     options.labelProperty.link( updatePosition );
 
     options.children = [ line, focusCircle, labelNode ];
 
     super( options );
 
-    this.addLinkedElement( ancillaryTools, {
-      tandem: options.tandem.createTandem( ancillaryTools.tandem.name )
+    this.addLinkedElement( ancillaryTool, {
+      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
     } );
   }
 }
