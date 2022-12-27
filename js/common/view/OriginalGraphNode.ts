@@ -16,7 +16,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import { HBox, Node, Text } from '../../../../scenery/js/imports.js';
-import Scrubber from './Scrubber.js';
+import ScrubberNode from './ScrubberNode.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -115,7 +115,7 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubber = new Scrubber( model.scrubber, this.chartTransform, {
+    const scrubberNode = new ScrubberNode( model.scrubber, this.chartTransform, {
       visibleProperty: new DerivedProperty( [
         visibleProperties.areaUnderCurveVisibleProperty,
         visibleProperties.tangentVisibleProperty,
@@ -141,7 +141,7 @@ export default class OriginalGraphNode extends GraphNode {
               options.tandem.createTandem( `${model.scrubber.tandem.name}Node` )
     } );
 
-    this.addChild( scrubber );
+    this.addChild( scrubberNode );
 
     const shadedAreaChart = new ShadedAreaChart(
       model.originalCurve,

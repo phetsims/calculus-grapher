@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * Scrubber is a cursor at the bottom of the graph.
+ * ScrubberNode is a cursor at the bottom of the graph.
  * Scrubbing can be done by dragging the cursor.
  *
  * @author Martin Veillette
@@ -25,7 +25,7 @@ type SelfOptions = {
 
 export type ScrubberOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
-export default class Scrubber extends Node {
+export default class ScrubberNode extends Node {
 
   public constructor( scrubber: AncillaryTool,
                       chartTransform: ChartTransform,
@@ -82,4 +82,4 @@ export default class Scrubber extends Node {
     }
   }
 }
-calculusGrapher.register( 'Scrubber', Scrubber );
+calculusGrapher.register( 'ScrubberNode', ScrubberNode );
