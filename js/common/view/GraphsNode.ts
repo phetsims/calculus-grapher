@@ -97,7 +97,7 @@ export default class GraphNodes extends Node {
       }
     );
 
-    const pointsLabelTandem = options.tandem.createTandem( 'PointsLabel' );
+    const pointsLabelTandem = options.tandem.createTandem( 'pointsLabel' );
     model.labelledPoints.forEach( ( ancillaryTool, index ) => {
       const label = CalculusGrapherModel.intToUppercaseLetter( index );
       const pointLabelTandem = pointsLabelTandem.createTandem( `${label}PointLabel` );
