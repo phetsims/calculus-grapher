@@ -1,7 +1,9 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * FocusCircle is a representation of a circle located at (x,y).
+ * FocusCircle is a representation of a circle located at (x,y) in model Coordinates.
+ * A chartTransform is used to convert from model position to view.
+ * It is responsible for updating its position
  *
  * @author Martin Veillette
  */
@@ -25,6 +27,7 @@ export default class FocusCircle extends Circle {
 
     const options = optionize<FocusPointNodeOptions, SelfOptions, CircleOptions>()(
       {
+        // CircleOptions
         stroke: null,
         fill: 'black',
         radius: 3
