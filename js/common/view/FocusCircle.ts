@@ -33,6 +33,8 @@ export default class FocusCircle extends Circle {
         radius: 3
       }, providedOptions );
 
+    super( options );
+
     const updatePosition = () => {
 
       const x = xCoordinateProperty.value;
@@ -43,8 +45,6 @@ export default class FocusCircle extends Circle {
     xCoordinateProperty.link( updatePosition );
     yCoordinateProperty.link( updatePosition );
     chartTransform.changedEmitter.addListener( updatePosition );
-
-    super( options );
   }
 }
 calculusGrapher.register( 'FocusCircle', FocusCircle );
