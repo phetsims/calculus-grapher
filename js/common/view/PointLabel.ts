@@ -45,8 +45,8 @@ export default class PointLabel extends Node {
 
     // small point (disk) on curve - focusCircle is responsible for updating its position
     const focusCircle = new FocusCircle(
-      ancillaryTools.xCoordinateProperty,
-      ancillaryTools.originalProperty, chartTransform,
+      ancillaryTools.xProperty,
+      ancillaryTools.yOriginalProperty, chartTransform,
       options.focusPointNodeOptions );
 
     // label for the point
@@ -67,7 +67,7 @@ export default class PointLabel extends Node {
     // use some heuristic algorithm to prevent the label to overlap with the curve
     const updatePosition = () => {
 
-      const tangent = ancillaryTools.tangentProperty.value;
+      const tangent = ancillaryTools.yDerivativeProperty.value;
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
       // unit vector perpendicular to tangent in view (hence the minus sign for the angle, since y is inverted)
@@ -84,7 +84,7 @@ export default class PointLabel extends Node {
       labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 2 ) );
     };
 
-    ancillaryTools.originalProperty.link( updatePosition );
+    ancillaryTools.yOriginalProperty.link( updatePosition );
     options.labelProperty.link( updatePosition );
 
     options.children = [ line, focusCircle, labelNode ];

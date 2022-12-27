@@ -53,7 +53,7 @@ export default class VerticalLineNode extends Node {
       dragListenerEnabled: true
     }, providedOptions );
 
-    const xCoordinateProperty = ancillaryTools.xCoordinateProperty;
+    const xCoordinateProperty = ancillaryTools.xProperty;
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
 

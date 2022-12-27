@@ -33,7 +33,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    const barometer = new BarometerAccordionBox( model.ancillaryTools.tangentProperty,
+    const barometer = new BarometerAccordionBox( model.ancillaryTools.yDerivativeProperty,
       CalculusGrapherStrings.slopeOfTangentStringProperty, {
         visibleProperty: new DerivedProperty( [ this.visibleProperties.tangentVisibleProperty,
             model.predictModeEnabledProperty ],

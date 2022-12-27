@@ -11,10 +11,13 @@
  * @author Martin Veillette
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
@@ -30,12 +33,12 @@ export type AncillaryToolsOptions = SelfOptions & PickRequired<PhetioObjectOptio
 export default class AncillaryTools extends PhetioObject {
 
   // value to track the x position
-  public readonly xCoordinateProperty: NumberProperty;
+  public readonly xProperty: NumberProperty;
 
-  public readonly areaUnderCurveProperty: NumberProperty;
-  public readonly originalProperty: NumberProperty;
-  public readonly tangentProperty: NumberProperty;
-  public readonly curvatureProperty: NumberProperty;
+  public readonly yIntegralProperty: TReadOnlyProperty<number>;
+  public readonly yOriginalProperty: TReadOnlyProperty<number>;
+  public readonly yDerivativeProperty: TReadOnlyProperty<number>;
+  public readonly ySecondDerivativeProperty: TReadOnlyProperty<number>;
 
   public constructor(
     integralCurve: Curve,
@@ -50,70 +53,48 @@ export default class AncillaryTools extends PhetioObject {
 
     super( options );
 
-    this.xCoordinateProperty = new NumberProperty( options.initialCoordinate, {
+    this.xProperty = new NumberProperty( options.initialCoordinate, {
       range: CURVE_X_RANGE,
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
-
     } );
 
-    this.areaUnderCurveProperty = new NumberProperty( this.getY( integralCurve ), {
-      tandem: options.tandem.createTandem( 'integralValueProperty' ),
-      phetioReadOnly: true
-    } );
-    this.originalProperty = new NumberProperty( this.getY( originalCurve ), {
-      tandem: options.tandem.createTandem( 'functionValueProperty' ),
-      phetioReadOnly: true
-    } );
-    this.tangentProperty = new NumberProperty( this.getY( derivativeCurve ), {
-      tandem: options.tandem.createTandem( 'derivativeValueProperty' ),
-      phetioReadOnly: true
-    } );
-    this.curvatureProperty = new NumberProperty( this.getY( secondDerivativeCurve ), {
-      tandem: options.tandem.createTandem( 'secondDerivativeValueProperty' ),
-      phetioReadOnly: true
-    } );
-    const addCurveListener = ( curve: Curve, valueProperty: NumberProperty ): void => {
-      curve.curveChangedEmitter.addListener( () => {
-        this.assignYValue( curve, valueProperty );
+    this.yIntegralProperty = new DerivedProperty( [ this.xProperty ],
+      x => integralCurve.getYAt( x ), {
+        tandem: options.tandem.createTandem( 'yIntegralProperty' ),
+        phetioValueType: NumberIO
       } );
-    };
 
-    addCurveListener( integralCurve, this.areaUnderCurveProperty );
-    addCurveListener( originalCurve, this.originalProperty );
-    addCurveListener( derivativeCurve, this.tangentProperty );
-    addCurveListener( secondDerivativeCurve, this.curvatureProperty );
+    this.yOriginalProperty = new DerivedProperty( [ this.xProperty ],
+      x => originalCurve.getYAt( x ), {
+        tandem: options.tandem.createTandem( 'yOriginalProperty' ),
+        phetioValueType: NumberIO
+      } );
 
-    this.xCoordinateProperty.link( () => {
-      this.assignYValue( integralCurve, this.areaUnderCurveProperty );
-      this.assignYValue( originalCurve, this.originalProperty );
-      this.assignYValue( derivativeCurve, this.tangentProperty );
-      this.assignYValue( secondDerivativeCurve, this.tangentProperty );
-    } );
+    this.yDerivativeProperty = new DerivedProperty( [ this.xProperty ],
+      x => derivativeCurve.getYAt( x ), {
+        tandem: options.tandem.createTandem( 'yDerivativeProperty' ),
+        phetioValueType: NumberIO
+      } );
 
+    this.ySecondDerivativeProperty = new DerivedProperty( [ this.xProperty ],
+      x => secondDerivativeCurve.getYAt( x ), {
+        tandem: options.tandem.createTandem( 'ySecondDerivativeProperty' ),
+        phetioValueType: NumberIO
+      } );
+
+    const curveChangedListener = () => this.xProperty.notifyListenersStatic();
+    integralCurve.curveChangedEmitter.addListener( curveChangedListener );
+    originalCurve.curveChangedEmitter.addListener( curveChangedListener );
+    derivativeCurve.curveChangedEmitter.addListener( curveChangedListener );
+    secondDerivativeCurve.curveChangedEmitter.addListener( curveChangedListener );
   }
 
   /**
    * Reset all
    */
   public reset(): void {
-    this.xCoordinateProperty.reset();
-
-    this.areaUnderCurveProperty.reset();
-    this.originalProperty.reset();
-    this.tangentProperty.reset();
-    this.curvatureProperty.reset();
-  }
-
-  private getX(): number {
-    return this.xCoordinateProperty.value;
-  }
-
-  private getY( curve: Curve ): number {
-    return curve.getYAt( this.getX() );
-  }
-
-  private assignYValue( curve: Curve, valueProperty: NumberProperty ): void {
-    valueProperty.value = this.getY( curve );
+    this.xProperty.reset();
   }
 }
+
 calculusGrapher.register( 'AncillaryTools', AncillaryTools );

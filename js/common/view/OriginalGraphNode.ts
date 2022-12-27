@@ -114,7 +114,7 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubber = new Scrubber( model.ancillaryTools.xCoordinateProperty, this.chartTransform, {
+    const scrubber = new Scrubber( model.ancillaryTools.xProperty, this.chartTransform, {
       visibleProperty: new DerivedProperty( [
         visibleProperties.areaUnderCurveVisibleProperty,
         visibleProperties.tangentVisibleProperty,
@@ -143,7 +143,7 @@ export default class OriginalGraphNode extends GraphNode {
     const shadedAreaChart = new ShadedAreaChart(
       model.originalCurve,
       this.chartTransform,
-      model.ancillaryTools.xCoordinateProperty, {
+      model.ancillaryTools.xProperty, {
         upFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
           color => color.brighterColor( 0.8 ) ),

@@ -47,9 +47,9 @@ export default class TangentArrowNode extends ArrowNode {
     // initial theta is zero since the super call is for a horizontal arrow
     let oldTheta = 0;
     const updateArrow = () => {
-      const x = ancillaryTools.xCoordinateProperty.value;
-      const y = ancillaryTools.originalProperty.value;
-      const m = ancillaryTools.tangentProperty.value;
+      const x = ancillaryTools.xProperty.value;
+      const y = ancillaryTools.yOriginalProperty.value;
+      const m = ancillaryTools.yDerivativeProperty.value;
       const theta = Math.atan( m );
       this.center = chartTransform.modelToViewXY( x, y );
 
@@ -61,9 +61,9 @@ export default class TangentArrowNode extends ArrowNode {
     };
 
     chartTransform.changedEmitter.addListener( updateArrow );
-    ancillaryTools.xCoordinateProperty.link( updateArrow );
-    ancillaryTools.tangentProperty.link( updateArrow );
-    ancillaryTools.originalProperty.link( updateArrow );
+    ancillaryTools.xProperty.link( updateArrow );
+    ancillaryTools.yDerivativeProperty.link( updateArrow );
+    ancillaryTools.yOriginalProperty.link( updateArrow );
   }
 }
 
