@@ -27,7 +27,8 @@ export default class IntegralModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min
+      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min,
+      scrubberTandemName: 'areaUnderCurveTool'
     }, providedOptions );
 
     super( options );

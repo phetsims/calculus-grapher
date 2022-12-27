@@ -30,6 +30,7 @@ const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
   scrubberInitialCoordinate?: number;
+  scrubberTandemName?: string | null;
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
@@ -72,6 +73,7 @@ export default class CalculusGrapherModel implements TModel {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
       scrubberInitialCoordinate: CURVE_X_RANGE.getCenter(),
+      scrubberTandemName: null,
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
@@ -117,7 +119,7 @@ export default class CalculusGrapherModel implements TModel {
 
     this.scrubber = this.createAncillaryTool( {
       initialCoordinate: options.scrubberInitialCoordinate,
-      tandem: options.tandem.createTandem( 'scrubber' )
+      tandem: ( options.scrubberTandemName === null ) ? Tandem.OPT_OUT : options.tandem.createTandem( options.scrubberTandemName )
     } );
 
     this.labelledPoints = this.createAncillaryTools( 10,

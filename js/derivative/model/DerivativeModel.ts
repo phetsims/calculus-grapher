@@ -29,7 +29,8 @@ export default class DerivativeModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      scrubberInitialCoordinate: CURVE_X_RANGE.min + CURVE_X_RANGE.getLength() * 1 / 3
+      scrubberInitialCoordinate: CURVE_X_RANGE.min + CURVE_X_RANGE.getLength() * 1 / 3,
+      scrubberTandemName: 'tangentTool'
     }, providedOptions );
 
     super( options );
