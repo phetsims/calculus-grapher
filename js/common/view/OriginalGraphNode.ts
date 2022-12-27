@@ -28,6 +28,8 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import ShadedAreaChart from './ShadedAreaChart.js';
 import TangentArrowNode from './TangentArrowNode.js';
+import AncillaryTools from '../model/AncillaryTools.js';
+import PointLabel, { PointLabelOptions } from './PointLabel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -190,10 +192,19 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveNode.reset();
   }
 
+  public addPointLabel( ancillaryTools: AncillaryTools,
+                        providedOptions: PointLabelOptions ): void {
+
+    const pointLabel = new PointLabel( ancillaryTools, this.chartTransform, providedOptions );
+
+    this.curveLayer.addChild( pointLabel );
+  }
+
   private setCurvePointerAreas(): void {
     this.curveNode.setPointerAreas();
     this.predictCurveNode.setPointerAreas();
   }
+
 }
 
 calculusGrapher.register( 'OriginalGraphNode', OriginalGraphNode );

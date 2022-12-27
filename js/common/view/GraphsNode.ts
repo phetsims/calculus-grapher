@@ -96,6 +96,21 @@ export default class GraphNodes extends Node {
       }
     );
 
+    const pointsLabelTandem = options.tandem.createTandem( 'PointsLabel' );
+    model.labelledPoints.forEach( ( ancillaryTool, index ) => {
+      const label = CalculusGrapherModel.intToUppercaseLetter( index );
+      const pointLabelTandem = pointsLabelTandem.createTandem( `${label}PointLabel` );
+
+      originalGraphNode.addPointLabel( ancillaryTool, {
+        labelProperty: new StringProperty( label, {
+          tandem: pointLabelTandem.createTandem( 'labelProperty' )
+        } ),
+        visibleProperty: new BooleanProperty( true,
+          { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } ),
+        tandem: pointLabelTandem
+      } );
+    } );
+
     originalGraphNode.addFocusCircle( model.ancillaryTools.xCoordinateProperty,
       model.ancillaryTools.originalProperty, {
         visibleProperty: new DerivedProperty( [
@@ -144,25 +159,25 @@ export default class GraphNodes extends Node {
 
     const verticalLinesLayerTandem = options.tandem.createTandem( 'verticalLinesLayer' );
     const verticalLinesNode = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-      const label = CalculusGrapherModel.intToUppercaseLetter( index );
-      const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
-      return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
-        x: originalGraphNode.x,
-        cursor: null,
-        dragListenerEnabled: false,
-        lineOptions: {
-          lineDash: [ 4, 2 ],
-          stroke: new ColorProperty( new Color( 0x000000 ), {
-            tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
-          } )
-        },
-        sphereOptions: { visible: false },
-        labelProperty: new StringProperty( label, {
-          tandem: verticalLineNodeTandem.createTandem( 'labelProperty' )
-        } ),
-        visibleProperty: new BooleanProperty( false,
-          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } ),
-        tandem: verticalLineNodeTandem
+        const label = CalculusGrapherModel.intToUppercaseLetter( index );
+        const verticalLineNodeTandem = verticalLinesLayerTandem.createTandem( `${label}VerticalLineNode` );
+        return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
+          x: originalGraphNode.x,
+          cursor: null,
+          dragListenerEnabled: false,
+          lineOptions: {
+            lineDash: [ 4, 2 ],
+            stroke: new ColorProperty( new Color( 0x000000 ), {
+              tandem: verticalLineNodeTandem.createTandem( 'colorProperty' )
+            } )
+          },
+          sphereOptions: { visible: false },
+          labelProperty: new StringProperty( label, {
+            tandem: verticalLineNodeTandem.createTandem( 'labelProperty' )
+          } ),
+          visibleProperty: new BooleanProperty( false,
+            { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } ),
+          tandem: verticalLineNodeTandem
         } );
       }
     );
