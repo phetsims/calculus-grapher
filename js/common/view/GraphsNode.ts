@@ -34,6 +34,10 @@ export type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'
 
 export default class GraphNodes extends Node {
 
+  public originalGraphNode: OriginalGraphNode;
+  public integralGraphNode: GraphNode;
+  public derivativeGraphNode: GraphNode;
+
   private readonly resetGraphNodes: () => void;
 
   public constructor( model: CalculusGrapherModel,
@@ -75,15 +79,6 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
-    integralGraphNode.addFocusCircle( model.scrubber.xProperty,
-      model.scrubber.yIntegralProperty,
-      {
-        visibleProperty: new DerivedProperty( [
-            visibleProperties.areaUnderCurveVisibleProperty,
-            model.predictModeEnabledProperty ],
-          ( area, predictMode ) => area && !predictMode ),
-        fill: getGraphTypeStroke( 'integral' )
-      } );
 
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
@@ -120,16 +115,6 @@ export default class GraphNodes extends Node {
       } );
     } );
 
-    originalGraphNode.addFocusCircle( model.scrubber.xProperty,
-      model.scrubber.yOriginalProperty, {
-        visibleProperty: new DerivedProperty( [
-            visibleProperties.areaUnderCurveVisibleProperty,
-            visibleProperties.tangentVisibleProperty,
-            model.predictModeEnabledProperty ],
-          ( area, tangent, predictMode ) =>
-            ( area || tangent ) && !predictMode ),
-        fill: getGraphTypeStroke( 'original' )
-      } );
 
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
@@ -138,15 +123,6 @@ export default class GraphNodes extends Node {
       {
         curveStroke: getGraphTypeStroke( 'derivative' ),
         tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
-      } );
-
-    derivativeGraphNode.addFocusCircle( model.scrubber.xProperty,
-      model.scrubber.yDerivativeProperty, {
-        visibleProperty: new DerivedProperty( [
-            visibleProperties.tangentVisibleProperty,
-            model.predictModeEnabledProperty ],
-          ( tangent, predictMode ) => tangent && !predictMode ),
-        fill: getGraphTypeStroke( 'derivative' )
       } );
 
     const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
@@ -257,6 +233,10 @@ export default class GraphNodes extends Node {
     options.children = [ graphSetNode, referenceLineNode, verticalLinesLayer ];
 
     super( options );
+
+    this.originalGraphNode = originalGraphNode;
+    this.integralGraphNode = integralGraphNode;
+    this.derivativeGraphNode = derivativeGraphNode;
 
     this.resetGraphNodes = () => {
       originalGraphNode.reset();

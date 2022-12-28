@@ -31,11 +31,16 @@ type StringsType = {
   'LagrangeStringProperty': LinkableProperty<string>;
   'LeibnizStringProperty': LinkableProperty<string>;
   'variableStringProperty': LinkableProperty<string>;
-  'areaUnderCurveStringProperty': LinkableProperty<string>;
-  'tangentStringProperty': LinkableProperty<string>;
+  'checkbox': {
+    'areaUnderCurveStringProperty': LinkableProperty<string>;
+    'tangentStringProperty': LinkableProperty<string>;
+  };
+  'barometer': {
+    'areaUnderCurveStringProperty': LinkableProperty<string>;
+    'slopeOfTangentStringProperty': LinkableProperty<string>;
+  };
   'predictStringProperty': LinkableProperty<string>;
   'showStringProperty': LinkableProperty<string>;
-  'slopeOfTangentStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

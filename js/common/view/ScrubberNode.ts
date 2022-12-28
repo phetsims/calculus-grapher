@@ -7,7 +7,6 @@
  * @author Martin Veillette
  */
 
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -23,18 +22,18 @@ type SelfOptions = {
   sphereDiameter?: number;
 };
 
-export type ScrubberOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+export type ScrubberNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class ScrubberNode extends Node {
 
   public constructor( scrubber: AncillaryTool,
                       chartTransform: ChartTransform,
-                      providedOptions?: ScrubberOptions ) {
+                      providedOptions?: ScrubberNodeOptions ) {
 
-    const options = optionize<ScrubberOptions, SelfOptions, NodeOptions>()(
+    const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()(
       {
         lineOptions: {
-          visibleProperty: new BooleanProperty( true )
+          visible: true
         },
         fill: 'red',
         sphereDiameter: 18

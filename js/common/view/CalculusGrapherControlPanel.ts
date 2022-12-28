@@ -7,7 +7,7 @@
  * @author Brandon Li
  */
 
-import { HSeparator, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { HSeparator, Node, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -15,25 +15,23 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import LinkableProperty from '../../../../axon/js/LinkableProperty.js';
 
 type SelfOptions = {
-  areaUnderCurveCheckboxVisible?: boolean;
-  tangentCheckboxVisible?: boolean;
   smoothButtonVisible?: boolean;
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
 
 export default class CalculusGrapherControlPanel extends Panel {
+
+  private contentNode: Node;
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       predictModeEnabledProperty: Property<boolean>,
@@ -44,8 +42,6 @@ export default class CalculusGrapherControlPanel extends Panel {
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
 
       // SelfOptions
-      areaUnderCurveCheckboxVisible: false,
-      tangentCheckboxVisible: false,
       smoothButtonVisible: true,
 
       // PanelOptions
@@ -73,42 +69,38 @@ export default class CalculusGrapherControlPanel extends Panel {
       tandem: options.tandem.createTandem( 'curveButtons' )
     } );
 
-    // create tangent checkbox, with visibility tied to option field
-    const tangentCheckbox = new Checkbox( visibleProperties.tangentVisibleProperty,
-      new Text( CalculusGrapherStrings.tangentStringProperty, {
-        font: CalculusGrapherConstants.CONTROL_FONT
-      } ), {
-        visibleProperty: new DerivedProperty( [ predictModeEnabledProperty ],
-          predictModeEnabled => options.tangentCheckboxVisible && !predictModeEnabled ),
-        tandem: options.tandem.createTandem( 'tangentCheckbox' )
-      }
-    );
-
-    // create area under curve checkbox, with visibility tied to option field
-    const areaUnderCurveCheckbox = new Checkbox( visibleProperties.areaUnderCurveVisibleProperty,
-      new RichText( CalculusGrapherStrings.areaUnderCurveStringProperty, {
-        font: CalculusGrapherConstants.CONTROL_FONT
-      } ), {
-        visibleProperty: new DerivedProperty( [ predictModeEnabledProperty ],
-          predictModeEnabled => options.areaUnderCurveCheckboxVisible && !predictModeEnabled ),
-        tandem: options.tandem.createTandem( 'areaUnderCurveCheckbox' )
-      } );
-
     // assemble all the scenery nodes
     const contentNode = new VBox( {
       spacing: 10,
       children: [
         predictModeRadioButtonGroup,
         curveManipulationControls,
-        curveButtons,
-        new HSeparator(),
-        tangentCheckbox,
-        areaUnderCurveCheckbox
+        curveButtons
       ]
     } );
 
     super( contentNode, options );
+
+    this.contentNode = contentNode;
+  }
+
+  public addCheckbox( property: LinkableProperty<boolean>, content: Node, providedOptions?: CheckboxOptions ): void {
+
+    const checkbox = new Checkbox( property, content, providedOptions );
+
+    this.addAdditionalContent( checkbox );
+  }
+
+  private addAdditionalContent( node: Node ): void {
+
+    const children = this.contentNode.children;
+
+    // add an hSeparator if the last children of content is NOT a checkbox
+    if ( !( children[ children.length - 1 ] instanceof Checkbox ) ) {
+      this.contentNode.addChild( new HSeparator() );
+    }
+
+    this.contentNode.addChild( node );
   }
 }
-
 calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );

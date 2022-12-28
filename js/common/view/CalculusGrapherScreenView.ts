@@ -34,7 +34,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
-  private readonly graphsNode: GraphsNode;
+  public readonly graphsNode: GraphsNode;
+  protected readonly controlPanel: CalculusGrapherControlPanel;
   protected readonly graphSetProperty: Property<GraphSet>;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
@@ -73,7 +74,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    const controlPanel = new CalculusGrapherControlPanel(
+    this.controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
       model.predictModeEnabledProperty,
       model.curveToTransformProperty,
@@ -87,7 +88,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     } );
 
     const rightVBox = new VBox( {
-      children: [ controlPanel, toolsCheckboxGroup ],
+      children: [ this.controlPanel, toolsCheckboxGroup ],
       spacing: 20,
       align: 'left'
     } );

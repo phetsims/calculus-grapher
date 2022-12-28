@@ -29,8 +29,8 @@ import Range from '../../../../dot/js/Range.js';
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
-  scrubberInitialCoordinate?: number;
-  scrubberTandemName?: string | null;
+  hasTangentTool?: boolean;
+  hasAreaUnderCurveTool?: boolean;
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
@@ -52,14 +52,10 @@ export default class CalculusGrapherModel implements TModel {
   public readonly referenceLine: AncillaryTool;
 
   // model associated with the scrubber on the original graph
-  public readonly scrubber: AncillaryTool;
-
-  // model associated with the scrubber on the original graph
   public readonly labelledPoints: AncillaryTool[];
 
   // model associated with the scrubber on the original graph
   public readonly labelledVerticalLines: AncillaryTool[];
-
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -68,12 +64,11 @@ export default class CalculusGrapherModel implements TModel {
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
-      scrubberInitialCoordinate: CURVE_X_RANGE.getCenter(),
-      scrubberTandemName: null,
+      hasAreaUnderCurveTool: false,
+      hasTangentTool: false,
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
@@ -117,11 +112,6 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.scrubber = this.createAncillaryTool( {
-      initialCoordinate: options.scrubberInitialCoordinate,
-      tandem: ( options.scrubberTandemName === null ) ? Tandem.OPT_OUT : options.tandem.createTandem( options.scrubberTandemName )
-    } );
-
     this.labelledPoints = this.createAncillaryTools( 10,
       options.tandem.createTandem( 'points' ), 'Point' );
 
@@ -139,12 +129,12 @@ export default class CalculusGrapherModel implements TModel {
     this.predictModeEnabledProperty.reset();
 
     this.referenceLine.reset();
-    this.scrubber.reset();
+
     this.labelledPoints.forEach( point => point.reset() );
     this.labelledVerticalLines.forEach( line => line.reset() );
   }
 
-  private createAncillaryTool( providedOptions?: AncillaryToolOptions ): AncillaryTool {
+  protected createAncillaryTool( providedOptions?: AncillaryToolOptions ): AncillaryTool {
 
     const options = optionize<AncillaryToolOptions>()( {}, providedOptions );
 

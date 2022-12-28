@@ -11,18 +11,16 @@ import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 
 type SelfOptions = {
   isGridVisible?: boolean;
   isReferenceLineVisible?: boolean;
   areAllOriginalCurvesVisible?: boolean;
-  isTangentVisible?: boolean;
-  isAreaUnderCurveVisible?: boolean;
 };
 export type CalculusGrapherVisiblePropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class CalculusGrapherVisibleProperties {
+export default class CalculusGrapherVisibleProperties extends PhetioObject {
 
   // indicates if the graph grid is visible.
   public readonly gridVisibleProperty: Property<boolean>;
@@ -33,21 +31,21 @@ export default class CalculusGrapherVisibleProperties {
   // indicates if the predict and original curves are visible.
   public readonly allOriginalCurvesVisibleProperty: Property<boolean>;
 
-  // indicates if the tangent of f(x) is visible.
-  public readonly tangentVisibleProperty: Property<boolean>;
-
-  // indicates if the area under the f(x) is visible.
-  public readonly areaUnderCurveVisibleProperty: Property<boolean>;
 
   public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
-    const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions>()( {
+    const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // Self-Options
       isGridVisible: false,
       isReferenceLineVisible: false,
       areAllOriginalCurvesVisible: false,
-      isTangentVisible: false,
-      isAreaUnderCurveVisible: false
+
+      // PhetioObjectOptions
+      phetioState: false
     }, providedOptions );
+
+    super( options );
 
     this.gridVisibleProperty = new BooleanProperty( options.isGridVisible, {
       tandem: options.tandem.createTandem( 'gridVisibleProperty' )
@@ -61,14 +59,6 @@ export default class CalculusGrapherVisibleProperties {
       tandem: options.tandem.createTandem( 'allOriginalCurvesVisibleProperty' )
     } );
 
-    this.tangentVisibleProperty = new BooleanProperty( options.isTangentVisible, {
-      tandem: options.tandem.createTandem( 'tangentVisibleProperty' )
-    } );
-
-    this.areaUnderCurveVisibleProperty = new BooleanProperty( options.isAreaUnderCurveVisible, {
-      tandem: options.tandem.createTandem( 'areaUnderCurveVisibleProperty' )
-    } );
-
   }
 
   /**
@@ -77,8 +67,7 @@ export default class CalculusGrapherVisibleProperties {
   public reset(): void {
     this.gridVisibleProperty.reset();
     this.referenceLineVisibleProperty.reset();
-    this.tangentVisibleProperty.reset();
-    this.areaUnderCurveVisibleProperty.reset();
+    this.allOriginalCurvesVisibleProperty.reset();
   }
 }
 

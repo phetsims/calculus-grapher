@@ -11,6 +11,9 @@ import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/
 import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
+import AncillaryTool from '../../common/model/AncillaryTool.js';
+
+const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
   curveManipulationModeChoices?: CurveManipulationMode[];
@@ -19,6 +22,9 @@ export type IntegralModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class IntegralModel extends CalculusGrapherModel {
 
+  // model associated with the scrubber on the original graph
+  public readonly areaUnderCurveTool: AncillaryTool;
+
   public constructor( providedOptions: IntegralModelOptions ) {
     const options = optionize<IntegralModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {
       curveManipulationModeChoices: [
@@ -26,12 +32,23 @@ export default class IntegralModel extends CalculusGrapherModel {
         CurveManipulationMode.PEDESTAL,
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
-      ],
-      scrubberInitialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min,
-      scrubberTandemName: 'areaUnderCurveTool'
+      ]
     }, providedOptions );
 
     super( options );
+
+    this.areaUnderCurveTool = this.createAncillaryTool( {
+      initialCoordinate: CURVE_X_RANGE.min,
+      tandem: options.tandem.createTandem( 'areaUnderCurveTool' )
+    } );
+  }
+
+  /**
+   * Reset all
+   */
+  public override reset(): void {
+    super.reset();
+    this.areaUnderCurveTool.reset();
   }
 }
 

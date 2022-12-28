@@ -16,7 +16,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import { HBox, Node, Text } from '../../../../scenery/js/imports.js';
-import ScrubberNode from './ScrubberNode.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -26,11 +25,11 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import ShadedAreaChart from './ShadedAreaChart.js';
-import TangentArrowNode from './TangentArrowNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import PointLabel, { PointLabelOptions } from './PointLabel.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
+import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
+import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -115,61 +114,6 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 10;
     } );
 
-    const scrubberNode = new ScrubberNode( model.scrubber, this.chartTransform, {
-      visibleProperty: new DerivedProperty( [
-        visibleProperties.areaUnderCurveVisibleProperty,
-        visibleProperties.tangentVisibleProperty,
-        model.predictModeEnabledProperty ], ( areaUnderCurve, tangent, predictModeEnabled ) =>
-        ( areaUnderCurve || tangent ) && !predictModeEnabled ),
-      lineOptions: {
-        visibleProperty: visibleProperties.areaUnderCurveVisibleProperty
-      },
-      fill: new DerivedProperty( [ visibleProperties.areaUnderCurveVisibleProperty,
-        visibleProperties.tangentVisibleProperty ], ( area, tangent ) => {
-        if ( area ) {
-          return CalculusGrapherColors.integralCurveStrokeProperty.value;
-        }
-        else if ( tangent ) {
-          return CalculusGrapherColors.derivativeCurveStrokeProperty.value;
-        }
-        else {
-          return null;
-        }
-      } ),
-      tandem: ( model.scrubber.tandem === Tandem.OPT_OUT ) ?
-              Tandem.OPT_OUT :
-              options.tandem.createTandem( `${model.scrubber.tandem.name}Node` )
-    } );
-
-    this.addChild( scrubberNode );
-
-    const shadedAreaChart = new ShadedAreaChart(
-      model.originalCurve,
-      this.chartTransform,
-      model.scrubber.xProperty, {
-        upFill: new DerivedProperty(
-          [ CalculusGrapherColors.integralCurveStrokeProperty ],
-          color => color.brighterColor( 0.8 ) ),
-        downFill: new DerivedProperty(
-          [ CalculusGrapherColors.integralCurveStrokeProperty ],
-          color => color.brighterColor( 0.6 ) ),
-        visibleProperty: new DerivedProperty( [
-          visibleProperties.areaUnderCurveVisibleProperty,
-          model.predictModeEnabledProperty ], ( areaUnderCurve, predictModeEnabled ) =>
-          areaUnderCurve && !predictModeEnabled )
-      } );
-    this.curveLayer.addChild( shadedAreaChart );
-    shadedAreaChart.moveToBack();
-
-    const tangentArrowsNode = new TangentArrowNode( model.scrubber, this.chartTransform, {
-      visibleProperty: new DerivedProperty( [
-        visibleProperties.tangentVisibleProperty,
-        model.predictModeEnabledProperty ], ( tangent, predictModeEnabled ) =>
-        tangent && !predictModeEnabled )
-    } );
-    this.curveLayer.addChild( tangentArrowsNode );
-
-
     graphHeightProperty.link( height => {
 
       // TODO : too much repetition
@@ -201,6 +145,35 @@ export default class OriginalGraphNode extends GraphNode {
     const pointLabel = new PointLabel( ancillaryTool, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( pointLabel );
+  }
+
+  public addScrubberNode( ancillaryTool: AncillaryTool,
+                          providedOptions: ScrubberNodeOptions ): void {
+
+    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, providedOptions );
+
+    this.addChild( scrubberNode );
+  }
+
+  public addTangentArrowNode( ancillaryTool: AncillaryTool,
+                              providedOptions: TangentArrowNodeOptions ): void {
+
+    const tangentArrowNode = new TangentArrowNode( ancillaryTool, this.chartTransform, providedOptions );
+
+    this.curveLayer.addChild( tangentArrowNode );
+
+    tangentArrowNode.moveBackward();
+  }
+
+  public addShadedAreaChart( ancillaryTool: AncillaryTool,
+                             providedOptions: ShadedAreaChartOptions ): void {
+
+    const shadedAreaChart = new ShadedAreaChart( this.curve, this.chartTransform,
+      ancillaryTool.xProperty, providedOptions );
+
+    this.curveLayer.addChild( shadedAreaChart );
+
+    shadedAreaChart.moveToBack();
   }
 
   private setCurvePointerAreas(): void {
