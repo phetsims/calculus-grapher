@@ -13,6 +13,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -51,10 +52,11 @@ export default class TangentArrowNode extends ArrowNode {
       const y = ancillaryTool.yOriginalProperty.value;
       const m = ancillaryTool.yDerivativeProperty.value;
       const theta = Math.atan( m );
-      this.center = chartTransform.modelToViewXY( x, y );
+      this.x = chartTransform.modelToViewX( x );
+      this.y = chartTransform.modelToViewY( y );
 
       // y is positive as one goes down in the view so the rotation must be reversed
-      this.rotateAround( this.center, -( theta - oldTheta ) );
+      this.rotateAround( new Vector2( this.x, this.y ), -( theta - oldTheta ) );
 
       // update the value of old theta
       oldTheta = theta;
