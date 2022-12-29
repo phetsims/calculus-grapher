@@ -29,8 +29,7 @@ import Range from '../../../../dot/js/Range.js';
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
 type SelfOptions = {
-  hasTangentTool?: boolean;
-  hasAreaUnderCurveTool?: boolean;
+
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
@@ -67,8 +66,6 @@ export default class CalculusGrapherModel implements TModel {
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
-      hasAreaUnderCurveTool: false,
-      hasTangentTool: false,
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values
     }, providedOptions );
 
