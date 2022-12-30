@@ -39,7 +39,7 @@ export default class CueingArrowsNode extends VBox {
 
     // arrow options
     const arrowOptions = combineOptions<ArrowNodeOptions>(
-      CalculusGrapherConstants.ARROW_NODE_OPTIONS,
+      CalculusGrapherConstants.CUEING_ARROW_NODE_OPTIONS,
       options.arrowNodeOptions );
 
     const upArrow = new ArrowNode( 0, 0, 0, -CalculusGrapherConstants.ARROW_LENGTH, arrowOptions );

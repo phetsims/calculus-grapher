@@ -12,7 +12,7 @@ import { ArrowNodeOptions } from '../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 
-const ARROW_NODE_OPTIONS: ArrowNodeOptions = {
+const CUEING_ARROW_NODE_OPTIONS: ArrowNodeOptions = {
   headWidth: 25,
   headHeight: 21,
   tailWidth: 12,
@@ -36,7 +36,7 @@ const CalculusGrapherConstants = {
 
   // arrow
   ARROW_LENGTH: 50,
-  ARROW_NODE_OPTIONS: ARROW_NODE_OPTIONS,
+  CUEING_ARROW_NODE_OPTIONS: CUEING_ARROW_NODE_OPTIONS,
 
   // maximum of undo actions (See https://github.com/phetsims/calculus-grapher/issues/64)
   MAX_UNDO: 20,
