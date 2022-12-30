@@ -156,7 +156,7 @@ export default class GraphNodes extends Node {
         const visibleProperty = new BooleanProperty( false,
           { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
 
-        const verticalLineNode = new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
+        return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
           x: originalGraphNode.x,
           cursor: null,
           dragListenerEnabled: false,
@@ -170,7 +170,6 @@ export default class GraphNodes extends Node {
           tandem: verticalLineNodeTandem
         } );
 
-        return verticalLineNode;
       }
     );
 
