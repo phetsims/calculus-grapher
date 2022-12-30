@@ -58,10 +58,10 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
         visibleProperty: this.ancillaryToolVisibleProperty,
         upFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
-          color => color.brighterColor( 0.8 ) ),
+          color => color.brighterColor( 0.6 ) ),
         downFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
-          color => color.brighterColor( 0.6 ) )
+          color => color.brighterColor( 0.8 ) )
       } );
 
     // add focus circle (disk) to the integral curve
