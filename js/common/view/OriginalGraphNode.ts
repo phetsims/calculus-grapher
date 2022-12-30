@@ -28,8 +28,8 @@ import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import PointLabel, { PointLabelOptions } from './PointLabel.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
-import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
-import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
+import TangentArrowNode, { TangentArrowNodeOptions } from '../../derivative/view/TangentArrowNode.js';
+import ShadedAreaChart, { ShadedAreaChartOptions } from '../../integral/view/ShadedAreaChart.js';
 
 type SelfOptions = EmptySelfOptions;
 

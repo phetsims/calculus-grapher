@@ -10,9 +10,9 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import Curve from '../model/Curve.js';
+import Curve from '../../common/model/Curve.js';
 import AreaChart, { AreaChartDataSet } from './AreaChart.js';
-import CurvePoint from '../model/CurvePoint.js';
+import CurvePoint from '../../common/model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 
 type SelfOptions = {

@@ -10,9 +10,9 @@
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import AncillaryTool from '../model/AncillaryTool.js';
+import AncillaryTool from '../../common/model/AncillaryTool.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = {

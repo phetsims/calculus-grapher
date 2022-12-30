@@ -15,12 +15,12 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import Range from '../../../../dot/js/Range.js';
-import { getGraphTypeStroke } from '../model/GraphType.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
-import GraphsNode from './GraphsNode.js';
+import { getGraphTypeStroke } from '../../common/model/GraphType.js';
+import AncillaryTool from '../../common/model/AncillaryTool.js';
+import CalculusGrapherControlPanel from '../../common/view/CalculusGrapherControlPanel.js';
+import GraphsNode from '../../common/view/GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
+import AncillaryToolNode, { AncillaryToolNodeOptions } from '../../common/view/AncillaryToolNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 

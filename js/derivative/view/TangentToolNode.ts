@@ -11,15 +11,15 @@
 
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import AncillaryTool from '../model/AncillaryTool.js';
+import AncillaryTool from '../../common/model/AncillaryTool.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import { getGraphTypeStroke } from '../model/GraphType.js';
-import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
-import GraphsNode from './GraphsNode.js';
+import { getGraphTypeStroke } from '../../common/model/GraphType.js';
+import CalculusGrapherControlPanel from '../../common/view/CalculusGrapherControlPanel.js';
+import GraphsNode from '../../common/view/GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Range from '../../../../dot/js/Range.js';
-import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import AncillaryToolNode, { AncillaryToolNodeOptions } from '../../common/view/AncillaryToolNode.js';
+import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 

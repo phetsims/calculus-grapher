@@ -11,7 +11,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
-import AreaUnderCurveToolNode from '../../common/view/AreaUnderCurveToolNode.js';
+import AreaUnderCurveToolNode from './AreaUnderCurveToolNode.js';
 
 type SelfOptions = EmptySelfOptions;
 

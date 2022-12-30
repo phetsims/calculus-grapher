@@ -11,7 +11,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
-import TangentToolNode from '../../common/view/TangentToolNode.js';
+import TangentToolNode from './TangentToolNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
