@@ -7,19 +7,19 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../sun/js/AquaRadioButtonGroup.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
-import AquaRadioButton from '../../../../sun/js/AquaRadioButton.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
-import { DerivativeNotation, DerivativeNotationValues } from '../CalculusGrapherQueryParameters.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
+import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
+import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../../sun/js/AquaRadioButtonGroup.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
+import AquaRadioButton from '../../../../../sun/js/AquaRadioButton.js';
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
+import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
+import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
+import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 

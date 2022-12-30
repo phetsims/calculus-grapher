@@ -15,10 +15,10 @@ import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import DiscontinuitiesControl from './DiscontinuitiesControl.js';
-import ValuesControl from './ValuesControl.js';
-import NotationControl from './NotationControl.js';
-import VariableControl from './VariableControl.js';
+import DiscontinuitiesControl from './preferences/DiscontinuitiesControl.js';
+import ValuesControl from './preferences/ValuesControl.js';
+import NotationControl from './preferences/NotationControl.js';
+import VariableControl from './preferences/VariableControl.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;

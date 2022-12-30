@@ -7,17 +7,17 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
-import PreferencesControl, { PreferencesControlOptions } from '../../../../joist/js/preferences/PreferencesControl.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import ToggleSwitch, { ToggleSwitchOptions } from '../../../../sun/js/ToggleSwitch.js';
-import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
-import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import Property from '../../../../../axon/js/Property.js';
+import PreferencesControl, { PreferencesControlOptions } from '../../../../../joist/js/preferences/PreferencesControl.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
+import { Text } from '../../../../../scenery/js/imports.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
+import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
+import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
+import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
