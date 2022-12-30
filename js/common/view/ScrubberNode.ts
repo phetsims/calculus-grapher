@@ -67,8 +67,8 @@ export default class ScrubberNode extends Node {
     }, options.lineOptions ) );
 
     scrubber.xProperty.link( x => {
-      sphere.centerX = chartTransform.modelToViewX( x );
-      horizontalLine.x2 = sphere.centerX;
+      sphere.x = chartTransform.modelToViewX( x );
+      horizontalLine.x2 = sphere.x;
     } );
 
     options.children = [ horizontalLine, sphere ];
