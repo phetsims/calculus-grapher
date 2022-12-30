@@ -37,7 +37,7 @@ export default class DerivativeModel extends CalculusGrapherModel {
     super( options );
 
     this.tangentTool = this.createAncillaryTool( {
-      initialCoordinate: CURVE_X_RANGE.min + CURVE_X_RANGE.getLength() * 1 / 3,
+      initialCoordinate: CURVE_X_RANGE.min + CURVE_X_RANGE.getLength() / 3,
       tandem: options.tandem.createTandem( 'tangentTool' )
     } );
   }
