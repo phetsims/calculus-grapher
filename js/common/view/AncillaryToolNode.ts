@@ -127,6 +127,5 @@ export default class AncillaryToolNode extends Node {
     this.ancillaryToolCheckboxProperty.reset();
   }
 
-
 }
 calculusGrapher.register( 'AncillaryToolNode', AncillaryToolNode );

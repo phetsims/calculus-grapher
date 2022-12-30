@@ -79,7 +79,6 @@ export default class GraphNodes extends Node {
         tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
       } );
 
-
     const originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
       graphHeightProperty,
@@ -114,7 +113,6 @@ export default class GraphNodes extends Node {
         tandem: pointLabelTandem
       } );
     } );
-
 
     const derivativeGraphNode = new GraphNode( model.derivativeCurve,
       gridVisibleProperty,
@@ -218,7 +216,6 @@ export default class GraphNodes extends Node {
       }
 
       graphSetNode.setChildren( content );
-
 
       // TODO: find a better way to set positions
       referenceLineNode.setLineBottom( graphSetNode.bottom + 10 );

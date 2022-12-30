@@ -31,7 +31,6 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
   // indicates if the predict curve and original curve are both visible (property of hidden checkbox inside originalGraph).
   public readonly allOriginalCurvesVisibleProperty: Property<boolean>;
 
-
   public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
     const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions, PhetioObjectOptions>()( {

@@ -39,7 +39,6 @@ export default class TangentArrowNode extends ArrowNode {
         doubleHead: true
       }, providedOptions );
 
-
     super( -options.arrowLength / 2,
       0,
       options.arrowLength / 2,

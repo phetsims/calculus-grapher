@@ -63,7 +63,6 @@ export default class VerticalLineNode extends Node {
     let labelNode: Node;
     if ( options.labelProperty ) {
 
-
       const textNode = new Text( options.labelProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         centerX: 0

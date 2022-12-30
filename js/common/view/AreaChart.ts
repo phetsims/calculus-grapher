@@ -76,7 +76,6 @@ export default class AreaChart extends Path {
     // previous dataPoint
     let oldDataPoint: Vector2 | null = null;
 
-
     for ( let i = 0; i < this.dataSet.length; i++ ) {
 
       const dataPoint = this.dataSet[ i ];
