@@ -15,7 +15,7 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import Panel from '../../../../sun/js/Panel.js';
+import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
@@ -24,6 +24,8 @@ type SelfOptions = {
   focusPointNodeOptions?: FocusPointNodeOptions;
 
   lineOptions?: LineOptions;
+
+  labelNodeOptions?: PanelOptions;
 };
 
 export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
@@ -40,6 +42,12 @@ export default class PointLabel extends Node {
         lineOptions: {
           stroke: 'black',
           opacity: 0.5
+        },
+        labelNodeOptions: {
+          align: 'center',
+          stroke: null,
+          opacity: 0.5,
+          fill: 'white'
         }
       }, providedOptions );
 
@@ -53,12 +61,7 @@ export default class PointLabel extends Node {
     const labelNode = new Panel( new Text( options.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       centerX: 0
-    } ), {
-      align: 'center',
-      stroke: null,
-      opacity: 0.5,
-      fill: 'white'
-    } );
+    } ), options.labelNodeOptions );
 
     // line that connects the focus circle to the label
     const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
