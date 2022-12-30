@@ -210,7 +210,7 @@ export default class Curve extends PhetioObject {
   private assignType(): void {
 
     // Loop through each trio of adjacent Points of the curve.
-    this.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
+    this.forEachAdjacentTrio( ( previousPoint, point, nextPoint ) => {
 
       let leftSideDifference: null | number = null;
       let rightSideDifference: null | number = null;
