@@ -28,7 +28,7 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
   // indicates if the reference line is visible.
   public readonly referenceLineVisibleProperty: Property<boolean>;
 
-  // indicates if the predict curve and original curve are visible.
+  // indicates if the predict curve and original curve are both visible (property of hidden checkbox inside originalGraph).
   public readonly allOriginalCurvesVisibleProperty: Property<boolean>;
 
 
