@@ -48,7 +48,7 @@ export default class TangentToolNode extends AncillaryToolNode {
       barometerStringProperty: CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,
       checkboxStringProperty: CalculusGrapherStrings.checkbox.tangentStringProperty,
       mainFillProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
-      scrubberLineVisible: true,
+      scrubberLineVisible: false,
       barometerModelYRange: new Range( -10, 10 )
 
     }, providedOptions );
