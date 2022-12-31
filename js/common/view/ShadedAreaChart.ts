@@ -26,6 +26,13 @@ export type ShadedAreaChartOptions = SelfOptions & NodeOptions;
 
 export default class ShadedAreaChart extends Node {
 
+  /**
+   *
+   * @param curve - the curve model to which the area charts are added
+   * @param chartTransform
+   * @param xProperty - the property the limits the horizontal extent of the area chart
+   * @param providedOptions
+   */
   public constructor( curve: Curve,
                       chartTransform: ChartTransform,
                       xProperty: TReadOnlyProperty<number>,
