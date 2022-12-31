@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import VerticalLineNode from './VerticalLineNode.js';
-import { getGraphTypeStroke, GraphSet, GraphType } from '../model/GraphType.js';
+import { getGraphTypeStroke, GRAPH_TYPES, GraphSet, GraphType } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -39,14 +39,14 @@ export default class GraphNodes extends Node {
   public derivativeGraphNode: GraphNode;
   public secondDerivativeGraphNode: GraphNode;
 
-  private readonly resetGraphNodes: () => void;
-
   public constructor( model: CalculusGrapherModel,
                       graphSetProperty: TReadOnlyProperty<GraphSet>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
+
+    super( options );
 
     // is the grid of each graph node visible
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
@@ -57,7 +57,26 @@ export default class GraphNodes extends Node {
       return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
     } );
 
-    const graphTypes = options.graphSets.flat();
+    // the subset of graphTypes that should be instrumented
+    const subsetGraphTypes = options.graphSets.flat();
+
+    function createGraphNode( graphType: GraphType ): GraphNode {
+      assert && assert( graphType !== 'original', 'cant handle original' );
+
+      return new GraphNode( model.getCurve( graphType ),
+        gridVisibleProperty,
+        graphHeightProperty,
+        new GraphTypeLabelNode( graphType ),
+        {
+          graphType: 'integral',
+          curveStroke: getGraphTypeStroke( graphType ),
+          tandem: subsetGraphTypes.includes( graphType ) ? options.tandem.createTandem( `${graphType}GraphNode` ) : Tandem.OPT_OUT
+        } );
+    }
+
+    this.integralGraphNode = createGraphNode( 'integral' );
+    this.derivativeGraphNode = createGraphNode( 'derivative' );
+    this.secondDerivativeGraphNode = createGraphNode( 'secondDerivative' );
 
     // create label for original graph that toggles between 'Predict f(x)' and 'f(x)'
     const originalLabelNode = new HBox( {
@@ -70,21 +89,11 @@ export default class GraphNodes extends Node {
       spacing: 5
     } );
 
-    // create and add content for the node, based on graphType, notation and variable
-    const integralGraphNode = new GraphNode( model.integralCurve,
-      gridVisibleProperty,
-      graphHeightProperty,
-      new GraphTypeLabelNode( 'integral' ),
-      {
-        curveStroke: getGraphTypeStroke( 'integral' ),
-        tandem: graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralGraphNode' ) : Tandem.OPT_OUT
-      } );
-
-    const originalGraphNode = new OriginalGraphNode( model,
+    this.originalGraphNode = new OriginalGraphNode( model,
       visibleProperties,
       graphHeightProperty,
-      originalLabelNode,
-      {
+      originalLabelNode, {
+        graphType: 'original',
         curveStroke: getGraphTypeStroke( 'original' ),
 
         // originalGraphNode is always instrumented, because it should always be present.
@@ -104,7 +113,7 @@ export default class GraphNodes extends Node {
       const labelProperty = new StringProperty( label,
         { tandem: pointLabelTandem.createTandem( 'labelProperty' ) } );
 
-      originalGraphNode.addPointLabel( ancillaryTool, {
+      this.originalGraphNode.addPointLabel( ancillaryTool, {
         labelProperty: labelProperty,
         focusPointNodeOptions: { fill: colorProperty },
         visibleProperty: new DerivedProperty( [ visibleProperty,
@@ -115,27 +124,9 @@ export default class GraphNodes extends Node {
       } );
     } );
 
-    const derivativeGraphNode = new GraphNode( model.derivativeCurve,
-      gridVisibleProperty,
-      graphHeightProperty,
-      new GraphTypeLabelNode( 'derivative' ),
-      {
-        curveStroke: getGraphTypeStroke( 'derivative' ),
-        tandem: graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeGraphNode' ) : Tandem.OPT_OUT
-      } );
-
-    const secondDerivativeGraphNode = new GraphNode( model.secondDerivativeCurve,
-      gridVisibleProperty,
-      graphHeightProperty,
-      new GraphTypeLabelNode( 'secondDerivative' ),
-      {
-        curveStroke: getGraphTypeStroke( 'secondDerivative' ),
-        tandem: graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeGraphNode' ) : Tandem.OPT_OUT
-      } );
-
     const referenceLineNode = new VerticalLineNode( model.referenceLine,
-      originalGraphNode.chartTransform, {
-        x: originalGraphNode.x,
+      this.originalGraphNode.chartTransform, {
+        x: this.originalGraphNode.x,
         visibleProperty: visibleProperties.referenceLineVisibleProperty,
         cursor: 'pointer',
         tandem: options.tandem.createTandem( 'referenceLineNode' )
@@ -145,28 +136,28 @@ export default class GraphNodes extends Node {
     const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
 
     const verticalLineNodes = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-        const label = CalculusGrapherModel.intToUppercaseLetter( index );
-        const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
+      const label = CalculusGrapherModel.intToUppercaseLetter( index );
+      const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
 
-        const colorProperty = new ColorProperty( new Color( 0x000000 ),
-          { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
-        const labelProperty = new StringProperty( label,
-          { tandem: verticalLineNodeTandem.createTandem( 'labelProperty' ) } );
-        const visibleProperty = new BooleanProperty( false,
-          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
+      const colorProperty = new ColorProperty( new Color( 0x000000 ),
+        { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
+      const labelProperty = new StringProperty( label,
+        { tandem: verticalLineNodeTandem.createTandem( 'labelProperty' ) } );
+      const visibleProperty = new BooleanProperty( false,
+        { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
 
-        return new VerticalLineNode( verticalLine, originalGraphNode.chartTransform, {
-          x: originalGraphNode.x,
-          cursor: null,
-          dragListenerEnabled: false,
-          lineOptions: {
-            lineDash: [ 4, 2 ],
-            stroke: colorProperty
-          },
-          sphereOptions: { visible: false },
-          labelProperty: labelProperty,
-          visibleProperty: visibleProperty,
-          tandem: verticalLineNodeTandem
+      return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
+        x: this.originalGraphNode.x,
+        cursor: null,
+        dragListenerEnabled: false,
+        lineOptions: {
+          lineDash: [ 4, 2 ],
+          stroke: colorProperty
+        },
+        sphereOptions: { visible: false },
+        labelProperty: labelProperty,
+        visibleProperty: visibleProperty,
+        tandem: verticalLineNodeTandem
         } );
 
       }
@@ -181,24 +172,7 @@ export default class GraphNodes extends Node {
     graphSetProperty.link( graphSet => {
 
       // array of Node content of this class
-      const content = graphSet.map( graphType => {
-          if ( graphType === 'integral' ) {
-            return integralGraphNode;
-          }
-          else if ( graphType === 'original' ) {
-            return originalGraphNode;
-          }
-          else if ( graphType === 'derivative' ) {
-            return derivativeGraphNode;
-          }
-          else if ( graphType === 'secondDerivative' ) {
-            return secondDerivativeGraphNode;
-          }
-          else {
-            throw new Error( 'Unsupported graphType' );
-          }
-        }
-      );
+      const content = graphSet.map( graphType => this.getGraphNode( graphType ) );
 
       const numberOfVisibleGraphs = graphSet.length;
 
@@ -229,26 +203,14 @@ export default class GraphNodes extends Node {
 
     options.children = [ graphSetNode, referenceLineNode, verticalLinesLayer ];
 
-    super( options );
-
-    this.originalGraphNode = originalGraphNode;
-    this.integralGraphNode = integralGraphNode;
-    this.derivativeGraphNode = derivativeGraphNode;
-    this.secondDerivativeGraphNode = secondDerivativeGraphNode;
-
-    this.resetGraphNodes = () => {
-      originalGraphNode.reset();
-      derivativeGraphNode.reset();
-      integralGraphNode.reset();
-      secondDerivativeGraphNode.reset();
-    };
+    this.mutate( options );
   }
 
   /**
    * Reset all
    */
   public reset(): void {
-    this.resetGraphNodes();
+    GRAPH_TYPES.forEach( graphType => this.getGraphNode( graphType ).reset() );
   }
 
   public getGraphNode( graphType: GraphType ): GraphNode {

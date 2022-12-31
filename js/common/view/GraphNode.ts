@@ -52,6 +52,7 @@ import PointLabel, { PointLabelOptions } from './PointLabel.js';
 import { GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
+  graphType: GraphType;
   gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
@@ -78,6 +79,8 @@ export default class GraphNode extends Node {
   // visibility of the layer hosting all the curveNodes
   private readonly curveLayerVisibleProperty: BooleanProperty;
   public readonly chartTransform: ChartTransform;
+
+  public readonly graphType: GraphType;
 
   public constructor( curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
@@ -114,6 +117,8 @@ export default class GraphNode extends Node {
     super( options );
 
     this.curve = curve;
+
+    this.graphType = options.graphType;
 
     // chart transform for the graph, the Y range will be updated later
     this.chartTransform = new ChartTransform( {
@@ -330,12 +335,10 @@ export default class GraphNode extends Node {
     this.addChild( scrubberNode );
   }
 
-  // TODO, find a way to get graphType of this node instead
   public addTangentArrowNode( ancillaryTool: AncillaryTool,
-                              graphType: GraphType,
                               providedOptions: TangentArrowNodeOptions ): void {
 
-    const tangentArrowNode = new TangentArrowNode( ancillaryTool, graphType, this.chartTransform, providedOptions );
+    const tangentArrowNode = new TangentArrowNode( ancillaryTool, this.graphType, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( tangentArrowNode );
 

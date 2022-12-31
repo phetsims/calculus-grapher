@@ -16,7 +16,7 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
-import { GraphSet } from './GraphType.js';
+import { GraphSet, GraphType } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -25,6 +25,7 @@ import Property from '../../../../axon/js/Property.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Range from '../../../../dot/js/Range.js';
+import Curve from './Curve.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
@@ -166,6 +167,14 @@ export default class CalculusGrapherModel implements TModel {
     assert && assert( length >= 0, `length cannot be negative: ${length}` );
 
     return [ ...Array( length ).keys() ].map( number => number + start );
+  }
+
+  public getCurve( graphType: GraphType ): Curve {
+    return ( graphType === 'original' ) ? this.originalCurve :
+           ( graphType === 'integral' ) ? this.integralCurve :
+           ( graphType === 'derivative' ) ? this.derivativeCurve :
+           ( graphType === 'secondDerivative' ) ? this.secondDerivativeCurve :
+           null!;
   }
 }
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
