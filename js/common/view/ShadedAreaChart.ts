@@ -1,7 +1,8 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * ShadedAreaChart is
+ * ShadedAreaChart is scenery class that creates two shaded area charts, one for the positive and the other
+ * for the negative.
  *
  * @author Martin Veillette
  */
@@ -27,16 +28,13 @@ export default class ShadedAreaChart extends Node {
 
   public constructor( curve: Curve,
                       chartTransform: ChartTransform,
-                      xCoordinateProperty: TReadOnlyProperty<number>,
+                      xProperty: TReadOnlyProperty<number>,
                       providedOptions?: ShadedAreaChartOptions ) {
 
-    const options = optionize<ShadedAreaChartOptions, SelfOptions, NodeOptions>()(
-      {
-
-        upFill: 'black',
-        downFill: 'black'
-
-      }, providedOptions );
+    const options = optionize<ShadedAreaChartOptions, SelfOptions, NodeOptions>()( {
+      upFill: 'black',
+      downFill: 'black'
+    }, providedOptions );
 
     const upFunction: CurvePointFunction = point => point.y > 0;
     const downFunction: CurvePointFunction = point => point.y < 0;
@@ -51,7 +49,7 @@ export default class ShadedAreaChart extends Node {
     super( options );
 
     curve.curveChangedEmitter.addListener( updateCharts );
-    xCoordinateProperty.link( updateCharts );
+    xProperty.link( updateCharts );
 
     function updateCharts(): void {
       upAreaChart.setDataSet( getDataSet( upFunction ) );
@@ -60,7 +58,7 @@ export default class ShadedAreaChart extends Node {
 
     function getDataSet( pointFunction: CurvePointFunction ): AreaChartDataSet {
       return curve.points.map( point => {
-        if ( pointFunction( point ) && point.x < xCoordinateProperty.value ) {
+        if ( pointFunction( point ) && point.x < xProperty.value ) {
           return point.toVector();
         }
         else {

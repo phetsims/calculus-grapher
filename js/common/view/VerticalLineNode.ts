@@ -53,7 +53,7 @@ export default class VerticalLineNode extends Node {
       dragListenerEnabled: true
     }, providedOptions );
 
-    const xCoordinateProperty = ancillaryTool.xProperty;
+    const xProperty = ancillaryTool.xProperty;
 
     const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
 
@@ -80,7 +80,7 @@ export default class VerticalLineNode extends Node {
     }
     else {
       // add numerical label at the top of the vertical line
-      labelNode = new NumberDisplay( xCoordinateProperty,
+      labelNode = new NumberDisplay( xProperty,
         CalculusGrapherConstants.CURVE_X_RANGE, {
           align: 'center',
           decimalPlaces: 1,
@@ -94,7 +94,7 @@ export default class VerticalLineNode extends Node {
     }
     const cursorNode = new Node( {
       children: [ verticalLine, sphere, labelNode ],
-      centerX: chartTransform.modelToViewX( xCoordinateProperty.value )
+      centerX: chartTransform.modelToViewX( xProperty.value )
     } );
 
     // add dragListener
@@ -103,15 +103,15 @@ export default class VerticalLineNode extends Node {
 
         // current modelPosition
         const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
-        xCoordinateProperty.value = chartTransform.modelXRange.constrainValue( modelX );
+        xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
       },
       enabled: options.dragListenerEnabled,
       tandem: options.dragListenerEnabled ? options.tandem.createTandem( 'dragListener' ) : Tandem.OPT_OUT
     } ) );
 
-    xCoordinateProperty.link( xCoordinate => {
+    xProperty.link( x => {
 
-      cursorNode.centerX = chartTransform.modelToViewX( xCoordinate );
+      cursorNode.centerX = chartTransform.modelToViewX( x );
     } );
 
     options.children = [ cursorNode ];

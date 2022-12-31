@@ -20,8 +20,8 @@ export type FocusPointNodeOptions = SelfOptions & CircleOptions;
 
 export default class FocusCircle extends Circle {
 
-  public constructor( xCoordinateProperty: TReadOnlyProperty<number>,
-                      yCoordinateProperty: TReadOnlyProperty<number>,
+  public constructor( xProperty: TReadOnlyProperty<number>,
+                      yProperty: TReadOnlyProperty<number>,
                       chartTransform: ChartTransform,
                       providedOptions: FocusPointNodeOptions ) {
 
@@ -37,13 +37,13 @@ export default class FocusCircle extends Circle {
 
     const updatePosition = () => {
 
-      const x = xCoordinateProperty.value;
-      const y = yCoordinateProperty.value;
+      const x = xProperty.value;
+      const y = yProperty.value;
       this.center = chartTransform.modelToViewXY( x, y );
     };
 
-    xCoordinateProperty.link( updatePosition );
-    yCoordinateProperty.link( updatePosition );
+    xProperty.link( updatePosition );
+    yProperty.link( updatePosition );
     chartTransform.changedEmitter.addListener( updatePosition );
   }
 }
