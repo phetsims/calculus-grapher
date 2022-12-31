@@ -60,7 +60,7 @@ export default class TangentToolNode extends AncillaryToolNode {
     // add double-headed arrow to the graphNode
     graphNode.addTangentArrowNode(
       tangentTool, {
-        visibleProperty: this.ancillaryToolVisibleProperty
+        visibleProperty: this.getAncillaryToolVisibleProperty( graphType )
       } );
   }
 

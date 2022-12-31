@@ -53,7 +53,8 @@ export type AncillaryToolNodeOptions = SelfOptions & NodeOptions;
 
 export default class AncillaryToolNode extends Node {
 
-  protected readonly ancillaryToolVisibleProperty: TReadOnlyProperty<boolean>;
+  private readonly predictModeEnabledProperty: TReadOnlyProperty<boolean>;
+
   // indicates if checkbox of the ancillary tool is checked.
   private readonly ancillaryToolCheckboxProperty: Property<boolean>;
 
@@ -78,27 +79,23 @@ export default class AncillaryToolNode extends Node {
 
     this.ancillaryTool = ancillaryTool;
     this.graphsNode = graphsNode;
+    this.predictModeEnabledProperty = predictModeEnabledProperty;
 
     // create property associated with under the curve checkbox
     this.ancillaryToolCheckboxProperty = new BooleanProperty( false, {
       tandem: options.visiblePropertiesTandem.createTandem( `${ancillaryTool.tandem.name}CheckboxProperty` )
     } );
 
+
     // add ancillaryTool checkbox to the bottom of the main control panel
     controlPanel.addCheckbox( this.ancillaryToolCheckboxProperty,
       new RichText( options.checkboxStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
-        visibleProperty: DerivedProperty.not( predictModeEnabledProperty ),
+        visibleProperty: new DerivedProperty( [ predictModeEnabledProperty ], predictModeEnabled =>
+          !( predictModeEnabled && graphType === 'original' ) ),
         tandem: controlPanel.tandem.createTandem( `${ancillaryTool.tandem.name}Checkbox` )
       } );
-
-    // create property that conditionally shows the ancillary tools
-    this.ancillaryToolVisibleProperty = new DerivedProperty( [
-        this.ancillaryToolCheckboxProperty,
-        predictModeEnabledProperty ],
-      ( ancillaryToolCheckbox, predictMode ) =>
-        ancillaryToolCheckbox && !predictMode );
 
     // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
     const barometer = new BarometerAccordionBox(
@@ -108,7 +105,7 @@ export default class AncillaryToolNode extends Node {
           modelYRange: options.barometerModelYRange
         },
         translation: options.barometerPosition,
-        visibleProperty: this.ancillaryToolVisibleProperty,
+        visibleProperty: this.getAncillaryToolVisibleProperty( graphType ),
         lineOptions: {
           stroke: options.mainFillProperty
         },
@@ -123,8 +120,9 @@ export default class AncillaryToolNode extends Node {
       fill: options.mainFillProperty
     } );
 
+    const scrubberGraphType = graphType;
     GRAPH_TYPES.forEach( graphType =>
-      this.addFocusCircle( graphType, {
+      this.addFocusCircle( scrubberGraphType, graphType, {
         fill: options.mainFillProperty
       } ) );
   }
@@ -133,16 +131,20 @@ export default class AncillaryToolNode extends Node {
     this.ancillaryToolCheckboxProperty.reset();
   }
 
-  protected addFocusCircle( graphType: GraphType,
+  protected addFocusCircle( scrubberGraphType: GraphType,
+                            graphType: GraphType,
                             providedOptions: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
     const graphNode = this.getGraphNode( graphType );
     const verticalProperty = this.getYProperty( graphType );
+
+    // visibility is ascertained by scrubber if it is attached to the originalGraph
+    const visibleGraphType = ( scrubberGraphType === 'original' ) ? scrubberGraphType : graphType;
 
     graphNode.addFocusCircle(
       this.ancillaryTool.xProperty,
       verticalProperty,
       combineOptions<FocusPointNodeOptions>( {
-        visibleProperty: this.ancillaryToolVisibleProperty
+        visibleProperty: this.getAncillaryToolVisibleProperty( visibleGraphType )
       }, providedOptions ) );
   }
 
@@ -160,9 +162,22 @@ export default class AncillaryToolNode extends Node {
     graphNode.addScrubberNode(
       this.ancillaryTool,
       combineOptions<ScrubberNodeOptions>( {
-        visibleProperty: this.ancillaryToolVisibleProperty,
+        visibleProperty: this.getAncillaryToolVisibleProperty( graphType ),
         tandem: graphNode.tandem.createTandem( `${this.ancillaryTool.tandem.name}ScrubberNode` )
       }, providedOptions ) );
   }
+
+  protected getAncillaryToolVisibleProperty( graphType: GraphType ): TReadOnlyProperty<boolean> {
+    return new DerivedProperty( [
+        this.ancillaryToolCheckboxProperty, this.predictModeEnabledProperty ],
+      ( ancillaryToolCheckbox, predictModeEnabled ) => {
+
+        // if graphType is original and in predictMode
+        const mustHideTool = predictModeEnabled && graphType === 'original';
+
+        return ancillaryToolCheckbox && !mustHideTool;
+      } );
+  }
+
 }
 calculusGrapher.register( 'AncillaryToolNode', AncillaryToolNode );

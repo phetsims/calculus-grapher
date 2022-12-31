@@ -61,7 +61,7 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
     // add shaded area chart to the graphNode
     graphNode.addShadedAreaChart(
       areaUnderCurveTool, {
-        visibleProperty: this.ancillaryToolVisibleProperty,
+        visibleProperty: this.getAncillaryToolVisibleProperty( graphType ),
         upFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
           color => color.brighterColor( 0.6 ) ),

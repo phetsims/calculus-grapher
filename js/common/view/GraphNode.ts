@@ -332,7 +332,7 @@ export default class GraphNode extends Node {
 
     const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, providedOptions );
 
-    this.addChild( scrubberNode );
+    this.curveLayer.addChild( scrubberNode );
   }
 
   public addTangentArrowNode( ancillaryTool: AncillaryTool,
