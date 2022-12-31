@@ -220,8 +220,7 @@ export default class GraphNodes extends Node {
     return ( graphType === 'original' ) ? this.originalGraphNode :
            ( graphType === 'integral' ) ? this.integralGraphNode :
            ( graphType === 'derivative' ) ? this.derivativeGraphNode :
-           ( graphType === 'secondDerivative' ) ? this.secondDerivativeGraphNode :
-           null!;
+           this.secondDerivativeGraphNode;
   }
 }
 

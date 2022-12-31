@@ -98,10 +98,10 @@ export default class AncillaryTool extends PhetioObject {
   }
 
   public getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
-    return ( graphType === 'original' ) ? this.yOriginalProperty :
-           ( graphType === 'integral' ) ? this.yIntegralProperty :
-           ( graphType === 'derivative' ) ? this.yDerivativeProperty :
-           ( graphType === 'secondDerivative' ) ? this.ySecondDerivativeProperty :
+    return graphType === 'original' ? this.yOriginalProperty :
+           graphType === 'integral' ? this.yIntegralProperty :
+           graphType === 'derivative' ? this.yDerivativeProperty :
+           graphType === 'secondDerivative' ? this.ySecondDerivativeProperty :
            null!;
   }
 }
