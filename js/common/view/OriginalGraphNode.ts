@@ -25,11 +25,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import PointLabel, { PointLabelOptions } from './PointLabel.js';
-import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
-import TangentArrowNode, { TangentArrowNodeOptions } from '../../derivative/view/TangentArrowNode.js';
-import ShadedAreaChart, { ShadedAreaChartOptions } from '../../integral/view/ShadedAreaChart.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -139,42 +134,6 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveNode.reset();
   }
 
-  public addPointLabel( ancillaryTool: AncillaryTool,
-                        providedOptions: PointLabelOptions ): void {
-
-    const pointLabel = new PointLabel( ancillaryTool, this.chartTransform, providedOptions );
-
-    this.curveLayer.addChild( pointLabel );
-  }
-
-  public addScrubberNode( ancillaryTool: AncillaryTool,
-                          providedOptions: ScrubberNodeOptions ): void {
-
-    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, providedOptions );
-
-    this.addChild( scrubberNode );
-  }
-
-  public addTangentArrowNode( ancillaryTool: AncillaryTool,
-                              providedOptions: TangentArrowNodeOptions ): void {
-
-    const tangentArrowNode = new TangentArrowNode( ancillaryTool, this.chartTransform, providedOptions );
-
-    this.curveLayer.addChild( tangentArrowNode );
-
-    tangentArrowNode.moveBackward();
-  }
-
-  public addShadedAreaChart( ancillaryTool: AncillaryTool,
-                             providedOptions: ShadedAreaChartOptions ): void {
-
-    const shadedAreaChart = new ShadedAreaChart( this.curve, this.chartTransform,
-      ancillaryTool.xProperty, providedOptions );
-
-    this.curveLayer.addChild( shadedAreaChart );
-
-    shadedAreaChart.moveToBack();
-  }
 
   private setCurvePointerAreas(): void {
     this.curveNode.setPointerAreas();

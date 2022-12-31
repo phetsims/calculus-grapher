@@ -15,6 +15,8 @@ export type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivati
 // An ordered set of GraphType.
 export type GraphSet = GraphType[];
 
+export const GRAPH_TYPES = new Set<GraphType>( [ 'original', 'integral', 'derivative', 'secondDerivative' ] );
+
 /**
  * Gets the stroke for a specific GraphType.
  */
@@ -24,4 +26,24 @@ export function getGraphTypeStroke( graphType: GraphType ): TColor {
          ( graphType === 'derivative' ) ? CalculusGrapherColors.derivativeCurveStrokeProperty :
          ( graphType === 'secondDerivative' ) ? CalculusGrapherColors.secondDerivativeCurveStrokeProperty :
          null;
+}
+
+/**
+ * Gets the derivative GraphType of a GraphType
+ */
+export function getDerivativeOf( graphType: GraphType ): GraphType {
+  assert && assert( graphType !== 'secondDerivative', 'second derivative is not handled' );
+  return ( graphType === 'original' ) ? 'derivative' :
+         ( graphType === 'integral' ) ? 'original' :
+         ( graphType === 'derivative' ) ? 'secondDerivative' : null!;
+}
+
+/**
+ * Gets the integral GraphType of a GraphType
+ */
+export function getIntegralOf( graphType: GraphType ): GraphType {
+  assert && assert( graphType !== 'integral', 'integral is not handled' );
+  return ( graphType === 'original' ) ? 'integral' :
+         ( graphType === 'derivative' ) ? 'original' :
+         ( graphType === 'secondDerivative' ) ? 'derivative' : null!;
 }

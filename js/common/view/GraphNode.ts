@@ -44,6 +44,12 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
+import AncillaryTool from '../model/AncillaryTool.js';
+import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
+import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
+import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
+import PointLabel, { PointLabelOptions } from './PointLabel.js';
+import { GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -313,6 +319,46 @@ export default class GraphNode extends Node {
       providedOptions );
 
     this.curveLayer.addChild( focusCircle );
+  }
+
+
+  public addScrubberNode( ancillaryTool: AncillaryTool,
+                          providedOptions: ScrubberNodeOptions ): void {
+
+    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, providedOptions );
+
+    this.addChild( scrubberNode );
+  }
+
+  // TODO, find a way to get graphType of this node instead
+  public addTangentArrowNode( ancillaryTool: AncillaryTool,
+                              graphType: GraphType,
+                              providedOptions: TangentArrowNodeOptions ): void {
+
+    const tangentArrowNode = new TangentArrowNode( ancillaryTool, graphType, this.chartTransform, providedOptions );
+
+    this.curveLayer.addChild( tangentArrowNode );
+
+    tangentArrowNode.moveBackward();
+  }
+
+  public addShadedAreaChart( ancillaryTool: AncillaryTool,
+                             providedOptions: ShadedAreaChartOptions ): void {
+
+    const shadedAreaChart = new ShadedAreaChart( this.curve, this.chartTransform,
+      ancillaryTool.xProperty, providedOptions );
+
+    this.curveLayer.addChild( shadedAreaChart );
+
+    shadedAreaChart.moveToBack();
+  }
+
+  public addPointLabel( ancillaryTool: AncillaryTool,
+                        providedOptions: PointLabelOptions ): void {
+
+    const pointLabel = new PointLabel( ancillaryTool, this.chartTransform, providedOptions );
+
+    this.curveLayer.addChild( pointLabel );
   }
 }
 

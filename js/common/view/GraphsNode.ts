@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import VerticalLineNode from './VerticalLineNode.js';
-import { getGraphTypeStroke, GraphSet } from '../model/GraphType.js';
+import { getGraphTypeStroke, GraphSet, GraphType } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -37,6 +37,7 @@ export default class GraphNodes extends Node {
   public originalGraphNode: OriginalGraphNode;
   public integralGraphNode: GraphNode;
   public derivativeGraphNode: GraphNode;
+  public secondDerivativeGraphNode: GraphNode;
 
   private readonly resetGraphNodes: () => void;
 
@@ -233,6 +234,7 @@ export default class GraphNodes extends Node {
     this.originalGraphNode = originalGraphNode;
     this.integralGraphNode = integralGraphNode;
     this.derivativeGraphNode = derivativeGraphNode;
+    this.secondDerivativeGraphNode = secondDerivativeGraphNode;
 
     this.resetGraphNodes = () => {
       originalGraphNode.reset();
@@ -247,6 +249,14 @@ export default class GraphNodes extends Node {
    */
   public reset(): void {
     this.resetGraphNodes();
+  }
+
+  public getGraphNode( graphType: GraphType ): GraphNode {
+    return ( graphType === 'original' ) ? this.originalGraphNode :
+           ( graphType === 'integral' ) ? this.integralGraphNode :
+           ( graphType === 'derivative' ) ? this.derivativeGraphNode :
+           ( graphType === 'secondDerivative' ) ? this.secondDerivativeGraphNode :
+           null!;
   }
 }
 

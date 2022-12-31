@@ -3,8 +3,7 @@
 /**
  * AreaUnderCurveToolNode is the area under the curve tool
  *  Its responsibilities include:
- * - Creating and adding a focus circle to the integral curve
- * - Creating and adding the shaded area chart to the original curve
+ * - Creating and adding the shaded area chart to the graph node associated with `graphType`
  *
  * @author Martin Veillette
  */
@@ -13,36 +12,41 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import Range from '../../../../dot/js/Range.js';
-import { getGraphTypeStroke } from '../../common/model/GraphType.js';
-import AncillaryTool from '../../common/model/AncillaryTool.js';
-import CalculusGrapherControlPanel from '../../common/view/CalculusGrapherControlPanel.js';
-import GraphsNode from '../../common/view/GraphsNode.js';
+import { getIntegralOf, GraphType } from '../model/GraphType.js';
+import AncillaryTool from '../model/AncillaryTool.js';
+import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
+import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import AncillaryToolNode, { AncillaryToolNodeOptions } from '../../common/view/AncillaryToolNode.js';
+import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   visiblePropertiesTandem: Tandem;
+
 };
 
 export type AreaUnderCurveToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeOptions,
-  'barometerStringProperty' | 'checkboxStringProperty' | 'mainFillProperty'>;
+  'barometerStringProperty' | 'checkboxStringProperty' | 'mainFillProperty' | 'barometerYProperty'>;
 
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
   public constructor( areaUnderCurveTool: AncillaryTool,
+                      graphType: GraphType,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       controlPanel: CalculusGrapherControlPanel,
                       graphsNode: GraphsNode,
                       providedOptions: AreaUnderCurveToolNodeOptions ) {
 
+    const integralOfGraphType = getIntegralOf( graphType );
+
     const options = optionize<AreaUnderCurveToolNodeOptions, SelfOptions, AncillaryToolNodeOptions>()( {
 
       // AncillaryToolNodeOptions
       barometerStringProperty: CalculusGrapherStrings.barometer.areaUnderCurveStringProperty,
+      barometerYProperty: areaUnderCurveTool.getYProperty( integralOfGraphType ),
       checkboxStringProperty: CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty,
       mainFillProperty: CalculusGrapherColors.integralCurveStrokeProperty,
       scrubberLineVisible: true,
@@ -50,10 +54,12 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
     }, providedOptions );
 
-    super( areaUnderCurveTool, predictModeEnabledProperty, controlPanel, graphsNode, options );
+    super( areaUnderCurveTool, graphType, predictModeEnabledProperty, controlPanel, graphsNode, options );
 
-    // add shaded area chart to the original curve
-    graphsNode.originalGraphNode.addShadedAreaChart(
+    const graphNode = this.getGraphNode( graphType );
+
+    // add shaded area chart to the graphNode
+    graphNode.addShadedAreaChart(
       areaUnderCurveTool, {
         visibleProperty: this.ancillaryToolVisibleProperty,
         upFill: new DerivedProperty(
@@ -62,15 +68,6 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
         downFill: new DerivedProperty(
           [ CalculusGrapherColors.integralCurveStrokeProperty ],
           color => color.brighterColor( 0.8 ) )
-      } );
-
-    // add focus circle (disk) to the integral curve
-    graphsNode.integralGraphNode.addFocusCircle(
-      areaUnderCurveTool.xProperty,
-      areaUnderCurveTool.yIntegralProperty,
-      {
-        visibleProperty: this.ancillaryToolVisibleProperty,
-        fill: getGraphTypeStroke( 'integral' )
       } );
 
   }

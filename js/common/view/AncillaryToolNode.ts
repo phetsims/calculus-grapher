@@ -12,13 +12,13 @@
  * @author Martin Veillette
  */
 
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { Color, Node, NodeOptions, RichText } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Range from '../../../../dot/js/Range.js';
-import { getGraphTypeStroke } from '../model/GraphType.js';
+import { GRAPH_TYPES, GraphType } from '../model/GraphType.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
@@ -28,16 +28,21 @@ import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import { FocusPointNodeOptions } from './FocusCircle.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import GraphNode from './GraphNode.js';
+import { ScrubberNodeOptions } from './ScrubberNode.js';
 
 type SelfOptions = {
   barometerStringProperty: TReadOnlyProperty<string>;
 
+  barometerYProperty: TReadOnlyProperty<number>;
   checkboxStringProperty: TReadOnlyProperty<string>;
+
   mainFillProperty: TReadOnlyProperty<Color>;
-
   visiblePropertiesTandem: Tandem;
-  scrubberLineVisible?: boolean;
 
+  scrubberLineVisible?: boolean;
   barometerModelYRange?: Range;
 
   barometerPosition?: Vector2;
@@ -52,7 +57,11 @@ export default class AncillaryToolNode extends Node {
   // indicates if checkbox of the ancillary tool is checked.
   private readonly ancillaryToolCheckboxProperty: Property<boolean>;
 
+  private readonly graphsNode: GraphsNode;
+  private readonly ancillaryTool: AncillaryTool;
+
   protected constructor( ancillaryTool: AncillaryTool,
+                         graphType: GraphType,
                          predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                          controlPanel: CalculusGrapherControlPanel,
                          graphsNode: GraphsNode,
@@ -66,6 +75,9 @@ export default class AncillaryToolNode extends Node {
       }, providedOptions );
 
     super( options );
+
+    this.ancillaryTool = ancillaryTool;
+    this.graphsNode = graphsNode;
 
     // create property associated with under the curve checkbox
     this.ancillaryToolCheckboxProperty = new BooleanProperty( false, {
@@ -89,7 +101,8 @@ export default class AncillaryToolNode extends Node {
         ancillaryToolCheckbox && !predictMode );
 
     // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
-    const barometer = new BarometerAccordionBox( ancillaryTool.yIntegralProperty,
+    const barometer = new BarometerAccordionBox(
+      options.barometerYProperty,
       options.barometerStringProperty, {
         chartTransformOptions: {
           modelYRange: options.barometerModelYRange
@@ -103,29 +116,53 @@ export default class AncillaryToolNode extends Node {
       } );
     this.addChild( barometer );
 
-    // add scrubber to the bottom of the original graph
-    graphsNode.originalGraphNode.addScrubberNode(
-      ancillaryTool, {
-        lineOptions: {
-          visible: options.scrubberLineVisible
-        },
-        visibleProperty: this.ancillaryToolVisibleProperty,
-        fill: options.mainFillProperty,
-        tandem: graphsNode.originalGraphNode.tandem.createTandem( `${ancillaryTool.tandem.name}ScrubberNode` )
-      } );
+    this.addScrubberNode( graphType, {
+      lineOptions: {
+        visible: options.scrubberLineVisible
+      },
+      fill: options.mainFillProperty
+    } );
 
-    // add focus circle (disk) to the original curve
-    graphsNode.originalGraphNode.addFocusCircle(
-      ancillaryTool.xProperty,
-      ancillaryTool.yOriginalProperty, {
-        visibleProperty: this.ancillaryToolVisibleProperty,
-        fill: getGraphTypeStroke( 'original' )
-      } );
+    GRAPH_TYPES.forEach( graphType =>
+      this.addFocusCircle( graphType, {
+        fill: options.mainFillProperty
+      } ) );
   }
 
   public reset(): void {
     this.ancillaryToolCheckboxProperty.reset();
   }
 
+  protected addFocusCircle( graphType: GraphType,
+                            providedOptions: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
+    const graphNode = this.getGraphNode( graphType );
+    const verticalProperty = this.getYProperty( graphType );
+
+    graphNode.addFocusCircle(
+      this.ancillaryTool.xProperty,
+      verticalProperty,
+      combineOptions<FocusPointNodeOptions>( {
+        visibleProperty: this.ancillaryToolVisibleProperty
+      }, providedOptions ) );
+  }
+
+  protected getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
+    return this.ancillaryTool.getYProperty( graphType );
+  }
+
+  protected getGraphNode( graphType: GraphType ): GraphNode {
+    return this.graphsNode.getGraphNode( graphType );
+  }
+
+  protected addScrubberNode( graphType: GraphType,
+                             providedOptions: StrictOmit<ScrubberNodeOptions, 'visibleProperty' | 'tandem'> ): void {
+    const graphNode = this.getGraphNode( graphType );
+    graphNode.addScrubberNode(
+      this.ancillaryTool,
+      combineOptions<ScrubberNodeOptions>( {
+        visibleProperty: this.ancillaryToolVisibleProperty,
+        tandem: graphNode.tandem.createTandem( `${this.ancillaryTool.tandem.name}ScrubberNode` )
+      }, providedOptions ) );
+  }
 }
 calculusGrapher.register( 'AncillaryToolNode', AncillaryToolNode );

@@ -2,7 +2,7 @@
 
 /**
  * TangentArrowNode is double-headed arrow that represents
- *  the tangent of the original curve at a point.
+ *  the tangent of a curve at a point.
  *
  * @author Martin Veillette
  */
@@ -10,10 +10,11 @@
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import AncillaryTool from '../../common/model/AncillaryTool.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import { getDerivativeOf, GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -24,6 +25,7 @@ export type TangentArrowNodeOptions = SelfOptions & ArrowNodeOptions;
 export default class TangentArrowNode extends ArrowNode {
 
   public constructor( ancillaryTool: AncillaryTool,
+                      graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
 
@@ -44,12 +46,18 @@ export default class TangentArrowNode extends ArrowNode {
       options.arrowLength / 2,
       0, options );
 
+
+    const derivativeOfGraphType = getDerivativeOf( graphType );
+
+    const graphYProperty = ancillaryTool.getYProperty( graphType );
+    const derivativeGraphYProperty = ancillaryTool.getYProperty( derivativeOfGraphType );
+
     // initial theta is zero since the super call is for a horizontal arrow
     let oldTheta = 0;
     const updateArrow = () => {
       const x = ancillaryTool.xProperty.value;
-      const y = ancillaryTool.yOriginalProperty.value;
-      const m = ancillaryTool.yDerivativeProperty.value;
+      const y = graphYProperty.value;
+      const m = derivativeGraphYProperty.value;
       const theta = Math.atan( m );
       this.x = chartTransform.modelToViewX( x );
       this.y = chartTransform.modelToViewY( y );
@@ -63,8 +71,8 @@ export default class TangentArrowNode extends ArrowNode {
 
     chartTransform.changedEmitter.addListener( updateArrow );
     ancillaryTool.xProperty.link( updateArrow );
-    ancillaryTool.yDerivativeProperty.link( updateArrow );
-    ancillaryTool.yOriginalProperty.link( updateArrow );
+    graphYProperty.link( updateArrow );
+    derivativeGraphYProperty.link( updateArrow );
   }
 }
 

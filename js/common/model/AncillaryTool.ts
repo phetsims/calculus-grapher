@@ -21,6 +21,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
+import { GraphType } from './GraphType.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
@@ -94,6 +95,14 @@ export default class AncillaryTool extends PhetioObject {
    */
   public reset(): void {
     this.xProperty.reset();
+  }
+
+  public getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
+    return ( graphType === 'original' ) ? this.yOriginalProperty :
+           ( graphType === 'integral' ) ? this.yIntegralProperty :
+           ( graphType === 'derivative' ) ? this.yDerivativeProperty :
+           ( graphType === 'secondDerivative' ) ? this.ySecondDerivativeProperty :
+           null!;
   }
 }
 
