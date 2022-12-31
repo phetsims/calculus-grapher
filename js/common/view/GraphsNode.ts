@@ -136,28 +136,28 @@ export default class GraphNodes extends Node {
     const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
 
     const verticalLineNodes = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-      const label = CalculusGrapherModel.intToUppercaseLetter( index );
-      const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
+        const label = CalculusGrapherModel.intToUppercaseLetter( index );
+        const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
 
-      const colorProperty = new ColorProperty( new Color( 0x000000 ),
-        { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
-      const labelProperty = new StringProperty( label,
-        { tandem: verticalLineNodeTandem.createTandem( 'labelProperty' ) } );
-      const visibleProperty = new BooleanProperty( false,
-        { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
+        const colorProperty = new ColorProperty( new Color( 0x000000 ),
+          { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
+        const labelProperty = new StringProperty( label,
+          { tandem: verticalLineNodeTandem.createTandem( 'labelProperty' ) } );
+        const visibleProperty = new BooleanProperty( false,
+          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
 
-      return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
-        x: this.originalGraphNode.x,
-        cursor: null,
-        dragListenerEnabled: false,
-        lineOptions: {
-          lineDash: [ 4, 2 ],
-          stroke: colorProperty
-        },
-        sphereOptions: { visible: false },
-        labelProperty: labelProperty,
-        visibleProperty: visibleProperty,
-        tandem: verticalLineNodeTandem
+        return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
+          x: this.originalGraphNode.x,
+          cursor: null,
+          dragListenerEnabled: false,
+          lineOptions: {
+            lineDash: [ 4, 2 ],
+            stroke: colorProperty
+          },
+          sphereOptions: { visible: false },
+          labelProperty: labelProperty,
+          visibleProperty: visibleProperty,
+          tandem: verticalLineNodeTandem
         } );
 
       }
@@ -168,6 +168,11 @@ export default class GraphNodes extends Node {
     } );
 
     const graphSetNode = new Node();
+
+    function setVerticalLineNodePosition( verticalLineNode: VerticalLineNode ): void {
+      verticalLineNode.setLineBottom( graphSetNode.bottom + 10 );
+      verticalLineNode.setLineTop( graphSetNode.top - 5 );
+    }
 
     graphSetProperty.link( graphSet => {
 
@@ -192,14 +197,10 @@ export default class GraphNodes extends Node {
 
       graphSetNode.setChildren( content );
 
-      // TODO: find a better way to set positions
-      referenceLineNode.setLineBottom( graphSetNode.bottom + 10 );
-      referenceLineNode.setLineTop( graphSetNode.top - 5 );
-      verticalLineNodes.forEach( verticalLineNode => {
-        verticalLineNode.setLineBottom( graphSetNode.bottom + 10 );
-        verticalLineNode.setLineTop( graphSetNode.top - 5 );
-      } );
+      setVerticalLineNodePosition( referenceLineNode );
+      verticalLineNodes.forEach( verticalLineNode => setVerticalLineNodePosition( verticalLineNode ) );
     } );
+
 
     options.children = [ graphSetNode, referenceLineNode, verticalLinesLayer ];
 
