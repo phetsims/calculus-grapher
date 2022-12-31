@@ -113,13 +113,15 @@ export default class GraphNodes extends Node {
       const labelProperty = new StringProperty( label,
         { tandem: pointLabelTandem.createTandem( 'labelProperty' ) } );
 
+      const pointLabelVisibleProperty = new DerivedProperty(
+        [ visibleProperty, model.predictModeEnabledProperty ],
+        ( visible, predictMode ) =>
+          visible && !predictMode );
+
       this.originalGraphNode.addPointLabel( ancillaryTool, {
         labelProperty: labelProperty,
         focusPointNodeOptions: { fill: colorProperty },
-        visibleProperty: new DerivedProperty( [ visibleProperty,
-            model.predictModeEnabledProperty ],
-          ( visible, predictMode ) =>
-            visible && !predictMode ),
+        visibleProperty: pointLabelVisibleProperty,
         tandem: pointLabelTandem
       } );
     } );

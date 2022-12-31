@@ -359,7 +359,7 @@ export default class GraphNode extends Node {
   public addPointLabel( ancillaryTool: AncillaryTool,
                         providedOptions: PointLabelOptions ): void {
 
-    const pointLabel = new PointLabel( ancillaryTool, this.chartTransform, providedOptions );
+    const pointLabel = new PointLabel( ancillaryTool, this.graphType, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( pointLabel );
   }
