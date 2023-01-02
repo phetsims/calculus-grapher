@@ -9,7 +9,7 @@
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { Line, LineOptions, Node, RichText, Text, TextOptions } from '../../../../scenery/js/imports.js';
+import { Color, Line, LineOptions, Node, RichText, Text, TextOptions } from '../../../../scenery/js/imports.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
@@ -25,7 +25,8 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
-  lineOptions?: LineOptions;
+  barometerStrokeProperty: TReadOnlyProperty<Color>;
+  lineOptions?: StrictOmit<LineOptions, 'stroke'>;
 
   textOptions?: TextOptions;
 
@@ -45,10 +46,10 @@ export default class BarometerAccordionBox extends AccordionBox {
                       labelString: TReadOnlyProperty<string>,
                       providedOptions: BarometerAccordionBoxOptions ) {
 
+
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()(
       {
         lineOptions: {
-          stroke: 'red',
           lineWidth: 10
         },
         textOptions: {
@@ -132,7 +133,8 @@ export default class BarometerAccordionBox extends AccordionBox {
       combineOptions<LineOptions>( {
           y1: chartTransform.modelToViewY( 0 ),
           y2: chartTransform.modelToViewY( valueProperty.value ),
-          left: axisLine.right
+          left: axisLine.right,
+          stroke: options.barometerStrokeProperty
         },
         options.lineOptions ) );
 

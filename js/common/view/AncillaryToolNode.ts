@@ -32,9 +32,12 @@ import { FocusPointNodeOptions } from './FocusCircle.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphNode from './GraphNode.js';
 import { ScrubberNodeOptions } from './ScrubberNode.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = {
   barometerStringProperty: TReadOnlyProperty<string>;
+
+  barometerStrokeProperty?: TReadOnlyProperty<Color>;
 
   barometerYProperty: TReadOnlyProperty<number>;
   checkboxStringProperty: TReadOnlyProperty<string>;
@@ -72,7 +75,8 @@ export default class AncillaryToolNode extends Node {
       {
         scrubberLineVisible: true,
         barometerModelYRange: new Range( -100, 100 ),
-        barometerPosition: new Vector2( 20, 50 )
+        barometerPosition: new Vector2( 20, 50 ),
+        barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty
       }, providedOptions );
 
     super( options );
@@ -106,9 +110,7 @@ export default class AncillaryToolNode extends Node {
         },
         translation: options.barometerPosition,
         visibleProperty: this.getAncillaryToolVisibleProperty( graphType ),
-        lineOptions: {
-          stroke: options.mainFillProperty
-        },
+        barometerStrokeProperty: options.barometerStrokeProperty,
         tandem: options.tandem.createTandem( `${ancillaryTool.tandem.name}AccordionBox` )
       } );
     this.addChild( barometer );

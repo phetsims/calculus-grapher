@@ -18,8 +18,8 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 
 type SelfOptions = {
 
-  upFill?: TColor;
-  downFill?: TColor;
+  positiveFill?: TColor;
+  negativeFill?: TColor;
 };
 type CurvePointFunction = ( point: CurvePoint ) => boolean;
 export type ShadedAreaChartOptions = SelfOptions & NodeOptions;
@@ -39,18 +39,18 @@ export default class ShadedAreaChart extends Node {
                       providedOptions?: ShadedAreaChartOptions ) {
 
     const options = optionize<ShadedAreaChartOptions, SelfOptions, NodeOptions>()( {
-      upFill: 'black',
-      downFill: 'black'
+      positiveFill: 'black',
+      negativeFill: 'black'
     }, providedOptions );
 
     const upFunction: CurvePointFunction = point => point.y > 0;
     const downFunction: CurvePointFunction = point => point.y < 0;
 
     const upAreaChart = new AreaChart( chartTransform, getDataSet( upFunction ),
-      { fill: options.upFill } );
+      { fill: options.positiveFill } );
 
     const downAreaChart = new AreaChart( chartTransform, getDataSet( downFunction ),
-      { fill: options.downFill } );
+      { fill: options.negativeFill } );
     options.children = [ upAreaChart, downAreaChart ];
 
     super( options );
