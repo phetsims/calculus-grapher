@@ -30,7 +30,7 @@ type SelfOptions = {
 };
 
 export type AreaUnderCurveToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeOptions,
-  'barometerStringProperty' | 'checkboxStringProperty' | 'mainFillProperty' | 'barometerYProperty'>;
+  'barometerStringProperty' | 'checkboxStringProperty' | 'mainFillProperty' | 'barometerYProperty' | 'barometerStrokeProperty'>;
 
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
