@@ -46,7 +46,7 @@ export default class GraphNodes extends Node {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
 
-    super( options );
+    super();
 
     // is the grid of each graph node visible
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
