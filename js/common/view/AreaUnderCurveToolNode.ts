@@ -66,7 +66,7 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
       checkboxStringProperty: CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty,
       mainFillProperty: mainFillProperty,
       scrubberLineVisible: true,
-      barometerModelYRange: new Range( -100, 100 )
+      barometerModelYRange: new Range( -300, 300 )
 
     }, providedOptions );
 
