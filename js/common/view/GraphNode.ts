@@ -52,6 +52,7 @@ import PointLabel, { PointLabelOptions } from './PointLabel.js';
 import { GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
+  // GraphType associated with this graphNode
   graphType: GraphType;
   gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
@@ -80,6 +81,7 @@ export default class GraphNode extends Node {
   private readonly curveLayerVisibleProperty: BooleanProperty;
   public readonly chartTransform: ChartTransform;
 
+  // graphType associated with this graphNode
   public readonly graphType: GraphType;
 
   public constructor( curve: Curve,
