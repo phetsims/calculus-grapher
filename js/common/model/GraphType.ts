@@ -33,8 +33,12 @@ export function getGraphTypeStroke( graphType: GraphType ): TColor {
  */
 export function getDerivativeOf( graphType: GraphType ): GraphType {
   assert && assert( graphType !== 'secondDerivative', 'second derivative is not handled' );
-  return ( graphType === 'original' ) ? 'derivative' :
-         ( graphType === 'integral' ) ? 'original' : 'secondDerivative';
+  const derivativeOfGraphType = graphType === 'integral' ? 'original' :
+                                graphType === 'original' ? 'derivative' :
+                                graphType === 'derivative' ? 'secondDerivative' :
+                                null;
+  assert && assert( derivativeOfGraphType );
+  return derivativeOfGraphType!;
 }
 
 /**
@@ -42,6 +46,10 @@ export function getDerivativeOf( graphType: GraphType ): GraphType {
  */
 export function getIntegralOf( graphType: GraphType ): GraphType {
   assert && assert( graphType !== 'integral', 'integral is not handled' );
-  return ( graphType === 'original' ) ? 'integral' :
-         ( graphType === 'derivative' ) ? 'original' : 'derivative';
+  const integralOfGraphType = graphType === 'original' ? 'integral' :
+                              graphType === 'derivative' ? 'original' :
+                              graphType === 'secondDerivative' ? 'derivative' :
+                              null;
+  assert && assert( integralOfGraphType );
+  return integralOfGraphType!;
 }
