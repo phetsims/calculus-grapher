@@ -25,6 +25,7 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import ReferenceLineNode from './ReferenceLineNode.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -126,7 +127,7 @@ export default class GraphNodes extends Node {
       } );
     } );
 
-    const referenceLineNode = new VerticalLineNode( model.referenceLine,
+    const referenceLineNode = new ReferenceLineNode( model.referenceLine,
       this.originalGraphNode.chartTransform, {
         x: this.originalGraphNode.x,
         visibleProperty: visibleProperties.referenceLineVisibleProperty,
@@ -150,13 +151,10 @@ export default class GraphNodes extends Node {
 
         return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
           x: this.originalGraphNode.x,
-          cursor: null,
-          dragListenerEnabled: false,
           lineOptions: {
             lineDash: [ 4, 2 ],
             stroke: colorProperty
           },
-          sphereOptions: { visible: false },
           labelProperty: labelProperty,
           visibleProperty: visibleProperty,
           tandem: verticalLineNodeTandem
@@ -171,7 +169,7 @@ export default class GraphNodes extends Node {
 
     const graphSetNode = new Node();
 
-    function setVerticalLineNodePosition( verticalLineNode: VerticalLineNode ): void {
+    function setVerticalLineNodePosition( verticalLineNode: VerticalLineNode | ReferenceLineNode ): void {
       verticalLineNode.setLineBottom( graphSetNode.bottom + 10 );
       verticalLineNode.setLineTop( graphSetNode.top - 5 );
     }

@@ -1,43 +1,32 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2023, University of Colorado Boulder
 
 /**
- * VerticalLineNode is the view representation of a user controlled vertical line that spans multiple graphs.
+ * VerticalLineNode is the view representation of vertical line that can spans multiple graphs.
+ * The line has a label node located atop of the vertical line
  *
  * @author Martin Veillette
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { DragListener, Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import Panel from '../../../../sun/js/Panel.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
-  sphereOptions?: ShadedSphereNodeOptions;
-  sphereDiameter?: number;
-  labelProperty?: StringProperty | null;
-
-  dragListenerEnabled?: boolean;
+  labelProperty: StringProperty;
 };
-
-type SelfReferenceLineIconOptions = StrictOmit<SelfOptions, 'labelProperty' | 'dragListenerEnabled'>;
-type ReferenceLineIconOptions = SelfReferenceLineIconOptions & StrictOmit<NodeOptions, 'children'>;
 
 type VerticalLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class VerticalLineNode extends Node {
 
   private readonly verticalLine;
-  private readonly sphere;
 
   public constructor( ancillaryTool: AncillaryTool,
                       chartTransform: ChartTransform,
@@ -46,79 +35,44 @@ export default class VerticalLineNode extends Node {
     const options = optionize<VerticalLineNodeOptions, SelfOptions, NodeOptions>()( {
       lineOptions: {
         stroke: 'black'
-      },
-      sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 18,
-      labelProperty: null,
-      dragListenerEnabled: true
+      }
     }, providedOptions );
 
     const xProperty = ancillaryTool.xProperty;
 
-    const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
-
-    // values will be updated later
+    //  initial y values are arbitrary, client is responsible for setting them using methods below
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
-    let labelNode: Node;
-    if ( options.labelProperty ) {
+    const textNode = new Text( options.labelProperty, {
+      font: CalculusGrapherConstants.CONTROL_FONT,
+      centerX: 0
+    } );
 
-      const textNode = new Text( options.labelProperty, {
-        font: CalculusGrapherConstants.CONTROL_FONT,
-        centerX: 0
-      } );
+    const labelNode = new Panel( textNode, {
+      centerX: 0,
+      align: 'center',
+      bottom: verticalLine.top - 5
+    } );
 
-      labelNode = new Panel( textNode, {
-        centerX: 0,
-        align: 'center',
-        bottom: verticalLine.top - 5
-      } );
+    // center x position if label changes
+    options.labelProperty.link( () => {
+      labelNode.centerX = 0;
+    } );
 
-      options.labelProperty.link( () => {
-        labelNode.centerX = 0;
-      } );
-    }
-    else {
-      // add numerical label at the top of the vertical line
-      labelNode = new NumberDisplay( xProperty,
-        CalculusGrapherConstants.CURVE_X_RANGE, {
-          align: 'center',
-          decimalPlaces: 1,
-          textOptions: {
-            font: CalculusGrapherConstants.CONTROL_FONT
-          },
-          visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
-          bottom: verticalLine.top - 5,
-          centerX: 0
-        } );
-    }
-    const cursorNode = new Node( {
-      children: [ verticalLine, sphere, labelNode ],
+    // set the children inside a layer , to more easily control their x position
+    const verticalNodeLayer = new Node( {
+      children: [ verticalLine, labelNode ],
       centerX: chartTransform.modelToViewX( xProperty.value )
     } );
 
-    // add dragListener
-    cursorNode.addInputListener( new DragListener( {
-      drag( event, listener ) {
-
-        // current modelPosition
-        const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
-        xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
-      },
-      enabled: options.dragListenerEnabled,
-      tandem: options.dragListenerEnabled ? options.tandem.createTandem( 'dragListener' ) : Tandem.OPT_OUT
-    } ) );
-
     xProperty.link( x => {
-
-      cursorNode.centerX = chartTransform.modelToViewX( x );
+      verticalNodeLayer.x = chartTransform.modelToViewX( x );
     } );
 
-    options.children = [ cursorNode ];
+    options.children = [ verticalNodeLayer ];
     super( options );
 
     this.verticalLine = verticalLine;
-    this.sphere = sphere;
 
     this.addLinkedElement( ancillaryTool, {
       tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
@@ -133,31 +87,9 @@ export default class VerticalLineNode extends Node {
   // set Y bottom position of line in view coordinates
   public setLineBottom( value: number ): void {
     this.verticalLine.setY1( value );
-    this.sphere.setCenterY( value );
   }
 
-  /**
-   * Returns an icon for a ReferenceLine
-   */
-  public static getIcon( providedOptions?: ReferenceLineIconOptions ): Node {
 
-    const options = optionize<ReferenceLineIconOptions, SelfReferenceLineIconOptions, NodeOptions>()( {
-      lineOptions: {
-        stroke: 'black',
-        y2: -15
-      },
-      sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 8
-    }, providedOptions );
-
-    const sphere = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
-
-    const verticalLine = new Line( options.lineOptions );
-
-    options.children = [ verticalLine, sphere ];
-
-    return new Node( options );
-  }
 }
 
 calculusGrapher.register( 'VerticalLineNode', VerticalLineNode );
