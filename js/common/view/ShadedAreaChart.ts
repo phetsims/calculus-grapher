@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * ShadedAreaChart is scenery class that creates two shaded area charts, one for the positive and the other

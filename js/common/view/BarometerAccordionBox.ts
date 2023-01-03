@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * BarometerAccordionBox is panel that shows a vertical axis with a barometer indicator
