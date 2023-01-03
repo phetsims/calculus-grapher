@@ -11,49 +11,39 @@
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherControlPanel from './CalculusGrapherControlPanel.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import Range from '../../../../dot/js/Range.js';
 import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import { getDerivativeOf, GraphType } from '../model/GraphType.js';
+import { GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
   visiblePropertiesTandem: Tandem;
 };
 
 export type TangentToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeOptions,
-  'barometerStringProperty' | 'checkboxStringProperty' | 'mainFillProperty' | 'barometerYProperty'>;
+  | 'mainFillProperty'>;
 
 export default class TangentToolNode extends AncillaryToolNode {
 
   public constructor( tangentTool: AncillaryTool,
                       graphType: GraphType,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
-                      controlPanel: CalculusGrapherControlPanel,
                       graphsNode: GraphsNode,
                       providedOptions: TangentToolNodeOptions ) {
 
 
-    const derivativeType = getDerivativeOf( graphType );
-
     const options = optionize<TangentToolNodeOptions, SelfOptions, AncillaryToolNodeOptions>()( {
 
       // AncillaryToolNodeOptions
-      barometerYProperty: tangentTool.getYProperty( derivativeType ),
-      barometerStringProperty: CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,
-      checkboxStringProperty: CalculusGrapherStrings.checkbox.tangentStringProperty,
       mainFillProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
-      scrubberLineVisible: false,
-      barometerModelYRange: new Range( -10, 10 )
+      scrubberLineVisible: false
 
     }, providedOptions );
 
-    super( tangentTool, graphType, predictModeEnabledProperty, controlPanel, graphsNode, options );
+    super( tangentTool, graphType, predictModeEnabledProperty, graphsNode, options );
 
     const graphNode = this.getGraphNode( graphType );
 
@@ -62,6 +52,7 @@ export default class TangentToolNode extends AncillaryToolNode {
       tangentTool, {
         visibleProperty: this.getAncillaryToolVisibleProperty( graphType )
       } );
+
   }
 
   public override reset(): void {

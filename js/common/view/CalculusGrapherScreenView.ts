@@ -37,6 +37,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public readonly graphsNode: GraphsNode;
   protected readonly controlPanel: CalculusGrapherControlPanel;
   protected readonly graphSetProperty: Property<GraphSet>;
+  protected readonly screenViewRootNode: Node;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
@@ -124,10 +125,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     // Instead of adding children directly to the ScreenView, add them to a parent Node, so that we can set
     // pdomOrder on this Node.  See https://github.com/phetsims/calculus-grapher/issues/123
-    const screenViewRootNode = new Node( {
+    this.screenViewRootNode = new Node( {
       children: children
     } );
-    this.addChild( screenViewRootNode );
+    this.addChild( this.screenViewRootNode );
   }
 
   /**
