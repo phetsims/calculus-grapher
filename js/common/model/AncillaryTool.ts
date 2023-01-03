@@ -59,35 +59,42 @@ export default class AncillaryTool extends PhetioObject {
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
     } );
 
-    this.yIntegralProperty = new DerivedProperty( [ this.xProperty ],
+    const yIntegralProperty = new DerivedProperty( [ this.xProperty ],
       x => integralCurve.getYAt( x ), {
         tandem: options.tandem.createTandem( 'yIntegralProperty' ),
         phetioValueType: NumberIO
       } );
 
-    this.yOriginalProperty = new DerivedProperty( [ this.xProperty ],
+    const yOriginalProperty = new DerivedProperty( [ this.xProperty ],
       x => originalCurve.getYAt( x ), {
         tandem: options.tandem.createTandem( 'yOriginalProperty' ),
         phetioValueType: NumberIO
       } );
 
-    this.yDerivativeProperty = new DerivedProperty( [ this.xProperty ],
+    const yDerivativeProperty = new DerivedProperty( [ this.xProperty ],
       x => derivativeCurve.getYAt( x ), {
         tandem: options.tandem.createTandem( 'yDerivativeProperty' ),
         phetioValueType: NumberIO
       } );
 
-    this.ySecondDerivativeProperty = new DerivedProperty( [ this.xProperty ],
+    const ySecondDerivativeProperty = new DerivedProperty( [ this.xProperty ],
       x => secondDerivativeCurve.getYAt( x ), {
         tandem: options.tandem.createTandem( 'ySecondDerivativeProperty' ),
         phetioValueType: NumberIO
       } );
 
-    const curveChangedListener = () => this.xProperty.notifyListenersStatic();
-    integralCurve.curveChangedEmitter.addListener( curveChangedListener );
-    originalCurve.curveChangedEmitter.addListener( curveChangedListener );
-    derivativeCurve.curveChangedEmitter.addListener( curveChangedListener );
-    secondDerivativeCurve.curveChangedEmitter.addListener( curveChangedListener );
+    // When a curve is changed, update its associated y Property.
+    integralCurve.curveChangedEmitter.addListener( () => yIntegralProperty.recomputeDerivation() );
+    originalCurve.curveChangedEmitter.addListener( () => yOriginalProperty.recomputeDerivation() );
+    derivativeCurve.curveChangedEmitter.addListener( () => yDerivativeProperty.recomputeDerivation() );
+    secondDerivativeCurve.curveChangedEmitter.addListener( () => ySecondDerivativeProperty.recomputeDerivation() );
+
+    // We used const above for each DerivedProperty so that we could call recomputeDerivation.
+    // So now assign them to fields of type TReadOnlyProperty<number>.
+    this.yIntegralProperty = yIntegralProperty;
+    this.yOriginalProperty = yOriginalProperty;
+    this.yDerivativeProperty = yDerivativeProperty;
+    this.ySecondDerivativeProperty = ySecondDerivativeProperty;
   }
 
   /**
