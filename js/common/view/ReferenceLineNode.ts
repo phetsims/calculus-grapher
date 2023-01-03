@@ -72,7 +72,7 @@ export default class ReferenceLineNode extends Node {
     } );
 
     // add dragListener
-    shadedSphereNode.addInputListener( new DragListener( {
+    cursorNode.addInputListener( new DragListener( {
       drag( event, listener ) {
 
         // current modelPosition
