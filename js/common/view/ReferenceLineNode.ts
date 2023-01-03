@@ -133,6 +133,4 @@ export default class ReferenceLineNode extends Node {
   }
 
 }
-
-
 calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );
