@@ -98,14 +98,14 @@ const CalculusGrapherColors = {
   integralPositiveFillProperty: new ProfileColorProperty( calculusGrapher, 'integralPositiveFill', {
     default: 'rgb(0,206,109)'
   }, {
-    tandem: tandem.createTandem( 'integralPositiveFillProperty' )
+    tandem: tandem.createTandem( 'integralPositiveFillColorProperty' )
   } ),
 
   // Fill for integral curve (when area is negative)
   integralNegativeFillProperty: new ProfileColorProperty( calculusGrapher, 'integralNegativeFill', {
     default: 'rgb(0,176,89)'
   }, {
-    tandem: tandem.createTandem( 'integralNegativeFillProperty' )
+    tandem: tandem.createTandem( 'integralNegativeFillColorProperty' )
   } ),
 
   // fill for up and down arrows on original graph
