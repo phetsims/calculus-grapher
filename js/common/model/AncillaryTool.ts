@@ -104,12 +104,17 @@ export default class AncillaryTool extends PhetioObject {
     this.xProperty.reset();
   }
 
+  /**
+   * Gets the y Property associated with the specified graph type.
+   */
   public getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
-    return graphType === 'original' ? this.yOriginalProperty :
-           graphType === 'integral' ? this.yIntegralProperty :
-           graphType === 'derivative' ? this.yDerivativeProperty :
-           graphType === 'secondDerivative' ? this.ySecondDerivativeProperty :
-           null!;
+    const yProperty = graphType === 'original' ? this.yOriginalProperty :
+                      graphType === 'integral' ? this.yIntegralProperty :
+                      graphType === 'derivative' ? this.yDerivativeProperty :
+                      graphType === 'secondDerivative' ? this.ySecondDerivativeProperty :
+                      null;
+    assert && assert( yProperty );
+    return yProperty!;
   }
 }
 
