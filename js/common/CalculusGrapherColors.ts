@@ -60,7 +60,7 @@ const CalculusGrapherColors = {
       default: Color.BLUE
     },
     {
-      tandem: tandem.createTandem( 'originalCurveStrokeColorProperty' )
+      tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
     } ),
 
   // Stroke for the original curve
@@ -68,14 +68,14 @@ const CalculusGrapherColors = {
       default: 'rgb(128, 128, 128)'
     },
     {
-      tandem: tandem.createTandem( 'predictCurveStrokeColorProperty' )
+      tandem: tandem.createTandem( 'predictCurveStrokeProperty' )
     } ),
 
   // Stroke for integral curve
   integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
     default: 'rgb(0,146,69)'
   }, {
-    tandem: tandem.createTandem( 'integralCurveStrokeColorProperty' )
+    tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
   } ),
 
   // Stroke for derivative curve
@@ -83,7 +83,7 @@ const CalculusGrapherColors = {
       default: Color.RED
     },
     {
-      tandem: tandem.createTandem( 'derivativeCurveStrokeColorProperty' )
+      tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' )
     } ),
 
   // Stroke for second derivative curve
@@ -91,21 +91,21 @@ const CalculusGrapherColors = {
       default: 'rgb(102,45,145)'
     },
     {
-      tandem: tandem.createTandem( 'secondDerivativeCurveStrokeColorProperty' )
+      tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
     } ),
 
   // Fill for integral curve (when area is positive)
   integralPositiveFillProperty: new ProfileColorProperty( calculusGrapher, 'integralPositiveFill', {
     default: 'rgb(0,206,109)'
   }, {
-    tandem: tandem.createTandem( 'integralPositiveFillColorProperty' )
+    tandem: tandem.createTandem( 'integralPositiveFillProperty' )
   } ),
 
   // Fill for integral curve (when area is negative)
   integralNegativeFillProperty: new ProfileColorProperty( calculusGrapher, 'integralNegativeFill', {
     default: 'rgb(0,176,89)'
   }, {
-    tandem: tandem.createTandem( 'integralNegativeFillColorProperty' )
+    tandem: tandem.createTandem( 'integralNegativeFillProperty' )
   } ),
 
   // fill for up and down arrows on original graph
