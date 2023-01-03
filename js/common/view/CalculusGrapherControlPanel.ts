@@ -11,7 +11,7 @@ import { HSeparator, Node, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
@@ -22,6 +22,8 @@ import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import LinkableProperty from '../../../../axon/js/LinkableProperty.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   smoothButtonVisible?: boolean;
@@ -84,9 +86,12 @@ export default class CalculusGrapherControlPanel extends Panel {
     this.contentNode = contentNode;
   }
 
-  public addCheckbox( property: LinkableProperty<boolean>, content: Node, providedOptions?: CheckboxOptions ): void {
+  public addCheckbox( property: LinkableProperty<boolean>, content: Node,
+                      providedOptions?: StrictOmit<CheckboxOptions, 'boxWidth'> ): void {
 
-    const checkbox = new Checkbox( property, content, providedOptions );
+    const options = combineOptions<CheckboxOptions>( { boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH },
+      providedOptions );
+    const checkbox = new Checkbox( property, content, options );
 
     this.addAdditionalContent( checkbox );
   }

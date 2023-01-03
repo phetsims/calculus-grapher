@@ -98,6 +98,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     const showOriginalCurveCheckbox = new Checkbox( visibleProperties.allOriginalCurvesVisibleProperty,
       showOriginalCurveCheckboxContent, {
+        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
         visibleProperty: predictModeEnabledProperty,
         tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
       } );
