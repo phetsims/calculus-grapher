@@ -22,7 +22,6 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import { Color } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = {
   visiblePropertiesTandem: Tandem;
@@ -46,16 +45,12 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
     // value property associated with the barometer
     const barometerYProperty = areaUnderCurveTool.getYProperty( integralOfGraphType );
 
-    // main color for scrubber
-    const mainFillProperty = getColorShadeProperty( 1.0 );
-
-    // colors for the shaded area charts, one for positive value and the other for negative values
-    const positiveFillProperty = getColorShadeProperty( 0.8 );
-    const negativeFillProperty = getColorShadeProperty( 0.6 );
 
     // color associated with barometer rectangle: changes according to value of barometer
-    const barometerStrokeProperty = new DerivedProperty( [ barometerYProperty, negativeFillProperty, positiveFillProperty ],
-      ( yValue, upFill, downFill ) => yValue > 0 ? upFill : downFill );
+    const barometerStrokeProperty = new DerivedProperty( [ barometerYProperty,
+        CalculusGrapherColors.integralPositiveFillProperty,
+        CalculusGrapherColors.integralNegativeFillProperty ],
+      ( yValue, positiveFill, negativeFill ) => yValue > 0 ? positiveFill : negativeFill );
 
     const options = optionize<AreaUnderCurveToolNodeOptions, SelfOptions, AncillaryToolNodeOptions>()( {
 
@@ -64,7 +59,7 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
       barometerYProperty: barometerYProperty,
       barometerStrokeProperty: barometerStrokeProperty,
       checkboxStringProperty: CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty,
-      mainFillProperty: mainFillProperty,
+      mainFillProperty: CalculusGrapherColors.integralCurveStrokeProperty,
       scrubberLineVisible: true,
       barometerModelYRange: new Range( -300, 300 )
 
@@ -78,16 +73,9 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
     graphNode.addShadedAreaChart(
       areaUnderCurveTool, {
         visibleProperty: this.getAncillaryToolVisibleProperty( graphType ),
-        positiveFill: negativeFillProperty,
-        negativeFill: positiveFillProperty
+        positiveFill: CalculusGrapherColors.integralPositiveFillProperty,
+        negativeFill: CalculusGrapherColors.integralNegativeFillProperty
       } );
-
-
-    function getColorShadeProperty( factor: number ): TReadOnlyProperty<Color> {
-      return new DerivedProperty(
-        [ CalculusGrapherColors.integralCurveStrokeProperty ],
-        color => color.brighterColor( factor ) );
-    }
   }
 
 

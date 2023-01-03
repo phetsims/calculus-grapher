@@ -94,6 +94,20 @@ const CalculusGrapherColors = {
       tandem: tandem.createTandem( 'secondDerivativeCurveStrokeColorProperty' )
     } ),
 
+  // Fill for integral curve (when area is positive)
+  integralPositiveFillProperty: new ProfileColorProperty( calculusGrapher, 'integralPositiveFill', {
+    default: 'rgb(0,206,109)'
+  }, {
+    tandem: tandem.createTandem( 'integralPositiveFillProperty' )
+  } ),
+
+  // Fill for integral curve (when area is negative)
+  integralNegativeFillProperty: new ProfileColorProperty( calculusGrapher, 'integralNegativeFill', {
+    default: 'rgb(0,176,89)'
+  }, {
+    tandem: tandem.createTandem( 'integralNegativeFillProperty' )
+  } ),
+
   // fill for up and down arrows on original graph
   arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
     default: Color.ORANGE
