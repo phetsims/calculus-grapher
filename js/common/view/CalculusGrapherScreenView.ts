@@ -21,6 +21,7 @@ import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import { Node, VBox } from '../../../../scenery/js/imports.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -85,6 +86,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
       }, options.controlPanelOptions ) );
 
     const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties, {
+      checkboxOptions: {
+        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
+      },
       tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
     } );
 
