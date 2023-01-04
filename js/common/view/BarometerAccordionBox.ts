@@ -57,7 +57,7 @@ export default class BarometerAccordionBox extends AccordionBox {
           maxWidth: 100 // determined empirically
         },
         chartTransformOptions: {
-          viewHeight: 200,
+          viewHeight: 175,
           modelYRange: new Range( -10, 10 )
         },
         tickMarkSetExtent: 10,
