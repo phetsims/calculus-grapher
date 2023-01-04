@@ -33,7 +33,8 @@ export default class ScrubberNode extends Node {
     const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()(
       {
         lineOptions: {
-          visible: true
+          visible: true,
+          lineWidth: 2
         },
         fill: 'red',
         sphereDiameter: 18
