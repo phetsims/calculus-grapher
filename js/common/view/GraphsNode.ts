@@ -215,10 +215,13 @@ export default class GraphNodes extends Node {
   }
 
   public getGraphNode( graphType: GraphType ): GraphNode {
-    return ( graphType === 'original' ) ? this.originalGraphNode :
-           ( graphType === 'integral' ) ? this.integralGraphNode :
-           ( graphType === 'derivative' ) ? this.derivativeGraphNode :
-           this.secondDerivativeGraphNode;
+    const graphNode = graphType === 'integral' ? this.integralGraphNode :
+                      graphType === 'original' ? this.originalGraphNode :
+                      graphType === 'derivative' ? this.derivativeGraphNode :
+                      graphType === 'secondDerivative' ? this.secondDerivativeGraphNode :
+                      null;
+    assert && assert( graphNode );
+    return graphNode!;
   }
 }
 
