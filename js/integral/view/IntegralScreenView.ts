@@ -77,7 +77,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     // add ancillaryTool checkbox to the bottom of the main control panel
     this.controlPanel.addCheckbox( this.areaUnderCurveToolNode.ancillaryToolCheckboxProperty,
-      new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
+      new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
         visibleProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
