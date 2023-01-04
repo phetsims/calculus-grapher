@@ -170,7 +170,7 @@ export default class GraphNodes extends Node {
     const graphSetNode = new Node();
 
     function setVerticalLineNodePosition( verticalLineNode: VerticalLineNode | ReferenceLineNode ): void {
-      verticalLineNode.setLineBottom( graphSetNode.bottom + 10 );
+      verticalLineNode.setLineBottom( graphSetNode.bottom + 15 );
       verticalLineNode.setLineTop( graphSetNode.top - 5 );
     }
 
