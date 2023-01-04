@@ -43,15 +43,15 @@ export default class ShadedAreaChart extends Node {
       negativeFill: 'black'
     }, providedOptions );
 
-    const upFunction: CurvePointFunction = point => point.y > 0;
-    const downFunction: CurvePointFunction = point => point.y < 0;
+    const isPositiveFunction: CurvePointFunction = point => point.y > 0;
+    const isNegativeFunction: CurvePointFunction = point => point.y < 0;
 
-    const upAreaChart = new AreaChart( chartTransform, getDataSet( upFunction ),
+    const positiveAreaChart = new AreaChart( chartTransform, getDataSet( isPositiveFunction ),
       { fill: options.positiveFill } );
 
-    const downAreaChart = new AreaChart( chartTransform, getDataSet( downFunction ),
+    const negativeAreaChart = new AreaChart( chartTransform, getDataSet( isNegativeFunction ),
       { fill: options.negativeFill } );
-    options.children = [ upAreaChart, downAreaChart ];
+    options.children = [ positiveAreaChart, negativeAreaChart ];
 
     super( options );
 
@@ -59,12 +59,13 @@ export default class ShadedAreaChart extends Node {
     xProperty.link( updateCharts );
 
     function updateCharts(): void {
-      upAreaChart.setDataSet( getDataSet( upFunction ) );
-      downAreaChart.setDataSet( getDataSet( downFunction ) );
+      positiveAreaChart.setDataSet( getDataSet( isPositiveFunction ) );
+      negativeAreaChart.setDataSet( getDataSet( isNegativeFunction ) );
     }
 
     function getDataSet( pointFunction: CurvePointFunction ): AreaChartDataSet {
       return curve.points.map( point => {
+
         if ( pointFunction( point ) && point.x < xProperty.value ) {
           return point.toVector();
         }
