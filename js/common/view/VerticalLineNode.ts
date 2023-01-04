@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * VerticalLineNode is the view representation of vertical line that can spans multiple graphs.

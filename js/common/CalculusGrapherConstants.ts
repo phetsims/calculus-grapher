@@ -1,4 +1,4 @@
-// Copyright 2020-2022, University of Colorado Boulder
+// Copyright 2020-2023, University of Colorado Boulder
 
 /**
  * Constants used in multiple locations within the 'Calculus Grapher' simulation. All fields are static.
