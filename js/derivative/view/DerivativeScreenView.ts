@@ -16,7 +16,6 @@ import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import Range from '../../../../dot/js/Range.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
@@ -58,7 +57,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         chartTransformOptions: {
           modelYRange: new Range( -10, 10 )
         },
-        translation: new Vector2( 20, 50 ),
+        top: this.graphsNode.y,
+        left: 20,
         visibleProperty: this.tangentToolNode.getAncillaryToolVisibleProperty( 'original' ),
         barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
         tandem: options.tandem.createTandem( 'tangentAccordionBox' )

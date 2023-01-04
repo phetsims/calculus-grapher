@@ -16,7 +16,6 @@ import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import Range from '../../../../dot/js/Range.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
@@ -66,9 +65,10 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       model.areaUnderCurveTool.getYProperty( 'integral' ),
       CalculusGrapherStrings.barometer.areaUnderCurveStringProperty, {
         chartTransformOptions: {
-          modelYRange: new Range( -300, 300 )
+          modelYRange: new Range( -200, 200 )
         },
-        translation: new Vector2( 20, 50 ),
+        top: this.graphsNode.y,
+        left: 20,
         visibleProperty: this.areaUnderCurveToolNode.getAncillaryToolVisibleProperty( 'original' ),
         barometerStrokeProperty: barometerStrokeProperty,
         tandem: options.tandem.createTandem( 'areaUnderCurveAccordionBox' )
