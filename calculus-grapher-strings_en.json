@@ -48,13 +48,13 @@
     "value": "Variable:"
   },
   "checkbox.areaUnderCurve": {
-    "value": "Area Under Curve"
+    "value": "Area Under<br>Curve"
   },
   "checkbox.tangent": {
     "value": "Tangent"
   },
   "barometer.areaUnderCurve": {
-    "value": "Area Under <br> Curve"
+    "value": "Sum of Area"
   },
   "barometer.slopeOfTangent": {
     "value": "Slope of <br> Tangent"
