@@ -13,7 +13,7 @@ import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 import { Text } from '../../../scenery/js/imports.js';
 
-const CONTROL_FONT = new PhetFont( 14 ); // for text on checkboxes, radio buttons, push buttons, etc.
+const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
 const CUEING_ARROW_NODE_OPTIONS: ArrowNodeOptions = {
   headWidth: 25,
   headHeight: 21,
