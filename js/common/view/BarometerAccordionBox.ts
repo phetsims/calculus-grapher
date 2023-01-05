@@ -60,7 +60,7 @@ export default class BarometerAccordionBox extends AccordionBox {
           viewHeight: 175,
           modelYRange: new Range( -10, 10 )
         },
-        tickMarkSetExtent: 10,
+        tickMarkSetExtent: 20,
         numberOfTicks: 10,
 
         // AccordionBoxOptions
@@ -101,7 +101,7 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     function createLabelText( string: string, yPosition: number ): Node {
       return new Text( string, combineOptions<TextOptions>( {
-        right: zeroX - options.tickMarkSetExtent - 10,
+        right: zeroX - options.tickMarkSetExtent / 2 - 10,
         centerY: yPosition
       }, options.textOptions ) );
     }
@@ -118,8 +118,8 @@ export default class BarometerAccordionBox extends AccordionBox {
       ]
     } );
 
-    const zeroTickMark = new Line( zeroX - options.tickMarkSetExtent, zeroY,
-      zeroX + options.tickMarkSetExtent, zeroY, {
+    const zeroTickMark = new Line( zeroX - options.tickMarkSetExtent / 2, zeroY,
+      zeroX + options.tickMarkSetExtent / 2, zeroY, {
         stroke: 'black',
         lineWidth: 1
       } );
