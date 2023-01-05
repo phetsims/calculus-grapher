@@ -70,7 +70,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
-        visibleProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
+        enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
         tandem: this.controlPanel.tandem.createTandem( 'tangentCheckbox' )
       } );
   }
