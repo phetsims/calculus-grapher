@@ -67,7 +67,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         chartTransformOptions: {
           modelYRange: new Range( -200, 200 )
         },
-        top: this.graphsNode.y,
+        top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
         left: 20,
         visibleProperty: this.areaUnderCurveToolNode.getAncillaryToolVisibleProperty( 'original' ),
         barometerStrokeProperty: barometerStrokeProperty,
@@ -81,7 +81,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
         visibleProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
-        tandem: this.controlPanel.tandem.createTandem( 'tangentCheckbox' )
+        tandem: this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' )
       } );
   }
 
