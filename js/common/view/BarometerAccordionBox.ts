@@ -50,7 +50,8 @@ export default class BarometerAccordionBox extends AccordionBox {
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()(
       {
         lineOptions: {
-          lineWidth: 10
+          lineWidth: 10,
+          opacity: 0.6
         },
         textOptions: {
           font: CalculusGrapherConstants.ACCORDION_BOX_TITLE_FONT,
