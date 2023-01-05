@@ -30,7 +30,7 @@ export default class FocusCircle extends Circle {
         // CircleOptions
         stroke: null,
         fill: 'black',
-        radius: 3
+        radius: 4
       }, providedOptions );
 
     super( options );

@@ -52,7 +52,6 @@ export default class VerticalLineNode extends Node {
       centerX: 0,
       bottom: verticalLine.top - 5,
       rectangleOptions: {
-        opacity: 0.85,
         cornerRadius: 3
       }
     } );

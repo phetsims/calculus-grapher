@@ -15,10 +15,10 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
+import BackgroundNode, { BackgroundNodeOptions } from '../../../../scenery-phet/js/BackgroundNode.js';
 
 type SelfOptions = {
   labelProperty: StringProperty;
@@ -26,7 +26,7 @@ type SelfOptions = {
 
   lineOptions?: LineOptions;
 
-  labelNodeOptions?: PanelOptions;
+  labelNodeOptions?: BackgroundNodeOptions;
 };
 
 export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
@@ -43,13 +43,13 @@ export default class PointLabel extends Node {
         focusPointNodeOptions: {},
         lineOptions: {
           stroke: 'black',
-          opacity: 0.5
+          opacity: 0.5,
+          visible: false
         },
         labelNodeOptions: {
-          align: 'center',
-          stroke: null,
-          opacity: 0.5,
-          fill: 'white'
+          rectangleOptions: {
+            cornerRadius: 3
+          }
         }
       }, providedOptions );
 
@@ -66,10 +66,12 @@ export default class PointLabel extends Node {
       options.focusPointNodeOptions );
 
     // label for the point
-    const labelNode = new Panel( new Text( options.labelProperty, {
-      font: CalculusGrapherConstants.POINT_LABEL_FONT,
-      centerX: 0
-    } ), options.labelNodeOptions );
+
+    const textNode = new Text( options.labelProperty, {
+      font: CalculusGrapherConstants.POINT_LABEL_FONT
+    } );
+
+    const labelNode = new BackgroundNode( textNode, options.labelNodeOptions );
 
     // line that connects the focus circle to the label
     const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
@@ -93,7 +95,7 @@ export default class PointLabel extends Node {
       line.setPoint2( P2 );
 
       // position the label node in same direction as line, but further away
-      labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 2 ) );
+      labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 1 ) );
     };
 
     yProperty.link( updatePosition );
