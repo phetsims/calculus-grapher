@@ -10,12 +10,12 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import Panel from '../../../../sun/js/Panel.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -48,10 +48,13 @@ export default class VerticalLineNode extends Node {
       centerX: 0
     } );
 
-    const labelNode = new Panel( textNode, {
+    const labelNode = new BackgroundNode( textNode, {
       centerX: 0,
-      align: 'center',
-      bottom: verticalLine.top - 5
+      bottom: verticalLine.top - 5,
+      rectangleOptions: {
+        opacity: 0.85,
+        cornerRadius: 3
+      }
     } );
 
     // center x position if label changes
