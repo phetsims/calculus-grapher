@@ -16,7 +16,7 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import { Color, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import { GRAPH_TYPES, GraphType } from '../model/GraphType.js';
+import { getGraphTypeStroke, GRAPH_TYPES, GraphType } from '../model/GraphType.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import AncillaryTool from '../model/AncillaryTool.js';
@@ -80,9 +80,7 @@ export default class AncillaryToolNode extends Node {
 
     const scrubberGraphType = graphType;
     GRAPH_TYPES.forEach( graphType =>
-      this.addFocusCircle( scrubberGraphType, graphType, {
-        fill: options.mainFillProperty
-      } ) );
+      this.addFocusCircle( scrubberGraphType, graphType ) );
   }
 
   public reset(): void {
@@ -91,7 +89,7 @@ export default class AncillaryToolNode extends Node {
 
   protected addFocusCircle( scrubberGraphType: GraphType,
                             graphType: GraphType,
-                            providedOptions: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
+                            providedOptions?: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
     const graphNode = this.getGraphNode( graphType );
     const verticalProperty = this.getYProperty( graphType );
 
@@ -102,7 +100,9 @@ export default class AncillaryToolNode extends Node {
       this.ancillaryTool.xProperty,
       verticalProperty,
       combineOptions<FocusPointNodeOptions>( {
-        visibleProperty: this.getAncillaryToolVisibleProperty( visibleGraphType )
+        visibleProperty: this.getAncillaryToolVisibleProperty( visibleGraphType ),
+        fill: getGraphTypeStroke( graphType ),
+        radius: 3
       }, providedOptions ) );
   }
 
