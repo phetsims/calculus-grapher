@@ -20,6 +20,8 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -56,6 +58,13 @@ export default class ReferenceLineNode extends Node {
       CalculusGrapherConstants.CURVE_X_RANGE, {
         align: 'center',
         decimalPlaces: 1,
+        valuePattern: new DerivedProperty(
+          [ CalculusGrapherPreferences.functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
+          ( functionVariable, xString, tString ) => {
+            const variableString = ( functionVariable === 'x' ) ? xString : tString;
+            return `${variableString} = {{value}}`;
+          } ),
+        useRichText: true,
         textOptions: {
           font: CalculusGrapherConstants.CONTROL_FONT
         },
