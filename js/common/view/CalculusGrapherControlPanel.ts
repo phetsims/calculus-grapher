@@ -102,7 +102,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // add an hSeparator if the last children of content is NOT a checkbox
     if ( !( children[ children.length - 1 ] instanceof Checkbox ) ) {
-      this.contentNode.addChild( new HSeparator() );
+      this.contentNode.addChild( new HSeparator( { stroke: 'rgb(200,200,200)' } ) );
     }
 
     this.contentNode.addChild( node );
