@@ -46,7 +46,6 @@ export default class BarometerAccordionBox extends AccordionBox {
                       labelString: TReadOnlyProperty<string>,
                       providedOptions: BarometerAccordionBoxOptions ) {
 
-
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()(
       {
         lineOptions: {
@@ -63,7 +62,6 @@ export default class BarometerAccordionBox extends AccordionBox {
         },
         tickMarkSetExtent: 10,
         numberOfTicks: 10,
-
 
         // AccordionBoxOptions
         stroke: CalculusGrapherColors.panelStrokeProperty,
