@@ -61,7 +61,7 @@ export default class BarometerAccordionBox extends AccordionBox {
           modelYRange: new Range( -10, 10 )
         },
         tickMarkSetExtent: 20,
-        numberOfTicks: 10,
+        numberOfTicks: 4,
 
         // AccordionBoxOptions
         stroke: CalculusGrapherColors.panelStrokeProperty,
