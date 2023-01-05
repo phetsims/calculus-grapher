@@ -201,8 +201,7 @@ export default class GraphNodes extends Node {
       verticalLineNodes.forEach( verticalLineNode => setVerticalLineNodePosition( verticalLineNode ) );
     } );
 
-
-    options.children = [ graphSetNode, referenceLineNode, verticalLinesLayer ];
+    options.children = [ graphSetNode, verticalLinesLayer, referenceLineNode ];
 
     this.mutate( options );
   }
