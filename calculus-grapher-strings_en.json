@@ -53,8 +53,8 @@
   "checkbox.tangent": {
     "value": "Tangent"
   },
-  "barometer.areaUnderCurve": {
-    "value": "Sum of Area"
+  "barometer.accumulatedArea": {
+    "value": "Accumulated<br>Area"
   },
   "barometer.slopeOfTangent": {
     "value": "Slope of<br>Tangent"

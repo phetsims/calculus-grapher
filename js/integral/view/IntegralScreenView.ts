@@ -63,7 +63,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
     const barometer = new BarometerAccordionBox(
       model.areaUnderCurveTool.getYProperty( 'integral' ),
-      CalculusGrapherStrings.barometer.areaUnderCurveStringProperty, {
+      CalculusGrapherStrings.barometer.accumulatedAreaStringProperty, {
         chartTransformOptions: {
           modelYRange: new Range( -200, 200 )
         },
