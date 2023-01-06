@@ -49,7 +49,11 @@ const CalculusGrapherConstants = {
   ACCORDION_BOX_TITLE_FONT: new PhetFont( 14 ), // for accordion box titles
   POINT_LABEL_FONT: new PhetFont( 10 ), // for point label
 
-  CHECKBOX_WIDTH: new Text( 'A', { font: CONTROL_FONT } ).height
+  CHECKBOX_WIDTH: new Text( 'A', { font: CONTROL_FONT } ).height,
+
+  // PhET-io ONLY constants
+  MAX_VERTICAL_LINES: 6,
+  MAX_LABEL_POINTS: 6
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

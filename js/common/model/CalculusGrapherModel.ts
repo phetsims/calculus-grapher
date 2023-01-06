@@ -110,10 +110,10 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.labelledPoints = this.createAncillaryTools( 10,
+    this.labelledPoints = this.createAncillaryTools( CalculusGrapherConstants.MAX_LABEL_POINTS,
       options.tandem.createTandem( 'points' ), 'Point' );
 
-    this.labelledVerticalLines = this.createAncillaryTools( 10,
+    this.labelledVerticalLines = this.createAncillaryTools( CalculusGrapherConstants.MAX_VERTICAL_LINES,
       options.tandem.createTandem( 'verticalLines' ), 'VerticalLine' );
   }
 
