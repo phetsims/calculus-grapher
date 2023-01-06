@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * FocusCircle is a representation of a circle located at (x,y) in model Coordinates.
