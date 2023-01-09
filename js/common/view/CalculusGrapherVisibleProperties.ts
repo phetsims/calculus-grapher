@@ -12,11 +12,16 @@ import Property from '../../../../axon/js/Property.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
   isGridVisible?: boolean;
   isReferenceLineVisible?: boolean;
   areAllOriginalCurvesVisible?: boolean;
+  isTangentVisible?: boolean;
+  isAreaUnderCurveVisible?: boolean;
+  hasTangentTool?: boolean;
+  hasAreaUnderCurveTool?: boolean;
 };
 export type CalculusGrapherVisiblePropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
@@ -31,6 +36,12 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
   // indicates if the predict curve and original curve are both visible (property of hidden checkbox inside originalGraph).
   public readonly allOriginalCurvesVisibleProperty: Property<boolean>;
 
+  // indicates if the tangent checkbox is checked
+  public readonly tangentVisibleProperty: Property<boolean>;
+
+  // indicates if the area under curve checkbox is checked
+  public readonly areaUnderCurveVisibleProperty: Property<boolean>;
+
   public constructor( providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
 
     const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions, PhetioObjectOptions>()( {
@@ -39,6 +50,10 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
       isGridVisible: false,
       isReferenceLineVisible: false,
       areAllOriginalCurvesVisible: false,
+      isAreaUnderCurveVisible: false,
+      isTangentVisible: false,
+      hasTangentTool: false,
+      hasAreaUnderCurveTool: false,
 
       // PhetioObjectOptions
       phetioState: false
@@ -58,6 +73,13 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
       tandem: options.tandem.createTandem( 'allOriginalCurvesVisibleProperty' )
     } );
 
+    this.tangentVisibleProperty = new BooleanProperty( options.isTangentVisible, {
+      tandem: options.hasTangentTool ? options.tandem.createTandem( 'tangentVisibleProperty' ) : Tandem.OPT_OUT
+    } );
+
+    this.areaUnderCurveVisibleProperty = new BooleanProperty( options.isAreaUnderCurveVisible, {
+      tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveVisibleProperty' ) : Tandem.OPT_OUT
+    } );
   }
 
   /**

@@ -34,6 +34,9 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
         smoothButtonVisible: false
+      },
+      visiblePropertiesOptions: {
+        hasTangentTool: true
       }
     }, providedOptions );
 
@@ -41,6 +44,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     this.tangentToolNode = new TangentToolNode(
       model.tangentTool,
+      this.visibleProperties.tangentVisibleProperty,
       'original',
       model.predictModeEnabledProperty,
       this.graphsNode, {
@@ -66,7 +70,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( barometer );
 
     // add ancillaryTool checkbox to the bottom of the main control panel
-    this.controlPanel.addCheckbox( this.tangentToolNode.ancillaryToolCheckboxProperty,
+    this.controlPanel.addCheckbox( this.visibleProperties.tangentVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
@@ -77,7 +81,6 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
   public override reset(): void {
     super.reset();
-    this.tangentToolNode.reset();
   }
 }
 calculusGrapher.register( 'DerivativeScreenView', DerivativeScreenView );

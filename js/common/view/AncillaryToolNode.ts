@@ -3,9 +3,7 @@
 /**
  * AncillaryToolNode is the base class for a tool associated with a graph.
  * Its responsibilities include:
- *  - Creating a property associated with the ancillary tool checkbox
- *  - Creating a derived property that conditionally shows the ancillary tools
- *  - Creating and adkding a scrubber
+ *  - Creating and adding a scrubber
  *  - Creating and adding a focus circle on each graph
  * @author Martin Veillette
  */
@@ -15,8 +13,6 @@ import { Color, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { getGraphTypeStroke, GRAPH_TYPES, GraphType } from '../model/GraphType.js';
-import Property from '../../../../axon/js/Property.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -42,12 +38,13 @@ export default class AncillaryToolNode extends Node {
   private readonly predictModeEnabledProperty: TReadOnlyProperty<boolean>;
 
   // indicates if checkbox of the ancillary tool is checked.
-  public readonly ancillaryToolCheckboxProperty: Property<boolean>;
+  public readonly ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>;
 
   private readonly graphsNode: GraphsNode;
   private readonly ancillaryTool: AncillaryTool;
 
   protected constructor( ancillaryTool: AncillaryTool,
+                         ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>,
                          graphType: GraphType,
                          predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                          graphsNode: GraphsNode,
@@ -64,10 +61,8 @@ export default class AncillaryToolNode extends Node {
     this.graphsNode = graphsNode;
     this.predictModeEnabledProperty = predictModeEnabledProperty;
 
-    // create property associated with under the curve checkbox
-    this.ancillaryToolCheckboxProperty = new BooleanProperty( false, {
-      tandem: options.visiblePropertiesTandem.createTandem( `${ancillaryTool.tandem.name}CheckboxProperty` )
-    } );
+    // property associated with ancillary checkbox
+    this.ancillaryToolCheckboxProperty = ancillaryToolCheckboxProperty;
 
     this.addScrubberNode( graphType, {
       lineOptions: {
@@ -81,27 +76,17 @@ export default class AncillaryToolNode extends Node {
       this.addFocusCircle( scrubberGraphType, graphType ) );
   }
 
-  public reset(): void {
-    this.ancillaryToolCheckboxProperty.reset();
-  }
+  // Returns a derived property that conditionally shows the ancillary tools
+  public getAncillaryToolVisibleProperty( graphType: GraphType ): TReadOnlyProperty<boolean> {
+    return new DerivedProperty( [
+        this.ancillaryToolCheckboxProperty, this.predictModeEnabledProperty ],
+      ( ancillaryToolCheckbox, predictModeEnabled ) => {
 
-  protected addFocusCircle( scrubberGraphType: GraphType,
-                            graphType: GraphType,
-                            providedOptions?: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
-    const graphNode = this.getGraphNode( graphType );
-    const verticalProperty = this.getYProperty( graphType );
+        // if graphType is original and in predictMode
+        const mustHideTool = predictModeEnabled && graphType === 'original';
 
-    // visibility is ascertained by scrubber if it is attached to the originalGraph
-    const visibleGraphType = ( scrubberGraphType === 'original' ) ? scrubberGraphType : graphType;
-
-    graphNode.addFocusCircle(
-      this.ancillaryTool.xProperty,
-      verticalProperty,
-      combineOptions<FocusPointNodeOptions>( {
-        visibleProperty: this.getAncillaryToolVisibleProperty( visibleGraphType ),
-        fill: getGraphTypeStroke( graphType ),
-        radius: 3
-      }, providedOptions ) );
+        return ancillaryToolCheckbox && !mustHideTool;
+      } );
   }
 
   protected getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
@@ -123,16 +108,24 @@ export default class AncillaryToolNode extends Node {
       }, providedOptions ) );
   }
 
-  public getAncillaryToolVisibleProperty( graphType: GraphType ): TReadOnlyProperty<boolean> {
-    return new DerivedProperty( [
-        this.ancillaryToolCheckboxProperty, this.predictModeEnabledProperty ],
-      ( ancillaryToolCheckbox, predictModeEnabled ) => {
+  protected addFocusCircle( scrubberGraphType: GraphType,
+                            graphType: GraphType,
+                            providedOptions?: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
+    const graphNode = this.getGraphNode( graphType );
+    const verticalProperty = this.getYProperty( graphType );
 
-        // if graphType is original and in predictMode
-        const mustHideTool = predictModeEnabled && graphType === 'original';
+    // TODO: confusing explanation
+    // visibility is ascertained by scrubber if it is attached to the originalGraph
+    const visibleGraphType = ( scrubberGraphType === 'original' ) ? scrubberGraphType : graphType;
 
-        return ancillaryToolCheckbox && !mustHideTool;
-      } );
+    graphNode.addFocusCircle(
+      this.ancillaryTool.xProperty,
+      verticalProperty,
+      combineOptions<FocusPointNodeOptions>( {
+        visibleProperty: this.getAncillaryToolVisibleProperty( visibleGraphType ),
+        fill: getGraphTypeStroke( graphType ),
+        radius: 3
+      }, providedOptions ) );
   }
 
 }

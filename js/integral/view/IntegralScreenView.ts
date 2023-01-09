@@ -34,6 +34,9 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
         smoothButtonVisible: false
+      },
+      visiblePropertiesOptions: {
+        hasAreaUnderCurveTool: true
       }
     }, providedOptions );
 
@@ -43,6 +46,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     this.areaUnderCurveToolNode = new AreaUnderCurveToolNode(
       model.areaUnderCurveTool,
+      this.visibleProperties.areaUnderCurveVisibleProperty,
       'original',
       model.predictModeEnabledProperty,
       this.graphsNode, {
@@ -76,7 +80,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( barometer );
 
     // add ancillaryTool checkbox to the bottom of the main control panel
-    this.controlPanel.addCheckbox( this.areaUnderCurveToolNode.ancillaryToolCheckboxProperty,
+    this.controlPanel.addCheckbox( this.visibleProperties.areaUnderCurveVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT
       } ), {
@@ -87,7 +91,6 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
   public override reset(): void {
     super.reset();
-    this.areaUnderCurveToolNode.reset();
   }
 }
 

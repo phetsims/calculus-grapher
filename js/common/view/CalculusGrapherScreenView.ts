@@ -11,7 +11,7 @@ import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.j
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
-import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
+import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptions } from './CalculusGrapherVisibleProperties.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
@@ -27,6 +27,8 @@ type SelfOptions = {
   graphSets: GraphSet[];
   graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
+
+  visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
 };
 
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
@@ -47,7 +49,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
       ScreenViewOptions>()( {
 
       // SelfOptions
-      graphSetRadioButtonGroupItems: []
+      graphSetRadioButtonGroupItems: [],
+      visiblePropertiesOptions: {}
+
     }, providedOptions );
 
     super( options );
@@ -66,9 +70,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
     // Create the view-specific properties for the screen.
-    this.visibleProperties = new CalculusGrapherVisibleProperties( {
+    this.visibleProperties = new CalculusGrapherVisibleProperties( combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
       tandem: options.tandem.createTandem( 'visibleProperties' )
-    } );
+    }, options.visiblePropertiesOptions ) );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),

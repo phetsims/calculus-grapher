@@ -30,6 +30,7 @@ export type AreaUnderCurveToolNodeOptions = SelfOptions & StrictOmit<AncillaryTo
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
   public constructor( areaUnderCurveTool: AncillaryTool,
+                      ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>,
                       graphType: GraphType,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
@@ -43,7 +44,7 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
     }, providedOptions );
 
-    super( areaUnderCurveTool, graphType, predictModeEnabledProperty, graphsNode, options );
+    super( areaUnderCurveTool, ancillaryToolCheckboxProperty, graphType, predictModeEnabledProperty, graphsNode, options );
 
     const graphNode = this.getGraphNode( graphType );
 
@@ -54,11 +55,6 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
         positiveFill: CalculusGrapherColors.integralPositiveFillProperty,
         negativeFill: CalculusGrapherColors.integralNegativeFillProperty
       } );
-  }
-
-
-  public override reset(): void {
-    super.reset();
   }
 }
 calculusGrapher.register( 'AreaUnderCurveToolNode', AreaUnderCurveToolNode );

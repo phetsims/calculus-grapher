@@ -29,6 +29,7 @@ export type TangentToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeO
 export default class TangentToolNode extends AncillaryToolNode {
 
   public constructor( tangentTool: AncillaryTool,
+                      ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>,
                       graphType: GraphType,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
@@ -43,7 +44,7 @@ export default class TangentToolNode extends AncillaryToolNode {
 
     }, providedOptions );
 
-    super( tangentTool, graphType, predictModeEnabledProperty, graphsNode, options );
+    super( tangentTool, ancillaryToolCheckboxProperty, graphType, predictModeEnabledProperty, graphsNode, options );
 
     const graphNode = this.getGraphNode( graphType );
 
@@ -53,10 +54,6 @@ export default class TangentToolNode extends AncillaryToolNode {
         visibleProperty: this.getAncillaryToolVisibleProperty( graphType )
       } );
 
-  }
-
-  public override reset(): void {
-    super.reset();
   }
 }
 calculusGrapher.register( 'TangentToolNode', TangentToolNode );
