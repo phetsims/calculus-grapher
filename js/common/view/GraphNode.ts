@@ -198,7 +198,7 @@ export default class GraphNode extends Node {
 
     // create horizontal numerical labels for ticks
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
-      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { fontSize: 8 } )
+      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
     } );
 
     // create vertical numerical labels for ticks
@@ -310,7 +310,7 @@ export default class GraphNode extends Node {
       {
         value: CalculusGrapherConstants.CURVE_X_RANGE.min,
         createLabel: ( value: number ) =>
-          new Text( Utils.toFixed( value, decimalPlaces ), { fontSize: 8 } ),
+          new Text( Utils.toFixed( value, decimalPlaces ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } ),
         positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
           label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
           return label;
