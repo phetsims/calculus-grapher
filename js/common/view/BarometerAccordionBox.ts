@@ -53,7 +53,7 @@ export default class BarometerAccordionBox extends AccordionBox {
           opacity: 0.6
         },
         textOptions: {
-          font: CalculusGrapherConstants.ACCORDION_BOX_TITLE_FONT,
+          font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
           maxWidth: 100 // determined empirically
         },
         chartTransformOptions: {
