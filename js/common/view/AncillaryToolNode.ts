@@ -5,10 +5,8 @@
  * Its responsibilities include:
  *  - Creating a property associated with the ancillary tool checkbox
  *  - Creating a derived property that conditionally shows the ancillary tools
- *  - Creating and adding a checkbox on the main panel
- *  - Creating and adding a scrubber
+ *  - Creating and adkding a scrubber
  *  - Creating and adding a focus circle on each graph
- *  - Creating and adding a barometer associated with the ancillary tool
  * @author Martin Veillette
  */
 
