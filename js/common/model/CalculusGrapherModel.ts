@@ -170,11 +170,13 @@ export default class CalculusGrapherModel implements TModel {
   }
 
   public getCurve( graphType: GraphType ): Curve {
-    return ( graphType === 'original' ) ? this.originalCurve :
-           ( graphType === 'integral' ) ? this.integralCurve :
-           ( graphType === 'derivative' ) ? this.derivativeCurve :
-           ( graphType === 'secondDerivative' ) ? this.secondDerivativeCurve :
-           null!;
+    const curve = graphType === 'integral' ? this.integralCurve :
+                  graphType === 'original' ? this.originalCurve :
+                  graphType === 'derivative' ? this.derivativeCurve :
+                  graphType === 'secondDerivative' ? this.secondDerivativeCurve :
+                  null;
+    assert && assert( curve );
+    return curve!;
   }
 }
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
