@@ -83,6 +83,7 @@ export default class GraphNodes extends Node {
       children: [
         new Text( CalculusGrapherStrings.predictStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
+          maxWidth: 100,
           visibleProperty: model.predictModeEnabledProperty
         } ),
         new GraphTypeLabelNode( 'original' ) ],
@@ -138,15 +139,15 @@ export default class GraphNodes extends Node {
       const label = verticalLine.labelProperty.value;
       const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
 
-        const colorProperty = new ColorProperty( new Color( 0x000000 ),
-          { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
-        const visibleProperty = new BooleanProperty( false,
-          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
+      const colorProperty = new ColorProperty( new Color( 0x000000 ),
+        { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
+      const visibleProperty = new BooleanProperty( false,
+        { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
 
-        return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
-          x: this.originalGraphNode.x,
-          lineOptions: {
-            lineDash: [ 4, 2 ],
+      return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
+        x: this.originalGraphNode.x,
+        lineOptions: {
+          lineDash: [ 4, 2 ],
             stroke: colorProperty
           },
           visibleProperty: visibleProperty,

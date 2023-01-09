@@ -72,7 +72,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     // add ancillaryTool checkbox to the bottom of the main control panel
     this.controlPanel.addCheckbox( this.visibleProperties.tangentVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
-        font: CalculusGrapherConstants.CONTROL_FONT
+        font: CalculusGrapherConstants.CONTROL_FONT,
+        maxWidth: 100
       } ), {
         enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
         tandem: this.controlPanel.tandem.createTandem( 'tangentCheckbox' )

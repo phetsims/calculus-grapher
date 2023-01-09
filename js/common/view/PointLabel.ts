@@ -66,7 +66,8 @@ export default class PointLabel extends Node {
     // label for the point
 
     const textNode = new Text( labelledAncillaryTool.labelProperty, {
-      font: CalculusGrapherConstants.POINT_LABEL_FONT
+      font: CalculusGrapherConstants.POINT_LABEL_FONT,
+      maxWidth: 50
     } );
 
     const labelNode = new BackgroundNode( textNode, options.labelNodeOptions );

@@ -42,7 +42,8 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
     const originalCurveLabelNode = new GraphTypeLabelNode( 'original' );
 
     const predictText = new Text( CalculusGrapherStrings.predictStringProperty, {
-      font: CalculusGrapherConstants.CONTROL_FONT
+      font: CalculusGrapherConstants.CONTROL_FONT,
+      maxWidth: 50
     } );
 
     // To give the labels the same effective size

@@ -121,7 +121,8 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
     } );
 
   return new RichText( labelStringProperty, {
-    font: new PhetFont( fontSizeOptions.nominalFontSize )
+    font: new PhetFont( fontSizeOptions.nominalFontSize ),
+    maxWidth: 50
   } );
 }
 
@@ -232,19 +233,22 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
 
   // The symbol for integral
   const integralSymbolNode = new RichText( CalculusGrapherSymbols.integral, {
-    font: new PhetFont( fontSizeOptions.integralSymbolFontSize )
+    font: new PhetFont( fontSizeOptions.integralSymbolFontSize ),
+    maxWidth: 50
   } );
 
   const limitsFont = new PhetFont( fontSizeOptions.limitsFontSize );
 
   // lower limit of integral
   const lowerBoundNode = new RichText( '0', {
-    font: limitsFont
+    font: limitsFont,
+    maxWidth: 25
   } );
 
   // upper limit of integral
   const upperBoundNode = new RichText( variableStringProperty, {
-    font: limitsFont
+    font: limitsFont,
+    maxWidth: 25
   } );
 
   // integrand of integral: f(x)dx
@@ -258,7 +262,8 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
       return `${f}${HAIR_SPACE_STRING}(${x}) ${d}${x} `;
     } );
   const integrandNode = new RichText( integrandStringProperty, {
-    font: new PhetFont( fontSizeOptions.nominalFontSize )
+    font: new PhetFont( fontSizeOptions.nominalFontSize ),
+    maxWidth: 100
   } );
 
   // laying out the various nodes
@@ -283,13 +288,13 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
     children: [
 
       // numerator
-      new RichText( numeratorStringProperty, { font: fractionFont } ),
+      new RichText( numeratorStringProperty, { font: fractionFont, maxWidth: 100 } ),
 
       // horizontal line between numerator and denominator, resized automatically by VBox
       new HSeparator( { stroke: 'black', lineWidth: 0.5 } ),
 
       // denominator
-      new RichText( denominatorStringProperty, { font: fractionFont } )
+      new RichText( denominatorStringProperty, { font: fractionFont, maxWidth: 100 } )
     ]
   } );
 }

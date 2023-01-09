@@ -89,7 +89,8 @@ export default class OriginalGraphNode extends GraphNode {
     const showOriginalCurveCheckboxContent = new HBox( {
       children: [
         new Text( CalculusGrapherStrings.showStringProperty, {
-          font: CalculusGrapherConstants.CONTROL_FONT
+          font: CalculusGrapherConstants.CONTROL_FONT,
+          maxWidth: 100
         } ),
         new GraphTypeLabelNode( 'original' )
       ],
