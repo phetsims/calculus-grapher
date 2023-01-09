@@ -234,7 +234,7 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   // The symbol for integral
   const integralSymbolNode = new RichText( CalculusGrapherSymbols.integral, {
     font: new PhetFont( fontSizeOptions.integralSymbolFontSize ),
-    maxWidth: 50
+    maxWidth: 25
   } );
 
   const limitsFont = new PhetFont( fontSizeOptions.limitsFontSize );
@@ -263,7 +263,7 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
     } );
   const integrandNode = new RichText( integrandStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
-    maxWidth: 100
+    maxWidth: 50
   } );
 
   // laying out the various nodes
@@ -288,13 +288,13 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
     children: [
 
       // numerator
-      new RichText( numeratorStringProperty, { font: fractionFont, maxWidth: 100 } ),
+      new RichText( numeratorStringProperty, { font: fractionFont, maxWidth: 50 } ),
 
       // horizontal line between numerator and denominator, resized automatically by VBox
       new HSeparator( { stroke: 'black', lineWidth: 0.5 } ),
 
       // denominator
-      new RichText( denominatorStringProperty, { font: fractionFont, maxWidth: 100 } )
+      new RichText( denominatorStringProperty, { font: fractionFont, maxWidth: 50 } )
     ]
   } );
 }
