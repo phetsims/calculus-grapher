@@ -11,17 +11,15 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import AncillaryTool from '../model/AncillaryTool.js';
+import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
 import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
 import BackgroundNode, { BackgroundNodeOptions } from '../../../../scenery-phet/js/BackgroundNode.js';
 
 type SelfOptions = {
-  labelProperty: StringProperty;
   focusPointNodeOptions?: FocusPointNodeOptions;
 
   lineOptions?: LineOptions;
@@ -33,7 +31,7 @@ export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'
 
 export default class PointLabel extends Node {
 
-  public constructor( ancillaryTool: AncillaryTool,
+  public constructor( labelledAncillaryTool: LabelledAncillaryTool,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: PointLabelOptions ) {
@@ -54,20 +52,20 @@ export default class PointLabel extends Node {
       }, providedOptions );
 
     // property associated with y value
-    const yProperty = ancillaryTool.getYProperty( graphType );
+    const yProperty = labelledAncillaryTool.getYProperty( graphType );
 
     // property associated with the tangent at the y value
-    const yDerivativeProperty = ancillaryTool.getYProperty( getDerivativeOf( graphType ) );
+    const yDerivativeProperty = labelledAncillaryTool.getYProperty( getDerivativeOf( graphType ) );
 
     // small point (disk) on curve - focusCircle is responsible for updating its position
     const focusCircle = new FocusCircle(
-      ancillaryTool.xProperty,
+      labelledAncillaryTool.xProperty,
       yProperty, chartTransform,
       options.focusPointNodeOptions );
 
     // label for the point
 
-    const textNode = new Text( options.labelProperty, {
+    const textNode = new Text( labelledAncillaryTool.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT
     } );
 
@@ -79,7 +77,6 @@ export default class PointLabel extends Node {
     // update the positions of the line and label Node
     // use some heuristic algorithm to prevent the label to overlap with the curve
     const updatePosition = () => {
-
 
       const tangent = yDerivativeProperty.value;
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
@@ -100,14 +97,14 @@ export default class PointLabel extends Node {
 
     yProperty.link( updatePosition );
 
-    options.labelProperty.link( updatePosition );
+    labelledAncillaryTool.labelProperty.link( updatePosition );
 
     options.children = [ line, focusCircle, labelNode ];
 
     super( options );
 
-    this.addLinkedElement( ancillaryTool, {
-      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
+    this.addLinkedElement( labelledAncillaryTool, {
+      tandem: options.tandem.createTandem( labelledAncillaryTool.tandem.name )
     } );
   }
 }

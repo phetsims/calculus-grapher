@@ -50,6 +50,7 @@ import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js
 import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
 import PointLabel, { PointLabelOptions } from './PointLabel.js';
 import { GraphType } from '../model/GraphType.js';
+import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
 
 type SelfOptions = {
   // GraphType associated with this graphNode
@@ -358,10 +359,10 @@ export default class GraphNode extends Node {
     shadedAreaChart.moveToBack();
   }
 
-  public addPointLabel( ancillaryTool: AncillaryTool,
+  public addPointLabel( labelledAncillaryTool: LabelledAncillaryTool,
                         providedOptions: PointLabelOptions ): void {
 
-    const pointLabel = new PointLabel( ancillaryTool, this.graphType, this.chartTransform, providedOptions );
+    const pointLabel = new PointLabel( labelledAncillaryTool, this.graphType, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( pointLabel );
   }

@@ -14,12 +14,10 @@ import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
+import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
-  labelProperty: StringProperty;
 };
 
 type VerticalLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
@@ -28,7 +26,7 @@ export default class VerticalLineNode extends Node {
 
   private readonly verticalLine;
 
-  public constructor( ancillaryTool: AncillaryTool,
+  public constructor( labelledAncillaryTool: LabelledAncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions?: VerticalLineNodeOptions ) {
 
@@ -38,12 +36,12 @@ export default class VerticalLineNode extends Node {
       }
     }, providedOptions );
 
-    const xProperty = ancillaryTool.xProperty;
+    const xProperty = labelledAncillaryTool.xProperty;
 
     //  initial y values are arbitrary, client is responsible for setting them using methods below
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
 
-    const textNode = new Text( options.labelProperty, {
+    const textNode = new Text( labelledAncillaryTool.labelProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       centerX: 0
     } );
@@ -57,7 +55,7 @@ export default class VerticalLineNode extends Node {
     } );
 
     // center x position if label changes
-    options.labelProperty.link( () => {
+    labelledAncillaryTool.labelProperty.link( () => {
       labelNode.centerX = 0;
     } );
 
@@ -76,8 +74,8 @@ export default class VerticalLineNode extends Node {
 
     this.verticalLine = verticalLine;
 
-    this.addLinkedElement( ancillaryTool, {
-      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
+    this.addLinkedElement( labelledAncillaryTool, {
+      tandem: options.tandem.createTandem( labelledAncillaryTool.tandem.name )
     } );
   }
 

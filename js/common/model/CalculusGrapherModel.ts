@@ -26,6 +26,7 @@ import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Range from '../../../../dot/js/Range.js';
 import Curve from './Curve.js';
+import LabelledAncillaryTool, { LabelledAncillaryToolOptions } from './LabelledAncillaryTool.js';
 
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 
@@ -51,11 +52,8 @@ export default class CalculusGrapherModel implements TModel {
   // model for the reference line
   public readonly referenceLine: AncillaryTool;
 
-  // model associated with the scrubber on the original graph
-  public readonly labelledPoints: AncillaryTool[];
-
-  // model associated with the scrubber on the original graph
-  public readonly labelledVerticalLines: AncillaryTool[];
+  public readonly labelledPoints: LabelledAncillaryTool[];
+  public readonly labelledVerticalLines: LabelledAncillaryTool[];
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -110,10 +108,10 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.labelledPoints = this.createAncillaryTools( CalculusGrapherConstants.MAX_LABEL_POINTS,
+    this.labelledPoints = this.createLabelledAncillaryTools( CalculusGrapherConstants.MAX_LABEL_POINTS,
       options.tandem.createTandem( 'points' ), 'Point' );
 
-    this.labelledVerticalLines = this.createAncillaryTools( CalculusGrapherConstants.MAX_VERTICAL_LINES,
+    this.labelledVerticalLines = this.createLabelledAncillaryTools( CalculusGrapherConstants.MAX_VERTICAL_LINES,
       options.tandem.createTandem( 'verticalLines' ), 'VerticalLine' );
   }
 
@@ -140,14 +138,35 @@ export default class CalculusGrapherModel implements TModel {
       options );
   }
 
-  // returns an array of 'totalNumber' AncillaryTool, with evenly spaced initialCoordinates,
-  // stamped with alphabetically ordered tandem names.
-  private createAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): AncillaryTool[] {
+  protected createLabelledAncillaryTool( providedOptions?: LabelledAncillaryToolOptions ): LabelledAncillaryTool {
 
-    return CalculusGrapherModel.arrayGenerator( totalNumber ).map( value => this.createAncillaryTool( {
-      initialCoordinate: CURVE_X_RANGE.expandNormalizedValue( value / totalNumber ),
-      tandem: tandem.createTandem( `${CalculusGrapherModel.intToUppercaseLetter( value )}${tandemSuffix}` )
-    } ) );
+    const options = optionize<LabelledAncillaryToolOptions>()( {}, providedOptions );
+
+    return new LabelledAncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
+      options );
+  }
+
+  // returns an array of 'totalNumber' LabelledAncillaryTool, with evenly spaced initialCoordinates,
+  // stamped with alphabetically ordered tandem names.
+  private createLabelledAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): LabelledAncillaryTool[] {
+
+    // an array of consecutive numbers with totalNumber of elements
+    const numberArray = CalculusGrapherModel.arrayGenerator( totalNumber );
+
+    const labelledAncillaryTools = numberArray.map( value => {
+
+      // convert integer to string 0->A, 1->B, etc
+      const label = CalculusGrapherModel.intToUppercaseLetter( value );
+
+      // create a labelled ancillary tool with
+      return this.createLabelledAncillaryTool( {
+        label: label,
+        initialCoordinate: CURVE_X_RANGE.expandNormalizedValue( value / totalNumber ),
+        tandem: tandem.createTandem( `${label}${tandemSuffix}` )
+      } );
+    } );
+
+    return labelledAncillaryTools;
   }
 
   public static intToUppercaseLetter( integer: number ): string {

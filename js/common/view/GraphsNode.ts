@@ -23,7 +23,6 @@ import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 
@@ -103,24 +102,21 @@ export default class GraphNodes extends Node {
     );
 
     const pointLabelsTandem = options.tandem.createTandem( 'pointLabels' );
-    model.labelledPoints.forEach( ( ancillaryTool, index ) => {
-      const label = CalculusGrapherModel.intToUppercaseLetter( index );
+    model.labelledPoints.forEach( ( labelledAncillaryTool, index ) => {
+      const label = labelledAncillaryTool.labelProperty.value;
       const pointLabelTandem = pointLabelsTandem.createTandem( `${label}PointLabel` );
 
       const visibleProperty = new BooleanProperty( false,
         { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } );
       const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value,
         { tandem: pointLabelTandem.createTandem( 'colorProperty' ) } );
-      const labelProperty = new StringProperty( label,
-        { tandem: pointLabelTandem.createTandem( 'labelProperty' ) } );
 
       const pointLabelVisibleProperty = new DerivedProperty(
         [ visibleProperty, model.predictModeEnabledProperty ],
         ( visible, predictMode ) =>
           visible && !predictMode );
 
-      this.originalGraphNode.addPointLabel( ancillaryTool, {
-        labelProperty: labelProperty,
+      this.originalGraphNode.addPointLabel( labelledAncillaryTool, {
         focusPointNodeOptions: { fill: colorProperty },
         visibleProperty: pointLabelVisibleProperty,
         tandem: pointLabelTandem
@@ -139,13 +135,11 @@ export default class GraphNodes extends Node {
     const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
 
     const verticalLineNodes = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-        const label = CalculusGrapherModel.intToUppercaseLetter( index );
-        const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
+      const label = verticalLine.labelProperty.value;
+      const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
 
         const colorProperty = new ColorProperty( new Color( 0x000000 ),
           { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
-        const labelProperty = new StringProperty( label,
-          { tandem: verticalLineNodeTandem.createTandem( 'labelProperty' ) } );
         const visibleProperty = new BooleanProperty( false,
           { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
 
@@ -155,7 +149,6 @@ export default class GraphNodes extends Node {
             lineDash: [ 4, 2 ],
             stroke: colorProperty
           },
-          labelProperty: labelProperty,
           visibleProperty: visibleProperty,
           tandem: verticalLineNodeTandem
         } );
