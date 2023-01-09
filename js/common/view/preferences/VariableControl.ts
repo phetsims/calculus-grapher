@@ -39,9 +39,8 @@ export default class VariableControl extends HBox {
       spacing: 15
     }, providedOptions );
 
-    const labelText = new Text( CalculusGrapherStrings.variableStringProperty, {
-      font: PreferencesDialog.CONTENT_FONT
-    } );
+    const labelText = new Text( CalculusGrapherStrings.variableStringProperty,
+      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
 
     const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )

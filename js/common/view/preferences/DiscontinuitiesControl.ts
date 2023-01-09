@@ -36,9 +36,8 @@ export default class DiscontinuitiesControl extends HBox {
       spacing: 15
     }, providedOptions );
 
-    const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty, {
-      font: PreferencesDialog.CONTENT_FONT
-    } );
+    const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty,
+      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
 
     const radioButtonGroup = new DiscontinuitiesRadioButtonGroup( connectDiscontinuitiesProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )

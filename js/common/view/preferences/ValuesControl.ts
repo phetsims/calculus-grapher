@@ -36,9 +36,9 @@ export default class ValuesControl extends PreferencesControl {
       labelSpacing: 10
     }, providedOptions );
 
-    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, {
-      font: PreferencesDialog.CONTENT_FONT
-    } );
+    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty,
+      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
+
     options.labelNode = labelText;
 
     const toggleSwitch = new ToggleSwitch( valuesVisibleProperty, false, true,

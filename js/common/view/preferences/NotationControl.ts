@@ -39,9 +39,8 @@ export default class NotationControl extends HBox {
       spacing: 15
     }, providedOptions );
 
-    const labelText = new Text( CalculusGrapherStrings.notationStringProperty, {
-      font: PreferencesDialog.CONTENT_FONT
-    } );
+    const labelText = new Text( CalculusGrapherStrings.notationStringProperty,
+      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
 
     const radioButtonGroup = new NotationRadioButtonGroup( derivativeNotationProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )
