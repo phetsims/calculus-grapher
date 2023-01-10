@@ -136,18 +136,18 @@ export default class GraphNodes extends Node {
     const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
 
     const verticalLineNodes = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-      const label = verticalLine.labelProperty.value;
-      const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
+        const label = verticalLine.labelProperty.value;
+        const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
 
-      const colorProperty = new ColorProperty( new Color( 0x000000 ),
-        { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
-      const visibleProperty = new BooleanProperty( false,
-        { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
+        const colorProperty = new ColorProperty( new Color( 0x000000 ),
+          { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
+        const visibleProperty = new BooleanProperty( false,
+          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
 
-      return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
-        x: this.originalGraphNode.x,
-        lineOptions: {
-          lineDash: [ 4, 2 ],
+        return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
+          x: this.originalGraphNode.x,
+          lineOptions: {
+            lineDash: [ 4, 2 ],
             stroke: colorProperty
           },
           visibleProperty: visibleProperty,

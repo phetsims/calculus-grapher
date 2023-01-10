@@ -226,33 +226,33 @@ export default class TransformedCurve extends Curve {
 
     this.points.forEach( point => {
 
-      // weight associated with the sinusoidal function:  0<=P<=1
-      // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
-      // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
-      let P: number;
+        // weight associated with the sinusoidal function:  0<=P<=1
+        // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
+        // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
+        let P: number;
 
-      if ( point.x >= leftMax && point.x <= rightMin ) {
+        if ( point.x >= leftMax && point.x <= rightMin ) {
 
-        // in the inner region, always have a pure sinusoidal, weight of 1
-        P = 1;
-      }
-      else if ( point.x > leftMin && point.x < leftMax ) {
+          // in the inner region, always have a pure sinusoidal, weight of 1
+          P = 1;
+        }
+        else if ( point.x > leftMin && point.x < leftMax ) {
 
-        // in the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
-        P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
-      }
-      else if ( point.x > rightMin && point.x < rightMax ) {
+          // in the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+        }
+        else if ( point.x > rightMin && point.x < rightMax ) {
 
-        // in the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
-        P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
-      }
-      else {
+          // in the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+        }
+        else {
 
-        // outside the cosine base, the weight is zero
-        P = 0;
-      }
+          // outside the cosine base, the weight is zero
+          P = 0;
+        }
 
-      // assign the y value with the correct weight
+        // assign the y value with the correct weight
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
       }
     );
