@@ -37,7 +37,7 @@ export default class IntegralModel extends CalculusGrapherModel {
 
     super( options );
 
-    this.areaUnderCurveTool = this.createAncillaryTool( {
+    this.areaUnderCurveTool = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
       initialCoordinate: CURVE_X_RANGE.min,
       tandem: options.tandem.createTandem( 'areaUnderCurveTool' )
     } );
