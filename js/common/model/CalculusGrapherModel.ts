@@ -24,7 +24,6 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import AncillaryTool from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Range from '../../../../dot/js/Range.js';
 import Curve from './Curve.js';
 import LabelledAncillaryTool from './LabelledAncillaryTool.js';
 
@@ -108,10 +107,20 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.labelledPoints = this.createLabelledAncillaryTools( CalculusGrapherConstants.MAX_LABEL_POINTS,
+    this.labelledPoints = LabelledAncillaryTool.createTools(
+      CalculusGrapherConstants.MAX_LABEL_POINTS,
+      this.integralCurve,
+      this.originalCurve,
+      this.derivativeCurve,
+      this.secondDerivativeCurve,
       options.tandem.createTandem( 'points' ), 'Point' );
 
-    this.labelledVerticalLines = this.createLabelledAncillaryTools( CalculusGrapherConstants.MAX_VERTICAL_LINES,
+    this.labelledVerticalLines = LabelledAncillaryTool.createTools(
+      CalculusGrapherConstants.MAX_VERTICAL_LINES,
+      this.integralCurve,
+      this.originalCurve,
+      this.derivativeCurve,
+      this.secondDerivativeCurve,
       options.tandem.createTandem( 'verticalLines' ), 'VerticalLine' );
   }
 
@@ -128,46 +137,6 @@ export default class CalculusGrapherModel implements TModel {
 
     this.labelledPoints.forEach( point => point.reset() );
     this.labelledVerticalLines.forEach( line => line.reset() );
-  }
-
-  // returns an array of 'totalNumber' LabelledAncillaryTool, with evenly spaced initialCoordinates,
-  // stamped with alphabetically ordered tandem names.
-  private createLabelledAncillaryTools( totalNumber: number, tandem: Tandem, tandemSuffix: string ): LabelledAncillaryTool[] {
-
-    // an array of consecutive numbers with totalNumber of elements
-    const numberArray = CalculusGrapherModel.arrayGenerator( totalNumber );
-
-    return numberArray.map( value => {
-
-      // convert integer to string 0->A, 1->B, etc
-      const label = CalculusGrapherModel.intToUppercaseLetter( value );
-
-      // create a labelled ancillary tool with
-      return new LabelledAncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-        label: label,
-        initialCoordinate: CURVE_X_RANGE.expandNormalizedValue( value / totalNumber ),
-        tandem: tandem.createTandem( `${label}${tandemSuffix}` )
-      } );
-    } );
-  }
-
-  public static intToUppercaseLetter( integer: number ): string {
-    assert && assert( ( new Range( 0, 25 ) ).contains( integer ), `integer must range from 0 to 25: ${integer}` );
-    assert && assert( Number.isInteger( integer ), `must be an integer: ${integer}` );
-
-    return String.fromCharCode( integer + 'A'.charCodeAt( 0 ) );
-  }
-
-  /**
-   * generate an array of consecutive numbers
-   * @param length - length of the array
-   * @param start - initial value of the array
-   */
-  public static arrayGenerator( length: number, start = 0 ): number[] {
-    assert && assert( Number.isInteger( length ), `length must be an integer: ${length}` );
-    assert && assert( length >= 0, `length cannot be negative: ${length}` );
-
-    return [ ...Array( length ).keys() ].map( number => number + start );
   }
 
   public getCurve( graphType: GraphType ): Curve {
