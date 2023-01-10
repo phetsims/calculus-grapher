@@ -141,15 +141,6 @@ export default class Curve extends PhetioObject {
   }
 
   /**
-   * Gets the y-value whose x-value is closest to the given x-value.
-   */
-  public getYAt( x: number ): number {
-    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
-
-    return this.getClosestPointAt( x ).y;
-  }
-
-  /**
    * Gets the index of the array whose x-value is closest to the given x-value.
    */
   public getClosestIndexAt( x: number ): number {
