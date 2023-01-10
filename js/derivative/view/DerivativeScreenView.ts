@@ -55,7 +55,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.addChild( this.tangentToolNode );
 
     // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
-    const barometer = new BarometerAccordionBox(
+    const tangentAccordionBox = new BarometerAccordionBox(
       model.tangentTool.getYProperty( 'derivative' ),
       CalculusGrapherStrings.barometer.slopeOfTangentStringProperty, {
         chartTransformOptions: {
@@ -67,7 +67,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
         tandem: options.tandem.createTandem( 'tangentAccordionBox' )
       } );
-    this.screenViewRootNode.addChild( barometer );
+    this.screenViewRootNode.addChild( tangentAccordionBox );
 
     // add ancillaryTool checkbox to the bottom of the main control panel
     this.controlPanel.addCheckbox( this.visibleProperties.tangentVisibleProperty,

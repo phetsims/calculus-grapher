@@ -65,7 +65,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       ( yValue, positiveFill, negativeFill ) => yValue > 0 ? positiveFill : negativeFill );
 
     // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
-    const barometer = new BarometerAccordionBox(
+    const areaUnderCurveAccordionBox = new BarometerAccordionBox(
       model.areaUnderCurveTool.getYProperty( 'integral' ),
       CalculusGrapherStrings.barometer.accumulatedAreaStringProperty, {
         chartTransformOptions: {
@@ -77,7 +77,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         barometerStrokeProperty: barometerStrokeProperty,
         tandem: options.tandem.createTandem( 'areaUnderCurveAccordionBox' )
       } );
-    this.screenViewRootNode.addChild( barometer );
+    this.screenViewRootNode.addChild( areaUnderCurveAccordionBox );
 
     // add ancillaryTool checkbox to the bottom of the main control panel
     this.controlPanel.addCheckbox( this.visibleProperties.areaUnderCurveVisibleProperty,
