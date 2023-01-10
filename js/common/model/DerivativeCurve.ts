@@ -1,4 +1,4 @@
-// Copyright 2020-2022, University of Colorado Boulder
+// Copyright 2020-2023, University of Colorado Boulder
 
 /**
  * DerivativeCurve is a Curve sub-type for a curve that represents the derivative of a 'base' curve. It is used

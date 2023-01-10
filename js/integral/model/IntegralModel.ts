@@ -1,4 +1,4 @@
-// Copyright 2020-2022, University of Colorado Boulder
+// Copyright 2020-2023, University of Colorado Boulder
 
 /**
  * Top level model for the 'Integral Lab' screen.

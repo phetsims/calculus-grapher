@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * DiscontinuitiesControl is the control in the Preferences dialog for selecting how discontinuities in curves
