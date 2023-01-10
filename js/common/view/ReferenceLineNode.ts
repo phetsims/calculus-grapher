@@ -36,7 +36,7 @@ export default class ReferenceLineNode extends Node {
   private readonly verticalLine;
   private readonly shadedSphereNode;
 
-  public constructor( ancillaryTool: AncillaryTool,
+  public constructor( referenceLine: AncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions?: ReferenceLineNodeOptions ) {
 
@@ -48,7 +48,7 @@ export default class ReferenceLineNode extends Node {
       sphereDiameter: 18
     }, providedOptions );
 
-    const xProperty = ancillaryTool.xProperty;
+    const xProperty = referenceLine.xProperty;
 
     // values will be updated later
     const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
@@ -92,7 +92,6 @@ export default class ReferenceLineNode extends Node {
     } ) );
 
     xProperty.link( x => {
-
       cursorNode.centerX = chartTransform.modelToViewX( x );
     } );
 
@@ -102,8 +101,8 @@ export default class ReferenceLineNode extends Node {
     this.verticalLine = verticalLine;
     this.shadedSphereNode = shadedSphereNode;
 
-    this.addLinkedElement( ancillaryTool, {
-      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
+    this.addLinkedElement( referenceLine, {
+      tandem: options.tandem.createTandem( referenceLine.tandem.name )
     } );
   }
 
