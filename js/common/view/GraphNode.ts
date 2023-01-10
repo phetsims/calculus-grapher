@@ -281,7 +281,7 @@ export default class GraphNode extends Node {
 
         // find object immediately to the right of the buttons
         const rightNode = tickSetNode.visible ? tickSetNode : chartRectangle;
-        buttonSetNode.right = rightNode.left - 20;
+        buttonSetNode.right = rightNode.left - 10;
       }
     );
 

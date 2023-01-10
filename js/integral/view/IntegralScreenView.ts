@@ -72,7 +72,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
           modelYRange: new Range( -200, 200 )
         },
         top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
-        left: 20,
+        left: 10,
         visibleProperty: this.areaUnderCurveToolNode.visibleProperty,
         barometerStrokeProperty: barometerStrokeProperty,
         tandem: options.tandem.createTandem( 'areaUnderCurveAccordionBox' )
