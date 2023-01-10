@@ -23,8 +23,7 @@ type SelfOptions = {
   visiblePropertiesTandem: Tandem;
 };
 
-export type TangentToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeOptions,
-  | 'mainFillProperty'>;
+export type TangentToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeOptions, 'mainFillProperty'>;
 
 export default class TangentToolNode extends AncillaryToolNode {
 
@@ -34,7 +33,6 @@ export default class TangentToolNode extends AncillaryToolNode {
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
                       providedOptions: TangentToolNodeOptions ) {
-
 
     const options = optionize<TangentToolNodeOptions, SelfOptions, AncillaryToolNodeOptions>()( {
 
