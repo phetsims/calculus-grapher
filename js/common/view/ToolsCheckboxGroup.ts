@@ -55,11 +55,8 @@ type ItemOptions = PickRequired<VerticalCheckboxGroupItem, 'tandemName'> & PickO
 function createItem( labelNode: Node,
                      property: Property<boolean>,
                      providedOptions: ItemOptions ): VerticalCheckboxGroupItem {
-
   return {
-    createNode: () => {
-      return labelNode;
-    },
+    createNode: () => labelNode,
     property: property,
     options: providedOptions.options,
     tandemName: providedOptions.tandemName
