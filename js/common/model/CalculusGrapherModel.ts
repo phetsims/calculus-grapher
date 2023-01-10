@@ -27,10 +27,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import LabelledAncillaryTool from './LabelledAncillaryTool.js';
 
-const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
-
 type SelfOptions = {
-
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
 };
@@ -103,7 +100,7 @@ export default class CalculusGrapherModel implements TModel {
       graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
 
     this.referenceLine = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      initialCoordinate: CURVE_X_RANGE.getCenter(),
+      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
