@@ -73,7 +73,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         },
         top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
         left: 20,
-        visibleProperty: this.areaUnderCurveToolNode.getAncillaryToolVisibleProperty( 'original' ),
+        visibleProperty: this.areaUnderCurveToolNode.visibleProperty,
         barometerStrokeProperty: barometerStrokeProperty,
         tandem: options.tandem.createTandem( 'areaUnderCurveAccordionBox' )
       } );

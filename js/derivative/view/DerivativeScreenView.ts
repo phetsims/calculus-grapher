@@ -63,7 +63,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         },
         top: this.graphsNode.y,
         left: 20,
-        visibleProperty: this.tangentToolNode.getAncillaryToolVisibleProperty( 'original' ),
+        visibleProperty: this.tangentToolNode.visibleProperty,
         barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
         tandem: options.tandem.createTandem( 'tangentAccordionBox' )
       } );

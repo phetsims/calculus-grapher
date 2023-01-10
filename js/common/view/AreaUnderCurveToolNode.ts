@@ -46,15 +46,13 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
     super( areaUnderCurveTool, ancillaryToolCheckboxProperty, graphType, predictModeEnabledProperty, graphsNode, options );
 
-    const graphNode = this.getGraphNode( graphType );
-
     // add shaded area chart to the graphNode
-    graphNode.addShadedAreaChart(
-      areaUnderCurveTool, {
-        visibleProperty: this.getAncillaryToolVisibleProperty( graphType ),
-        positiveFill: CalculusGrapherColors.integralPositiveFillProperty,
-        negativeFill: CalculusGrapherColors.integralNegativeFillProperty
-      } );
+    const graphNode = this.getGraphNode( graphType );
+    graphNode.addShadedAreaChart( areaUnderCurveTool, {
+      visibleProperty: this.visibleProperty,
+      positiveFill: CalculusGrapherColors.integralPositiveFillProperty,
+      negativeFill: CalculusGrapherColors.integralNegativeFillProperty
+    } );
   }
 }
 calculusGrapher.register( 'AreaUnderCurveToolNode', AreaUnderCurveToolNode );

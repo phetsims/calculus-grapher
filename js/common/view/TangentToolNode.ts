@@ -44,14 +44,11 @@ export default class TangentToolNode extends AncillaryToolNode {
 
     super( tangentTool, ancillaryToolCheckboxProperty, graphType, predictModeEnabledProperty, graphsNode, options );
 
-    const graphNode = this.getGraphNode( graphType );
-
     // add double-headed arrow to the graphNode
-    graphNode.addTangentArrowNode(
-      tangentTool, {
-        visibleProperty: this.getAncillaryToolVisibleProperty( graphType )
-      } );
-
+    const graphNode = this.getGraphNode( graphType );
+    graphNode.addTangentArrowNode( tangentTool, {
+      visibleProperty: this.visibleProperty
+    } );
   }
 }
 calculusGrapher.register( 'TangentToolNode', TangentToolNode );
