@@ -86,16 +86,18 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
 
     const minorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing / 4, {
-      extent: options.tickMarkSetExtent / 2
+      extent: options.tickMarkSetExtent / 2,
+      stroke: 'gray',
+      lineWidth: 0.5
     } );
 
     const tickLabelSet = new TickLabelSet( chartTransform, orientation, tickSpacing, {
-      createLabel: ( value: number ) => new Text( value, options.textOptions ),
+      createLabel: ( value: number ) => new Text( value, { font: CalculusGrapherConstants.ACCORDION_BOX_VALUE_FONT } ),
       extent: options.tickMarkSetExtent
     } );
 
     const quantitativeLayer = new Node( {
-      children: [ tickLabelSet, majorTickMarkSet, minorTickMarkSet ],
+      children: [ tickLabelSet, minorTickMarkSet, majorTickMarkSet ],
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     } );
 
