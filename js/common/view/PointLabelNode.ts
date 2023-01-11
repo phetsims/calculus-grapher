@@ -21,9 +21,7 @@ import BackgroundNode, { BackgroundNodeOptions } from '../../../../scenery-phet/
 
 type SelfOptions = {
   focusPointNodeOptions?: FocusPointNodeOptions;
-
   lineOptions?: LineOptions;
-
   labelNodeOptions?: BackgroundNodeOptions;
 };
 
@@ -36,20 +34,19 @@ export default class PointLabelNode extends Node {
                       chartTransform: ChartTransform,
                       providedOptions: PointLabelOptions ) {
 
-    const options = optionize<PointLabelOptions, SelfOptions, NodeOptions>()(
-      {
-        focusPointNodeOptions: {},
-        lineOptions: {
-          stroke: 'black',
-          opacity: 0.5,
-          visible: false
-        },
-        labelNodeOptions: {
-          rectangleOptions: {
-            cornerRadius: 3
-          }
+    const options = optionize<PointLabelOptions, SelfOptions, NodeOptions>()( {
+      focusPointNodeOptions: {},
+      lineOptions: {
+        stroke: 'black',
+        opacity: 0.5,
+        visible: false
+      },
+      labelNodeOptions: {
+        rectangleOptions: {
+          cornerRadius: 3
         }
-      }, providedOptions );
+      }
+    }, providedOptions );
 
     // property associated with y value
     const yProperty = labelledAncillaryTool.getYProperty( graphType );
