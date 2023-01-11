@@ -44,7 +44,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
    * Creates a specified number of LabeledAncillaryTool instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createTools( totalNumber: number,
+  public static createTools( numberOfTools: number,
                              integralCurve: Curve,
                              originalCurve: Curve,
                              derivativeCurve: Curve,
@@ -52,7 +52,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
                              parentTandem: Tandem, tandemSuffix: string ): LabeledAncillaryTool[] {
 
     const tools: LabeledAncillaryTool[] = [];
-    for ( let i = 0; i < totalNumber; i++ ) {
+    for ( let i = 0; i < numberOfTools; i++ ) {
 
       // convert integer to string 0->A, 1->B, etc
       const label = intToUppercaseLetter( i );
@@ -60,7 +60,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
       // create a labeled ancillary tool with
       tools.push( new LabeledAncillaryTool( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
-        initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( i / totalNumber ),
+        initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( i / numberOfTools ),
         tandem: parentTandem.createTandem( `${label}${tandemSuffix}` )
       } ) );
     }
