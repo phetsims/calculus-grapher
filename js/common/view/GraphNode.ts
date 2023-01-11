@@ -48,7 +48,7 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
 import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
-import PointLabel, { PointLabelOptions } from './PointLabel.js';
+import PointLabelNode, { PointLabelOptions } from './PointLabelNode.js';
 import { GraphType } from '../model/GraphType.js';
 import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
 
@@ -362,7 +362,7 @@ export default class GraphNode extends Node {
   public addPointLabelNode( pointLabel: LabelledAncillaryTool,
                             providedOptions: PointLabelOptions ): void {
 
-    const pointLabelNode = new PointLabel( pointLabel, this.graphType, this.chartTransform, providedOptions );
+    const pointLabelNode = new PointLabelNode( pointLabel, this.graphType, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( pointLabelNode );
   }

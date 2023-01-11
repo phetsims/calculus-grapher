@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * PointLabel is a point on originalCurve, with a label. The point and the label are connected by a small line
+ * PointLabelNode is a point on originalCurve, with a label. The point and the label are connected by a small line
  * The label (and line) update their positions, and are set perpendicular to the tangent of the curve
  *
  * @author Martin Veillette
@@ -29,7 +29,7 @@ type SelfOptions = {
 
 export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
-export default class PointLabel extends Node {
+export default class PointLabelNode extends Node {
 
   public constructor( labelledAncillaryTool: LabelledAncillaryTool,
                       graphType: GraphType,
@@ -109,4 +109,4 @@ export default class PointLabel extends Node {
     } );
   }
 }
-calculusGrapher.register( 'PointLabel', PointLabel );
+calculusGrapher.register( 'PointLabelNode', PointLabelNode );
