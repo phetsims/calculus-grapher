@@ -101,8 +101,8 @@ const CalculusGrapherColors = {
   integralNegativeFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
     integralCurveStroke => integralCurveStroke.withAlpha( 0.5 ) ),
 
-  // fill for up and down arrows on original graph
-  arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
+  // fill for the cueing arrows on original graph
+  cueingArrowsFillProperty: new ProfileColorProperty( calculusGrapher, 'cueingArrowsFill', {
     default: Color.ORANGE
   } ),
 

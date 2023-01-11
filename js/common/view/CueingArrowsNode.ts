@@ -30,7 +30,7 @@ export default class CueingArrowsNode extends VBox {
 
       // SelfOptions
       arrowNodeOptions: {
-        fill: CalculusGrapherColors.arrowFillProperty,
+        fill: CalculusGrapherColors.cueingArrowsFillProperty,
         stroke: null
       },
 
