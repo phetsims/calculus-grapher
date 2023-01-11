@@ -26,7 +26,7 @@ import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type PointLabelOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type PointLabelNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class PointLabelNode extends Node {
 
@@ -34,9 +34,9 @@ export default class PointLabelNode extends Node {
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
-                      providedOptions: PointLabelOptions ) {
+                      providedOptions: PointLabelNodeOptions ) {
 
-    const options = optionize<PointLabelOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<PointLabelNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
       visibleProperty: new DerivedProperty(

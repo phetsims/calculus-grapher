@@ -12,7 +12,7 @@ import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LabModelOptions = SelfOptions & CalculusGrapherModelOptions;
+type LabModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class LabModel extends CalculusGrapherModel {
 

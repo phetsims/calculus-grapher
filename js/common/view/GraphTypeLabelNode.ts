@@ -43,7 +43,7 @@ type SelfOptions = {
   fontSizeOptions?: FontSizeOptions;
 };
 
-export type GraphTypeLabelNodeOptions = SelfOptions & NodeOptions;
+type GraphTypeLabelNodeOptions = SelfOptions & NodeOptions;
 
 export default class GraphTypeLabelNode extends Node {
 

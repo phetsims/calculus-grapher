@@ -11,7 +11,7 @@ import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.j
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
-import CalculusGrapherVisibleProperties, { CalculusGrapherVisiblePropertiesOptions } from './CalculusGrapherVisibleProperties.js';
+import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
@@ -70,9 +70,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.referenceLine.visibleProperty,
       model.tangentTool.visibleProperty,
       model.areaUnderCurveTool.visibleProperty,
-      combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
-        tandem: options.tandem.createTandem( 'visibleProperties' )
-      } ) );
+      options.tandem.createTandem( 'visibleProperties' )
+    );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),

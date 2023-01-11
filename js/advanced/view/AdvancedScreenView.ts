@@ -13,7 +13,7 @@ import AdvancedModel from '../model/AdvancedModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type AdvancedScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+type AdvancedScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class AdvancedScreenView extends CalculusGrapherScreenView {
 

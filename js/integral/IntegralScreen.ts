@@ -16,7 +16,8 @@ import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { GraphSet } from '../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
-export type IntegralScreenOptions = SelfOptions & ScreenOptions;
+
+type IntegralScreenOptions = SelfOptions & ScreenOptions;
 
 export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 

@@ -28,7 +28,7 @@ type SelfOptions = {
   chartTransformOptions?: ChartTransformOptions;
 };
 
-export type CurveManipulationIconNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type CurveManipulationIconNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class CurveManipulationIconNode extends Node {
 

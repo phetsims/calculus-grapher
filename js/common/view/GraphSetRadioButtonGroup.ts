@@ -19,7 +19,7 @@ import { LabelColorIcon } from './LabelColorIcon.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphSetRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+type GraphSetRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 

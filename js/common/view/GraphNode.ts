@@ -43,7 +43,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
+import FocusCircle, { FocusCircleOptions } from './FocusCircle.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
@@ -63,6 +63,7 @@ type SelfOptions = {
 
   curveStroke: TColor;
 };
+
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphNode extends Node {
@@ -321,7 +322,7 @@ export default class GraphNode extends Node {
 
   public addFocusCircle( xProperty: TReadOnlyProperty<number>,
                          yProperty: TReadOnlyProperty<number>,
-                         providedOptions: FocusPointNodeOptions ): void {
+                         providedOptions: FocusCircleOptions ): void {
 
     const focusCircle = new FocusCircle( xProperty, yProperty, this.chartTransform,
       providedOptions );

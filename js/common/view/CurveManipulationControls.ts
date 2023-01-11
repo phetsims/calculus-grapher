@@ -25,7 +25,7 @@ const NO_SLIDER_MODES = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIF
 
 type SelfOptions = EmptySelfOptions;
 
-export type CurveManipulationControlsOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> & StrictOmit<VBoxOptions, 'children'>;
+type CurveManipulationControlsOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> & StrictOmit<VBoxOptions, 'children'>;
 
 export default class CurveManipulationControls extends VBox {
 

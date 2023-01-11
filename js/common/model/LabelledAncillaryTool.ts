@@ -18,7 +18,7 @@ type SelfOptions = {
   label: string;
 };
 
-export type LabelledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
+type LabelledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
 
 export default class LabelledAncillaryTool extends AncillaryTool {
 

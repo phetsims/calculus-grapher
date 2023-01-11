@@ -19,7 +19,7 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type ToolsCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
+type ToolsCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
 
 export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
 

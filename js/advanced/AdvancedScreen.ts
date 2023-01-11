@@ -19,7 +19,7 @@ import { AlignGroup } from '../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type AdvancedScreenOptions = SelfOptions & ScreenOptions;
+type AdvancedScreenOptions = SelfOptions & ScreenOptions;
 
 export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreenView> {
 

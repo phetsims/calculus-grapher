@@ -19,7 +19,7 @@ import { AlignGroup } from '../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LabScreenOptions = SelfOptions & ScreenOptions;
+type LabScreenOptions = SelfOptions & ScreenOptions;
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 

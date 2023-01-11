@@ -16,16 +16,16 @@ import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type FocusPointNodeOptions = SelfOptions & CircleOptions;
+export type FocusCircleOptions = SelfOptions & CircleOptions;
 
 export default class FocusCircle extends Circle {
 
   public constructor( xProperty: TReadOnlyProperty<number>,
                       yProperty: TReadOnlyProperty<number>,
                       chartTransform: ChartTransform,
-                      providedOptions: FocusPointNodeOptions ) {
+                      providedOptions: FocusCircleOptions ) {
 
-    const options = optionize<FocusPointNodeOptions, SelfOptions, CircleOptions>()( {
+    const options = optionize<FocusCircleOptions, SelfOptions, CircleOptions>()( {
 
       // CircleOptions
       stroke: null,

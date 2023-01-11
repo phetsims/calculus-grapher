@@ -19,7 +19,7 @@ import { TColor } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type CurveManipulationModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+type CurveManipulationModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
 export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
 

@@ -20,7 +20,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type AreaUnderCurveToolNodeOptions = SelfOptions &
+type AreaUnderCurveToolNodeOptions = SelfOptions &
   StrictOmit<AncillaryToolNodeOptions, 'mainFillProperty' | 'scrubberLineVisible'>;
 
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {

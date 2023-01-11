@@ -26,7 +26,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
+type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 export default class TransformedCurveNode extends CurveNode {
 

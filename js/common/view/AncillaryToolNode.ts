@@ -16,7 +16,7 @@ import { getGraphTypeStroke, GRAPH_TYPES, GraphType } from '../model/GraphType.j
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import { FocusPointNodeOptions } from './FocusCircle.js';
+import { FocusCircleOptions } from './FocusCircle.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphNode from './GraphNode.js';
 import { ScrubberNodeOptions } from './ScrubberNode.js';
@@ -92,14 +92,14 @@ export default class AncillaryToolNode extends Node {
   }
 
   private addFocusCircle( graphType: GraphType,
-                          providedOptions?: StrictOmit<FocusPointNodeOptions, 'visibleProperty'> ): void {
+                          providedOptions?: StrictOmit<FocusCircleOptions, 'visibleProperty'> ): void {
     const graphNode = this.getGraphNode( graphType );
     const verticalProperty = this.getYProperty( graphType );
 
     graphNode.addFocusCircle(
       this.ancillaryTool.xProperty,
       verticalProperty,
-      combineOptions<FocusPointNodeOptions>( {
+      combineOptions<FocusCircleOptions>( {
         visibleProperty: this.visibleProperty,
         fill: getGraphTypeStroke( graphType ),
         radius: 3

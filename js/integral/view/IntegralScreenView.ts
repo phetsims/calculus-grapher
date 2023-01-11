@@ -20,7 +20,7 @@ import AccumulatedAreaAccordionBox from '../../common/view/AccumulatedAreaAccord
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 

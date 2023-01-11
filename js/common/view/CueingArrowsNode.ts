@@ -20,7 +20,7 @@ type SelfOptions = {
   arrowNodeOptions?: ArrowNodeOptions;
 };
 
-export type CueingArrowsNodeOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> & StrictOmit<VBoxOptions, 'children'>;
+type CueingArrowsNodeOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> & StrictOmit<VBoxOptions, 'children'>;
 
 export default class CueingArrowsNode extends VBox {
 

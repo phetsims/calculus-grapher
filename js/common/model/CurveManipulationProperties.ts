@@ -24,7 +24,7 @@ const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATI
 
 type SelfOptions = EmptySelfOptions;
 
-export type CurveManipulationPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+type CurveManipulationPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class CurveManipulationProperties {
 

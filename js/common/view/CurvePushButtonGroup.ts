@@ -26,7 +26,7 @@ type SelfOptions = {
   eraserButtonOptions?: EraserButtonOptions;
 };
 
-export type CurvePushButtonGroupOptions = SelfOptions & StrictOmit<VBoxOptions, 'children'>;
+type CurvePushButtonGroupOptions = SelfOptions & StrictOmit<VBoxOptions, 'children'>;
 
 export default class CurvePushButtonGroup extends VBox {
 

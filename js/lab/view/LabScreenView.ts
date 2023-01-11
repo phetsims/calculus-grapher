@@ -13,7 +13,7 @@ import LabModel from '../model/LabModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LabScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+type LabScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class LabScreenView extends CalculusGrapherScreenView {
 

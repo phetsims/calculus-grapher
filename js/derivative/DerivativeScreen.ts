@@ -16,7 +16,8 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 import { GraphSet } from '../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
-export type DerivativeScreenOptions = SelfOptions & ScreenOptions;
+
+type DerivativeScreenOptions = SelfOptions & ScreenOptions;
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 

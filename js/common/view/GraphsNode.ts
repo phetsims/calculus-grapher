@@ -27,7 +27,7 @@ type SelfOptions = {
   graphSets: GraphSet[];
 };
 
-export type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class GraphNodes extends Node {
 

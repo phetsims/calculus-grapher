@@ -20,7 +20,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type PredictModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+type PredictModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
 
 export default class PredictModeRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 

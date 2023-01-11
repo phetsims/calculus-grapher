@@ -13,7 +13,7 @@ import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type IntegralModelOptions = SelfOptions & CalculusGrapherModelOptions;
+type IntegralModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class IntegralModel extends CalculusGrapherModel {
 

@@ -20,7 +20,7 @@ import { GraphType } from '../model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type TangentToolNodeOptions = SelfOptions &
+type TangentToolNodeOptions = SelfOptions &
   StrictOmit<AncillaryToolNodeOptions, 'mainFillProperty' | 'scrubberLineVisible'>;
 
 export default class TangentToolNode extends AncillaryToolNode {

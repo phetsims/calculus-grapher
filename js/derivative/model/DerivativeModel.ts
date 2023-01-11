@@ -13,7 +13,7 @@ import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type DerivativeModelOptions = SelfOptions & CalculusGrapherModelOptions;
+type DerivativeModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class DerivativeModel extends CalculusGrapherModel {
 

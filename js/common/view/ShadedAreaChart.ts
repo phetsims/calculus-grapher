@@ -21,8 +21,10 @@ type SelfOptions = {
   positiveFill?: TColor;
   negativeFill?: TColor;
 };
-type CurvePointFunction = ( point: CurvePoint ) => boolean;
+
 export type ShadedAreaChartOptions = SelfOptions & NodeOptions;
+
+type CurvePointFunction = ( point: CurvePoint ) => boolean;
 
 export default class ShadedAreaChart extends Node {
 

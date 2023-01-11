@@ -9,13 +9,8 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-
-type SelfOptions = EmptySelfOptions;
-
-export type CalculusGrapherVisiblePropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+import PhetioObject from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CalculusGrapherVisibleProperties extends PhetioObject {
 
@@ -38,37 +33,36 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
   public constructor( referenceLineVisibleProperty: Property<boolean>,
                       tangentVisibleProperty: Property<boolean>,
                       areaUnderCurveVisibleProperty: Property<boolean>,
-                      providedOptions: CalculusGrapherVisiblePropertiesOptions ) {
+                      tandem: Tandem ) {
 
-    const options = optionize<CalculusGrapherVisiblePropertiesOptions, SelfOptions, PhetioObjectOptions>()( {
-
+    super( {
+      
       // PhetioObjectOptions
+      tandem: tandem,
       phetioState: false
-    }, providedOptions );
-
-    super( options );
+    } );
 
     this.referenceLineVisibleProperty = referenceLineVisibleProperty;
     this.tangentVisibleProperty = tangentVisibleProperty;
     this.areaUnderCurveVisibleProperty = areaUnderCurveVisibleProperty;
 
     this.gridVisibleProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'gridVisibleProperty' )
+      tandem: tandem.createTandem( 'gridVisibleProperty' )
     } );
 
     this.allOriginalCurvesVisibleProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'allOriginalCurvesVisibleProperty' )
+      tandem: tandem.createTandem( 'allOriginalCurvesVisibleProperty' )
     } );
 
     // Link to the Properties that were provided as constructor arguments.
     this.addLinkedElement( referenceLineVisibleProperty, {
-      tandem: options.tandem.createTandem( 'referenceLineVisibleProperty' )
+      tandem: tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
     this.addLinkedElement( tangentVisibleProperty, {
-      tandem: options.tandem.createTandem( 'tangentVisibleProperty' )
+      tandem: tandem.createTandem( 'tangentVisibleProperty' )
     } );
     this.addLinkedElement( areaUnderCurveVisibleProperty, {
-      tandem: options.tandem.createTandem( 'areaUnderCurveVisibleProperty' )
+      tandem: tandem.createTandem( 'areaUnderCurveVisibleProperty' )
     } );
   }
 
