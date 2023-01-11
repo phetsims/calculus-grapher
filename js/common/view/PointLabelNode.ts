@@ -87,8 +87,7 @@ export default class PointLabelNode extends Node {
       const lineRelativeDisplacement = perpendicular.timesScalar( 10 );
 
       // position the label node in same direction as line, but further away
-      //TODO https://github.com/phetsims/calculus-grapher/issues/151 delete timesScalar, unnecessary
-      labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 1 ) );
+      labelNode.center = focusCircle.center.plus( lineRelativeDisplacement );
     };
 
     Multilink.multilink( [ pointLabel.xProperty, yProperty, pointLabel.labelProperty ], () => updatePosition() );
