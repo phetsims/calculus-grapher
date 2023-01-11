@@ -67,9 +67,13 @@ export default class Curve extends PhetioObject {
   protected constructor( providedOptions: CurveOptions ) {
 
     const options = optionize<CurveOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // SelfOptions
       xRange: CURVE_X_RANGE,
       pointsPerCoordinate: POINTS_PER_COORDINATE,
       mathFunction: () => 0,
+
+      // PhetioObjectOptions
       phetioState: false,
       pointsPropertyReadOnly: true
     }, providedOptions );

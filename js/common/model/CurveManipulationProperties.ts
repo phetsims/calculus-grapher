@@ -10,7 +10,7 @@
  * @author Martin Veillette
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
@@ -39,8 +39,7 @@ export default class CurveManipulationProperties {
   public constructor( curveManipulationModeChoices: CurveManipulationMode[],
                       providedOptions: CurveManipulationPropertiesOptions ) {
 
-    const options = optionize<CurveManipulationPropertiesOptions, SelfOptions>()(
-      {}, providedOptions );
+    const options = providedOptions;
 
     // initial mode of the simulation
     const initialMode = CurveManipulationMode.HILL;

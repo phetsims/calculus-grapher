@@ -40,6 +40,8 @@ export default class TransformedCurve extends Curve {
   public constructor( providedOptions: TransformedCurveOptions ) {
 
     const options = optionize<TransformedCurveOptions, SelfOptions, CurveOptions>()( {
+
+      // CurveOptions
       pointsPropertyReadOnly: false
     }, providedOptions );
 

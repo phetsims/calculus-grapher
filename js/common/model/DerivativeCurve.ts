@@ -32,6 +32,8 @@ export default class DerivativeCurve extends Curve {
   public constructor( baseCurve: Curve, tandem: Tandem ) {
 
     super( {
+
+      // CurveOptions
       xRange: baseCurve.xRange,
       pointsPerCoordinate: baseCurve.pointsPerCoordinate,
       tandem: tandem

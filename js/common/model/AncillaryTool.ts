@@ -56,6 +56,8 @@ export default class AncillaryTool extends PhetioObject {
     providedOptions: AncillaryToolOptions ) {
 
     const options = optionize<AncillaryToolOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // PhetioObjectOptions
       phetioState: false
     }, providedOptions );
 

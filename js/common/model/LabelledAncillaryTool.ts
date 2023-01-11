@@ -8,7 +8,6 @@
 
 import Property from '../../../../axon/js/Property.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import optionize from '../../../../phet-core/js/optionize.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
@@ -32,8 +31,7 @@ export default class LabelledAncillaryTool extends AncillaryTool {
     secondDerivativeCurve: Curve,
     providedOptions: LabelledAncillaryToolOptions ) {
 
-    const options = optionize<LabelledAncillaryToolOptions, SelfOptions, AncillaryToolOptions>()(
-      {}, providedOptions );
+    const options = providedOptions;
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 
