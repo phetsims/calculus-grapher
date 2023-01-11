@@ -111,6 +111,16 @@ const CalculusGrapherColors = {
   // fill for up and down arrows on original graph
   arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
     default: Color.ORANGE
+  } ),
+
+  // the vertical reference line
+  referenceLineStrokeProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineStroke', {
+    default: 'black'
+  } ),
+
+  // the handle (shaded sphere) for moving the reference line
+  referenceLineHandleColorProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineHandleColor', {
+    default: 'blue'
   } )
 };
 

@@ -11,10 +11,10 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import { DragListener, Line, LineOptions, Node, NodeOptions, NodeTranslationOptions } from '../../../../scenery/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { DragListener, Line, Node, NodeOptions, NodeTranslationOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
+import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
@@ -22,12 +22,9 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
-type SelfOptions = {
-  lineOptions?: LineOptions;
-  sphereOptions?: ShadedSphereNodeOptions;
-  sphereDiameter?: number;
-};
+type SelfOptions = EmptySelfOptions;
 
 type ReferenceLineNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
@@ -42,13 +39,6 @@ export default class ReferenceLineNode extends Node {
 
     const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
 
-      // SelfOptions
-      lineOptions: {
-        stroke: 'black'
-      },
-      sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 18,
-
       // NodeOptions
       visibleProperty: referenceLine.visibleProperty,
       cursor: 'pointer'
@@ -57,7 +47,9 @@ export default class ReferenceLineNode extends Node {
     const xProperty = referenceLine.xProperty;
 
     // values will be updated later
-    const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
+    const verticalLine = new Line( 0, 0, 0, -1, {
+      stroke: CalculusGrapherColors.referenceLineStrokeProperty
+    } );
 
     // add numerical label at the top of the vertical line
     const labelNode = new NumberDisplay( xProperty,
@@ -79,15 +71,17 @@ export default class ReferenceLineNode extends Node {
         centerX: 0
       } );
 
-    const shadedSphereNode = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
+    const shadedSphereNode = new ShadedSphereNode( 18, {
+      mainColor: CalculusGrapherColors.referenceLineHandleColorProperty
+    } );
 
-    const cursorNode = new Node( {
+    const parentNode = new Node( {
       children: [ verticalLine, shadedSphereNode, labelNode ],
       x: chartTransform.modelToViewX( xProperty.value )
     } );
 
     // add dragListener
-    cursorNode.addInputListener( new DragListener( {
+    parentNode.addInputListener( new DragListener( {
       drag( event, listener ) {
 
         // current modelPosition
@@ -98,10 +92,11 @@ export default class ReferenceLineNode extends Node {
     } ) );
 
     xProperty.link( x => {
-      cursorNode.centerX = chartTransform.modelToViewX( x );
+      parentNode.centerX = chartTransform.modelToViewX( x );
     } );
 
-    options.children = [ cursorNode ];
+    //TODO https://github.com/phetsims/calculus-grapher/issues/151 why do we need a Node with 1 child?
+    options.children = [ parentNode ];
     super( options );
 
     this.verticalLine = verticalLine;
@@ -110,29 +105,6 @@ export default class ReferenceLineNode extends Node {
     this.addLinkedElement( referenceLine, {
       tandem: options.tandem.createTandem( referenceLine.tandem.name )
     } );
-  }
-
-  /**
-   * Returns an icon for a ReferenceLine
-   */
-  public static getIcon( providedOptions?: ReferenceLineNodeOptions ): Node {
-
-    const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
-      lineOptions: {
-        stroke: 'black',
-        y2: -15
-      },
-      sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 8
-    }, providedOptions );
-
-    const shadedSphereNode = new ShadedSphereNode( options.sphereDiameter, options.sphereOptions );
-
-    const verticalLine = new Line( options.lineOptions );
-
-    options.children = [ verticalLine, shadedSphereNode ];
-
-    return new Node( options );
   }
 
   // set Y top position in view coordinates
@@ -146,5 +118,23 @@ export default class ReferenceLineNode extends Node {
     this.shadedSphereNode.setCenterY( value );
   }
 
+  /**
+   * Returns an icon for a ReferenceLine
+   */
+  public static getIcon(): Node {
+
+    const shadedSphereNode = new ShadedSphereNode( 8, {
+      mainColor: CalculusGrapherColors.referenceLineHandleColorProperty
+    } );
+
+    const verticalLine = new Line( {
+      stroke: CalculusGrapherColors.referenceLineStrokeProperty,
+      y2: -15
+    } );
+
+    return new Node( {
+      children: [ verticalLine, shadedSphereNode ]
+    } );
+  }
 }
 calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );
