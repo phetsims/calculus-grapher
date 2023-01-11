@@ -31,7 +31,7 @@ type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
 export default class TransformedCurveNode extends CurveNode {
 
   // has this node ever been userDragged, used for tracking the visibility of the cueingArrows
-  private readonly undraggedProperty: BooleanProperty;
+  private readonly wasDraggedProperty: BooleanProperty;
 
   private readonly chartTransform: ChartTransform;
 
@@ -50,8 +50,9 @@ export default class TransformedCurveNode extends CurveNode {
 
     super( curve, chartTransform, options );
 
-    this.undraggedProperty = new BooleanProperty( true, {
-      tandem: options.tandem.createTandem( 'undraggedProperty' )
+    this.wasDraggedProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'wasDraggedProperty' ),
+      phetioReadOnly: true
     } );
 
     // xPosition for cueing arrows in model coordinate
@@ -62,16 +63,12 @@ export default class TransformedCurveNode extends CurveNode {
       center: chartTransform.modelToViewXY( centerX, 0 ),
 
       // cueing arrow should not be visible if this node is not enabled
-      visibleProperty: DerivedProperty.and( [ this.undraggedProperty, this.enabledProperty ] ),
+      visibleProperty: new DerivedProperty( [ this.wasDraggedProperty, this.enabledProperty ],
+        ( wasDragged, enabled ) => !wasDragged && enabled ),
       tandem: options.tandem.createTandem( 'cueingArrowsNode' )
     } );
 
     this.addChild( cueingArrowsNode );
-
-    // set the visibility of cueingArrowsNode to invisible if the curve has been touched once.
-    curve.curveChangedEmitter.addListener( () => {
-      this.undraggedProperty.value = false;
-    } );
 
     //----------------------------------------------------------------------------------------
     // Add a DragListener to the linePlot for manipulating the TransformedCurve model. Listener is never removed since
@@ -84,7 +81,11 @@ export default class TransformedCurveNode extends CurveNode {
       tandem: options.tandem.createTandem( 'dragListener' ),
       dragBoundsProperty: this.dragBoundsProperty,
       applyOffset: false,
-      start() {
+      start: () => {
+
+        // Indicate that we've touched the curve, and hide the cueing arrows.
+        this.wasDraggedProperty.value = true;
+
         // Save the current values of the Points for the next undoToLastSave call.
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         curve.saveCurrentPoints();
@@ -92,7 +93,7 @@ export default class TransformedCurveNode extends CurveNode {
         // set the second to last position to null, since it is a new drag.
         antepenultimatePosition = null;
       },
-      drag( event, listener ) {
+      drag: ( event, listener ) => {
 
         // current modelPosition
         const modelPosition = chartTransform.viewToModelPosition( listener.modelPoint );
@@ -122,7 +123,7 @@ export default class TransformedCurveNode extends CurveNode {
    */
   public override reset(): void {
     super.reset();
-    this.undraggedProperty.reset();
+    this.wasDraggedProperty.reset();
   }
 
   /**
