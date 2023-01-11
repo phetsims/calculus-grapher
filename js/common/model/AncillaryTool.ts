@@ -1,14 +1,15 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * AncillaryTool is the model class associated with an x value on the graph
- * it keeps track of all quantities associated with the x value: such as
+ * AncillaryTool is the model class associated with an x value on the graph.
+ * It keeps track of all quantities associated with the x value, including:
  *  - the integral of f(x)
  *  - the original function f(x)
- *  - the derivative f'(x)
+ *  - the derivative of f(x)
  *  - the second derivative of f(x)
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import DerivedProperty, { UnknownDerivedProperty } from '../../../../axon/js/DerivedProperty.js';
@@ -121,8 +122,9 @@ function createProperties( xProperty: TReadOnlyProperty<number>, curve: Curve, t
   const yProperty = DerivedProperty.deriveAny( [ curvePointProperty ], () => curvePointProperty.value.y );
 
   // We are creating this Property solely for PhET-iO, to present the y value. For discontinuities, we present null.
+  // This Property persists because it is referenced by the tandem registry.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const yStudioProperty = new DerivedProperty( [ curvePointProperty ],
+  const yPhetioProperty = new DerivedProperty( [ curvePointProperty ],
     curvePoint => curvePoint.pointType === 'discontinuous' ? null : curvePoint.y, {
       tandem: tandem,
       phetioValueType: NullableIO( NumberIO )
