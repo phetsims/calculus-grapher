@@ -57,19 +57,17 @@ const CalculusGrapherColors = {
 
   // Stroke for the original curve
   originalCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
-      default: Color.BLUE
-    },
-    {
-      tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
-    } ),
+    default: Color.BLUE
+  }, {
+    tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
+  } ),
 
   // Stroke for the original curve
   predictCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'predictCurveStroke', {
-      default: 'rgb(128, 128, 128)'
-    },
-    {
-      tandem: tandem.createTandem( 'predictCurveStrokeProperty' )
-    } ),
+    default: 'rgb(128, 128, 128)'
+  }, {
+    tandem: tandem.createTandem( 'predictCurveStrokeProperty' )
+  } ),
 
   // Stroke for integral curve
   integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
@@ -80,19 +78,17 @@ const CalculusGrapherColors = {
 
   // Stroke for derivative curve
   derivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'derivativeCurveStroke', {
-      default: Color.RED
-    },
-    {
-      tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' )
-    } ),
+    default: Color.RED
+  }, {
+    tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' )
+  } ),
 
   // Stroke for second derivative curve
   secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
-      default: 'rgb(102,45,145)'
-    },
-    {
-      tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
-    } ),
+    default: 'rgb(102,45,145)'
+  }, {
+    tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
+  } ),
 
   // Fill for integral curve (when area is positive)
   integralPositiveFillProperty: new ProfileColorProperty( calculusGrapher, 'integralPositiveFill', {
