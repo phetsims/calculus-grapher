@@ -116,7 +116,6 @@ export default class GraphNodes extends Node {
 
     const verticalLineNodesLayer = new Node( {
       children: verticalLineNodes
-      //TODO instrument so we can hide all VerticalLineNodes with 1 visibleProperty?
     } );
 
     const graphSetNode = new Node();

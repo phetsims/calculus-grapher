@@ -136,7 +136,6 @@ export default class OriginalGraphNode extends GraphNode {
       } ) );
     const pointLabelsLayer = new Node( {
       children: pointLabelNodes
-      //TODO instrument so we can hide all PointLabelNodes with 1 visibleProperty?
     } );
     this.addChild( pointLabelsLayer );
   }
