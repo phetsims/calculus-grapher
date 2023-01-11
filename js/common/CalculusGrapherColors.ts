@@ -10,8 +10,15 @@
 import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
 import calculusGrapher from '../calculusGrapher.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 
 const tandem = Tandem.GLOBAL_VIEW.createTandem( 'colorProfile' );
+
+const integralCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
+  default: 'rgb(0,146,69)'
+}, {
+  tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
+} );
 
 const CalculusGrapherColors = {
 
@@ -62,7 +69,7 @@ const CalculusGrapherColors = {
     tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
   } ),
 
-  // Stroke for the original curve
+  // Stroke for the predict curve
   predictCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'predictCurveStroke', {
     default: 'rgb(128, 128, 128)'
   }, {
@@ -70,11 +77,7 @@ const CalculusGrapherColors = {
   } ),
 
   // Stroke for integral curve
-  integralCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
-    default: 'rgb(0,146,69)'
-  }, {
-    tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
-  } ),
+  integralCurveStrokeProperty: integralCurveStrokeProperty,
 
   // Stroke for derivative curve
   derivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'derivativeCurveStroke', {
@@ -91,18 +94,12 @@ const CalculusGrapherColors = {
   } ),
 
   // Fill for integral curve (when area is positive)
-  integralPositiveFillProperty: new ProfileColorProperty( calculusGrapher, 'integralPositiveFill', {
-    default: 'rgba(0,206,109,0.6)'
-  }, {
-    tandem: tandem.createTandem( 'integralPositiveFillProperty' )
-  } ),
+  integralPositiveFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
+    integralCurveStroke => integralCurveStroke.withAlpha( 0.3 ) ),
 
   // Fill for integral curve (when area is negative)
-  integralNegativeFillProperty: new ProfileColorProperty( calculusGrapher, 'integralNegativeFill', {
-    default: 'rgba(0,176,89,0.6)'
-  }, {
-    tandem: tandem.createTandem( 'integralNegativeFillProperty' )
-  } ),
+  integralNegativeFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
+    integralCurveStroke => integralCurveStroke.withAlpha( 0.5 ) ),
 
   // fill for up and down arrows on original graph
   arrowFillProperty: new ProfileColorProperty( calculusGrapher, 'arrowFillStroke', {
