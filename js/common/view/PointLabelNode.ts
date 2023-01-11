@@ -29,7 +29,7 @@ export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'
 
 export default class PointLabelNode extends Node {
 
-  public constructor( labelledAncillaryTool: LabelledAncillaryTool,
+  public constructor( pointLabel: LabelledAncillaryTool,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: PointLabelOptions ) {
@@ -49,20 +49,20 @@ export default class PointLabelNode extends Node {
     }, providedOptions );
 
     // property associated with y value
-    const yProperty = labelledAncillaryTool.getYProperty( graphType );
+    const yProperty = pointLabel.getYProperty( graphType );
 
     // property associated with the tangent at the y value
-    const yDerivativeProperty = labelledAncillaryTool.getYProperty( getDerivativeOf( graphType ) );
+    const yDerivativeProperty = pointLabel.getYProperty( getDerivativeOf( graphType ) );
 
     // small point (disk) on curve - focusCircle is responsible for updating its position
     const focusCircle = new FocusCircle(
-      labelledAncillaryTool.xProperty,
+      pointLabel.xProperty,
       yProperty, chartTransform,
       options.focusPointNodeOptions );
 
     // label for the point
 
-    const textNode = new Text( labelledAncillaryTool.labelProperty, {
+    const textNode = new Text( pointLabel.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       maxWidth: 50
     } );
@@ -95,14 +95,14 @@ export default class PointLabelNode extends Node {
 
     yProperty.link( updatePosition );
 
-    labelledAncillaryTool.labelProperty.link( updatePosition );
+    pointLabel.labelProperty.link( updatePosition );
 
     options.children = [ line, focusCircle, labelNode ];
 
     super( options );
 
-    this.addLinkedElement( labelledAncillaryTool, {
-      tandem: options.tandem.createTandem( labelledAncillaryTool.tandem.name )
+    this.addLinkedElement( pointLabel, {
+      tandem: options.tandem.createTandem( pointLabel.tandem.name )
     } );
   }
 }
