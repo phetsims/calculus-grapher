@@ -6,6 +6,7 @@
  * @author Martin Veillette
  */
 
+import Range from '../../../../dot/js/Range.js';
 import Property from '../../../../axon/js/Property.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -51,6 +52,10 @@ export default class LabeledAncillaryTool extends AncillaryTool {
                              secondDerivativeCurve: Curve,
                              parentTandem: Tandem, tandemSuffix: string ): LabeledAncillaryTool[] {
 
+
+    // Adjust the range so that we do not put tools at x-min and x-max.
+    const range = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
+
     const tools: LabeledAncillaryTool[] = [];
     for ( let i = 0; i < numberOfTools; i++ ) {
 
@@ -60,7 +65,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
       // create a labeled ancillary tool with
       tools.push( new LabeledAncillaryTool( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
-        initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( i / numberOfTools ),
+        initialCoordinate: range.expandNormalizedValue( i / numberOfTools ),
         tandem: parentTandem.createTandem( `${label}${tandemSuffix}` )
       } ) );
     }
