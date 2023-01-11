@@ -9,7 +9,7 @@
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { ColorProperty, Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { ColorProperty, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import LabeledAncillaryTool from '../model/LabeledAncillaryTool.js';
 import FocusCircle from './FocusCircle.js';
@@ -74,13 +74,6 @@ export default class PointLabelNode extends Node {
       }
     } );
 
-    // line that connects the focus circle to the label
-    //TODO https://github.com/phetsims/calculus-grapher/issues/151 delete line, vestigial
-    const line = new Line( focusCircle.center, labelNode.center, {
-      stroke: 'rgba( 0, 0, 0, 0.5 )',
-      visible: false
-    } );
-
     // update the positions of the line and label Node
     // use some heuristic algorithm to prevent the label to overlap with the curve
     const updatePosition = () => {
@@ -93,11 +86,6 @@ export default class PointLabelNode extends Node {
 
       const lineRelativeDisplacement = perpendicular.timesScalar( 10 );
 
-      // point P2 for the line
-      const P2 = focusCircle.center.plus( lineRelativeDisplacement );
-      line.setPoint1( focusCircle.center );
-      line.setPoint2( P2 );
-
       // position the label node in same direction as line, but further away
       //TODO https://github.com/phetsims/calculus-grapher/issues/151 delete timesScalar, unnecessary
       labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 1 ) );
@@ -105,7 +93,7 @@ export default class PointLabelNode extends Node {
 
     Multilink.multilink( [ pointLabel.xProperty, yProperty, pointLabel.labelProperty ], () => updatePosition() );
 
-    options.children = [ line, focusCircle, labelNode ];
+    options.children = [ focusCircle, labelNode ];
 
     super( options );
 
