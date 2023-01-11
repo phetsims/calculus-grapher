@@ -8,7 +8,7 @@
  * @author Martin Veillette
  */
 
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { GraphType } from '../model/GraphType.js';
@@ -16,21 +16,16 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
-type SelfOptions = {
-  visiblePropertiesTandem: Tandem;
+type SelfOptions = EmptySelfOptions;
 
-};
-
-export type AreaUnderCurveToolNodeOptions = SelfOptions & StrictOmit<AncillaryToolNodeOptions,
-  'mainFillProperty'>;
+export type AreaUnderCurveToolNodeOptions = SelfOptions &
+  StrictOmit<AncillaryToolNodeOptions, 'mainFillProperty' | 'scrubberLineVisible'>;
 
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
   public constructor( areaUnderCurveTool: AncillaryTool,
-                      ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>,
                       graphType: GraphType,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
@@ -44,7 +39,7 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
     }, providedOptions );
 
-    super( areaUnderCurveTool, ancillaryToolCheckboxProperty, graphType, predictModeEnabledProperty, graphsNode, options );
+    super( areaUnderCurveTool, graphType, predictModeEnabledProperty, graphsNode, options );
 
     // add shaded area chart to the graphNode
     const graphNode = this.getGraphNode( graphType );

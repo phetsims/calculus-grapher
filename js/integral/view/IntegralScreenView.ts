@@ -34,9 +34,6 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
         smoothButtonVisible: false
-      },
-      visiblePropertiesOptions: {
-        hasAreaUnderCurveTool: true
       }
     }, providedOptions );
 
@@ -46,11 +43,9 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     this.areaUnderCurveToolNode = new AreaUnderCurveToolNode(
       model.areaUnderCurveTool,
-      this.visibleProperties.areaUnderCurveVisibleProperty,
       'original',
       model.predictModeEnabledProperty,
       this.graphsNode, {
-        visiblePropertiesTandem: this.visibleProperties.tandem,
         tandem: options.tandem.createTandem( 'areaUnderCurveToolNode' )
       } );
     this.addChild( this.areaUnderCurveToolNode );

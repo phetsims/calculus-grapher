@@ -19,6 +19,7 @@ import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -34,9 +35,6 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
       controlPanelOptions: {
         smoothButtonVisible: false
-      },
-      visiblePropertiesOptions: {
-        hasTangentTool: true
       }
     }, providedOptions );
 
@@ -44,12 +42,10 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     this.tangentToolNode = new TangentToolNode(
       model.tangentTool,
-      this.visibleProperties.tangentVisibleProperty,
       'original',
       model.predictModeEnabledProperty,
       this.graphsNode, {
-        visiblePropertiesTandem: this.visibleProperties.tandem,
-        tandem: options.tandem.createTandem( 'tangentToolNode' )
+        tandem: ( model.tangentTool.tandem === Tandem.OPT_OUT ) ? Tandem.OPT_OUT : options.tandem.createTandem( 'tangentToolNode' )
       } );
 
     this.addChild( this.tangentToolNode );
@@ -65,7 +61,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         left: 10,
         visibleProperty: this.tangentToolNode.visibleProperty,
         barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
-        tandem: options.tandem.createTandem( 'tangentAccordionBox' )
+        tandem: ( model.tangentTool.tandem === Tandem.OPT_OUT ) ? Tandem.OPT_OUT : options.tandem.createTandem( 'tangentAccordionBox' )
       } );
     this.screenViewRootNode.addChild( tangentAccordionBox );
 

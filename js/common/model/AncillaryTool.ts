@@ -25,6 +25,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import { GraphType } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import Property from '../../../../axon/js/Property.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = {
   initialCoordinate: number;
@@ -34,7 +36,10 @@ export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOption
 
 export default class AncillaryTool extends PhetioObject {
 
-  // value to track the x position
+  // whether the tool is visible
+  public readonly visibleProperty: Property<boolean>;
+
+  // the x position of the tool
   public readonly xProperty: NumberProperty;
 
   // y values from CurvePoint
@@ -56,23 +61,58 @@ export default class AncillaryTool extends PhetioObject {
 
     super( options );
 
+    this.visibleProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'visibleProperty' )
+    } );
+
     this.xProperty = new NumberProperty( options.initialCoordinate, {
       range: CalculusGrapherConstants.CURVE_X_RANGE,
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
     } );
 
-    // We used const above for each DerivedProperty so that we could call recomputeDerivation.
-    // So now assign them to fields of type TReadOnlyProperty<number>.
+    // Create the Properties associated with each curve.
     const yIntegralProperty = createProperties( this.xProperty, integralCurve, options.tandem.createTandem( 'yIntegralProperty' ) );
     const yOriginalProperty = createProperties( this.xProperty, originalCurve, options.tandem.createTandem( 'yOriginalProperty' ) );
     const yDerivativeProperty = createProperties( this.xProperty, derivativeCurve, options.tandem.createTandem( 'yDerivativeProperty' ) );
     const ySecondDerivativeProperty = createProperties( this.xProperty, secondDerivativeCurve, options.tandem.createTandem( 'ySecondDerivativeProperty' ) );
 
     // When a curve is changed, update its associated y Property.
-    integralCurve.curveChangedEmitter.addListener( () => yIntegralProperty.recomputeDerivation() );
-    originalCurve.curveChangedEmitter.addListener( () => yOriginalProperty.recomputeDerivation() );
-    derivativeCurve.curveChangedEmitter.addListener( () => yDerivativeProperty.recomputeDerivation() );
-    secondDerivativeCurve.curveChangedEmitter.addListener( () => ySecondDerivativeProperty.recomputeDerivation() );
+    const integralCurveListener = () => yIntegralProperty.recomputeDerivation();
+    const originalCurveListener = () => yOriginalProperty.recomputeDerivation();
+    const derivativeCurveListener = () => ySecondDerivativeProperty.recomputeDerivation();
+    const secondDerivativeCurveListener = () => ySecondDerivativeProperty.recomputeDerivation();
+
+    // Optimization: Only listen to curveChangedEmitter when this tool is visible.
+    this.visibleProperty.link( visible => {
+      if ( visible ) {
+
+        // Attach listeners
+        integralCurve.curveChangedEmitter.addListener( integralCurveListener );
+        originalCurve.curveChangedEmitter.addListener( originalCurveListener );
+        derivativeCurve.curveChangedEmitter.addListener( derivativeCurveListener );
+        secondDerivativeCurve.curveChangedEmitter.addListener( secondDerivativeCurveListener );
+
+        // Update immediately by calling listeners.
+        integralCurveListener();
+        originalCurveListener();
+        derivativeCurveListener();
+        secondDerivativeCurveListener();
+      }
+      else {
+        if ( integralCurve.curveChangedEmitter.hasListener( integralCurveListener ) ) {
+          integralCurve.curveChangedEmitter.removeListener( integralCurveListener );
+        }
+        if ( originalCurve.curveChangedEmitter.hasListener( originalCurveListener ) ) {
+          originalCurve.curveChangedEmitter.removeListener( originalCurveListener );
+        }
+        if ( derivativeCurve.curveChangedEmitter.hasListener( derivativeCurveListener ) ) {
+          derivativeCurve.curveChangedEmitter.removeListener( derivativeCurveListener );
+        }
+        if ( secondDerivativeCurve.curveChangedEmitter.hasListener( secondDerivativeCurveListener ) ) {
+          secondDerivativeCurve.curveChangedEmitter.removeListener( secondDerivativeCurveListener );
+        }
+      }
+    } );
 
     // We used const above for each DerivedProperty so that we could call recomputeDerivation.
     // So now assign them to fields of type TReadOnlyProperty<number>.
@@ -82,9 +122,6 @@ export default class AncillaryTool extends PhetioObject {
     this.ySecondDerivativeProperty = ySecondDerivativeProperty;
   }
 
-  /**
-   * Reset all
-   */
   public reset(): void {
     this.xProperty.reset();
   }

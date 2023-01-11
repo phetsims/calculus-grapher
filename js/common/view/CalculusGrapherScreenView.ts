@@ -27,8 +27,6 @@ type SelfOptions = {
   graphSets: GraphSet[];
   graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
-
-  visiblePropertiesOptions?: StrictOmit<CalculusGrapherVisiblePropertiesOptions, 'tandem'>;
 };
 
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
@@ -49,8 +47,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       ScreenViewOptions>()( {
 
       // SelfOptions
-      graphSetRadioButtonGroupItems: [],
-      visiblePropertiesOptions: {}
+      graphSetRadioButtonGroupItems: []
 
     }, providedOptions );
 
@@ -69,10 +66,14 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
 
-    // Create the view-specific properties for the screen.
-    this.visibleProperties = new CalculusGrapherVisibleProperties( combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
-      tandem: options.tandem.createTandem( 'visibleProperties' )
-    }, options.visiblePropertiesOptions ) );
+    // Visibility Properties for the screen that are controllable via the UI
+    this.visibleProperties = new CalculusGrapherVisibleProperties(
+      model.referenceLine.visibleProperty,
+      model.tangentTool.visibleProperty,
+      model.areaUnderCurveTool.visibleProperty,
+      combineOptions<CalculusGrapherVisiblePropertiesOptions>( {
+        tandem: options.tandem.createTandem( 'visibleProperties' )
+      } ) );
 
     const resetAllButton = new ResetAllButton( {
       rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),

@@ -32,18 +32,14 @@ export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
     const items: VerticalCheckboxGroupItem[] = [
 
       // Item for grid checkbox
-      createItem(
-        new GridIcon(),
-        visibleProperties.gridVisibleProperty, {
-          tandemName: 'gridCheckbox'
-        } ),
+      createItem( new GridIcon(), visibleProperties.gridVisibleProperty, {
+        tandemName: 'gridCheckbox'
+      } ),
 
       // Item for reference line checkbox
-      createItem(
-        ReferenceLineNode.getIcon(),
-        visibleProperties.referenceLineVisibleProperty, {
-          tandemName: 'referenceLineCheckbox'
-        } )
+      createItem( ReferenceLineNode.getIcon(), visibleProperties.referenceLineVisibleProperty, {
+        tandemName: 'referenceLineCheckbox'
+      } )
     ];
 
     super( items, options );

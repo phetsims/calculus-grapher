@@ -30,6 +30,8 @@ import LabelledAncillaryTool from './LabelledAncillaryTool.js';
 type SelfOptions = {
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
+  hasTangentTool?: boolean;
+  hasAreaUnderCurveTool?: boolean;
 };
 
 export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -47,6 +49,8 @@ export default class CalculusGrapherModel implements TModel {
 
   // model for the reference line
   public readonly referenceLine: AncillaryTool;
+  public readonly tangentTool: AncillaryTool;
+  public readonly areaUnderCurveTool: AncillaryTool;
 
   public readonly labelledPoints: LabelledAncillaryTool[];
   public readonly labelledVerticalLines: LabelledAncillaryTool[];
@@ -61,13 +65,16 @@ export default class CalculusGrapherModel implements TModel {
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
-      curveManipulationModeChoices: CurveManipulationMode.enumeration.values
+
+      // SelfOptions
+      curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
+      hasTangentTool: false,
+      hasAreaUnderCurveTool: false
     }, providedOptions );
 
-    this.curveManipulationProperties = new CurveManipulationProperties(
-      options.curveManipulationModeChoices,
-      { tandem: options.tandem.createTandem( 'curveManipulationProperties' ) }
-    );
+    this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
+      tandem: options.tandem.createTandem( 'curveManipulationProperties' )
+    } );
 
     this.originalCurve = new TransformedCurve( {
       // originalCurve is always instrumented, because it should always be present.
@@ -104,6 +111,16 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
+    this.tangentTool = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
+      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3,
+      tandem: options.hasTangentTool ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
+    } );
+
+    this.areaUnderCurveTool = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
+      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min,
+      tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
+    } );
+
     this.labelledPoints = LabelledAncillaryTool.createTools(
       CalculusGrapherConstants.MAX_LABEL_POINTS,
       this.integralCurve,
@@ -131,6 +148,8 @@ export default class CalculusGrapherModel implements TModel {
     this.predictModeEnabledProperty.reset();
 
     this.referenceLine.reset();
+    this.tangentTool.reset();
+    this.areaUnderCurveTool.reset();
 
     this.labelledPoints.forEach( point => point.reset() );
     this.labelledVerticalLines.forEach( line => line.reset() );

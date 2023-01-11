@@ -12,16 +12,16 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { DragListener, Line, LineOptions, Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { DragListener, Line, LineOptions, Node, NodeOptions, NodeTranslationOptions } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   lineOptions?: LineOptions;
@@ -29,7 +29,7 @@ type SelfOptions = {
   sphereDiameter?: number;
 };
 
-type ReferenceLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type ReferenceLineNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class ReferenceLineNode extends Node {
 
@@ -38,14 +38,20 @@ export default class ReferenceLineNode extends Node {
 
   public constructor( referenceLine: AncillaryTool,
                       chartTransform: ChartTransform,
-                      providedOptions?: ReferenceLineNodeOptions ) {
+                      providedOptions: ReferenceLineNodeOptions ) {
 
     const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
       lineOptions: {
         stroke: 'black'
       },
       sphereOptions: { mainColor: 'blue' },
-      sphereDiameter: 18
+      sphereDiameter: 18,
+
+      // NodeOptions
+      visibleProperty: referenceLine.visibleProperty,
+      cursor: 'pointer'
     }, providedOptions );
 
     const xProperty = referenceLine.xProperty;

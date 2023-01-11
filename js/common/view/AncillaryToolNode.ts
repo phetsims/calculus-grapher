@@ -16,7 +16,6 @@ import { getGraphTypeStroke, GRAPH_TYPES, GraphType } from '../model/GraphType.j
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import { FocusPointNodeOptions } from './FocusCircle.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphNode from './GraphNode.js';
@@ -26,7 +25,6 @@ import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = {
   mainFillProperty: TReadOnlyProperty<Color>;
-  visiblePropertiesTandem: Tandem;
   scrubberLineVisible?: boolean;
 };
 
@@ -35,16 +33,11 @@ export type AncillaryToolNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'vi
 
 export default class AncillaryToolNode extends Node {
 
-  private readonly predictModeEnabledProperty: TReadOnlyProperty<boolean>;
-
-  // indicates if checkbox of the ancillary tool is checked.
-  public readonly ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>;
-
-  private readonly graphsNode: GraphsNode;
   private readonly ancillaryTool: AncillaryTool;
+  private readonly predictModeEnabledProperty: TReadOnlyProperty<boolean>;
+  private readonly graphsNode: GraphsNode;
 
   protected constructor( ancillaryTool: AncillaryTool,
-                         ancillaryToolCheckboxProperty: TReadOnlyProperty<boolean>,
                          graphType: GraphType,
                          predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                          graphsNode: GraphsNode,
@@ -57,8 +50,8 @@ export default class AncillaryToolNode extends Node {
 
       // NodeOptions
       visibleProperty: new DerivedProperty(
-        [ ancillaryToolCheckboxProperty, predictModeEnabledProperty ],
-        ( ancillaryToolCheckbox, predictModeEnabled ) => ancillaryToolCheckbox && !predictModeEnabled, {
+        [ ancillaryTool.visibleProperty, predictModeEnabledProperty ],
+        ( ancillaryToolVisible, predictModeEnabled ) => ancillaryToolVisible && !predictModeEnabled, {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } )
@@ -67,11 +60,8 @@ export default class AncillaryToolNode extends Node {
     super( options );
 
     this.ancillaryTool = ancillaryTool;
-    this.graphsNode = graphsNode;
     this.predictModeEnabledProperty = predictModeEnabledProperty;
-
-    // property associated with ancillary checkbox
-    this.ancillaryToolCheckboxProperty = ancillaryToolCheckboxProperty;
+    this.graphsNode = graphsNode;
 
     this.addScrubberNode( graphType, {
       lineOptions: {
@@ -81,6 +71,10 @@ export default class AncillaryToolNode extends Node {
     } );
 
     GRAPH_TYPES.forEach( graphType => this.addFocusCircle( graphType ) );
+
+    this.addLinkedElement( ancillaryTool, {
+      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
+    } );
   }
 
   protected getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {

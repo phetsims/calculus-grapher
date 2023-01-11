@@ -124,13 +124,10 @@ export default class GraphNodes extends Node {
       } );
     } );
 
-    const referenceLineNode = new ReferenceLineNode( model.referenceLine,
-      this.originalGraphNode.chartTransform, {
-        x: this.originalGraphNode.x,
-        visibleProperty: visibleProperties.referenceLineVisibleProperty,
-        cursor: 'pointer',
-        tandem: options.tandem.createTandem( 'referenceLineNode' )
-      } );
+    const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform, {
+      x: this.originalGraphNode.x,
+      tandem: options.tandem.createTandem( 'referenceLineNode' )
+    } );
 
     // To organize all vertical lines under 1 tandem
     const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
