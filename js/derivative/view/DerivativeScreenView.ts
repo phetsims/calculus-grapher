@@ -12,14 +12,12 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
 import TangentToolNode from '../../common/view/TangentToolNode.js';
-import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import Range from '../../../../dot/js/Range.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -50,22 +48,16 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     this.addChild( this.tangentToolNode );
 
-    // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
-    const tangentAccordionBox = new BarometerAccordionBox(
-      model.tangentTool.getYProperty( 'derivative' ),
-      CalculusGrapherStrings.barometer.slopeOfTangentStringProperty, {
-        chartTransformOptions: {
-          modelYRange: new Range( -10, 10 )
-        },
-        top: this.graphsNode.y,
-        left: 10,
-        visibleProperty: this.tangentToolNode.visibleProperty,
-        barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
-        tandem: ( model.tangentTool.tandem === Tandem.OPT_OUT ) ? Tandem.OPT_OUT : options.tandem.createTandem( 'tangentAccordionBox' )
-      } );
-    this.screenViewRootNode.addChild( tangentAccordionBox );
+    // The accordion box titled 'Slope Of Tangent'
+    const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentTool, {
+      top: this.graphsNode.y,
+      left: 10,
+      visibleProperty: this.tangentToolNode.visibleProperty,
+      tandem: ( model.tangentTool.tandem === Tandem.OPT_OUT ) ? Tandem.OPT_OUT : options.tandem.createTandem( 'slopeOfTangentAccordionBox' )
+    } );
+    this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
 
-    // add ancillaryTool checkbox to the bottom of the main control panel
+    // Add 'Tangent' checkbox to the bottom of the main control panel.
     this.controlPanel.addCheckbox( this.visibleProperties.tangentVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,

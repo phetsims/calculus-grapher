@@ -12,14 +12,11 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
 import AreaUnderCurveToolNode from '../../common/view/AreaUnderCurveToolNode.js';
-import BarometerAccordionBox from '../../common/view/BarometerAccordionBox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
-import Range from '../../../../dot/js/Range.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import { getIntegralOf } from '../../common/model/GraphType.js';
+import AccumulatedAreaAccordionBox from '../../common/view/AccumulatedAreaAccordionBox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -39,8 +36,6 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    const integralOfGraphType = getIntegralOf( 'original' );
-
     this.areaUnderCurveToolNode = new AreaUnderCurveToolNode(
       model.areaUnderCurveTool,
       'original',
@@ -50,31 +45,16 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       } );
     this.addChild( this.areaUnderCurveToolNode );
 
-    // value property associated with the barometer
-    const barometerYProperty = model.areaUnderCurveTool.getYProperty( integralOfGraphType );
+    // The accordion box titled 'Accumulated Area'
+    const accumulatedAreaAccordionBox = new AccumulatedAreaAccordionBox( model.areaUnderCurveTool, {
+      top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
+      left: 10,
+      visibleProperty: this.areaUnderCurveToolNode.visibleProperty,
+      tandem: options.tandem.createTandem( 'accumulatedAreaAccordionBox' )
+    } );
+    this.screenViewRootNode.addChild( accumulatedAreaAccordionBox );
 
-    // color associated with barometer rectangle: changes according to value of barometer
-    const barometerStrokeProperty = new DerivedProperty( [ barometerYProperty,
-        CalculusGrapherColors.integralPositiveFillProperty,
-        CalculusGrapherColors.integralNegativeFillProperty ],
-      ( yValue, positiveFill, negativeFill ) => yValue > 0 ? positiveFill : negativeFill );
-
-    // create and add the barometer associated with the ancillaryTool appearing to the left of the graphs
-    const areaUnderCurveAccordionBox = new BarometerAccordionBox(
-      model.areaUnderCurveTool.getYProperty( 'integral' ),
-      CalculusGrapherStrings.barometer.accumulatedAreaStringProperty, {
-        chartTransformOptions: {
-          modelYRange: new Range( -200, 200 )
-        },
-        top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
-        left: 10,
-        visibleProperty: this.areaUnderCurveToolNode.visibleProperty,
-        barometerStrokeProperty: barometerStrokeProperty,
-        tandem: options.tandem.createTandem( 'areaUnderCurveAccordionBox' )
-      } );
-    this.screenViewRootNode.addChild( areaUnderCurveAccordionBox );
-
-    // add ancillaryTool checkbox to the bottom of the main control panel
+    // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
     this.controlPanel.addCheckbox( this.visibleProperties.areaUnderCurveVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
