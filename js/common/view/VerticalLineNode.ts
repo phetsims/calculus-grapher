@@ -46,13 +46,13 @@ export default class VerticalLineNode extends Node {
       } )
     } );
 
-    const textNode = new Text( verticalLine.labelProperty, {
+    const text = new Text( verticalLine.labelProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 50,
       centerX: 0
     } );
 
-    const labelNode = new BackgroundNode( textNode, {
+    const labelNode = new BackgroundNode( text, {
       centerX: 0,
       bottom: line.top - 5,
       rectangleOptions: {

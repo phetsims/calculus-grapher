@@ -61,13 +61,12 @@ export default class PointLabelNode extends Node {
       options.focusPointNodeOptions );
 
     // label for the point
-
-    const textNode = new Text( pointLabel.labelProperty, {
+    const text = new Text( pointLabel.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       maxWidth: 50
     } );
 
-    const labelNode = new BackgroundNode( textNode, options.labelNodeOptions );
+    const labelNode = new BackgroundNode( text, options.labelNodeOptions );
 
     // line that connects the focus circle to the label
     const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
