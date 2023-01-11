@@ -77,7 +77,11 @@ export default class CalculusGrapherControlPanel extends Panel {
       children: [
         predictModeRadioButtonGroup,
         curveManipulationControls,
-        curveButtons
+        curveButtons,
+
+        // Additional content added via addCheckbox will be below this separator.
+        // VBox will automatically hide the separator is there is nothing below it.
+        new HSeparator( { stroke: 'rgb(200,200,200)' } )
       ]
     } );
 
@@ -93,19 +97,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       providedOptions );
     const checkbox = new Checkbox( property, content, options );
 
-    this.addAdditionalContent( checkbox );
-  }
-
-  private addAdditionalContent( node: Node ): void {
-
-    const children = this.contentNode.children;
-
-    // add an hSeparator if the last children of content is NOT a checkbox
-    if ( !( children[ children.length - 1 ] instanceof Checkbox ) ) {
-      this.contentNode.addChild( new HSeparator( { stroke: 'rgb(200,200,200)' } ) );
-    }
-
-    this.contentNode.addChild( node );
+    this.contentNode.addChild( checkbox );
   }
 }
 calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
