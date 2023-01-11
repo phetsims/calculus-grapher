@@ -25,7 +25,7 @@ import Property from '../../../../axon/js/Property.js';
 import AncillaryTool from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
-import LabelledAncillaryTool from './LabelledAncillaryTool.js';
+import LabeledAncillaryTool from './LabeledAncillaryTool.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -52,8 +52,8 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentTool: AncillaryTool;
   public readonly areaUnderCurveTool: AncillaryTool;
 
-  public readonly pointLabels: LabelledAncillaryTool[];
-  public readonly verticalLines: LabelledAncillaryTool[];
+  public readonly pointLabels: LabeledAncillaryTool[];
+  public readonly verticalLines: LabeledAncillaryTool[];
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -121,7 +121,7 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
     } );
 
-    this.pointLabels = LabelledAncillaryTool.createTools(
+    this.pointLabels = LabeledAncillaryTool.createTools(
       CalculusGrapherConstants.MAX_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
@@ -129,7 +129,7 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       options.tandem.createTandem( 'pointLabels' ), 'PointLabel' );
 
-    this.verticalLines = LabelledAncillaryTool.createTools(
+    this.verticalLines = LabeledAncillaryTool.createTools(
       CalculusGrapherConstants.MAX_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,

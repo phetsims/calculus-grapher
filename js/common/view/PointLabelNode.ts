@@ -11,7 +11,7 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { ColorProperty, Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
+import LabeledAncillaryTool from '../model/LabeledAncillaryTool.js';
 import FocusCircle from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -30,7 +30,7 @@ type PointLabelNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class PointLabelNode extends Node {
 
-  public constructor( pointLabel: LabelledAncillaryTool,
+  public constructor( pointLabel: LabeledAncillaryTool,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,

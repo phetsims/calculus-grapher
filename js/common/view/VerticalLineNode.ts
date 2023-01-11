@@ -13,7 +13,7 @@ import { Color, ColorProperty, Line, Node, NodeOptions, NodeTranslationOptions, 
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
+import LabeledAncillaryTool from '../model/LabeledAncillaryTool.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -24,7 +24,7 @@ export default class VerticalLineNode extends Node {
 
   private readonly line;
 
-  public constructor( verticalLine: LabelledAncillaryTool,
+  public constructor( verticalLine: LabeledAncillaryTool,
                       chartTransform: ChartTransform,
                       providedOptions: VerticalLineNodeOptions ) {
 

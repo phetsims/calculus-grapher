@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * LabelledAncillaryTool is an ancillary toll with a label.
+ * LabeledAncillaryTool is an ancillary toll with a label.
  *
  * @author Martin Veillette
  */
@@ -20,7 +20,7 @@ type SelfOptions = {
 
 type LabelledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
 
-export default class LabelledAncillaryTool extends AncillaryTool {
+export default class LabeledAncillaryTool extends AncillaryTool {
 
   public readonly labelProperty: Property<string>;
 
@@ -41,7 +41,7 @@ export default class LabelledAncillaryTool extends AncillaryTool {
   }
 
   /**
-   * Creates a specified number of LabelledAncillaryTool instances, with evenly spaced initialCoordinates,
+   * Creates a specified number of LabeledAncillaryTool instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
   public static createTools( totalNumber: number,
@@ -49,16 +49,16 @@ export default class LabelledAncillaryTool extends AncillaryTool {
                              originalCurve: Curve,
                              derivativeCurve: Curve,
                              secondDerivativeCurve: Curve,
-                             parentTandem: Tandem, tandemSuffix: string ): LabelledAncillaryTool[] {
+                             parentTandem: Tandem, tandemSuffix: string ): LabeledAncillaryTool[] {
 
-    const tools: LabelledAncillaryTool[] = [];
+    const tools: LabeledAncillaryTool[] = [];
     for ( let i = 0; i < totalNumber; i++ ) {
 
       // convert integer to string 0->A, 1->B, etc
       const label = intToUppercaseLetter( i );
 
       // create a labeled ancillary tool with
-      tools.push( new LabelledAncillaryTool( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+      tools.push( new LabeledAncillaryTool( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
         initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( i / totalNumber ),
         tandem: parentTandem.createTandem( `${label}${tandemSuffix}` )
@@ -74,4 +74,4 @@ function intToUppercaseLetter( integer: number ): string {
   return String.fromCharCode( integer + 'A'.charCodeAt( 0 ) );
 }
 
-calculusGrapher.register( 'LabelledAncillaryTool', LabelledAncillaryTool );
+calculusGrapher.register( 'LabeledAncillaryTool', LabeledAncillaryTool );
