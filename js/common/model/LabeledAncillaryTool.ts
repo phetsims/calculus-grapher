@@ -18,7 +18,7 @@ type SelfOptions = {
   label: string;
 };
 
-type LabelledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
+type LabeledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
 
 export default class LabeledAncillaryTool extends AncillaryTool {
 
@@ -29,7 +29,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
     originalCurve: Curve,
     derivativeCurve: Curve,
     secondDerivativeCurve: Curve,
-    providedOptions: LabelledAncillaryToolOptions ) {
+    providedOptions: LabeledAncillaryToolOptions ) {
 
     const options = providedOptions;
 
