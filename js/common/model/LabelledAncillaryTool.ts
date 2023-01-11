@@ -57,7 +57,7 @@ export default class LabelledAncillaryTool extends AncillaryTool {
       // convert integer to string 0->A, 1->B, etc
       const label = intToUppercaseLetter( i );
 
-      // create a labelled ancillary tool with
+      // create a labeled ancillary tool with
       tools.push( new LabelledAncillaryTool( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
         initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( i / totalNumber ),
