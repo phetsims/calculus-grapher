@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { ColorProperty, HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -22,9 +22,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -101,29 +99,6 @@ export default class GraphNodes extends Node {
         tandem: options.tandem.createTandem( 'originalGraphNode' )
       }
     );
-
-    const pointLabelNodesTandem = options.tandem.createTandem( 'pointLabelNodes' );
-    model.pointLabels.forEach( pointLabel => {
-      const label = pointLabel.labelProperty.value;
-      const pointLabelNodeTandem = pointLabelNodesTandem.createTandem( `${label}PointLabelNode` );
-
-      const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
-        tandem: pointLabelNodeTandem.createTandem( 'colorProperty' )
-      } );
-
-      const visibleProperty = new DerivedProperty(
-        [ pointLabel.visibleProperty, model.predictModeEnabledProperty ],
-        ( pointLabelVisible, predictMode ) => pointLabelVisible && !predictMode, {
-          tandem: pointLabelNodeTandem.createTandem( 'visibleProperty' ),
-          phetioValueType: BooleanIO
-        } );
-
-      this.originalGraphNode.addPointLabelNode( pointLabel, {
-        focusPointNodeOptions: { fill: colorProperty },
-        visibleProperty: visibleProperty,
-        tandem: pointLabelNodeTandem
-      } );
-    } );
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform, {
       x: this.originalGraphNode.x,
