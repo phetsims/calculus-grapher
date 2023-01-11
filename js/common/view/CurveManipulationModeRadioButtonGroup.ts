@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * CurveManipulationModeRadioButtonGroup is the radio button group for choosing a curve manipulation model
