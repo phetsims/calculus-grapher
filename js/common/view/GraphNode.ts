@@ -359,12 +359,12 @@ export default class GraphNode extends Node {
     shadedAreaChart.moveToBack();
   }
 
-  public addPointLabel( labelledAncillaryTool: LabelledAncillaryTool,
-                        providedOptions: PointLabelOptions ): void {
+  public addPointLabelNode( pointLabel: LabelledAncillaryTool,
+                            providedOptions: PointLabelOptions ): void {
 
-    const pointLabel = new PointLabel( labelledAncillaryTool, this.graphType, this.chartTransform, providedOptions );
+    const pointLabelNode = new PointLabel( pointLabel, this.graphType, this.chartTransform, providedOptions );
 
-    this.curveLayer.addChild( pointLabel );
+    this.curveLayer.addChild( pointLabelNode );
   }
 }
 

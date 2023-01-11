@@ -22,9 +22,9 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -102,25 +102,26 @@ export default class GraphNodes extends Node {
       }
     );
 
-    const pointLabelsTandem = options.tandem.createTandem( 'pointLabels' );
+    const pointLabelNodesTandem = options.tandem.createTandem( 'pointLabelNodes' );
     model.pointLabels.forEach( pointLabel => {
       const label = pointLabel.labelProperty.value;
-      const pointLabelTandem = pointLabelsTandem.createTandem( `${label}PointLabel` );
+      const pointLabelNodeTandem = pointLabelNodesTandem.createTandem( `${label}PointLabelNode` );
 
-      const visibleProperty = new BooleanProperty( false,
-        { tandem: pointLabelTandem.createTandem( 'visibleProperty' ) } );
-      const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value,
-        { tandem: pointLabelTandem.createTandem( 'colorProperty' ) } );
+      const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
+        tandem: pointLabelNodeTandem.createTandem( 'colorProperty' )
+      } );
 
-      const pointLabelVisibleProperty = new DerivedProperty(
-        [ visibleProperty, model.predictModeEnabledProperty ],
-        ( visible, predictMode ) =>
-          visible && !predictMode );
+      const visibleProperty = new DerivedProperty(
+        [ pointLabel.visibleProperty, model.predictModeEnabledProperty ],
+        ( pointLabelVisible, predictMode ) => pointLabelVisible && !predictMode, {
+          tandem: pointLabelNodeTandem.createTandem( 'visibleProperty' ),
+          phetioValueType: BooleanIO
+        } );
 
-      this.originalGraphNode.addPointLabel( pointLabel, {
+      this.originalGraphNode.addPointLabelNode( pointLabel, {
         focusPointNodeOptions: { fill: colorProperty },
-        visibleProperty: pointLabelVisibleProperty,
-        tandem: pointLabelTandem
+        visibleProperty: visibleProperty,
+        tandem: pointLabelNodeTandem
       } );
     } );
 
@@ -129,19 +130,20 @@ export default class GraphNodes extends Node {
       tandem: options.tandem.createTandem( 'referenceLineNode' )
     } );
 
-    // To organize all vertical lines under 1 tandem
-    const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
+    // To organize all VerticalLineNode instances under 1 tandem
+    const verticalLineNodesTandem = options.tandem.createTandem( 'verticalLines' );
 
     const verticalLineNodes = model.verticalLines.map( verticalLine => {
       const label = verticalLine.labelProperty.value;
       return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
         x: this.originalGraphNode.x,
-        tandem: verticalLinesTandem.createTandem( `${label}VerticalLineNode` )
+        tandem: verticalLineNodesTandem.createTandem( `${label}VerticalLineNode` )
       } );
     } );
 
-    const verticalLinesLayer = new Node( {
+    const verticalLineNodesLayer = new Node( {
       children: verticalLineNodes
+      //TODO instrument so we can hide all VerticalLineNodes with 1 visibleProperty?
     } );
 
     const graphSetNode = new Node();
@@ -178,7 +180,7 @@ export default class GraphNodes extends Node {
       verticalLineNodes.forEach( verticalLineNode => setVerticalLineNodePosition( verticalLineNode ) );
     } );
 
-    options.children = [ graphSetNode, verticalLinesLayer, referenceLineNode ];
+    options.children = [ graphSetNode, verticalLineNodesLayer, referenceLineNode ];
 
     this.mutate( options );
   }

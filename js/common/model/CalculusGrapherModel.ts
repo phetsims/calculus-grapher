@@ -127,7 +127,7 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      options.tandem.createTandem( 'points' ), 'Point' );
+      options.tandem.createTandem( 'pointLabels' ), 'PointLabel' );
 
     this.verticalLines = LabelledAncillaryTool.createTools(
       CalculusGrapherConstants.MAX_VERTICAL_LINES,
@@ -151,8 +151,8 @@ export default class CalculusGrapherModel implements TModel {
     this.tangentTool.reset();
     this.areaUnderCurveTool.reset();
 
-    this.pointLabels.forEach( point => point.reset() );
-    this.verticalLines.forEach( line => line.reset() );
+    this.pointLabels.forEach( pointLabel => pointLabel.reset() );
+    this.verticalLines.forEach( verticalLineTool => verticalLineTool.reset() );
   }
 
   public getCurve( graphType: GraphType ): Curve {
