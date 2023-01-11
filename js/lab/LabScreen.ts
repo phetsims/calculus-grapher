@@ -12,7 +12,7 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import { AlignGroup } from '../../../scenery/js/imports.js';
@@ -24,7 +24,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
   public constructor( providedOptions: LabScreenOptions ) {
 
-    const options = optionize<LabScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
+    const options = providedOptions;
 
     const graphSets: GraphSet[] = [
       [ 'integral', 'original', 'derivative' ],

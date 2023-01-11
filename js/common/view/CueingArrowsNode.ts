@@ -26,16 +26,17 @@ export default class CueingArrowsNode extends VBox {
 
   public constructor( providedOptions?: CueingArrowsNodeOptions ) {
 
-    const options = optionize<CueingArrowsNodeOptions, SelfOptions, VBoxOptions>()(
-      {
-        arrowNodeOptions: {
-          fill: CalculusGrapherColors.arrowFillProperty,
-          stroke: null
-        },
+    const options = optionize<CueingArrowsNodeOptions, SelfOptions, VBoxOptions>()( {
 
-        // VBox Options
-        spacing: 15
-      }, providedOptions );
+      // SelfOptions
+      arrowNodeOptions: {
+        fill: CalculusGrapherColors.arrowFillProperty,
+        stroke: null
+      },
+
+      // VBox Options
+      spacing: 15
+    }, providedOptions );
 
     // arrow options
     const arrowOptions = combineOptions<ArrowNodeOptions>(

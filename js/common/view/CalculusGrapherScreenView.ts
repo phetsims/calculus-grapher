@@ -48,7 +48,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
       // SelfOptions
       graphSetRadioButtonGroupItems: []
-
     }, providedOptions );
 
     super( options );

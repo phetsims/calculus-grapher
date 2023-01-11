@@ -12,7 +12,7 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import IntegralModel from './model/IntegralModel.js';
 import IntegralScreenView from './view/IntegralScreenView.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { GraphSet } from '../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -22,7 +22,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
 
   public constructor( providedOptions: IntegralScreenOptions ) {
 
-    const options = optionize<IntegralScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
+    const options = providedOptions;
 
     const graphSets: GraphSet[] = [
       [ 'integral', 'original' ]

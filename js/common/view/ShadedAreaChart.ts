@@ -39,6 +39,8 @@ export default class ShadedAreaChart extends Node {
                       providedOptions?: ShadedAreaChartOptions ) {
 
     const options = optionize<ShadedAreaChartOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
       positiveFill: 'black',
       negativeFill: 'black'
     }, providedOptions );

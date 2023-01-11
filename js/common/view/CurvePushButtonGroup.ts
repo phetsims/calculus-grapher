@@ -34,24 +34,24 @@ export default class CurvePushButtonGroup extends VBox {
                       providedOptions?: CurvePushButtonGroupOptions ) {
 
     const options = optionize<CurvePushButtonGroupOptions, SelfOptions, VBoxOptions>()( {
-        smoothButtonOptions: {
-          textNodeOptions: { fontWeight: 'bold' },
-          baseColor: PhetColorScheme.BUTTON_YELLOW
-        },
-        undoButtonOptions: {
-          yMargin: 6,
-          iconOptions: { height: 13 }
-        },
-        eraserButtonOptions: {
-          iconWidth: 16,
-          xMargin: 10
-        },
 
-        //VBoxOptions
-        spacing: 6
+      // SelfOptions
+      smoothButtonOptions: {
+        textNodeOptions: { fontWeight: 'bold' },
+        baseColor: PhetColorScheme.BUTTON_YELLOW
       },
-      providedOptions
-    );
+      undoButtonOptions: {
+        yMargin: 6,
+        iconOptions: { height: 13 }
+      },
+      eraserButtonOptions: {
+        iconWidth: 16,
+        xMargin: 10
+      },
+
+      // VBoxOptions
+      spacing: 6
+    }, providedOptions );
 
     // create an undo Button
     const undoButton = new UndoButton(

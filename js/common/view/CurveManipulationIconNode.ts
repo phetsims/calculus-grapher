@@ -35,25 +35,27 @@ export default class CurveManipulationIconNode extends Node {
   public constructor( mode: CurveManipulationMode,
                       providedOptions?: CurveManipulationIconNodeOptions ) {
 
-    const options = optionize<CurveManipulationIconNodeOptions, StrictOmit<SelfOptions, 'solidCurveNodeOptions'>, NodeOptions>()(
-      {
-        dashedCurveNodeOptions: {
-          continuousLinePlotOptions: {
-            lineDash: [ 4.5, 2 ],
-            lineWidth: 1
-          }
-        },
-        transformedCurveOptions: {
-          pointsPerCoordinate: 3,
-          xRange: CalculusGrapherConstants.CURVE_X_RANGE
-        },
-        chartTransformOptions: {
-          viewWidth: 70,
-          viewHeight: 7,
-          modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-          modelYRange: new Range( -1, 6 )
+    const options = optionize<CurveManipulationIconNodeOptions, StrictOmit<SelfOptions, 'solidCurveNodeOptions'>,
+      NodeOptions>()( {
+
+      // SelfOptions
+      dashedCurveNodeOptions: {
+        continuousLinePlotOptions: {
+          lineDash: [ 4.5, 2 ],
+          lineWidth: 1
         }
-      }, providedOptions );
+      },
+      transformedCurveOptions: {
+        pointsPerCoordinate: 3,
+        xRange: CalculusGrapherConstants.CURVE_X_RANGE
+      },
+      chartTransformOptions: {
+        viewWidth: 70,
+        viewHeight: 7,
+        modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
+        modelYRange: new Range( -1, 6 )
+      }
+    }, providedOptions );
 
     assert && assert( options.chartTransformOptions.modelXRange === options.transformedCurveOptions.xRange, ' x range should be the same' );
 

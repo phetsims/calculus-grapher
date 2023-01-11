@@ -65,6 +65,7 @@ export default class CurveNode extends Node {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
 
+      // SelfOptions
       continuousLinePlotOptions: {
         lineWidth: 2
       },

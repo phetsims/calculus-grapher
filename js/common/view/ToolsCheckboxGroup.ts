@@ -8,7 +8,7 @@
 
 import VerticalCheckboxGroup, { VerticalCheckboxGroupItem, VerticalCheckboxGroupOptions } from '../../../../sun/js/VerticalCheckboxGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import Property from '../../../../axon/js/Property.js';
@@ -26,8 +26,7 @@ export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
   public constructor( visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: ToolsCheckboxGroupOptions ) {
 
-    const options = optionize<ToolsCheckboxGroupOptions, SelfOptions, VerticalCheckboxGroupOptions>()(
-      {}, providedOptions );
+    const options = providedOptions;
 
     const items: VerticalCheckboxGroupItem[] = [
 

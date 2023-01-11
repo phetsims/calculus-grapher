@@ -41,7 +41,8 @@ export default class TransformedCurveNode extends CurveNode {
                       providedOptions?: TransformedCurveNodeOptions ) {
 
     const options = optionize<TransformedCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
-      // super-class options
+
+      // CurveNodeOptions
       continuousLinePlotOptions: {
         cursor: 'pointer'
       }

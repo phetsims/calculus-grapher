@@ -25,13 +25,13 @@ export default class FocusCircle extends Circle {
                       chartTransform: ChartTransform,
                       providedOptions: FocusPointNodeOptions ) {
 
-    const options = optionize<FocusPointNodeOptions, SelfOptions, CircleOptions>()(
-      {
-        // CircleOptions
-        stroke: null,
-        fill: 'black',
-        radius: 4
-      }, providedOptions );
+    const options = optionize<FocusPointNodeOptions, SelfOptions, CircleOptions>()( {
+
+      // CircleOptions
+      stroke: null,
+      fill: 'black',
+      radius: 4
+    }, providedOptions );
 
     super( options );
 

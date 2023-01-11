@@ -29,6 +29,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
   public constructor( model: IntegralModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+
+      // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
         smoothButtonVisible: false
       }

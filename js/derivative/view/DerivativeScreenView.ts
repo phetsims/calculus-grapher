@@ -31,6 +31,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
   public constructor( model: DerivativeModel, providedOptions: DerivativeScreenViewOptions ) {
 
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+
+      // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
         smoothButtonVisible: false
       }

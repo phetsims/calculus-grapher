@@ -29,17 +29,20 @@ export default class TangentArrowNode extends ArrowNode {
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
 
-    const options = optionize<TangentArrowNodeOptions, SelfOptions, ArrowNodeOptions>()(
-      {
-        arrowLength: 100,
-        fill: CalculusGrapherColors.derivativeCurveStrokeProperty,
-        headWidth: 6,
-        headHeight: 6,
-        tailWidth: 2,
-        fractionalHeadHeight: 0.5,
-        stroke: null,
-        doubleHead: true
-      }, providedOptions );
+    const options = optionize<TangentArrowNodeOptions, SelfOptions, ArrowNodeOptions>()( {
+
+      // SelfOptions
+      arrowLength: 100,
+
+      // ArrowNodeOptions
+      fill: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      headWidth: 6,
+      headHeight: 6,
+      tailWidth: 2,
+      fractionalHeadHeight: 0.5,
+      stroke: null,
+      doubleHead: true
+    }, providedOptions );
 
     super( -options.arrowLength / 2,
       0,

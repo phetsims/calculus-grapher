@@ -90,6 +90,8 @@ export default class GraphNode extends Node {
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
       createCurveNode: ( chartTransform: ChartTransform,
                          providedOptions?: CurveNodeOptions ) => new CurveNode( curve, chartTransform, providedOptions ),
       gridLineSetOptions: {

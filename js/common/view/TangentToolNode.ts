@@ -36,7 +36,6 @@ export default class TangentToolNode extends AncillaryToolNode {
       // AncillaryToolNodeOptions
       mainFillProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
       scrubberLineVisible: false
-
     }, providedOptions );
 
     super( tangentTool, graphType, predictModeEnabledProperty, graphsNode, options );

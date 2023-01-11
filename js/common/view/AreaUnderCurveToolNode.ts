@@ -36,7 +36,6 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
       // AncillaryToolNodeOptions
       mainFillProperty: CalculusGrapherColors.integralCurveStrokeProperty,
       scrubberLineVisible: true
-
     }, providedOptions );
 
     super( areaUnderCurveTool, graphType, predictModeEnabledProperty, graphsNode, options );

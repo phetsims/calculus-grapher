@@ -27,14 +27,9 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 type SelfOptions = {
   barometerStrokeProperty: TReadOnlyProperty<Color>;
   lineOptions?: StrictOmit<LineOptions, 'stroke'>;
-
   textOptions?: TextOptions;
-
   chartTransformOptions?: ChartTransformOptions;
-
   tickMarkSetExtent?: number;
-
-  // number of ticks
   numberOfTicks?: number;
 };
 
@@ -46,29 +41,30 @@ export default class BarometerAccordionBox extends AccordionBox {
                       labelString: TReadOnlyProperty<string>,
                       providedOptions: BarometerAccordionBoxOptions ) {
 
-    const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()(
-      {
-        lineOptions: {
-          lineWidth: 10,
-          opacity: 0.6
-        },
-        textOptions: {
-          font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
-          maxWidth: 100 // determined empirically
-        },
-        chartTransformOptions: {
-          viewHeight: 175,
-          modelYRange: new Range( -10, 10 )
-        },
-        tickMarkSetExtent: 20,
-        numberOfTicks: 4,
+    const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
-        // AccordionBoxOptions
-        stroke: CalculusGrapherColors.panelStrokeProperty,
-        fill: CalculusGrapherColors.panelFillProperty,
-        resize: true,
-        titleAlignX: 'left'
-      }, providedOptions );
+      // SelfOptions
+      lineOptions: {
+        lineWidth: 10,
+        opacity: 0.6
+      },
+      textOptions: {
+        font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
+        maxWidth: 100 // determined empirically
+      },
+      chartTransformOptions: {
+        viewHeight: 175,
+        modelYRange: new Range( -10, 10 )
+      },
+      tickMarkSetExtent: 20,
+      numberOfTicks: 4,
+
+      // AccordionBoxOptions
+      stroke: CalculusGrapherColors.panelStrokeProperty,
+      fill: CalculusGrapherColors.panelFillProperty,
+      resize: true,
+      titleAlignX: 'left'
+    }, providedOptions );
 
     const orientation = Orientation.VERTICAL;
 

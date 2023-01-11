@@ -30,15 +30,16 @@ export default class ScrubberNode extends Node {
                       chartTransform: ChartTransform,
                       providedOptions?: ScrubberNodeOptions ) {
 
-    const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()(
-      {
-        lineOptions: {
-          visible: true,
-          lineWidth: 2
-        },
-        fill: 'red',
-        sphereDiameter: 18
-      }, providedOptions );
+    const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
+      lineOptions: {
+        visible: true,
+        lineWidth: 2
+      },
+      fill: 'red',
+      sphereDiameter: 18
+    }, providedOptions );
 
     const yValue = chartTransform.modelToViewY( chartTransform.modelYRange.min );
 

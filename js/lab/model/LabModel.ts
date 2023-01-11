@@ -8,7 +8,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -16,12 +16,8 @@ export type LabModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
 export default class LabModel extends CalculusGrapherModel {
 
-  public constructor( providedOptions?: LabModelOptions ) {
-    const options = optionize<LabModelOptions, SelfOptions, CalculusGrapherModelOptions>()(
-      {}, providedOptions );
-
-    super( options );
-
+  public constructor( providedOptions: LabModelOptions ) {
+    super( providedOptions );
   }
 }
 

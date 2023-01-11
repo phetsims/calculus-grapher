@@ -18,9 +18,7 @@ import { Path, PathOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = {
-
-  // y-value representing the foundation of the chart
-  baseline?: number;
+  baseline?: number; // y-value representing the foundation of the chart
 };
 
 export type AreaChartDataSet = ( Vector2 | null )[];
@@ -42,10 +40,11 @@ export default class AreaChart extends Path {
                       dataSet: AreaChartDataSet,
                       providedOptions?: AreaChartOptions ) {
 
-    const options = optionize<AreaChartOptions, SelfOptions, PathOptions>()(
-      {
-        baseline: 0
-      }, providedOptions );
+    const options = optionize<AreaChartOptions, SelfOptions, PathOptions>()( {
+
+      // SelfOptions
+      baseline: 0
+    }, providedOptions );
 
     super( null, options );
 

@@ -8,12 +8,10 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 
-type SelfOptions = {
-  curveManipulationModeChoices?: CurveManipulationMode[];
-};
+type SelfOptions = EmptySelfOptions;
 
 export type IntegralModelOptions = SelfOptions & CalculusGrapherModelOptions;
 
@@ -23,7 +21,7 @@ export default class IntegralModel extends CalculusGrapherModel {
 
     const options = optionize<IntegralModelOptions, SelfOptions, CalculusGrapherModelOptions>()( {
 
-      // SelfOptions
+      // CalculusGrapherModelOptions
       curveManipulationModeChoices: [
         CurveManipulationMode.HILL,
         CurveManipulationMode.PEDESTAL,

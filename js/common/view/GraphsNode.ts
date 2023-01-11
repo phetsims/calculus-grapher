@@ -41,7 +41,9 @@ export default class GraphNodes extends Node {
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
 
-    const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {}, providedOptions );
+    const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {
+      // empty optionize because we're setting options.children below
+    }, providedOptions );
 
     super();
 
