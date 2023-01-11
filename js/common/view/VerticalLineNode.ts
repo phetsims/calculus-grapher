@@ -8,40 +8,45 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import { Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { Color, ColorProperty, Line, Node, NodeOptions, NodeTranslationOptions, Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
-type SelfOptions = {
-  lineOptions?: LineOptions;
-};
+type SelfOptions = EmptySelfOptions;
 
-type VerticalLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type VerticalLineNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class VerticalLineNode extends Node {
 
-  private readonly verticalLine;
+  private readonly line;
 
-  public constructor( labelledAncillaryTool: LabelledAncillaryTool,
+  public constructor( verticalLine: LabelledAncillaryTool,
                       chartTransform: ChartTransform,
-                      providedOptions?: VerticalLineNodeOptions ) {
+                      providedOptions: VerticalLineNodeOptions ) {
 
     const options = optionize<VerticalLineNodeOptions, SelfOptions, NodeOptions>()( {
-      lineOptions: {
-        stroke: 'black'
-      }
+
+      // NodeOptions
+      visibleProperty: verticalLine.visibleProperty
     }, providedOptions );
 
-    const xProperty = labelledAncillaryTool.xProperty;
+    const xProperty = verticalLine.xProperty;
 
-    //  initial y values are arbitrary, client is responsible for setting them using methods below
-    const verticalLine = new Line( 0, 0, 0, -1, options.lineOptions );
+    // initial y values are arbitrary, client is responsible for setting them using methods below
+    const line = new Line( 0, 0, 0, -1, {
+      lineDash: [ 4, 2 ],
 
-    const textNode = new Text( labelledAncillaryTool.labelProperty, {
+      // For PhET-iO
+      stroke: new ColorProperty( Color.black, {
+        tandem: options.tandem.createTandem( 'colorProperty' )
+      } )
+    } );
+
+    const textNode = new Text( verticalLine.labelProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 50,
       centerX: 0
@@ -49,20 +54,20 @@ export default class VerticalLineNode extends Node {
 
     const labelNode = new BackgroundNode( textNode, {
       centerX: 0,
-      bottom: verticalLine.top - 5,
+      bottom: line.top - 5,
       rectangleOptions: {
         cornerRadius: 3
       }
     } );
 
     // center x position if label changes
-    labelledAncillaryTool.labelProperty.link( () => {
+    verticalLine.labelProperty.link( () => {
       labelNode.centerX = 0;
     } );
 
     // set the children inside a layer , to more easily control their x position
     const verticalNodeLayer = new Node( {
-      children: [ verticalLine, labelNode ],
+      children: [ line, labelNode ],
       centerX: chartTransform.modelToViewX( xProperty.value )
     } );
 
@@ -71,26 +76,25 @@ export default class VerticalLineNode extends Node {
     } );
 
     options.children = [ verticalNodeLayer ];
+
     super( options );
 
-    this.verticalLine = verticalLine;
+    this.line = line;
 
-    this.addLinkedElement( labelledAncillaryTool, {
-      tandem: options.tandem.createTandem( labelledAncillaryTool.tandem.name )
+    this.addLinkedElement( verticalLine, {
+      tandem: options.tandem.createTandem( verticalLine.tandem.name )
     } );
   }
 
   // set Y top position in view coordinates
   public setLineTop( value: number ): void {
-    this.verticalLine.setY2( value );
+    this.line.setY2( value );
   }
 
   // set Y bottom position of line in view coordinates
   public setLineBottom( value: number ): void {
-    this.verticalLine.setY1( value );
+    this.line.setY1( value );
   }
-
-
 }
 
 calculusGrapher.register( 'VerticalLineNode', VerticalLineNode );

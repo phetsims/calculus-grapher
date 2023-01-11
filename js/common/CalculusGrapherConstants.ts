@@ -55,7 +55,7 @@ const CalculusGrapherConstants = {
 
   // PhET-io ONLY constants
   MAX_VERTICAL_LINES: 6,
-  MAX_LABEL_POINTS: 6
+  MAX_POINT_LABELS: 6
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

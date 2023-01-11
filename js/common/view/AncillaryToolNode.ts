@@ -71,10 +71,6 @@ export default class AncillaryToolNode extends Node {
     } );
 
     GRAPH_TYPES.forEach( graphType => this.addFocusCircle( graphType ) );
-
-    this.addLinkedElement( ancillaryTool, {
-      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
-    } );
   }
 
   protected getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {

@@ -52,8 +52,8 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentTool: AncillaryTool;
   public readonly areaUnderCurveTool: AncillaryTool;
 
-  public readonly labelledPoints: LabelledAncillaryTool[];
-  public readonly labelledVerticalLines: LabelledAncillaryTool[];
+  public readonly pointLabels: LabelledAncillaryTool[];
+  public readonly verticalLines: LabelledAncillaryTool[];
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -121,15 +121,15 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
     } );
 
-    this.labelledPoints = LabelledAncillaryTool.createTools(
-      CalculusGrapherConstants.MAX_LABEL_POINTS,
+    this.pointLabels = LabelledAncillaryTool.createTools(
+      CalculusGrapherConstants.MAX_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
       options.tandem.createTandem( 'points' ), 'Point' );
 
-    this.labelledVerticalLines = LabelledAncillaryTool.createTools(
+    this.verticalLines = LabelledAncillaryTool.createTools(
       CalculusGrapherConstants.MAX_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,
@@ -151,8 +151,8 @@ export default class CalculusGrapherModel implements TModel {
     this.tangentTool.reset();
     this.areaUnderCurveTool.reset();
 
-    this.labelledPoints.forEach( point => point.reset() );
-    this.labelledVerticalLines.forEach( line => line.reset() );
+    this.pointLabels.forEach( point => point.reset() );
+    this.verticalLines.forEach( line => line.reset() );
   }
 
   public getCurve( graphType: GraphType ): Curve {

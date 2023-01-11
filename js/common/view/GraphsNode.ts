@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { Color, ColorProperty, HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { ColorProperty, HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -103,8 +103,8 @@ export default class GraphNodes extends Node {
     );
 
     const pointLabelsTandem = options.tandem.createTandem( 'pointLabels' );
-    model.labelledPoints.forEach( ( labelledAncillaryTool, index ) => {
-      const label = labelledAncillaryTool.labelProperty.value;
+    model.pointLabels.forEach( pointLabel => {
+      const label = pointLabel.labelProperty.value;
       const pointLabelTandem = pointLabelsTandem.createTandem( `${label}PointLabel` );
 
       const visibleProperty = new BooleanProperty( false,
@@ -117,7 +117,7 @@ export default class GraphNodes extends Node {
         ( visible, predictMode ) =>
           visible && !predictMode );
 
-      this.originalGraphNode.addPointLabel( labelledAncillaryTool, {
+      this.originalGraphNode.addPointLabel( pointLabel, {
         focusPointNodeOptions: { fill: colorProperty },
         visibleProperty: pointLabelVisibleProperty,
         tandem: pointLabelTandem
@@ -132,27 +132,13 @@ export default class GraphNodes extends Node {
     // To organize all vertical lines under 1 tandem
     const verticalLinesTandem = options.tandem.createTandem( 'verticalLines' );
 
-    const verticalLineNodes = model.labelledVerticalLines.map( ( verticalLine, index ) => {
-        const label = verticalLine.labelProperty.value;
-        const verticalLineNodeTandem = verticalLinesTandem.createTandem( `${label}VerticalLineNode` );
-
-        const colorProperty = new ColorProperty( new Color( 0x000000 ),
-          { tandem: verticalLineNodeTandem.createTandem( 'colorProperty' ) } );
-        const visibleProperty = new BooleanProperty( false,
-          { tandem: verticalLineNodeTandem.createTandem( 'visibleProperty' ) } );
-
-        return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
-          x: this.originalGraphNode.x,
-          lineOptions: {
-            lineDash: [ 4, 2 ],
-            stroke: colorProperty
-          },
-          visibleProperty: visibleProperty,
-          tandem: verticalLineNodeTandem
-        } );
-
-      }
-    );
+    const verticalLineNodes = model.verticalLines.map( verticalLine => {
+      const label = verticalLine.labelProperty.value;
+      return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
+        x: this.originalGraphNode.x,
+        tandem: verticalLinesTandem.createTandem( `${label}VerticalLineNode` )
+      } );
+    } );
 
     const verticalLinesLayer = new Node( {
       children: verticalLineNodes
