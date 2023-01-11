@@ -142,20 +142,15 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( pointLabelsLayer );
   }
 
-  /**
-   * Reset all
-   */
   public override reset(): void {
     super.reset();
     this.predictCurveNode.reset();
   }
 
-
   private setCurvePointerAreas(): void {
     this.curveNode.setPointerAreas();
     this.predictCurveNode.setPointerAreas();
   }
-
 }
 
 calculusGrapher.register( 'OriginalGraphNode', OriginalGraphNode );
