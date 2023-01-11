@@ -53,13 +53,12 @@ export default class PointLabelNode extends Node {
     // property associated with the tangent at the y value
     const yDerivativeProperty = pointLabel.getYProperty( getDerivativeOf( graphType ) );
 
-    const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
-      tandem: options.tandem.createTandem( 'colorProperty' )
-    } );
-
     // small point (disk) on curve - focusCircle is responsible for updating its position
     const focusCircle = new FocusCircle( pointLabel.xProperty, yProperty, chartTransform, {
-      fill: colorProperty
+      fill: new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
+        //TODO https://github.com/phetsims/calculus-grapher/issues/144 temporarily add to pointLabel
+        tandem: pointLabel.tandem.createTandem( 'pointColorProperty' )
+      } )
     } );
 
     // label for the point

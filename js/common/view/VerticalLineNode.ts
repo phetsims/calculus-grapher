@@ -42,12 +42,13 @@ export default class VerticalLineNode extends Node {
 
       // For PhET-iO
       stroke: new ColorProperty( Color.black, {
-        tandem: options.tandem.createTandem( 'colorProperty' )
+        //TODO https://github.com/phetsims/calculus-grapher/issues/144 temporarily add to verticalLine
+        tandem: verticalLine.tandem.createTandem( 'lineColorProperty' )
       } )
     } );
 
     const text = new Text( verticalLine.labelProperty, {
-      font: CalculusGrapherConstants.CONTROL_FONT,
+      font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
       maxWidth: 50,
       centerX: 0
     } );
