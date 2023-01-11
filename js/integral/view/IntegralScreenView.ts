@@ -17,6 +17,7 @@ import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import AccumulatedAreaAccordionBox from '../../common/view/AccumulatedAreaAccordionBox.js';
+import Checkbox from '../../../../sun/js/Checkbox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -57,7 +58,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( accumulatedAreaAccordionBox );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
-    this.controlPanel.addCheckbox( this.visibleProperties.areaUnderCurveVisibleProperty,
+    const areaUnderCurveCheckbox = new Checkbox( this.visibleProperties.areaUnderCurveVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         maxWidth: 100
@@ -65,6 +66,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
         tandem: this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' )
       } );
+    this.controlPanel.appendContent( areaUnderCurveCheckbox );
   }
 
   public override reset(): void {

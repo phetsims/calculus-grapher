@@ -18,6 +18,7 @@ import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
+import Checkbox from '../../../../sun/js/Checkbox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -60,7 +61,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.
-    this.controlPanel.addCheckbox( this.visibleProperties.tangentVisibleProperty,
+    const tangentCheckbox = new Checkbox( this.visibleProperties.tangentVisibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         maxWidth: 100
@@ -68,6 +69,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
         tandem: this.controlPanel.tandem.createTandem( 'tangentCheckbox' )
       } );
+    this.controlPanel.appendContent( tangentCheckbox );
   }
 
   public override reset(): void {

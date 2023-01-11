@@ -11,19 +11,15 @@ import { HSeparator, Node, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
-import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import LinkableProperty from '../../../../axon/js/LinkableProperty.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   smoothButtonVisible?: boolean;
@@ -90,14 +86,11 @@ export default class CalculusGrapherControlPanel extends Panel {
     this.contentNode = contentNode;
   }
 
-  public addCheckbox( property: LinkableProperty<boolean>, content: Node,
-                      providedOptions?: StrictOmit<CheckboxOptions, 'boxWidth'> ): void {
-
-    const options = combineOptions<CheckboxOptions>( { boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH },
-      providedOptions );
-    const checkbox = new Checkbox( property, content, options );
-
-    this.contentNode.addChild( checkbox );
+  /**
+   * Appends a Node to this panel's content.
+   */
+  public appendContent( node: Node ): void {
+    this.contentNode.addChild( node );
   }
 }
 calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
