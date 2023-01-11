@@ -39,7 +39,6 @@ export default class OriginalGraphNode extends GraphNode {
   public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       graphHeightProperty: TReadOnlyProperty<number>,
-                      labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
     // destructuring the calculus grapher model
@@ -71,6 +70,18 @@ export default class OriginalGraphNode extends GraphNode {
         }
       },
       providedOptions );
+
+    // Label that toggles between 'Predict f(x)' and 'f(x)'
+    const labelNode = new HBox( {
+      children: [
+        new Text( CalculusGrapherStrings.predictStringProperty, {
+          font: CalculusGrapherConstants.CONTROL_FONT,
+          maxWidth: 100,
+          visibleProperty: model.predictModeEnabledProperty
+        } ),
+        new GraphTypeLabelNode( 'original' ) ],
+      spacing: 5
+    } );
 
     super( originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
 

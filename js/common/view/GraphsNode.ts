@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { HBox, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -21,7 +21,6 @@ import { getGraphTypeStroke, GRAPH_TYPES, GraphSet, GraphType } from '../model/G
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 
 type SelfOptions = {
@@ -76,29 +75,13 @@ export default class GraphNodes extends Node {
     this.derivativeGraphNode = createGraphNode( 'derivative' );
     this.secondDerivativeGraphNode = createGraphNode( 'secondDerivative' );
 
-    // create label for original graph that toggles between 'Predict f(x)' and 'f(x)'
-    const originalLabelNode = new HBox( {
-      children: [
-        new Text( CalculusGrapherStrings.predictStringProperty, {
-          font: CalculusGrapherConstants.CONTROL_FONT,
-          maxWidth: 100,
-          visibleProperty: model.predictModeEnabledProperty
-        } ),
-        new GraphTypeLabelNode( 'original' ) ],
-      spacing: 5
+    this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
+      graphType: 'original',
+      curveStroke: getGraphTypeStroke( 'original' ),
+
+      // originalGraphNode is always instrumented, because it should always be present.
+      tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
-
-    this.originalGraphNode = new OriginalGraphNode( model,
-      visibleProperties,
-      graphHeightProperty,
-      originalLabelNode, {
-        graphType: 'original',
-        curveStroke: getGraphTypeStroke( 'original' ),
-
-        // originalGraphNode is always instrumented, because it should always be present.
-        tandem: options.tandem.createTandem( 'originalGraphNode' )
-      }
-    );
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform, {
       x: this.originalGraphNode.x,
