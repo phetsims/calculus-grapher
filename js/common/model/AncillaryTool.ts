@@ -26,8 +26,6 @@ import Curve from './Curve.js';
 import { GraphType } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
-const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
-
 type SelfOptions = {
   initialCoordinate: number;
 };
@@ -59,7 +57,7 @@ export default class AncillaryTool extends PhetioObject {
     super( options );
 
     this.xProperty = new NumberProperty( options.initialCoordinate, {
-      range: CURVE_X_RANGE,
+      range: CalculusGrapherConstants.CURVE_X_RANGE,
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
     } );
 
