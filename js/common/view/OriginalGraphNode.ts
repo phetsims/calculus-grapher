@@ -15,7 +15,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { ColorProperty, HBox, Node, Text } from '../../../../scenery/js/imports.js';
+import { HBox, Node, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -25,7 +25,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import PointLabelNode from './PointLabelNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -131,28 +130,15 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Point labels
     const pointLabelNodesTandem = options.tandem.createTandem( 'pointLabelNodes' );
-    model.pointLabels.forEach( pointLabel => {
-      const label = pointLabel.labelProperty.value;
-      const pointLabelNodeTandem = pointLabelNodesTandem.createTandem( `${label}PointLabelNode` );
-
-      const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
-        tandem: pointLabelNodeTandem.createTandem( 'colorProperty' )
-      } );
-
-      const visibleProperty = new DerivedProperty(
-        [ pointLabel.visibleProperty, model.predictModeEnabledProperty ],
-        ( pointLabelVisible, predictMode ) => pointLabelVisible && !predictMode, {
-          tandem: pointLabelNodeTandem.createTandem( 'visibleProperty' ),
-          phetioValueType: BooleanIO
-        } );
-
-      const pointLabelNode = new PointLabelNode( pointLabel, this.graphType, this.chartTransform, {
-        focusPointNodeOptions: { fill: colorProperty },
-        visibleProperty: visibleProperty,
-        tandem: pointLabelNodeTandem
-      } );
-      this.curveLayer.addChild( pointLabelNode );
+    const pointLabelNodes = model.pointLabels.map( pointLabel =>
+      new PointLabelNode( pointLabel, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
+        tandem: pointLabelNodesTandem.createTandem( `${pointLabel.labelProperty.value}PointLabelNode` )
+      } ) );
+    const pointLabelsLayer = new Node( {
+      children: pointLabelNodes
+      //TODO instrument so we can hide all PointLabelNodes with 1 visibleProperty?
     } );
+    this.addChild( pointLabelsLayer );
   }
 
   /**

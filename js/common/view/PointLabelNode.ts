@@ -8,44 +8,43 @@
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import { Line, LineOptions, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { ColorProperty, Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import LabelledAncillaryTool from '../model/LabelledAncillaryTool.js';
-import FocusCircle, { FocusPointNodeOptions } from './FocusCircle.js';
+import FocusCircle from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
-import BackgroundNode, { BackgroundNodeOptions } from '../../../../scenery-phet/js/BackgroundNode.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
-type SelfOptions = {
-  focusPointNodeOptions?: FocusPointNodeOptions;
-  lineOptions?: LineOptions;
-  labelNodeOptions?: BackgroundNodeOptions;
-};
+type SelfOptions = EmptySelfOptions;
 
-export type PointLabelOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+export type PointLabelOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class PointLabelNode extends Node {
 
   public constructor( pointLabel: LabelledAncillaryTool,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
+                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       providedOptions: PointLabelOptions ) {
 
     const options = optionize<PointLabelOptions, SelfOptions, NodeOptions>()( {
-      focusPointNodeOptions: {},
-      lineOptions: {
-        stroke: 'black',
-        opacity: 0.5,
-        visible: false
-      },
-      labelNodeOptions: {
-        rectangleOptions: {
-          cornerRadius: 3
-        }
-      }
+
+      // NodeOptions
+      visibleProperty: new DerivedProperty(
+        [ pointLabel.visibleProperty, predictModeEnabledProperty ],
+        ( pointLabelVisible, predictMode ) => pointLabelVisible && !predictMode, {
+          tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
+          phetioValueType: BooleanIO
+        } )
     }, providedOptions );
 
     // property associated with y value
@@ -54,11 +53,14 @@ export default class PointLabelNode extends Node {
     // property associated with the tangent at the y value
     const yDerivativeProperty = pointLabel.getYProperty( getDerivativeOf( graphType ) );
 
+    const colorProperty = new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
+      tandem: options.tandem.createTandem( 'colorProperty' )
+    } );
+
     // small point (disk) on curve - focusCircle is responsible for updating its position
-    const focusCircle = new FocusCircle(
-      pointLabel.xProperty,
-      yProperty, chartTransform,
-      options.focusPointNodeOptions );
+    const focusCircle = new FocusCircle( pointLabel.xProperty, yProperty, chartTransform, {
+      fill: colorProperty
+    } );
 
     // label for the point
     const text = new Text( pointLabel.labelProperty, {
@@ -66,10 +68,18 @@ export default class PointLabelNode extends Node {
       maxWidth: 50
     } );
 
-    const labelNode = new BackgroundNode( text, options.labelNodeOptions );
+    const labelNode = new BackgroundNode( text, {
+      rectangleOptions: {
+        cornerRadius: 3
+      }
+    } );
 
     // line that connects the focus circle to the label
-    const line = new Line( focusCircle.center, labelNode.center, options.lineOptions );
+    const line = new Line( focusCircle.center, labelNode.center, {
+      stroke: 'black',
+      opacity: 0.5,
+      visible: false
+    } );
 
     // update the positions of the line and label Node
     // use some heuristic algorithm to prevent the label to overlap with the curve
@@ -92,9 +102,7 @@ export default class PointLabelNode extends Node {
       labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 1 ) );
     };
 
-    yProperty.link( updatePosition );
-
-    pointLabel.labelProperty.link( updatePosition );
+    Multilink.multilink( [ pointLabel.xProperty, yProperty, pointLabel.labelProperty ], () => updatePosition() );
 
     options.children = [ line, focusCircle, labelNode ];
 

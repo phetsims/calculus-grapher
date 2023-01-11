@@ -108,13 +108,11 @@ export default class GraphNodes extends Node {
     // To organize all VerticalLineNode instances under 1 tandem
     const verticalLineNodesTandem = options.tandem.createTandem( 'verticalLines' );
 
-    const verticalLineNodes = model.verticalLines.map( verticalLine => {
-      const label = verticalLine.labelProperty.value;
-      return new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
+    const verticalLineNodes = model.verticalLines.map( verticalLine =>
+      new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
         x: this.originalGraphNode.x,
-        tandem: verticalLineNodesTandem.createTandem( `${label}VerticalLineNode` )
-      } );
-    } );
+        tandem: verticalLineNodesTandem.createTandem( `${verticalLine.labelProperty.value}VerticalLineNode` )
+      } ) );
 
     const verticalLineNodesLayer = new Node( {
       children: verticalLineNodes
