@@ -17,6 +17,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import { NodeTranslationOptions } from '../../../../scenery/js/imports.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -30,7 +31,8 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
     const options = optionize<SlopeOfTangentAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
-      barometerStrokeProperty: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      barometerStrokeProperty: new DerivedProperty( [ CalculusGrapherColors.derivativeCurveStrokeProperty ],
+        derivativeCurveStroke => derivativeCurveStroke.withAlpha( 0.6 ) ),
       chartTransformOptions: {
         modelYRange: new Range( -10, 10 )
       }

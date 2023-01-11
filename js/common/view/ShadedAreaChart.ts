@@ -51,10 +51,10 @@ export default class ShadedAreaChart extends Node {
     const isNegativeFunction: CurvePointFunction = point => point.y < 0;
 
     const positiveAreaChart = new AreaChart( chartTransform, getDataSet( isPositiveFunction ),
-      { fill: options.positiveFill, opacity: 0.6 } );
+      { fill: options.positiveFill } );
 
     const negativeAreaChart = new AreaChart( chartTransform, getDataSet( isNegativeFunction ),
-      { fill: options.negativeFill, opacity: 0.6 } );
+      { fill: options.negativeFill } );
     options.children = [ positiveAreaChart, negativeAreaChart ];
 
     super( options );

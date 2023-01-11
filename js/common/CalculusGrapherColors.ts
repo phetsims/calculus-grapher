@@ -42,12 +42,12 @@ const CalculusGrapherColors = {
 
   // Fill for the background of all Graphs (besides Original)
   defaultChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
-    default: 'rgb( 228, 245, 250 )'
+    default: 'rgba( 228, 245, 250, 0.4 )'
   } ),
 
   // Stroke for the background of all Graphs (besides Original)
   defaultChartBackgroundStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundStroke', {
-    default: 'black'
+    default: 'rgba( 0, 0, 0, 0.4 )'
   } ),
 
   // Stroke for the gridlines of graph
@@ -92,14 +92,14 @@ const CalculusGrapherColors = {
 
   // Fill for integral curve (when area is positive)
   integralPositiveFillProperty: new ProfileColorProperty( calculusGrapher, 'integralPositiveFill', {
-    default: 'rgb(0,206,109)'
+    default: 'rgba(0,206,109,0.6)'
   }, {
     tandem: tandem.createTandem( 'integralPositiveFillProperty' )
   } ),
 
   // Fill for integral curve (when area is negative)
   integralNegativeFillProperty: new ProfileColorProperty( calculusGrapher, 'integralNegativeFill', {
-    default: 'rgb(0,176,89)'
+    default: 'rgba(0,176,89,0.6)'
   }, {
     tandem: tandem.createTandem( 'integralNegativeFillProperty' )
   } ),

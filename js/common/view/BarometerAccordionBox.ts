@@ -45,8 +45,7 @@ export default class BarometerAccordionBox extends AccordionBox {
 
       // SelfOptions
       lineOptions: {
-        lineWidth: 10,
-        opacity: 0.6
+        lineWidth: 10
       },
       textOptions: {
         font: CalculusGrapherConstants.ACCORDION_BOX_FONT,

@@ -75,9 +75,9 @@ export default class PointLabelNode extends Node {
     } );
 
     // line that connects the focus circle to the label
+    //TODO https://github.com/phetsims/calculus-grapher/issues/151 delete line, vestigial
     const line = new Line( focusCircle.center, labelNode.center, {
-      stroke: 'black',
-      opacity: 0.5,
+      stroke: 'rgba( 0, 0, 0, 0.5 )',
       visible: false
     } );
 
@@ -99,6 +99,7 @@ export default class PointLabelNode extends Node {
       line.setPoint2( P2 );
 
       // position the label node in same direction as line, but further away
+      //TODO https://github.com/phetsims/calculus-grapher/issues/151 delete timesScalar, unnecessary
       labelNode.center = focusCircle.center.plus( lineRelativeDisplacement.timesScalar( 1 ) );
     };
 

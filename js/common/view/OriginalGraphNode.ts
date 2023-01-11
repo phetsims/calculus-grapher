@@ -62,8 +62,7 @@ export default class OriginalGraphNode extends GraphNode {
         },
         chartRectangleOptions: {
           fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
-          stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty,
-          opacity: 1
+          stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
         },
         plusMinusZoomButtonGroupOptions: {
           visible: false

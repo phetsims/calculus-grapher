@@ -100,8 +100,7 @@ export default class GraphNode extends Node {
       },
       chartRectangleOptions: {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
-        stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty,
-        opacity: 0.4
+        stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
       },
       curveNodeOptions: {
         stroke: providedOptions.curveStroke,
