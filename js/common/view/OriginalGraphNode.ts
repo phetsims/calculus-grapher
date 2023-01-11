@@ -134,6 +134,8 @@ export default class OriginalGraphNode extends GraphNode {
       new PointLabelNode( pointLabel, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
         tandem: pointLabelNodesTandem.createTandem( `${pointLabel.labelProperty.value}PointLabelNode` )
       } ) );
+
+    // Put PointLabelNodes in their own layer, so they will not be clipped at x min/max.
     const pointLabelsLayer = new Node( {
       children: pointLabelNodes
     } );
