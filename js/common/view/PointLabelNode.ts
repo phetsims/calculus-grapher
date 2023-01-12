@@ -80,8 +80,10 @@ export default class PointLabelNode extends Node {
       const tangent = yDerivativeProperty.value;
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
+      const distance = ( labelNode.height / 2 ) + ( focusCircle.height / 2 ) + 1;
+
       // vector perpendicular to the tangent in view (hence the minus sign for the angle, since y is inverted)
-      const perpendicularDisplacement = Vector2.createPolar( 10, -modelPerpendicularTangent );
+      const perpendicularDisplacement = Vector2.createPolar( distance, -modelPerpendicularTangent );
 
       // position the label node perpendicular to the curve
       labelNode.center = focusCircle.center.plus( perpendicularDisplacement );
