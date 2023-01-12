@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * LabeledAncillaryTool is an ancillary toll with a label.
+ * LabeledAncillaryTool is an ancillary tool with a label.
  *
  * @author Martin Veillette
  */
