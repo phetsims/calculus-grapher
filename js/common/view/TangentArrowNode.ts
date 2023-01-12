@@ -60,16 +60,22 @@ export default class TangentArrowNode extends ArrowNode {
     const updateArrow = () => {
       const x = ancillaryTool.xProperty.value;
       const y = graphYProperty.value;
-      const m = derivativeGraphYProperty.value;
-      const theta = Math.atan( m );
+      const modelSlope = derivativeGraphYProperty.value;
+
+      // must convert slope into viewCoordinates
+      // slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
+      const viewSlope = modelSlope * chartTransform.modelToViewDeltaY( 1 ) /
+                        chartTransform.modelToViewDeltaX( 1 );
+      const thetaView = Math.atan( viewSlope );
+
       this.x = chartTransform.modelToViewX( x );
       this.y = chartTransform.modelToViewY( y );
 
-      // y is positive as one goes down in the view so the rotation must be reversed
-      this.rotateAround( new Vector2( this.x, this.y ), -( theta - oldTheta ) );
+      // we rotate this node around in view coordinate, so we can use the thetaView for this purpose
+      this.rotateAround( new Vector2( this.x, this.y ), thetaView - oldTheta );
 
       // update the value of old theta
-      oldTheta = theta;
+      oldTheta = thetaView;
     };
 
     chartTransform.changedEmitter.addListener( updateArrow );
