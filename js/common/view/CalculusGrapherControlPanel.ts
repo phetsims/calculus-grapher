@@ -20,6 +20,7 @@ import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   smoothButtonVisible?: boolean;
@@ -44,7 +45,8 @@ export default class CalculusGrapherControlPanel extends Panel {
 
       // PanelOptions
       stroke: CalculusGrapherColors.panelStrokeProperty,
-      fill: CalculusGrapherColors.panelFillProperty
+      fill: CalculusGrapherColors.panelFillProperty,
+      cornerRadius: CalculusGrapherConstants.CORNER_RADIUS
 
     }, providedOptions );
 

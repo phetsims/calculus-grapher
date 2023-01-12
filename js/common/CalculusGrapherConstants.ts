@@ -54,6 +54,9 @@ const CalculusGrapherConstants = {
 
   CHECKBOX_WIDTH: new Text( 'A', { font: CONTROL_FONT } ).height,
 
+  // for Panels and AccordionBoxes
+  CORNER_RADIUS: 5,
+
   // PhET-io ONLY constants
   MAX_VERTICAL_LINES: 6,
   MAX_POINT_LABELS: 6
