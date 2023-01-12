@@ -77,7 +77,7 @@ export default class CalculusGrapherControlPanel extends Panel {
         curveManipulationControls,
         curveButtons,
 
-        // Additional content added via addCheckbox will be below this separator.
+        // Additional content added via appendContent will be below this separator.
         // VBox will automatically hide the separator is there is nothing below it.
         new HSeparator( { stroke: 'rgb(200,200,200)' } )
       ]
