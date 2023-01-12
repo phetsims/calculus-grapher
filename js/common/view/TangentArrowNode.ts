@@ -10,11 +10,10 @@
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import { getDerivativeOf, GraphType } from '../model/GraphType.js';
+import { getDerivativeOf, getGraphTypeStroke, GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -29,13 +28,15 @@ export default class TangentArrowNode extends ArrowNode {
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
 
+    const derivativeOfGraphType = getDerivativeOf( graphType );
+
     const options = optionize<TangentArrowNodeOptions, SelfOptions, ArrowNodeOptions>()( {
 
       // SelfOptions
       arrowLength: 100,
 
       // ArrowNodeOptions
-      fill: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      fill: getGraphTypeStroke( derivativeOfGraphType ),
       headWidth: 6,
       headHeight: 6,
       tailWidth: 2,
@@ -49,8 +50,6 @@ export default class TangentArrowNode extends ArrowNode {
       options.arrowLength / 2,
       0, options );
 
-
-    const derivativeOfGraphType = getDerivativeOf( graphType );
 
     const graphYProperty = ancillaryTool.getYProperty( graphType );
     const derivativeGraphYProperty = ancillaryTool.getYProperty( derivativeOfGraphType );
