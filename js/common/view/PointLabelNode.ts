@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * PointLabelNode is a point on originalCurve, with a label. The point and the label are connected by a small line
- * The label (and line) update their positions, and are set perpendicular to the tangent of the curve
+ * PointLabelNode is a point on originalCurve, with a label. The point is a scenery/Circle
+ * The label updates its positions, and is set perpendicular to the tangent of the curve
  *
  * @author Martin Veillette
  */
@@ -80,13 +80,11 @@ export default class PointLabelNode extends Node {
       const tangent = yDerivativeProperty.value;
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
-      // unit vector perpendicular to tangent in view (hence the minus sign for the angle, since y is inverted)
-      const perpendicular = Vector2.createPolar( 1, -modelPerpendicularTangent );
+      // vector perpendicular to the tangent in view (hence the minus sign for the angle, since y is inverted)
+      const perpendicularDisplacement = Vector2.createPolar( 10, -modelPerpendicularTangent );
 
-      const lineRelativeDisplacement = perpendicular.timesScalar( 10 );
-
-      // position the label node in same direction as line, but further away
-      labelNode.center = focusCircle.center.plus( lineRelativeDisplacement );
+      // position the label node perpendicular to the curve
+      labelNode.center = focusCircle.center.plus( perpendicularDisplacement );
     };
 
     Multilink.multilink( [ pointLabel.xProperty, yProperty, pointLabel.labelProperty ], () => updatePosition() );
