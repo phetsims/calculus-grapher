@@ -52,7 +52,7 @@ export type CurveNodeOptions = SelfOptions & NodeOptions;
 
 export default class CurveNode extends Node {
 
-  private readonly continuousLinePlot: LinePlot;
+  protected readonly continuousLinePlot: LinePlot;
   private readonly discontinuousLinePlot: LinePlot;
   private readonly discontinuousPointsScatterPlot: ScatterPlot;
   private readonly allPointsScatterPlot: ScatterPlot;

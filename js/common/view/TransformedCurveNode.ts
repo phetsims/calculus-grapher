@@ -77,7 +77,7 @@ export default class TransformedCurveNode extends CurveNode {
     let penultimatePosition: Vector2;
     let antepenultimatePosition: Vector2 | null = null;
 
-    this.addInputListener( new DragListener( {
+    this.continuousLinePlot.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
       dragBoundsProperty: this.dragBoundsProperty,
       applyOffset: false,
@@ -140,8 +140,8 @@ export default class TransformedCurveNode extends CurveNode {
   public override setPointerAreas(): void {
 
     const pathShape = this.getDilatedCurveShape();
-    this.touchArea = pathShape;
-    this.mouseArea = pathShape;
+    this.continuousLinePlot.touchArea = pathShape;
+    this.continuousLinePlot.mouseArea = pathShape;
   }
 
   /**
