@@ -81,7 +81,7 @@ export default class AncillaryTool extends PhetioObject {
     // When a curve is changed, update its associated y Property.
     const integralCurveListener = () => yIntegralProperty.recomputeDerivation();
     const originalCurveListener = () => yOriginalProperty.recomputeDerivation();
-    const derivativeCurveListener = () => ySecondDerivativeProperty.recomputeDerivation();
+    const derivativeCurveListener = () => yDerivativeProperty.recomputeDerivation();
     const secondDerivativeCurveListener = () => ySecondDerivativeProperty.recomputeDerivation();
 
     // Optimization: Only listen to curveChangedEmitter when this tool is visible.
