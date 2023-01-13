@@ -88,7 +88,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
     const items: RectangularRadioButtonGroupItem<ConnectDiscontinuities>[] = ConnectDiscontinuitiesValues.map( value => {
       return {
         value: value,
-        createNode: tandem => createIcon( value ),
+        createNode: () => createIcon( value ),
         tandemName: `${value}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       };
     } );

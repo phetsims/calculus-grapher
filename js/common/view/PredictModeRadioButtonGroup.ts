@@ -52,12 +52,12 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
     const rectangularRadioButtonGroupItems: RectangularRadioButtonGroupItem<boolean>[] = [
       {
         value: false,
-        createNode: tandem => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
+        createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
         tandemName: `originalCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: true,
-        createNode: tandem => new LabelColorIcon( predictText, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty ),
+        createNode: () => new LabelColorIcon( predictText, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty ),
         tandemName: `predictCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];

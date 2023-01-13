@@ -85,12 +85,12 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
     const items: AquaRadioButtonGroupItem<FunctionVariable>[] = [
       {
         value: 'x',
-        createNode: tandem => createLabel( CalculusGrapherSymbols.xStringProperty ),
+        createNode: () => createLabel( CalculusGrapherSymbols.xStringProperty ),
         tandemName: `x${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 't',
-        createNode: tandem => createLabel( CalculusGrapherSymbols.tStringProperty ),
+        createNode: () => createLabel( CalculusGrapherSymbols.tStringProperty ),
         tandemName: `t${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
