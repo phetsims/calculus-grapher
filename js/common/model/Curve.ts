@@ -196,7 +196,16 @@ export default class Curve extends PhetioObject {
     // start of the simulation here and are never disposed.
 
     const points: CurvePoint[] = [];
-    for ( let x = this.xRange.min; x <= this.xRange.max; x += 1 / this.pointsPerCoordinate ) {
+
+    const numberOfPoints = this.xRange.getLength() * this.pointsPerCoordinate;
+
+    for ( let i = 0; i < numberOfPoints; i++ ) {
+
+      // a value ranging from 0 to 1, inclusive;
+      const normalizedValue = i / ( numberOfPoints - 1 );
+
+      const x = this.xRange.expandNormalizedValue( normalizedValue );
+
       points.push( new CurvePoint( x, mathFunction( x ) ) );
     }
     return points;
