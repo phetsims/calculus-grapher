@@ -162,7 +162,7 @@ function createProperties( xProperty: TReadOnlyProperty<number>, curve: Curve, t
   // This Property persists because it is referenced by the tandem registry.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const yPhetioProperty = new DerivedProperty( [ curvePointProperty ],
-    curvePoint => curvePoint.pointType === 'discontinuous' ? null : curvePoint.y, {
+    curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, {
       tandem: tandem,
       phetioValueType: NullableIO( NumberIO )
     } );
