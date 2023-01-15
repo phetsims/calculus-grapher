@@ -46,7 +46,7 @@ export default class CurveManipulationIconNode extends Node {
         }
       },
       transformedCurveOptions: {
-        pointsPerCoordinate: 3,
+        numberOfPoints: 70,
         xRange: CalculusGrapherConstants.CURVE_X_RANGE
       },
       chartTransformOptions: {

@@ -35,14 +35,14 @@ import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
-const POINTS_PER_COORDINATE = CalculusGrapherQueryParameters.pointsPerCoordinate;
+const NUMBER_OF_POINTS = CalculusGrapherQueryParameters.numberOfPoints;
 const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
 
 export type MathFunction = ( x: number ) => number;
 
 type SelfOptions = {
   xRange?: Range;
-  pointsPerCoordinate?: number;
+  numberOfPoints?: number;
   mathFunction?: MathFunction;
   pointsPropertyReadOnly?: boolean;
 };
@@ -62,7 +62,7 @@ export default class Curve extends PhetioObject {
   public readonly curveChangedEmitter: Emitter;
 
   public readonly xRange: Range;
-  public readonly pointsPerCoordinate: number;
+  public readonly numberOfPoints: number;
 
   protected constructor( providedOptions: CurveOptions ) {
 
@@ -70,7 +70,7 @@ export default class Curve extends PhetioObject {
 
       // SelfOptions
       xRange: CURVE_X_RANGE,
-      pointsPerCoordinate: POINTS_PER_COORDINATE,
+      numberOfPoints: NUMBER_OF_POINTS,
       mathFunction: () => 0,
 
       // PhetioObjectOptions
@@ -82,7 +82,7 @@ export default class Curve extends PhetioObject {
 
     // create a reference to these option fields
     this.xRange = options.xRange;
-    this.pointsPerCoordinate = options.pointsPerCoordinate;
+    this.numberOfPoints = options.numberOfPoints;
 
     // the Points that map out the curve within the domain. See the comment at the top of this file for full context.
     const initialPoints = this.getFromMathFunction( options.mathFunction );
@@ -144,14 +144,19 @@ export default class Curve extends PhetioObject {
     return this.points[ this.getClosestIndexAt( x ) ];
   }
 
+  public get deltaX(): number {
+    return this.xRange.getLength() / ( this.numberOfPoints - 1 );
+  }
+
   /**
    * Gets the index of the array whose x-value is closest to the given x-value.
    */
   public getClosestIndexAt( x: number ): number {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
-    // Use dimensional analysis to convert the x-value to the index of the Point.
-    const index = Utils.roundSymmetric( ( x - this.xRange.min ) * this.pointsPerCoordinate );
+    const normalizedValue = this.xRange.getNormalizedValue( x );
+
+    const index = Utils.roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
 
     // Clamp the index to a point inside our range.
     return Utils.clamp( index, 0, this.points.length - 1 );
@@ -197,7 +202,7 @@ export default class Curve extends PhetioObject {
 
     const points: CurvePoint[] = [];
 
-    const numberOfPoints = this.xRange.getLength() * this.pointsPerCoordinate;
+    const numberOfPoints = this.numberOfPoints;
 
     for ( let i = 0; i < numberOfPoints; i++ ) {
 

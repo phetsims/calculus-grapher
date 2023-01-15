@@ -9,6 +9,7 @@
 
 import calculusGrapher from '../calculusGrapher.js';
 import logGlobal from '../../../phet-core/js/logGlobal.js';
+import CalculusGrapherConstants from './CalculusGrapherConstants.js';
 
 export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ];
 export type ConnectDiscontinuities = ( typeof ConnectDiscontinuitiesValues )[ number ];
@@ -21,18 +22,20 @@ export type FunctionVariable = ( typeof FunctionVariableValues )[number];
 
 const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
+
   /**
-   * The number of CurvePoints per coordinate of Curves. For the 'Calculus Grapher' simulation, there are a large
-   * number of curve points that map out the y-values of the curve. This value changes how close together the points
-   * are, where a higher number means more points packed together.
+   * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
+   * the more faithful is the reproduction of a curve. The default value is set such that there is one point
+   * per view coordinate.
    *
    * For internal use only.
    */
-  pointsPerCoordinate: {
+  numberOfPoints: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 25
+    defaultValue: CalculusGrapherConstants.GRAPH_VIEW_WIDTH
   },
+
 
   /**
    * The smooth algorithm for 'Calculus Grapher' uses a procedure described in https://en.wikipedia.org/wiki/Kernel_smoother.

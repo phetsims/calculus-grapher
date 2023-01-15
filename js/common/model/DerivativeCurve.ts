@@ -35,7 +35,7 @@ export default class DerivativeCurve extends Curve {
 
       // CurveOptions
       xRange: baseCurve.xRange,
-      pointsPerCoordinate: baseCurve.pointsPerCoordinate,
+      numberOfPoints: baseCurve.numberOfPoints,
       tandem: tandem
     } );
 

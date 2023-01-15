@@ -38,7 +38,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
 
       // SelfOptions
       transformedCurveOptions: {
-        pointsPerCoordinate: 10,
+        numberOfPoints: 300,
         xRange: CalculusGrapherConstants.CURVE_X_RANGE
       },
       chartTransformOptions: {

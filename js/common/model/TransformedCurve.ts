@@ -303,7 +303,7 @@ export default class TransformedCurve extends Curve {
         if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
 
           // x separation between two adjacent points in curve array
-          const deltaX = 1 / this.pointsPerCoordinate;
+          const deltaX = this.deltaX;
 
           // x distance between cp1 and lastPoint
           const distXl = Math.abs( cp1Point.x - lastPoint.x );
@@ -383,7 +383,7 @@ export default class TransformedCurve extends Curve {
   public interpolate( position1: Vector2, position2: Vector2 ): void {
 
     // x separation between two adjacent points in curve array
-    const deltaX = 1 / this.pointsPerCoordinate;
+    const deltaX = this.deltaX;
 
     // x distance between the new and old point
     const distX = Math.abs( position1.x - position2.x );
@@ -545,7 +545,7 @@ export default class TransformedCurve extends Curve {
       // Loop through each point on BOTH sides of the window, adding the y-value to our total.
       for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
             dx < numberOfStandardDeviations * STANDARD_DEVIATION;
-            dx += 1 / this.pointsPerCoordinate ) {
+            dx += this.deltaX ) {
 
         // weight of the point
         const weight = gaussianFunction( dx );
