@@ -47,7 +47,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   smoothingStandardDeviation: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 0.25
+    defaultValue: 0.005 * CalculusGrapherConstants.CURVE_X_RANGE.getLength()
   },
 
   /**
@@ -73,7 +73,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   edgeSlopeFactor: {
     type: 'number',
     isValidValue: value => value >= 0,
-    defaultValue: 1.5
+    defaultValue: 0.03 * CalculusGrapherConstants.CURVE_X_RANGE.getLength()
   },
 
   /**
