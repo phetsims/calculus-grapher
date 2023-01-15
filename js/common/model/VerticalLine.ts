@@ -53,7 +53,7 @@ export default class VerticalLine extends LabeledAncillaryTool {
       // create the tool
       tools.push( new VerticalLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
-        initialCoordinate: xRange.expandNormalizedValue( i / numberOfTools ),
+        initialCoordinate: xRange.expandNormalizedValue( i / ( numberOfTools - 1 ) ),
         tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
       } ) );
     }
