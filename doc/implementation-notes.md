@@ -17,13 +17,13 @@ A model-view transform is used for each graph. The model has +x to the left, and
 
 There are a number of query parameters for internal use.
 
-- `pointsPerCoordinate` sets the number of curves points per coordinates. The default value is 10.
-- `smoothingStandardDeviation` sets the width used in the smoothing function. The default value is 0.25 .
+- `numberOfPoints` sets the number of curves points. The default value is 1251.
+- `smoothingStandardDeviation` sets the width used in the smoothing function.
 - `maxTilt` sets the maximum tilting angle (in tilt mode) of curves relative to the horizontal. The default value is 45.
 - `edgeSlopeFactor` sets the width of the rounded corner in pedestal mode (continuous trapezoidal-shaped curve with
-  rounded corners). A larger value creates a wider edge. The default value is 1.5
-- `angleMismatchThreshold` sets the maximum difference between the slope of the left and right secant lines of a Point on a
-  curve for it to be considered differentiable. The default value is 12.
+  rounded corners). A larger value creates a wider edge.
+- `angleMismatchThreshold` sets the maximum difference between the angle of the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
+- `slopeThreshold` sets the maximum slope of a Point on a curve for it to be considered differentiable. The default value is 25 * Math.PI / 180.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
 - `valuesVisible` shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.. The default value is false.
