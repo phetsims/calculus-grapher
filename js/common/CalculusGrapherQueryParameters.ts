@@ -25,15 +25,14 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
   /**
    * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
-   * the more faithful is the reproduction of a curve. The default value is set such that there is one point
-   * per view coordinate.
+   * the more faithful is the reproduction of a curve.
    *
    * For internal use only.
    */
   numberOfPoints: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: CalculusGrapherConstants.GRAPH_VIEW_WIDTH
+    defaultValue: 1251
   },
 
 
