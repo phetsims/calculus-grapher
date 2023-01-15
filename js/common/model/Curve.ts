@@ -36,7 +36,8 @@ import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const NUMBER_OF_POINTS = CalculusGrapherQueryParameters.numberOfPoints;
-const DERIVATIVE_THRESHOLD = CalculusGrapherQueryParameters.derivativeThreshold;
+const ANGLE_MISMATCH_THRESHOLD = CalculusGrapherQueryParameters.angleMismatchThreshold;
+const SLOPE_THRESHOLD = CalculusGrapherQueryParameters.slopeThreshold;
 
 export type MathFunction = ( x: number ) => number;
 
@@ -247,16 +248,17 @@ export default class Curve extends PhetioObject {
            typeof leftSlope === 'number' && typeof rightSlope === 'number' &&
            Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
 
-        // find jump
+        // find max jump
         const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
+        const maxSlope = jump / this.deltaX;
 
         // find difference in angle of slopes
         const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
 
-        if ( jump >= 2 ) {
+        if ( maxSlope >= SLOPE_THRESHOLD ) {
           point.pointType = 'discontinuous';
         }
-        else if ( K >= DERIVATIVE_THRESHOLD ) {
+        else if ( K >= ANGLE_MISMATCH_THRESHOLD ) {
           point.pointType = 'cusp';
         }
         else {

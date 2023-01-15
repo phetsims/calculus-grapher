@@ -51,18 +51,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum tilting of curves relative to the horizontal in degrees. See
-   * https://github.com/phetsims/calculus-grapher/issues/26
-   *
-   * For internal use.
-   */
-  maxTilt: {
-    type: 'number',
-    isValidValue: value => value >= 0 && value < 90,
-    defaultValue: 45
-  },
-
-  /**
    * The pedestal mode creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    * The rounded corners are set by a constant called edgeSlopeFactor.
    * A larger value creates a wider edge.
@@ -77,16 +65,41 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
+   * The maximum tilting of curves relative to the horizontal in degrees. See
+   * https://github.com/phetsims/calculus-grapher/issues/26
+   *
+   * For internal use.
+   */
+  maxTilt: {
+    type: 'number',
+    isValidValue: value => value >= 0 && value < 90,
+    defaultValue: 45
+  },
+
+  /**
    * The maximum difference between the angle (in radians) of the left and right secant lines of a Point on a curve for it to be
-   * considered differentiable.
+   * considered differentiable. Otherwise, the point will be labeled a cusp.
    * See https://github.com/phetsims/calculus-grapher/issues/28
    *
    * For internal use.
    */
-  derivativeThreshold: {
+  angleMismatchThreshold: {
     type: 'number',
     isValidValue: value => value > 0,
     defaultValue: 25 * Math.PI / 180
+  },
+
+  /**
+   * The maximum slope at a Point on a curve for it to be considered differentiable.
+   * Beyond this value, the point will be considered discontinuous
+   * See https://github.com/phetsims/calculus-grapher/issues/28
+   *
+   * For internal use.
+   */
+  slopeThreshold: {
+    type: 'number',
+    isValidValue: value => value > 0,
+    defaultValue: 25
   },
 
   /**

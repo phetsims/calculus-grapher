@@ -26,6 +26,7 @@ import Curve, { CurveOptions } from './Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -96,10 +97,11 @@ export default class TransformedCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in peak.
     const deltaY = peak.y - closestPoint.lastSavedY;
 
-    const maxY = 5;// TODO, this should be pull from the max Y bounds
+    const typicalY = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 10;
 
-    // set the slope coefficient such that the triangle at y=0 has a 'width' equal to this.curveManipulationWidth when the peak is at maxY
-    const slope = maxY / ( width / 2 );
+    // set the slope coefficient such that the triangle at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at typicalY value
+    const slope = typicalY / ( width / 2 );
 
     this.points.forEach( point => {
       const newY = peak.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
@@ -164,10 +166,11 @@ export default class TransformedCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in peak.
     const deltaY = peak.y - closestPoint.lastSavedY;
 
-    const maxY = 5;// TODO, this should be pull from the max Y bounds
+    const typicalY = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 10;
 
-    // set the parabola coefficient such that the parabola at y=0 has a 'width' equal to this.curveManipulationWidth when the peak is at maxY
-    const A = maxY * Math.pow( 2 / width, 2 );
+    // set the parabola coefficient such that the parabola at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at a typicalY value;
+    const A = typicalY * Math.pow( 2 / width, 2 );
 
     this.points.forEach( point => {
       const newY = peak.y - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
