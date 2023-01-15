@@ -26,6 +26,7 @@ import AncillaryTool from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import LabeledAncillaryTool from './LabeledAncillaryTool.js';
+import ReferenceLine from './ReferenceLine.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -48,7 +49,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
 
   // model for the reference line
-  public readonly referenceLine: AncillaryTool;
+  public readonly referenceLine: ReferenceLine;
   public readonly tangentTool: AncillaryTool;
   public readonly areaUnderCurveTool: AncillaryTool;
 
@@ -106,8 +107,7 @@ export default class CalculusGrapherModel implements TModel {
     this.integralCurve = new IntegralCurve( this.originalCurve,
       graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
 
-    this.referenceLine = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
+    this.referenceLine = new ReferenceLine( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 

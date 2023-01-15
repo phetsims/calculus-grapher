@@ -18,11 +18,11 @@ import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
-import AncillaryTool from '../model/AncillaryTool.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import ReferenceLine from '../model/ReferenceLine.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -33,7 +33,7 @@ export default class ReferenceLineNode extends Node {
   private readonly verticalLine;
   private readonly shadedSphereNode;
 
-  public constructor( referenceLine: AncillaryTool,
+  public constructor( referenceLine: ReferenceLine,
                       chartTransform: ChartTransform,
                       providedOptions: ReferenceLineNodeOptions ) {
 
