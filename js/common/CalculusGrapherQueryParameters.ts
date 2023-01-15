@@ -64,15 +64,15 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum tilting of curves relative to the horizontal in degrees. See
+   * The maximum tilting of curves relative to the horizontal in radians. See
    * https://github.com/phetsims/calculus-grapher/issues/26
    *
    * For internal use.
    */
   maxTilt: {
     type: 'number',
-    isValidValue: value => value >= 0 && value < 90,
-    defaultValue: 45
+    isValidValue: value => value >= 0 && value < Math.PI / 2,
+    defaultValue: Math.PI / 4
   },
 
   /**

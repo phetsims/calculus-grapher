@@ -31,6 +31,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
 const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDeviation;
+const MAX_TILT = CalculusGrapherQueryParameters.maxTilt;
 
 type SelfOptions = EmptySelfOptions;
 
@@ -431,14 +432,14 @@ export default class TransformedCurve extends Curve {
 
     if ( position.x !== 0 ) {
 
-      // maximum tilt converted from degrees to radians
-      const maxTilt = Utils.toRadians( CalculusGrapherQueryParameters.maxTilt );
+      // Find the angle of the tilt, based on where the user dragged the Curve
+      const angle = Math.atan( position.y / position.x );
 
-      // Find the angle of the tile, based on where the user dragged the Curve.
-      const angle = Utils.clamp( Math.atan( position.y / position.x ), -maxTilt, maxTilt );
+      // clamped angle to be between a range set by MAX_TILT
+      const clampedAngle = Utils.clamp( angle, -MAX_TILT, MAX_TILT );
 
       // Amount to shift the CurvePoint closest to the passed-in position.
-      const deltaY = Math.tan( angle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
+      const deltaY = Math.tan( clampedAngle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
 
       // Shift each of the CurvePoints by a factor of deltaY.
       this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / position.x;} );
