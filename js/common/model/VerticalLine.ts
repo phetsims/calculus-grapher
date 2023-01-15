@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -42,10 +41,8 @@ export default class VerticalLine extends LabeledAncillaryTool {
    * and alphabetically-ordered tandem names.
    */
   public static createMultiple( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
-                                derivativeCurve: Curve, secondDerivativeCurve: Curve, parentTandem: Tandem ): VerticalLine[] {
-
-    // Adjust the range so that we do not put tools at x-min and x-max.
-    const range = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
+                                derivativeCurve: Curve, secondDerivativeCurve: Curve,
+                                xRange: Range, parentTandem: Tandem ): VerticalLine[] {
 
     const tools: VerticalLine[] = [];
     for ( let i = 0; i < numberOfTools; i++ ) {
@@ -56,7 +53,7 @@ export default class VerticalLine extends LabeledAncillaryTool {
       // create the tool
       tools.push( new VerticalLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
-        initialCoordinate: range.expandNormalizedValue( i / numberOfTools ),
+        initialCoordinate: xRange.expandNormalizedValue( i / numberOfTools ),
         tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
       } ) );
     }

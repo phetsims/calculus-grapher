@@ -28,6 +28,7 @@ import Curve from './Curve.js';
 import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
 import PointLabel from './PointLabel.js';
+import Range from '../../../../dot/js/Range.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -122,12 +123,16 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
     } );
 
+    // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
+    const toolsXRange = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
+
     this.pointLabels = PointLabel.createMultiple(
       CalculusGrapherConstants.MAX_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
+      toolsXRange,
       getGraphTypeStrokeProperty( 'original' ).value,
       options.tandem.createTandem( 'pointLabels' ) );
 
@@ -137,6 +142,7 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
+      toolsXRange,
       options.tandem.createTandem( 'verticalLines' ) );
   }
 

@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
@@ -44,11 +43,8 @@ export default class PointLabel extends LabeledAncillaryTool {
    * and alphabetically-ordered tandem names.
    */
   public static createMultiple( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
-                                derivativeCurve: Curve, secondDerivativeCurve: Curve,
+                                derivativeCurve: Curve, secondDerivativeCurve: Curve, xRange: Range,
                                 pointColor: Color, parentTandem: Tandem ): PointLabel[] {
-
-    // Adjust the range so that we do not put tools at x-min and x-max.
-    const range = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
 
     const tools: PointLabel[] = [];
     for ( let i = 0; i < numberOfTools; i++ ) {
@@ -60,7 +56,7 @@ export default class PointLabel extends LabeledAncillaryTool {
       tools.push( new PointLabel( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
         pointColor: pointColor,
-        initialCoordinate: range.expandNormalizedValue( i / numberOfTools ),
+        initialCoordinate: xRange.expandNormalizedValue( i / numberOfTools ),
         tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
       } ) );
     }
