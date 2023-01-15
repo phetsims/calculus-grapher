@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import VerticalLineNode from './VerticalLineNode.js';
-import { getGraphTypeStroke, GRAPH_TYPES, GraphSet, GraphType } from '../model/GraphType.js';
+import { getGraphTypeStrokeProperty, GRAPH_TYPES, GraphSet, GraphType } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -68,7 +68,7 @@ export default class GraphNodes extends Node {
         new GraphTypeLabelNode( graphType ),
         {
           graphType: 'integral',
-          curveStroke: getGraphTypeStroke( graphType ),
+          curveStroke: getGraphTypeStrokeProperty( graphType ),
           tandem: subsetGraphTypes.includes( graphType ) ? options.tandem.createTandem( `${graphType}GraphNode` ) : Tandem.OPT_OUT
         } );
     }
@@ -79,7 +79,7 @@ export default class GraphNodes extends Node {
 
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
       graphType: 'original',
-      curveStroke: getGraphTypeStroke( 'original' ),
+      curveStroke: getGraphTypeStrokeProperty( 'original' ),
 
       // originalGraphNode is always instrumented, because it should always be present.
       tandem: options.tandem.createTandem( 'originalGraphNode' )

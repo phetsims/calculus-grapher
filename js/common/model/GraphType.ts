@@ -6,7 +6,7 @@
  * @author Martin Veillette
  */
 
-import { TColor } from '../../../../scenery/js/imports.js';
+import { ProfileColorProperty } from '../../../../scenery/js/imports.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 // The types of graphs that are available
@@ -18,14 +18,16 @@ export type GraphSet = GraphType[];
 export const GRAPH_TYPES = new Set<GraphType>( [ 'original', 'integral', 'derivative', 'secondDerivative' ] );
 
 /**
- * Gets the stroke for a specific GraphType.
+ * Gets the stroke Property for a specific GraphType.
  */
-export function getGraphTypeStroke( graphType: GraphType ): TColor {
-  return ( graphType === 'original' ) ? CalculusGrapherColors.originalCurveStrokeProperty :
+export function getGraphTypeStrokeProperty( graphType: GraphType ): ProfileColorProperty {
+  const stroke = ( graphType === 'original' ) ? CalculusGrapherColors.originalCurveStrokeProperty :
          ( graphType === 'integral' ) ? CalculusGrapherColors.integralCurveStrokeProperty :
          ( graphType === 'derivative' ) ? CalculusGrapherColors.derivativeCurveStrokeProperty :
          ( graphType === 'secondDerivative' ) ? CalculusGrapherColors.secondDerivativeCurveStrokeProperty :
          null;
+  assert && assert( stroke );
+  return stroke!;
 }
 
 /**

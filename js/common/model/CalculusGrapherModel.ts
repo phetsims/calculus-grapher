@@ -16,7 +16,7 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
-import { GraphSet, GraphType } from './GraphType.js';
+import { getGraphTypeStrokeProperty, GraphSet, GraphType } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -25,9 +25,9 @@ import Property from '../../../../axon/js/Property.js';
 import AncillaryTool from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
-import LabeledAncillaryTool from './LabeledAncillaryTool.js';
 import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
+import PointLabel from './PointLabel.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -54,7 +54,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentTool: AncillaryTool;
   public readonly areaUnderCurveTool: AncillaryTool;
 
-  public readonly pointLabels: LabeledAncillaryTool[];
+  public readonly pointLabels: PointLabel[];
   public readonly verticalLines: VerticalLine[];
 
   // the model of the various curves
@@ -122,13 +122,14 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
     } );
 
-    this.pointLabels = LabeledAncillaryTool.createTools(
+    this.pointLabels = PointLabel.createMultiple(
       CalculusGrapherConstants.MAX_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      options.tandem.createTandem( 'pointLabels' ), 'PointLabel' );
+      getGraphTypeStrokeProperty( 'original' ).value,
+      options.tandem.createTandem( 'pointLabels' ) );
 
     this.verticalLines = VerticalLine.createMultiple(
       CalculusGrapherConstants.MAX_VERTICAL_LINES,

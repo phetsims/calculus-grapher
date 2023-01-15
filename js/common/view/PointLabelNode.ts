@@ -9,20 +9,19 @@
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { ColorProperty, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import LabeledAncillaryTool from '../model/LabeledAncillaryTool.js';
 import FocusCircle from './FocusCircle.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import PointLabel from '../model/PointLabel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -30,7 +29,7 @@ type PointLabelNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class PointLabelNode extends Node {
 
-  public constructor( pointLabel: LabeledAncillaryTool,
+  public constructor( pointLabel: PointLabel,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
@@ -55,10 +54,7 @@ export default class PointLabelNode extends Node {
 
     // small point (disk) on curve - focusCircle is responsible for updating its position
     const focusCircle = new FocusCircle( pointLabel.xProperty, yProperty, chartTransform, {
-      fill: new ColorProperty( CalculusGrapherColors.originalCurveStrokeProperty.value, {
-        //TODO https://github.com/phetsims/calculus-grapher/issues/144 temporarily add to pointLabel
-        tandem: pointLabel.tandem.createTandem( 'pointColorProperty' )
-      } )
+      fill: pointLabel.pointColorProperty
     } );
 
     // label for the point

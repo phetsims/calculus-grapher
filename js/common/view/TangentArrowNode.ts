@@ -13,7 +13,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import { getDerivativeOf, getGraphTypeStroke, GraphType } from '../model/GraphType.js';
+import { getDerivativeOf, getGraphTypeStrokeProperty, GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -36,7 +36,7 @@ export default class TangentArrowNode extends ArrowNode {
       arrowLength: 100,
 
       // ArrowNodeOptions
-      fill: getGraphTypeStroke( derivativeOfGraphType ),
+      fill: getGraphTypeStrokeProperty( derivativeOfGraphType ),
       headWidth: 6,
       headHeight: 6,
       tailWidth: 2,
