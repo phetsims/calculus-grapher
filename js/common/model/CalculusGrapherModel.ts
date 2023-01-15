@@ -27,6 +27,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import LabeledAncillaryTool from './LabeledAncillaryTool.js';
 import ReferenceLine from './ReferenceLine.js';
+import VerticalLine from './VerticalLine.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -54,7 +55,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly areaUnderCurveTool: AncillaryTool;
 
   public readonly pointLabels: LabeledAncillaryTool[];
-  public readonly verticalLines: LabeledAncillaryTool[];
+  public readonly verticalLines: VerticalLine[];
 
   // the model of the various curves
   public readonly originalCurve: TransformedCurve;
@@ -129,13 +130,13 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       options.tandem.createTandem( 'pointLabels' ), 'PointLabel' );
 
-    this.verticalLines = LabeledAncillaryTool.createTools(
+    this.verticalLines = VerticalLine.createMultiple(
       CalculusGrapherConstants.MAX_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      options.tandem.createTandem( 'verticalLines' ), 'VerticalLine' );
+      options.tandem.createTandem( 'verticalLines' ) );
   }
 
   /**

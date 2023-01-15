@@ -9,12 +9,12 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { Color, ColorProperty, Line, Node, NodeOptions, NodeTranslationOptions, Text } from '../../../../scenery/js/imports.js';
+import { Line, Node, NodeOptions, NodeTranslationOptions, Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import LabeledAncillaryTool from '../model/LabeledAncillaryTool.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import VerticalLine from '../model/VerticalLine.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -24,7 +24,7 @@ export default class VerticalLineNode extends Node {
 
   private readonly line;
 
-  public constructor( verticalLine: LabeledAncillaryTool,
+  public constructor( verticalLine: VerticalLine,
                       chartTransform: ChartTransform,
                       providedOptions: VerticalLineNodeOptions ) {
 
@@ -39,12 +39,7 @@ export default class VerticalLineNode extends Node {
     // initial y values are arbitrary, client is responsible for setting them using methods below
     const line = new Line( 0, 0, 0, -1, {
       lineDash: [ 4, 2 ],
-
-      // For PhET-iO
-      stroke: new ColorProperty( Color.black, {
-        //TODO https://github.com/phetsims/calculus-grapher/issues/144 temporarily add to verticalLine
-        tandem: verticalLine.tandem.createTandem( 'lineColorProperty' )
-      } )
+      stroke: verticalLine.lineColorProperty
     } );
 
     const text = new Text( verticalLine.labelProperty, {

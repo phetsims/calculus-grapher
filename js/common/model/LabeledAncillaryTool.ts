@@ -19,7 +19,7 @@ type SelfOptions = {
   label: string;
 };
 
-type LabeledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
+export type LabeledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
 
 export default class LabeledAncillaryTool extends AncillaryTool {
 
@@ -60,7 +60,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
     for ( let i = 0; i < numberOfTools; i++ ) {
 
       // convert integer to string 0->A, 1->B, etc
-      const label = intToUppercaseLetter( i );
+      const label = LabeledAncillaryTool.intToUppercaseLetter( i );
 
       // create a labeled ancillary tool with
       tools.push( new LabeledAncillaryTool( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
@@ -71,12 +71,12 @@ export default class LabeledAncillaryTool extends AncillaryTool {
     }
     return tools;
   }
-}
 
-function intToUppercaseLetter( integer: number ): string {
-  assert && assert( Number.isInteger( integer ), `must be an integer: ${integer}` );
-  assert && assert( integer >= 0 && integer <= 25, `integer must range from 0 to 25: ${integer}` );
-  return String.fromCharCode( integer + 'A'.charCodeAt( 0 ) );
+  public static intToUppercaseLetter( integer: number ): string {
+    assert && assert( Number.isInteger( integer ), `must be an integer: ${integer}` );
+    assert && assert( integer >= 0 && integer <= 25, `integer must range from 0 to 25: ${integer}` );
+    return String.fromCharCode( integer + 'A'.charCodeAt( 0 ) );
+  }
 }
 
 calculusGrapher.register( 'LabeledAncillaryTool', LabeledAncillaryTool );
