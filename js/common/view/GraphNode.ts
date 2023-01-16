@@ -131,8 +131,14 @@ export default class GraphNode extends Node {
     } );
 
     // grid lines
-    const horizontalGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, 1, options.gridLineSetOptions );
-    const verticalGridLines = new GridLineSet( this.chartTransform, Orientation.VERTICAL, 1, options.gridLineSetOptions );
+    const horizontalGridLines = new GridLineSet( this.chartTransform,
+      Orientation.HORIZONTAL,
+      CalculusGrapherConstants.NOMINAL_GRID_LINE_SPACING,
+      options.gridLineSetOptions );
+    const verticalGridLines = new GridLineSet( this.chartTransform,
+      Orientation.VERTICAL,
+      CalculusGrapherConstants.NOMINAL_GRID_LINE_SPACING,
+      options.gridLineSetOptions );
 
     // Axes nodes are clipped in the chart
     const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
@@ -198,18 +204,24 @@ export default class GraphNode extends Node {
     labelNode.boundsProperty.link( setLabelNodePosition );
 
     // create horizontal numerical labels for ticks
-    const horizontalTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, 2, {
-      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
-    } );
+    const horizontalTickLabelSet = new TickLabelSet( this.chartTransform,
+      Orientation.HORIZONTAL,
+      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_LABEL_SPACING, {
+        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
+      } );
 
     // create vertical numerical labels for ticks
-    let verticalTickLabelSet = this.getVerticalTickLabelSet( 2 );
+    let verticalTickLabelSet = this.getVerticalTickLabelSet( CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
 
     // create horizontal and vertical mark ticks
-    const horizontalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, 2 );
-    const verticalTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, 2, {
-      value: CalculusGrapherConstants.CURVE_X_RANGE.min
-    } );
+    const horizontalTickMarkSet = new TickMarkSet( this.chartTransform,
+      Orientation.HORIZONTAL,
+      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_MARK_SPACING );
+    const verticalTickMarkSet = new TickMarkSet( this.chartTransform,
+      Orientation.VERTICAL,
+      CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING, {
+        value: CalculusGrapherConstants.CURVE_X_RANGE.min
+      } );
 
     // factor associated with conversion between model and view along horizontal.
     const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
@@ -256,22 +268,24 @@ export default class GraphNode extends Node {
       const zoomMultiples = Math.floor( zoomDifference / arrayLength ); // for multiples of 10
       const zoomModulo = ( zoomDifference - zoomMultiples * arrayLength ) % arrayLength; // result will be 0, 1 or 2
 
-      const spacing = Math.pow( 10, zoomMultiples ) * lookUpArray[ zoomModulo ];
+      // absolute multiplicative factor associated with zoom level: can be used to set y range and ticks
+      const multiplicativeFactor = Math.pow( 10, zoomMultiples ) * lookUpArray[ zoomModulo ];
 
-      const maxY = initialMaxY * spacing;
+      const maxY = multiplicativeFactor * initialMaxY;
 
       // set new y range
       this.chartTransform.setModelYRange( new Range( -maxY, maxY ) );
 
       // change the vertical spacing of the ticks such that there are a constant number of them
-      verticalTickMarkSet.setSpacing( spacing * 2 );
+      verticalTickMarkSet.setSpacing( multiplicativeFactor * CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING );
 
       // remove previous verticalTickLabelSet and dispose of it
       tickSetNode.removeChild( verticalTickLabelSet );
       verticalTickLabelSet.dispose();
 
       // create and add a new vertical tick label set with the appropriate label spacing
-      verticalTickLabelSet = this.getVerticalTickLabelSet( spacing * 2 );
+      verticalTickLabelSet = this.getVerticalTickLabelSet( multiplicativeFactor *
+                                                           CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
       tickSetNode.addChild( verticalTickLabelSet );
 
     } );
