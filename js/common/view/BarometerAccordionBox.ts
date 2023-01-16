@@ -16,7 +16,6 @@ import AxisLine from '../../../../bamboo/js/AxisLine.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import Range from '../../../../dot/js/Range.js';
 import Utils from '../../../../dot/js/Utils.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -52,8 +51,7 @@ export default class BarometerAccordionBox extends AccordionBox {
         maxWidth: 100 // determined empirically
       },
       chartTransformOptions: {
-        viewHeight: 175,
-        modelYRange: new Range( -10, 10 )
+        viewHeight: 175
       },
       tickMarkSetExtent: 20,
       numberOfTicks: 4,
