@@ -12,7 +12,6 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import { getDerivativeOf, getGraphTypeStrokeProperty, GraphType } from '../model/GraphType.js';
 
 type SelfOptions = {
@@ -45,21 +44,25 @@ export default class TangentArrowNode extends ArrowNode {
       doubleHead: true
     }, providedOptions );
 
+
+    // initial arrow is horizontal: middle of the arrow is located at 0,0
     super( -options.arrowLength / 2,
       0,
       options.arrowLength / 2,
       0, options );
 
-
     const graphYProperty = ancillaryTool.getYProperty( graphType );
     const derivativeGraphYProperty = ancillaryTool.getYProperty( derivativeOfGraphType );
 
-    // initial theta is zero since the super call is for a horizontal arrow
-    let oldTheta = 0;
+    // initial angle of the arrow in view coordinates
+    let oldTheta = Math.atan( this.tipY / this.tipX );
     const updateArrow = () => {
       const x = ancillaryTool.xProperty.value;
       const y = graphYProperty.value;
       const modelSlope = derivativeGraphYProperty.value;
+
+      // view position for center of the tangent arrow
+      const point = chartTransform.modelToViewXY( x, y );
 
       // must convert slope into viewCoordinates
       // slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
@@ -67,11 +70,12 @@ export default class TangentArrowNode extends ArrowNode {
                         chartTransform.modelToViewDeltaX( 1 );
       const thetaView = Math.atan( viewSlope );
 
-      this.x = chartTransform.modelToViewX( x );
-      this.y = chartTransform.modelToViewY( y );
+      // move this point
+      this.translation = point;
 
-      // we rotate this node around in view coordinate, so we can use the thetaView for this purpose
-      this.rotateAround( new Vector2( this.x, this.y ), thetaView - oldTheta );
+      // we rotate this node around in view coordinates, so we use angle in view coordinates
+      // thetaView already took into account the fact that we are using an inverted y-axis
+      this.rotateAround( point, thetaView - oldTheta );
 
       // update the value of old theta
       oldTheta = thetaView;
