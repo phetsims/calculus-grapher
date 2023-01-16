@@ -8,7 +8,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Range from '../../../../dot/js/Range.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -18,6 +17,7 @@ import { NodeTranslationOptions } from '../../../../scenery/js/imports.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -34,7 +34,7 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       barometerStrokeProperty: new DerivedProperty( [ CalculusGrapherColors.derivativeCurveStrokeProperty ],
         derivativeCurveStroke => derivativeCurveStroke.withAlpha( 0.6 ) ),
       chartTransformOptions: {
-        modelYRange: new Range( -10, 10 )
+        modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE
       }
     }, providedOptions );
 

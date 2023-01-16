@@ -28,10 +28,14 @@ const CalculusGrapherConstants = {
   // vertical height of the graph in view coordinates according to the number of graphs show on the screen
   GRAPH_VERTICAL_HEIGHT: [ 490, 245, 172, 123 ],
 
-  // Ranges
+  // range for curve x-axis
   CURVE_X_RANGE: new Range( 0, 50 ),
 
-  // Width of curve (in the same unit as x-Range) for curve manipulations
+  // range for barometers
+  ACCUMULATED_AREA_MODEL_RANGE: new Range( -200, 200 ),
+  SLOPE_OF_TANGENT_MODEL_RANGE: new Range( -10, 10 ),
+
+  // width of curve (in the same unit as x-Range) for curve manipulations
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 ),
 
   // zoom level ranges
