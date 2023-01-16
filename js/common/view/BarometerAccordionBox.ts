@@ -54,7 +54,7 @@ export default class BarometerAccordionBox extends AccordionBox {
         viewHeight: 175
       },
       tickMarkSetExtent: 20,
-      numberOfTicks: 4,
+      numberOfTicks: 5,
 
       // AccordionBoxOptions
       stroke: CalculusGrapherColors.panelStrokeProperty,
@@ -74,7 +74,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     const axisLine = new AxisLine( chartTransform, orientation );
 
     const tickSpacing = Utils.toFixedNumber(
-      options.chartTransformOptions.modelYRange!.getLength() / options.numberOfTicks, 0 );
+      options.chartTransformOptions.modelYRange!.getLength() / ( options.numberOfTicks - 1 ), 0 );
 
     const majorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing, {
       extent: options.tickMarkSetExtent
