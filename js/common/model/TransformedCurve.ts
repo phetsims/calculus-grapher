@@ -32,6 +32,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
 const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDeviation;
 const MAX_TILT = CalculusGrapherQueryParameters.maxTilt;
+const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 
 type SelfOptions = EmptySelfOptions;
 
@@ -98,11 +99,9 @@ export default class TransformedCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in peak.
     const deltaY = peak.y - closestPoint.lastSavedY;
 
-    const typicalY = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 10;
-
-    // set the slope coefficient such that the triangle at y=0 has a 'width' equal
+    // set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
     // to this.curveManipulationWidth when the peak is at typicalY value
-    const slope = typicalY / ( width / 2 );
+    const slope = TYPICAL_Y / ( width / 2 );
 
     this.points.forEach( point => {
       const newY = peak.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
@@ -167,11 +166,9 @@ export default class TransformedCurve extends Curve {
     // Amount to shift the CurvePoint closest to the passed-in peak.
     const deltaY = peak.y - closestPoint.lastSavedY;
 
-    const typicalY = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 10;
-
     // set the parabola coefficient such that the parabola at y=0 has a 'width' equal
     // to this.curveManipulationWidth when the peak is at a typicalY value;
-    const A = typicalY * Math.pow( 2 / width, 2 );
+    const A = TYPICAL_Y * Math.pow( 2 / width, 2 );
 
     this.points.forEach( point => {
       const newY = peak.y - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );

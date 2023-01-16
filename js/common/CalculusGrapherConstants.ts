@@ -21,6 +21,19 @@ const CUEING_ARROW_NODE_OPTIONS: ArrowNodeOptions = {
   fractionalHeadHeight: 0.5
 };
 
+// CAREFUL: Although there was a deliberate effort to scale other quantities based on
+// CURVE_X_RANGE, changing the CURVE_X_RANGE should lead to changes for the tick labels and tick marks spacing as well
+const CURVE_X_RANGE = new Range( 0, 50 );
+
+const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
+
+// a typical - y value: set (arbitrarily) to half maximum of y-axis when there are only two graphs
+// actual prefactor is not critical, used mostly for scaling.
+const TYPICAL_Y = 0.1 * CURVE_X_LENGTH;
+
+// typical area of original graph, used to set scale of accumulated area barometer
+const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
+
 const CalculusGrapherConstants = {
 
   GRAPH_VIEW_WIDTH: 612,
@@ -29,14 +42,22 @@ const CalculusGrapherConstants = {
   GRAPH_VERTICAL_HEIGHT: [ 490, 245, 172, 123 ],
 
   // range for curve x-axis
-  CURVE_X_RANGE: new Range( 0, 50 ),
+  CURVE_X_RANGE: CURVE_X_RANGE,
+
+  // a typical Y value: PARABOLA, and TRIANGLE are CurveManipulation modes that don't have an intrinsic width,
+  // but a curvature and a slope. We use TYPICAL_Y as a roundabout way to assign a meaning to the curve width parameter:
+  // the function has a width across the baseline, when the peak of the function is at TYPICAL_Y.
+  TYPICAL_Y: TYPICAL_Y,
 
   // range for barometers
-  ACCUMULATED_AREA_MODEL_RANGE: new Range( -200, 200 ),
+  ACCUMULATED_AREA_MODEL_RANGE: new Range( -0.8 * TYPICAL_AREA, 0.8 * TYPICAL_AREA ),
   SLOPE_OF_TANGENT_MODEL_RANGE: new Range( -10, 10 ),
 
   // width of curve (in the same unit as x-Range) for curve manipulations
-  CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue( 2, 20, 6 ),
+  CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue(
+    0.05 * CURVE_X_LENGTH,
+    0.5 * CURVE_X_LENGTH,
+    0.20 * CURVE_X_LENGTH ),
 
   // zoom level ranges
   ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 10, 5 ),
