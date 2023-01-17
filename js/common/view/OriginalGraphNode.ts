@@ -128,13 +128,13 @@ export default class OriginalGraphNode extends GraphNode {
       this.curveNode.dragBoundsProperty.value.setMaxY( height );
       this.predictCurveNode.dragBoundsProperty.value.setMaxY( height );
 
-      // TODO: find a way to update touch/mouse area without resorting to this
+      // TODO: find a way to update touch/mouse area without resorting to this: https://github.com/phetsims/calculus-grapher/issues/74
       this.setCurvePointerAreas();
     } );
 
     this.zoomLevelProperty.link( () => {
 
-      // TODO: find a way to update touch/mouse area without resorting to this
+      // TODO: find a way to update touch/mouse area without resorting to this: https://github.com/phetsims/calculus-grapher/issues/74
       this.setCurvePointerAreas();
     } );
 

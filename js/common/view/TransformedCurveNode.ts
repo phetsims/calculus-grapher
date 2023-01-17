@@ -146,7 +146,7 @@ export default class TransformedCurveNode extends CurveNode {
 
   /**
    * Creates a (rough) dilated shape for a Curve.
-   * TODO simplify: Talk to JO about why this is necessary in the first place.
+   * TODO simplify: Talk to JO about why this is necessary in the first place. see https://github.com/phetsims/calculus-grapher/issues/74
    */
   private getDilatedCurveShape(): Shape {
 
