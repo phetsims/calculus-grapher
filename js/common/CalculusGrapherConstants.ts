@@ -50,8 +50,8 @@ const CalculusGrapherConstants = {
   TYPICAL_Y: TYPICAL_Y,
 
   // range for barometers
-  ACCUMULATED_AREA_MODEL_RANGE: new Range( -0.8 * TYPICAL_AREA, 0.8 * TYPICAL_AREA ),
   SLOPE_OF_TANGENT_MODEL_RANGE: new Range( -10, 10 ),
+  NET_SIGNED_AREA_MODEL_RANGE: new Range( -0.8 * TYPICAL_AREA, 0.8 * TYPICAL_AREA ),
 
   // spacing for gridlines and ticks for graphs (in model units)
   NOMINAL_GRID_LINE_SPACING: 1,
