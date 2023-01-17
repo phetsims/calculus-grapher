@@ -54,7 +54,7 @@
     "value": "Tangent"
   },
   "barometer.accumulatedArea": {
-    "value": "Accumulated<br>Area"
+    "value": "Net Signed<br>Area"
   },
   "barometer.slopeOfTangent": {
     "value": "Slope of<br>Tangent"
