@@ -65,17 +65,17 @@ export default class CurveManipulationIconNode extends Node {
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform );
 
-    // create model for solid curve
-    const solidCurve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
+    // we don't want to instrument the transformed curves 
+    const transformedCurveOptions = combineOptions<TransformedCurveOptions>( {
         tandem: Tandem.OPT_OUT
       },
-      options.transformedCurveOptions ) );
+      options.transformedCurveOptions );
+
+    // create model for solid curve
+    const solidCurve = new TransformedCurve( transformedCurveOptions );
 
     // create model for icon curve
-    const dashedCurve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
-        tandem: Tandem.OPT_OUT
-      },
-      options.transformedCurveOptions ) );
+    const dashedCurve = new TransformedCurve( transformedCurveOptions );
 
     const xCenter = chartTransform.modelXRange.getCenter();
     const xLength = chartTransform.modelXRange.getLength();
