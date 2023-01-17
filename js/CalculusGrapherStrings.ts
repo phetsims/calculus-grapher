@@ -36,7 +36,7 @@ type StringsType = {
     'tangentStringProperty': LinkableProperty<string>;
   };
   'barometer': {
-    'accumulatedAreaStringProperty': LinkableProperty<string>;
+    'netSignedAreaStringProperty': LinkableProperty<string>;
     'slopeOfTangentStringProperty': LinkableProperty<string>;
   };
   'predictStringProperty': LinkableProperty<string>;

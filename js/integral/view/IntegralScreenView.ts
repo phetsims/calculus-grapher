@@ -16,7 +16,7 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import AccumulatedAreaAccordionBox from '../../common/view/AccumulatedAreaAccordionBox.js';
+import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -48,14 +48,14 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       } );
     this.addChild( this.areaUnderCurveToolNode );
 
-    // The accordion box titled 'Accumulated Area'
-    const accumulatedAreaAccordionBox = new AccumulatedAreaAccordionBox( model.areaUnderCurveTool, {
+    // The accordion box titled 'Net Signed Area'
+    const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveTool, {
       top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
       left: 10,
       visibleProperty: this.areaUnderCurveToolNode.visibleProperty,
-      tandem: options.tandem.createTandem( 'accumulatedAreaAccordionBox' )
+      tandem: options.tandem.createTandem( 'netSignedAreaAccordionBox' )
     } );
-    this.screenViewRootNode.addChild( accumulatedAreaAccordionBox );
+    this.screenViewRootNode.addChild( netSignedAreaAccordionBox );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
     const areaUnderCurveCheckbox = new Checkbox( this.visibleProperties.areaUnderCurveVisibleProperty,

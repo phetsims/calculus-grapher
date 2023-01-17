@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * AccumulatedAreaAccordionBox is the accordion box titled 'Accumulated Area'.
+ * NetSignedAreaAccordionBox is the accordion box titled 'Net Signed Area'.
  * It displays the barometer for the area-under-curve tool.
  *
  * @author Martin Veillette
@@ -21,12 +21,12 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type AccumulatedAreaAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
+type NetSignedAreaAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
   PickRequired<BarometerAccordionBoxOptions, 'visibleProperty' | 'tandem'>;
 
-export default class AccumulatedAreaAccordionBox extends BarometerAccordionBox {
+export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
 
-  public constructor( areaUnderCurveTool: AncillaryTool, providedOptions: AccumulatedAreaAccordionBoxOptions ) {
+  public constructor( areaUnderCurveTool: AncillaryTool, providedOptions: NetSignedAreaAccordionBoxOptions ) {
 
     // value property associated with the barometer
     const barometerYProperty = areaUnderCurveTool.getYProperty( 'integral' );
@@ -37,7 +37,7 @@ export default class AccumulatedAreaAccordionBox extends BarometerAccordionBox {
         CalculusGrapherColors.integralNegativeFillProperty ],
       ( y, positiveFill, negativeFill ) => y > 0 ? positiveFill : negativeFill );
 
-    const options = optionize<AccumulatedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
+    const options = optionize<NetSignedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
       barometerStrokeProperty: barometerStrokeProperty,
@@ -47,8 +47,8 @@ export default class AccumulatedAreaAccordionBox extends BarometerAccordionBox {
     }, providedOptions );
 
     super( areaUnderCurveTool.getYProperty( 'integral' ),
-      CalculusGrapherStrings.barometer.accumulatedAreaStringProperty, options );
+      CalculusGrapherStrings.barometer.netSignedAreaStringProperty, options );
   }
 }
 
-calculusGrapher.register( 'AccumulatedAreaAccordionBox', AccumulatedAreaAccordionBox );
+calculusGrapher.register( 'NetSignedAreaAccordionBox', NetSignedAreaAccordionBox );

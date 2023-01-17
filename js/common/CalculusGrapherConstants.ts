@@ -31,7 +31,7 @@ const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
 // actual prefactor is not critical, used mostly for scaling.
 const TYPICAL_Y = 0.1 * CURVE_X_LENGTH;
 
-// typical area of original graph, used to set scale of accumulated area barometer
+// typical area of original graph, used to set scale of 'Net Signed Area' barometer
 const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 
 const CalculusGrapherConstants = {

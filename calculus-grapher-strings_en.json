@@ -53,7 +53,7 @@
   "checkbox.tangent": {
     "value": "Tangent"
   },
-  "barometer.accumulatedArea": {
+  "barometer.netSignedArea": {
     "value": "Net Signed<br>Area"
   },
   "barometer.slopeOfTangent": {
