@@ -90,7 +90,7 @@ const CalculusGrapherConstants = {
   // for Panels and AccordionBoxes
   CORNER_RADIUS: 5,
 
-  // PhET-io ONLY constants
+  // PhET-iO ONLY constants
   MAX_VERTICAL_LINES: 6,
   MAX_POINT_LABELS: 6
 };
