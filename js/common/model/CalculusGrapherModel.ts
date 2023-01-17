@@ -127,7 +127,7 @@ export default class CalculusGrapherModel implements TModel {
     const toolsXRange = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
 
     this.pointLabels = PointLabel.createMultiple(
-      CalculusGrapherConstants.MAX_POINT_LABELS,
+      CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
@@ -137,7 +137,7 @@ export default class CalculusGrapherModel implements TModel {
       options.tandem.createTandem( 'pointLabels' ) );
 
     this.verticalLines = VerticalLine.createMultiple(
-      CalculusGrapherConstants.MAX_VERTICAL_LINES,
+      CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,

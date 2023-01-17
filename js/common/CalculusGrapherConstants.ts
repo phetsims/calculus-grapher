@@ -91,8 +91,8 @@ const CalculusGrapherConstants = {
   CORNER_RADIUS: 5,
 
   // PhET-iO ONLY constants
-  MAX_VERTICAL_LINES: 6,
-  MAX_POINT_LABELS: 6
+  NUMBER_OF_VERTICAL_LINES: 6,
+  NUMBER_OF_POINT_LABELS: 6
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
