@@ -71,7 +71,7 @@ export default class LabeledPointNode extends Node {
 
     // update the positions of the label Node
     // we use some heuristic algorithm to prevent the label to overlap with the curve
-    const updatePosition = () => {
+    const updateLabelPosition = () => {
 
       // value of the tangent (slope) at the y point
       const tangent = yDerivativeProperty.value;
@@ -89,7 +89,7 @@ export default class LabeledPointNode extends Node {
       labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
-    Multilink.multilink( [ labeledPoint.xProperty, yProperty, yDerivativeProperty, labeledPoint.labelProperty ], () => updatePosition() );
+    Multilink.multilink( [ labeledPoint.xProperty, yProperty, yDerivativeProperty, labeledPoint.labelProperty ], () => updateLabelPosition() );
 
     options.children = [ plottedPoint, labelNode ];
 
