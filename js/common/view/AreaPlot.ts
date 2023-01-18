@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * AreaChart is a chart that combines a line chart and a bar chart.
+ * AreaPlot is a chart that combines a line chart and a bar chart.
  * An area chart is distinguished from a line chart by the addition of shading between
  * lines and a baseline, like in a bar chart.
  *
@@ -25,7 +25,7 @@ export type AreaChartDataSet = ( Vector2 | null )[];
 
 export type AreaChartOptions = SelfOptions & PathOptions;
 
-export default class AreaChart extends Path {
+export default class AreaPlot extends Path {
 
   // if you change this directly, you are responsible for calling update
   public dataSet: AreaChartDataSet;
@@ -155,4 +155,4 @@ export default class AreaChart extends Path {
   }
 
 }
-calculusGrapher.register( 'AreaChart', AreaChart );
+calculusGrapher.register( 'AreaPlot', AreaPlot );

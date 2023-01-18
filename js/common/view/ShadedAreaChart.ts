@@ -12,7 +12,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
-import AreaChart from './AreaChart.js';
+import AreaPlot from './AreaPlot.js';
 import CurvePoint from '../model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
@@ -57,11 +57,11 @@ export default class ShadedAreaChart extends Node {
       } );
     };
 
-    const positiveAreaPlot = new AreaChart( chartTransform, getDataSet( isPositiveFunction ), {
+    const positiveAreaPlot = new AreaPlot( chartTransform, getDataSet( isPositiveFunction ), {
       fill: areaUnderCurveTool.positiveFillProperty
     } );
 
-    const negativeAreaPlot = new AreaChart( chartTransform, getDataSet( isNegativeFunction ), {
+    const negativeAreaPlot = new AreaPlot( chartTransform, getDataSet( isNegativeFunction ), {
       fill: areaUnderCurveTool.negativeFillProperty
     } );
 
