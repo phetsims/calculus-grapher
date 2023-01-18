@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * PointLabelNode is a point on originalCurve, with a label. The point is a scenery/Circle
+ * LabeledPointNode is a point on originalCurve, with a label. The point is a scenery/Circle
  * The label updates its positions, and is set perpendicular to the tangent of the curve
  *
  * @author Martin Veillette
@@ -27,7 +27,7 @@ type SelfOptions = EmptySelfOptions;
 
 type PointLabelNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-export default class PointLabelNode extends Node {
+export default class LabeledPointNode extends Node {
 
   public constructor( pointLabel: LabeledPoint,
                       graphType: GraphType,
@@ -96,4 +96,4 @@ export default class PointLabelNode extends Node {
     } );
   }
 }
-calculusGrapher.register( 'PointLabelNode', PointLabelNode );
+calculusGrapher.register( 'LabeledPointNode', LabeledPointNode );

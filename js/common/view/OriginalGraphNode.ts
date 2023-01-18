@@ -25,7 +25,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import PointLabelNode from './PointLabelNode.js';
+import LabeledPointNode from './LabeledPointNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -141,7 +141,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Point labels
     const pointLabelNodesTandem = options.tandem.createTandem( 'pointLabelNodes' );
     const pointLabelNodes = model.pointLabels.map( pointLabel =>
-      new PointLabelNode( pointLabel, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
+      new LabeledPointNode( pointLabel, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
         tandem: pointLabelNodesTandem.createTandem( `${pointLabel.labelProperty.value}PointLabelNode` )
       } ) );
 
