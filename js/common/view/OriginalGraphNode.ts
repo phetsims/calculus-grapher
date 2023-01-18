@@ -139,13 +139,13 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Labeled points
-    const labeledPointNodesTandem = options.tandem.createTandem( 'labeledPointNodes' );
+    const labeledPointsTandem = options.tandem.createTandem( 'labeledPoints' );
     const labeledPointNodes = model.labeledPoints.map( labeledPoint =>
       new LabeledPointNode( labeledPoint, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
-        tandem: labeledPointNodesTandem.createTandem( `${labeledPoint.labelProperty.value}PointNode` )
+        tandem: labeledPointsTandem.createTandem( `${labeledPoint.labelProperty.value}PointNode` )
       } ) );
 
-    // Put LabelPointNodes in their own layer, so they will not be clipped at x min/max.
+    // Put LabeledPointNodes in their own layer, so they will not be clipped at x min/max.
     const labeledPointsLayer = new Node( {
       children: labeledPointNodes
     } );
