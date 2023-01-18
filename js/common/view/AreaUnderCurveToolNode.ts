@@ -11,12 +11,11 @@
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import { GraphType } from '../model/GraphType.js';
-import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -25,8 +24,7 @@ type AreaUnderCurveToolNodeOptions = SelfOptions &
 
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
-  public constructor( areaUnderCurveTool: AncillaryTool,
-                      graphType: GraphType,
+  public constructor( areaUnderCurveTool: AreaUnderCurveTool,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
                       providedOptions: AreaUnderCurveToolNodeOptions ) {
@@ -38,14 +36,18 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
       scrubberLineVisible: true
     }, providedOptions );
 
-    super( areaUnderCurveTool, graphType, predictModeEnabledProperty, graphsNode, options );
+    super( areaUnderCurveTool, areaUnderCurveTool.graphType, predictModeEnabledProperty, graphsNode, options );
 
     // add shaded area chart to the graphNode
-    const graphNode = this.getGraphNode( graphType );
+    const graphNode = this.getGraphNode( areaUnderCurveTool.graphType );
     graphNode.addShadedAreaChart( areaUnderCurveTool, {
       visibleProperty: this.visibleProperty,
-      positiveFill: CalculusGrapherColors.integralPositiveFillProperty,
-      negativeFill: CalculusGrapherColors.integralNegativeFillProperty
+      positiveFill: areaUnderCurveTool.positiveFillProperty,
+      negativeFill: areaUnderCurveTool.negativeFillProperty
+    } );
+
+    this.addLinkedElement( areaUnderCurveTool, {
+      tandem: options.tandem.createTandem( areaUnderCurveTool.tandem.name )
     } );
   }
 }

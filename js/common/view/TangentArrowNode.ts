@@ -11,8 +11,8 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import { getDerivativeOf, getGraphTypeStrokeProperty, GraphType } from '../model/GraphType.js';
+import { getDerivativeOf, GraphType } from '../model/GraphType.js';
+import TangentTool from '../model/TangentTool.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -22,7 +22,7 @@ export type TangentArrowNodeOptions = SelfOptions & ArrowNodeOptions;
 
 export default class TangentArrowNode extends ArrowNode {
 
-  public constructor( ancillaryTool: AncillaryTool,
+  public constructor( tangentTool: TangentTool,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
@@ -35,7 +35,7 @@ export default class TangentArrowNode extends ArrowNode {
       arrowLength: 100,
 
       // ArrowNodeOptions
-      fill: getGraphTypeStrokeProperty( derivativeOfGraphType ),
+      fill: tangentTool.colorProperty,
       headWidth: 6,
       headHeight: 6,
       tailWidth: 2,
@@ -51,13 +51,13 @@ export default class TangentArrowNode extends ArrowNode {
       options.arrowLength / 2,
       0, options );
 
-    const graphYProperty = ancillaryTool.getYProperty( graphType );
-    const derivativeGraphYProperty = ancillaryTool.getYProperty( derivativeOfGraphType );
+    const graphYProperty = tangentTool.getYProperty( graphType );
+    const derivativeGraphYProperty = tangentTool.getYProperty( derivativeOfGraphType );
 
     // initial angle of the arrow in view coordinates
     let oldTheta = Math.atan( this.tipY / this.tipX );
     const updateArrow = () => {
-      const x = ancillaryTool.xProperty.value;
+      const x = tangentTool.xProperty.value;
       const y = graphYProperty.value;
       const modelSlope = derivativeGraphYProperty.value;
 
@@ -82,7 +82,7 @@ export default class TangentArrowNode extends ArrowNode {
     };
 
     chartTransform.changedEmitter.addListener( updateArrow );
-    ancillaryTool.xProperty.link( updateArrow );
+    tangentTool.xProperty.link( updateArrow );
     graphYProperty.link( updateArrow );
     derivativeGraphYProperty.link( updateArrow );
   }

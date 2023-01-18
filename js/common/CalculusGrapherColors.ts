@@ -95,11 +95,19 @@ const CalculusGrapherColors = {
 
   // Fill for integral curve (when area is positive)
   integralPositiveFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
-    integralCurveStroke => integralCurveStroke.withAlpha( 0.3 ) ),
+    integralCurveStroke => integralCurveStroke.withAlpha( 0.3 ), {
+      tandem: tandem.createTandem( 'integralPositiveFillProperty' ),
+      phetioValueType: Color.ColorIO,
+      phetioDocumentation: 'Color for positive area in the "Net Signed Area" accordion box.'
+    } ),
 
   // Fill for integral curve (when area is negative)
   integralNegativeFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
-    integralCurveStroke => integralCurveStroke.withAlpha( 0.5 ) ),
+    integralCurveStroke => integralCurveStroke.withAlpha( 0.5 ), {
+      tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
+      phetioValueType: Color.ColorIO,
+      phetioDocumentation: 'Color for negative area in the "Net Signed Area" accordion box.'
+    } ),
 
   // fill for the cueing arrows on original graph
   cueingArrowsFillProperty: new ProfileColorProperty( calculusGrapher, 'cueingArrowsFill', {

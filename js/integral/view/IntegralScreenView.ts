@@ -39,11 +39,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    this.areaUnderCurveToolNode = new AreaUnderCurveToolNode(
-      model.areaUnderCurveTool,
-      'original',
-      model.predictModeEnabledProperty,
-      this.graphsNode, {
+    this.areaUnderCurveToolNode = new AreaUnderCurveToolNode( model.areaUnderCurveTool,
+      model.predictModeEnabledProperty, this.graphsNode, {
         tandem: options.tandem.createTandem( 'areaUnderCurveToolNode' )
       } );
     this.addChild( this.areaUnderCurveToolNode );

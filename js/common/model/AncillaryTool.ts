@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * AncillaryTool is the model class associated with an x value on the graph.
- * It keeps track of all quantities associated with the x value, including:
+ * AncillaryTool is the model base class associated with an x value on the graph.
+ * It keeps track of the following quantities associated with the x value:
  *  - the integral of f(x)
  *  - the original function f(x)
  *  - the derivative of f(x)
@@ -48,7 +48,7 @@ export default class AncillaryTool extends PhetioObject {
   public readonly yDerivativeProperty: TReadOnlyProperty<number>;
   public readonly ySecondDerivativeProperty: TReadOnlyProperty<number>;
 
-  public constructor(
+  protected constructor(
     integralCurve: Curve,
     originalCurve: Curve,
     derivativeCurve: Curve,

@@ -49,6 +49,7 @@ import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
 import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
 import { GraphType } from '../model/GraphType.js';
+import TangentTool from '../model/TangentTool.js';
 
 type SelfOptions = {
   // GraphType associated with this graphNode
@@ -343,7 +344,6 @@ export default class GraphNode extends Node {
     this.curveLayer.addChild( focusCircle );
   }
 
-
   public addScrubberNode( ancillaryTool: AncillaryTool,
                           providedOptions: ScrubberNodeOptions ): void {
 
@@ -352,10 +352,10 @@ export default class GraphNode extends Node {
     this.addChild( scrubberNode );
   }
 
-  public addTangentArrowNode( ancillaryTool: AncillaryTool,
+  public addTangentArrowNode( tangentTool: TangentTool,
                               providedOptions: TangentArrowNodeOptions ): void {
 
-    const tangentArrowNode = new TangentArrowNode( ancillaryTool, this.graphType, this.chartTransform, providedOptions );
+    const tangentArrowNode = new TangentArrowNode( tangentTool, this.graphType, this.chartTransform, providedOptions );
 
     this.curveLayer.addChild( tangentArrowNode );
 

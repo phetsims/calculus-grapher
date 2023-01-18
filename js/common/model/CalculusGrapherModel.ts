@@ -22,13 +22,14 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import AncillaryTool from './AncillaryTool.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
 import PointLabel from './PointLabel.js';
 import Range from '../../../../dot/js/Range.js';
+import TangentTool from './TangentTool.js';
+import AreaUnderCurveTool from './AreaUnderCurveTool.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -52,8 +53,8 @@ export default class CalculusGrapherModel implements TModel {
 
   // model for the reference line
   public readonly referenceLine: ReferenceLine;
-  public readonly tangentTool: AncillaryTool;
-  public readonly areaUnderCurveTool: AncillaryTool;
+  public readonly tangentTool: TangentTool;
+  public readonly areaUnderCurveTool: AreaUnderCurveTool;
 
   public readonly pointLabels: PointLabel[];
   public readonly verticalLines: VerticalLine[];
@@ -113,15 +114,15 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.tangentTool = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3,
-      tandem: options.hasTangentTool ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
-    } );
+    this.tangentTool = new TangentTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
+      this.secondDerivativeCurve, {
+        tandem: options.hasTangentTool ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
+      } );
 
-    this.areaUnderCurveTool = new AncillaryTool( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min,
-      tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
-    } );
+    this.areaUnderCurveTool = new AreaUnderCurveTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
+      this.secondDerivativeCurve, {
+        tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
+      } );
 
     // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
     const toolsXRange = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );

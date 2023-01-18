@@ -16,7 +16,6 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 
@@ -41,14 +40,9 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    this.tangentToolNode = new TangentToolNode(
-      model.tangentTool,
-      'original',
-      model.predictModeEnabledProperty,
-      this.graphsNode, {
-        tandem: ( model.tangentTool.tandem === Tandem.OPT_OUT ) ? Tandem.OPT_OUT : options.tandem.createTandem( 'tangentToolNode' )
-      } );
-
+    this.tangentToolNode = new TangentToolNode( model.tangentTool, model.predictModeEnabledProperty, this.graphsNode, {
+      tandem: options.tandem.createTandem( 'tangentToolNode' )
+    } );
     this.addChild( this.tangentToolNode );
 
     // The accordion box titled 'Slope Of Tangent'
@@ -56,7 +50,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       top: this.graphsNode.y,
       left: 10,
       visibleProperty: this.tangentToolNode.visibleProperty,
-      tandem: ( model.tangentTool.tandem === Tandem.OPT_OUT ) ? Tandem.OPT_OUT : options.tandem.createTandem( 'slopeOfTangentAccordionBox' )
+      tandem: options.tandem.createTandem( 'slopeOfTangentAccordionBox' )
     } );
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
 
