@@ -169,8 +169,8 @@ export default class CalculusGrapherModel implements TModel {
     this.referenceLine.reset();
     this.tangentTool.reset();
     this.areaUnderCurveTool.reset();
-    this.pointLabels.forEach( pointLabel => pointLabel.reset() );
-    this.verticalLines.forEach( verticalLineTool => verticalLineTool.reset() );
+    // Do not reset this.pointLabels, because they can be accessed only via PhET-iO.
+    // Do not reset this.verticalLines, because they can be accessed only via PhET-iO.
   }
 
   public getCurve( graphType: GraphType ): Curve {
