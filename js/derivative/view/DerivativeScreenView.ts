@@ -11,7 +11,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
-import TangentToolNode from '../../common/view/TangentToolNode.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
@@ -25,9 +24,6 @@ type DerivativeScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOption
 
 export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
-  // indicates if checkbox of the tangent of f(x) is checked.
-  private readonly tangentToolNode: TangentToolNode;
-
   public constructor( model: DerivativeModel, providedOptions: DerivativeScreenViewOptions ) {
 
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
@@ -40,17 +36,14 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    this.tangentToolNode = new TangentToolNode( model.tangentTool, this.graphsNode, {
-      visibleProperty: this.visibleProperties.tangentVisibleProperty,
-      tandem: options.tandem.createTandem( 'tangentToolNode' )
-    } );
-    this.addChild( this.tangentToolNode );
+    // Add decorations to the graphs for the TangentTool.
+    this.graphsNode.addTangentTool( model.tangentTool, this.visibleProperties.tangentVisibleProperty );
 
     // The accordion box titled 'Slope Of Tangent'
     const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentTool, {
       top: this.graphsNode.y,
       left: 10,
-      visibleProperty: this.tangentToolNode.visibleProperty,
+      visibleProperty: this.visibleProperties.tangentVisibleProperty,
       tandem: options.tandem.createTandem( 'slopeOfTangentAccordionBox' )
     } );
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );

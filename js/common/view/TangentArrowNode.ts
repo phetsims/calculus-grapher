@@ -13,12 +13,13 @@ import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
 import TangentTool from '../model/TangentTool.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   arrowLength?: number;
 };
 
-export type TangentArrowNodeOptions = SelfOptions & ArrowNodeOptions;
+export type TangentArrowNodeOptions = SelfOptions & PickRequired<ArrowNodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class TangentArrowNode extends ArrowNode {
 
@@ -85,6 +86,10 @@ export default class TangentArrowNode extends ArrowNode {
     tangentTool.xProperty.link( updateArrow );
     graphYProperty.link( updateArrow );
     derivativeGraphYProperty.link( updateArrow );
+
+    this.addLinkedElement( tangentTool, {
+      tandem: options.tandem.createTandem( tangentTool.tandem.name )
+    } );
   }
 }
 

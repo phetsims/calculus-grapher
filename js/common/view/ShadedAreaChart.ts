@@ -8,68 +8,46 @@
  */
 
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
-import AreaChart, { AreaChartDataSet } from './AreaChart.js';
+import AreaChart from './AreaChart.js';
 import CurvePoint from '../model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
-type SelfOptions = {
+type SelfOptions = EmptySelfOptions;
 
-  positiveFill?: TColor;
-  negativeFill?: TColor;
-};
-
-export type ShadedAreaChartOptions = SelfOptions & NodeOptions;
+export type ShadedAreaChartOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 type CurvePointFunction = ( point: CurvePoint ) => boolean;
 
 export default class ShadedAreaChart extends Node {
 
   /**
-   *
+   * @param areaUnderCurveTool
    * @param curve - the curve model to which the area charts are added
    * @param chartTransform
-   * @param xProperty - the property the limits the horizontal extent of the area chart
+   * @param xProperty - the Property that limits the horizontal extent of the area plot
    * @param providedOptions
    */
-  public constructor( curve: Curve,
+  public constructor( areaUnderCurveTool: AreaUnderCurveTool,
+                      curve: Curve,
                       chartTransform: ChartTransform,
                       xProperty: TReadOnlyProperty<number>,
                       providedOptions?: ShadedAreaChartOptions ) {
 
     const options = optionize<ShadedAreaChartOptions, SelfOptions, NodeOptions>()( {
-
-      // SelfOptions
-      positiveFill: 'black',
-      negativeFill: 'black'
+      // we're setting options.children below
     }, providedOptions );
 
     const isPositiveFunction: CurvePointFunction = point => point.y > 0;
     const isNegativeFunction: CurvePointFunction = point => point.y < 0;
 
-    const positiveAreaChart = new AreaChart( chartTransform, getDataSet( isPositiveFunction ),
-      { fill: options.positiveFill } );
-
-    const negativeAreaChart = new AreaChart( chartTransform, getDataSet( isNegativeFunction ),
-      { fill: options.negativeFill } );
-    options.children = [ positiveAreaChart, negativeAreaChart ];
-
-    super( options );
-
-    curve.curveChangedEmitter.addListener( updateCharts );
-    xProperty.link( updateCharts );
-
-    function updateCharts(): void {
-      positiveAreaChart.setDataSet( getDataSet( isPositiveFunction ) );
-      negativeAreaChart.setDataSet( getDataSet( isNegativeFunction ) );
-    }
-
-    function getDataSet( pointFunction: CurvePointFunction ): AreaChartDataSet {
+    const getDataSet = ( pointFunction: CurvePointFunction ) => {
       return curve.points.map( point => {
-
         if ( pointFunction( point ) && point.x < xProperty.value ) {
           return point.toVector();
         }
@@ -77,7 +55,30 @@ export default class ShadedAreaChart extends Node {
           return null;
         }
       } );
-    }
+    };
+
+    const positiveAreaChart = new AreaChart( chartTransform, getDataSet( isPositiveFunction ), {
+      fill: areaUnderCurveTool.positiveFillProperty
+    } );
+
+    const negativeAreaChart = new AreaChart( chartTransform, getDataSet( isNegativeFunction ), {
+      fill: areaUnderCurveTool.negativeFillProperty
+    } );
+
+    options.children = [ positiveAreaChart, negativeAreaChart ];
+
+    super( options );
+
+    const updateCharts = () => {
+      positiveAreaChart.setDataSet( getDataSet( isPositiveFunction ) );
+      negativeAreaChart.setDataSet( getDataSet( isNegativeFunction ) );
+    };
+    curve.curveChangedEmitter.addListener( updateCharts );
+    xProperty.link( updateCharts );
+
+    this.addLinkedElement( areaUnderCurveTool, {
+      tandem: options.tandem.createTandem( areaUnderCurveTool.tandem.name )
+    } );
   }
 }
 

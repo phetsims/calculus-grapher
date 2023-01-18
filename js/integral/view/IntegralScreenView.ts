@@ -11,7 +11,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
-import AreaUnderCurveToolNode from '../../common/view/AreaUnderCurveToolNode.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import { RichText } from '../../../../scenery/js/imports.js';
@@ -25,8 +24,6 @@ type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 
-  private readonly areaUnderCurveToolNode: AreaUnderCurveToolNode;
-
   public constructor( model: IntegralModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
@@ -39,17 +36,14 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    this.areaUnderCurveToolNode = new AreaUnderCurveToolNode( model.areaUnderCurveTool, this.graphsNode, {
-      visibleProperty: this.visibleProperties.areaUnderCurveVisibleProperty,
-      tandem: options.tandem.createTandem( 'areaUnderCurveToolNode' )
-    } );
-    this.addChild( this.areaUnderCurveToolNode );
+    // Add decorations to the graphs for the AreaUnderCurveTool.
+    this.graphsNode.addAreaUnderCurveTool( model.areaUnderCurveTool, this.visibleProperties.areaUnderCurveVisibleProperty );
 
     // The accordion box titled 'Net Signed Area'
     const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveTool, {
       top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
       left: 10,
-      visibleProperty: this.areaUnderCurveToolNode.visibleProperty,
+      visibleProperty: this.visibleProperties.areaUnderCurveVisibleProperty,
       tandem: options.tandem.createTandem( 'netSignedAreaAccordionBox' )
     } );
     this.screenViewRootNode.addChild( netSignedAreaAccordionBox );

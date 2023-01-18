@@ -43,13 +43,14 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import FocusCircle, { FocusCircleOptions } from './FocusCircle.js';
+import FocusCircle from './FocusCircle.js';
 import AncillaryTool from '../model/AncillaryTool.js';
-import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
-import TangentArrowNode, { TangentArrowNodeOptions } from './TangentArrowNode.js';
-import ShadedAreaChart, { ShadedAreaChartOptions } from './ShadedAreaChart.js';
+import ScrubberNode from './ScrubberNode.js';
+import TangentArrowNode from './TangentArrowNode.js';
+import ShadedAreaChart from './ShadedAreaChart.js';
 import { GraphType } from '../model/GraphType.js';
 import TangentTool from '../model/TangentTool.js';
+import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
 
 type SelfOptions = {
   // GraphType associated with this graphNode
@@ -299,7 +300,6 @@ export default class GraphNode extends Node {
         buttonSetNode.right = rightNode.left - 10;
       }
     );
-
   }
 
   /**
@@ -322,55 +322,69 @@ export default class GraphNode extends Node {
     // no more than three decimal places
     const decimalPlaces = Math.min( 3, Utils.numberOfDecimalPlaces( spacing ) );
 
-    return new TickLabelSet( this.chartTransform, Orientation.VERTICAL, spacing,
-      {
-        value: CalculusGrapherConstants.CURVE_X_RANGE.min,
-        createLabel: ( value: number ) =>
-          new Text( Utils.toFixed( value, decimalPlaces ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } ),
-        positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
-          label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
-          return label;
-        }
-      } );
+    return new TickLabelSet( this.chartTransform, Orientation.VERTICAL, spacing, {
+      value: CalculusGrapherConstants.CURVE_X_RANGE.min,
+      createLabel: ( value: number ) =>
+        new Text( Utils.toFixed( value, decimalPlaces ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } ),
+      positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
+        label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
+        return label;
+      }
+    } );
   }
 
-  public addFocusCircle( xProperty: TReadOnlyProperty<number>,
-                         yProperty: TReadOnlyProperty<number>,
-                         providedOptions: FocusCircleOptions ): void {
-
-    const focusCircle = new FocusCircle( xProperty, yProperty, this.chartTransform,
-      providedOptions );
-
+  /**
+   * Adds a FocusCircle to this GraphNode.
+   */
+  public addFocusCircle( xProperty: TReadOnlyProperty<number>, yProperty: TReadOnlyProperty<number>,
+                         fill: TColor, visibleProperty: TReadOnlyProperty<boolean> ): FocusCircle {
+    const focusCircle = new FocusCircle( xProperty, yProperty, this.chartTransform, {
+      visibleProperty: visibleProperty,
+      fill: fill,
+      tandem: this.tandem.createTandem( 'focusCircle' )
+    } );
     this.curveLayer.addChild( focusCircle );
+    return focusCircle;
   }
 
-  public addScrubberNode( ancillaryTool: AncillaryTool,
-                          providedOptions: ScrubberNodeOptions ): void {
-
-    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, providedOptions );
-
+  /**
+   * Adds a scrubber to this GraphNode.
+   */
+  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor,
+                          visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): ScrubberNode {
+    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, color, {
+      visibleProperty: visibleProperty,
+      tandem: this.tandem.createTandem( tandemName )
+    } );
     this.addChild( scrubberNode );
+    return scrubberNode;
   }
 
-  public addTangentArrowNode( tangentTool: TangentTool,
-                              providedOptions: TangentArrowNodeOptions ): void {
-
-    const tangentArrowNode = new TangentArrowNode( tangentTool, this.graphType, this.chartTransform, providedOptions );
-
+  /**
+   * Adds a double-headed tangent arrow to this GraphNode.
+   */
+  public addTangentArrowNode( tangentTool: TangentTool, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
+    const tangentArrowNode = new TangentArrowNode( tangentTool, this.graphType, this.chartTransform, {
+      visibleProperty: visibleProperty,
+      tandem: this.tandem.createTandem( 'tangentArrowNode' )
+    } );
     this.curveLayer.addChild( tangentArrowNode );
-
     tangentArrowNode.moveBackward();
+    return tangentArrowNode;
   }
 
-  public addShadedAreaChart( ancillaryTool: AncillaryTool,
-                             providedOptions: ShadedAreaChartOptions ): void {
-
-    const shadedAreaChart = new ShadedAreaChart( this.curve, this.chartTransform,
-      ancillaryTool.xProperty, providedOptions );
-
-    this.curveLayer.addChild( shadedAreaChart );
-
-    shadedAreaChart.moveToBack();
+  /**
+   * Adds a plot to this GraphNode that shows the area under the curve.
+   */
+  public addAreaUnderCurvePlot( areaUnderCurveTool: AreaUnderCurveTool,
+                                visibleProperty: TReadOnlyProperty<boolean> ): ShadedAreaChart {
+    const areaUnderCurvePlot = new ShadedAreaChart( areaUnderCurveTool, this.curve, this.chartTransform, areaUnderCurveTool.xProperty, {
+      visibleProperty: visibleProperty,
+      tandem: this.tandem.createTandem( 'areaUnderCurvePlot' )
+    } );
+    this.curveLayer.addChild( areaUnderCurvePlot );
+    areaUnderCurvePlot.moveToBack();
+    return areaUnderCurvePlot;
   }
 }
 

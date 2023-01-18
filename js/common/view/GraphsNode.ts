@@ -22,6 +22,9 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
+import TangentTool from '../model/TangentTool.js';
+import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
+import AncillaryTool from '../model/AncillaryTool.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -142,13 +145,13 @@ export default class GraphNodes extends Node {
     this.mutate( options );
   }
 
-  /**
-   * Reset all
-   */
   public reset(): void {
     GraphTypeValues.forEach( graphType => this.getGraphNode( graphType ).reset() );
   }
 
+  /**
+   * Gets the GraphNode instance that corresponds to GraphType.
+   */
   public getGraphNode( graphType: GraphType ): GraphNode {
     const graphNode = graphType === 'integral' ? this.integralGraphNode :
                       graphType === 'original' ? this.originalGraphNode :
@@ -157,6 +160,38 @@ export default class GraphNodes extends Node {
                       null;
     assert && assert( graphNode );
     return graphNode!;
+  }
+
+  /**
+   * Decorates the appropriate graphs for a TangentTool.
+   */
+  public addTangentTool( tangentTool: TangentTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
+    GraphTypeValues.forEach( graphType => this.addFocusCircle( tangentTool, graphType, visibleProperty ) );
+    this.originalGraphNode.addScrubberNode( tangentTool, tangentTool.colorProperty, visibleProperty, 'tangentScrubber' );
+    this.originalGraphNode.addTangentArrowNode( tangentTool, visibleProperty );
+  }
+
+  /**
+   * Decorates the appropriate graphs for an AreaUnderCurveTool.
+   */
+  public addAreaUnderCurveTool( areaUnderCurveTool: AreaUnderCurveTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
+    GraphTypeValues.forEach( graphType => this.addFocusCircle( areaUnderCurveTool, graphType, visibleProperty ) );
+    this.originalGraphNode.addScrubberNode( areaUnderCurveTool, areaUnderCurveTool.colorProperty, visibleProperty,
+      'areaUnderCurveScrubber' );
+    this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveTool, visibleProperty );
+  }
+
+  /**
+   * Adds a FocusCircle to the specified graph.
+   */
+  private addFocusCircle( ancillaryTool: AncillaryTool, graphType: GraphType, visibleProperty: TReadOnlyProperty<boolean> ): void {
+    const graphNode = this.getGraphNode( graphType );
+    const fillProperty = getGraphTypeStrokeProperty( graphType );
+    const focusCircle = graphNode.addFocusCircle( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
+      fillProperty, visibleProperty );
+    focusCircle.addLinkedElement( ancillaryTool, {
+      tandem: focusCircle.tandem.createTandem( ancillaryTool.tandem.name )
+    } );
   }
 }
 
