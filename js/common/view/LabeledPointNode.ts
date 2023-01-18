@@ -25,40 +25,40 @@ import LabeledPoint from '../model/LabeledPoint.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type PointLabelNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type LabeledPointNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class LabeledPointNode extends Node {
 
-  public constructor( pointLabel: LabeledPoint,
+  public constructor( labeledPoint: LabeledPoint,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
-                      providedOptions: PointLabelNodeOptions ) {
+                      providedOptions: LabeledPointNodeOptions ) {
 
-    const options = optionize<PointLabelNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<LabeledPointNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
       visibleProperty: new DerivedProperty(
-        [ pointLabel.visibleProperty, predictModeEnabledProperty ],
-        ( pointLabelVisible, predictMode ) => pointLabelVisible && !predictMode, {
+        [ labeledPoint.visibleProperty, predictModeEnabledProperty ],
+        ( labeledPointVisible, predictMode ) => labeledPointVisible && !predictMode, {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } )
     }, providedOptions );
 
     // property associated with y value
-    const yProperty = pointLabel.getYProperty( graphType );
+    const yProperty = labeledPoint.getYProperty( graphType );
 
     // property associated with the tangent at the y value
-    const yDerivativeProperty = pointLabel.getYProperty( getDerivativeOf( graphType ) );
+    const yDerivativeProperty = labeledPoint.getYProperty( getDerivativeOf( graphType ) );
 
     // point that is plotted on the curve
-    const plottedPoint = new PlottedPoint( pointLabel.xProperty, yProperty, chartTransform, {
-      fill: pointLabel.pointColorProperty
+    const plottedPoint = new PlottedPoint( labeledPoint.xProperty, yProperty, chartTransform, {
+      fill: labeledPoint.pointColorProperty
     } );
 
     // label for the point
-    const text = new Text( pointLabel.labelProperty, {
+    const text = new Text( labeledPoint.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       maxWidth: 50
     } );
@@ -85,14 +85,14 @@ export default class LabeledPointNode extends Node {
       labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
-    Multilink.multilink( [ pointLabel.xProperty, yProperty, pointLabel.labelProperty ], () => updatePosition() );
+    Multilink.multilink( [ labeledPoint.xProperty, yProperty, labeledPoint.labelProperty ], () => updatePosition() );
 
     options.children = [ plottedPoint, labelNode ];
 
     super( options );
 
-    this.addLinkedElement( pointLabel, {
-      tandem: options.tandem.createTandem( pointLabel.tandem.name )
+    this.addLinkedElement( labeledPoint, {
+      tandem: options.tandem.createTandem( labeledPoint.tandem.name )
     } );
   }
 }

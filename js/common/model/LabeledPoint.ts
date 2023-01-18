@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * LabeledPoint is the model element for a vertical line tool.
+ * LabeledPoint is the model element for a labeled point on a curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -13,20 +13,20 @@ import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAnci
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Range from '../../../../dot/js/Range.js';
 
-const TANDEM_SUFFIX = 'LabeledPoint';
+const TANDEM_SUFFIX = 'Point';
 
 type SelfOptions = {
   pointColor: Color;
 };
 
-type PointLabelOptions = SelfOptions & LabeledAncillaryToolOptions;
+type LabeledPointOptions = SelfOptions & LabeledAncillaryToolOptions;
 
 export default class LabeledPoint extends LabeledAncillaryTool {
 
   public readonly pointColorProperty: ColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                      providedOptions: PointLabelOptions ) {
+                      providedOptions: LabeledPointOptions ) {
 
     const options = providedOptions;
 

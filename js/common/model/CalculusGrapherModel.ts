@@ -71,7 +71,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly referenceLine: ReferenceLine;
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
-  public readonly pointLabels: LabeledPoint[];
+  public readonly labeledPoints: LabeledPoint[];
   public readonly verticalLines: VerticalLine[];
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
@@ -140,7 +140,7 @@ export default class CalculusGrapherModel implements TModel {
     // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
     const toolsXRange = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
 
-    this.pointLabels = LabeledPoint.createMultiple(
+    this.labeledPoints = LabeledPoint.createMultiple(
       CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
@@ -148,7 +148,7 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       toolsXRange,
       getGraphTypeStrokeProperty( 'original' ).value,
-      toolsTandem.createTandem( 'pointLabels' ) );
+      toolsTandem.createTandem( 'labeledPoints' ) );
 
     this.verticalLines = VerticalLine.createMultiple(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
@@ -173,7 +173,7 @@ export default class CalculusGrapherModel implements TModel {
     this.referenceLine.reset();
     this.tangentScrubber.reset();
     this.areaUnderCurveScrubber.reset();
-    // Do not reset this.pointLabels, because they are configured only via PhET-iO.
+    // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.verticalLines, because they are configured only via PhET-iO.
   }
 

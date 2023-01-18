@@ -138,18 +138,18 @@ export default class OriginalGraphNode extends GraphNode {
       this.setCurvePointerAreas();
     } );
 
-    // Point labels
-    const pointLabelNodesTandem = options.tandem.createTandem( 'pointLabelNodes' );
-    const pointLabelNodes = model.pointLabels.map( pointLabel =>
-      new LabeledPointNode( pointLabel, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
-        tandem: pointLabelNodesTandem.createTandem( `${pointLabel.labelProperty.value}PointLabelNode` )
+    // Labeled points
+    const labeledPointNodesTandem = options.tandem.createTandem( 'labeledPointNodes' );
+    const labeledPointNodes = model.labeledPoints.map( labeledPoint =>
+      new LabeledPointNode( labeledPoint, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
+        tandem: labeledPointNodesTandem.createTandem( `${labeledPoint.labelProperty.value}PointNode` )
       } ) );
 
-    // Put PointLabelNodes in their own layer, so they will not be clipped at x min/max.
-    const pointLabelsLayer = new Node( {
-      children: pointLabelNodes
+    // Put LabelPointNodes in their own layer, so they will not be clipped at x min/max.
+    const labeledPointsLayer = new Node( {
+      children: labeledPointNodes
     } );
-    this.addChild( pointLabelsLayer );
+    this.addChild( labeledPointsLayer );
   }
 
   public override reset(): void {
