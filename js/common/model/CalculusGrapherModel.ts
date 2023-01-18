@@ -34,8 +34,12 @@ import AreaUnderCurveTool from './AreaUnderCurveTool.js';
 type SelfOptions = {
   graphSets: GraphSet[];
   curveManipulationModeChoices?: CurveManipulationMode[];
-  hasTangentTool?: boolean;
-  hasAreaUnderCurveTool?: boolean;
+
+  // Should the TangentTool be instrumented for PhET-iO?
+  phetioTangentToolInstrumented?: boolean;
+
+  // Should the AreaUnderCurveTool be instrumented for PhET-iO?
+  phetioAreaUnderCurveToolInstrumented?: boolean;
 };
 
 export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -72,8 +76,8 @@ export default class CalculusGrapherModel implements TModel {
 
       // SelfOptions
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
-      hasTangentTool: false,
-      hasAreaUnderCurveTool: false
+      phetioTangentToolInstrumented: false,
+      phetioAreaUnderCurveToolInstrumented: false
     }, providedOptions );
 
     this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
@@ -116,12 +120,12 @@ export default class CalculusGrapherModel implements TModel {
 
     this.tangentTool = new TangentTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
-        tandem: options.hasTangentTool ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
+        tandem: options.phetioTangentToolInstrumented ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
       } );
 
     this.areaUnderCurveTool = new AreaUnderCurveTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
-        tandem: options.hasAreaUnderCurveTool ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
+        tandem: options.phetioAreaUnderCurveToolInstrumented ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
       } );
 
     // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
