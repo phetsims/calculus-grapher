@@ -32,7 +32,12 @@ import TangentTool from './TangentTool.js';
 import AreaUnderCurveTool from './AreaUnderCurveTool.js';
 
 type SelfOptions = {
+
+  // Identifies the graphs that are supported by the screen associated with this model, and should therefore
+  // be instrumented for PhET-iO.
   graphSets: GraphSet[];
+
+  // Identifies the curve manipulation modes that are supported by the screen associated with this model.
   curveManipulationModeChoices?: CurveManipulationMode[];
 
   // Should the TangentTool be instrumented for PhET-iO?
