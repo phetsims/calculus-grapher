@@ -89,15 +89,15 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
-    const toolsCheckboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
+    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
       checkboxOptions: {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
       },
-      tandem: options.tandem.createTandem( 'toolsCheckboxGroup' )
+      tandem: options.tandem.createTandem( 'checkboxGroup' )
     } );
 
     const rightVBox = new VBox( {
-      children: [ this.controlPanel, toolsCheckboxGroup ],
+      children: [ this.controlPanel, checkboxGroup ],
       spacing: 20,
       align: 'left'
     } );
