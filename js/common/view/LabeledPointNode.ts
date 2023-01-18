@@ -69,13 +69,17 @@ export default class LabeledPointNode extends Node {
       }
     } );
 
-    // update the positions of the line and label Node
-    // use some heuristic algorithm to prevent the label to overlap with the curve
+    // update the positions of the label Node
+    // we use some heuristic algorithm to prevent the label to overlap with the curve
     const updatePosition = () => {
 
+      // value of the tangent (slope) at the y point
       const tangent = yDerivativeProperty.value;
+
+      // angle (with respect to x-axis) associated with the normal vector to the tangent
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
+      // determine a distance between the label and plottedPoint (center to center) - put them as close as possible
       const distance = ( labelNode.height / 2 ) + ( plottedPoint.height / 2 ) + 1;
 
       // vector perpendicular to the tangent in view (hence the minus sign for the angle, since y is inverted)
