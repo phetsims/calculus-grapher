@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TangentTool is the model element for the tangent tool.
+ * TangentScrubber is the model element for the tangent tool.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -19,7 +19,7 @@ type SelfOptions = EmptySelfOptions;
 
 type TangentToolOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tandem'>;
 
-export default class TangentTool extends AncillaryTool {
+export default class TangentScrubber extends AncillaryTool {
 
   public readonly colorProperty: ProfileColorProperty;
 
@@ -47,4 +47,4 @@ export default class TangentTool extends AncillaryTool {
   }
 }
 
-calculusGrapher.register( 'TangentTool', TangentTool );
+calculusGrapher.register( 'TangentScrubber', TangentScrubber );

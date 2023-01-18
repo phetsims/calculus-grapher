@@ -49,7 +49,7 @@ import ScrubberNode from './ScrubberNode.js';
 import TangentArrowNode from './TangentArrowNode.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import { GraphType } from '../model/GraphType.js';
-import TangentTool from '../model/TangentTool.js';
+import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
 
 type SelfOptions = {
@@ -364,7 +364,7 @@ export default class GraphNode extends Node {
   /**
    * Adds a double-headed tangent arrow to this GraphNode.
    */
-  public addTangentArrowNode( tangentTool: TangentTool, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
+  public addTangentArrowNode( tangentTool: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
     const tangentArrowNode = new TangentArrowNode( tangentTool, this.graphType, this.chartTransform, {
       visibleProperty: visibleProperty,
       tandem: this.tandem.createTandem( 'tangentArrowNode' )

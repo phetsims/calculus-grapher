@@ -12,7 +12,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
-import TangentTool from '../model/TangentTool.js';
+import TangentScrubber from '../model/TangentScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
@@ -23,7 +23,7 @@ export type TangentArrowNodeOptions = SelfOptions & PickRequired<ArrowNodeOption
 
 export default class TangentArrowNode extends ArrowNode {
 
-  public constructor( tangentTool: TangentTool,
+  public constructor( tangentTool: TangentScrubber,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {

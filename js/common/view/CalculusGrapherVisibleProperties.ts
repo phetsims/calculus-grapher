@@ -35,7 +35,7 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
 
   /**
    * @param referenceLineVisibleProperty - ReferenceLine.visibleProperty
-   * @param tangentToolVisibleProperty - TangentTool.visibleProperty
+   * @param tangentToolVisibleProperty - TangentScrubber.visibleProperty
    * @param areaUnderCurveToolVisibleProperty - AreaUnderCurveTool.visibleProperty
    * @param predictModeEnabledProperty
    * @param tandem
@@ -58,7 +58,7 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
       tandem: tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
 
-    // Tangent features are visible if the TangentTool is visible, and we are not in predict mode.
+    // Tangent features are visible if the TangentScrubber is visible, and we are not in predict mode.
     this.tangentVisibleProperty = new DerivedProperty(
       [ tangentToolVisibleProperty, predictModeEnabledProperty ],
       ( tangentToolVisible, predictModeEnabled ) => tangentToolVisible && !predictModeEnabled, {

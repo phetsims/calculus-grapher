@@ -36,7 +36,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    // Add decorations to the graphs for the TangentTool.
+    // Add decorations to the graphs for the TangentScrubber.
     this.graphsNode.addTangentTool( model.tangentTool, this.visibleProperties.tangentVisibleProperty );
 
     // The accordion box titled 'Slope Of Tangent'

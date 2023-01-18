@@ -22,7 +22,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
-import TangentTool from '../model/TangentTool.js';
+import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 
@@ -163,9 +163,9 @@ export default class GraphNodes extends Node {
   }
 
   /**
-   * Decorates the appropriate graphs for a TangentTool.
+   * Decorates the appropriate graphs for a TangentScrubber.
    */
-  public addTangentTool( tangentTool: TangentTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  public addTangentTool( tangentTool: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
     // Plot a point on each graph that will stay in sync with tangentTool.
     GraphTypeValues.forEach( graphType => this.addPlottedPoint( tangentTool, graphType, visibleProperty, 'tangentPoint' ) );

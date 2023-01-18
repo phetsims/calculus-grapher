@@ -28,7 +28,7 @@ import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
 import PointLabel from './PointLabel.js';
 import Range from '../../../../dot/js/Range.js';
-import TangentTool from './TangentTool.js';
+import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveTool from './AreaUnderCurveTool.js';
 
 type SelfOptions = {
@@ -40,7 +40,7 @@ type SelfOptions = {
   // Identifies the curve manipulation modes that are supported by the screen associated with this model.
   curveManipulationModeChoices?: CurveManipulationMode[];
 
-  // Should the TangentTool be instrumented for PhET-iO?
+  // Should the TangentScrubber be instrumented for PhET-iO?
   phetioTangentToolInstrumented?: boolean;
 
   // Should the AreaUnderCurveTool be instrumented for PhET-iO?
@@ -69,7 +69,7 @@ export default class CalculusGrapherModel implements TModel {
 
   // model elements for the various tools
   public readonly referenceLine: ReferenceLine;
-  public readonly tangentTool: TangentTool;
+  public readonly tangentTool: TangentScrubber;
   public readonly areaUnderCurveTool: AreaUnderCurveTool;
   public readonly pointLabels: PointLabel[];
   public readonly verticalLines: VerticalLine[];
@@ -123,7 +123,7 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'referenceLine' )
     } );
 
-    this.tangentTool = new TangentTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
+    this.tangentTool = new TangentScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
         tandem: options.phetioTangentToolInstrumented ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
       } );

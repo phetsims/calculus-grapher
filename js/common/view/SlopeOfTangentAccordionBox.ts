@@ -16,7 +16,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import TangentTool from '../model/TangentTool.js';
+import TangentScrubber from '../model/TangentScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -25,7 +25,7 @@ type SlopeOfTangentAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
 
 export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
 
-  public constructor( tangentTool: TangentTool, providedOptions: SlopeOfTangentAccordionBoxOptions ) {
+  public constructor( tangentTool: TangentScrubber, providedOptions: SlopeOfTangentAccordionBoxOptions ) {
 
     const options = optionize<SlopeOfTangentAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
