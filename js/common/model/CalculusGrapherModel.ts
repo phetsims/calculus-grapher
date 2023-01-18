@@ -51,29 +51,28 @@ export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjec
 
 export default class CalculusGrapherModel implements TModel {
 
-  // create properties associated with the curve such at the width and mode
+  // Properties associated with curve manipulation
   public readonly curveManipulationProperties: CurveManipulationProperties;
 
-  // is the predict mode enabled for the original graph
+  // Is the predict mode enabled for the original graph?
   public readonly predictModeEnabledProperty: Property<boolean>;
 
-  // which curve to apply operations to
-  public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
-
-  // model for the reference line
-  public readonly referenceLine: ReferenceLine;
-  public readonly tangentTool: TangentTool;
-  public readonly areaUnderCurveTool: AreaUnderCurveTool;
-
-  public readonly pointLabels: PointLabel[];
-  public readonly verticalLines: VerticalLine[];
-
-  // the model of the various curves
+  // model elements for the various curves
   public readonly originalCurve: TransformedCurve;
   public readonly predictCurve: TransformedCurve;
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
+
+  // which curve to apply operations to
+  public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
+
+  // model elements for the various tools
+  public readonly referenceLine: ReferenceLine;
+  public readonly tangentTool: TangentTool;
+  public readonly areaUnderCurveTool: AreaUnderCurveTool;
+  public readonly pointLabels: PointLabel[];
+  public readonly verticalLines: VerticalLine[];
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
@@ -89,6 +88,10 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'curveManipulationProperties' )
     } );
 
+    this.predictModeEnabledProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'predictModeEnabledProperty' )
+    } );
+
     this.originalCurve = new TransformedCurve( {
       // originalCurve is always instrumented, because it should always be present.
       tandem: options.tandem.createTandem( 'originalCurve' ),
@@ -100,14 +103,11 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'predictCurve' )
     } );
 
-    this.predictModeEnabledProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'predictModeEnabledProperty' )
-    } );
-
     this.curveToTransformProperty = new DerivedProperty( [ this.predictModeEnabledProperty ],
       predictModeEnabled => predictModeEnabled ? this.predictCurve : this.originalCurve
     );
 
+    // Create a flat array of the supported GraphTypes. This is then used to conditionally instrument curves.
     const graphTypes = options.graphSets.flat();
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,
