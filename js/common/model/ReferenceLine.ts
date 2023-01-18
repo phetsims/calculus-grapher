@@ -29,7 +29,7 @@ export default class ReferenceLine extends AncillaryTool {
     const options = optionize<ReferenceLineOptions, SelfOptions, AncillaryToolOptions>()( {
 
       // AncillaryToolOptions
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.getCenter()
+      x: CalculusGrapherConstants.CURVE_X_RANGE.getCenter()
     }, providedOptions );
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );

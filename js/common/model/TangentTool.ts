@@ -34,7 +34,7 @@ export default class TangentTool extends AncillaryTool {
     const options = optionize<TangentToolOptions, SelfOptions, AncillaryToolOptions>()( {
 
       // AncillaryToolOptions
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3
+      x: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3
     }, providedOptions );
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );

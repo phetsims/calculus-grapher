@@ -29,7 +29,7 @@ import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = {
-  initialCoordinate: number;
+  x: number; // initial value of xProperty
 };
 
 export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -67,7 +67,7 @@ export default class AncillaryTool extends PhetioObject {
       tandem: options.tandem.createTandem( 'visibleProperty' )
     } );
 
-    this.xProperty = new NumberProperty( options.initialCoordinate, {
+    this.xProperty = new NumberProperty( options.x, {
       range: CalculusGrapherConstants.CURVE_X_RANGE,
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
     } );

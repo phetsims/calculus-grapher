@@ -56,7 +56,7 @@ export default class PointLabel extends LabeledAncillaryTool {
       tools.push( new PointLabel( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
         pointColor: pointColor,
-        initialCoordinate: xRange.expandNormalizedValue( i / ( numberOfTools - 1 ) ),
+        x: xRange.expandNormalizedValue( i / ( numberOfTools - 1 ) ),
         tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
       } ) );
     }

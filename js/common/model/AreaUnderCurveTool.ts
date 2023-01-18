@@ -38,7 +38,7 @@ export default class AreaUnderCurveTool extends AncillaryTool {
     const options = optionize<AreaUnderCurveToolOptions, SelfOptions, AncillaryToolOptions>()( {
 
       // AncillaryToolOptions
-      initialCoordinate: CalculusGrapherConstants.CURVE_X_RANGE.min
+      x: CalculusGrapherConstants.CURVE_X_RANGE.min
     }, providedOptions );
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
