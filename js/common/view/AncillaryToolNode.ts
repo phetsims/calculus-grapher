@@ -11,7 +11,6 @@
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { Color, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { getGraphTypeStrokeProperty, GraphType, GraphTypeValues } from '../model/GraphType.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
@@ -21,46 +20,33 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphNode from './GraphNode.js';
 import { ScrubberNodeOptions } from './ScrubberNode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = {
   mainFillProperty: TReadOnlyProperty<Color>;
   scrubberLineVisible?: boolean;
 };
 
-export type AncillaryToolNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'visibleProperty'> &
-  PickRequired<NodeOptions, 'tandem'>;
+export type AncillaryToolNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class AncillaryToolNode extends Node {
 
   private readonly ancillaryTool: AncillaryTool;
-  private readonly predictModeEnabledProperty: TReadOnlyProperty<boolean>;
   private readonly graphsNode: GraphsNode;
 
   protected constructor( ancillaryTool: AncillaryTool,
                          graphType: GraphType,
-                         predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                          graphsNode: GraphsNode,
                          providedOptions: AncillaryToolNodeOptions ) {
 
     const options = optionize<AncillaryToolNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
-      scrubberLineVisible: true,
-
-      // NodeOptions
-      visibleProperty: new DerivedProperty(
-        [ ancillaryTool.visibleProperty, predictModeEnabledProperty ],
-        ( ancillaryToolVisible, predictModeEnabled ) => ancillaryToolVisible && !predictModeEnabled, {
-          tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
-          phetioValueType: BooleanIO
-        } )
+      scrubberLineVisible: true
     }, providedOptions );
 
     super( options );
 
     this.ancillaryTool = ancillaryTool;
-    this.predictModeEnabledProperty = predictModeEnabledProperty;
     this.graphsNode = graphsNode;
 
     this.addScrubberNode( graphType, {

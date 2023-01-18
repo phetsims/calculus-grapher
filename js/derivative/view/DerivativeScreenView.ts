@@ -40,7 +40,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    this.tangentToolNode = new TangentToolNode( model.tangentTool, model.predictModeEnabledProperty, this.graphsNode, {
+    this.tangentToolNode = new TangentToolNode( model.tangentTool, this.graphsNode, {
+      visibleProperty: this.visibleProperties.tangentVisibleProperty,
       tandem: options.tandem.createTandem( 'tangentToolNode' )
     } );
     this.addChild( this.tangentToolNode );
@@ -55,7 +56,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.
-    const tangentCheckbox = new Checkbox( this.visibleProperties.tangentVisibleProperty,
+    const tangentCheckbox = new Checkbox( model.tangentTool.visibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         maxWidth: 100

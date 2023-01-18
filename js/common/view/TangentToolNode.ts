@@ -11,7 +11,6 @@
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import GraphsNode from './GraphsNode.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import TangentTool from '../model/TangentTool.js';
@@ -24,7 +23,6 @@ type TangentToolNodeOptions = SelfOptions &
 export default class TangentToolNode extends AncillaryToolNode {
 
   public constructor( tangentTool: TangentTool,
-                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
                       providedOptions: TangentToolNodeOptions ) {
 
@@ -35,7 +33,7 @@ export default class TangentToolNode extends AncillaryToolNode {
       scrubberLineVisible: false
     }, providedOptions );
 
-    super( tangentTool, tangentTool.graphType, predictModeEnabledProperty, graphsNode, options );
+    super( tangentTool, tangentTool.graphType, graphsNode, options );
 
     // add double-headed arrow to the graphNode
     const graphNode = this.getGraphNode( tangentTool.graphType );

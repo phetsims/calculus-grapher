@@ -12,7 +12,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphsNode from './GraphsNode.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import AncillaryToolNode, { AncillaryToolNodeOptions } from './AncillaryToolNode.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
@@ -25,7 +24,6 @@ type AreaUnderCurveToolNodeOptions = SelfOptions &
 export default class AreaUnderCurveToolNode extends AncillaryToolNode {
 
   public constructor( areaUnderCurveTool: AreaUnderCurveTool,
-                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       graphsNode: GraphsNode,
                       providedOptions: AreaUnderCurveToolNodeOptions ) {
 
@@ -36,7 +34,7 @@ export default class AreaUnderCurveToolNode extends AncillaryToolNode {
       scrubberLineVisible: true
     }, providedOptions );
 
-    super( areaUnderCurveTool, areaUnderCurveTool.graphType, predictModeEnabledProperty, graphsNode, options );
+    super( areaUnderCurveTool, areaUnderCurveTool.graphType, graphsNode, options );
 
     // add shaded area chart to the graphNode
     const graphNode = this.getGraphNode( areaUnderCurveTool.graphType );
