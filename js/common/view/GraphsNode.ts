@@ -201,7 +201,7 @@ export default class GraphNodes extends Node {
                            visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
     const graphNode = this.getGraphNode( graphType );
     const fillProperty = getGraphTypeStrokeProperty( graphType );
-    const plottedPoint = graphNode.addFocusCircle( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
+    const plottedPoint = graphNode.addPlottedPoint( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
       fillProperty, visibleProperty, tandemName );
     plottedPoint.addLinkedElement( ancillaryTool, {
       tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
