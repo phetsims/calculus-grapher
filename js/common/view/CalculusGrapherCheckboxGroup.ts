@@ -19,12 +19,12 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type ToolsCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
+type CalculusGrapherCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
 
 export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup {
 
   public constructor( visibleProperties: CalculusGrapherVisibleProperties,
-                      providedOptions: ToolsCheckboxGroupOptions ) {
+                      providedOptions: CalculusGrapherCheckboxGroupOptions ) {
 
     const options = providedOptions;
 
