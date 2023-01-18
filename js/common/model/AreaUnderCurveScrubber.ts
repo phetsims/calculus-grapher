@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * AreaUnderCurveTool is the model element for the area-under-curve tool.
+ * AreaUnderCurveScrubber is the model element for the area-under-curve tool.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -21,7 +21,7 @@ type SelfOptions = EmptySelfOptions;
 
 type AreaUnderCurveToolOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tandem'>;
 
-export default class AreaUnderCurveTool extends AncillaryTool {
+export default class AreaUnderCurveScrubber extends AncillaryTool {
 
   public readonly graphType: GraphType;
   public readonly colorProperty: ProfileColorProperty;
@@ -65,4 +65,4 @@ export default class AreaUnderCurveTool extends AncillaryTool {
   }
 }
 
-calculusGrapher.register( 'AreaUnderCurveTool', AreaUnderCurveTool );
+calculusGrapher.register( 'AreaUnderCurveScrubber', AreaUnderCurveScrubber );

@@ -36,7 +36,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     super( model, options );
 
-    // Add decorations to the graphs for the AreaUnderCurveTool.
+    // Add decorations to the graphs for the AreaUnderCurveScrubber.
     this.graphsNode.addAreaUnderCurveTool( model.areaUnderCurveTool, this.visibleProperties.areaUnderCurveVisibleProperty );
 
     // The accordion box titled 'Net Signed Area'

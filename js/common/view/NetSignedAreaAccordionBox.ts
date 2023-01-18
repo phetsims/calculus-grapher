@@ -16,7 +16,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -25,7 +25,7 @@ type NetSignedAreaAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
 
 export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
 
-  public constructor( areaUnderCurveTool: AreaUnderCurveTool, providedOptions: NetSignedAreaAccordionBoxOptions ) {
+  public constructor( areaUnderCurveTool: AreaUnderCurveScrubber, providedOptions: NetSignedAreaAccordionBoxOptions ) {
 
     // value property associated with the barometer
     const barometerYProperty = areaUnderCurveTool.getYProperty( 'integral' );

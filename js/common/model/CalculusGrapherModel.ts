@@ -29,7 +29,7 @@ import VerticalLine from './VerticalLine.js';
 import PointLabel from './PointLabel.js';
 import Range from '../../../../dot/js/Range.js';
 import TangentScrubber from './TangentScrubber.js';
-import AreaUnderCurveTool from './AreaUnderCurveTool.js';
+import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
 
 type SelfOptions = {
 
@@ -43,7 +43,7 @@ type SelfOptions = {
   // Should the TangentScrubber be instrumented for PhET-iO?
   phetioTangentScrubberInstrumented?: boolean;
 
-  // Should the AreaUnderCurveTool be instrumented for PhET-iO?
+  // Should the AreaUnderCurveScrubber be instrumented for PhET-iO?
   phetioAreaUnderCurveToolInstrumented?: boolean;
 };
 
@@ -70,7 +70,7 @@ export default class CalculusGrapherModel implements TModel {
   // model elements for the various tools
   public readonly referenceLine: ReferenceLine;
   public readonly tangentScrubber: TangentScrubber;
-  public readonly areaUnderCurveTool: AreaUnderCurveTool;
+  public readonly areaUnderCurveTool: AreaUnderCurveScrubber;
   public readonly pointLabels: PointLabel[];
   public readonly verticalLines: VerticalLine[];
 
@@ -132,7 +132,7 @@ export default class CalculusGrapherModel implements TModel {
         tandem: options.phetioTangentScrubberInstrumented ? toolsTandem.createTandem( 'tangentScrubber' ) : Tandem.OPT_OUT
       } );
 
-    this.areaUnderCurveTool = new AreaUnderCurveTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
+    this.areaUnderCurveTool = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
         tandem: options.phetioAreaUnderCurveToolInstrumented ? toolsTandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
       } );

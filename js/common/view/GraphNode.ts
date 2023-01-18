@@ -50,7 +50,7 @@ import TangentArrowNode from './TangentArrowNode.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import { GraphType } from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
-import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = {
   // GraphType associated with this graphNode
@@ -377,7 +377,7 @@ export default class GraphNode extends Node {
   /**
    * Adds a plot to this GraphNode that shows the area under the curve.
    */
-  public addAreaUnderCurvePlot( areaUnderCurveTool: AreaUnderCurveTool,
+  public addAreaUnderCurvePlot( areaUnderCurveTool: AreaUnderCurveScrubber,
                                 visibleProperty: TReadOnlyProperty<boolean> ): AreaUnderCurvePlot {
     const areaUnderCurvePlot = new AreaUnderCurvePlot( areaUnderCurveTool, this.curve, this.chartTransform, areaUnderCurveTool.xProperty, {
       visibleProperty: visibleProperty,

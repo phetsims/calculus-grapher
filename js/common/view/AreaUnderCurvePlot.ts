@@ -14,7 +14,7 @@ import Curve from '../model/Curve.js';
 import AreaPlot from './AreaPlot.js';
 import CurvePoint from '../model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -32,7 +32,7 @@ export default class AreaUnderCurvePlot extends Node {
    * @param xProperty - the Property that limits the horizontal extent of the area plot
    * @param providedOptions
    */
-  public constructor( areaUnderCurveTool: AreaUnderCurveTool,
+  public constructor( areaUnderCurveTool: AreaUnderCurveScrubber,
                       curve: Curve,
                       chartTransform: ChartTransform,
                       xProperty: TReadOnlyProperty<number>,

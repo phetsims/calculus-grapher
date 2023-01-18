@@ -23,7 +23,7 @@ import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
-import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 
 type SelfOptions = {
@@ -178,9 +178,9 @@ export default class GraphNodes extends Node {
   }
 
   /**
-   * Decorates the appropriate graphs for an AreaUnderCurveTool.
+   * Decorates the appropriate graphs for an AreaUnderCurveScrubber.
    */
-  public addAreaUnderCurveTool( areaUnderCurveTool: AreaUnderCurveTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  public addAreaUnderCurveTool( areaUnderCurveTool: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
     // Plot a point on each graph that will stay in sync with areaUnderCurveTool.
     GraphTypeValues.forEach( graphType => this.addPlottedPoint( areaUnderCurveTool, graphType, visibleProperty,
