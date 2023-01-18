@@ -26,7 +26,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
-import PointLabel from './PointLabel.js';
+import LabeledPoint from './LabeledPoint.js';
 import Range from '../../../../dot/js/Range.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
@@ -71,7 +71,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly referenceLine: ReferenceLine;
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
-  public readonly pointLabels: PointLabel[];
+  public readonly pointLabels: LabeledPoint[];
   public readonly verticalLines: VerticalLine[];
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
@@ -140,7 +140,7 @@ export default class CalculusGrapherModel implements TModel {
     // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
     const toolsXRange = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
 
-    this.pointLabels = PointLabel.createMultiple(
+    this.pointLabels = LabeledPoint.createMultiple(
       CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,

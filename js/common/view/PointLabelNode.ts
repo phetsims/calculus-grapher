@@ -21,7 +21,7 @@ import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import PointLabel from '../model/PointLabel.js';
+import LabeledPoint from '../model/LabeledPoint.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -29,7 +29,7 @@ type PointLabelNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class PointLabelNode extends Node {
 
-  public constructor( pointLabel: PointLabel,
+  public constructor( pointLabel: LabeledPoint,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,

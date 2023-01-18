@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * PointLabel is the model element for a vertical line tool.
+ * LabeledPoint is the model element for a vertical line tool.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -13,7 +13,7 @@ import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAnci
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Range from '../../../../dot/js/Range.js';
 
-const TANDEM_SUFFIX = 'PointLabel';
+const TANDEM_SUFFIX = 'LabeledPoint';
 
 type SelfOptions = {
   pointColor: Color;
@@ -21,7 +21,7 @@ type SelfOptions = {
 
 type PointLabelOptions = SelfOptions & LabeledAncillaryToolOptions;
 
-export default class PointLabel extends LabeledAncillaryTool {
+export default class LabeledPoint extends LabeledAncillaryTool {
 
   public readonly pointColorProperty: ColorProperty;
 
@@ -39,21 +39,21 @@ export default class PointLabel extends LabeledAncillaryTool {
 
   //TODO https://github.com/phetsims/calculus-grapher/issues/144 duplication with VerticalLine.createMultiple
   /**
-   * Creates a specified number of PointLabel instances, with evenly spaced initialCoordinates,
+   * Creates a specified number of LabeledPoint instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
   public static createMultiple( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
                                 derivativeCurve: Curve, secondDerivativeCurve: Curve, xRange: Range,
-                                pointColor: Color, parentTandem: Tandem ): PointLabel[] {
+                                pointColor: Color, parentTandem: Tandem ): LabeledPoint[] {
 
-    const tools: PointLabel[] = [];
+    const tools: LabeledPoint[] = [];
     for ( let i = 0; i < numberOfTools; i++ ) {
 
       // convert integer to string 0->A, 1->B, etc
-      const label = PointLabel.intToUppercaseLetter( i );
+      const label = LabeledPoint.intToUppercaseLetter( i );
 
       // create the tool
-      tools.push( new PointLabel( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+      tools.push( new LabeledPoint( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
         pointColor: pointColor,
         x: xRange.expandNormalizedValue( i / ( numberOfTools - 1 ) ),
@@ -64,4 +64,4 @@ export default class PointLabel extends LabeledAncillaryTool {
   }
 }
 
-calculusGrapher.register( 'PointLabel', PointLabel );
+calculusGrapher.register( 'LabeledPoint', LabeledPoint );
