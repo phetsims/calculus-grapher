@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * PlottedPoint is a representation of a circle located at (x,y) in model Coordinates.
+ * PlottedPoint is a representation of a point located at (x,y) in model Coordinates.
  * A chartTransform is used to convert from model position to view.
  * It is responsible for updating its position
  *
