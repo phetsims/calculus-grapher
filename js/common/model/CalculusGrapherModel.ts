@@ -165,10 +165,10 @@ export default class CalculusGrapherModel implements TModel {
     this.curveManipulationProperties.reset();
     this.predictModeEnabledProperty.reset();
 
+    // Reset tools
     this.referenceLine.reset();
     this.tangentTool.reset();
     this.areaUnderCurveTool.reset();
-
     this.pointLabels.forEach( pointLabel => pointLabel.reset() );
     this.verticalLines.forEach( verticalLineTool => verticalLineTool.reset() );
   }
