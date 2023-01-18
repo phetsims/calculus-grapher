@@ -57,24 +57,24 @@ export default class ShadedAreaChart extends Node {
       } );
     };
 
-    const positiveAreaChart = new AreaChart( chartTransform, getDataSet( isPositiveFunction ), {
+    const positiveAreaPlot = new AreaChart( chartTransform, getDataSet( isPositiveFunction ), {
       fill: areaUnderCurveTool.positiveFillProperty
     } );
 
-    const negativeAreaChart = new AreaChart( chartTransform, getDataSet( isNegativeFunction ), {
+    const negativeAreaPlot = new AreaChart( chartTransform, getDataSet( isNegativeFunction ), {
       fill: areaUnderCurveTool.negativeFillProperty
     } );
 
-    options.children = [ positiveAreaChart, negativeAreaChart ];
+    options.children = [ positiveAreaPlot, negativeAreaPlot ];
 
     super( options );
 
-    const updateCharts = () => {
-      positiveAreaChart.setDataSet( getDataSet( isPositiveFunction ) );
-      negativeAreaChart.setDataSet( getDataSet( isNegativeFunction ) );
+    const updateDataSets = () => {
+      positiveAreaPlot.setDataSet( getDataSet( isPositiveFunction ) );
+      negativeAreaPlot.setDataSet( getDataSet( isNegativeFunction ) );
     };
-    curve.curveChangedEmitter.addListener( updateCharts );
-    xProperty.link( updateCharts );
+    curve.curveChangedEmitter.addListener( updateDataSets );
+    xProperty.link( updateDataSets );
 
     this.addLinkedElement( areaUnderCurveTool, {
       tandem: options.tandem.createTandem( areaUnderCurveTool.tandem.name )
