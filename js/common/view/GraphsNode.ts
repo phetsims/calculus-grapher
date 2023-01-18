@@ -113,6 +113,8 @@ export default class GraphNodes extends Node {
       verticalLineNode.setLineTop( graphSetNode.top - 5 );
     }
 
+    // To display a different set of graphs, get the GraphNodes, handle their layout, and adjust the position
+    // of the reference line and vertical lines.
     graphSetProperty.link( graphSet => {
 
       // array of Node content of this class
