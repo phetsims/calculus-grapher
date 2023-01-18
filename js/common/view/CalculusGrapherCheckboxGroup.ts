@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * ToolsCheckboxGroup is a group of checkboxes for controlling visibility of the grid lines and the reference line
+ * CalculusGrapherCheckboxGroup is a group of checkboxes for controlling visibility of the grid lines and the reference line
  *
  * @author Martin Veillette
  */
@@ -21,7 +21,7 @@ type SelfOptions = EmptySelfOptions;
 
 type ToolsCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
 
-export default class ToolsCheckboxGroup extends VerticalCheckboxGroup {
+export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup {
 
   public constructor( visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: ToolsCheckboxGroupOptions ) {
@@ -58,4 +58,4 @@ function createItem( labelNode: Node,
   };
 }
 
-calculusGrapher.register( 'ToolsCheckboxGroup', ToolsCheckboxGroup );
+calculusGrapher.register( 'CalculusGrapherCheckboxGroup', CalculusGrapherCheckboxGroup );

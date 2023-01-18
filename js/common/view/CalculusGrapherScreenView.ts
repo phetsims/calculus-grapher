@@ -15,7 +15,7 @@ import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
-import ToolsCheckboxGroup from './ToolsCheckboxGroup.js';
+import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
 import { GraphSet } from '../model/GraphType.js';
@@ -89,7 +89,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
-    const toolsCheckboxGroup = new ToolsCheckboxGroup( this.visibleProperties, {
+    const toolsCheckboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
       checkboxOptions: {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
       },
