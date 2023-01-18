@@ -26,7 +26,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   /**
    * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
    * the more faithful is the reproduction of a curve. For values less than 400 points, oddities
-   *  are apparent for the underTheCurveTool and tangentTool
+   *  are apparent for the underTheCurveTool and tangentTool (see https://github.com/phetsims/calculus-grapher/issues/176)
    *
    * For internal use only.
    */
