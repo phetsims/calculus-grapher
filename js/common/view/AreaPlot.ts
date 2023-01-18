@@ -1,9 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * AreaPlot is a chart that combines a line chart and a bar chart.
- * An area chart is distinguished from a line chart by the addition of shading between
- * lines and a baseline, like in a bar chart.
+ * AreaPlot is a plot that combines a line plot and a bar plot. An area plot is distinguished from a line plot by
+ * the addition of shading between lines and a baseline, like in a bar plot.
  *
  * Null values are skipped and allow you to create separate shaded regions.
  *
@@ -18,7 +17,7 @@ import { Path, PathOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = {
-  baseline?: number; // y-value representing the foundation of the chart
+  baseline?: number; // y-value representing the foundation of the plot
 };
 
 export type AreaChartDataSet = ( Vector2 | null )[];
@@ -30,7 +29,7 @@ export default class AreaPlot extends Path {
   // if you change this directly, you are responsible for calling update
   public dataSet: AreaChartDataSet;
 
-  // a y-value that serves as foundation for the area chart.
+  // a y-value that serves as foundation for the area plot.
   public baseline: number;
 
   private chartTransform: ChartTransform;
@@ -144,7 +143,7 @@ export default class AreaPlot extends Path {
     this.update();
   }
 
-  // set the baseline value for the area chart
+  // set the baseline value for the area plot
   public setBaseline( baseline: number ): void {
     this.baseline = baseline;
     this.update();
@@ -153,6 +152,5 @@ export default class AreaPlot extends Path {
   private setToBaseline( dataPoint: Vector2 ): Vector2 {
     return new Vector2( dataPoint.x, this.baseline );
   }
-
 }
 calculusGrapher.register( 'AreaPlot', AreaPlot );
