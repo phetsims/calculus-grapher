@@ -89,7 +89,7 @@ export default class LabeledPointNode extends Node {
       labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
-    Multilink.multilink( [ labeledPoint.xProperty, yProperty, labeledPoint.labelProperty ], () => updatePosition() );
+    Multilink.multilink( [ labeledPoint.xProperty, yProperty, yDerivativeProperty, labeledPoint.labelProperty ], () => updatePosition() );
 
     options.children = [ plottedPoint, labelNode ];
 
