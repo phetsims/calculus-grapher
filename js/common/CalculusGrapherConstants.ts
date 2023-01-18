@@ -27,8 +27,7 @@ const CURVE_X_RANGE = new Range( 0, 50 );
 
 const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
 
-// a typical - y value: set (arbitrarily) to half maximum of y-axis when there are only two graphs
-// actual prefactor is not critical, used mostly for scaling.
+// See CalculusGrapherConstants.TYPICAL_Y documentation below.
 const TYPICAL_Y = 0.1 * CURVE_X_LENGTH;
 
 // typical area of original graph, used to set scale of 'Net Signed Area' barometer

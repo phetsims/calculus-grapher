@@ -12,7 +12,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import Range from '../../../../dot/js/Range.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 const TANDEM_SUFFIX = 'VerticalLine';
 
@@ -42,7 +42,7 @@ export default class VerticalLine extends LabeledAncillaryTool {
    */
   public static createMultiple( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
                                 derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                                xRange: Range, parentTandem: Tandem ): VerticalLine[] {
+                                parentTandem: Tandem ): VerticalLine[] {
 
     const tools: VerticalLine[] = [];
     for ( let i = 0; i < numberOfTools; i++ ) {
@@ -53,7 +53,7 @@ export default class VerticalLine extends LabeledAncillaryTool {
       // create the tool
       tools.push( new VerticalLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
-        x: xRange.expandNormalizedValue( i / ( numberOfTools - 1 ) ),
+        x: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( ( i + 1 ) / ( numberOfTools + 1 ) ),
         tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
       } ) );
     }

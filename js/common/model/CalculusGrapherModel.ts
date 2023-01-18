@@ -27,7 +27,6 @@ import Curve from './Curve.js';
 import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
 import LabeledPoint from './LabeledPoint.js';
-import Range from '../../../../dot/js/Range.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
 
@@ -137,16 +136,12 @@ export default class CalculusGrapherModel implements TModel {
         tandem: options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
       } );
 
-    // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
-    const toolsXRange = new Range( CalculusGrapherConstants.CURVE_X_RANGE.min + 1, CalculusGrapherConstants.CURVE_X_RANGE.max - 1 );
-
     this.labeledPoints = LabeledPoint.createMultiple(
       CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      toolsXRange,
       getGraphTypeStrokeProperty( 'original' ).value,
       toolsTandem.createTandem( 'labeledPoints' ) );
 
@@ -156,7 +151,6 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      toolsXRange,
       toolsTandem.createTandem( 'verticalLines' ) );
   }
 

@@ -11,7 +11,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import Range from '../../../../dot/js/Range.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 const TANDEM_SUFFIX = 'Point';
 
@@ -43,7 +43,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
    * and alphabetically-ordered tandem names.
    */
   public static createMultiple( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
-                                derivativeCurve: Curve, secondDerivativeCurve: Curve, xRange: Range,
+                                derivativeCurve: Curve, secondDerivativeCurve: Curve,
                                 pointColor: Color, parentTandem: Tandem ): LabeledPoint[] {
 
     const tools: LabeledPoint[] = [];
@@ -56,7 +56,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
       tools.push( new LabeledPoint( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
         label: label,
         pointColor: pointColor,
-        x: xRange.expandNormalizedValue( i / ( numberOfTools - 1 ) ),
+        x: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( ( i + 1 ) / ( numberOfTools + 1 ) ),
         tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
       } ) );
     }
