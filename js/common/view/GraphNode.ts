@@ -43,7 +43,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import FocusCircle from './FocusCircle.js';
+import PlottedPoint from './PlottedPoint.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
 import TangentArrowNode from './TangentArrowNode.js';
@@ -334,11 +334,11 @@ export default class GraphNode extends Node {
   }
 
   /**
-   * Adds a FocusCircle to this GraphNode.
+   * Adds a PlottedPoint to this GraphNode.
    */
   public addFocusCircle( xProperty: TReadOnlyProperty<number>, yProperty: TReadOnlyProperty<number>,
-                         fill: TColor, visibleProperty: TReadOnlyProperty<boolean> ): FocusCircle {
-    const focusCircle = new FocusCircle( xProperty, yProperty, this.chartTransform, {
+                         fill: TColor, visibleProperty: TReadOnlyProperty<boolean> ): PlottedPoint {
+    const focusCircle = new PlottedPoint( xProperty, yProperty, this.chartTransform, {
       visibleProperty: visibleProperty,
       fill: fill,
       tandem: this.tandem.createTandem( 'focusCircle' )

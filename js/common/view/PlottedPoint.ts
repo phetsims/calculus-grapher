@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * FocusCircle is a representation of a circle located at (x,y) in model Coordinates.
+ * PlottedPoint is a representation of a circle located at (x,y) in model Coordinates.
  * A chartTransform is used to convert from model position to view.
  * It is responsible for updating its position
  *
@@ -18,7 +18,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type FocusCircleOptions = SelfOptions & CircleOptions;
 
-export default class FocusCircle extends Circle {
+export default class PlottedPoint extends Circle {
 
   public constructor( xProperty: TReadOnlyProperty<number>,
                       yProperty: TReadOnlyProperty<number>,
@@ -47,4 +47,4 @@ export default class FocusCircle extends Circle {
     chartTransform.changedEmitter.addListener( updatePosition );
   }
 }
-calculusGrapher.register( 'FocusCircle', FocusCircle );
+calculusGrapher.register( 'PlottedPoint', PlottedPoint );

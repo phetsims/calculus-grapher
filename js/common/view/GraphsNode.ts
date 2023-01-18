@@ -182,7 +182,7 @@ export default class GraphNodes extends Node {
   }
 
   /**
-   * Adds a FocusCircle to the specified graph.
+   * Adds a PlottedPoint to the specified graph.
    */
   private addFocusCircle( ancillaryTool: AncillaryTool, graphType: GraphType, visibleProperty: TReadOnlyProperty<boolean> ): void {
     const graphNode = this.getGraphNode( graphType );

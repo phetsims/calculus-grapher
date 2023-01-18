@@ -11,7 +11,7 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import FocusCircle from './FocusCircle.js';
+import PlottedPoint from './PlottedPoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { getDerivativeOf, GraphType } from '../model/GraphType.js';
@@ -53,7 +53,7 @@ export default class PointLabelNode extends Node {
     const yDerivativeProperty = pointLabel.getYProperty( getDerivativeOf( graphType ) );
 
     // small point (disk) on curve - focusCircle is responsible for updating its position
-    const focusCircle = new FocusCircle( pointLabel.xProperty, yProperty, chartTransform, {
+    const focusCircle = new PlottedPoint( pointLabel.xProperty, yProperty, chartTransform, {
       fill: pointLabel.pointColorProperty
     } );
 
