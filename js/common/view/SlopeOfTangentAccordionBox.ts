@@ -25,19 +25,19 @@ type SlopeOfTangentAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
 
 export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
 
-  public constructor( tangentTool: TangentScrubber, providedOptions: SlopeOfTangentAccordionBoxOptions ) {
+  public constructor( tangentScrubber: TangentScrubber, providedOptions: SlopeOfTangentAccordionBoxOptions ) {
 
     const options = optionize<SlopeOfTangentAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
-      barometerStrokeProperty: new DerivedProperty( [ tangentTool.colorProperty ],
+      barometerStrokeProperty: new DerivedProperty( [ tangentScrubber.colorProperty ],
         derivativeCurveStroke => derivativeCurveStroke.withAlpha( 0.6 ) ),
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE
       }
     }, providedOptions );
 
-    super( tangentTool.getYProperty( 'derivative' ),
+    super( tangentScrubber.getYProperty( 'derivative' ),
       CalculusGrapherStrings.barometer.slopeOfTangentStringProperty, options );
   }
 }

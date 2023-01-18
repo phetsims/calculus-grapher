@@ -17,7 +17,7 @@ import { ProfileColorProperty } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type TangentToolOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tandem'>;
+type TangentScrubberOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tandem'>;
 
 export default class TangentScrubber extends AncillaryTool {
 
@@ -28,9 +28,9 @@ export default class TangentScrubber extends AncillaryTool {
     originalCurve: Curve,
     derivativeCurve: Curve,
     secondDerivativeCurve: Curve,
-    providedOptions: TangentToolOptions ) {
+    providedOptions: TangentScrubberOptions ) {
 
-    const options = optionize<TangentToolOptions, SelfOptions, AncillaryToolOptions>()( {
+    const options = optionize<TangentScrubberOptions, SelfOptions, AncillaryToolOptions>()( {
 
       // AncillaryToolOptions
       x: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3

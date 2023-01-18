@@ -41,7 +41,7 @@ type SelfOptions = {
   curveManipulationModeChoices?: CurveManipulationMode[];
 
   // Should the TangentScrubber be instrumented for PhET-iO?
-  phetioTangentToolInstrumented?: boolean;
+  phetioTangentScrubberInstrumented?: boolean;
 
   // Should the AreaUnderCurveTool be instrumented for PhET-iO?
   phetioAreaUnderCurveToolInstrumented?: boolean;
@@ -69,7 +69,7 @@ export default class CalculusGrapherModel implements TModel {
 
   // model elements for the various tools
   public readonly referenceLine: ReferenceLine;
-  public readonly tangentTool: TangentScrubber;
+  public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveTool: AreaUnderCurveTool;
   public readonly pointLabels: PointLabel[];
   public readonly verticalLines: VerticalLine[];
@@ -80,7 +80,7 @@ export default class CalculusGrapherModel implements TModel {
 
       // SelfOptions
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
-      phetioTangentToolInstrumented: false,
+      phetioTangentScrubberInstrumented: false,
       phetioAreaUnderCurveToolInstrumented: false
     }, providedOptions );
 
@@ -92,15 +92,17 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'predictModeEnabledProperty' )
     } );
 
+    const curvesTandem = options.tandem.createTandem( 'curves' );
+
     this.originalCurve = new TransformedCurve( {
       // originalCurve is always instrumented, because it should always be present.
-      tandem: options.tandem.createTandem( 'originalCurve' ),
+      tandem: curvesTandem.createTandem( 'originalCurve' ),
       phetioDocumentation: 'The curve that corresponds to the original function'
     } );
 
     this.predictCurve = new TransformedCurve( {
       // predictCurve is always instrumented, because it should always be present.
-      tandem: options.tandem.createTandem( 'predictCurve' )
+      tandem: curvesTandem.createTandem( 'predictCurve' )
     } );
 
     this.curveToTransformProperty = new DerivedProperty( [ this.predictModeEnabledProperty ],
@@ -111,26 +113,28 @@ export default class CalculusGrapherModel implements TModel {
     const graphTypes = options.graphSets.flat();
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,
-      graphTypes.includes( 'derivative' ) ? options.tandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
+      graphTypes.includes( 'derivative' ) ? curvesTandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
 
     this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve,
-      graphTypes.includes( 'secondDerivative' ) ? options.tandem.createTandem( 'secondDerivativeCurve' ) : Tandem.OPT_OUT );
+      graphTypes.includes( 'secondDerivative' ) ? curvesTandem.createTandem( 'secondDerivativeCurve' ) : Tandem.OPT_OUT );
 
     this.integralCurve = new IntegralCurve( this.originalCurve,
-      graphTypes.includes( 'integral' ) ? options.tandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
+      graphTypes.includes( 'integral' ) ? curvesTandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
+
+    const toolsTandem = options.tandem.createTandem( 'tools' );
 
     this.referenceLine = new ReferenceLine( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      tandem: options.tandem.createTandem( 'referenceLine' )
+      tandem: toolsTandem.createTandem( 'referenceLine' )
     } );
 
-    this.tangentTool = new TangentScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
+    this.tangentScrubber = new TangentScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
-        tandem: options.phetioTangentToolInstrumented ? options.tandem.createTandem( 'tangentTool' ) : Tandem.OPT_OUT
+        tandem: options.phetioTangentScrubberInstrumented ? toolsTandem.createTandem( 'tangentScrubber' ) : Tandem.OPT_OUT
       } );
 
     this.areaUnderCurveTool = new AreaUnderCurveTool( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
-        tandem: options.phetioAreaUnderCurveToolInstrumented ? options.tandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
+        tandem: options.phetioAreaUnderCurveToolInstrumented ? toolsTandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
       } );
 
     // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
@@ -144,7 +148,7 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       toolsXRange,
       getGraphTypeStrokeProperty( 'original' ).value,
-      options.tandem.createTandem( 'pointLabels' ) );
+      toolsTandem.createTandem( 'pointLabels' ) );
 
     this.verticalLines = VerticalLine.createMultiple(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
@@ -153,7 +157,7 @@ export default class CalculusGrapherModel implements TModel {
       this.derivativeCurve,
       this.secondDerivativeCurve,
       toolsXRange,
-      options.tandem.createTandem( 'verticalLines' ) );
+      toolsTandem.createTandem( 'verticalLines' ) );
   }
 
   /**
@@ -167,7 +171,7 @@ export default class CalculusGrapherModel implements TModel {
 
     // Reset tools
     this.referenceLine.reset();
-    this.tangentTool.reset();
+    this.tangentScrubber.reset();
     this.areaUnderCurveTool.reset();
     // Do not reset this.pointLabels, because they are configured only via PhET-iO.
     // Do not reset this.verticalLines, because they are configured only via PhET-iO.

@@ -165,16 +165,16 @@ export default class GraphNodes extends Node {
   /**
    * Decorates the appropriate graphs for a TangentScrubber.
    */
-  public addTangentTool( tangentTool: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Plot a point on each graph that will stay in sync with tangentTool.
-    GraphTypeValues.forEach( graphType => this.addPlottedPoint( tangentTool, graphType, visibleProperty, 'tangentPoint' ) );
+    // Plot a point on each graph that will stay in sync with tangentScrubber.
+    GraphTypeValues.forEach( graphType => this.addPlottedPoint( tangentScrubber, graphType, visibleProperty, 'tangentPoint' ) );
 
-    // Add a scrubber to the original graph, for moving the x location of tangentTool.
-    this.originalGraphNode.addScrubberNode( tangentTool, tangentTool.colorProperty, visibleProperty, 'tangentScrubber' );
+    // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
+    this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubber' );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
-    this.originalGraphNode.addTangentArrowNode( tangentTool, visibleProperty );
+    this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
   }
 
   /**

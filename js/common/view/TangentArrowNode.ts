@@ -23,7 +23,7 @@ export type TangentArrowNodeOptions = SelfOptions & PickRequired<ArrowNodeOption
 
 export default class TangentArrowNode extends ArrowNode {
 
-  public constructor( tangentTool: TangentScrubber,
+  public constructor( tangentScrubber: TangentScrubber,
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
@@ -36,7 +36,7 @@ export default class TangentArrowNode extends ArrowNode {
       arrowLength: 100,
 
       // ArrowNodeOptions
-      fill: tangentTool.colorProperty,
+      fill: tangentScrubber.colorProperty,
       headWidth: 6,
       headHeight: 6,
       tailWidth: 2,
@@ -52,13 +52,13 @@ export default class TangentArrowNode extends ArrowNode {
       options.arrowLength / 2,
       0, options );
 
-    const graphYProperty = tangentTool.getYProperty( graphType );
-    const derivativeGraphYProperty = tangentTool.getYProperty( derivativeOfGraphType );
+    const graphYProperty = tangentScrubber.getYProperty( graphType );
+    const derivativeGraphYProperty = tangentScrubber.getYProperty( derivativeOfGraphType );
 
     // initial angle of the arrow in view coordinates
     let oldTheta = Math.atan( this.tipY / this.tipX );
     const updateArrow = () => {
-      const x = tangentTool.xProperty.value;
+      const x = tangentScrubber.xProperty.value;
       const y = graphYProperty.value;
       const modelSlope = derivativeGraphYProperty.value;
 
@@ -83,12 +83,12 @@ export default class TangentArrowNode extends ArrowNode {
     };
 
     chartTransform.changedEmitter.addListener( updateArrow );
-    tangentTool.xProperty.link( updateArrow );
+    tangentScrubber.xProperty.link( updateArrow );
     graphYProperty.link( updateArrow );
     derivativeGraphYProperty.link( updateArrow );
 
-    this.addLinkedElement( tangentTool, {
-      tandem: options.tandem.createTandem( tangentTool.tandem.name )
+    this.addLinkedElement( tangentScrubber, {
+      tandem: options.tandem.createTandem( tangentScrubber.tandem.name )
     } );
   }
 }

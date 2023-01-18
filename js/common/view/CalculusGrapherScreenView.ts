@@ -68,7 +68,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     // Visibility Properties for the screen that are controllable via the UI
     this.visibleProperties = new CalculusGrapherVisibleProperties(
       model.referenceLine.visibleProperty,
-      model.tangentTool.visibleProperty,
+      model.tangentScrubber.visibleProperty,
       model.areaUnderCurveTool.visibleProperty,
       model.predictModeEnabledProperty,
       options.tandem.createTandem( 'visibleProperties' )

@@ -28,7 +28,7 @@ export default class DerivativeModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      phetioTangentToolInstrumented: true
+      phetioTangentScrubberInstrumented: true
     }, providedOptions );
 
     super( options );

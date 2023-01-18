@@ -37,10 +37,10 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     super( model, options );
 
     // Add decorations to the graphs for the TangentScrubber.
-    this.graphsNode.addTangentTool( model.tangentTool, this.visibleProperties.tangentVisibleProperty );
+    this.graphsNode.addTangentView( model.tangentScrubber, this.visibleProperties.tangentVisibleProperty );
 
     // The accordion box titled 'Slope Of Tangent'
-    const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentTool, {
+    const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentScrubber, {
       top: this.graphsNode.y,
       left: 10,
       visibleProperty: this.visibleProperties.tangentVisibleProperty,
@@ -49,7 +49,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.
-    const tangentCheckbox = new Checkbox( model.tangentTool.visibleProperty,
+    const tangentCheckbox = new Checkbox( model.tangentScrubber.visibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         maxWidth: 100

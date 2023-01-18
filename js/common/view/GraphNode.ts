@@ -364,8 +364,8 @@ export default class GraphNode extends Node {
   /**
    * Adds a double-headed tangent arrow to this GraphNode.
    */
-  public addTangentArrowNode( tangentTool: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
-    const tangentArrowNode = new TangentArrowNode( tangentTool, this.graphType, this.chartTransform, {
+  public addTangentArrowNode( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
+    const tangentArrowNode = new TangentArrowNode( tangentScrubber, this.graphType, this.chartTransform, {
       visibleProperty: visibleProperty,
       tandem: this.tandem.createTandem( 'tangentArrowNode' )
     } );
