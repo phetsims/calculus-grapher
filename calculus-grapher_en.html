@@ -22,7 +22,7 @@
   window.phet.chipper.packageObject =
     {
       "name": "calculus-grapher",
-      "version": "1.0.0-dev.6",
+      "version": "1.0.0-dev.7",
       "license": "GPL-3.0",
       "repository": {
         "type": "git",
@@ -52,7 +52,10 @@
         }
       },
       "eslintConfig": {
-        "extends": "../chipper/eslint/sim_eslintrc.js"
+        "extends": "../chipper/eslint/sim_eslintrc.js",
+        "rules": {
+          "todo-should-have-issue": "off"
+        }
       }
     };
   window.phet.chipper.stringRepos =
