@@ -44,7 +44,7 @@ type SelfOptions = {
   phetioTangentScrubberInstrumented?: boolean;
 
   // Should the AreaUnderCurveScrubber be instrumented for PhET-iO?
-  phetioAreaUnderCurveToolInstrumented?: boolean;
+  phetioAreaUnderCurveScrubberInstrumented?: boolean;
 };
 
 export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -70,7 +70,7 @@ export default class CalculusGrapherModel implements TModel {
   // model elements for the various tools
   public readonly referenceLine: ReferenceLine;
   public readonly tangentScrubber: TangentScrubber;
-  public readonly areaUnderCurveTool: AreaUnderCurveScrubber;
+  public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly pointLabels: PointLabel[];
   public readonly verticalLines: VerticalLine[];
 
@@ -81,7 +81,7 @@ export default class CalculusGrapherModel implements TModel {
       // SelfOptions
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
       phetioTangentScrubberInstrumented: false,
-      phetioAreaUnderCurveToolInstrumented: false
+      phetioAreaUnderCurveScrubberInstrumented: false
     }, providedOptions );
 
     this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
@@ -132,9 +132,9 @@ export default class CalculusGrapherModel implements TModel {
         tandem: options.phetioTangentScrubberInstrumented ? toolsTandem.createTandem( 'tangentScrubber' ) : Tandem.OPT_OUT
       } );
 
-    this.areaUnderCurveTool = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
+    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
       this.secondDerivativeCurve, {
-        tandem: options.phetioAreaUnderCurveToolInstrumented ? toolsTandem.createTandem( 'areaUnderCurveTool' ) : Tandem.OPT_OUT
+        tandem: options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
       } );
 
     // Adjust the range so that we do not put tools at x-min and x-max, where they would be occluded by chart edges.
@@ -172,7 +172,7 @@ export default class CalculusGrapherModel implements TModel {
     // Reset tools
     this.referenceLine.reset();
     this.tangentScrubber.reset();
-    this.areaUnderCurveTool.reset();
+    this.areaUnderCurveScrubber.reset();
     // Do not reset this.pointLabels, because they are configured only via PhET-iO.
     // Do not reset this.verticalLines, because they are configured only via PhET-iO.
   }

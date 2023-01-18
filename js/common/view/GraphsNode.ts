@@ -163,7 +163,7 @@ export default class GraphNodes extends Node {
   }
 
   /**
-   * Decorates the appropriate graphs for a TangentScrubber.
+   * Decorates the appropriate graphs for the tangent feature.
    */
   public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
@@ -178,20 +178,20 @@ export default class GraphNodes extends Node {
   }
 
   /**
-   * Decorates the appropriate graphs for an AreaUnderCurveScrubber.
+   * Decorates the appropriate graphs for the 'area under curve' feature.
    */
-  public addAreaUnderCurveTool( areaUnderCurveTool: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Plot a point on each graph that will stay in sync with areaUnderCurveTool.
-    GraphTypeValues.forEach( graphType => this.addPlottedPoint( areaUnderCurveTool, graphType, visibleProperty,
+    // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
+    GraphTypeValues.forEach( graphType => this.addPlottedPoint( areaUnderCurveScrubber, graphType, visibleProperty,
       'areaUnderCurvePoint' ) );
 
-    // Add a scrubber on the original graph, for moving the x location of areaUnderCurveTool.
-    this.originalGraphNode.addScrubberNode( areaUnderCurveTool, areaUnderCurveTool.colorProperty, visibleProperty,
+    // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
+    this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
       'areaUnderCurveScrubber' );
 
     // Add a plot of the area under the curve on the original graph.
-    this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveTool, visibleProperty );
+    this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
   }
 
   /**

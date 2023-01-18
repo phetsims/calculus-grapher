@@ -25,14 +25,14 @@ type NetSignedAreaAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
 
 export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
 
-  public constructor( areaUnderCurveTool: AreaUnderCurveScrubber, providedOptions: NetSignedAreaAccordionBoxOptions ) {
+  public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber, providedOptions: NetSignedAreaAccordionBoxOptions ) {
 
     // value property associated with the barometer
-    const barometerYProperty = areaUnderCurveTool.getYProperty( 'integral' );
+    const barometerYProperty = areaUnderCurveScrubber.getYProperty( 'integral' );
 
     // color associated with barometer rectangle: changes according to value of barometer
     const barometerStrokeProperty = new DerivedProperty(
-      [ barometerYProperty, areaUnderCurveTool.positiveFillProperty, areaUnderCurveTool.negativeFillProperty ],
+      [ barometerYProperty, areaUnderCurveScrubber.positiveFillProperty, areaUnderCurveScrubber.negativeFillProperty ],
       ( y, positiveFill, negativeFill ) => y > 0 ? positiveFill : negativeFill );
 
     const options = optionize<NetSignedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
@@ -44,7 +44,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       }
     }, providedOptions );
 
-    super( areaUnderCurveTool.getYProperty( 'integral' ),
+    super( areaUnderCurveScrubber.getYProperty( 'integral' ),
       CalculusGrapherStrings.barometer.netSignedAreaStringProperty, options );
   }
 }

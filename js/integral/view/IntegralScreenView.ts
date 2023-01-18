@@ -37,10 +37,10 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     super( model, options );
 
     // Add decorations to the graphs for the AreaUnderCurveScrubber.
-    this.graphsNode.addAreaUnderCurveTool( model.areaUnderCurveTool, this.visibleProperties.areaUnderCurveVisibleProperty );
+    this.graphsNode.addAreaUnderCurveView( model.areaUnderCurveScrubber, this.visibleProperties.areaUnderCurveVisibleProperty );
 
     // The accordion box titled 'Net Signed Area'
-    const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveTool, {
+    const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveScrubber, {
       top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
       left: 10,
       visibleProperty: this.visibleProperties.areaUnderCurveVisibleProperty,
@@ -49,7 +49,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( netSignedAreaAccordionBox );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
-    const areaUnderCurveCheckbox = new Checkbox( model.areaUnderCurveTool.visibleProperty,
+    const areaUnderCurveCheckbox = new Checkbox( model.areaUnderCurveScrubber.visibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
         maxWidth: 100

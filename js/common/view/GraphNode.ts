@@ -377,12 +377,13 @@ export default class GraphNode extends Node {
   /**
    * Adds a plot to this GraphNode that shows the area under the curve.
    */
-  public addAreaUnderCurvePlot( areaUnderCurveTool: AreaUnderCurveScrubber,
+  public addAreaUnderCurvePlot( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                                 visibleProperty: TReadOnlyProperty<boolean> ): AreaUnderCurvePlot {
-    const areaUnderCurvePlot = new AreaUnderCurvePlot( areaUnderCurveTool, this.curve, this.chartTransform, areaUnderCurveTool.xProperty, {
-      visibleProperty: visibleProperty,
-      tandem: this.tandem.createTandem( 'areaUnderCurvePlot' )
-    } );
+    const areaUnderCurvePlot = new AreaUnderCurvePlot( areaUnderCurveScrubber, this.curve, this.chartTransform,
+      areaUnderCurveScrubber.xProperty, {
+        visibleProperty: visibleProperty,
+        tandem: this.tandem.createTandem( 'areaUnderCurvePlot' )
+      } );
     this.curveLayer.addChild( areaUnderCurvePlot );
     areaUnderCurvePlot.moveToBack();
     return areaUnderCurvePlot;

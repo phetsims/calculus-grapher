@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * AreaUnderCurveScrubber is the model element for the area-under-curve tool.
+ * AreaUnderCurveScrubber is the model element for the area-under-curve scrubber.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -18,7 +18,7 @@ import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type AreaUnderCurveToolOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tandem'>;
+type AreaUnderCurveScrubberOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tandem'>;
 
 export default class AreaUnderCurveScrubber extends AncillaryTool {
 
@@ -31,9 +31,9 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
     originalCurve: Curve,
     derivativeCurve: Curve,
     secondDerivativeCurve: Curve,
-    providedOptions: AreaUnderCurveToolOptions ) {
+    providedOptions: AreaUnderCurveScrubberOptions ) {
 
-    const options = optionize<AreaUnderCurveToolOptions, SelfOptions, AncillaryToolOptions>()( {
+    const options = optionize<AreaUnderCurveScrubberOptions, SelfOptions, AncillaryToolOptions>()( {
 
       // AncillaryToolOptions
       x: CalculusGrapherConstants.CURVE_X_RANGE.min

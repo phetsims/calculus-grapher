@@ -26,13 +26,13 @@ type CurvePointFunction = ( point: CurvePoint ) => boolean;
 export default class AreaUnderCurvePlot extends Node {
 
   /**
-   * @param areaUnderCurveTool
+   * @param areaUnderCurveScrubber
    * @param curve - the curve model to which the area plots are added
    * @param chartTransform
    * @param xProperty - the Property that limits the horizontal extent of the area plot
    * @param providedOptions
    */
-  public constructor( areaUnderCurveTool: AreaUnderCurveScrubber,
+  public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       curve: Curve,
                       chartTransform: ChartTransform,
                       xProperty: TReadOnlyProperty<number>,
@@ -57,11 +57,11 @@ export default class AreaUnderCurvePlot extends Node {
     };
 
     const positiveAreaPlot = new AreaPlot( chartTransform, getDataSet( isPositiveFunction ), {
-      fill: areaUnderCurveTool.positiveFillProperty
+      fill: areaUnderCurveScrubber.positiveFillProperty
     } );
 
     const negativeAreaPlot = new AreaPlot( chartTransform, getDataSet( isNegativeFunction ), {
-      fill: areaUnderCurveTool.negativeFillProperty
+      fill: areaUnderCurveScrubber.negativeFillProperty
     } );
 
     options.children = [ positiveAreaPlot, negativeAreaPlot ];
@@ -75,8 +75,8 @@ export default class AreaUnderCurvePlot extends Node {
     curve.curveChangedEmitter.addListener( updateDataSets );
     xProperty.link( updateDataSets );
 
-    this.addLinkedElement( areaUnderCurveTool, {
-      tandem: options.tandem.createTandem( areaUnderCurveTool.tandem.name )
+    this.addLinkedElement( areaUnderCurveScrubber, {
+      tandem: options.tandem.createTandem( areaUnderCurveScrubber.tandem.name )
     } );
   }
 }

@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TangentScrubber is the model element for the tangent tool.
+ * TangentScrubber is the model element for the tangent scrubber.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

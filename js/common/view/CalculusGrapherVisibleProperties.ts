@@ -36,13 +36,13 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
   /**
    * @param referenceLineVisibleProperty - ReferenceLine.visibleProperty
    * @param tangentScrubberVisibleProperty - TangentScrubber.visibleProperty
-   * @param areaUnderCurveToolVisibleProperty - AreaUnderCurveScrubber.visibleProperty
+   * @param areaUnderCurveScrubberVisibleProperty - AreaUnderCurveScrubber.visibleProperty
    * @param predictModeEnabledProperty
    * @param tandem
    */
   public constructor( referenceLineVisibleProperty: Property<boolean>,
                       tangentScrubberVisibleProperty: Property<boolean>,
-                      areaUnderCurveToolVisibleProperty: Property<boolean>,
+                      areaUnderCurveScrubberVisibleProperty: Property<boolean>,
                       predictModeEnabledProperty: Property<boolean>,
                       tandem: Tandem ) {
 
@@ -68,8 +68,8 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
 
     // Area Under Curve features are visible if the AreaUnderCurveScrubber is visible, and we are not in predict mode.
     this.areaUnderCurveVisibleProperty = new DerivedProperty(
-      [ areaUnderCurveToolVisibleProperty, predictModeEnabledProperty ],
-      ( areaUnderCurveToolVisible, predictModeEnabled ) => areaUnderCurveToolVisible && !predictModeEnabled, {
+      [ areaUnderCurveScrubberVisibleProperty, predictModeEnabledProperty ],
+      ( areaUnderCurveScrubberVisible, predictModeEnabled ) => areaUnderCurveScrubberVisible && !predictModeEnabled, {
         tandem: tandem.createTandem( 'areaUnderCurveVisibleProperty' ),
         phetioValueType: BooleanIO
       } );

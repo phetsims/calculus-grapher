@@ -28,7 +28,7 @@ export default class IntegralModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      phetioAreaUnderCurveToolInstrumented: true
+      phetioAreaUnderCurveScrubberInstrumented: true
     }, providedOptions );
 
     super( options );

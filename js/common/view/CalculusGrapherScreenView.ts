@@ -69,7 +69,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.visibleProperties = new CalculusGrapherVisibleProperties(
       model.referenceLine.visibleProperty,
       model.tangentScrubber.visibleProperty,
-      model.areaUnderCurveTool.visibleProperty,
+      model.areaUnderCurveScrubber.visibleProperty,
       model.predictModeEnabledProperty,
       options.tandem.createTandem( 'visibleProperties' )
     );
