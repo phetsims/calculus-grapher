@@ -337,14 +337,15 @@ export default class GraphNode extends Node {
    * Adds a PlottedPoint to this GraphNode.
    */
   public addFocusCircle( xProperty: TReadOnlyProperty<number>, yProperty: TReadOnlyProperty<number>,
-                         fill: TColor, visibleProperty: TReadOnlyProperty<boolean> ): PlottedPoint {
-    const focusCircle = new PlottedPoint( xProperty, yProperty, this.chartTransform, {
+                         fill: TColor, visibleProperty: TReadOnlyProperty<boolean>,
+                         tandemName: string ): PlottedPoint {
+    const plottedPoint = new PlottedPoint( xProperty, yProperty, this.chartTransform, {
       visibleProperty: visibleProperty,
       fill: fill,
-      tandem: this.tandem.createTandem( 'focusCircle' )
+      tandem: this.tandem.createTandem( tandemName )
     } );
-    this.curveLayer.addChild( focusCircle );
-    return focusCircle;
+    this.curveLayer.addChild( plottedPoint );
+    return plottedPoint;
   }
 
   /**

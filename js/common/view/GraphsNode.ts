@@ -166,7 +166,7 @@ export default class GraphNodes extends Node {
    * Decorates the appropriate graphs for a TangentTool.
    */
   public addTangentTool( tangentTool: TangentTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
-    GraphTypeValues.forEach( graphType => this.addFocusCircle( tangentTool, graphType, visibleProperty ) );
+    GraphTypeValues.forEach( graphType => this.addPlottedPoint( tangentTool, graphType, visibleProperty, 'tangentPoint' ) );
     this.originalGraphNode.addScrubberNode( tangentTool, tangentTool.colorProperty, visibleProperty, 'tangentScrubber' );
     this.originalGraphNode.addTangentArrowNode( tangentTool, visibleProperty );
   }
@@ -175,7 +175,8 @@ export default class GraphNodes extends Node {
    * Decorates the appropriate graphs for an AreaUnderCurveTool.
    */
   public addAreaUnderCurveTool( areaUnderCurveTool: AreaUnderCurveTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
-    GraphTypeValues.forEach( graphType => this.addFocusCircle( areaUnderCurveTool, graphType, visibleProperty ) );
+    GraphTypeValues.forEach( graphType => this.addPlottedPoint( areaUnderCurveTool, graphType, visibleProperty,
+      'areaUnderCurvePoint' ) );
     this.originalGraphNode.addScrubberNode( areaUnderCurveTool, areaUnderCurveTool.colorProperty, visibleProperty,
       'areaUnderCurveScrubber' );
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveTool, visibleProperty );
@@ -184,13 +185,14 @@ export default class GraphNodes extends Node {
   /**
    * Adds a PlottedPoint to the specified graph.
    */
-  private addFocusCircle( ancillaryTool: AncillaryTool, graphType: GraphType, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  private addPlottedPoint( ancillaryTool: AncillaryTool, graphType: GraphType,
+                           visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
     const graphNode = this.getGraphNode( graphType );
     const fillProperty = getGraphTypeStrokeProperty( graphType );
-    const focusCircle = graphNode.addFocusCircle( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
-      fillProperty, visibleProperty );
-    focusCircle.addLinkedElement( ancillaryTool, {
-      tandem: focusCircle.tandem.createTandem( ancillaryTool.tandem.name )
+    const plottedPoint = graphNode.addFocusCircle( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
+      fillProperty, visibleProperty, tandemName );
+    plottedPoint.addLinkedElement( ancillaryTool, {
+      tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
     } );
   }
 }

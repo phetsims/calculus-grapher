@@ -52,8 +52,8 @@ export default class PointLabelNode extends Node {
     // property associated with the tangent at the y value
     const yDerivativeProperty = pointLabel.getYProperty( getDerivativeOf( graphType ) );
 
-    // small point (disk) on curve - focusCircle is responsible for updating its position
-    const focusCircle = new PlottedPoint( pointLabel.xProperty, yProperty, chartTransform, {
+    // point that is plotted on the curve
+    const plottedPoint = new PlottedPoint( pointLabel.xProperty, yProperty, chartTransform, {
       fill: pointLabel.pointColorProperty
     } );
 
@@ -76,18 +76,18 @@ export default class PointLabelNode extends Node {
       const tangent = yDerivativeProperty.value;
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
 
-      const distance = ( labelNode.height / 2 ) + ( focusCircle.height / 2 ) + 1;
+      const distance = ( labelNode.height / 2 ) + ( plottedPoint.height / 2 ) + 1;
 
       // vector perpendicular to the tangent in view (hence the minus sign for the angle, since y is inverted)
       const perpendicularDisplacement = Vector2.createPolar( distance, -modelPerpendicularTangent );
 
       // position the label node perpendicular to the curve
-      labelNode.center = focusCircle.center.plus( perpendicularDisplacement );
+      labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
     Multilink.multilink( [ pointLabel.xProperty, yProperty, pointLabel.labelProperty ], () => updatePosition() );
 
-    options.children = [ focusCircle, labelNode ];
+    options.children = [ plottedPoint, labelNode ];
 
     super( options );
 
