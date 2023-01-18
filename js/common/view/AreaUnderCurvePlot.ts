@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * ShadedAreaChart is scenery class that creates two shaded area charts, one for the positive and the other
+ * AreaUnderCurvePlot is scenery class that creates two shaded area charts, one for the positive and the other
  * for the negative.
  *
  * @author Martin Veillette
@@ -24,7 +24,7 @@ export type ShadedAreaChartOptions = SelfOptions & PickRequired<NodeOptions, 'ta
 
 type CurvePointFunction = ( point: CurvePoint ) => boolean;
 
-export default class ShadedAreaChart extends Node {
+export default class AreaUnderCurvePlot extends Node {
 
   /**
    * @param areaUnderCurveTool
@@ -82,4 +82,4 @@ export default class ShadedAreaChart extends Node {
   }
 }
 
-calculusGrapher.register( 'ShadedAreaChart', ShadedAreaChart );
+calculusGrapher.register( 'AreaUnderCurvePlot', AreaUnderCurvePlot );

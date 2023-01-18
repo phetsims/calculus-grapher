@@ -47,7 +47,7 @@ import FocusCircle from './FocusCircle.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
 import TangentArrowNode from './TangentArrowNode.js';
-import ShadedAreaChart from './ShadedAreaChart.js';
+import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import { GraphType } from '../model/GraphType.js';
 import TangentTool from '../model/TangentTool.js';
 import AreaUnderCurveTool from '../model/AreaUnderCurveTool.js';
@@ -377,8 +377,8 @@ export default class GraphNode extends Node {
    * Adds a plot to this GraphNode that shows the area under the curve.
    */
   public addAreaUnderCurvePlot( areaUnderCurveTool: AreaUnderCurveTool,
-                                visibleProperty: TReadOnlyProperty<boolean> ): ShadedAreaChart {
-    const areaUnderCurvePlot = new ShadedAreaChart( areaUnderCurveTool, this.curve, this.chartTransform, areaUnderCurveTool.xProperty, {
+                                visibleProperty: TReadOnlyProperty<boolean> ): AreaUnderCurvePlot {
+    const areaUnderCurvePlot = new AreaUnderCurvePlot( areaUnderCurveTool, this.curve, this.chartTransform, areaUnderCurveTool.xProperty, {
       visibleProperty: visibleProperty,
       tandem: this.tandem.createTandem( 'areaUnderCurvePlot' )
     } );
