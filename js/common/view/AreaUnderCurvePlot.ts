@@ -1,8 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * AreaUnderCurvePlot is scenery class that creates two shaded area charts, one for the positive and the other
- * for the negative.
+ * AreaUnderCurvePlot creates two AreaPlots, for positive area and negative area under a curve.
  *
  * @author Martin Veillette
  */
@@ -28,7 +27,7 @@ export default class AreaUnderCurvePlot extends Node {
 
   /**
    * @param areaUnderCurveTool
-   * @param curve - the curve model to which the area charts are added
+   * @param curve - the curve model to which the area plots are added
    * @param chartTransform
    * @param xProperty - the Property that limits the horizontal extent of the area plot
    * @param providedOptions
