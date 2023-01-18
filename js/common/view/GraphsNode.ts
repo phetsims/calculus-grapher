@@ -166,8 +166,14 @@ export default class GraphNodes extends Node {
    * Decorates the appropriate graphs for a TangentTool.
    */
   public addTangentTool( tangentTool: TangentTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
+
+    // Plot a point on each graph that will stay in sync with tangentTool.
     GraphTypeValues.forEach( graphType => this.addPlottedPoint( tangentTool, graphType, visibleProperty, 'tangentPoint' ) );
+
+    // Add a scrubber to the original graph, for moving the x location of tangentTool.
     this.originalGraphNode.addScrubberNode( tangentTool, tangentTool.colorProperty, visibleProperty, 'tangentScrubber' );
+
+    // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentTool, visibleProperty );
   }
 
@@ -175,10 +181,16 @@ export default class GraphNodes extends Node {
    * Decorates the appropriate graphs for an AreaUnderCurveTool.
    */
   public addAreaUnderCurveTool( areaUnderCurveTool: AreaUnderCurveTool, visibleProperty: TReadOnlyProperty<boolean> ): void {
+
+    // Plot a point on each graph that will stay in sync with areaUnderCurveTool.
     GraphTypeValues.forEach( graphType => this.addPlottedPoint( areaUnderCurveTool, graphType, visibleProperty,
       'areaUnderCurvePoint' ) );
+
+    // Add a scrubber on the original graph, for moving the x location of areaUnderCurveTool.
     this.originalGraphNode.addScrubberNode( areaUnderCurveTool, areaUnderCurveTool.colorProperty, visibleProperty,
       'areaUnderCurveScrubber' );
+
+    // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveTool, visibleProperty );
   }
 
