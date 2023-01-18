@@ -12,7 +12,6 @@ import Curve from './Curve.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { GraphType } from './GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { Color, ProfileColorProperty } from '../../../../scenery/js/imports.js';
 import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
@@ -23,7 +22,6 @@ type AreaUnderCurveToolOptions = SelfOptions & PickRequired<AncillaryToolOptions
 
 export default class AreaUnderCurveScrubber extends AncillaryTool {
 
-  public readonly graphType: GraphType;
   public readonly colorProperty: ProfileColorProperty;
   public readonly positiveFillProperty: ReadOnlyProperty<Color>;
   public readonly negativeFillProperty: ReadOnlyProperty<Color>;
@@ -43,7 +41,6 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 
-    this.graphType = 'original'; //TODO https://github.com/phetsims/calculus-grapher/issues/144 delete
     this.colorProperty = CalculusGrapherColors.integralCurveStrokeProperty;
     this.positiveFillProperty = CalculusGrapherColors.integralPositiveFillProperty;
     this.negativeFillProperty = CalculusGrapherColors.integralNegativeFillProperty;
