@@ -12,7 +12,7 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import { Color, Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import { GRAPH_TYPES, GraphType, getGraphTypeStrokeProperty } from '../model/GraphType.js';
+import { getGraphTypeStrokeProperty, GraphType, GraphTypeValues } from '../model/GraphType.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphsNode from './GraphsNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -70,7 +70,7 @@ export default class AncillaryToolNode extends Node {
       fill: options.mainFillProperty
     } );
 
-    GRAPH_TYPES.forEach( graphType => this.addFocusCircle( graphType ) );
+    GraphTypeValues.forEach( graphType => this.addFocusCircle( graphType ) );
   }
 
   protected getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {

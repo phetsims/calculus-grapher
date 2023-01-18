@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import VerticalLineNode from './VerticalLineNode.js';
-import { getGraphTypeStrokeProperty, GRAPH_TYPES, GraphSet, GraphType } from '../model/GraphType.js';
+import { getGraphTypeStrokeProperty, GraphSet, GraphType, GraphTypeValues } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -146,7 +146,7 @@ export default class GraphNodes extends Node {
    * Reset all
    */
   public reset(): void {
-    GRAPH_TYPES.forEach( graphType => this.getGraphNode( graphType ).reset() );
+    GraphTypeValues.forEach( graphType => this.getGraphNode( graphType ).reset() );
   }
 
   public getGraphNode( graphType: GraphType ): GraphNode {

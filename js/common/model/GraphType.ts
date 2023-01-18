@@ -10,22 +10,21 @@ import { ProfileColorProperty } from '../../../../scenery/js/imports.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 // The types of graphs that are available
-export type GraphType = 'original' | 'integral' | 'derivative' | 'secondDerivative';
+export const GraphTypeValues = [ 'original', 'integral', 'derivative', 'secondDerivative' ] as const;
+export type GraphType = ( typeof GraphTypeValues )[ number ];
 
 // An ordered set of GraphType.
 export type GraphSet = GraphType[];
-
-export const GRAPH_TYPES = new Set<GraphType>( [ 'original', 'integral', 'derivative', 'secondDerivative' ] );
 
 /**
  * Gets the stroke Property for a specific GraphType.
  */
 export function getGraphTypeStrokeProperty( graphType: GraphType ): ProfileColorProperty {
   const stroke = ( graphType === 'original' ) ? CalculusGrapherColors.originalCurveStrokeProperty :
-         ( graphType === 'integral' ) ? CalculusGrapherColors.integralCurveStrokeProperty :
-         ( graphType === 'derivative' ) ? CalculusGrapherColors.derivativeCurveStrokeProperty :
-         ( graphType === 'secondDerivative' ) ? CalculusGrapherColors.secondDerivativeCurveStrokeProperty :
-         null;
+                 ( graphType === 'integral' ) ? CalculusGrapherColors.integralCurveStrokeProperty :
+                 ( graphType === 'derivative' ) ? CalculusGrapherColors.derivativeCurveStrokeProperty :
+                 ( graphType === 'secondDerivative' ) ? CalculusGrapherColors.secondDerivativeCurveStrokeProperty :
+                 null;
   assert && assert( stroke );
   return stroke!;
 }
