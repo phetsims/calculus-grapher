@@ -12,7 +12,7 @@ import Curve from './Curve.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { getDerivativeOf, getGraphTypeStrokeProperty, GraphType } from './GraphType.js';
+import { getGraphTypeStrokeProperty } from './GraphType.js';
 import { ProfileColorProperty } from '../../../../scenery/js/imports.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -21,7 +21,6 @@ type TangentToolOptions = SelfOptions & PickRequired<AncillaryToolOptions, 'tand
 
 export default class TangentTool extends AncillaryTool {
 
-  public readonly graphType: GraphType; //TODO https://github.com/phetsims/calculus-grapher/issues/144 delete
   public readonly colorProperty: ProfileColorProperty;
 
   public constructor(
@@ -39,8 +38,7 @@ export default class TangentTool extends AncillaryTool {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 
-    this.graphType = 'original';
-    this.colorProperty = getGraphTypeStrokeProperty( getDerivativeOf( this.graphType ) );
+    this.colorProperty = getGraphTypeStrokeProperty( 'derivative' );
 
     this.addLinkedElement( this.colorProperty, {
       tandem: options.tandem.createTandem( 'colorProperty' ),
