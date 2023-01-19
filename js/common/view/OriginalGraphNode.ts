@@ -32,6 +32,7 @@ import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
+import GraphType from '../model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -82,7 +83,7 @@ export default class OriginalGraphNode extends GraphNode {
           maxWidth: 100,
           visibleProperty: model.predictModeEnabledProperty
         } ),
-        new GraphTypeLabelNode( 'original' )
+        new GraphTypeLabelNode( GraphType.ORIGINAL )
       ],
       spacing: 5
     } );
@@ -109,7 +110,7 @@ export default class OriginalGraphNode extends GraphNode {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100
         } ),
-        new GraphTypeLabelNode( 'original' )
+        new GraphTypeLabelNode( GraphType.ORIGINAL )
       ],
       spacing: 5
     } );

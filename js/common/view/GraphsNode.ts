@@ -17,7 +17,6 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import VerticalLineNode from './VerticalLineNode.js';
-import { getGraphTypeStrokeProperty, GraphSet, GraphType, GraphTypeValues } from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -25,6 +24,7 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import GraphType, { GraphSet } from '../model/GraphType.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -63,20 +63,22 @@ export default class GraphNodes extends Node {
     const subsetGraphTypes = options.graphSets.flat();
 
     function createGraphNode( graphType: GraphType ): GraphNode {
-      assert && assert( graphType !== 'original', 'cant handle original' );
+      assert && assert( graphType !== GraphType.ORIGINAL, 'cant handle original' );
 
       return new GraphNode( model.getCurve( graphType ),
-        getGraphTypeStrokeProperty( graphType ),
+        graphType.strokeProperty,
         gridVisibleProperty,
         graphHeightProperty,
         new GraphTypeLabelNode( graphType ), {
-          tandem: subsetGraphTypes.includes( graphType ) ? options.tandem.createTandem( `${graphType}GraphNode` ) : Tandem.OPT_OUT
+          tandem: subsetGraphTypes.includes( graphType ) ?
+                  options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
+                  Tandem.OPT_OUT
         } );
     }
 
-    this.integralGraphNode = createGraphNode( 'integral' );
-    this.derivativeGraphNode = createGraphNode( 'derivative' );
-    this.secondDerivativeGraphNode = createGraphNode( 'secondDerivative' );
+    this.integralGraphNode = createGraphNode( GraphType.INTEGRAL );
+    this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE );
+    this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE );
 
     // originalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
@@ -143,17 +145,17 @@ export default class GraphNodes extends Node {
   }
 
   public reset(): void {
-    GraphTypeValues.forEach( graphType => this.getGraphNode( graphType ).reset() );
+    GraphType.enumeration.values.forEach( graphType => this.getGraphNode( graphType ).reset() );
   }
 
   /**
    * Gets the GraphNode instance that corresponds to GraphType.
    */
   public getGraphNode( graphType: GraphType ): GraphNode {
-    const graphNode = graphType === 'integral' ? this.integralGraphNode :
-                      graphType === 'original' ? this.originalGraphNode :
-                      graphType === 'derivative' ? this.derivativeGraphNode :
-                      graphType === 'secondDerivative' ? this.secondDerivativeGraphNode :
+    const graphNode = graphType === GraphType.INTEGRAL ? this.integralGraphNode :
+                      graphType === GraphType.ORIGINAL ? this.originalGraphNode :
+                      graphType === GraphType.DERIVATIVE ? this.derivativeGraphNode :
+                      graphType === GraphType.SECOND_DERIVATIVE ? this.secondDerivativeGraphNode :
                       null;
     assert && assert( graphNode );
     return graphNode!;
@@ -165,7 +167,8 @@ export default class GraphNodes extends Node {
   public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
     // Plot a point on each graph that will stay in sync with tangentScrubber.
-    GraphTypeValues.forEach( graphType => this.addPlottedPoint( tangentScrubber, graphType, visibleProperty, 'tangentPoint' ) );
+    GraphType.enumeration.values.forEach( graphType =>
+      this.addPlottedPoint( tangentScrubber, graphType, visibleProperty, 'tangentPoint' ) );
 
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubber' );
@@ -180,8 +183,8 @@ export default class GraphNodes extends Node {
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
     // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
-    GraphTypeValues.forEach( graphType => this.addPlottedPoint( areaUnderCurveScrubber, graphType, visibleProperty,
-      'areaUnderCurvePoint' ) );
+    GraphType.enumeration.values.forEach( graphType =>
+      this.addPlottedPoint( areaUnderCurveScrubber, graphType, visibleProperty, 'areaUnderCurvePoint' ) );
 
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
@@ -197,9 +200,8 @@ export default class GraphNodes extends Node {
   private addPlottedPoint( ancillaryTool: AncillaryTool, graphType: GraphType,
                            visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
     const graphNode = this.getGraphNode( graphType );
-    const fillProperty = getGraphTypeStrokeProperty( graphType );
     const plottedPoint = graphNode.addPlottedPoint( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
-      fillProperty, visibleProperty, tandemName );
+      graphType.strokeProperty, visibleProperty, tandemName );
     plottedPoint.addLinkedElement( ancillaryTool, {
       tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
     } );

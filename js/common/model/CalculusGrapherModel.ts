@@ -16,7 +16,7 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
-import { GraphSet, GraphType } from './GraphType.js';
+import GraphType, { GraphSet } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -112,13 +112,13 @@ export default class CalculusGrapherModel implements TModel {
     const graphTypes = options.graphSets.flat();
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,
-      graphTypes.includes( 'derivative' ) ? curvesTandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
+      graphTypes.includes( GraphType.DERIVATIVE ) ? curvesTandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
 
     this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve,
-      graphTypes.includes( 'secondDerivative' ) ? curvesTandem.createTandem( 'secondDerivativeCurve' ) : Tandem.OPT_OUT );
+      graphTypes.includes( GraphType.SECOND_DERIVATIVE ) ? curvesTandem.createTandem( 'secondDerivativeCurve' ) : Tandem.OPT_OUT );
 
     this.integralCurve = new IntegralCurve( this.originalCurve,
-      graphTypes.includes( 'integral' ) ? curvesTandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
+      graphTypes.includes( GraphType.INTEGRAL ) ? curvesTandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
 
     const toolsTandem = options.tandem.createTandem( 'tools' );
 
@@ -171,10 +171,10 @@ export default class CalculusGrapherModel implements TModel {
   }
 
   public getCurve( graphType: GraphType ): Curve {
-    const curve = graphType === 'integral' ? this.integralCurve :
-                  graphType === 'original' ? this.originalCurve :
-                  graphType === 'derivative' ? this.derivativeCurve :
-                  graphType === 'secondDerivative' ? this.secondDerivativeCurve :
+    const curve = graphType === GraphType.INTEGRAL ? this.integralCurve :
+                  graphType === GraphType.ORIGINAL ? this.originalCurve :
+                  graphType === GraphType.DERIVATIVE ? this.derivativeCurve :
+                  graphType === GraphType.SECOND_DERIVATIVE ? this.secondDerivativeCurve :
                   null;
     assert && assert( curve );
     return curve!;

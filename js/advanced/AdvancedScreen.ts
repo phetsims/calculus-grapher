@@ -13,7 +13,7 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
 import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import { GraphSet } from '../common/model/GraphType.js';
+import GraphType, { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import { AlignGroup } from '../../../scenery/js/imports.js';
 
@@ -28,14 +28,14 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     const options = providedOptions;
 
     const graphSets: GraphSet[] = [
-      [ 'integral', 'original' ],
-      [ 'original', 'derivative' ]
+      [ GraphType.INTEGRAL, GraphType.ORIGINAL ],
+      [ GraphType.ORIGINAL, GraphType.DERIVATIVE ]
     ];
 
     const labelAlignGroup = new AlignGroup(); // to give labels the same effective size
     const graphSetRadioButtonGroupItems = [
-      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral', labelAlignGroup ),
-      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'derivative', labelAlignGroup )
+      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup ),
+      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.DERIVATIVE, labelAlignGroup )
     ];
 
     const createModel = () => new AdvancedModel( {

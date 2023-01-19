@@ -17,6 +17,7 @@ import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import GraphType from '../model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -39,7 +40,7 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       }
     }, providedOptions );
 
-    const originalCurveLabelNode = new GraphTypeLabelNode( 'original' );
+    const originalCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
 
     const predictText = new Text( CalculusGrapherStrings.predictStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,

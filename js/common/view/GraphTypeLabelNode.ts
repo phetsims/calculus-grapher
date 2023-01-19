@@ -14,7 +14,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { GraphType } from '../model/GraphType.js';
+import GraphType from '../model/GraphType.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
@@ -91,16 +91,16 @@ function getLabelNode( graphType: GraphType,
                        variableStringProperty: TReadOnlyProperty<string>,
                        fontSizeOptions: FontSizeOptions ): Node {
 
-  if ( graphType === 'integral' ) {
+  if ( graphType === GraphType.INTEGRAL ) {
     return getIntegral( variableStringProperty, fontSizeOptions );
   }
-  else if ( graphType === 'original' ) {
+  else if ( graphType === GraphType.ORIGINAL ) {
     return getOriginal( variableStringProperty, fontSizeOptions );
   }
-  else if ( graphType === 'derivative' ) {
+  else if ( graphType === GraphType.DERIVATIVE ) {
     return getDerivative( derivativeNotation, variableStringProperty, fontSizeOptions );
   }
-  else if ( graphType === 'secondDerivative' ) {
+  else if ( graphType === GraphType.SECOND_DERIVATIVE ) {
     return getSecondDerivative( derivativeNotation, variableStringProperty, fontSizeOptions );
   }
   else {

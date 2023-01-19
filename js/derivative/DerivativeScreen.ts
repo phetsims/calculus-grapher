@@ -13,7 +13,7 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import DerivativeModel from './model/DerivativeModel.js';
 import DerivativeScreenView from './view/DerivativeScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import { GraphSet } from '../common/model/GraphType.js';
+import GraphType, { GraphSet } from '../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -26,7 +26,7 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
     const options = optionize<DerivativeScreenOptions, SelfOptions, ScreenOptions>()( {}, providedOptions );
 
     const graphSets: GraphSet[] = [
-      [ 'original', 'derivative' ]
+      [ GraphType.ORIGINAL, GraphType.DERIVATIVE ]
     ];
 
     const createModel = () => new DerivativeModel( {

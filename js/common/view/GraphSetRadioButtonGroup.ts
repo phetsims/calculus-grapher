@@ -10,7 +10,7 @@ import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, Rectangul
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
-import { getGraphTypeStrokeProperty, GraphSet, GraphType } from '../model/GraphType.js';
+import GraphType, { GraphSet } from '../model/GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import { AlignGroup } from '../../../../scenery/js/imports.js';
@@ -51,7 +51,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
     return {
       createNode: () => new GraphSetRadioButtonIcon( graphType, labelAlignGroup ),
       value: graphSet,
-      tandemName: `${graphType}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+      tandemName: `${graphType.tandemNamePrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
     };
   }
 }
@@ -63,7 +63,7 @@ class GraphSetRadioButtonIcon extends LabelColorIcon {
    * @param labelAlignGroup - to give labels the same effective size
    */
   public constructor( graphType: GraphType, labelAlignGroup: AlignGroup ) {
-    super( new GraphTypeLabelNode( graphType ), labelAlignGroup, getGraphTypeStrokeProperty( graphType ) );
+    super( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty );
   }
 }
 

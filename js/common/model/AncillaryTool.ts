@@ -23,7 +23,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
-import { GraphType } from './GraphType.js';
+import GraphType from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
@@ -132,10 +132,10 @@ export default class AncillaryTool extends PhetioObject {
    * Gets the y Property associated with the specified graph type.
    */
   public getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
-    const yProperty = graphType === 'integral' ? this.yIntegralProperty :
-                      graphType === 'original' ? this.yOriginalProperty :
-                      graphType === 'derivative' ? this.yDerivativeProperty :
-                      graphType === 'secondDerivative' ? this.ySecondDerivativeProperty :
+    const yProperty = graphType === GraphType.INTEGRAL ? this.yIntegralProperty :
+                      graphType === GraphType.ORIGINAL ? this.yOriginalProperty :
+                      graphType === GraphType.DERIVATIVE ? this.yDerivativeProperty :
+                      graphType === GraphType.SECOND_DERIVATIVE ? this.ySecondDerivativeProperty :
                       null;
     assert && assert( yProperty );
     return yProperty!;

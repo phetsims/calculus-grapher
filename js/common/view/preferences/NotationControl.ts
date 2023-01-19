@@ -20,6 +20,7 @@ import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDi
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
+import GraphType from '../../model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -113,7 +114,7 @@ function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
   } );
 
   // An example of the notation
-  const exampleNode = new GraphTypeLabelNode( 'derivative', {
+  const exampleNode = new GraphTypeLabelNode( GraphType.DERIVATIVE, {
     derivativeNotationProperty: derivativeNotationProperty
   } );
 

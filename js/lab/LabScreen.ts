@@ -13,7 +13,7 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
 import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import { GraphSet } from '../common/model/GraphType.js';
+import GraphType, { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import { AlignGroup } from '../../../scenery/js/imports.js';
 
@@ -28,14 +28,14 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     const options = providedOptions;
 
     const graphSets: GraphSet[] = [
-      [ 'integral', 'original', 'derivative' ],
-      [ 'original', 'derivative', 'secondDerivative' ]
+      [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ],
+      [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ]
     ];
 
     const labelAlignGroup = new AlignGroup(); // to give labels the same effective size
     const graphSetRadioButtonGroupItems = [
-      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], 'integral', labelAlignGroup ),
-      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], 'secondDerivative', labelAlignGroup )
+      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup ),
+      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.SECOND_DERIVATIVE, labelAlignGroup )
     ];
 
     const createModel = () => new LabModel( {

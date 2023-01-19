@@ -17,6 +17,7 @@ import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
+import GraphType from '../../common/model/GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,7 +42,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     // The accordion box titled 'Net Signed Area'
     const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveScrubber, {
-      top: this.graphsNode.y + this.graphsNode.getGraphNode( 'original' ).y,
+      top: this.graphsNode.y + this.graphsNode.getGraphNode( GraphType.ORIGINAL ).y,
       left: 10,
       visibleProperty: this.visibleProperties.areaUnderCurveVisibleProperty,
       tandem: options.tandem.createTandem( 'netSignedAreaAccordionBox' )
