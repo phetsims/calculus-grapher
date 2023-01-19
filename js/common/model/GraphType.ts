@@ -41,16 +41,3 @@ export function getDerivativeOf( graphType: GraphType ): GraphType {
   assert && assert( derivativeOfGraphType );
   return derivativeOfGraphType!;
 }
-
-/**
- * Gets the integral GraphType of a GraphType
- */
-export function getIntegralOf( graphType: GraphType ): GraphType {
-  assert && assert( graphType !== 'integral', 'integral is not handled' );
-  const integralOfGraphType = graphType === 'original' ? 'integral' :
-                              graphType === 'derivative' ? 'original' :
-                              graphType === 'secondDerivative' ? 'derivative' :
-                              null;
-  assert && assert( integralOfGraphType );
-  return integralOfGraphType!;
-}
