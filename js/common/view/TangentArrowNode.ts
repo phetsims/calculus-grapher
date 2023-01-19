@@ -11,9 +11,10 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import { getDerivativeOf, GraphType } from '../model/GraphType.js';
+import { GraphType } from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = {
   arrowLength?: number;
@@ -27,8 +28,6 @@ export default class TangentArrowNode extends ArrowNode {
                       graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
-
-    const derivativeOfGraphType = getDerivativeOf( graphType );
 
     const options = optionize<TangentArrowNodeOptions, SelfOptions, ArrowNodeOptions>()( {
 
@@ -45,22 +44,15 @@ export default class TangentArrowNode extends ArrowNode {
       doubleHead: true
     }, providedOptions );
 
-
     // initial arrow is horizontal: middle of the arrow is located at 0,0
-    super( -options.arrowLength / 2,
-      0,
-      options.arrowLength / 2,
-      0, options );
-
-    const graphYProperty = tangentScrubber.getYProperty( graphType );
-    const derivativeGraphYProperty = tangentScrubber.getYProperty( derivativeOfGraphType );
+    super( -options.arrowLength / 2, 0, options.arrowLength / 2, 0, options );
 
     // initial angle of the arrow in view coordinates
     let oldTheta = Math.atan( this.tipY / this.tipX );
     const updateArrow = () => {
       const x = tangentScrubber.xProperty.value;
-      const y = graphYProperty.value;
-      const modelSlope = derivativeGraphYProperty.value;
+      const y = tangentScrubber.yOriginalProperty.value;
+      const modelSlope = tangentScrubber.yDerivativeProperty.value;
 
       // view position for center of the tangent arrow
       const point = chartTransform.modelToViewXY( x, y );
@@ -82,10 +74,10 @@ export default class TangentArrowNode extends ArrowNode {
       oldTheta = thetaView;
     };
 
-    chartTransform.changedEmitter.addListener( updateArrow );
-    tangentScrubber.xProperty.link( updateArrow );
-    graphYProperty.link( updateArrow );
-    derivativeGraphYProperty.link( updateArrow );
+    chartTransform.changedEmitter.addListener( () => updateArrow() );
+    Multilink.multilink(
+      [ tangentScrubber.xProperty, tangentScrubber.yOriginalProperty, tangentScrubber.yDerivativeProperty ],
+      () => updateArrow() );
 
     this.addLinkedElement( tangentScrubber, {
       tandem: options.tandem.createTandem( tangentScrubber.tandem.name )
