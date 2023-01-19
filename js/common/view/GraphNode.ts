@@ -44,17 +44,8 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PlottedPoint from './PlottedPoint.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import ScrubberNode from './ScrubberNode.js';
-import TangentArrowNode from './TangentArrowNode.js';
-import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
-import { GraphType } from '../model/GraphType.js';
-import TangentScrubber from '../model/TangentScrubber.js';
-import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = {
-  // GraphType associated with this graphNode
-  graphType: GraphType;
   gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
@@ -62,8 +53,6 @@ type SelfOptions = {
                       providedOptions?: CurveNodeOptions ) => CurveNode;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
-
-  curveStroke: TColor;
 };
 
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
@@ -83,10 +72,8 @@ export default class GraphNode extends Node {
   private readonly curveLayerVisibleProperty: BooleanProperty;
   public readonly chartTransform: ChartTransform;
 
-  // graphType associated with this graphNode
-  public readonly graphType: GraphType;
-
   public constructor( curve: Curve,
+                      curveStroke: TColor,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
@@ -105,7 +92,7 @@ export default class GraphNode extends Node {
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
       },
       curveNodeOptions: {
-        stroke: providedOptions.curveStroke,
+        stroke: curveStroke,
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       },
       plusMinusZoomButtonGroupOptions: {
@@ -122,8 +109,6 @@ export default class GraphNode extends Node {
     super( options );
 
     this.curve = curve;
-
-    this.graphType = options.graphType;
 
     // chart transform for the graph, the Y range will be updated later
     this.chartTransform = new ChartTransform( {
@@ -161,11 +146,7 @@ export default class GraphNode extends Node {
     this.curveLayerVisibleProperty = new BooleanProperty( true,
       { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
 
-    this.curveNode = options.createCurveNode( this.chartTransform,
-      combineOptions<CurveNodeOptions>( {
-          stroke: options.curveStroke
-        },
-        options.curveNodeOptions ) );
+    this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
 
     this.curveLayer = new Node( {
       children: [ this.curveNode ],
@@ -346,47 +327,6 @@ export default class GraphNode extends Node {
     } );
     this.curveLayer.addChild( plottedPoint );
     return plottedPoint;
-  }
-
-  /**
-   * Adds a scrubber to this GraphNode.
-   */
-  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor,
-                          visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): ScrubberNode {
-    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, color, {
-      visibleProperty: visibleProperty,
-      tandem: this.tandem.createTandem( tandemName )
-    } );
-    this.addChild( scrubberNode );
-    return scrubberNode;
-  }
-
-  /**
-   * Adds a double-headed tangent arrow to this GraphNode.
-   */
-  public addTangentArrowNode( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
-    const tangentArrowNode = new TangentArrowNode( tangentScrubber, this.graphType, this.chartTransform, {
-      visibleProperty: visibleProperty,
-      tandem: this.tandem.createTandem( 'tangentArrowNode' )
-    } );
-    this.curveLayer.addChild( tangentArrowNode );
-    tangentArrowNode.moveBackward();
-    return tangentArrowNode;
-  }
-
-  /**
-   * Adds a plot to this GraphNode that shows the area under the curve.
-   */
-  public addAreaUnderCurvePlot( areaUnderCurveScrubber: AreaUnderCurveScrubber,
-                                visibleProperty: TReadOnlyProperty<boolean> ): AreaUnderCurvePlot {
-    const areaUnderCurvePlot = new AreaUnderCurvePlot( areaUnderCurveScrubber, this.curve, this.chartTransform,
-      areaUnderCurveScrubber.xProperty, {
-        visibleProperty: visibleProperty,
-        tandem: this.tandem.createTandem( 'areaUnderCurvePlot' )
-      } );
-    this.curveLayer.addChild( areaUnderCurvePlot );
-    areaUnderCurvePlot.moveToBack();
-    return areaUnderCurvePlot;
   }
 }
 

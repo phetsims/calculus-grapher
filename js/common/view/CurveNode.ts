@@ -36,7 +36,7 @@ type ScatterPlotDataSet = ( Vector2 )[];
 
 type SelfOptions = {
 
-  stroke: TColor;
+  stroke?: TColor;
 
   // line plots
   continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
@@ -66,6 +66,7 @@ export default class CurveNode extends Node {
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
+      stroke: 'black',
       continuousLinePlotOptions: {
         lineWidth: 2
       },

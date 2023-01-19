@@ -25,7 +25,6 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -67,12 +66,10 @@ export default class GraphNodes extends Node {
       assert && assert( graphType !== 'original', 'cant handle original' );
 
       return new GraphNode( model.getCurve( graphType ),
+        getGraphTypeStrokeProperty( graphType ),
         gridVisibleProperty,
         graphHeightProperty,
-        new GraphTypeLabelNode( graphType ),
-        {
-          graphType: graphType,
-          curveStroke: getGraphTypeStrokeProperty( graphType ),
+        new GraphTypeLabelNode( graphType ), {
           tandem: subsetGraphTypes.includes( graphType ) ? options.tandem.createTandem( `${graphType}GraphNode` ) : Tandem.OPT_OUT
         } );
     }
@@ -81,11 +78,8 @@ export default class GraphNodes extends Node {
     this.derivativeGraphNode = createGraphNode( 'derivative' );
     this.secondDerivativeGraphNode = createGraphNode( 'secondDerivative' );
 
+    // originalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
-      graphType: 'original',
-      curveStroke: CalculusGrapherColors.originalCurveStrokeProperty,
-
-      // originalGraphNode is always instrumented, because it should always be present.
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
 

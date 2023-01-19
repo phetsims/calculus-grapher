@@ -15,7 +15,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { HBox, Node, Text } from '../../../../scenery/js/imports.js';
+import { HBox, Node, TColor, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -26,6 +26,12 @@ import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointNode from './LabeledPointNode.js';
+import TangentScrubber from '../model/TangentScrubber.js';
+import TangentArrowNode from './TangentArrowNode.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
+import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
+import AncillaryTool from '../model/AncillaryTool.js';
+import ScrubberNode from './ScrubberNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -51,11 +57,9 @@ export default class OriginalGraphNode extends GraphNode {
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
-        createCurveNode: ( chartTransform: ChartTransform,
-                           providedOptions?: CurveNodeOptions ) => new TransformedCurveNode( originalCurve,
-          curveManipulationProperties, chartTransform, providedOptions ),
+        createCurveNode: ( chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) =>
+          new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, providedOptions ),
         curveNodeOptions: {
-          stroke: providedOptions.curveStroke,
           enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
           visibleProperty: originalCurveNodeVisibilityProperty,
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
@@ -83,7 +87,8 @@ export default class OriginalGraphNode extends GraphNode {
       spacing: 5
     } );
 
-    super( originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
+    super( originalCurve, CalculusGrapherColors.originalCurveStrokeProperty,
+      visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
 
     // create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
@@ -161,6 +166,47 @@ export default class OriginalGraphNode extends GraphNode {
   private setCurvePointerAreas(): void {
     this.curveNode.setPointerAreas();
     this.predictCurveNode.setPointerAreas();
+  }
+
+  /**
+   * Adds a scrubber to OriginalGraphNode.
+   */
+  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor,
+                          visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): ScrubberNode {
+    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, color, {
+      visibleProperty: visibleProperty,
+      tandem: this.tandem.createTandem( tandemName )
+    } );
+    this.addChild( scrubberNode );
+    return scrubberNode;
+  }
+
+  /**
+   * Adds a double-headed tangent arrow to OriginalGraphNode.
+   */
+  public addTangentArrowNode( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
+    const tangentArrowNode = new TangentArrowNode( tangentScrubber, this.chartTransform, {
+      visibleProperty: visibleProperty,
+      tandem: this.tandem.createTandem( 'tangentArrowNode' )
+    } );
+    this.curveLayer.addChild( tangentArrowNode );
+    tangentArrowNode.moveBackward();
+    return tangentArrowNode;
+  }
+
+  /**
+   * Adds a plot to OriginalGraphNode that shows the area under the curve.
+   */
+  public addAreaUnderCurvePlot( areaUnderCurveScrubber: AreaUnderCurveScrubber,
+                                visibleProperty: TReadOnlyProperty<boolean> ): AreaUnderCurvePlot {
+    const areaUnderCurvePlot = new AreaUnderCurvePlot( areaUnderCurveScrubber, this.curve, this.chartTransform,
+      areaUnderCurveScrubber.xProperty, {
+        visibleProperty: visibleProperty,
+        tandem: this.tandem.createTandem( 'areaUnderCurvePlot' )
+      } );
+    this.curveLayer.addChild( areaUnderCurvePlot );
+    areaUnderCurvePlot.moveToBack();
+    return areaUnderCurvePlot;
   }
 }
 

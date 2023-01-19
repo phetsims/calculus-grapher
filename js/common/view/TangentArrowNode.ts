@@ -11,7 +11,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import { GraphType } from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../../axon/js/Multilink.js';
@@ -25,7 +24,6 @@ export type TangentArrowNodeOptions = SelfOptions & PickRequired<ArrowNodeOption
 export default class TangentArrowNode extends ArrowNode {
 
   public constructor( tangentScrubber: TangentScrubber,
-                      graphType: GraphType,
                       chartTransform: ChartTransform,
                       providedOptions: TangentArrowNodeOptions ) {
 
