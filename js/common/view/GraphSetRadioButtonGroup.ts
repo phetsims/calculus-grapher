@@ -56,7 +56,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
   }
 }
 
-export class GraphSetRadioButtonIcon extends LabelColorIcon {
+class GraphSetRadioButtonIcon extends LabelColorIcon {
 
   /**
    * @param graphType
