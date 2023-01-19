@@ -25,6 +25,7 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -82,7 +83,7 @@ export default class GraphNodes extends Node {
 
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
       graphType: 'original',
-      curveStroke: getGraphTypeStrokeProperty( 'original' ),
+      curveStroke: CalculusGrapherColors.originalCurveStrokeProperty,
 
       // originalGraphNode is always instrumented, because it should always be present.
       tandem: options.tandem.createTandem( 'originalGraphNode' )

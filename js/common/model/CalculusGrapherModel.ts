@@ -16,7 +16,7 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
-import { getGraphTypeStrokeProperty, GraphSet, GraphType } from './GraphType.js';
+import { GraphSet, GraphType } from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -142,7 +142,6 @@ export default class CalculusGrapherModel implements TModel {
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      getGraphTypeStrokeProperty( 'original' ).value,
       toolsTandem.createTandem( 'labeledPoints' ) );
 
     this.verticalLines = VerticalLine.createMultiple(

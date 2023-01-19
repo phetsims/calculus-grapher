@@ -12,8 +12,8 @@ import Curve from './Curve.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { getGraphTypeStrokeProperty } from './GraphType.js';
 import { ProfileColorProperty } from '../../../../scenery/js/imports.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -38,7 +38,7 @@ export default class TangentScrubber extends AncillaryTool {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 
-    this.colorProperty = getGraphTypeStrokeProperty( 'derivative' );
+    this.colorProperty = CalculusGrapherColors.derivativeCurveStrokeProperty;
 
     this.addLinkedElement( this.colorProperty, {
       tandem: options.tandem.createTandem( 'colorProperty' ),
