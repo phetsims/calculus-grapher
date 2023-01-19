@@ -146,13 +146,16 @@ export default class GraphNodes extends Node {
   }
 
   public reset(): void {
-    GraphType.enumeration.values.forEach( graphType => this.getGraphNode( graphType ).reset() );
+    this.integralGraphNode.reset();
+    this.originalGraphNode.reset();
+    this.derivativeGraphNode.reset();
+    this.secondDerivativeGraphNode.reset();
   }
 
   /**
    * Gets the GraphNode instance that corresponds to GraphType.
    */
-  public getGraphNode( graphType: GraphType ): GraphNode {
+  private getGraphNode( graphType: GraphType ): GraphNode {
     const graphNode = graphType === GraphType.INTEGRAL ? this.integralGraphNode :
                       graphType === GraphType.ORIGINAL ? this.originalGraphNode :
                       graphType === GraphType.DERIVATIVE ? this.derivativeGraphNode :
