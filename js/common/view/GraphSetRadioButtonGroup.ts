@@ -25,7 +25,7 @@ export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<Graph
 
 export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGroup<GraphSet> {
 
-  public constructor( graphsSelectionProperty: Property<GraphSet>,
+  public constructor( graphSetProperty: Property<GraphSet>,
                       graphSetRadioButtonGroupItems: GraphSetRadioButtonGroupItem[],
                       providedOptions: GraphSetRadioButtonGroupOptions ) {
 
@@ -40,7 +40,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
       }
     }, providedOptions );
 
-    super( graphsSelectionProperty, graphSetRadioButtonGroupItems, options );
+    super( graphSetProperty, graphSetRadioButtonGroupItems, options );
   }
 
   /**
