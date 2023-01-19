@@ -14,7 +14,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import PlottedPoint from './PlottedPoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import { getDerivativeOf, GraphType } from '../model/GraphType.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
@@ -30,7 +29,6 @@ type LabeledPointNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 export default class LabeledPointNode extends Node {
 
   public constructor( labeledPoint: LabeledPoint,
-                      graphType: GraphType,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
                       providedOptions: LabeledPointNodeOptions ) {
@@ -46,14 +44,8 @@ export default class LabeledPointNode extends Node {
         } )
     }, providedOptions );
 
-    // property associated with y value
-    const yProperty = labeledPoint.getYProperty( graphType );
-
-    // property associated with the tangent at the y value
-    const yDerivativeProperty = labeledPoint.getYProperty( getDerivativeOf( graphType ) );
-
     // point that is plotted on the curve
-    const plottedPoint = new PlottedPoint( labeledPoint.xProperty, yProperty, chartTransform, {
+    const plottedPoint = new PlottedPoint( labeledPoint.xProperty, labeledPoint.yOriginalProperty, chartTransform, {
       fill: labeledPoint.pointColorProperty
     } );
 
@@ -74,7 +66,7 @@ export default class LabeledPointNode extends Node {
     const updateLabelPosition = () => {
 
       // value of the tangent (slope) at the y point
-      const tangent = yDerivativeProperty.value;
+      const tangent = labeledPoint.yDerivativeProperty.value;
 
       // angle (with respect to x-axis) associated with the normal vector to the tangent
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
@@ -89,7 +81,7 @@ export default class LabeledPointNode extends Node {
       labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
-    Multilink.multilink( [ plottedPoint.boundsProperty, yDerivativeProperty, labeledPoint.labelProperty ],
+    Multilink.multilink( [ plottedPoint.boundsProperty, labeledPoint.yDerivativeProperty, labeledPoint.labelProperty ],
       () => updateLabelPosition() );
 
     options.children = [ plottedPoint, labelNode ];

@@ -141,7 +141,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Labeled points
     const labeledPointsTandem = options.tandem.createTandem( 'labeledPoints' );
     const labeledPointNodes = model.labeledPoints.map( labeledPoint =>
-      new LabeledPointNode( labeledPoint, this.graphType, this.chartTransform, model.predictModeEnabledProperty, {
+      new LabeledPointNode( labeledPoint, this.chartTransform, model.predictModeEnabledProperty, {
         tandem: labeledPointsTandem.createTandem( `${labeledPoint.labelProperty.value}PointNode` )
       } ) );
 
