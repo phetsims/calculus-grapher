@@ -25,6 +25,7 @@ import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphType, { GraphSet } from '../model/GraphType.js';
+import Curve from '../model/Curve.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -62,10 +63,10 @@ export default class GraphNodes extends Node {
     // the subset of graphTypes that should be instrumented
     const subsetGraphTypes = options.graphSets.flat();
 
-    function createGraphNode( graphType: GraphType ): GraphNode {
+    function createGraphNode( curve: Curve, graphType: GraphType ): GraphNode {
       assert && assert( graphType !== GraphType.ORIGINAL, 'cant handle original' );
 
-      return new GraphNode( model.getCurve( graphType ),
+      return new GraphNode( curve,
         graphType.strokeProperty,
         gridVisibleProperty,
         graphHeightProperty,
@@ -76,9 +77,9 @@ export default class GraphNodes extends Node {
         } );
     }
 
-    this.integralGraphNode = createGraphNode( GraphType.INTEGRAL );
-    this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE );
-    this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE );
+    this.integralGraphNode = createGraphNode( model.integralCurve, GraphType.INTEGRAL );
+    this.derivativeGraphNode = createGraphNode( model.derivativeCurve, GraphType.DERIVATIVE );
+    this.secondDerivativeGraphNode = createGraphNode( model.secondDerivativeCurve, GraphType.SECOND_DERIVATIVE );
 
     // originalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {

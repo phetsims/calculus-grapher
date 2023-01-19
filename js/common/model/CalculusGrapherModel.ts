@@ -23,7 +23,6 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Curve from './Curve.js';
 import ReferenceLine from './ReferenceLine.js';
 import VerticalLine from './VerticalLine.js';
 import LabeledPoint from './LabeledPoint.js';
@@ -168,16 +167,6 @@ export default class CalculusGrapherModel implements TModel {
     this.areaUnderCurveScrubber.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.verticalLines, because they are configured only via PhET-iO.
-  }
-
-  public getCurve( graphType: GraphType ): Curve {
-    const curve = graphType === GraphType.INTEGRAL ? this.integralCurve :
-                  graphType === GraphType.ORIGINAL ? this.originalCurve :
-                  graphType === GraphType.DERIVATIVE ? this.derivativeCurve :
-                  graphType === GraphType.SECOND_DERIVATIVE ? this.secondDerivativeCurve :
-                  null;
-    assert && assert( curve );
-    return curve!;
   }
 }
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );
