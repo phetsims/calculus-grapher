@@ -71,7 +71,7 @@ export default class GraphNodes extends Node {
         graphHeightProperty,
         new GraphTypeLabelNode( graphType ),
         {
-          graphType: 'integral',
+          graphType: graphType,
           curveStroke: getGraphTypeStrokeProperty( graphType ),
           tandem: subsetGraphTypes.includes( graphType ) ? options.tandem.createTandem( `${graphType}GraphNode` ) : Tandem.OPT_OUT
         } );
