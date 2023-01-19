@@ -181,7 +181,13 @@ export default class CurveNode extends Node {
   // data set for continuous portion of curve
   private getContinuousLinePlotDataSet(): LinePlotDataSet {
     return this.curve.points.map( ( point, index, points ) => {
-      if ( point.isDiscontinuous && index + 1 < points.length ) {
+
+      // in the model, a discontinuity is marked by tagging two adjacent points as discontinuous (the real discontinuity is in between the two)
+      // we need to insert a null value between two such adjacent points to break the continuous segments.
+      // the actual points of the discontinuities are included such that the continuous line goes right up to the discontinuity points.
+
+      const isNextPointWithinRange = index + 1 < points.length;
+      if ( isNextPointWithinRange && point.isDiscontinuous && points[ index + 1 ].isDiscontinuous ) {
         return [ point.toVector(), null ];
       }
       else {
