@@ -49,21 +49,10 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
   public static createItem( graphSet: GraphSet, graphType: GraphType, labelAlignGroup: AlignGroup ): GraphSetRadioButtonGroupItem {
     assert && assert( graphSet.includes( graphType ) );
     return {
-      createNode: () => new GraphSetRadioButtonIcon( graphType, labelAlignGroup ),
+      createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
       value: graphSet,
       tandemName: `${graphType.tandemNamePrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
     };
-  }
-}
-
-class GraphSetRadioButtonIcon extends LabelColorIcon {
-
-  /**
-   * @param graphType
-   * @param labelAlignGroup - to give labels the same effective size
-   */
-  public constructor( graphType: GraphType, labelAlignGroup: AlignGroup ) {
-    super( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty );
   }
 }
 
