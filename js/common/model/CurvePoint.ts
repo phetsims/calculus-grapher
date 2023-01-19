@@ -84,6 +84,10 @@ export default class CurvePoint {
     return this.pointType === 'discontinuous';
   }
 
+  public get isNotDiscontinuous(): boolean {
+    return !this.isDiscontinuous;
+  }
+
   public get isCusp(): boolean {
     return this.pointType === 'cusp';
   }
@@ -185,4 +189,3 @@ export default class CurvePoint {
 }
 
 calculusGrapher.register( 'CurvePoint', CurvePoint );
-
