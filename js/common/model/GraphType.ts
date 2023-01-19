@@ -28,16 +28,3 @@ export function getGraphTypeStrokeProperty( graphType: GraphType ): ProfileColor
   assert && assert( stroke );
   return stroke!;
 }
-
-/**
- * Gets the derivative GraphType of a GraphType
- */
-export function getDerivativeOf( graphType: GraphType ): GraphType {
-  assert && assert( graphType !== 'secondDerivative', 'second derivative is not handled' );
-  const derivativeOfGraphType = graphType === 'integral' ? 'original' :
-                                graphType === 'original' ? 'derivative' :
-                                graphType === 'derivative' ? 'secondDerivative' :
-                                null;
-  assert && assert( derivativeOfGraphType );
-  return derivativeOfGraphType!;
-}
