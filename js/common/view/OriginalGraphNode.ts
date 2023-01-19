@@ -78,7 +78,8 @@ export default class OriginalGraphNode extends GraphNode {
           maxWidth: 100,
           visibleProperty: model.predictModeEnabledProperty
         } ),
-        new GraphTypeLabelNode( 'original' ) ],
+        new GraphTypeLabelNode( 'original' )
+      ],
       spacing: 5
     } );
 
