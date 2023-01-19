@@ -199,6 +199,10 @@ export default class CurveNode extends Node {
   // data set for discontinuous line plot (a set of vertical lines)
   private getDiscontinuousLinePlotDataSet(): LinePlotDataSet {
     return this.curve.points.map( point => {
+
+      // In the curve model, a discontinuity tag is never unique but will be tagged for
+      // an adjacent pair of points.
+      // This ensures that we will have two adjacent vectors in the LinePlotDataSet
       return point.isDiscontinuous ? point.toVector() : null;
     } );
   }
