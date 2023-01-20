@@ -180,13 +180,11 @@ function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string>
 function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<string>,
                                      fontSizeOptions: FontSizeOptions ): Node {
 
+  // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
   const numeratorStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
-    ( d, f ) => {
-
-      // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
-      return `${d}${HAIR_SPACE_STRING}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`;
-    } );
+    ( d, f ) => `${d}${HAIR_SPACE_STRING}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`
+  );
 
   // string for dx^2 , the superscript is downsized but in the same Family at the math symbols
   const denominatorStringProperty = new DerivedProperty(
