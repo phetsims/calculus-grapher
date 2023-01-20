@@ -26,10 +26,16 @@ There are a number of query parameters for internal use.
 - `slopeThreshold` sets the maximum slope of a Point on a curve for it to be considered differentiable. The default value is 25 * Math.PI / 180.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
+- `verticalLinesVisible` is used to make all VerticalLine instances initially visible. The default value is false.
+- `labeledPointsVisible` is used to make all LabeledPoint instances initially visible. The default value is false.
+
+There are a number of query parameters that are made public.
 - `valuesVisible` shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.. The default value is false.
 - `connectDiscontinuities` connects curve discontinuities with a dashed line (true) or leave a gap (false). The default value is true.
 - `derivativeNotation` is derivative notation to be used throughout the simulation. Valid values are 'lagrange' and 'leibniz'. The default value is 'lagrange'.
 - `functionVariable` represents the variable that would be used for the horizontal axis of the graph. Valid values are 'x' and 't'. The default value is 'x'.
+
+
 
 ### Curve Hierarchy
 
