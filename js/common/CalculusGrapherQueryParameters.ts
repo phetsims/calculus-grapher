@@ -155,13 +155,13 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     public: true
   },
 
-  // For debugging, to make all VerticalLines instances visible.
+  // For debugging, to make all VerticalLine instances initially visible.
   verticalLinesVisible: {
     type: 'boolean',
     defaultValue: false
   },
 
-  // For debugging, to make all LabeledPoint instances visible.
+  // For debugging, to make all LabeledPoint instances initially visible.
   labeledPointsVisible: {
     type: 'boolean',
     defaultValue: false
