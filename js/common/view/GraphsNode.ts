@@ -15,7 +15,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import VerticalLineNode from './VerticalLineNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
@@ -70,12 +69,11 @@ export default class GraphNodes extends Node {
     function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
-      return new GraphNode( graphType, curve, gridVisibleProperty, graphHeightProperty,
-        new GraphTypeLabelNode( graphType ), {
-          tandem: subsetGraphTypes.includes( graphType ) ?
-                  options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
-                  Tandem.OPT_OUT
-        } );
+      return new GraphNode( graphType, curve, gridVisibleProperty, graphHeightProperty, {
+        tandem: subsetGraphTypes.includes( graphType ) ?
+                options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
+                Tandem.OPT_OUT
+      } );
     }
 
     this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );

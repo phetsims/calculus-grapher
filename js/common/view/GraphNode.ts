@@ -45,6 +45,8 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PlottedPoint from './PlottedPoint.js';
 import GraphType from '../model/GraphType.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -54,6 +56,7 @@ type SelfOptions = {
                       providedOptions?: CurveNodeOptions ) => CurveNode;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
   eyeToggleButtonOptions?: EyeToggleButtonOptions;
+  labelNode?: Node;
 };
 
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
@@ -79,10 +82,9 @@ export default class GraphNode extends Node {
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
-                      labelNode: Node,
                       providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 
       // SelfOptions
       createCurveNode: ( chartTransform: ChartTransform,
@@ -108,6 +110,9 @@ export default class GraphNode extends Node {
         scale: 0.5
       }
     }, providedOptions );
+
+    // If labelNode was not provided, create the default.
+    const labelNode = options.labelNode || new GraphTypeLabelNode( graphType );
 
     super( options );
 

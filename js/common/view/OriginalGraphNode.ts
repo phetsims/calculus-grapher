@@ -33,10 +33,11 @@ import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
 import GraphType from '../model/GraphType.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type OriginalGraphNodeOptions = SelfOptions & GraphNodeOptions;
+type OriginalGraphNodeOptions = SelfOptions & StrictOmit<GraphNodeOptions, 'labelNode'>;
 
 export default class OriginalGraphNode extends GraphNode {
 
@@ -56,6 +57,19 @@ export default class OriginalGraphNode extends GraphNode {
       ( predictModeEnabled, allOriginalCurvesVisible ) =>
         !predictModeEnabled || allOriginalCurvesVisible );
 
+    // Label that toggles between 'Predict f(x)' and 'f(x)'
+    const labelNode = new HBox( {
+      children: [
+        new Text( CalculusGrapherStrings.predictStringProperty, {
+          font: CalculusGrapherConstants.CONTROL_FONT,
+          maxWidth: 100,
+          visibleProperty: model.predictModeEnabledProperty
+        } ),
+        new GraphTypeLabelNode( GraphType.ORIGINAL )
+      ],
+      spacing: 5
+    } );
+
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
         createCurveNode: ( chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) =>
@@ -71,24 +85,12 @@ export default class OriginalGraphNode extends GraphNode {
         },
         plusMinusZoomButtonGroupOptions: {
           visible: false
-        }
+        },
+        labelNode: labelNode
       },
       providedOptions );
 
-    // Label that toggles between 'Predict f(x)' and 'f(x)'
-    const labelNode = new HBox( {
-      children: [
-        new Text( CalculusGrapherStrings.predictStringProperty, {
-          font: CalculusGrapherConstants.CONTROL_FONT,
-          maxWidth: 100,
-          visibleProperty: model.predictModeEnabledProperty
-        } ),
-        new GraphTypeLabelNode( GraphType.ORIGINAL )
-      ],
-      spacing: 5
-    } );
-
-    super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
+    super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, options );
 
     // create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
