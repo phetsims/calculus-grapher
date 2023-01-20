@@ -13,6 +13,8 @@ import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAnci
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 
 const TANDEM_SUFFIX = 'Point';
 
@@ -29,7 +31,11 @@ export default class LabeledPoint extends LabeledAncillaryTool {
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
                       providedOptions: LabeledPointOptions ) {
 
-    const options = providedOptions;
+    const options = optionize<LabeledPointOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
+
+      // LabeledAncillaryToolOptions
+      visible: CalculusGrapherQueryParameters.labeledPointsVisible
+    }, providedOptions );
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 

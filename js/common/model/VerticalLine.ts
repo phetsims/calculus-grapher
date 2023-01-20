@@ -7,12 +7,13 @@
  */
 
 import Curve from './Curve.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 
 const TANDEM_SUFFIX = 'VerticalLine';
 
@@ -27,7 +28,11 @@ export default class VerticalLine extends LabeledAncillaryTool {
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
                       providedOptions: VerticalLineOptions ) {
 
-    const options = providedOptions;
+    const options = optionize<VerticalLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
+
+      // LabeledAncillaryToolOptions
+      visible: CalculusGrapherQueryParameters.verticalLinesVisible
+    }, providedOptions );
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 

@@ -23,13 +23,14 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
-import GraphType from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import GraphType from './GraphType.js';
 
 type SelfOptions = {
   x: number; // initial value of xProperty
+  visible?: boolean; // initial visibility of the tool
 };
 
 export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -57,13 +58,16 @@ export default class AncillaryTool extends PhetioObject {
 
     const options = optionize<AncillaryToolOptions, SelfOptions, PhetioObjectOptions>()( {
 
+      // SelfOptions
+      visible: false,
+
       // PhetioObjectOptions
       phetioState: false
     }, providedOptions );
 
     super( options );
 
-    this.visibleProperty = new BooleanProperty( false, {
+    this.visibleProperty = new BooleanProperty( options.visible, {
       tandem: options.tandem.createTandem( 'visibleProperty' )
     } );
 
