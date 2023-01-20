@@ -17,7 +17,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import Range from '../../../../dot/js/Range.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import { TColor } from '../../../../scenery/js/imports.js';
@@ -45,7 +44,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         viewWidth: 100,
         viewHeight: 40,
         modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-        modelYRange: new Range( -1, 6 )
+        modelYRange: CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE
       },
 
       // CurveNodeOptions
@@ -61,7 +60,7 @@ export default class CurveManipulationDisplayNode extends CurveNode {
 
     // convenience variables for drawing curves, making sure the
     // curves will not be clipped  (see #89)
-    const verticalMargin = 1;
+    const verticalMargin = 0.25;
     const xCenter = chartTransform.modelXRange.getCenter();
     const xMax = chartTransform.modelXRange.getMax();
     const yMax = chartTransform.modelYRange.getMax() - verticalMargin;

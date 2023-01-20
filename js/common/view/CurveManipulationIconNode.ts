@@ -13,7 +13,6 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedCurve.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
-import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
@@ -53,7 +52,7 @@ export default class CurveManipulationIconNode extends Node {
         viewWidth: 70,
         viewHeight: 7,
         modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-        modelYRange: new Range( -1, 6 )
+        modelYRange: CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE
       }
     }, providedOptions );
 
@@ -65,7 +64,7 @@ export default class CurveManipulationIconNode extends Node {
     // chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform );
 
-    // we don't want to instrument the transformed curves 
+    // we don't want to instrument the transformed curves
     const transformedCurveOptions = combineOptions<TransformedCurveOptions>( {
         tandem: Tandem.OPT_OUT
       },

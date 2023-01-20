@@ -54,16 +54,19 @@ const CalculusGrapherConstants = {
 
   // spacing for gridlines and ticks for graphs (in model units)
   NOMINAL_GRID_LINE_SPACING: 1,
-  NOMINAL_VERTICAL_TICK_MARK_SPACING: 1,
-  NOMINAL_VERTICAL_TICK_LABEL_SPACING: 2,
-  NOMINAL_HORIZONTAL_TICK_MARK_SPACING: 1,
-  NOMINAL_HORIZONTAL_TICK_LABEL_SPACING: 2,
+  NOMINAL_VERTICAL_TICK_MARK_SPACING: 0.5,
+  NOMINAL_VERTICAL_TICK_LABEL_SPACING: 1,
+  NOMINAL_HORIZONTAL_TICK_MARK_SPACING: 0.5,
+  NOMINAL_HORIZONTAL_TICK_LABEL_SPACING: 1,
 
   // width of curve (in the same unit as x-Range) for curve manipulations
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue(
     0.05 * CURVE_X_LENGTH,
     0.5 * CURVE_X_LENGTH,
     0.20 * CURVE_X_LENGTH ),
+
+  // model height associated with curveManipulationDisplay (in the same unit as x-Range)
+  CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
 
   // zoom level ranges
   ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 10, 5 ),
