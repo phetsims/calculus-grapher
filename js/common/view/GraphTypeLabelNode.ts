@@ -17,6 +17,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import GraphType from '../model/GraphType.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 
 const HAIR_SPACE_STRING = '\u200A';
 const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;
@@ -35,6 +36,7 @@ type FontSizeOptions = {
   integralSymbolFontSize?: number; // for the integral symbol
   limitsFontSize?: number; // for the upper and lower limits on the integral symbol
   fractionFontSize?: number; // for fractions like df/dx
+  superscriptSize?: number; // for super- and sub-scripts, line in d^2f/dx^2
 };
 
 type SelfOptions = {
@@ -58,7 +60,8 @@ export default class GraphTypeLabelNode extends Node {
         nominalFontSize: NOMINAL_FONT_SIZE,
         integralSymbolFontSize: 1.5 * NOMINAL_FONT_SIZE,
         limitsFontSize: 0.5 * NOMINAL_FONT_SIZE,
-        fractionFontSize: 0.75 * NOMINAL_FONT_SIZE
+        fractionFontSize: 0.75 * NOMINAL_FONT_SIZE,
+        superscriptSize: 0.625 * NOMINAL_FONT_SIZE
       }
     }, providedOptions );
 
@@ -180,19 +183,30 @@ function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string>
 function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<string>,
                                      fontSizeOptions: FontSizeOptions ): Node {
 
+  const superscriptSize = fontSizeOptions.superscriptSize!;
+  assert && assert( superscriptSize !== undefined );
+
   // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
   const numeratorStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
-    ( d, f ) => `${d}${HAIR_SPACE_STRING}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`
+    ( d, f ) => `${d}${HAIR_SPACE_STRING}${getSuperScript( 2, superscriptSize )}${f}`
   );
 
   // string for dx^2 , the superscript is downsized but in the same Family at the math symbols
   const denominatorStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.dStringProperty, variableStringProperty ],
-    ( d, x ) => `${d}${x}<sup style="font-size:10pt; font-family:Times">2</sup>`
+    ( d, x ) => `${d}${x}${getSuperScript( 2, superscriptSize )}`
   );
 
   return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
+}
+
+/**
+ * Gets a superscript, like the '2' in 'dx^2'. Note that we do not want the superscript to be in italics,
+ * so we are not using MathSymbolFont.getRichTextMarkup.
+ */
+function getSuperScript( value: number, superScriptSize: number ): string {
+  return `<sup style='font-size:${superScriptSize}pt; font-family:${MathSymbolFont.FAMILY}'>${value}</sup>`;
 }
 
 /**
