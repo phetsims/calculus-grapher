@@ -119,9 +119,8 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
 
   const labelStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.fStringProperty, variableStringProperty ],
-    ( f, x ) => {
-      return `${f}${HAIR_SPACE_STRING}${primeString}(${x})`;
-    } );
+    ( f, x ) => `${f}${HAIR_SPACE_STRING}${primeString}(${x})`
+  );
 
   return new RichText( labelStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
@@ -158,22 +157,17 @@ function getLagrangeSecondDerivative( variableStringProperty: TReadOnlyProperty<
 function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string>,
                                fontSizeOptions: FontSizeOptions ): Node {
 
+  // string for df
   const numeratorStringProperty = new DerivedProperty(
     [ CalculusGrapherSymbols.dStringProperty, CalculusGrapherSymbols.fStringProperty ],
-    ( d, f ) => {
+    ( d, f ) => `${d}${HAIR_SPACE_STRING}${f}`
+  );
 
-      // string for df
-      return `${d}${HAIR_SPACE_STRING}${f}`;
-    } );
-
-  const denominatorStringProperty =
-    new DerivedProperty(
-      [ CalculusGrapherSymbols.dStringProperty, variableStringProperty ],
-      ( d, x ) => {
-
-        // string for dx
-        return `${d}${x}`;
-      } );
+  // string for dx
+  const denominatorStringProperty = new DerivedProperty(
+    [ CalculusGrapherSymbols.dStringProperty, variableStringProperty ],
+    ( d, x ) => `${d}${x}`
+  );
   return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
 }
 
@@ -262,14 +256,9 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
 
   // integrand of integral: f(x)dx
   const integrandStringProperty = new DerivedProperty(
-    [ CalculusGrapherSymbols.fStringProperty,
-      variableStringProperty,
-      CalculusGrapherSymbols.dStringProperty ],
-    ( f, x, d ) => {
-
-      // string for  f(x) dx
-      return `${f}${HAIR_SPACE_STRING}(${x}) ${d}${x} `;
-    } );
+    [ CalculusGrapherSymbols.fStringProperty, variableStringProperty, CalculusGrapherSymbols.dStringProperty ],
+    ( f, x, d ) => `${f}${HAIR_SPACE_STRING}(${x}) ${d}${x} `
+  );
   const integrandNode = new RichText( integrandStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
     maxWidth: 50
@@ -311,14 +300,10 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
 /**
  * Get the function variable as a StringProperty (rather than StringEnumeration).
  */
-function getVariableStringProperty( functionVariableProperty: TReadOnlyProperty<FunctionVariable> ):
-  TReadOnlyProperty<string> {
+function getVariableStringProperty( functionVariableProperty: TReadOnlyProperty<FunctionVariable> ): TReadOnlyProperty<string> {
   return new DerivedProperty(
-    [ functionVariableProperty,
-      CalculusGrapherSymbols.xStringProperty,
-      CalculusGrapherSymbols.tStringProperty ],
-    ( functionVariable, xString, tString ) =>
-      ( functionVariable === 'x' ) ? xString : tString
+    [ functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
+    ( functionVariable, xString, tString ) => ( functionVariable === 'x' ) ? xString : tString
   );
 }
 
