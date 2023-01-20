@@ -188,14 +188,11 @@ function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<s
       return `${d}${HAIR_SPACE_STRING}<sup "style="font-size:10pt; font-family:Times>2</sup>${f}`;
     } );
 
-  const denominatorStringProperty =
-    new DerivedProperty(
-      [ CalculusGrapherSymbols.dStringProperty, variableStringProperty ],
-      ( d, x ) => {
-
-        // string for dx^2 , the superscript is downsized but in the same Family at the math symbols
-        return `${d}${x}<sup style="font-size:10pt; font-family:Times">2</sup>`;
-      } );
+  // string for dx^2 , the superscript is downsized but in the same Family at the math symbols
+  const denominatorStringProperty = new DerivedProperty(
+    [ CalculusGrapherSymbols.dStringProperty, variableStringProperty ],
+    ( d, x ) => `${d}${x}<sup style="font-size:10pt; font-family:Times">2</sup>`
+  );
 
   return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
 }
