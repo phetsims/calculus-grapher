@@ -66,6 +66,7 @@ export default class GraphNodes extends Node {
     // the subset of graphTypes that should be instrumented
     const subsetGraphTypes = options.graphSets.flat();
 
+    // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
