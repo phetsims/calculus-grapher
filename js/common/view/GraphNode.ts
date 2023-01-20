@@ -77,7 +77,6 @@ export default class GraphNode extends Node {
 
   public constructor( graphType: GraphType,
                       curve: Curve,
-                      curveStroke: TColor,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
                       labelNode: Node,
@@ -96,7 +95,7 @@ export default class GraphNode extends Node {
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
       },
       curveNodeOptions: {
-        stroke: curveStroke,
+        stroke: graphType.strokeProperty,
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       },
       plusMinusZoomButtonGroupOptions: {

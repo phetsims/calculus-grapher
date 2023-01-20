@@ -70,11 +70,7 @@ export default class GraphNodes extends Node {
     function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
-      return new GraphNode( graphType,
-        curve,
-        graphType.strokeProperty,
-        gridVisibleProperty,
-        graphHeightProperty,
+      return new GraphNode( graphType, curve, gridVisibleProperty, graphHeightProperty,
         new GraphTypeLabelNode( graphType ), {
           tandem: subsetGraphTypes.includes( graphType ) ?
                   options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :

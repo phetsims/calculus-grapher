@@ -88,8 +88,7 @@ export default class OriginalGraphNode extends GraphNode {
       spacing: 5
     } );
 
-    super( GraphType.ORIGINAL, originalCurve, CalculusGrapherColors.originalCurveStrokeProperty,
-      visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
+    super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, labelNode, options );
 
     // create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
