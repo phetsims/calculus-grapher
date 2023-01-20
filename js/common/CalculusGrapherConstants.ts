@@ -23,7 +23,7 @@ const CUEING_ARROW_NODE_OPTIONS: ArrowNodeOptions = {
 
 // CAREFUL: Although there was a deliberate effort to scale other quantities based on
 // CURVE_X_RANGE, changing the CURVE_X_RANGE should lead to changes for the tick labels and tick marks spacing as well
-const CURVE_X_RANGE = new Range( 0, 50 );
+const CURVE_X_RANGE = new Range( 0, 10 );
 
 const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
 
@@ -54,14 +54,14 @@ const CalculusGrapherConstants = {
 
   // spacing for gridlines and ticks for graphs (in model units)
   NOMINAL_GRID_LINE_SPACING: 1,
-  NOMINAL_VERTICAL_TICK_MARK_SPACING: 0.5,
+  NOMINAL_VERTICAL_TICK_MARK_SPACING: 1,
   NOMINAL_VERTICAL_TICK_LABEL_SPACING: 1,
-  NOMINAL_HORIZONTAL_TICK_MARK_SPACING: 0.5,
+  NOMINAL_HORIZONTAL_TICK_MARK_SPACING: 1,
   NOMINAL_HORIZONTAL_TICK_LABEL_SPACING: 1,
 
   // width of curve (in the same unit as x-Range) for curve manipulations
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue(
-    0.05 * CURVE_X_LENGTH,
+    0.1 * CURVE_X_LENGTH,
     0.5 * CURVE_X_LENGTH,
     0.20 * CURVE_X_LENGTH ),
 
@@ -69,7 +69,7 @@ const CalculusGrapherConstants = {
   CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
 
   // zoom level ranges
-  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 10, 5 ),
+  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 8, 5 ),
 
   // arrow
   ARROW_LENGTH: 50,
