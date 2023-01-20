@@ -44,6 +44,7 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PlottedPoint from './PlottedPoint.js';
+import GraphType from '../model/GraphType.js';
 
 type SelfOptions = {
   gridLineSetOptions?: PathOptions;
@@ -59,6 +60,8 @@ export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 
 export default class GraphNode extends Node {
 
+  public readonly graphType: GraphType;
+
   protected readonly zoomLevelProperty: NumberProperty;
 
   // create a node layer to host all the curveNodes
@@ -72,7 +75,8 @@ export default class GraphNode extends Node {
   private readonly curveLayerVisibleProperty: BooleanProperty;
   public readonly chartTransform: ChartTransform;
 
-  public constructor( curve: Curve,
+  public constructor( graphType: GraphType,
+                      curve: Curve,
                       curveStroke: TColor,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       graphHeightProperty: TReadOnlyProperty<number>,
@@ -108,6 +112,7 @@ export default class GraphNode extends Node {
 
     super( options );
 
+    this.graphType = graphType;
     this.curve = curve;
 
     // chart transform for the graph, the Y range will be updated later

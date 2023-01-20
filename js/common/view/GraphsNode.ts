@@ -36,10 +36,13 @@ type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class GraphNodes extends Node {
 
-  public originalGraphNode: OriginalGraphNode;
-  public integralGraphNode: GraphNode;
-  public derivativeGraphNode: GraphNode;
-  public secondDerivativeGraphNode: GraphNode;
+  public readonly originalGraphNode: OriginalGraphNode;
+  public readonly integralGraphNode: GraphNode;
+  public readonly derivativeGraphNode: GraphNode;
+  public readonly secondDerivativeGraphNode: GraphNode;
+
+  // for iterating over all GraphNode instances
+  private readonly graphNodes: GraphNode[];
 
   public constructor( model: CalculusGrapherModel,
                       graphSetProperty: TReadOnlyProperty<GraphSet>,
@@ -64,10 +67,11 @@ export default class GraphNodes extends Node {
     // the subset of graphTypes that should be instrumented
     const subsetGraphTypes = options.graphSets.flat();
 
-    function createGraphNode( curve: Curve, graphType: GraphType ): GraphNode {
-      assert && assert( graphType !== GraphType.ORIGINAL, 'cant handle original' );
+    function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
+      assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
-      return new GraphNode( curve,
+      return new GraphNode( graphType,
+        curve,
         graphType.strokeProperty,
         gridVisibleProperty,
         graphHeightProperty,
@@ -78,14 +82,16 @@ export default class GraphNodes extends Node {
         } );
     }
 
-    this.integralGraphNode = createGraphNode( model.integralCurve, GraphType.INTEGRAL );
-    this.derivativeGraphNode = createGraphNode( model.derivativeCurve, GraphType.DERIVATIVE );
-    this.secondDerivativeGraphNode = createGraphNode( model.secondDerivativeCurve, GraphType.SECOND_DERIVATIVE );
+    this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );
+    this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
+    this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve );
 
     // originalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
+
+    this.graphNodes = [ this.integralGraphNode, this.originalGraphNode, this.derivativeGraphNode, this.secondDerivativeGraphNode ];
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform, {
       x: this.originalGraphNode.x,
@@ -116,27 +122,21 @@ export default class GraphNodes extends Node {
     // of the reference line and vertical lines.
     graphSetProperty.link( graphSet => {
 
-      // array of Node content of this class
-      const content = graphSet.map( graphType => this.getGraphNode( graphType ) );
+      // Get the GraphNode instances that correspond to graphSet.
+      const content = this.graphNodes.filter( graphNode => graphSet.includes( graphNode.graphType ) );
+      assert && assert( content.length > 0 );
+      graphSetNode.setChildren( content );
 
-      const numberOfVisibleGraphs = graphSet.length;
-
-      // layout of all the nodes
-
-      if ( numberOfVisibleGraphs > 0 ) {
-        content[ 0 ].x = 0;
-        content[ 0 ].y = 0;
-      }
-
-      const spacingBetweenGraphs = 20 / numberOfVisibleGraphs + 10; // arbitrary values
-
-      for ( let i = 1; i < numberOfVisibleGraphs; i++ ) {
+      // Layout
+      content[ 0 ].x = 0;
+      content[ 0 ].y = 0;
+      const spacingBetweenGraphs = 20 / content.length + 10; // arbitrary values
+      for ( let i = 1; i < content.length; i++ ) {
         content[ i ].x = content[ i - 1 ].x;
         content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + spacingBetweenGraphs;
       }
 
-      graphSetNode.setChildren( content );
-
+      // Adjust positions of reference line and vertical lines
       setVerticalLineNodePosition( referenceLineNode );
       verticalLineNodes.forEach( verticalLineNode => setVerticalLineNodePosition( verticalLineNode ) );
     } );
@@ -151,19 +151,6 @@ export default class GraphNodes extends Node {
     this.originalGraphNode.reset();
     this.derivativeGraphNode.reset();
     this.secondDerivativeGraphNode.reset();
-  }
-
-  /**
-   * Gets the GraphNode instance that corresponds to GraphType.
-   */
-  private getGraphNode( graphType: GraphType ): GraphNode {
-    const graphNode = graphType === GraphType.INTEGRAL ? this.integralGraphNode :
-                      graphType === GraphType.ORIGINAL ? this.originalGraphNode :
-                      graphType === GraphType.DERIVATIVE ? this.derivativeGraphNode :
-                      graphType === GraphType.SECOND_DERIVATIVE ? this.secondDerivativeGraphNode :
-                      null;
-    assert && assert( graphNode );
-    return graphNode!;
   }
 
   /**
