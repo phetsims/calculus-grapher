@@ -99,7 +99,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   slopeThreshold: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 50
+    defaultValue: 200
   },
 
   /**

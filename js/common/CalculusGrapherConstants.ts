@@ -61,7 +61,7 @@ const CalculusGrapherConstants = {
 
   // width of curve (in the same unit as x-Range) for curve manipulations
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue(
-    0.05 * CURVE_X_LENGTH,
+    0.1 * CURVE_X_LENGTH,
     0.5 * CURVE_X_LENGTH,
     0.20 * CURVE_X_LENGTH ),
 
