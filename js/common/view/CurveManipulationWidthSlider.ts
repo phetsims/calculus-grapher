@@ -15,6 +15,7 @@ import Property from '../../../../axon/js/Property.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
+assert && assert( NUMBER_OF_TICKS % 2 === 1, 'must have an odd number of ticks for there to be a center tick' );
 
 type SelfOptions = EmptySelfOptions;
 
@@ -45,7 +46,6 @@ export default class CurveManipulationWidthSlider extends HSlider {
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
 
     // Major ticks at min, max, and center
-    assert && assert( tickValues.length % 2 === 1, 'must have an odd number of tickValues for there to be a center tick' );
     const majorTickValues = [ tickValues[ 0 ], tickValues[ tickValues.length - 1 ], tickValues[ ( tickValues.length - 1 ) / 2 ] ];
 
     // Add minor ticks, skipping the major ticks.
