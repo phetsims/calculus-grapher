@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.0.0-dev.7 Tue Jan 17 2023 18:48:34 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.0.0-dev.8 Fri Jan 20 2023 15:20:42 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "master"
@@ -17,11 +17,11 @@
     "branch": "master"
   },
   "calculus-grapher": {
-    "sha": "caa1719ef3d1a466581c72926f2623658df89037",
+    "sha": "fb3a7b03d246f86b1cc64f6238fc366e01b64176",
     "branch": "master"
   },
   "chipper": {
-    "sha": "0954fddca915adcc3c34d4650fd231e727c62600",
+    "sha": "c09879f3771b5b20c4b0c1849ca5533fd8b56213",
     "branch": "master"
   },
   "dot": {
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "aa351e73856c01a7a3870cae5c94507bb2d2eae9",
+    "sha": "30a54a9c8c44fd81807a6a93a65d93322102d7d4",
     "branch": "master"
   },
   "kite": {
@@ -37,7 +37,7 @@
     "branch": "master"
   },
   "perennial-alias": {
-    "sha": "37183be79135a251faa50368aa32958fb765c587",
+    "sha": "a3569697f3093a26a9fc86622a190f4ddbd27181",
     "branch": "master"
   },
   "phet-core": {
@@ -45,15 +45,15 @@
     "branch": "master"
   },
   "phet-io": {
-    "sha": "ea4c0a24530bea27fb5937e70c47719c7e3aeb3a",
+    "sha": "785952ddf35fea28474ee81a72d50a160c23adae",
     "branch": "master"
   },
   "phet-io-sim-specific": {
-    "sha": "f3800e62cfbe8b6bca1d83ff8e501dd7e5b032b2",
+    "sha": "8804ecced564ce51c01821151f387f6bc4f3234f",
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "9430cf4d11fbabd74e334557970f3b0a46e593b0",
+    "sha": "41c3cc1ffbcff7c0fc0290ecae7455a87003f518",
     "branch": "master"
   },
   "phetcommon": {
@@ -69,15 +69,15 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "7c0b5c2d0c0645a9a31fb7e2e4e4e218916dfe9a",
+    "sha": "f344875fc418628f779ebd82c4316710ea00b176",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "c3501b36ba38b7b2c1910034d7b92514a0e6bf55",
+    "sha": "b9a061196a39f3a237ddb1e253f92c2d456477c7",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "0e53f4800bb3de2efa46afb55557a7f0eec9965b",
+    "sha": "165da9e22db59c6b3eb8114c1fdc285daabfeb21",
     "branch": "master"
   },
   "studio": {
@@ -93,7 +93,7 @@
     "branch": "master"
   },
   "tandem": {
-    "sha": "f17453596348df1a53e70c6c4a76f0840eb0b5d9",
+    "sha": "4df5fdd56a179389c0b0587833dac892123b4077",
     "branch": "master"
   },
   "twixt": {
