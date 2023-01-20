@@ -13,7 +13,6 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Property from '../../../../axon/js/Property.js';
 
-
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
 
@@ -26,6 +25,10 @@ export default class CurveManipulationWidthSlider extends HSlider {
   public constructor( curveManipulationWidthProperty: Property<number>,
                       providedOptions?: CurveManipulationWidthSliderOptions ) {
 
+    // an array of numbers corresponding to the positions of the ticks (in model coordinate)
+    const tickValues = [ ...Array( NUMBER_OF_TICKS ) ].map( ( x, i ) =>
+      WIDTH_RANGE.expandNormalizedValue( i / ( NUMBER_OF_TICKS - 1 ) ) );
+
     const options = optionize<CurveManipulationWidthSliderOptions, SelfOptions, HSliderOptions>()( {
 
       // HSliderOptions
@@ -34,19 +37,26 @@ export default class CurveManipulationWidthSlider extends HSlider {
       minorTickLength: 15,
       thumbSize: new Dimension2( 15, 30 ),
 
-      constrainValue: ( value: number ) => WIDTH_RANGE.constrainValue( value )
+      // snap to ticks
+      constrainValue: ( value: number ) => findClosestTick( tickValues, value )
 
     }, providedOptions );
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
 
-    // exclude the first and last ticks, since they will be major ticks
-    for ( let i = 1; i < NUMBER_OF_TICKS - 1; i++ ) {
-      super.addMinorTick( WIDTH_RANGE.expandNormalizedValue( i / ( NUMBER_OF_TICKS - 1 ) ) );
-    }
+    // add minor ticks
+    tickValues.forEach( i => super.addMinorTick( i ) );
+
+    // add major ticks
     super.addMajorTick( WIDTH_RANGE.min );
     super.addMajorTick( WIDTH_RANGE.max );
     super.addMajorTick( WIDTH_RANGE.getCenter() );
+
+    // given a value, will return the tick (in model coordinates) that is the closest to the value
+    function findClosestTick( ticks: number[], value: number ): number {
+      ticks.sort( ( a, b ) => Math.abs( value - a ) - Math.abs( value - b ) );
+      return ticks[ 0 ];
+    }
   }
 }
 
