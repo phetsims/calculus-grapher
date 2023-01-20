@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -26,6 +26,7 @@ import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphType, { GraphSet } from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -171,8 +172,7 @@ export default class GraphNodes extends Node {
   public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
     // Plot a point on each graph that will stay in sync with tangentScrubber.
-    GraphType.enumeration.values.forEach( graphType =>
-      this.addPlottedPoint( tangentScrubber, graphType, visibleProperty, 'tangentPoint' ) );
+    this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
 
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubber' );
@@ -187,8 +187,7 @@ export default class GraphNodes extends Node {
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
     // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
-    GraphType.enumeration.values.forEach( graphType =>
-      this.addPlottedPoint( areaUnderCurveScrubber, graphType, visibleProperty, 'areaUnderCurvePoint' ) );
+    this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
 
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
@@ -199,13 +198,21 @@ export default class GraphNodes extends Node {
   }
 
   /**
-   * Adds a PlottedPoint to the specified graph.
+   * Adds a PlottedPoint to each graph.
    */
-  private addPlottedPoint( ancillaryTool: AncillaryTool, graphType: GraphType,
-                           visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
-    const graphNode = this.getGraphNode( graphType );
-    const plottedPoint = graphNode.addPlottedPoint( ancillaryTool.xProperty, ancillaryTool.getYProperty( graphType ),
-      graphType.strokeProperty, visibleProperty, tandemName );
+  private addPlottedPoints( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
+    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.integralGraphNode, ancillaryTool.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
+    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.originalGraphNode, ancillaryTool.yOriginalProperty, CalculusGrapherColors.originalCurveStrokeProperty );
+    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.derivativeGraphNode, ancillaryTool.yDerivativeProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
+    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.secondDerivativeGraphNode, ancillaryTool.ySecondDerivativeProperty, CalculusGrapherColors.secondDerivativeCurveStrokeProperty );
+  }
+
+  /**
+   * Adds a PlottedPoint to one graph.
+   */
+  private addPlottedPoint( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string,
+                           graphNode: GraphNode, yProperty: TReadOnlyProperty<number>, fill: TColor ): void {
+    const plottedPoint = graphNode.addPlottedPoint( ancillaryTool.xProperty, yProperty, fill, visibleProperty, tandemName );
     plottedPoint.addLinkedElement( ancillaryTool, {
       tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
     } );

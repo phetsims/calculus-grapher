@@ -26,7 +26,6 @@ import Curve from './Curve.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import GraphType from './GraphType.js';
 
 type SelfOptions = {
   x: number; // initial value of xProperty
@@ -130,19 +129,6 @@ export default class AncillaryTool extends PhetioObject {
 
   public reset(): void {
     this.xProperty.reset();
-  }
-
-  /**
-   * Gets the y Property associated with the specified graph type.
-   */
-  public getYProperty( graphType: GraphType ): TReadOnlyProperty<number> {
-    const yProperty = graphType === GraphType.INTEGRAL ? this.yIntegralProperty :
-                      graphType === GraphType.ORIGINAL ? this.yOriginalProperty :
-                      graphType === GraphType.DERIVATIVE ? this.yDerivativeProperty :
-                      graphType === GraphType.SECOND_DERIVATIVE ? this.ySecondDerivativeProperty :
-                      null;
-    assert && assert( yProperty );
-    return yProperty!;
   }
 }
 
