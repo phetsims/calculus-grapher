@@ -44,20 +44,26 @@ export default class CurveManipulationWidthSlider extends HSlider {
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
 
-    // add minor ticks
-    tickValues.forEach( i => super.addMinorTick( i ) );
+    // Major ticks at min, max, and center
+    assert && assert( tickValues.length % 2 === 1, 'must have an odd number of tickValues for there to be a center tick' );
+    const majorTickValues = [ tickValues[ 0 ], tickValues[ tickValues.length - 1 ], tickValues[ ( tickValues.length - 1 ) / 2 ] ];
 
-    // add major ticks
-    super.addMajorTick( WIDTH_RANGE.min );
-    super.addMajorTick( WIDTH_RANGE.max );
-    super.addMajorTick( WIDTH_RANGE.getCenter() );
+    // Add minor ticks, skipping the major ticks.
+    tickValues.forEach( tickValue => {
+      if ( !majorTickValues.includes( tickValue ) ) {
+        this.addMinorTick( tickValue );
+      }
+    } );
 
-    // given a value, will return the tick (in model coordinates) that is the closest to the value
-    function findClosestTick( ticks: number[], value: number ): number {
-      ticks.sort( ( a, b ) => Math.abs( value - a ) - Math.abs( value - b ) );
-      return ticks[ 0 ];
-    }
+    // Add major ticks.
+    majorTickValues.forEach( majorTickValue => this.addMajorTick( majorTickValue ) );
   }
+}
+
+// Given a value, will return the tick (in model coordinates) that is the closest to the value.
+function findClosestTick( tickValues: number[], value: number ): number {
+  tickValues.sort( ( a, b ) => Math.abs( value - a ) - Math.abs( value - b ) );
+  return tickValues[ 0 ];
 }
 
 calculusGrapher.register( 'CurveManipulationWidthSlider', CurveManipulationWidthSlider );
