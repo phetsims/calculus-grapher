@@ -69,7 +69,7 @@ const CalculusGrapherConstants = {
   CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
 
   // zoom level ranges
-  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 8, 5 ),
+  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 6, 4 ),
 
   // arrow
   ARROW_LENGTH: 50,
