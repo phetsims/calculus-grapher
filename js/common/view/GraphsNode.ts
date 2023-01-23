@@ -27,7 +27,7 @@ import GraphType, { GraphSet } from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
-// How much the VerticalLine extends above and below the graphs
+// How much VerticalLines extend above and below the graphs
 const VERTICAL_LINE_Y_EXTENT = 4;
 
 type SelfOptions = {
@@ -128,7 +128,7 @@ export default class GraphNodes extends Node {
       }
 
       // Resize vertical ReferenceLineNode - a bit more at the bottom so that the drag handle does not overlap scrubber.
-      referenceLineNode.setLineTopAndBottom( graphSetNode.top - 5, graphSetNode.bottom + 7 );
+      referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + 2 );
 
       // Resize vertical VerticalLineNodes - same extent at top and bottom.
       verticalLineNodes.forEach( verticalLineNode => {
