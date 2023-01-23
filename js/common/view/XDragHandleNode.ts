@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TODO
+ * XDragHandleNode is a spherical drag handle for controlling the x coordinate of something's position.
+ * It's used by ReferenceLineNode and ScrubberNode for adjusting the x coordinate of those ancillary tools.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -40,15 +41,15 @@ export default class XDragHandleNode extends ShadedSphereNode {
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
+    // y coordinate position is fixed.
     options.y = chartTransform.modelToViewY( options.yModel );
+
+    // Dilate the touch area a bit.
     options.touchArea = Shape.circle( 0, 0, options.radius + 5 );
 
     super( options.radius, options );
 
-    xProperty.link( x => {
-      this.x = chartTransform.modelToViewX( x );
-    } );
-
+    // As the handle is dragged, change xProperty.
     this.addInputListener( new DragListener( {
       drag( event, listener ) {
         const xModel = chartTransform.viewToModelX( listener.modelPoint.x );
@@ -56,6 +57,11 @@ export default class XDragHandleNode extends ShadedSphereNode {
       },
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
+
+    // As xProperty changes, translate this Node.
+    xProperty.link( x => {
+      this.x = chartTransform.modelToViewX( x );
+    } );
   }
 }
 
