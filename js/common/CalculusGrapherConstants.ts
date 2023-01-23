@@ -68,7 +68,7 @@ const CalculusGrapherConstants = {
   // model height associated with curveManipulationDisplay (in the same unit as x-Range)
   CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
 
-  // zoom level ranges
+  // zoom level ranges - 5 levels:  3 zoom out and 2 zoom in
   ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 6, 4 ),
 
   // arrow
