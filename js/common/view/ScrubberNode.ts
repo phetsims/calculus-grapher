@@ -34,7 +34,8 @@ export default class ScrubberNode extends Node {
 
     const sphere = new ShadedSphereNode( 18, {
       centerY: yValue,
-      mainColor: color
+      mainColor: color,
+      cursor: 'pointer'
     } );
 
     // Add dragListener to sphere.
