@@ -135,7 +135,7 @@ export default class CalculusGrapherModel implements TModel {
         tandem: options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
       } );
 
-    this.labeledPoints = LabeledPoint.createMultiple(
+    this.labeledPoints = LabeledPoint.createLabeledPoints(
       CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
@@ -143,7 +143,7 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       toolsTandem.createTandem( 'labeledPoints' ) );
 
-    this.verticalLines = VerticalLine.createMultiple(
+    this.verticalLines = VerticalLine.createVerticalLines(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,

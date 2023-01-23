@@ -11,12 +11,9 @@ import calculusGrapher from '../../calculusGrapher.js';
 import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-
-const TANDEM_SUFFIX = 'Point';
 
 type SelfOptions = {
   pointColor: Color;
@@ -44,30 +41,21 @@ export default class LabeledPoint extends LabeledAncillaryTool {
     } );
   }
 
-  //TODO https://github.com/phetsims/calculus-grapher/issues/186 duplication with VerticalLine.createMultiple
   /**
    * Creates a specified number of LabeledPoint instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createMultiple( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
-                                derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                                parentTandem: Tandem ): LabeledPoint[] {
-
-    const tools: LabeledPoint[] = [];
-    for ( let i = 0; i < numberOfTools; i++ ) {
-
-      // convert integer to string 0->A, 1->B, etc
-      const label = LabeledPoint.intToUppercaseLetter( i );
-
-      // create the tool
-      tools.push( new LabeledPoint( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
-        label: label,
-        pointColor: CalculusGrapherColors.originalCurveStrokeProperty.value,
-        x: CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( ( i + 1 ) / ( numberOfTools + 1 ) ),
-        tandem: parentTandem.createTandem( `${label}${TANDEM_SUFFIX}` )
-      } ) );
-    }
-    return tools;
+  public static createLabeledPoints( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
+                                     derivativeCurve: Curve, secondDerivativeCurve: Curve,
+                                     parentTandem: Tandem ): LabeledPoint[] {
+    return LabeledAncillaryTool.createAncillaryTools( numberOfTools,
+      ( x: number, label: string ) =>
+        new LabeledPoint( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+          x: x,
+          label: label,
+          pointColor: CalculusGrapherColors.originalCurveStrokeProperty.value,
+          tandem: parentTandem.createTandem( `${label}Point` )
+        } ) );
   }
 }
 
