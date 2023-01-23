@@ -47,7 +47,7 @@ export default class AreaUnderCurvePlot extends Node {
 
     const getDataSet = ( pointFunction: CurvePointFunction ) => {
       return curve.points.map( point => {
-        if ( pointFunction( point ) && point.x < xProperty.value ) {
+        if ( pointFunction( point ) && point.x <= xProperty.value ) {
           return point.toVector();
         }
         else {
