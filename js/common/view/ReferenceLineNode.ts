@@ -12,7 +12,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { DragListener, Line, Node, NodeOptions, NodeTranslationOptions } from '../../../../scenery/js/imports.js';
+import { DragListener, Line, Node, VBox } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -23,36 +23,32 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLine from '../model/ReferenceLine.js';
+import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
+import Multilink from '../../../../axon/js/Multilink.js';
+import { Shape } from '../../../../kite/js/imports.js';
+
+const DRAG_HANDLE_RADIUS = 9;
 
 type SelfOptions = EmptySelfOptions;
 
-type ReferenceLineNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
+type ReferenceLineNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem'>;
 
-export default class ReferenceLineNode extends Node {
-
-  private readonly verticalLine;
-  private readonly shadedSphereNode;
+export default class ReferenceLineNode extends LineToolNode {
 
   public constructor( referenceLine: ReferenceLine,
                       chartTransform: ChartTransform,
                       providedOptions: ReferenceLineNodeOptions ) {
 
-    const options = optionize<ReferenceLineNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<ReferenceLineNodeOptions, SelfOptions, LineToolNodeOptions>()( {
 
       // NodeOptions
-      visibleProperty: referenceLine.visibleProperty,
-      cursor: 'pointer'
+      visibleProperty: referenceLine.visibleProperty
     }, providedOptions );
 
-    const xProperty = referenceLine.xProperty;
-
-    // values will be updated later
-    const verticalLine = new Line( 0, 0, 0, -1, {
-      stroke: CalculusGrapherColors.referenceLineStrokeProperty
-    } );
+    super( referenceLine.xProperty, chartTransform, CalculusGrapherColors.referenceLineStrokeProperty, options );
 
     // add numerical label at the top of the vertical line
-    const labelNode = new NumberDisplay( xProperty,
+    const labelNode = new NumberDisplay( referenceLine.xProperty,
       CalculusGrapherConstants.CURVE_X_RANGE, {
         align: 'center',
         decimalPlaces: 1,
@@ -67,55 +63,34 @@ export default class ReferenceLineNode extends Node {
           font: CalculusGrapherConstants.CONTROL_FONT
         },
         visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
-        bottom: verticalLine.top - 5,
+        bottom: this.line.top - 5,
         centerX: 0
       } );
+    this.addChild( labelNode );
 
-    const shadedSphereNode = new ShadedSphereNode( 18, {
-      mainColor: CalculusGrapherColors.referenceLineHandleColorProperty
+    const dragHandle = new ShadedSphereNode( 2 * DRAG_HANDLE_RADIUS, {
+      mainColor: CalculusGrapherColors.referenceLineHandleColorProperty,
+      cursor: 'pointer',
+      touchArea: Shape.circle( 0, 0, DRAG_HANDLE_RADIUS + 5 )
+    } );
+    this.addChild( dragHandle );
+
+    Multilink.multilink( [ this.line.boundsProperty, labelNode.boundsProperty ], () => {
+      labelNode.centerBottom = this.line.centerTop;
+      dragHandle.centerTop = this.line.centerBottom;
     } );
 
-    const parentNode = new Node( {
-      children: [ verticalLine, shadedSphereNode, labelNode ],
-      x: chartTransform.modelToViewX( xProperty.value )
-    } );
-
-    // add dragListener
-    parentNode.addInputListener( new DragListener( {
+    dragHandle.addInputListener( new DragListener( {
       drag( event, listener ) {
-
-        // current modelPosition
         const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
-        xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
+        referenceLine.xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
       },
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
-    xProperty.link( x => {
-      parentNode.centerX = chartTransform.modelToViewX( x );
-    } );
-
-    //TODO https://github.com/phetsims/calculus-grapher/issues/151 why do we need a Node with 1 child?
-    options.children = [ parentNode ];
-    super( options );
-
-    this.verticalLine = verticalLine;
-    this.shadedSphereNode = shadedSphereNode;
-
     this.addLinkedElement( referenceLine, {
       tandem: options.tandem.createTandem( referenceLine.tandem.name )
     } );
-  }
-
-  // set Y top position in view coordinates
-  public setLineTop( value: number ): void {
-    this.verticalLine.setY2( value );
-  }
-
-  // set Y bottom position of line in view coordinates
-  public setLineBottom( value: number ): void {
-    this.verticalLine.setY1( value );
-    this.shadedSphereNode.setCenterY( value );
   }
 
   /**
@@ -123,17 +98,16 @@ export default class ReferenceLineNode extends Node {
    */
   public static getIcon(): Node {
 
-    const shadedSphereNode = new ShadedSphereNode( 8, {
+    const verticalLine = new Line( 0, 0, 0, 11, {
+      stroke: CalculusGrapherColors.referenceLineStrokeProperty
+    } );
+
+    const dragHandle = new ShadedSphereNode( 8, {
       mainColor: CalculusGrapherColors.referenceLineHandleColorProperty
     } );
 
-    const verticalLine = new Line( {
-      stroke: CalculusGrapherColors.referenceLineStrokeProperty,
-      y2: -15
-    } );
-
-    return new Node( {
-      children: [ verticalLine, shadedSphereNode ]
+    return new VBox( {
+      children: [ verticalLine, dragHandle ]
     } );
   }
 }

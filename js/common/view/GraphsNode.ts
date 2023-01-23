@@ -27,6 +27,9 @@ import GraphType, { GraphSet } from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
+// How much the VerticalLine extends above and below the graphs
+const VERTICAL_LINE_Y_EXTENT = 4;
+
 type SelfOptions = {
   graphSets: GraphSet[];
 };
@@ -89,7 +92,6 @@ export default class GraphNodes extends Node {
     this.graphNodes = [ this.integralGraphNode, this.originalGraphNode, this.derivativeGraphNode, this.secondDerivativeGraphNode ];
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform, {
-      x: this.originalGraphNode.x,
       tandem: options.tandem.createTandem( 'referenceLineNode' )
     } );
 
@@ -98,7 +100,6 @@ export default class GraphNodes extends Node {
 
     const verticalLineNodes = model.verticalLines.map( verticalLine =>
       new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
-        x: this.originalGraphNode.x,
         tandem: verticalLineNodesTandem.createTandem( `${verticalLine.labelProperty.value}VerticalLineNode` )
       } ) );
 
@@ -107,11 +108,6 @@ export default class GraphNodes extends Node {
     } );
 
     const graphSetNode = new Node();
-
-    function setVerticalLineNodePosition( verticalLineNode: VerticalLineNode | ReferenceLineNode ): void {
-      verticalLineNode.setLineBottom( graphSetNode.bottom + 15 );
-      verticalLineNode.setLineTop( graphSetNode.top - 5 );
-    }
 
     // To display a different set of graphs, get the GraphNodes, handle their layout, and adjust the position
     // of the reference line and vertical lines.
@@ -131,9 +127,13 @@ export default class GraphNodes extends Node {
         content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + spacingBetweenGraphs;
       }
 
-      // Adjust positions of reference line and vertical lines
-      setVerticalLineNodePosition( referenceLineNode );
-      verticalLineNodes.forEach( verticalLineNode => setVerticalLineNodePosition( verticalLineNode ) );
+      // Resize vertical ReferenceLineNode - a bit more at the bottom so that the drag handle does not overlap scrubber.
+      referenceLineNode.setLineTopAndBottom( graphSetNode.top - 5, graphSetNode.bottom + 7 );
+
+      // Resize vertical VerticalLineNodes - same extent at top and bottom.
+      verticalLineNodes.forEach( verticalLineNode => {
+        verticalLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT );
+      } );
     } );
 
     options.children = [ graphSetNode, verticalLineNodesLayer, referenceLineNode ];

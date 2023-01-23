@@ -9,38 +9,33 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { Line, Node, NodeOptions, NodeTranslationOptions, Text } from '../../../../scenery/js/imports.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import VerticalLine from '../model/VerticalLine.js';
+import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type VerticalLineNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
+type VerticalLineNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem'>;
 
-export default class VerticalLineNode extends Node {
-
-  private readonly line;
+export default class VerticalLineNode extends LineToolNode {
 
   public constructor( verticalLine: VerticalLine,
                       chartTransform: ChartTransform,
                       providedOptions: VerticalLineNodeOptions ) {
 
-    const options = optionize<VerticalLineNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<VerticalLineNodeOptions, SelfOptions, LineToolNodeOptions>()( {
 
-      // NodeOptions
+      // LineToolNodeOptions
+      lineDash: [ 4, 2 ],
       visibleProperty: verticalLine.visibleProperty
     }, providedOptions );
 
-    const xProperty = verticalLine.xProperty;
-
-    // initial y values are arbitrary, client is responsible for setting them using methods below
-    const line = new Line( 0, 0, 0, -1, {
-      lineDash: [ 4, 2 ],
-      stroke: verticalLine.lineColorProperty
-    } );
+    super( verticalLine.xProperty, chartTransform, verticalLine.lineColorProperty, options );
 
     const text = new Text( verticalLine.labelProperty, {
       font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
@@ -49,47 +44,19 @@ export default class VerticalLineNode extends Node {
     } );
 
     const labelNode = new BackgroundNode( text, {
-      centerX: 0,
-      bottom: line.top - 5,
       rectangleOptions: {
         cornerRadius: 3
       }
     } );
+    this.addChild( labelNode );
 
-    // center x position if label changes
-    verticalLine.labelProperty.link( () => {
-      labelNode.centerX = 0;
+    Multilink.multilink( [ this.line.boundsProperty, labelNode.boundsProperty ], () => {
+      labelNode.centerBottom = this.line.centerTop;
     } );
-
-    // set the children inside a layer , to more easily control their x position
-    const verticalNodeLayer = new Node( {
-      children: [ line, labelNode ],
-      centerX: chartTransform.modelToViewX( xProperty.value )
-    } );
-
-    xProperty.link( x => {
-      verticalNodeLayer.x = chartTransform.modelToViewX( x );
-    } );
-
-    options.children = [ verticalNodeLayer ];
-
-    super( options );
-
-    this.line = line;
 
     this.addLinkedElement( verticalLine, {
       tandem: options.tandem.createTandem( verticalLine.tandem.name )
     } );
-  }
-
-  // set Y top position in view coordinates
-  public setLineTop( value: number ): void {
-    this.line.setY2( value );
-  }
-
-  // set Y bottom position of line in view coordinates
-  public setLineBottom( value: number ): void {
-    this.line.setY1( value );
   }
 }
 
