@@ -74,9 +74,8 @@ export default class CurveNode extends Node {
       discontinuousLinePlotOptions: {
         lineWidth: 2,
         lineDash: [ 2, 2 ],
-        visibleProperty: new DerivedProperty( [
-          CalculusGrapherPreferences.connectDiscontinuitiesProperty ], connectDiscontinuities =>
-          connectDiscontinuities === 'dashedLine' )
+        visibleProperty: new DerivedProperty( [ CalculusGrapherPreferences.connectDiscontinuitiesProperty ],
+          connectDiscontinuities => connectDiscontinuities === 'dashedLine' )
       },
 
       discontinuousPointsScatterPlotOptions: {

@@ -53,7 +53,8 @@ export default class OriginalGraphNode extends GraphNode {
     const { originalCurve, predictCurve, curveManipulationProperties, predictModeEnabledProperty } = model;
 
     // original curve is visible if not in predictMode or allOriginalCurveVisible is true
-    const originalCurveNodeVisibilityProperty = new DerivedProperty( [ predictModeEnabledProperty, visibleProperties.allOriginalCurvesVisibleProperty ],
+    const originalCurveNodeVisibilityProperty = new DerivedProperty(
+      [ predictModeEnabledProperty, visibleProperties.allOriginalCurvesVisibleProperty ],
       ( predictModeEnabled, allOriginalCurvesVisible ) =>
         !predictModeEnabled || allOriginalCurvesVisible );
 

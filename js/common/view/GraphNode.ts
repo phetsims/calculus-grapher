@@ -168,7 +168,8 @@ export default class GraphNode extends Node {
     // create eye toggle button that controls the visibility of the curve
     const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
-        baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ], visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
+        baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
+          visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
         bottom: chartRectangle.bottom,
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
@@ -327,8 +328,8 @@ export default class GraphNode extends Node {
    * Adds a PlottedPoint to this GraphNode.
    */
   public addPlottedPoint( xProperty: TReadOnlyProperty<number>, yProperty: TReadOnlyProperty<number>,
-                         fill: TColor, visibleProperty: TReadOnlyProperty<boolean>,
-                         tandemName: string ): PlottedPoint {
+                          fill: TColor, visibleProperty: TReadOnlyProperty<boolean>,
+                          tandemName: string ): PlottedPoint {
     const plottedPoint = new PlottedPoint( xProperty, yProperty, this.chartTransform, {
       visibleProperty: visibleProperty,
       fill: fill,
