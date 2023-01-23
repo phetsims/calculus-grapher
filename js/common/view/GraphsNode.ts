@@ -157,7 +157,7 @@ export default class GraphNodes extends Node {
     this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
 
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
-    this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubber' );
+    this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubberNode' );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
@@ -173,7 +173,7 @@ export default class GraphNodes extends Node {
 
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
-      'areaUnderCurveScrubber' );
+      'areaUnderCurveScrubberNode' );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
