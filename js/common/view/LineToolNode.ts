@@ -2,7 +2,7 @@
 
 /**
  * LineToolNode is the base class for the view of ancillary tools that involve a vertical line.
- * This includes ReferenceLineNode and VerticalLineNode. It's responsible for the line, the x position of the line,
+ * This includes ReferenceLineNode and VerticalLineNode. It's responsible for the line, the x coordinate of the line,
  * and the line's y coordinates can be adjusted via setLineTopAndBottom.
  *
  * @author Chris Malley (PixelZoom, Inc.)
