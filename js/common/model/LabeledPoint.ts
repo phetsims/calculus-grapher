@@ -44,7 +44,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
     } );
   }
 
-  //TODO https://github.com/phetsims/calculus-grapher/issues/144 duplication with VerticalLine.createMultiple
+  //TODO https://github.com/phetsims/calculus-grapher/issues/186 duplication with VerticalLine.createMultiple
   /**
    * Creates a specified number of LabeledPoint instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
