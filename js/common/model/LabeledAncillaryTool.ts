@@ -55,7 +55,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
    * @param numberOfTools
    * @param createTool - x is the tool's initial x coordinate, label is the string used to label the tool
    */
-  protected static createAncillaryTools<T extends LabeledAncillaryTool>(
+  protected static createLabeledAncillaryTools<T extends LabeledAncillaryTool>(
     numberOfTools: number, createTool: ( x: number, label: string ) => T ): T[] {
 
     const tools: T[] = [];

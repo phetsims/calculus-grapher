@@ -45,7 +45,7 @@ export default class VerticalLine extends LabeledAncillaryTool {
   public static createVerticalLines( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
                                      derivativeCurve: Curve, secondDerivativeCurve: Curve,
                                      parentTandem: Tandem ): VerticalLine[] {
-    return LabeledAncillaryTool.createAncillaryTools( numberOfTools,
+    return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>
         new VerticalLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,

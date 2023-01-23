@@ -48,7 +48,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
   public static createLabeledPoints( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
                                      derivativeCurve: Curve, secondDerivativeCurve: Curve,
                                      parentTandem: Tandem ): LabeledPoint[] {
-    return LabeledAncillaryTool.createAncillaryTools( numberOfTools,
+    return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>
         new LabeledPoint( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
