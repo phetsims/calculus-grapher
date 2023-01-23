@@ -49,7 +49,7 @@ const CalculusGrapherConstants = {
   TYPICAL_Y: TYPICAL_Y,
 
   // range for barometers
-  SLOPE_OF_TANGENT_MODEL_RANGE: new Range( -10, 10 ),
+  SLOPE_OF_TANGENT_MODEL_RANGE: new Range( -8, 8 ),
   NET_SIGNED_AREA_MODEL_RANGE: new Range( -0.8 * TYPICAL_AREA, 0.8 * TYPICAL_AREA ),
 
   // spacing for gridlines and ticks for graphs (in model units)
@@ -69,7 +69,7 @@ const CalculusGrapherConstants = {
   CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
 
   // zoom level ranges
-  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 8, 5 ),
+  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 6, 4 ),
 
   // arrow
   ARROW_LENGTH: 50,
