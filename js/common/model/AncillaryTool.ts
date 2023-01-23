@@ -128,8 +128,8 @@ export default class AncillaryTool extends PhetioObject {
   }
 
   public reset(): void {
-    this.xProperty.reset();
     this.visibleProperty.reset();
+    this.xProperty.reset();
   }
 }
 
