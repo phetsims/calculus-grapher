@@ -10,10 +10,10 @@
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import { DragListener, Line, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
+import { Line, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import XDragHandleNode from './XDragHandleNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -30,40 +30,27 @@ export default class ScrubberNode extends Node {
       // we're setting options.children below
     }, providedOptions );
 
-    const yValue = chartTransform.modelToViewY( chartTransform.modelYRange.min );
-
-    const sphere = new ShadedSphereNode( 18, {
-      centerY: yValue,
+    // drag handle, for translating x
+    const dragHandleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
+      yModel: chartTransform.modelYRange.min,
       mainColor: color,
-      cursor: 'pointer'
+      tandem: options.tandem.createTandem( 'dragHandleNode' )
     } );
 
-    // Add dragListener to sphere.
-    sphere.addInputListener( new DragListener( {
-      drag( event, listener ) {
-        const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
-        scrubber.xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
-      },
-      tandem: options.tandem.createTandem( 'dragListener' )
-    } ) );
-
-    // horizontal line
-    const horizontalLine = new Line( {
-      x1: chartTransform.viewToModelX( 0 ),
-      x2: chartTransform.viewToModelX( scrubber.xProperty.value ),
-      y1: yValue,
-      y2: yValue,
+    // horizontal line that extends from x=0 to the drag handle's position
+    const horizontalLine = new Line( 0, 0, dragHandleNode.centerX, 0, {
       stroke: color,
-      lineWidth: 2
+      lineWidth: 2,
+      centerY: dragHandleNode.centerY
     } );
 
-    options.children = [ horizontalLine, sphere ];
+    options.children = [ horizontalLine, dragHandleNode ];
 
     super( options );
 
-    scrubber.xProperty.link( x => {
-      sphere.x = chartTransform.modelToViewX( x );
-      horizontalLine.x2 = sphere.x;
+    // Resize the horizontal line to match the drag handle's x position.
+    dragHandleNode.boundsProperty.link( () => {
+      horizontalLine.x2 = dragHandleNode.centerX;
     } );
 
     this.addLinkedElement( scrubber, {

@@ -12,7 +12,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { DragListener, Line, Node, VBox } from '../../../../scenery/js/imports.js';
+import { Line, Node, VBox } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -25,9 +25,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLine from '../model/ReferenceLine.js';
 import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import { Shape } from '../../../../kite/js/imports.js';
-
-const DRAG_HANDLE_RADIUS = 9;
+import XDragHandleNode from './XDragHandleNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -68,25 +66,19 @@ export default class ReferenceLineNode extends LineToolNode {
       } );
     this.addChild( labelNode );
 
-    const dragHandle = new ShadedSphereNode( 2 * DRAG_HANDLE_RADIUS, {
+    // drag handle, for translating x
+    const dragHandle = new XDragHandleNode( referenceLine.xProperty, chartTransform, {
+      yModel: chartTransform.modelYRange.min,
       mainColor: CalculusGrapherColors.referenceLineHandleColorProperty,
-      cursor: 'pointer',
-      touchArea: Shape.circle( 0, 0, DRAG_HANDLE_RADIUS + 5 )
+      tandem: options.tandem.createTandem( 'dragHandle' )
     } );
     this.addChild( dragHandle );
 
+    // Reposition the label and drag handle
     Multilink.multilink( [ this.line.boundsProperty, labelNode.boundsProperty ], () => {
       labelNode.centerBottom = this.line.centerTop;
-      dragHandle.centerTop = this.line.centerBottom;
+      dragHandle.top = this.line.bottom; // x position is the responsibility of dragHandle
     } );
-
-    dragHandle.addInputListener( new DragListener( {
-      drag( event, listener ) {
-        const modelX = chartTransform.viewToModelX( listener.modelPoint.x );
-        referenceLine.xProperty.value = chartTransform.modelXRange.constrainValue( modelX );
-      },
-      tandem: options.tandem.createTandem( 'dragListener' )
-    } ) );
 
     this.addLinkedElement( referenceLine, {
       tandem: options.tandem.createTandem( referenceLine.tandem.name )
