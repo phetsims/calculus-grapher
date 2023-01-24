@@ -12,7 +12,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import Curve from './Curve.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import VerticalLine from './VerticalLine.js';
 
 type SelfOptions = {
   label: string;
@@ -66,7 +65,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
       const x = CalculusGrapherConstants.CURVE_X_RANGE.expandNormalizedValue( ( i + 1 ) / ( numberOfTools + 1 ) );
 
       // convert integer to uppercase character: 0->A, 1->B, etc
-      const label = VerticalLine.intToUppercaseLetter( i );
+      const label = LabeledAncillaryTool.intToUppercaseLetter( i );
 
       // create the tool
       tools.push( createTool( x, label ) );
