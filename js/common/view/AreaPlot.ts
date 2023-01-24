@@ -16,11 +16,11 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import { Path, PathOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
+export type AreaChartDataSet = ( Vector2 | null )[];
+
 type SelfOptions = {
   baseline?: number; // y-value representing the foundation of the plot
 };
-
-export type AreaChartDataSet = ( Vector2 | null )[];
 
 export type AreaChartOptions = SelfOptions & PathOptions;
 
@@ -47,9 +47,9 @@ export default class AreaPlot extends Path {
 
     super( null, options );
 
-    this.baseline = options.baseline;
     this.chartTransform = chartTransform;
     this.dataSet = dataSet;
+    this.baseline = options.baseline;
 
     // Initialize
     this.update();
@@ -77,7 +77,6 @@ export default class AreaPlot extends Path {
     for ( let i = 0; i < this.dataSet.length; i++ ) {
 
       const dataPoint = this.dataSet[ i ];
-
       assert && assert( dataPoint === null || dataPoint.isFinite(), 'data points must be finite Vector2 or null' );
 
       if ( dataPoint ) {
@@ -86,7 +85,7 @@ export default class AreaPlot extends Path {
         if ( moveToNextPoint ) {
 
           // basePoint for the shape
-          const startBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( dataPoint ) );
+          const startBasePoint = this.chartTransform.modelToViewXY( dataPoint.x, this.baseline );
           shape.moveToPoint( startBasePoint );
 
           // move to the actual data point
@@ -129,7 +128,7 @@ export default class AreaPlot extends Path {
    * Given a point and a shape, first go to the baseline of the point and then close the shape.
    */
   private closeShape( dataPoint: Vector2, shape: Shape ): void {
-    const endBasePoint = this.chartTransform.modelToViewPosition( this.setToBaseline( dataPoint ) );
+    const endBasePoint = this.chartTransform.modelToViewXY( dataPoint.x, this.baseline );
     shape.lineToPoint( endBasePoint );
     shape.close();
   }
@@ -143,14 +142,12 @@ export default class AreaPlot extends Path {
     this.update();
   }
 
-  // set the baseline value for the area plot
+  /**
+   * Sets the baseline value for the area plot.
+   */
   public setBaseline( baseline: number ): void {
     this.baseline = baseline;
     this.update();
-  }
-
-  private setToBaseline( dataPoint: Vector2 ): Vector2 {
-    return new Vector2( dataPoint.x, this.baseline );
   }
 }
 calculusGrapher.register( 'AreaPlot', AreaPlot );
