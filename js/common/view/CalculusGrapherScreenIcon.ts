@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2023, University of Colorado Boulder
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/139 delete when we have real ScreenIcons
 /**
