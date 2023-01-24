@@ -54,9 +54,8 @@ export default class OriginalGraphNode extends GraphNode {
 
     // original curve is visible if not in predictMode or allOriginalCurveVisible is true
     const originalCurveNodeVisibilityProperty = new DerivedProperty(
-      [ predictModeEnabledProperty, visibleProperties.allOriginalCurvesVisibleProperty ],
-      ( predictModeEnabled, allOriginalCurvesVisible ) =>
-        !predictModeEnabled || allOriginalCurvesVisible );
+      [ predictModeEnabledProperty, visibleProperties.showOriginalCurveProperty ],
+      ( predictModeEnabled, showOriginalCurve ) => !predictModeEnabled || showOriginalCurve );
 
     // Label that toggles between 'Predict f(x)' and 'f(x)'
     const labelNode = new HBox( {
@@ -117,7 +116,7 @@ export default class OriginalGraphNode extends GraphNode {
       spacing: 5
     } );
 
-    const showOriginalCurveCheckbox = new Checkbox( visibleProperties.allOriginalCurvesVisibleProperty,
+    const showOriginalCurveCheckbox = new Checkbox( visibleProperties.showOriginalCurveProperty,
       showOriginalCurveCheckboxContent, {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
         visibleProperty: predictModeEnabledProperty,
