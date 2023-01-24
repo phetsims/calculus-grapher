@@ -42,7 +42,10 @@ export default class AreaPlot extends Path {
     const options = optionize<AreaChartOptions, SelfOptions, PathOptions>()( {
 
       // SelfOptions
-      baseline: 0
+      baseline: 0,
+
+      // PathOptions
+      fill: 'black'
     }, providedOptions );
 
     super( null, options );
