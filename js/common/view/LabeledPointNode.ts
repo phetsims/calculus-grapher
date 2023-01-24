@@ -31,14 +31,15 @@ export default class LabeledPointNode extends Node {
   public constructor( labeledPoint: LabeledPoint,
                       chartTransform: ChartTransform,
                       predictModeEnabledProperty: TReadOnlyProperty<boolean>,
+                      curveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: LabeledPointNodeOptions ) {
 
     const options = optionize<LabeledPointNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
       visibleProperty: new DerivedProperty(
-        [ labeledPoint.visibleProperty, predictModeEnabledProperty ],
-        ( labeledPointVisible, predictMode ) => labeledPointVisible && !predictMode, {
+        [ curveLayerVisibleProperty, labeledPoint.visibleProperty, predictModeEnabledProperty ],
+        ( curveLayerVisible, labeledPointVisible, predictMode ) => curveLayerVisible && labeledPointVisible && !predictMode, {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } )

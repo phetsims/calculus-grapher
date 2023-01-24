@@ -65,17 +65,20 @@ export default class GraphNode extends Node {
 
   public readonly graphType: GraphType;
 
-  protected readonly zoomLevelProperty: NumberProperty;
-
-  // create a node layer to host all the curveNodes
-  protected readonly curveLayer: Node;
-
+  // The curve to be plotted
   protected readonly curve: Curve;
 
-  // create a curveNode associated with this graph
+  // Node that plots the curve
   protected readonly curveNode: CurveNode;
-  // visibility of the layer hosting all the curveNodes
-  private readonly curveLayerVisibleProperty: BooleanProperty;
+
+  // Layer for plotting all curves and their decorations
+  protected readonly curveLayer: Node;
+
+  // Visibility of curveLayer
+  protected readonly curveLayerVisibleProperty: BooleanProperty;
+
+  protected readonly zoomLevelProperty: NumberProperty;
+
   public readonly chartTransform: ChartTransform;
 
   public constructor( graphType: GraphType,
