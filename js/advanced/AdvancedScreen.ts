@@ -16,6 +16,7 @@ import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import GraphType, { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import { AlignGroup } from '../../../scenery/js/imports.js';
+import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -52,6 +53,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.advancedStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
+      homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
       tandem: options.tandem
     } );
   }

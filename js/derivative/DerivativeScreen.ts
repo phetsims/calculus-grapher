@@ -14,6 +14,7 @@ import DerivativeModel from './model/DerivativeModel.js';
 import DerivativeScreenView from './view/DerivativeScreenView.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import GraphType, { GraphSet } from '../common/model/GraphType.js';
+import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,6 +43,7 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.derivativeStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
+      homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
       tandem: options.tandem
     } );
   }

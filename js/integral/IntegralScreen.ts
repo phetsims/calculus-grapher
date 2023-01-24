@@ -14,6 +14,7 @@ import IntegralModel from './model/IntegralModel.js';
 import IntegralScreenView from './view/IntegralScreenView.js';
 import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import GraphType, { GraphSet } from '../common/model/GraphType.js';
+import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,6 +43,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.integralStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
+      homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
       tandem: options.tandem
     } );
   }
