@@ -11,7 +11,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
-import AreaPlot from './AreaPlot.js';
+import AreaPlot from '../../../../bamboo/js/AreaPlot.js';
 import CurvePoint from '../model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
