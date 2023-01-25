@@ -201,6 +201,7 @@ export default class GraphNode extends Node {
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform,
       Orientation.HORIZONTAL,
       CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_LABEL_SPACING, {
+        skipCoordinates: [ 0 ],
         createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
       } );
 
@@ -210,7 +211,9 @@ export default class GraphNode extends Node {
     // create horizontal and vertical mark ticks
     const horizontalTickMarkSet = new TickMarkSet( this.chartTransform,
       Orientation.HORIZONTAL,
-      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_MARK_SPACING );
+      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_MARK_SPACING, {
+        skipCoordinates: [ 0 ]
+      } );
     const verticalTickMarkSet = new TickMarkSet( this.chartTransform,
       Orientation.VERTICAL,
       CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING, {
