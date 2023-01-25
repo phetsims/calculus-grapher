@@ -55,13 +55,15 @@ export default class CurveNode extends Node {
   protected readonly continuousLinePlot: LinePlot;
   private readonly discontinuousLinePlot: LinePlot;
   private readonly discontinuousPointsScatterPlot: ScatterPlot;
-  private readonly allPointsScatterPlot: ScatterPlot;
-  private readonly cuspsScatterPlot: ScatterPlot;
+
+  // These plots are created conditionally for debugging. See ?allPoints and ?cuspPoints.
+  private readonly allPointsScatterPlot?: ScatterPlot;
+  private readonly cuspsScatterPlot?: ScatterPlot;
+
   protected readonly curve: Curve;
   public readonly dragBoundsProperty: Property<Bounds2>;
 
-  public constructor( curve: Curve, chartTransform: ChartTransform,
-                      providedOptions?: CurveNodeOptions ) {
+  public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
 
@@ -114,12 +116,6 @@ export default class CurveNode extends Node {
     const continuousLinePlotDataSet = this.getContinuousLinePlotDataSet();
     const discontinuousPointScatterPlotDataSet = this.getDiscontinuousPointsScatterPlotDataSet();
 
-    this.allPointsScatterPlot = new ScatterPlot( chartTransform, allPointsScatterPlotDataSet, options.allPointsScatterPlotOptions );
-    this.cuspsScatterPlot = new ScatterPlot( chartTransform, cuspsScatterPlotDataSet, options.cuspsScatterPlotOptions );
-    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, discontinuousPointScatterPlotDataSet,
-      combineOptions<ScatterPlotOptions>( {
-        stroke: options.stroke
-      }, options.discontinuousPointsScatterPlotOptions ) );
     this.continuousLinePlot = new LinePlot( chartTransform, continuousLinePlotDataSet,
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke
@@ -128,15 +124,21 @@ export default class CurveNode extends Node {
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke
       }, options.discontinuousLinePlotOptions ) );
-
+    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, discontinuousPointScatterPlotDataSet,
+      combineOptions<ScatterPlotOptions>( {
+        stroke: options.stroke
+      }, options.discontinuousPointsScatterPlotOptions ) );
     this.addChild( this.continuousLinePlot );
     this.addChild( this.discontinuousLinePlot );
     this.addChild( this.discontinuousPointsScatterPlot );
 
     if ( CalculusGrapherQueryParameters.allPoints ) {
+      this.allPointsScatterPlot = new ScatterPlot( chartTransform, allPointsScatterPlotDataSet, options.allPointsScatterPlotOptions );
       this.addChild( this.allPointsScatterPlot );
     }
+
     if ( CalculusGrapherQueryParameters.cuspsPoints ) {
+      this.cuspsScatterPlot = new ScatterPlot( chartTransform, cuspsScatterPlotDataSet, options.cuspsScatterPlotOptions );
       this.addChild( this.cuspsScatterPlot );
     }
 
@@ -163,19 +165,11 @@ export default class CurveNode extends Node {
   }
 
   public updateCurveNode(): void {
-    this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
-
     this.discontinuousLinePlot.setDataSet( this.getDiscontinuousLinePlotDataSet() );
-
-    if ( CalculusGrapherQueryParameters.allPoints ) {
-      this.allPointsScatterPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );
-    }
-
-    if ( CalculusGrapherQueryParameters.cuspsPoints ) {
-      this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
-    }
-
+    this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
+    this.allPointsScatterPlot && this.allPointsScatterPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );
+    this.cuspsScatterPlot && this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
   }
 
   // data set for continuous portion of curve
