@@ -61,10 +61,9 @@ export default class GraphNodes extends Node {
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
     // determine the (view) height of the graph based on the number of visible graphs.
-    const graphHeightProperty = new DerivedProperty( [ graphSetProperty ], graphsSelected => {
-      const numberOfVisibleGraphs = graphsSelected.length;
-      return CalculusGrapherConstants.GRAPH_VERTICAL_HEIGHT[ numberOfVisibleGraphs - 1 ];
-    } );
+    const graphHeightProperty = new DerivedProperty( [ graphSetProperty ], graphSet =>
+      CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / graphSet.length
+    );
 
     // the subset of graphTypes that should be instrumented
     const subsetGraphTypes = options.graphSets.flat();
@@ -121,7 +120,7 @@ export default class GraphNodes extends Node {
       // Layout
       content[ 0 ].x = 0;
       content[ 0 ].y = 0;
-      const ySpacing = ( graphSet.length < 3 ) ? 20 : 10; // more graphs requires less spacing
+      const ySpacing = ( graphSet.length < 4 ) ? 20 : 12; // more graphs requires less spacing
       for ( let i = 1; i < content.length; i++ ) {
         content[ i ].x = content[ i - 1 ].x;
         content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + ySpacing;
