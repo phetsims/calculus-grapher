@@ -116,7 +116,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
 
     rightVBox.boundsProperty.link( () => {
-      rightVBox.right = this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_Y_MARGIN;
+      rightVBox.right = this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_X_MARGIN;
       rightVBox.top = this.graphsNode.y;
     } );
 
