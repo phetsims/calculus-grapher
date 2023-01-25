@@ -35,8 +35,13 @@ const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 
 const CalculusGrapherConstants = {
 
+  // margins
   SCREEN_VIEW_X_MARGIN: 25,
   SCREEN_VIEW_Y_MARGIN: 10,
+  PANEL_X_MARGIN: 8,
+  PANEL_Y_MARGIN: 5,
+  GRAPH_X_MARGIN: 15,
+  GRAPH_Y_MARGIN: 10,
 
   GRAPH_VIEW_WIDTH: 612,
 
@@ -94,8 +99,6 @@ const CalculusGrapherConstants = {
 
   // for Panels and AccordionBoxes
   CORNER_RADIUS: 5,
-  PANEL_X_MARGIN: 8,
-  PANEL_Y_MARGIN: 5,
 
   // PhET-iO ONLY constants
   NUMBER_OF_VERTICAL_LINES: 6,

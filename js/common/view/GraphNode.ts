@@ -128,6 +128,9 @@ export default class GraphNode extends Node {
       viewHeight: graphHeightProperty.value,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
+    graphHeightProperty.link( height => {
+      this.chartTransform.setViewHeight( height );
+    } );
 
     // grid lines
     const horizontalGridLines = new GridLineSet( this.chartTransform,
@@ -185,19 +188,14 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
 
-    const setLabelNodePosition = () => {
-      labelNode.leftTop = chartRectangle.leftTop.addXY( 15, 10 );
-    };
-
-    graphHeightProperty.link( height => {
-      this.chartTransform.setViewHeight( height );
+    // Adjust layout if the chartRectangle is resized.
+    chartRectangle.boundsProperty.link( () => {
       this.curveLayer.clipArea = chartRectangle.getShape();
       eyeToggleButton.bottom = chartRectangle.bottom;
       zoomButtonGroup.centerY = chartRectangle.centerY;
-      setLabelNodePosition();
+      labelNode.left = chartRectangle.left + CalculusGrapherConstants.GRAPH_X_MARGIN;
+      labelNode.top = chartRectangle.top + CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
-
-    labelNode.boundsProperty.link( setLabelNodePosition );
 
     // create horizontal numerical labels for ticks
     const horizontalTickLabelSet = new TickLabelSet( this.chartTransform,
@@ -290,10 +288,9 @@ export default class GraphNode extends Node {
     // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
     // the chartRectangle, without a gap when the ticks are invisible.
     tickSetNode.visibleProperty.link( visible => {
-        const rightNode = visible ? tickSetNode : chartRectangle;
-        buttonSetNode.right = rightNode.left - 10;
-      }
-    );
+      const rightNode = visible ? tickSetNode : chartRectangle;
+      buttonSetNode.right = rightNode.left - 10;
+    } );
   }
 
   /**

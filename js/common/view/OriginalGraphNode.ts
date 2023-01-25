@@ -113,8 +113,9 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Upper-right corner of the chart
     showOriginalCurveCheckbox.boundsProperty.link( () => {
-      showOriginalCurveCheckbox.top = 10;
-      showOriginalCurveCheckbox.right = this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - 15;
+      showOriginalCurveCheckbox.right =
+        this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
+      showOriginalCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
     graphHeightProperty.link( height => {
