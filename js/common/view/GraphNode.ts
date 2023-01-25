@@ -33,7 +33,7 @@ import Curve from '../model/Curve.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
-import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
+import EyeToggleButton from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -55,7 +55,6 @@ type SelfOptions = {
   createCurveNode?: ( chartTransform: ChartTransform,
                       providedOptions?: CurveNodeOptions ) => CurveNode;
   plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
-  eyeToggleButtonOptions?: EyeToggleButtonOptions;
   labelNode?: Node;
 };
 
@@ -108,9 +107,6 @@ export default class GraphNode extends Node {
         buttonOptions: {
           stroke: 'black'
         }
-      },
-      eyeToggleButtonOptions: {
-        scale: 0.5
       }
     }, providedOptions );
 
@@ -198,12 +194,12 @@ export default class GraphNode extends Node {
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
-    const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty,
-      combineOptions<EyeToggleButtonOptions>( {
-        baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
-          visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
-        tandem: options.tandem.createTandem( 'eyeToggleButton' )
-      }, options.eyeToggleButtonOptions ) );
+    const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty, {
+      scale: 0.5,
+      baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
+        visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
+      tandem: options.tandem.createTandem( 'eyeToggleButton' )
+    } );
 
     // Zoom button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty,
