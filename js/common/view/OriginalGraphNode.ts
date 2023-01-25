@@ -22,7 +22,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointNode from './LabeledPointNode.js';
@@ -34,6 +33,7 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
 import GraphType from '../model/GraphType.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -105,23 +105,10 @@ export default class OriginalGraphNode extends GraphNode {
 
     this.curveLayer.addChild( this.predictCurveNode );
 
-    const showOriginalCurveCheckboxContent = new HBox( {
-      children: [
-        new Text( CalculusGrapherStrings.showStringProperty, {
-          font: CalculusGrapherConstants.CONTROL_FONT,
-          maxWidth: 100
-        } ),
-        new GraphTypeLabelNode( GraphType.ORIGINAL )
-      ],
-      spacing: 5
+    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( visibleProperties.showOriginalCurveProperty, {
+      visibleProperty: predictModeEnabledProperty,
+      tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
     } );
-
-    const showOriginalCurveCheckbox = new Checkbox( visibleProperties.showOriginalCurveProperty,
-      showOriginalCurveCheckboxContent, {
-        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-        visibleProperty: predictModeEnabledProperty,
-        tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
-      } );
     this.addChild( showOriginalCurveCheckbox );
 
     // Upper-right corner of the chart
