@@ -154,14 +154,14 @@ export default class GraphNodes extends Node {
    */
   public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Plot a point on each graph that will stay in sync with tangentScrubber.
-    this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
-
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubberNode' );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
+
+    // Plot a point on each graph that will stay in sync with tangentScrubber.
+    this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
   }
 
   /**
@@ -169,15 +169,15 @@ export default class GraphNodes extends Node {
    */
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
-    this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
-
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
       'areaUnderCurveScrubberNode' );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
+
+    // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
+    this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
   }
 
   /**
