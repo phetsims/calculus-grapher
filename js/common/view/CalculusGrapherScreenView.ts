@@ -22,10 +22,6 @@ import { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import { Node, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-
-const X_MARGIN = 25;
-const Y_MARGIN = 10;
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -36,10 +32,6 @@ type SelfOptions = {
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class CalculusGrapherScreenView extends ScreenView {
-
-  // Layout anywhere inside these bounds guarantees that you won't impinge on the ScreenView margins.
-  // The name is analogous to the 'Safe Area' in broadcast TV, see https://en.wikipedia.org/wiki/Safe_area_(television)
-  protected readonly safeLayoutBounds: Bounds2;
 
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
@@ -69,8 +61,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
                       ( options.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
       'If > 1 graphSets, then there must be a radio button item for each graphSet' );
 
-    this.safeLayoutBounds = this.layoutBounds.erodedXY( X_MARGIN, Y_MARGIN );
-
     this.model = model;
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
@@ -85,7 +75,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
     );
 
     const resetAllButton = new ResetAllButton( {
-      rightBottom: this.safeLayoutBounds.rightBottom,
+      right: this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_X_MARGIN,
+      bottom: this.layoutBounds.bottom - CalculusGrapherConstants.SCREEN_VIEW_Y_MARGIN,
       listener: () => this.reset(),
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
@@ -125,7 +116,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
 
     rightVBox.boundsProperty.link( () => {
-      rightVBox.right = this.safeLayoutBounds.right;
+      rightVBox.right = this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_Y_MARGIN;
       rightVBox.top = this.graphsNode.y;
     } );
 

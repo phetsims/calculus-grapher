@@ -35,6 +35,9 @@ const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 
 const CalculusGrapherConstants = {
 
+  SCREEN_VIEW_X_MARGIN: 25,
+  SCREEN_VIEW_Y_MARGIN: 10,
+
   GRAPH_VIEW_WIDTH: 612,
 
   // vertical height of the graph in view coordinates according to the number of graphs show on the screen
