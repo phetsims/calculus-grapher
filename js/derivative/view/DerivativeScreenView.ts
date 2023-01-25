@@ -49,7 +49,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     // Center slopeOfTangentAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
     this.graphsNode.boundsProperty.link( () => {
       slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
-      slopeOfTangentAccordionBox.top = this.graphsNode.y;
+      slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
     } );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.

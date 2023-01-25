@@ -49,7 +49,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     // Center netSignedAreaAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
     this.graphsNode.boundsProperty.link( () => {
       netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
-      netSignedAreaAccordionBox.top = this.graphsNode.y;
+      netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
     } );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
