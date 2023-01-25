@@ -230,6 +230,13 @@ export default class GraphNode extends Node {
       labelNode.top = chartRectangle.top + CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
+    // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
+    // the chartRectangle, without a gap when the ticks are invisible.
+    ticksParent.visibleProperty.link( visible => {
+      const rightNode = visible ? ticksParent : chartRectangle;
+      buttonSetNode.right = rightNode.left - 10;
+    } );
+
     this.setChildren( [
       chartRectangle,
       gridNode,
@@ -278,13 +285,6 @@ export default class GraphNode extends Node {
       yTickLabelSet = this.getVerticalTickLabelSet( multiplicativeFactor *
                                                            CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
       ticksParent.addChild( yTickLabelSet );
-    } );
-
-    // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
-    // the chartRectangle, without a gap when the ticks are invisible.
-    ticksParent.visibleProperty.link( visible => {
-      const rightNode = visible ? ticksParent : chartRectangle;
-      buttonSetNode.right = rightNode.left - 10;
     } );
   }
 
