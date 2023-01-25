@@ -165,6 +165,20 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   labeledPointsVisible: {
     type: 'boolean',
     defaultValue: false
+  },
+
+  // Alpha for CalculusGrapherColors.integralPositiveFillProperty, so that PhET designer can fine-tune
+  positiveAlpha: {
+    type: 'number',
+    isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
+    defaultValue: 0.25
+  },
+
+  // Alpha for CalculusGrapherColors.integralPositiveFillProperty, so that PhET designer can fine-tune
+  negativeAlpha: {
+    type: 'number',
+    isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
+    defaultValue: 0.5
   }
 } );
 

@@ -11,6 +11,7 @@ import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
 import calculusGrapher from '../calculusGrapher.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
+import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js';
 
 const tandem = Tandem.GLOBAL_VIEW.createTandem( 'colorProfile' );
 
@@ -95,7 +96,7 @@ const CalculusGrapherColors = {
 
   // Fill for integral curve (when area is positive)
   integralPositiveFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
-    integralCurveStroke => integralCurveStroke.withAlpha( 0.3 ), {
+    integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.positiveAlpha ), {
       tandem: tandem.createTandem( 'integralPositiveFillProperty' ),
       phetioValueType: Color.ColorIO,
       phetioDocumentation: 'Color for positive area in the "Net Signed Area" accordion box.'
@@ -103,7 +104,7 @@ const CalculusGrapherColors = {
 
   // Fill for integral curve (when area is negative)
   integralNegativeFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
-    integralCurveStroke => integralCurveStroke.withAlpha( 0.5 ), {
+    integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.negativeAlpha ), {
       tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
       phetioValueType: Color.ColorIO,
       phetioDocumentation: 'Color for negative area in the "Net Signed Area" accordion box.'
