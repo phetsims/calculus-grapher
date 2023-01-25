@@ -25,7 +25,7 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, PathOptions, RectangleOptions, TColor, Text } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, PathOptions, RectangleOptions, TColor, Text, VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
@@ -140,7 +140,7 @@ export default class GraphNode extends Node {
       } );
 
     this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
-    
+
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveVisibleProperty' )
     } );
@@ -202,19 +202,18 @@ export default class GraphNode extends Node {
       combineOptions<EyeToggleButtonOptions>( {
         baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
           visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
-        bottom: chartRectangle.bottom,
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
 
     // Zoom button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        centerY: chartRectangle.centerY,
-        right: eyeToggleButton.right,
         tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
 
-    const buttonSetNode = new Node( {
+    const buttonSetNode = new VBox( {
+      align: 'right',
+      // spacing is handled in chartRectangle.boundsProperty listener below
       children: [
         zoomButtonGroup,
         eyeToggleButton
@@ -224,10 +223,14 @@ export default class GraphNode extends Node {
     // Adjust layout if the chartRectangle is resized.
     chartRectangle.boundsProperty.link( () => {
       this.curveLayer.clipArea = chartRectangle.getShape();
-      eyeToggleButton.bottom = chartRectangle.bottom;
-      zoomButtonGroup.centerY = chartRectangle.centerY;
+
+      // label in upper-left corner of chartRectangle
       labelNode.left = chartRectangle.left + CalculusGrapherConstants.GRAPH_X_MARGIN;
       labelNode.top = chartRectangle.top + CalculusGrapherConstants.GRAPH_Y_MARGIN;
+
+      // buttons bottom aligned with chartRectangle
+      buttonSetNode.bottom = chartRectangle.bottom;
+      buttonSetNode.spacing = ( chartRectangle.height / 2 ) - eyeToggleButton.height - zoomButtonGroup.height / 2;
     } );
 
     // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
@@ -283,7 +286,7 @@ export default class GraphNode extends Node {
 
       // create and add a new vertical tick label set with the appropriate label spacing
       yTickLabelSet = this.getVerticalTickLabelSet( multiplicativeFactor *
-                                                           CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
+                                                    CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
       ticksParent.addChild( yTickLabelSet );
     } );
   }
