@@ -132,6 +132,26 @@ export default class GraphNode extends Node {
       this.chartTransform.setViewHeight( height );
     } );
 
+    // zoom level
+    this.zoomLevelProperty = new NumberProperty(
+      CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue, {
+        range: CalculusGrapherConstants.ZOOM_LEVEL_RANGE,
+        tandem: options.tandem.createTandem( 'zoomLevelProperty' )
+      } );
+
+    this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
+    
+    this.curveLayerVisibleProperty = new BooleanProperty( true, {
+      tandem: options.tandem.createTandem( 'curveVisibleProperty' )
+    } );
+
+    this.curveLayer = new Node( {
+      children: [ this.curveNode ],
+      visibleProperty: this.curveLayerVisibleProperty
+    } );
+
+    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
+
     // grid lines
     const horizontalGridLines = new GridLineSet( this.chartTransform,
       Orientation.HORIZONTAL,
@@ -141,37 +161,43 @@ export default class GraphNode extends Node {
       Orientation.VERTICAL,
       CalculusGrapherConstants.NOMINAL_GRID_LINE_SPACING,
       options.gridLineSetOptions );
-
-    // Axes nodes are clipped in the chart
-    const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
-    const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
-
     const gridNode = new Node( {
       children: [ horizontalGridLines, verticalGridLines ],
       visibleProperty: gridVisibleProperty
     } );
 
-    // zoom level
-    this.zoomLevelProperty = new NumberProperty(
-      CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue, {
-        range: CalculusGrapherConstants.ZOOM_LEVEL_RANGE,
-        tandem: options.tandem.createTandem( 'zoomLevelProperty' )
+    // Axes nodes are clipped in the chart
+    const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
+    const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
+
+    // x-axis tick marks and labels
+    const xSkipCoordinates = [ 0 ];
+    const xTickMarkSet = new TickMarkSet( this.chartTransform,
+      Orientation.HORIZONTAL,
+      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_MARK_SPACING, {
+        skipCoordinates: xSkipCoordinates
+      } );
+    const xTickLabelSet = new TickLabelSet( this.chartTransform,
+      Orientation.HORIZONTAL,
+      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_LABEL_SPACING, {
+        skipCoordinates: xSkipCoordinates,
+        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
       } );
 
-    this.curveLayerVisibleProperty = new BooleanProperty( true,
-      { tandem: options.tandem.createTandem( 'curveVisibleProperty' ) } );
+    // y-axis tick marks and labels
+    const yTickMarkSet = new TickMarkSet( this.chartTransform,
+      Orientation.VERTICAL,
+      CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING, {
+        value: CalculusGrapherConstants.CURVE_X_RANGE.min
+      } );
+    let yTickLabelSet = this.getVerticalTickLabelSet( CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
 
-    this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
-
-    this.curveLayer = new Node( {
-      children: [ this.curveNode ],
-      visibleProperty: this.curveLayerVisibleProperty
+    const ticksParent = new Node( {
+      children: [ xTickLabelSet, xTickMarkSet, yTickMarkSet, yTickLabelSet ],
+      visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     } );
 
-    // chart Rectangle for the graph
-    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
-
-    // create eye toggle button that controls the visibility of the curve
+    // Create toggle button that controls the visibility of this.curveLayer.
     const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty,
       combineOptions<EyeToggleButtonOptions>( {
         baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
@@ -180,13 +206,20 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'eyeToggleButton' )
       }, options.eyeToggleButtonOptions ) );
 
-    // zoom Button to the center left of the graph
+    // Zoom button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
         centerY: chartRectangle.centerY,
         right: eyeToggleButton.right,
         tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
+
+    const buttonSetNode = new Node( {
+      children: [
+        zoomButtonGroup,
+        eyeToggleButton
+      ]
+    } );
 
     // Adjust layout if the chartRectangle is resized.
     chartRectangle.boundsProperty.link( () => {
@@ -197,60 +230,20 @@ export default class GraphNode extends Node {
       labelNode.top = chartRectangle.top + CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
-    // create horizontal numerical labels for ticks
-    const horizontalTickLabelSet = new TickLabelSet( this.chartTransform,
-      Orientation.HORIZONTAL,
-      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_LABEL_SPACING, {
-        skipCoordinates: [ 0 ],
-        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
-      } );
-
-    // create vertical numerical labels for ticks
-    let verticalTickLabelSet = this.getVerticalTickLabelSet( CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
-
-    // create horizontal and vertical mark ticks
-    const horizontalTickMarkSet = new TickMarkSet( this.chartTransform,
-      Orientation.HORIZONTAL,
-      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_MARK_SPACING, {
-        skipCoordinates: [ 0 ]
-      } );
-    const verticalTickMarkSet = new TickMarkSet( this.chartTransform,
-      Orientation.VERTICAL,
-      CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING, {
-        value: CalculusGrapherConstants.CURVE_X_RANGE.min
-      } );
-
-    // factor associated with conversion between model and view along horizontal.
-    const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
-                              this.chartTransform.viewWidth;
-
-    const tickSetNode = new Node( {
-      children: [
-        horizontalTickLabelSet,
-        horizontalTickMarkSet,
-        verticalTickMarkSet,
-        verticalTickLabelSet
-      ],
-      visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
-    } );
-
-    const buttonSetNode = new Node( {
-      children: [
-        zoomButtonGroup,
-        eyeToggleButton
-      ]
-    } );
-
     this.setChildren( [
       chartRectangle,
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
-      tickSetNode,
+      ticksParent,
       buttonSetNode,
       labelNode,
       this.curveLayer
     ] );
+
+    // factor associated with conversion between model and view along horizontal.
+    const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
+                              this.chartTransform.viewWidth;
 
     // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
     const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
@@ -275,23 +268,22 @@ export default class GraphNode extends Node {
       this.chartTransform.setModelYRange( new Range( -maxY, maxY ) );
 
       // change the vertical spacing of the ticks such that there are a constant number of them
-      verticalTickMarkSet.setSpacing( multiplicativeFactor * CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING );
+      yTickMarkSet.setSpacing( multiplicativeFactor * CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING );
 
-      // remove previous verticalTickLabelSet and dispose of it
-      tickSetNode.removeChild( verticalTickLabelSet );
-      verticalTickLabelSet.dispose();
+      // remove previous yTickLabelSet and dispose of it
+      ticksParent.removeChild( yTickLabelSet );
+      yTickLabelSet.dispose();
 
       // create and add a new vertical tick label set with the appropriate label spacing
-      verticalTickLabelSet = this.getVerticalTickLabelSet( multiplicativeFactor *
+      yTickLabelSet = this.getVerticalTickLabelSet( multiplicativeFactor *
                                                            CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
-      tickSetNode.addChild( verticalTickLabelSet );
-
+      ticksParent.addChild( yTickLabelSet );
     } );
 
     // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
     // the chartRectangle, without a gap when the ticks are invisible.
-    tickSetNode.visibleProperty.link( visible => {
-      const rightNode = visible ? tickSetNode : chartRectangle;
+    ticksParent.visibleProperty.link( visible => {
+      const rightNode = visible ? ticksParent : chartRectangle;
       buttonSetNode.right = rightNode.left - 10;
     } );
   }
