@@ -115,8 +115,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'graphsNode' )
       } );
 
+    // Put control panel in the negative space to the right of graphsNode, top-aligned with graphsNode.y.
     rightVBox.boundsProperty.link( () => {
-      rightVBox.right = this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_X_MARGIN;
+      rightVBox.centerX = this.layoutBounds.right - ( this.layoutBounds.right - this.graphsNode.right ) / 2;
       rightVBox.top = this.graphsNode.y;
     } );
 
