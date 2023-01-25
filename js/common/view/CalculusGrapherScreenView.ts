@@ -22,6 +22,10 @@ import { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import { Node, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+
+const X_MARGIN = 25;
+const Y_MARGIN = 10;
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -32,6 +36,10 @@ type SelfOptions = {
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class CalculusGrapherScreenView extends ScreenView {
+
+  // Layout anywhere inside these bounds guarantees that you won't impinge on the ScreenView margins.
+  // The name is analogous to the 'Safe Area' in broadcast TV, see https://en.wikipedia.org/wiki/Safe_area_(television)
+  protected readonly safeLayoutBounds: Bounds2;
 
   protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
@@ -61,6 +69,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
                       ( options.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
       'If > 1 graphSets, then there must be a radio button item for each graphSet' );
 
+    this.safeLayoutBounds = this.layoutBounds.erodedXY( X_MARGIN, Y_MARGIN );
+
     this.model = model;
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ] );
@@ -75,7 +85,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     );
 
     const resetAllButton = new ResetAllButton( {
-      rightBottom: this.layoutBounds.rightBottom.minusXY( 10, 10 ),
+      rightBottom: this.safeLayoutBounds.rightBottom,
       listener: () => this.reset(),
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
@@ -112,7 +122,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
 
     rightVBox.boundsProperty.link( () => {
-      rightVBox.right = this.layoutBounds.right - 10;
+      rightVBox.right = this.safeLayoutBounds.right;
       rightVBox.top = this.graphsNode.y;
     } );
 
@@ -123,12 +133,16 @@ export default class CalculusGrapherScreenView extends ScreenView {
     ];
 
     if ( options.graphSetRadioButtonGroupItems.length > 0 ) {
-      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
-        options.graphSetRadioButtonGroupItems, {
-          leftCenter: this.layoutBounds.leftCenter.addXY( 30, 0 ),
-          tandem: options.tandem.createTandem( 'graphSetRadioButtonGroup' )
-        } );
+      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty, options.graphSetRadioButtonGroupItems, {
+        tandem: options.tandem.createTandem( 'graphSetRadioButtonGroup' )
+      } );
       children.push( graphSetRadioButtonGroup );
+
+      // Center in the negative space to the left of graphNode.
+      this.graphsNode.boundsProperty.link( () => {
+        graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
+        graphSetRadioButtonGroup.centerY = this.graphsNode.centerY;
+      } );
     }
 
     // Instead of adding children directly to the ScreenView, add them to a parent Node, so that we can set

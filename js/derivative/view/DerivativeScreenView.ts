@@ -41,12 +41,16 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
     // The accordion box titled 'Slope Of Tangent'
     const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentScrubber, {
-      top: this.graphsNode.y,
-      left: 10,
       visibleProperty: this.visibleProperties.tangentVisibleProperty,
       tandem: options.tandem.createTandem( 'slopeOfTangentAccordionBox' )
     } );
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
+
+    // Center slopeOfTangentAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
+    this.graphsNode.boundsProperty.link( () => {
+      slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
+      slopeOfTangentAccordionBox.top = this.graphsNode.y;
+    } );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.
     const tangentCheckbox = new Checkbox( model.tangentScrubber.visibleProperty,

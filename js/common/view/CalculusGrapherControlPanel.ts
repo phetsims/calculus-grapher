@@ -46,7 +46,9 @@ export default class CalculusGrapherControlPanel extends Panel {
       // PanelOptions
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty,
-      cornerRadius: CalculusGrapherConstants.CORNER_RADIUS
+      cornerRadius: CalculusGrapherConstants.CORNER_RADIUS,
+      xMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
+      yMargin: CalculusGrapherConstants.PANEL_Y_MARGIN
 
     }, providedOptions );
 

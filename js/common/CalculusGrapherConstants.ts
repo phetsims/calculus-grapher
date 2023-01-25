@@ -91,6 +91,8 @@ const CalculusGrapherConstants = {
 
   // for Panels and AccordionBoxes
   CORNER_RADIUS: 5,
+  PANEL_X_MARGIN: 8,
+  PANEL_Y_MARGIN: 5,
 
   // PhET-iO ONLY constants
   NUMBER_OF_VERTICAL_LINES: 6,

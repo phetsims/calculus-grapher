@@ -121,14 +121,16 @@ export default class GraphNodes extends Node {
       // Layout
       content[ 0 ].x = 0;
       content[ 0 ].y = 0;
-      const spacingBetweenGraphs = 20 / content.length + 10; // arbitrary values
+      const ySpacing = ( graphSet.length < 3 ) ? 20 : 10; // more graphs requires less spacing
       for ( let i = 1; i < content.length; i++ ) {
         content[ i ].x = content[ i - 1 ].x;
-        content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + spacingBetweenGraphs;
+        content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + ySpacing;
       }
 
-      // Resize vertical ReferenceLineNode - a bit more at the bottom so that the drag handle does not overlap scrubber.
-      referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + 2 );
+      // Resize vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,
+      // so that the drag handle does not overlap scrubber.
+      const yOffset = ( content[ content.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
+      referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + yOffset );
 
       // Resize vertical VerticalLineNodes - same extent at top and bottom.
       verticalLineNodes.forEach( verticalLineNode => {

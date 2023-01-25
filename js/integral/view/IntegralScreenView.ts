@@ -41,12 +41,16 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
     // The accordion box titled 'Net Signed Area'
     const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveScrubber, {
-      top: this.graphsNode.y + this.graphsNode.originalGraphNode.y,
-      left: 10,
       visibleProperty: this.visibleProperties.areaUnderCurveVisibleProperty,
       tandem: options.tandem.createTandem( 'netSignedAreaAccordionBox' )
     } );
     this.screenViewRootNode.addChild( netSignedAreaAccordionBox );
+
+    // Center netSignedAreaAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
+    this.graphsNode.boundsProperty.link( () => {
+      netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
+      netSignedAreaAccordionBox.top = this.graphsNode.y;
+    } );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
     const areaUnderCurveCheckbox = new Checkbox( model.areaUnderCurveScrubber.visibleProperty,

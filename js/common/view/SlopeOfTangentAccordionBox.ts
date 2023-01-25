@@ -11,7 +11,6 @@
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { NodeTranslationOptions } from '../../../../scenery/js/imports.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
@@ -20,7 +19,7 @@ import TangentScrubber from '../model/TangentScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type SlopeOfTangentAccordionBoxOptions = SelfOptions & NodeTranslationOptions &
+type SlopeOfTangentAccordionBoxOptions = SelfOptions &
   PickRequired<BarometerAccordionBoxOptions, 'visibleProperty' | 'tandem'>;
 
 export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {

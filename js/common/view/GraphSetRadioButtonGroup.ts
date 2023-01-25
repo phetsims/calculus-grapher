@@ -16,10 +16,11 @@ import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioB
 import { AlignGroup } from '../../../../scenery/js/imports.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type GraphSetRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+type GraphSetRadioButtonGroupOptions = SelfOptions & PickRequired<RectangularRadioButtonGroupOptions, 'tandem'>;
 
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 

@@ -61,8 +61,14 @@ export default class BarometerAccordionBox extends AccordionBox {
       fill: CalculusGrapherColors.panelFillProperty,
       resize: true,
       titleAlignX: 'left',
-      cornerRadius: CalculusGrapherConstants.CORNER_RADIUS
-
+      cornerRadius: CalculusGrapherConstants.CORNER_RADIUS,
+      contentXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
+      contentYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
+      buttonXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
+      buttonYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
+      titleXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
+      titleYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
+      titleXSpacing: 10
     }, providedOptions );
 
     const orientation = Orientation.VERTICAL;
