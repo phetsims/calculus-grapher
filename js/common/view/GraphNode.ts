@@ -229,7 +229,8 @@ export default class GraphNode extends Node {
         horizontalTickMarkSet,
         verticalTickMarkSet,
         verticalTickLabelSet
-      ]
+      ],
+      visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     } );
 
     const buttonSetNode = new Node( {
@@ -286,11 +287,10 @@ export default class GraphNode extends Node {
 
     } );
 
-    CalculusGrapherPreferences.valuesVisibleProperty.link( valuesVisible => {
-        tickSetNode.visible = valuesVisible;
-
-        // find object immediately to the right of the buttons
-        const rightNode = tickSetNode.visible ? tickSetNode : chartRectangle;
+    // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
+    // the chartRectangle, without a gap when the ticks are invisible.
+    tickSetNode.visibleProperty.link( visible => {
+        const rightNode = visible ? tickSetNode : chartRectangle;
         buttonSetNode.right = rightNode.left - 10;
       }
     );
