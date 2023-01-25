@@ -180,7 +180,6 @@ export default class OriginalGraphNode extends GraphNode {
       tandem: this.tandem.createTandem( 'tangentArrowNode' )
     } );
     this.curveLayer.addChild( tangentArrowNode );
-    tangentArrowNode.moveBackward();
     return tangentArrowNode;
   }
 
