@@ -84,7 +84,8 @@ export default class OriginalGraphNode extends GraphNode {
           stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
         },
         plusMinusZoomButtonGroupOptions: {
-          visible: false
+          visible: false,
+          phetioVisiblePropertyInstrumented: false
         },
         labelNode: labelNode
       },
