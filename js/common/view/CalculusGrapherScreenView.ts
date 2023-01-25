@@ -103,6 +103,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
       checkboxOptions: {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
       },
+      layoutOptions: {
+        xMargin: CalculusGrapherConstants.PANEL_X_MARGIN
+      },
       tandem: options.tandem.createTandem( 'checkboxGroup' )
     } );
 
