@@ -8,18 +8,11 @@
 
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
-import { ArrowNodeOptions } from '../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 import { Text } from '../../../scenery/js/imports.js';
 
 const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
-const CUEING_ARROW_NODE_OPTIONS: ArrowNodeOptions = {
-  headWidth: 25,
-  headHeight: 21,
-  tailWidth: 12,
-  fractionalHeadHeight: 0.5
-};
 
 // CAREFUL: Although there was a deliberate effort to scale other quantities based on
 // CURVE_X_RANGE, changing the CURVE_X_RANGE should lead to changes for the tick labels and tick marks spacing as well
@@ -78,10 +71,6 @@ const CalculusGrapherConstants = {
 
   // zoom level ranges - 5 levels:  3 zoom out and 2 zoom in
   ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 6, 4 ),
-
-  // arrow
-  ARROW_LENGTH: 50,
-  CUEING_ARROW_NODE_OPTIONS: CUEING_ARROW_NODE_OPTIONS,
 
   // maximum of undo actions (See https://github.com/phetsims/calculus-grapher/issues/64)
   MAX_UNDO: 20,
