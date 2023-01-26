@@ -70,6 +70,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly labeledPoints: LabeledPoint[];
+  public readonly labeledPointsLinkableElement: PhetioObject;
   public readonly verticalLines: VerticalLine[];
   public readonly verticalLinesLinkableElement: PhetioObject;
 
@@ -136,19 +137,30 @@ export default class CalculusGrapherModel implements TModel {
         tandem: options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
       } );
 
+    // This exists so that we have something we can link to from the view.
+    // See https://github.com/phetsims/calculus-grapher/issues/198
+    this.labeledPointsLinkableElement = new PhetioObject( {
+      tandem: toolsTandem.createTandem( 'labeledPoints' ),
+      phetioState: false
+    } );
+
+    // LabeledPoint instances, will appear to be children of 'labeledPoints' in the Studio tree.
     this.labeledPoints = LabeledPoint.createLabeledPoints(
       CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      toolsTandem.createTandem( 'labeledPoints' ) );
+      this.labeledPointsLinkableElement.tandem );
 
-    const verticalLinesTandem = toolsTandem.createTandem( 'verticalLines' );
+    // This exists so that we have something we can link to from the view.
+    // See https://github.com/phetsims/calculus-grapher/issues/198
     this.verticalLinesLinkableElement = new PhetioObject( {
-      tandem: verticalLinesTandem,
+      tandem: toolsTandem.createTandem( 'verticalLines' ),
       phetioState: false
     } );
+
+    // VerticalLine instances, will appear to be children of 'verticalLines' in the Studio tree.
     this.verticalLines = VerticalLine.createVerticalLines(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
       this.integralCurve,

@@ -93,7 +93,7 @@ export default class GraphNodes extends Node {
       tandem: options.tandem.createTandem( 'referenceLineNode' )
     } );
 
-    // parent for VerticalLineNode instances
+    // Vertical lines
     const verticalLinesNode = new VerticalLinesNode( model.verticalLines, model.verticalLinesLinkableElement,
       this.originalGraphNode.chartTransform, options.tandem.createTandem( 'verticalLinesNode' ) );
 

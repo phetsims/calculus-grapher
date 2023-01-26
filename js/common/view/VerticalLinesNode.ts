@@ -29,7 +29,6 @@ export default class VerticalLinesNode extends Node {
         tandem: Tandem.OPT_OUT // see https://github.com/phetsims/calculus-grapher/issues/198
       } ) );
 
-    // parent Node
     super( {
       children: verticalLineNodes,
       tandem: tandem,

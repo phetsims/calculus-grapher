@@ -15,7 +15,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { HBox, Node, TColor, Text } from '../../../../scenery/js/imports.js';
+import { HBox, TColor, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -24,7 +24,6 @@ import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import LabeledPointNode from './LabeledPointNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import TangentArrowNode from './TangentArrowNode.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
@@ -34,6 +33,7 @@ import ScrubberNode from './ScrubberNode.js';
 import GraphType from '../model/GraphType.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
+import LabeledPointsNode from './LabeledPointsNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -125,17 +125,11 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Labeled points
-    const labeledPointsTandem = options.tandem.createTandem( 'labeledPoints' );
-    const labeledPointNodes = model.labeledPoints.map( labeledPoint =>
-      new LabeledPointNode( labeledPoint, this.chartTransform, model.predictModeEnabledProperty, this.curveLayerVisibleProperty, {
-        tandem: labeledPointsTandem.createTandem( `${labeledPoint.labelProperty.value}PointNode` )
-      } ) );
-
-    // Put LabeledPointNodes in their own layer, so they will not be clipped at x min/max.
-    const labeledPointsLayer = new Node( {
-      children: labeledPointNodes
-    } );
-    this.addChild( labeledPointsLayer );
+    const labeledPointsNode = new LabeledPointsNode( model.labeledPoints, model.labeledPointsLinkableElement,
+      this.chartTransform, model.predictModeEnabledProperty, this.curveLayerVisibleProperty,
+      options.tandem.createTandem( 'labeledPointsNode' )
+    );
+    this.addChild( labeledPointsNode );
   }
 
   public override reset(): void {
