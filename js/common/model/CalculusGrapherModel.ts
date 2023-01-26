@@ -70,8 +70,11 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly labeledPoints: LabeledPoint[];
-  public readonly labeledPointsLinkableElement: PhetioObject;
   public readonly verticalLines: VerticalLine[];
+
+  // These exist so that we have something to link to from the view.
+  // See https://github.com/phetsims/calculus-grapher/issues/198
+  public readonly labeledPointsLinkableElement: PhetioObject;
   public readonly verticalLinesLinkableElement: PhetioObject;
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
