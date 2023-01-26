@@ -6,10 +6,10 @@
  * @author Martin Veillette
  */
 
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { Color, Line, LineOptions, Node, RichText, Text, TextOptions } from '../../../../scenery/js/imports.js';
+import { Color, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
@@ -23,12 +23,11 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
+const TICK_MARK_EXTENT = 20;
+
 type SelfOptions = {
   barometerStrokeProperty: TReadOnlyProperty<Color>;
-  lineOptions?: StrictOmit<LineOptions, 'stroke'>;
-  textOptions?: TextOptions;
   chartTransformOptions?: ChartTransformOptions;
-  tickMarkSetExtent?: number;
   numberOfTicks?: number;
 };
 
@@ -43,17 +42,9 @@ export default class BarometerAccordionBox extends AccordionBox {
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
       // SelfOptions
-      lineOptions: {
-        lineWidth: 10
-      },
-      textOptions: {
-        font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
-        maxWidth: 100 // determined empirically
-      },
       chartTransformOptions: {
         viewHeight: 175
       },
-      tickMarkSetExtent: 20,
       numberOfTicks: 5,
 
       // AccordionBoxOptions
@@ -76,7 +67,10 @@ export default class BarometerAccordionBox extends AccordionBox {
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
     //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
-    const titleNode = new RichText( labelString, options.textOptions );
+    const titleNode = new RichText( labelString, {
+      font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
+      maxWidth: 100 // determined empirically
+    } );
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
@@ -84,18 +78,18 @@ export default class BarometerAccordionBox extends AccordionBox {
       options.chartTransformOptions.modelYRange!.getLength() / ( options.numberOfTicks - 1 ), 0 );
 
     const majorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing, {
-      extent: options.tickMarkSetExtent
+      extent: TICK_MARK_EXTENT
     } );
 
     const minorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing / 4, {
-      extent: options.tickMarkSetExtent / 2,
+      extent: TICK_MARK_EXTENT / 2,
       stroke: 'gray',
       lineWidth: 0.5
     } );
 
     const tickLabelSet = new TickLabelSet( chartTransform, orientation, tickSpacing, {
       createLabel: ( value: number ) => new Text( value, { font: CalculusGrapherConstants.ACCORDION_BOX_VALUE_FONT } ),
-      extent: options.tickMarkSetExtent
+      extent: TICK_MARK_EXTENT
     } );
 
     const quantitativeLayer = new Node( {
@@ -104,10 +98,12 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
 
     function createLabelText( string: string, yPosition: number ): Node {
-      return new Text( string, combineOptions<TextOptions>( {
-        right: zeroX - options.tickMarkSetExtent / 2 - 10,
+      return new Text( string, {
+        font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
+        maxWidth: 50, // determined empirically
+        right: zeroX - TICK_MARK_EXTENT / 2 - 10,
         centerY: yPosition
-      }, options.textOptions ) );
+      } );
     }
 
     const viewHeight = options.chartTransformOptions.viewHeight!;
@@ -122,35 +118,33 @@ export default class BarometerAccordionBox extends AccordionBox {
       ]
     } );
 
-    const zeroTickMark = new Line( zeroX - options.tickMarkSetExtent / 2, zeroY,
-      zeroX + options.tickMarkSetExtent / 2, zeroY, {
-        stroke: 'black',
-        lineWidth: 1
-      } );
+    const zeroTickMark = new Line( zeroX - TICK_MARK_EXTENT / 2, zeroY, zeroX + TICK_MARK_EXTENT / 2, zeroY, {
+      stroke: 'black',
+      lineWidth: 1
+    } );
 
     const qualitativeLayer = new Node( {
       children: [ qualitativeLabels, zeroTickMark ],
       visibleProperty: DerivedProperty.not( CalculusGrapherPreferences.valuesVisibleProperty )
     } );
 
-    const barRectangle = new Line(
-      combineOptions<LineOptions>( {
-          y1: chartTransform.modelToViewY( 0 ),
-          y2: chartTransform.modelToViewY( valueProperty.value ),
-          left: axisLine.right,
-          stroke: options.barometerStrokeProperty
-        },
-        options.lineOptions ) );
+    const barRectangle = new Line( {
+      y1: chartTransform.modelToViewY( 0 ),
+      y2: chartTransform.modelToViewY( valueProperty.value ),
+      left: axisLine.right,
+      stroke: options.barometerStrokeProperty,
+      lineWidth: 10
+    } );
 
-    const barometerNode = new Node(
-      { children: [ axisLine, quantitativeLayer, qualitativeLayer, barRectangle ] } );
+    const barometerNode = new Node( {
+      children: [ axisLine, quantitativeLayer, qualitativeLayer, barRectangle ]
+    } );
 
     options.titleNode = titleNode;
 
     super( barometerNode, options );
 
     const yRange = options.chartTransformOptions.modelYRange!;
-
     valueProperty.link( value => {
       const clampedValue = Utils.clamp( value, yRange.min, yRange.max );
       barRectangle.y2 = chartTransform.modelToViewY( clampedValue );
