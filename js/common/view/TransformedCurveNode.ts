@@ -137,8 +137,8 @@ export default class TransformedCurveNode extends CurveNode {
   public override setPointerAreas(): void {
 
     // create a dilated shape based on the continuous line plot shape
-    const lineWidth = new LineStyles( { lineWidth: 10 } );
-    const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( lineWidth );
+    const lineStyles = new LineStyles( { lineWidth: 10 } );
+    const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( lineStyles );
 
     this.continuousLinePlot.touchArea = dilatedCurveShape;
     this.continuousLinePlot.mouseArea = dilatedCurveShape;
