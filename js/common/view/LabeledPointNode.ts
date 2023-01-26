@@ -54,6 +54,7 @@ export default class LabeledPointNode extends Node {
     const text = new Text( labeledPoint.labelProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       maxWidth: 50
+      // no PhET-iO instrumentation
     } );
 
     const labelNode = new BackgroundNode( text, {

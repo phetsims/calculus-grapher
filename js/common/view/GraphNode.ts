@@ -189,7 +189,10 @@ export default class GraphNode extends Node {
     } );
     const xTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, MAJOR_GRID_LINE_SPACING, {
       skipCoordinates: xSkipCoordinates,
-      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
+      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), {
+        font: CalculusGrapherConstants.TICK_LABEL_FONT
+        // no PhET-iO instrumentation
+      } )
     } );
 
     // y-axis tick marks and labels
@@ -318,6 +321,7 @@ function createYTickLabelSet( spacing: number, chartTransform: ChartTransform ):
       const valueString = ( value === 0 ) ? '0' : Utils.toFixed( value, decimalPlaces );
       return new Text( valueString, {
         font: CalculusGrapherConstants.TICK_LABEL_FONT
+        // no PhET-iO instrumentation
       } );
     },
 
