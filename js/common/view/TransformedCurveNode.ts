@@ -26,6 +26,9 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 
+// For use with Shape getStrokedShape
+const LINE_STYLES = new LineStyles( { lineWidth: 10 } );
+
 type SelfOptions = EmptySelfOptions;
 
 type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
@@ -134,13 +137,12 @@ export default class TransformedCurveNode extends CurveNode {
   }
 
   /**
-   * Sets the touch/mouse area of the drag Handler
+   * Sets the pointer areas for manipulating the curve.
    */
   public override setPointerAreas(): void {
 
     // create a dilated shape based on the continuous line plot shape
-    const lineStyles = new LineStyles( { lineWidth: 10 } );
-    const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( lineStyles );
+    const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( LINE_STYLES );
 
     this.continuousLinePlot.touchArea = dilatedCurveShape;
     this.continuousLinePlot.mouseArea = dilatedCurveShape;
