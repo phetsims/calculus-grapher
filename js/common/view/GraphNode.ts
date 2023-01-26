@@ -25,7 +25,7 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, PathOptions, RectangleOptions, TColor, Text, VBox } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, RectangleOptions, TColor, Text, VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
@@ -48,8 +48,35 @@ import GraphType from '../model/GraphType.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
+const MAJOR_GRID_LINE_SPACING = 1;
+const MINOR_GRID_LINE_SPACING = 0.25;
+const MAJOR_GRID_LINE_OPTIONS = {
+  stroke: CalculusGrapherColors.majorGridlinesStrokeProperty
+};
+const MINOR_GRID_LINE_OPTIONS = {
+  stroke: CalculusGrapherColors.minorGridlinesStrokeProperty,
+  lineWidth: 0.5
+};
+
+// Lookup table for zoomLevelProperty
+type ZoomInfo = {
+  max: number; // axis range will be [-max,max], in model coordinates
+  tickSpacing: number; // tick spacing in model coordinates
+};
+const Y_ZOOM_INFO: ZoomInfo[] = [
+  { max: 20, tickSpacing: 10 },
+  { max: 10, tickSpacing: 5 },
+  { max: 4, tickSpacing: 2 },
+  { max: 2, tickSpacing: 1 },
+  { max: 1, tickSpacing: 0.5 },
+  { max: 0.5, tickSpacing: 0.25 }
+];
+assert && assert( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoomInfo.max ),
+  'tickSpacing must be <= max' );
+assert && assert( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
+  ( index === 0 || Y_ZOOM_INFO[ index - 1 ].max > zoomInfo.max ) ), 'must be sorted by descending max' );
+
 type SelfOptions = {
-  gridLineSetOptions?: PathOptions;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
   createCurveNode?: ( chartTransform: ChartTransform,
@@ -76,7 +103,7 @@ export default class GraphNode extends Node {
   // Visibility of curveLayer
   protected readonly curveLayerVisibleProperty: BooleanProperty;
 
-  protected readonly zoomLevelProperty: NumberProperty;
+  protected readonly yZoomLevelProperty: NumberProperty;
 
   public readonly chartTransform: ChartTransform;
 
@@ -91,9 +118,6 @@ export default class GraphNode extends Node {
       // SelfOptions
       createCurveNode: ( chartTransform: ChartTransform,
                          providedOptions?: CurveNodeOptions ) => new CurveNode( curve, chartTransform, providedOptions ),
-      gridLineSetOptions: {
-        stroke: CalculusGrapherColors.gridlinesStrokeProperty
-      },
       chartRectangleOptions: {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
@@ -129,11 +153,10 @@ export default class GraphNode extends Node {
     } );
 
     // zoom level
-    this.zoomLevelProperty = new NumberProperty(
-      CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue, {
-        range: CalculusGrapherConstants.ZOOM_LEVEL_RANGE,
-        tandem: options.tandem.createTandem( 'zoomLevelProperty' )
-      } );
+    this.yZoomLevelProperty = new NumberProperty( 3, {
+      range: new Range( 0, Y_ZOOM_INFO.length - 1 ),
+      tandem: options.tandem.createTandem( 'yZoomLevelProperty' )
+    } );
 
     this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
 
@@ -148,17 +171,13 @@ export default class GraphNode extends Node {
 
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
-    // grid lines
-    const horizontalGridLines = new GridLineSet( this.chartTransform,
-      Orientation.HORIZONTAL,
-      CalculusGrapherConstants.NOMINAL_GRID_LINE_SPACING,
-      options.gridLineSetOptions );
-    const verticalGridLines = new GridLineSet( this.chartTransform,
-      Orientation.VERTICAL,
-      CalculusGrapherConstants.NOMINAL_GRID_LINE_SPACING,
-      options.gridLineSetOptions );
+    // Major and minor grid lines, minor behind major.
+    const xMajorGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, MAJOR_GRID_LINE_SPACING, MAJOR_GRID_LINE_OPTIONS );
+    const yMajorGridLines = new GridLineSet( this.chartTransform, Orientation.VERTICAL, MAJOR_GRID_LINE_SPACING, MAJOR_GRID_LINE_OPTIONS );
+    const xMinorGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, MINOR_GRID_LINE_SPACING, MINOR_GRID_LINE_OPTIONS );
+    const yMinorGridLines = new GridLineSet( this.chartTransform, Orientation.VERTICAL, MINOR_GRID_LINE_SPACING, MINOR_GRID_LINE_OPTIONS );
     const gridNode = new Node( {
-      children: [ horizontalGridLines, verticalGridLines ],
+      children: [ xMinorGridLines, yMinorGridLines, xMajorGridLines, yMajorGridLines ],
       visibleProperty: gridVisibleProperty
     } );
 
@@ -168,25 +187,19 @@ export default class GraphNode extends Node {
 
     // x-axis tick marks and labels
     const xSkipCoordinates = [ 0 ];
-    const xTickMarkSet = new TickMarkSet( this.chartTransform,
-      Orientation.HORIZONTAL,
-      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_MARK_SPACING, {
-        skipCoordinates: xSkipCoordinates
-      } );
-    const xTickLabelSet = new TickLabelSet( this.chartTransform,
-      Orientation.HORIZONTAL,
-      CalculusGrapherConstants.NOMINAL_HORIZONTAL_TICK_LABEL_SPACING, {
-        skipCoordinates: xSkipCoordinates,
-        createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
-      } );
+    const xTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.HORIZONTAL, MAJOR_GRID_LINE_SPACING, {
+      skipCoordinates: xSkipCoordinates
+    } );
+    const xTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, MAJOR_GRID_LINE_SPACING, {
+      skipCoordinates: xSkipCoordinates,
+      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } )
+    } );
 
     // y-axis tick marks and labels
-    const yTickMarkSet = new TickMarkSet( this.chartTransform,
-      Orientation.VERTICAL,
-      CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING, {
-        value: CalculusGrapherConstants.CURVE_X_RANGE.min
-      } );
-    let yTickLabelSet = this.getVerticalTickLabelSet( CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
+    const yTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, MAJOR_GRID_LINE_SPACING, {
+      value: CalculusGrapherConstants.CURVE_X_RANGE.min
+    } );
+    let yTickLabelSet = this.getVerticalTickLabelSet( MAJOR_GRID_LINE_SPACING );
 
     const ticksParent = new Node( {
       children: [ xTickLabelSet, xTickMarkSet, yTickMarkSet, yTickLabelSet ],
@@ -202,7 +215,7 @@ export default class GraphNode extends Node {
     } );
 
     // Zoom button to the center left of the graph
-    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.zoomLevelProperty,
+    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
         tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
@@ -247,43 +260,26 @@ export default class GraphNode extends Node {
       this.curveLayer
     ] );
 
-    // factor associated with conversion between model and view along horizontal.
-    const viewToModelFactor = this.chartTransform.getModelRange( Orientation.HORIZONTAL ).getLength() /
-                              this.chartTransform.viewWidth;
+    this.yZoomLevelProperty.link( zoomLevel => {
 
-    // maintain isometry between x and y, (factor 1/2 because the y range goes from -maxY to maxY).
-    const initialMaxY = 1 / 2 * viewToModelFactor * graphHeightProperty.value;
-
-    this.zoomLevelProperty.link( zoomLevel => {
-
-      // convert zoomLevel to a spacing value (between ticks).
-      // we want 'nice' spacing:  ..., 0.01, 0.02, 0.05, 0.10, 0.20, 0.5, 1, 2, 5, 10, 20, 50, 100, ....
-      const lookUpArray = [ 1, 2, 5 ];
-      const arrayLength = lookUpArray.length;
-      const zoomDefault = CalculusGrapherConstants.ZOOM_LEVEL_RANGE.defaultValue;
-      const zoomDifference = -zoomLevel + zoomDefault;
-      const zoomMultiples = Math.floor( zoomDifference / arrayLength ); // for multiples of 10
-      const zoomModulo = ( zoomDifference - zoomMultiples * arrayLength ) % arrayLength; // result will be 0, 1 or 2
-
-      // absolute multiplicative factor associated with zoom level: can be used to set y range and ticks
-      const multiplicativeFactor = Math.pow( 10, zoomMultiples ) * lookUpArray[ zoomModulo ];
-
-      const maxY = multiplicativeFactor * initialMaxY;
-
-      // set new y range
-      this.chartTransform.setModelYRange( new Range( -maxY, maxY ) );
-
-      // change the vertical spacing of the ticks such that there are a constant number of them
-      yTickMarkSet.setSpacing( multiplicativeFactor * CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_MARK_SPACING );
-
-      // remove previous yTickLabelSet and dispose of it
+      // Remove previous yTickLabelSet and dispose of it
       ticksParent.removeChild( yTickLabelSet );
       yTickLabelSet.dispose();
 
-      // create and add a new vertical tick label set with the appropriate label spacing
-      yTickLabelSet = this.getVerticalTickLabelSet( multiplicativeFactor *
-                                                    CalculusGrapherConstants.NOMINAL_VERTICAL_TICK_LABEL_SPACING );
+      // Look up the new y-axis range and tick spacing.
+      const maxY = Y_ZOOM_INFO[ zoomLevel ].max;
+      const tickSpacing = Y_ZOOM_INFO[ zoomLevel ].tickSpacing;
+
+      // Adjust the chartTransform
+      this.chartTransform.setModelYRange( new Range( -maxY, maxY ) );
+
+      // Change the vertical spacing of the tick marks and labels.
+      yTickMarkSet.setSpacing( tickSpacing );
+      yTickLabelSet = this.getVerticalTickLabelSet( tickSpacing );
       ticksParent.addChild( yTickLabelSet );
+
+      // Hide the y-axis minor grid lines if they get too close together.
+      yMinorGridLines.visible = ( Math.abs( this.chartTransform.modelToViewDeltaY( MINOR_GRID_LINE_SPACING ) ) > 5 );
     } );
   }
 
@@ -291,7 +287,7 @@ export default class GraphNode extends Node {
    * Reset all
    */
   public reset(): void {
-    this.zoomLevelProperty.reset();
+    this.yZoomLevelProperty.reset();
     this.curveLayerVisibleProperty.reset();
     this.curveNode.reset();
   }

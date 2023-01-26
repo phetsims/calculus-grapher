@@ -53,13 +53,6 @@ const CalculusGrapherConstants = {
   SLOPE_OF_TANGENT_MODEL_RANGE: new Range( -8, 8 ),
   NET_SIGNED_AREA_MODEL_RANGE: new Range( -0.8 * TYPICAL_AREA, 0.8 * TYPICAL_AREA ),
 
-  // spacing for gridlines and ticks for graphs (in model units)
-  NOMINAL_GRID_LINE_SPACING: 1,
-  NOMINAL_VERTICAL_TICK_MARK_SPACING: 1,
-  NOMINAL_VERTICAL_TICK_LABEL_SPACING: 1,
-  NOMINAL_HORIZONTAL_TICK_MARK_SPACING: 1,
-  NOMINAL_HORIZONTAL_TICK_LABEL_SPACING: 1,
-
   // width of curve (in the same unit as x-Range) for curve manipulations
   CURVE_MANIPULATION_WIDTH_RANGE: new RangeWithValue(
     0.1 * CURVE_X_LENGTH,
@@ -68,9 +61,6 @@ const CalculusGrapherConstants = {
 
   // model height associated with curveManipulationDisplay (in the same unit as x-Range)
   CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
-
-  // zoom level ranges - 5 levels:  3 zoom out and 2 zoom in
-  ZOOM_LEVEL_RANGE: new RangeWithValue( 1, 6, 4 ),
 
   // maximum of undo actions (See https://github.com/phetsims/calculus-grapher/issues/64)
   MAX_UNDO: 20,

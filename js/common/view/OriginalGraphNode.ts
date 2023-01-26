@@ -129,7 +129,7 @@ export default class OriginalGraphNode extends GraphNode {
       this.setCurvePointerAreas();
     } );
 
-    this.zoomLevelProperty.link( () => {
+    this.yZoomLevelProperty.link( () => {
 
       // TODO: find a way to update touch/mouse area without resorting to this: https://github.com/phetsims/calculus-grapher/issues/74
       this.setCurvePointerAreas();

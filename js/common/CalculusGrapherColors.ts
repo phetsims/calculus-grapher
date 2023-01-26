@@ -58,9 +58,14 @@ const CalculusGrapherColors = {
     default: 'rgba( 0, 0, 0, 0.4 )'
   } ),
 
-  // Stroke for the gridlines of graph
-  gridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'gridlinesStroke', {
-    default: 'lightgray'
+  // Stroke for the major gridlines of graph
+  majorGridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'majorGridlinesStroke', {
+    default: Color.grayColor( 192 )
+  } ),
+
+  // Stroke for the minor gridlines of graph
+  minorGridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'minorGridlinesStroke', {
+    default: Color.grayColor( 230 )
   } ),
 
   // Stroke for the original curve
