@@ -90,7 +90,9 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
 
     const tickLabelSet = new TickLabelSet( chartTransform, orientation, tickSpacing, {
-      createLabel: ( value: number ) => new Text( value, { font: CalculusGrapherConstants.ACCORDION_BOX_VALUE_FONT } ),
+      createLabel: ( value: number ) => new Text( value, {
+        font: CalculusGrapherConstants.ACCORDION_BOX_VALUE_FONT
+      } ),
       extent: TICK_MARK_EXTENT
     } );
 
@@ -99,24 +101,14 @@ export default class BarometerAccordionBox extends AccordionBox {
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     } );
 
-    function createLabelText( string: string, yPosition: number ): Node {
-      return new Text( string, {
-        font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
-        maxWidth: 50, // determined empirically
-        right: zeroX - TICK_MARK_EXTENT / 2 - 10,
-        centerY: yPosition
-      } );
-    }
-
-    const viewHeight = options.chartTransformOptions.viewHeight!;
-    const zeroY = chartTransform.modelToViewY( 0 );
     const zeroX = chartTransform.modelToViewX( 0 );
+    const zeroY = chartTransform.modelToViewY( 0 );
 
     const qualitativeLabels = new Node( {
       children: [
-        createLabelText( '+', 10 ),
-        createLabelText( '0', zeroY ),
-        createLabelText( '-', viewHeight - 10 )
+        createLabelText( '+', zeroX, 10 ),
+        createLabelText( '0', zeroX, zeroY ),
+        createLabelText( '-', zeroX, chartTransform.viewHeight - 10 )
       ]
     } );
 
@@ -153,4 +145,14 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
   }
 }
+
+function createLabelText( string: string, zeroX: number, yPosition: number ): Node {
+  return new Text( string, {
+    font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
+    maxWidth: 50, // determined empirically
+    right: zeroX - ( TICK_MARK_EXTENT / 2 ) - 10,
+    centerY: yPosition
+  } );
+}
+
 calculusGrapher.register( 'BarometerAccordionBox', BarometerAccordionBox );
