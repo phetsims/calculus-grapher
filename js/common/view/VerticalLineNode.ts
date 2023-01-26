@@ -41,6 +41,7 @@ export default class VerticalLineNode extends LineToolNode {
       font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
       maxWidth: 50,
       centerX: 0
+      // no PhET-iO instrumentation
     } );
 
     const labelNode = new BackgroundNode( text, {
