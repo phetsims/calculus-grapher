@@ -62,7 +62,7 @@ export default class OriginalGraphNode extends GraphNode {
         new Text( CalculusGrapherStrings.predictStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
-          visibleProperty: model.predictModeEnabledProperty
+          visibleProperty: model.predictModeEnabledProperty // show/hide 'Predict'
         } ),
         new GraphTypeLabelNode( GraphType.ORIGINAL )
       ],
