@@ -36,9 +36,10 @@ const CalculusGrapherConstants = {
   GRAPH_X_MARGIN: 15,
   GRAPH_Y_MARGIN: 10,
 
+  // width of all graphs, regardless of how many we have
   GRAPH_VIEW_WIDTH: 612,
 
-  // vertical height if we have a single graph, in view coordinates
+  // height if we have a single graph, in view coordinates
   SINGLE_GRAPH_HEIGHT: 490,
 
   // range for curve x-axis

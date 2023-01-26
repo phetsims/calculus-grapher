@@ -23,6 +23,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -77,7 +79,7 @@ export default class TransformedCurveNode extends CurveNode {
 
     this.continuousLinePlot.addInputListener( new DragListener( {
       tandem: options.tandem.createTandem( 'dragListener' ),
-      dragBoundsProperty: this.dragBoundsProperty,
+      dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
       applyOffset: false,
       start: () => {
 

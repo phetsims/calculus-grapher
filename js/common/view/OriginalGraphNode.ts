@@ -17,7 +17,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import { HBox, Node, TColor, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CurveNode, { CurveNodeOptions } from './CurveNode.js';
+import { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
@@ -42,7 +42,7 @@ type OriginalGraphNodeOptions = SelfOptions & StrictOmit<GraphNodeOptions, 'labe
 export default class OriginalGraphNode extends GraphNode {
 
   // node for the predict curve
-  private readonly predictCurveNode: CurveNode;
+  private readonly predictCurveNode: TransformedCurveNode;
 
   public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,

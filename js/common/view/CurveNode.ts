@@ -25,8 +25,6 @@ import ScatterPlot, { ScatterPlotOptions } from '../../../../bamboo/js/ScatterPl
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -61,7 +59,6 @@ export default class CurveNode extends Node {
   private readonly cuspsScatterPlot?: ScatterPlot;
 
   protected readonly curve: Curve;
-  public readonly dragBoundsProperty: Property<Bounds2>;
 
   public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) {
 
@@ -103,12 +100,6 @@ export default class CurveNode extends Node {
     super( options );
 
     this.curve = curve;
-
-    // the viewBounds of the associated graph to the curve
-    const graphViewBounds = new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight );
-
-    // create dragBounds based on the graph View
-    this.dragBoundsProperty = new Property( graphViewBounds );
 
     const allPointsScatterPlotDataSet = this.getAllPointsScatterPlotDataSet();
     const cuspsScatterPlotDataSet = this.getCuspsScatterPlotDataSet();
@@ -157,11 +148,9 @@ export default class CurveNode extends Node {
     }
   }
 
-  /**
-   * Reset all
-   */
   public reset(): void {
-    this.dragBoundsProperty.reset();
+    // GraphNode does not know what specific subclass of CurveNode it creates, so its necessary to have
+    // a reset method in the base class, even though it does nothing.
   }
 
   public updateCurveNode(): void {
