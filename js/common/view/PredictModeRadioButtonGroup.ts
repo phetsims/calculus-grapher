@@ -36,16 +36,12 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       radioButtonOptions: {
         baseColor: CalculusGrapherColors.panelFillProperty,
         xMargin: 10,
-        yMargin: 10
+        yMargin: 10,
+        phetioVisiblePropertyInstrumented: false
       }
     }, providedOptions );
 
     const originalCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
-
-    const predictText = new Text( CalculusGrapherStrings.predictStringProperty, {
-      font: CalculusGrapherConstants.CONTROL_FONT,
-      maxWidth: 50
-    } );
 
     // To give the labels the same effective size
     const alignGroup = new AlignGroup();
@@ -58,7 +54,14 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       },
       {
         value: true,
-        createNode: () => new LabelColorIcon( predictText, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty ),
+        createNode: tandem => {
+          const text = new Text( CalculusGrapherStrings.predictStringProperty, {
+            font: CalculusGrapherConstants.CONTROL_FONT,
+            maxWidth: 50,
+            tandem: tandem.createTandem( 'text' )
+          } );
+          return new LabelColorIcon( text, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty );
+        },
         tandemName: `predictCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
