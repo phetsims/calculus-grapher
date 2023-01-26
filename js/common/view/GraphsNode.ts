@@ -11,7 +11,6 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
@@ -61,9 +60,7 @@ export default class GraphNodes extends Node {
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
     // determine the (view) height of the graph based on the number of visible graphs.
-    const graphHeightProperty = new DerivedProperty( [ graphSetProperty ], graphSet =>
-      CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / graphSet.length
-    );
+    const graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / graphSetProperty.value.length;
 
     // the subset of graphTypes that should be instrumented
     const subsetGraphTypes = options.graphSets.flat();
@@ -72,7 +69,8 @@ export default class GraphNodes extends Node {
     function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
-      return new GraphNode( graphType, curve, gridVisibleProperty, graphHeightProperty, {
+      return new GraphNode( graphType, curve, gridVisibleProperty, {
+        graphHeight: graphHeight,
         tandem: subsetGraphTypes.includes( graphType ) ?
                 options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
                 Tandem.OPT_OUT
@@ -84,7 +82,8 @@ export default class GraphNodes extends Node {
     this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve );
 
     // originalGraphNode is always instrumented, because it should always be present.
-    this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, graphHeightProperty, {
+    this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
+      graphHeight: graphHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
 
@@ -123,7 +122,7 @@ export default class GraphNodes extends Node {
       const ySpacing = ( graphSet.length < 4 ) ? 20 : 12; // more graphs requires less spacing
       for ( let i = 1; i < content.length; i++ ) {
         content[ i ].x = content[ i - 1 ].x;
-        content[ i ].y = content[ i - 1 ].y + graphHeightProperty.value + ySpacing;
+        content[ i ].y = content[ i - 1 ].y + graphHeight + ySpacing;
       }
 
       // Resize vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,

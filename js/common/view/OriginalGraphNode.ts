@@ -46,7 +46,6 @@ export default class OriginalGraphNode extends GraphNode {
 
   public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,
-                      graphHeightProperty: TReadOnlyProperty<number>,
                       providedOptions: GraphNodeOptions ) {
 
     // destructuring the calculus grapher model
@@ -91,7 +90,7 @@ export default class OriginalGraphNode extends GraphNode {
       },
       providedOptions );
 
-    super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, graphHeightProperty, options );
+    super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, options );
 
     // create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
@@ -117,16 +116,6 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.right =
         this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
       showOriginalCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
-    } );
-
-    graphHeightProperty.link( height => {
-
-      // TODO : too much repetition
-      this.curveNode.dragBoundsProperty.value.setMaxY( height );
-      this.predictCurveNode.dragBoundsProperty.value.setMaxY( height );
-
-      // TODO: find a way to update touch/mouse area without resorting to this: https://github.com/phetsims/calculus-grapher/issues/74
-      this.setCurvePointerAreas();
     } );
 
     this.yZoomLevelProperty.link( () => {

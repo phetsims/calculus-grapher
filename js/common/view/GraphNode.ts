@@ -77,6 +77,7 @@ assert && assert( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
   ( index === 0 || Y_ZOOM_INFO[ index - 1 ].max > zoomInfo.max ) ), 'must be sorted by descending max' );
 
 type SelfOptions = {
+  graphHeight: number;
   chartRectangleOptions?: RectangleOptions;
   curveNodeOptions?: CurveNodeOptions;
   createCurveNode?: ( chartTransform: ChartTransform,
@@ -110,7 +111,6 @@ export default class GraphNode extends Node {
   public constructor( graphType: GraphType,
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
-                      graphHeightProperty: TReadOnlyProperty<number>,
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
@@ -145,11 +145,8 @@ export default class GraphNode extends Node {
     // chart transform for the graph, the Y range will be updated later
     this.chartTransform = new ChartTransform( {
       viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
-      viewHeight: graphHeightProperty.value,
+      viewHeight: options.graphHeight,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
-    } );
-    graphHeightProperty.link( height => {
-      this.chartTransform.setViewHeight( height );
     } );
 
     // zoom level
