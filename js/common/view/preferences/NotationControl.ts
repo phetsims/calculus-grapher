@@ -7,9 +7,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
+import { HBox, HBoxOptions, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -21,6 +21,7 @@ import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrap
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
 import GraphType from '../../model/GraphType.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,7 +42,9 @@ export default class NotationControl extends HBox {
     }, providedOptions );
 
     const labelText = new Text( CalculusGrapherStrings.notationStringProperty,
-      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
+      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
+        tandem: options.tandem.createTandem( 'labelText' )
+      } ) );
 
     const radioButtonGroup = new NotationRadioButtonGroup( derivativeNotationProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )
@@ -80,20 +83,24 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
 
       // AquaRadioButtonGroupOptions
       orientation: 'vertical',
-      spacing: 10
+      spacing: 10,
+      radioButtonOptions: {
+        phetioVisiblePropertyInstrumented: false
+      },
+      phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
         value: 'lagrange',
-        createNode: () => createLabel( CalculusGrapherStrings.LagrangeStringProperty,
-          new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ) ),
+        createNode: tandem => createLabel( CalculusGrapherStrings.LagrangeStringProperty,
+          new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), tandem ),
         tandemName: `lagrange${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 'leibniz',
-        createNode: () => createLabel( CalculusGrapherStrings.LeibnizStringProperty,
-          new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ) ),
+        createNode: tandem => createLabel( CalculusGrapherStrings.LeibnizStringProperty,
+          new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), tandem ),
         tandemName: `leibniz${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
@@ -106,12 +113,13 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
  * Creates the label for a radio button.
  */
 function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
-                      derivativeNotationProperty: StringUnionProperty<DerivativeNotation> ): Node {
+                      derivativeNotationProperty: StringUnionProperty<DerivativeNotation>,
+                      tandem: Tandem ): Node {
 
   // Name of the notation
   const text = new RichText( derivedNotationStringProperty, {
-    font: PreferencesDialog.CONTENT_FONT
-    //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
+    font: PreferencesDialog.CONTENT_FONT,
+    tandem: tandem.createTandem( 'text' )
   } );
 
   // An example of the notation

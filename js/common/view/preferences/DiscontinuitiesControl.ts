@@ -10,7 +10,7 @@
 import Property from '../../../../../axon/js/Property.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { Circle, HBox, HBoxOptions, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
+import { Circle, HBox, HBoxOptions, Line, LineOptions, Node, Text, TextOptions } from '../../../../../scenery/js/imports.js';
 import RectangularRadioButton from '../../../../../sun/js/buttons/RectangularRadioButton.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
@@ -37,7 +37,9 @@ export default class DiscontinuitiesControl extends HBox {
     }, providedOptions );
 
     const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty,
-      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
+      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
+        tandem: options.tandem.createTandem( 'labelText' )
+      } ) );
 
     const radioButtonGroup = new DiscontinuitiesRadioButtonGroup( connectDiscontinuitiesProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )
@@ -81,8 +83,10 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         yMargin: 7,
         buttonAppearanceStrategyOptions: {
           selectedLineWidth: 2
-        }
-      }
+        },
+        phetioVisiblePropertyInstrumented: false
+      },
+      phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
     const items: RectangularRadioButtonGroupItem<ConnectDiscontinuities>[] = ConnectDiscontinuitiesValues.map( value => {

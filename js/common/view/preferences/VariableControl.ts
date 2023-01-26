@@ -7,9 +7,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { HBox, HBoxOptions, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
+import { HBox, HBoxOptions, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -20,6 +20,7 @@ import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDi
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
 import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -40,7 +41,9 @@ export default class VariableControl extends HBox {
     }, providedOptions );
 
     const labelText = new Text( CalculusGrapherStrings.variableStringProperty,
-      PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS );
+      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
+        tandem: options.tandem.createTandem( 'labelText' )
+      } ) );
 
     const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty, {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )
@@ -79,18 +82,22 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 
       // AquaRadioButtonGroupOptions
       orientation: 'horizontal',
-      spacing: 20
+      spacing: 20,
+      radioButtonOptions: {
+        phetioVisiblePropertyInstrumented: false
+      },
+      phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
     const items: AquaRadioButtonGroupItem<FunctionVariable>[] = [
       {
         value: 'x',
-        createNode: () => createLabel( CalculusGrapherSymbols.xStringProperty ),
+        createNode: tandem => createLabel( CalculusGrapherSymbols.xStringProperty, tandem ),
         tandemName: `x${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 't',
-        createNode: () => createLabel( CalculusGrapherSymbols.tStringProperty ),
+        createNode: tandem => createLabel( CalculusGrapherSymbols.tStringProperty, tandem ),
         tandemName: `t${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
@@ -102,10 +109,10 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 /**
  * Creates the label for a radio button.
  */
-function createLabel( functionVariableStringProperty: TReadOnlyProperty<string> ): Node {
+function createLabel( functionVariableStringProperty: TReadOnlyProperty<string>, tandem: Tandem ): Node {
   return new RichText( functionVariableStringProperty, {
-    font: PreferencesDialog.CONTENT_FONT
-    //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
+    font: PreferencesDialog.CONTENT_FONT,
+    tandem: tandem.createTandem( 'text' )
   } );
 }
 
