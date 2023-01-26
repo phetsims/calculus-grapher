@@ -18,10 +18,12 @@ import GraphsNode from './GraphsNode.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Property from '../../../../axon/js/Property.js';
-import { GraphSet } from '../model/GraphType.js';
+import GraphType, { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import { Node, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
+import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -66,7 +68,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.model = model;
 
-    this.graphSetProperty = new Property( options.graphSets[ 0 ] );
+    this.graphSetProperty = new Property( options.graphSets[ 0 ], {
+      validValues: options.graphSets,
+      tandem: options.tandem.createTandem( 'graphSetProperty' ),
+      phetioValueType: ArrayIO( EnumerationIO( GraphType ) )
+    } );
 
     // Visibility Properties for the screen that are controllable via the UI
     this.visibleProperties = new CalculusGrapherVisibleProperties(
