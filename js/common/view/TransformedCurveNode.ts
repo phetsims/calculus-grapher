@@ -78,7 +78,6 @@ export default class TransformedCurveNode extends CurveNode {
     let antepenultimatePosition: Vector2 | null = null;
 
     this.continuousLinePlot.addInputListener( new DragListener( {
-      tandem: options.tandem.createTandem( 'dragListener' ),
       dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
       applyOffset: false,
       start: () => {
@@ -112,7 +111,8 @@ export default class TransformedCurveNode extends CurveNode {
         // update antepenultimatePosition
         antepenultimatePosition = penultimatePosition;
 
-      }
+      },
+      tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
   }
