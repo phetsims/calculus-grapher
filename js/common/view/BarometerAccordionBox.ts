@@ -92,7 +92,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     const tickLabelSet = new TickLabelSet( chartTransform, orientation, tickSpacing, {
       createLabel: ( value: number ) => new Text( value, {
         font: CalculusGrapherConstants.ACCORDION_BOX_VALUE_FONT
-        // no PhET-iO instrumentation
+        // No PhET-iO instrumentation is desired.
       } ),
       extent: TICK_MARK_EXTENT
     } );
@@ -151,7 +151,7 @@ function createLabelText( string: string, zeroX: number, yPosition: number ): No
     maxWidth: 50, // determined empirically
     right: zeroX - ( TICK_MARK_EXTENT / 2 ) - 10,
     centerY: yPosition
-    // no PhET-iO instrumentation
+    // No PhET-iO instrumentation is desired.
   } );
 }
 
