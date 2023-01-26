@@ -10,7 +10,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import IntegralCurve from './IntegralCurve.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
@@ -71,6 +71,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly labeledPoints: LabeledPoint[];
   public readonly verticalLines: VerticalLine[];
+  public readonly verticalLinesLinkableElement: PhetioObject;
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
@@ -143,13 +144,18 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       toolsTandem.createTandem( 'labeledPoints' ) );
 
+    const verticalLinesTandem = toolsTandem.createTandem( 'verticalLines' );
+    this.verticalLinesLinkableElement = new PhetioObject( {
+      tandem: verticalLinesTandem,
+      phetioState: false
+    } );
     this.verticalLines = VerticalLine.createVerticalLines(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      toolsTandem.createTandem( 'verticalLines' ) );
+      this.verticalLinesLinkableElement.tandem );
   }
 
   /**

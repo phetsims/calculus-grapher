@@ -14,7 +14,6 @@ import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
-import VerticalLineNode from './VerticalLineNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -25,6 +24,7 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import GraphType, { GraphSet } from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import VerticalLinesNode from './VerticalLinesNode.js';
 
 // How much VerticalLines extend above and below the graphs
 const VERTICAL_LINE_Y_EXTENT = 4;
@@ -93,17 +93,9 @@ export default class GraphNodes extends Node {
       tandem: options.tandem.createTandem( 'referenceLineNode' )
     } );
 
-    // To organize all VerticalLineNode instances under 1 tandem
-    const verticalLineNodesTandem = options.tandem.createTandem( 'verticalLines' );
-
-    const verticalLineNodes = model.verticalLines.map( verticalLine =>
-      new VerticalLineNode( verticalLine, this.originalGraphNode.chartTransform, {
-        tandem: verticalLineNodesTandem.createTandem( `${verticalLine.labelProperty.value}VerticalLineNode` )
-      } ) );
-
-    const verticalLineNodesLayer = new Node( {
-      children: verticalLineNodes
-    } );
+    // parent for VerticalLineNode instances
+    const verticalLinesNode = new VerticalLinesNode( model.verticalLines, model.verticalLinesLinkableElement,
+      this.originalGraphNode.chartTransform, options.tandem.createTandem( 'verticalLinesNode' ) );
 
     const graphSetNode = new Node();
 
@@ -131,12 +123,12 @@ export default class GraphNodes extends Node {
       referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + yOffset );
 
       // Resize vertical VerticalLineNodes - same extent at top and bottom.
-      verticalLineNodes.forEach( verticalLineNode => {
+      verticalLinesNode.verticalLineNodes.forEach( verticalLineNode => {
         verticalLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT );
       } );
     } );
 
-    options.children = [ graphSetNode, verticalLineNodesLayer, referenceLineNode ];
+    options.children = [ graphSetNode, verticalLinesNode, referenceLineNode ];
 
     this.mutate( options );
   }
