@@ -53,14 +53,16 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     } );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
+    const areaUnderCurveCheckboxTandem = this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' );
     const areaUnderCurveCheckbox = new Checkbox( model.areaUnderCurveScrubber.visibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
-        maxWidth: 100
+        maxWidth: 100,
+        tandem: areaUnderCurveCheckboxTandem.createTandem( 'text' )
       } ), {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
         enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
-        tandem: this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' )
+        tandem: areaUnderCurveCheckboxTandem
       } );
     this.controlPanel.appendContent( areaUnderCurveCheckbox );
   }
