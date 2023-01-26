@@ -16,7 +16,7 @@ import TransformedCurve from '../model/TransformedCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import { Shape } from '../../../../kite/js/imports.js';
+import { LineStyles } from '../../../../kite/js/imports.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -32,8 +32,6 @@ export default class TransformedCurveNode extends CurveNode {
 
   // has this node ever been userDragged, used for tracking the visibility of the cueingArrows
   private readonly wasDraggedProperty: BooleanProperty;
-
-  private readonly chartTransform: ChartTransform;
 
   public constructor( curve: TransformedCurve,
                       curveManipulationProperties: CurveManipulationProperties,
@@ -115,7 +113,6 @@ export default class TransformedCurveNode extends CurveNode {
       }
     } ) );
 
-    this.chartTransform = chartTransform;
   }
 
   /**
@@ -135,50 +132,16 @@ export default class TransformedCurveNode extends CurveNode {
   }
 
   /**
-   * set the touch/mouse area of this node
+   * Sets the touch/mouse area of the drag Handler
    */
   public override setPointerAreas(): void {
 
-    const pathShape = this.getDilatedCurveShape();
-    this.continuousLinePlot.touchArea = pathShape;
-    this.continuousLinePlot.mouseArea = pathShape;
-  }
+    // create a dilated shape based on the continuous line plot shape
+    const lineWidth = new LineStyles( { lineWidth: 10 } );
+    const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( lineWidth );
 
-  /**
-   * Creates a (rough) dilated shape for a Curve.
-   * TODO simplify: Talk to JO about why this is necessary in the first place. see https://github.com/phetsims/calculus-grapher/issues/74
-   */
-  private getDilatedCurveShape(): Shape {
-
-    // in view coordinates
-    const CURVE_DRAG_DILATION = 5;
-
-    const pathShape = new Shape();
-
-    const point = this.chartTransform.modelToViewXY( this.curve.points[ 0 ].x, this.curve.points[ 0 ].y );
-
-    pathShape.moveToPoint( point );
-
-    // Draw the curve shape slightly BELOW the true y-value.
-    this.curve.points.forEach( point => {
-      if ( point.isFinite ) {
-        const viewPoint = this.chartTransform.modelToViewXY( point.x, point.y );
-
-        pathShape.lineToPoint( viewPoint.addXY( 0, CURVE_DRAG_DILATION ) );
-      }
-    } );
-
-    // Draw the curve shape slightly ABOVE the true y-value.
-    _.forEachRight( this.curve.points, point => {
-      if ( point.isFinite ) {
-        const viewPoint = this.chartTransform.modelToViewXY( point.x, point.y );
-
-        pathShape.lineToPoint( viewPoint.addXY( 0, -CURVE_DRAG_DILATION ) );
-
-      }
-    } );
-
-    return pathShape.close().makeImmutable();
+    this.continuousLinePlot.touchArea = dilatedCurveShape;
+    this.continuousLinePlot.mouseArea = dilatedCurveShape;
   }
 }
 
