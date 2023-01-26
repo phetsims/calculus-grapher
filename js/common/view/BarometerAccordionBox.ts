@@ -6,10 +6,10 @@
  * @author Martin Veillette
  */
 
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { Color, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
+import { Color, Line, Node, RichText, RichTextOptions, Text } from '../../../../scenery/js/imports.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
@@ -28,6 +28,7 @@ const TICK_MARK_EXTENT = 20;
 type SelfOptions = {
   barometerStrokeProperty: TReadOnlyProperty<Color>;
   chartTransformOptions?: ChartTransformOptions;
+  titleTextOptions?: StrictOmit<RichTextOptions, 'tandem'>;
   numberOfTicks?: number;
 };
 
@@ -36,7 +37,7 @@ export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBox
 export default class BarometerAccordionBox extends AccordionBox {
 
   public constructor( valueProperty: TReadOnlyProperty<number>,
-                      labelString: TReadOnlyProperty<string>,
+                      labelStringProperty: TReadOnlyProperty<string>,
                       providedOptions: BarometerAccordionBoxOptions ) {
 
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
@@ -44,6 +45,9 @@ export default class BarometerAccordionBox extends AccordionBox {
       // SelfOptions
       chartTransformOptions: {
         viewHeight: 175
+      },
+      titleTextOptions: {
+        font: CalculusGrapherConstants.ACCORDION_BOX_FONT
       },
       numberOfTicks: 5,
 
@@ -66,11 +70,9 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
-    const titleNode = new RichText( labelString, {
-      font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
-      maxWidth: 100 // determined empirically
-    } );
+    const titleNode = new RichText( labelStringProperty, combineOptions<RichTextOptions>( {
+      tandem: options.tandem.createTandem( 'titleText' )
+    }, options.titleTextOptions ) );
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
