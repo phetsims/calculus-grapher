@@ -70,7 +70,7 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    const titleNode = new RichText( labelStringProperty, combineOptions<RichTextOptions>( {
+    options.titleNode = new RichText( labelStringProperty, combineOptions<RichTextOptions>( {
       tandem: options.tandem.createTandem( 'titleText' )
     }, options.titleTextOptions ) );
 
@@ -133,8 +133,6 @@ export default class BarometerAccordionBox extends AccordionBox {
     const barometerNode = new Node( {
       children: [ axisLine, quantitativeLayer, qualitativeLayer, barRectangle ]
     } );
-
-    options.titleNode = titleNode;
 
     super( barometerNode, options );
 
