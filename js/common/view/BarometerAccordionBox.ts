@@ -75,6 +75,7 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
+    //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
     const titleNode = new RichText( labelString, options.textOptions );
 
     const axisLine = new AxisLine( chartTransform, orientation );

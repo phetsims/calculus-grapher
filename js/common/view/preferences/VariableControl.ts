@@ -105,6 +105,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 function createLabel( functionVariableStringProperty: TReadOnlyProperty<string> ): Node {
   return new RichText( functionVariableStringProperty, {
     font: PreferencesDialog.CONTENT_FONT
+    //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
   } );
 }
 

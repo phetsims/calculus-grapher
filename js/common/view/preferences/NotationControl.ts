@@ -111,6 +111,7 @@ function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
   // Name of the notation
   const text = new RichText( derivedNotationStringProperty, {
     font: PreferencesDialog.CONTENT_FONT
+    //TODO https://github.com/phetsims/calculus-grapher/issues/197 tandem
   } );
 
   // An example of the notation
