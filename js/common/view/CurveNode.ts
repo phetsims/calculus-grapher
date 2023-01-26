@@ -153,7 +153,7 @@ export default class CurveNode extends Node {
     // a reset method in the base class, even though it does nothing.
   }
 
-  public updateCurveNode(): void {
+  protected updateCurveNode(): void {
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
     this.discontinuousLinePlot.setDataSet( this.getDiscontinuousLinePlotDataSet() );
     this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
@@ -207,7 +207,7 @@ export default class CurveNode extends Node {
     return this.curve.points.map( point => point.toVector() );
   }
 
-  public setPointerAreas(): void {
+  protected setPointerAreas(): void {
     throw new Error( 'Set Pointer Areas not handled on base class' );
   }
 }

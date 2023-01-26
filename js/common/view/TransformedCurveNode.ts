@@ -131,7 +131,7 @@ export default class TransformedCurveNode extends CurveNode {
   /**
    * Forwards response to super-class
    */
-  public override updateCurveNode(): void {
+  protected override updateCurveNode(): void {
     super.updateCurveNode();
     this.setPointerAreas();
   }
@@ -139,7 +139,7 @@ export default class TransformedCurveNode extends CurveNode {
   /**
    * Sets the pointer areas for manipulating the curve.
    */
-  public override setPointerAreas(): void {
+  protected override setPointerAreas(): void {
 
     // create a dilated shape based on the continuous line plot shape
     const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( LINE_STYLES );
