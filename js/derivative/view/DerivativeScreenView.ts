@@ -53,14 +53,16 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     } );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.
+    const tangentCheckboxTandem = this.controlPanel.tandem.createTandem( 'tangentCheckbox' );
     const tangentCheckbox = new Checkbox( model.tangentScrubber.visibleProperty,
       new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
         font: CalculusGrapherConstants.CONTROL_FONT,
-        maxWidth: 100
+        maxWidth: 100,
+        tandem: tangentCheckboxTandem.createTandem( 'text' )
       } ), {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
         enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
-        tandem: this.controlPanel.tandem.createTandem( 'tangentCheckbox' )
+        tandem: tangentCheckboxTandem
       } );
     this.controlPanel.appendContent( tangentCheckbox );
   }
