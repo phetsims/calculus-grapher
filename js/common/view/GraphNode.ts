@@ -196,10 +196,8 @@ export default class GraphNode extends Node {
     } );
 
     // y-axis tick marks and labels
-    const yTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, MAJOR_GRID_LINE_SPACING, {
-      value: CalculusGrapherConstants.CURVE_X_RANGE.min
-    } );
-    let yTickLabelSet = this.getVerticalTickLabelSet( MAJOR_GRID_LINE_SPACING );
+    const yTickMarkSet = new TickMarkSet( this.chartTransform, Orientation.VERTICAL, MAJOR_GRID_LINE_SPACING );
+    let yTickLabelSet = createYTickLabelSet( MAJOR_GRID_LINE_SPACING, this.chartTransform );
 
     const ticksParent = new Node( {
       children: [ xTickLabelSet, xTickMarkSet, yTickMarkSet, yTickLabelSet ],
@@ -275,7 +273,7 @@ export default class GraphNode extends Node {
 
       // Change the vertical spacing of the tick marks and labels.
       yTickMarkSet.setSpacing( tickSpacing );
-      yTickLabelSet = this.getVerticalTickLabelSet( tickSpacing );
+      yTickLabelSet = createYTickLabelSet( tickSpacing, this.chartTransform );
       ticksParent.addChild( yTickLabelSet );
 
       // Hide the y-axis minor grid lines if they get too close together.
@@ -293,28 +291,6 @@ export default class GraphNode extends Node {
   }
 
   /**
-   * Returns a TickLabelSet that appear on the left hand side of the chart.
-   * Responsible for determining the appropriate number of decimal places for the label
-   *
-   * @param spacing - the separation ( in model coordinates) of the labels
-   */
-  private getVerticalTickLabelSet( spacing: number ): TickLabelSet {
-
-    // no more than three decimal places
-    const decimalPlaces = Math.min( 3, Utils.numberOfDecimalPlaces( spacing ) );
-
-    return new TickLabelSet( this.chartTransform, Orientation.VERTICAL, spacing, {
-      value: CalculusGrapherConstants.CURVE_X_RANGE.min,
-      createLabel: ( value: number ) =>
-        new Text( Utils.toFixed( value, decimalPlaces ), { font: CalculusGrapherConstants.TICK_LABEL_FONT } ),
-      positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
-        label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
-        return label;
-      }
-    } );
-  }
-
-  /**
    * Adds a PlottedPoint to this GraphNode.
    */
   public addPlottedPoint( xProperty: TReadOnlyProperty<number>, yProperty: TReadOnlyProperty<number>,
@@ -329,5 +305,32 @@ export default class GraphNode extends Node {
     return plottedPoint;
   }
 }
+
+/**
+ * Creates a TickLabelSet for the y-axis.
+ */
+function createYTickLabelSet( spacing: number, chartTransform: ChartTransform ): TickLabelSet {
+
+  // No more than three decimal places
+  const decimalPlaces = Math.min( 3, Utils.numberOfDecimalPlaces( spacing ) );
+
+  return new TickLabelSet( chartTransform, Orientation.VERTICAL, spacing, {
+
+    // Display zero without decimal places.
+    createLabel: ( value: number ) => {
+      const valueString = ( value === 0 ) ? '0' : Utils.toFixed( value, decimalPlaces );
+      return new Text( valueString, {
+        font: CalculusGrapherConstants.TICK_LABEL_FONT
+      } );
+    },
+
+    // Position the label to left of its associated tick mark, with a bit of space.
+    positionLabel: ( label: Node, tickBounds: Bounds2 ) => {
+      label.rightCenter = tickBounds.leftCenter.minusXY( 1, 0 );
+      return label;
+    }
+  } );
+}
+
 
 calculusGrapher.register( 'GraphNode', GraphNode );
