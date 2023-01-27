@@ -126,6 +126,7 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
   return new RichText( labelStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
     maxWidth: 50
+    // No PhET-iO instrumentation is desired.
   } );
 }
 
@@ -239,6 +240,7 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   const integralSymbolNode = new RichText( CalculusGrapherSymbols.integral, {
     font: new PhetFont( fontSizeOptions.integralSymbolFontSize ),
     maxWidth: 25
+    // No PhET-iO instrumentation is desired.
   } );
 
   const limitsFont = new PhetFont( fontSizeOptions.limitsFontSize );
@@ -247,12 +249,14 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   const lowerBoundNode = new RichText( '0', {
     font: limitsFont,
     maxWidth: 25
+    // No PhET-iO instrumentation is desired.
   } );
 
   // upper limit of integral
   const upperBoundNode = new RichText( variableStringProperty, {
     font: limitsFont,
     maxWidth: 25
+    // No PhET-iO instrumentation is desired.
   } );
 
   // integrand of integral: f(x)dx
@@ -263,6 +267,7 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   const integrandNode = new RichText( integrandStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
     maxWidth: 50
+    // No PhET-iO instrumentation is desired.
   } );
 
   // laying out the various nodes
@@ -287,13 +292,21 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
     children: [
 
       // numerator
-      new RichText( numeratorStringProperty, { font: fractionFont, maxWidth: 50 } ),
+      new RichText( numeratorStringProperty, {
+        font: fractionFont,
+        maxWidth: 50
+        // No PhET-iO instrumentation is desired.
+      } ),
 
       // horizontal line between numerator and denominator, resized automatically by VBox
       new HSeparator( { stroke: 'black', lineWidth: 0.5 } ),
 
       // denominator
-      new RichText( denominatorStringProperty, { font: fractionFont, maxWidth: 50 } )
+      new RichText( denominatorStringProperty, {
+        font: fractionFont,
+        maxWidth: 50
+        // No PhET-iO instrumentation is desired.
+      } )
     ]
   } );
 }
