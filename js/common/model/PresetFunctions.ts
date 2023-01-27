@@ -65,8 +65,7 @@ const PresetFunctions = {
 
   /**
    * Cycles through preset functions using the left/right arrow keys.
-   * See https://github.com/phetsims/calculus-grapher/issues/193
-   * @param screenVisibleProperty - so that events are processed only the visible Screen
+   * @param screenVisibleProperty - so that events are processed only when the associated Screen is visible
    * @param originalCurve
    */
   addKeyboardEventListener( screenVisibleProperty: TReadOnlyProperty<boolean>, originalCurve: TransformedCurve ): void {
