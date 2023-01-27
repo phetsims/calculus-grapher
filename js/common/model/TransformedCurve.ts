@@ -389,7 +389,7 @@ export default class TransformedCurve extends Curve {
 
     // x distance between the new and old point
     const distX = Math.abs( position1.x - position2.x );
-    
+
     const signedOne: number = ( position1.x > position2.x ) ? -1 : 1;
 
     // perform a linear interpolation between position1 and position2
@@ -603,7 +603,14 @@ export default class TransformedCurve extends Curve {
    */
   public applyFromSimplePoints( simplePoints: Vector2[] ): void {
 
-    // construct allPoints by iterating over the simple points
+    // assign simplePoints
+    simplePoints.forEach( simplePoint => {
+
+      // set position of the two outside points
+      this.getClosestPointAt( simplePoint.x ).y = simplePoint.y;
+    } );
+
+    // assign intermediate curve points by iterating over pair of simple points
     for ( let i = 1; i < simplePoints.length; i++ ) {
       const p1 = simplePoints[ i - 1 ];
       const p2 = simplePoints[ i ];

@@ -39,10 +39,9 @@ const MathFunctions: MathFunction[] =
 
 const PresetFunctions: PresetFunction[] =
   [ { mathFunction: MathFunctions[ 0 ] },
-    { mathFunction: MathFunctions[ 1 ], xPositions: getSpacedArray( 0.66 ) },
+    { mathFunction: MathFunctions[ 0 ], xPositions: getSpacedArray( 0.25 ) },
     { mathFunction: MathFunctions[ 1 ] },
     { mathFunction: MathFunctions[ 2 ] },
-    { mathFunction: MathFunctions[ 2 ], xPositions: getSpacedArray( 1.5 ) },
     { mathFunction: MathFunctions[ 3 ] },
     { mathFunction: MathFunctions[ 3 ], xPositions: getSpacedArray( 1 ) },
     { mathFunction: MathFunctions[ 4 ] },
