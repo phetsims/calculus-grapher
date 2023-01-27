@@ -174,7 +174,6 @@ export default class CalculusGrapherModel implements TModel {
       this.secondDerivativeCurve,
       this.verticalLinesLinkableElement.tandem );
 
-
     // debug functionality to cycle through preset curves
     if ( CalculusGrapherQueryParameters.presetFunctions ) {
       this.cyclePresetCurves();
@@ -197,7 +196,6 @@ export default class CalculusGrapherModel implements TModel {
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.verticalLines, because they are configured only via PhET-iO.
   }
-
 
   /**
    * For DEBUG purposes: allow to preset the curve

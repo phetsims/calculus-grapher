@@ -333,5 +333,4 @@ function createYTickLabelSet( spacing: number, chartTransform: ChartTransform ):
   } );
 }
 
-
 calculusGrapher.register( 'GraphNode', GraphNode );

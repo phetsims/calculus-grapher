@@ -22,7 +22,6 @@ export type FunctionVariable = ( typeof FunctionVariableValues )[number];
 
 const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
-
   /**
    * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
    * the more faithful is the reproduction of a curve. For values less than 400 points, oddities
@@ -35,7 +34,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     isValidValue: value => value > 0,
     defaultValue: 1251
   },
-
 
   /**
    * The smooth algorithm for 'Calculus Grapher' uses a procedure described in https://en.wikipedia.org/wiki/Kernel_smoother.
@@ -101,7 +99,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     isValidValue: value => value > 0,
     defaultValue: 200
   },
-
 
   /**
    * For internal use.

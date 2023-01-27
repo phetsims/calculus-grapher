@@ -582,7 +582,6 @@ export default class TransformedCurve extends Curve {
     this.createPedestalAt( width, new Vector2( xMin + 4 * xLength / 5, yMax ) );
   }
 
-
   /**
    * Apply a function
    */
@@ -596,7 +595,6 @@ export default class TransformedCurve extends Curve {
       this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
     }
   }
-
 
   /**
    * Set the curve based on a linear interpolation from an array of Vector2 coordinates.
