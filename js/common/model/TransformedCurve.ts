@@ -594,6 +594,9 @@ export default class TransformedCurve extends Curve {
     else {
       this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
     }
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
   /**

@@ -234,9 +234,6 @@ export default class CalculusGrapherModel implements TModel {
 
         // apply the math function to the original curve
         this.originalCurve.applyMathFunction( presetFunctions[ cycledIndex ] );
-
-        // let all the listeners know about the change of curve
-        this.originalCurve.curveChangedEmitter.emit();
       }
     } );
   }
