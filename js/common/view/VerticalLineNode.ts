@@ -40,14 +40,15 @@ export default class VerticalLineNode extends LineToolNode {
     const text = new Text( verticalLine.labelProperty, {
       font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
       maxWidth: 50,
-      centerX: 0
-      // No PhET-iO instrumentation is desired.
+      centerX: 0,
+      tandem: options.tandem.createTandem( 'text' )
     } );
 
     const labelNode = new BackgroundNode( text, {
       rectangleOptions: {
         cornerRadius: 3
-      }
+      },
+      phetioVisiblePropertyInstrumented: false
     } );
     this.addChild( labelNode );
 
