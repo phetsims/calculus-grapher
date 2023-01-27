@@ -144,6 +144,12 @@ export default class CurvePoint {
     this.y = ( this.savedStates.length === 0 ) ? this.initialState.y : this.savedStates.pop()!.y;
   }
 
+  // get the slope between this point and targetPoint
+  public getSlope( targetPoint: CurvePoint ): number {
+    assert && assert( targetPoint !== this, 'you need two different points' );
+    return ( this.y - targetPoint.y ) / ( this.x - targetPoint.x );
+  }
+
   public reset(): void {
     this.y = this.initialState.y;
     this.pointType = this.initialState.pointType;
