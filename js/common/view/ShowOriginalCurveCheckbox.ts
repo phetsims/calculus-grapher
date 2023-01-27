@@ -38,7 +38,7 @@ export default class ShowOriginalCurveCheckbox extends Checkbox {
         new Text( CalculusGrapherStrings.showStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
-          tandem: options.tandem.createTandem( 'text' )
+          tandem: options.tandem.createTandem( 'showText' )
         } ),
         new GraphTypeLabelNode( GraphType.ORIGINAL )
       ],
