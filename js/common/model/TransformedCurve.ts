@@ -389,13 +389,13 @@ export default class TransformedCurve extends Curve {
 
     // x distance between the new and old point
     const distX = Math.abs( position1.x - position2.x );
-
+    
     const signedOne: number = ( position1.x > position2.x ) ? -1 : 1;
 
-    // perform a linear interpolation between lastPoint and closestPoint
+    // perform a linear interpolation between position1 and position2
     for ( let dx = deltaX; dx < distX; dx += deltaX ) {
 
-      // the xPosition of the point to be interpolated, is either to the left or right of the closestPoint
+      // the xPosition of the point to be interpolated, is either to the left or right of position1
       const xPosition = position1.x + signedOne * dx;
 
       // weight needed to interpolate the y-values, weight will never exceed 1.
@@ -403,7 +403,6 @@ export default class TransformedCurve extends Curve {
 
       // update the y value of an intermediate point
       this.getClosestPointAt( xPosition ).y = ( 1 - W ) * position1.y + W * position2.y;
-      this.getClosestPointAt( xPosition ).pointType = 'smooth';
     }
   }
 
