@@ -27,6 +27,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import { PresetFunction } from './PresetFunctions.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -579,6 +580,37 @@ export default class TransformedCurve extends Curve {
     this.createParabolaAt( width, new Vector2( xMin + 3 * xLength / 5, yMin ) );
     this.saveCurrentPoints();
     this.createPedestalAt( width, new Vector2( xMin + 4 * xLength / 5, yMax ) );
+  }
+
+
+  /**
+   * Apply a function
+   */
+  public applyMathFunction( presetFunction: PresetFunction ): void {
+
+    if ( presetFunction.xPositions ) {
+      const simplePoints = presetFunction.xPositions.map( x => new Vector2( x, presetFunction.mathFunction( x ) ) );
+      this.applyFromSimplePoints( simplePoints );
+    }
+    else {
+      this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
+    }
+  }
+
+
+  /**
+   * Set the curve based on a linear interpolation from an array of Vector2 coordinates.
+   */
+  public applyFromSimplePoints( simplePoints: Vector2[] ): void {
+
+    // construct allPoints by iterating over the simple points
+    for ( let i = 1; i < simplePoints.length; i++ ) {
+      const p1 = simplePoints[ i - 1 ];
+      const p2 = simplePoints[ i ];
+
+      // an array of simple points that interpolates between p1 and p2
+      this.interpolate( p1, p2 );
+    }
   }
 }
 

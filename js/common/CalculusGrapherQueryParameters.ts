@@ -102,6 +102,15 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     defaultValue: 200
   },
 
+
+  /**
+   * For internal use.
+   */
+  presetFunctions: {
+    type: 'boolean',
+    defaultValue: false
+  },
+
   /**
    * Shows all the curve points as circles in a scatter plot
    *
