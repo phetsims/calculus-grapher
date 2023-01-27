@@ -57,16 +57,19 @@ export default class OriginalGraphNode extends GraphNode {
       ( predictModeEnabled, showOriginalCurve ) => !predictModeEnabled || showOriginalCurve );
 
     // Label that toggles between 'Predict f(x)' and 'f(x)'
+    const labelNodeTandem = providedOptions.tandem.createTandem( 'labelNode' );
     const labelNode = new HBox( {
       children: [
         new Text( CalculusGrapherStrings.predictStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
-          visibleProperty: model.predictModeEnabledProperty // show/hide 'Predict'
+          visibleProperty: model.predictModeEnabledProperty, // show/hide 'Predict'
+          tandem: labelNodeTandem.createTandem( 'predictText' )
         } ),
         new GraphTypeLabelNode( GraphType.ORIGINAL )
       ],
-      spacing: 5
+      spacing: 5,
+      tandem: labelNodeTandem
     } );
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {

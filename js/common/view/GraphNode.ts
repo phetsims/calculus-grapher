@@ -135,7 +135,9 @@ export default class GraphNode extends Node {
     }, providedOptions );
 
     // If labelNode was not provided, create the default.
-    const labelNode = options.labelNode || new GraphTypeLabelNode( graphType );
+    const labelNode = options.labelNode || new GraphTypeLabelNode( graphType, {
+      tandem: options.tandem.createTandem( 'labelNode' )
+    } );
 
     super( options );
 
