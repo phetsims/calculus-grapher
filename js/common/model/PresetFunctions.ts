@@ -1,15 +1,17 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * PresetFunctions is a set of mathematical functions used for debugging purposes
+ * PresetFunctions contains the complete implementation for CalculusGrapherQueryParameters.presetFunctions query
+ * parameter. It includes a set of mathematical functions (presets) and a KeyboardEvent listener for cycling
+ * through those presets when the left/right arrow keys are pressed.
+ * See https://github.com/phetsims/calculus-grapher/issues/193
  *
  * @author Martin Veillette
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import { MathFunction } from './Curve.js';
+import TransformedCurve from './TransformedCurve.js';
 
 // convenience constants
 const X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -18,7 +20,17 @@ const CENTER_X = X_RANGE.getCenter();
 const MIN_X = X_RANGE.min;
 const PI = Math.PI;
 const A = CalculusGrapherConstants.TYPICAL_Y;
-const SPACING_X = WIDTH / ( CalculusGrapherQueryParameters.numberOfPoints - 1 );
+
+export type MathFunction = ( x: number ) => number;
+
+const MATH_FUNCTIONS: MathFunction[] = [
+  x => A * Math.sin( 2 * PI * 5 * x / WIDTH ),
+  x => A * Math.sin( 2 * PI * 20 * x / WIDTH ),
+  x => A * Math.sin( 2 * PI * 20 * x / WIDTH * Math.sin( 1 / 10 * ( x - CENTER_X ) ** 2 ) ),
+  x => A * Math.cos( ( x - CENTER_X ) ** 2 ),
+  x => ( 1 / 10 * ( x - CENTER_X ) ** 2 % A ),
+  x => A * Math.floor( A / 2 * Math.sin( 2 * PI * 5 * x / WIDTH ) )
+];
 
 export type PresetFunction = {
   mathFunction: MathFunction;
@@ -28,35 +40,71 @@ export type PresetFunction = {
   xPositions?: number[];
 };
 
-const MathFunctions: MathFunction[] =
-  [ x => A * Math.sin( 2 * PI * 5 * x / WIDTH ),
-    x => A * Math.sin( 2 * PI * 20 * x / WIDTH ),
-    x => A * Math.sin( 2 * PI * 20 * x / WIDTH * Math.sin( 1 / 10 * ( x - CENTER_X ) ** 2 ) ),
-    x => A * Math.cos( ( x - CENTER_X ) ** 2 ),
-    x => ( 1 / 10 * ( x - CENTER_X ) ** 2 % A ),
-    x => A * Math.floor( A / 2 * Math.sin( 2 * PI * 5 * x / WIDTH ) )
-  ];
-
-const PresetFunctions: PresetFunction[] =
-  [ { mathFunction: MathFunctions[ 0 ] },
-    { mathFunction: MathFunctions[ 0 ], xPositions: getSpacedArray( 0.25 ) },
-    { mathFunction: MathFunctions[ 1 ] },
-    { mathFunction: MathFunctions[ 2 ] },
-    { mathFunction: MathFunctions[ 3 ] },
-    { mathFunction: MathFunctions[ 3 ], xPositions: getSpacedArray( 1 ) },
-    { mathFunction: MathFunctions[ 4 ] },
-    { mathFunction: MathFunctions[ 4 ], xPositions: getSpacedArray( 1 ) },
-    { mathFunction: MathFunctions[ 5 ] },
-    { mathFunction: MathFunctions[ 5 ], xPositions: getSpacedArray( 1 ) }
+const PRESET_FUNCTIONS: PresetFunction[] =
+  [ { mathFunction: MATH_FUNCTIONS[ 0 ] },
+    { mathFunction: MATH_FUNCTIONS[ 0 ], xPositions: createXPositions( 0.25 ) },
+    { mathFunction: MATH_FUNCTIONS[ 1 ] },
+    { mathFunction: MATH_FUNCTIONS[ 2 ] },
+    { mathFunction: MATH_FUNCTIONS[ 3 ] },
+    { mathFunction: MATH_FUNCTIONS[ 3 ], xPositions: createXPositions( 1 ) },
+    { mathFunction: MATH_FUNCTIONS[ 4 ] },
+    { mathFunction: MATH_FUNCTIONS[ 4 ], xPositions: createXPositions( 1 ) },
+    { mathFunction: MATH_FUNCTIONS[ 5 ] },
+    { mathFunction: MATH_FUNCTIONS[ 5 ], xPositions: createXPositions( 1 ) }
   ];
 
 /**
- * Generate an array of number equally spaced over the X_RANGE curve
+ * Creates an array of equally-spaced x positions over a curve's X_RANGE.
  */
-function getSpacedArray( spacing = SPACING_X ): number[] {
+function createXPositions( spacing: number ): number[] {
   const arrayLength = WIDTH / spacing + 1;
   return Array.from( { length: arrayLength }, ( _, i ) => i * spacing + MIN_X );
 }
 
-calculusGrapher.register( 'PresetFunctions', PresetFunctions );
+const PresetFunctions = {
+
+  /**
+   * Cycles through preset functions using the left/right arrow keys.
+   * See https://github.com/phetsims/calculus-grapher/issues/193
+   * @param screenVisibleProperty - so that events are processed only the visible Screen
+   * @param originalCurve
+   */
+  addKeyboardEventListener( screenVisibleProperty: TReadOnlyProperty<boolean>, originalCurve: TransformedCurve ): void {
+
+    const length = PRESET_FUNCTIONS.length;
+
+    // index for the presetMath functions
+    let index = 0;
+
+    // add a keyboard listener to ArrowLeft and ArrowRight
+    window.addEventListener( 'keydown', event => {
+
+      if ( screenVisibleProperty.value ) {
+        const isLeft = event.code === 'ArrowLeft';
+        const isRight = event.code === 'ArrowRight';
+
+        if ( isLeft || isRight ) {
+
+          if ( isLeft ) {
+
+            // decrease index value
+            index--;
+          }
+          else if ( isRight ) {
+
+            // increase index value
+            index++;
+          }
+
+          // making sure the cycledIndex lies between 0 and length-1, even if index is negative
+          const cycledIndex = ( index % length + length ) % length;
+
+          // apply the math function to the original curve
+          originalCurve.applyPresetFunction( PRESET_FUNCTIONS[ cycledIndex ] );
+        }
+      }
+    } );
+  }
+};
+
 export default PresetFunctions;

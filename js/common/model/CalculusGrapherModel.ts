@@ -28,8 +28,6 @@ import VerticalLine from './VerticalLine.js';
 import LabeledPoint from './LabeledPoint.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
-import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import PresetFunctions from './PresetFunctions.js';
 
 type SelfOptions = {
 
@@ -173,11 +171,6 @@ export default class CalculusGrapherModel implements TModel {
       this.derivativeCurve,
       this.secondDerivativeCurve,
       this.verticalLinesLinkableElement.tandem );
-
-    // debug functionality to cycle through preset curves
-    if ( CalculusGrapherQueryParameters.presetFunctions ) {
-      this.cyclePresetCurves();
-    }
   }
 
   /**
@@ -195,47 +188,6 @@ export default class CalculusGrapherModel implements TModel {
     this.areaUnderCurveScrubber.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.verticalLines, because they are configured only via PhET-iO.
-  }
-
-  /**
-   * For DEBUG purposes: allow to preset the curve
-   */
-  private cyclePresetCurves(): void {
-
-    // an array of preset math functions
-    const presetFunctions = PresetFunctions;
-
-    const length = presetFunctions.length;
-
-    // index for the presetMath functions
-    let index = 0;
-
-    // add a keyboard listener to ArrowLeft and ArrowRight
-    window.addEventListener( 'keydown', event => {
-
-      const isLeft = event.code === 'ArrowLeft';
-      const isRight = event.code === 'ArrowRight';
-
-      if ( isLeft || isRight ) {
-
-        if ( isLeft ) {
-
-          // decrease index value
-          index--;
-        }
-        else if ( isRight ) {
-
-          // increase index value
-          index++;
-        }
-
-        // making sure the cycledIndex lies between 0 and length-1, even if index is negative
-        const cycledIndex = ( index % length + length ) % length;
-
-        // apply the math function to the original curve
-        this.originalCurve.applyMathFunction( presetFunctions[ cycledIndex ] );
-      }
-    } );
   }
 }
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );

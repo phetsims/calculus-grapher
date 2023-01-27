@@ -24,6 +24,8 @@ import { Node, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import PresetFunctions from '../model/PresetFunctions.js';
 
 type SelfOptions = {
   graphSets: GraphSet[];
@@ -155,6 +157,12 @@ export default class CalculusGrapherScreenView extends ScreenView {
       children: children
     } );
     this.addChild( this.screenViewRootNode );
+
+    // Cycle through preset functions using the left/right arrow keys.
+    // See https://github.com/phetsims/calculus-grapher/issues/193
+    if ( CalculusGrapherQueryParameters.presetFunctions ) {
+      PresetFunctions.addKeyboardEventListener( this.visibleProperty, model.originalCurve );
+    }
   }
 
   /**

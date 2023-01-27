@@ -582,9 +582,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Apply a function
+   * Applies a preset function.
    */
-  public applyMathFunction( presetFunction: PresetFunction ): void {
+  public applyPresetFunction( presetFunction: PresetFunction ): void {
 
     if ( presetFunction.xPositions ) {
       const simplePoints = presetFunction.xPositions.map( x => new Vector2( x, presetFunction.mathFunction( x ) ) );

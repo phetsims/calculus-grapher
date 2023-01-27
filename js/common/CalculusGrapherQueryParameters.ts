@@ -101,6 +101,8 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
+   * Cycle through preset functions using the left/right arrow keys.
+   *
    * For internal use.
    */
   presetFunctions: {
