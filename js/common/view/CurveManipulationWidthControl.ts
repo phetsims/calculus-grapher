@@ -8,48 +8,36 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Color, VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
+import { Color, VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
 import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type CurveManipulationWidthControlOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CurveManipulationWidthControl extends VBox {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       curveManipulationStrokeProperty: TReadOnlyProperty<Color>,
-                      providedOptions: CurveManipulationWidthControlOptions ) {
+                      tandem: Tandem ) {
 
-    const options = optionize<CurveManipulationWidthControlOptions, SelfOptions, VBoxOptions>()( {
-
-      // VBoxOptions
-      spacing: 10,
-      excludeInvisibleChildrenFromBounds: false
-    }, providedOptions );
-
-    const curveNode = new CurveManipulationDisplayNode(
-      curveManipulationProperties,
-      curveManipulationStrokeProperty, {
-        tandem: options.tandem.createTandem( 'curveNode' )
-      } );
+    const curveNode = new CurveManipulationDisplayNode( curveManipulationProperties,
+      curveManipulationStrokeProperty, tandem.createTandem( 'curveNode' ) );
 
     const slider = new CurveManipulationWidthSlider( curveManipulationProperties.widthProperty, {
       visibleProperty: new DerivedProperty( [ curveManipulationProperties.modeProperty ],
         mode => mode.hasAdjustableWidth ),
-      tandem: options.tandem.createTandem( 'slider' )
+      tandem: tandem.createTandem( 'slider' )
     } );
 
-    options.children = [ curveNode, slider ];
-
-    super( options );
+    super( {
+      children: [ curveNode, slider ],
+      spacing: 10,
+      excludeInvisibleChildrenFromBounds: false,
+      tandem: tandem
+    } );
   }
 }
 

@@ -8,33 +8,20 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { TColor } from '../../../../scenery/js/imports.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type CurveManipulationModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
 
   public constructor( curveManipulationModeProperty: Property<CurveManipulationMode>,
                       curveManipulationStroke: TColor,
-                      providedOptions: CurveManipulationModeRadioButtonGroupOptions ) {
-
-    const options = optionize<CurveManipulationModeRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()( {
-
-      // RectangularRadioButtonGroupOptions
-      spacing: 3,
-      radioButtonOptions: {
-        baseColor: CalculusGrapherColors.panelFillProperty
-      }
-    }, providedOptions );
+                      tandem: Tandem ) {
 
     const validModes = curveManipulationModeProperty.validValues!;
     assert && assert( validModes );
@@ -53,7 +40,13 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
         }
       );
 
-    super( curveManipulationModeProperty, rectangularRadioButtonGroupItems, options );
+    super( curveManipulationModeProperty, rectangularRadioButtonGroupItems, {
+      spacing: 3,
+      radioButtonOptions: {
+        baseColor: CalculusGrapherColors.panelFillProperty
+      },
+      tandem: tandem
+    } );
   }
 }
 

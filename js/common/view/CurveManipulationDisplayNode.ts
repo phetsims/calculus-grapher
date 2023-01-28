@@ -6,57 +6,47 @@
  * @author Martin Veillette
  */
 
-import CurveNode, { CurveNodeOptions } from './CurveNode.js';
+import CurveNode from './CurveNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import TransformedCurve, { TransformedCurveOptions } from '../model/TransformedCurve.js';
+import TransformedCurve from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import { TColor } from '../../../../scenery/js/imports.js';
 
-type SelfOptions = {
-  transformedCurveOptions?: TransformedCurveOptions;
-  chartTransformOptions?: ChartTransformOptions;
-};
-type CurveManipulationDisplayOptions = SelfOptions & PickRequired<CurveNodeOptions, 'tandem'>;
-
 export default class CurveManipulationDisplayNode extends CurveNode {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       curveManipulationStroke: TColor,
-                      providedOptions?: CurveManipulationDisplayOptions ) {
+                      tandem: Tandem ) {
 
-    const options = optionize<CurveManipulationDisplayOptions, SelfOptions, CurveNodeOptions>()( {
-
-      // SelfOptions
-      transformedCurveOptions: {
-        numberOfPoints: 300,
-        xRange: CalculusGrapherConstants.CURVE_X_RANGE
-      },
-      chartTransformOptions: {
-        viewWidth: 100,
-        viewHeight: 40,
-        modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-        modelYRange: CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE
-      },
-
-      // CurveNodeOptions
-      stroke: curveManipulationStroke
-    }, providedOptions );
-
-    const curve = new TransformedCurve( combineOptions<TransformedCurveOptions>( {
+    const curve = new TransformedCurve( {
+      numberOfPoints: 300,
+      xRange: CalculusGrapherConstants.CURVE_X_RANGE,
       tandem: Tandem.OPT_OUT
-    }, options.transformedCurveOptions ) );
+    } );
 
     // chart transform for the curve
-    const chartTransform = new ChartTransform( options.chartTransformOptions );
+    const chartTransform = new ChartTransform( {
+      viewWidth: 100,
+      viewHeight: 40,
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
+      modelYRange: CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE
+    } );
+
+    const chartRectangle = new ChartRectangle( chartTransform );
+
+    super( curve, chartTransform, {
+      children: [ chartRectangle ],
+      clipArea: chartRectangle.getShape(),
+      stroke: curveManipulationStroke,
+      tandem: tandem
+    } );
 
     // convenience variables for drawing curves, making sure the
     // curves will not be clipped  (see #89)
@@ -65,7 +55,6 @@ export default class CurveManipulationDisplayNode extends CurveNode {
     const xMax = chartTransform.modelXRange.getMax();
     const yMax = chartTransform.modelYRange.getMax() - verticalMargin;
     const yMin = chartTransform.modelYRange.getMin() + verticalMargin;
-
     assert && assert( yMax > yMin, 'yMax value should be greater than yMin' );
 
     Multilink.multilink(
@@ -75,43 +64,30 @@ export default class CurveManipulationDisplayNode extends CurveNode {
         curve.reset();
 
         if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
-
           curve.positionManipulatedCurve( mode, new Vector2( xMax, yMax ) );
         }
         else if ( mode === CurveManipulationMode.TRIANGLE ||
                   mode === CurveManipulationMode.PARABOLA ||
                   mode === CurveManipulationMode.PEDESTAL ||
                   mode === CurveManipulationMode.HILL ) {
-
           const middlePosition = new Vector2( xCenter, yMax );
           curve.widthManipulatedCurve( mode, width, middlePosition );
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
-
           curve.freeformIconCurve( yMin, yMax );
         }
         else if ( mode === CurveManipulationMode.SINE ) {
-
           const position = new Vector2( xCenter, yMax / 2 );
           curve.widthManipulatedCurve( mode, width, position );
           curve.shiftToPosition( new Vector2( xCenter, yMax ) );
         }
         else {
-
           throw new Error( 'Unsupported Curve Manipulation Mode' );
         }
 
         curve.curveChangedEmitter.emit();
       }
     );
-
-    super( curve, chartTransform, options );
-
-    // chart Rectangle for the graph
-    const chartRectangle = new ChartRectangle( chartTransform );
-
-    this.clipArea = chartRectangle.getShape();
-    this.addChild( chartRectangle );
   }
 }
 

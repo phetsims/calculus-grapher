@@ -32,15 +32,11 @@ export default class CurveManipulationControls extends VBox {
 
     // Control that shows the width, with slider for modes that support adjustable width.
     const widthControl = new CurveManipulationWidthControl( curveManipulationProperties,
-      curveManipulationStrokeProperty, {
-        tandem: tandem.createTandem( 'widthControl' )
-      } );
+      curveManipulationStrokeProperty, tandem.createTandem( 'widthControl' ) );
 
     // Radio Buttons for choosing the manipulation mode
     const radioButtonGroup = new CurveManipulationModeRadioButtonGroup( curveManipulationProperties.modeProperty,
-      curveManipulationStrokeProperty, {
-        tandem: tandem.createTandem( 'radioButtonGroup' )
-      } );
+      curveManipulationStrokeProperty, tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
       children: [ widthControl, radioButtonGroup ],
