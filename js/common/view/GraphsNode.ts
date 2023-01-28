@@ -91,9 +91,8 @@ export default class GraphNodes extends Node {
 
     this.graphNodes = [ this.integralGraphNode, this.originalGraphNode, this.derivativeGraphNode, this.secondDerivativeGraphNode ];
 
-    const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform, {
-      tandem: options.tandem.createTandem( 'referenceLineNode' )
-    } );
+    const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
+      options.tandem.createTandem( 'referenceLineNode' ) );
 
     // Vertical lines
     const verticalLinesNode = new VerticalLinesNode( model.verticalLines, model.verticalLinesLinkableElement,

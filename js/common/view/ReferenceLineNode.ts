@@ -11,7 +11,6 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Line, Node, VBox } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
@@ -20,30 +19,23 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLine from '../model/ReferenceLine.js';
-import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
+import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import XDragHandleNode from './XDragHandleNode.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type ReferenceLineNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class ReferenceLineNode extends LineToolNode {
 
   public constructor( referenceLine: ReferenceLine,
                       chartTransform: ChartTransform,
-                      providedOptions: ReferenceLineNodeOptions ) {
+                      tandem: Tandem ) {
 
-    const options = optionize<ReferenceLineNodeOptions, SelfOptions, LineToolNodeOptions>()( {
-
-      // NodeOptions
-      visibleProperty: referenceLine.visibleProperty
-    }, providedOptions );
-
-    super( referenceLine.xProperty, chartTransform, CalculusGrapherColors.referenceLineStrokeProperty, options );
+    super( referenceLine.xProperty, chartTransform, CalculusGrapherColors.referenceLineStrokeProperty, {
+      visibleProperty: referenceLine.visibleProperty,
+      tandem: tandem
+    } );
 
     // add numerical label at the top of the vertical line
     const labelNode = new NumberDisplay( referenceLine.xProperty,
@@ -70,7 +62,7 @@ export default class ReferenceLineNode extends LineToolNode {
     const dragHandle = new XDragHandleNode( referenceLine.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: CalculusGrapherColors.referenceLineHandleColorProperty,
-      tandem: options.tandem.createTandem( 'dragHandle' )
+      tandem: tandem.createTandem( 'dragHandle' )
     } );
     this.addChild( dragHandle );
 
@@ -81,7 +73,7 @@ export default class ReferenceLineNode extends LineToolNode {
     } );
 
     this.addLinkedElement( referenceLine, {
-      tandem: options.tandem.createTandem( referenceLine.tandem.name )
+      tandem: tandem.createTandem( referenceLine.tandem.name )
     } );
   }
 
