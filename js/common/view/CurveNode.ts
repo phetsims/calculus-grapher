@@ -93,7 +93,10 @@ export default class CurveNode extends Node {
         fill: Color.RED,
         stroke: Color.YELLOW,
         radius: 1
-      }
+      },
+
+      // NodeOptions
+      phetioVisiblePropertyInstrumented: false
 
     }, providedOptions );
 
