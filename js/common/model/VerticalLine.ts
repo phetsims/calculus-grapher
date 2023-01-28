@@ -13,10 +13,11 @@ import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type VerticalLineOptions = SelfOptions & LabeledAncillaryToolOptions;
+type VerticalLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
 
 export default class VerticalLine extends LabeledAncillaryTool {
 

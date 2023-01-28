@@ -14,12 +14,13 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   pointColor: Color;
 };
 
-type LabeledPointOptions = SelfOptions & LabeledAncillaryToolOptions;
+type LabeledPointOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
 
 export default class LabeledPoint extends LabeledAncillaryTool {
 

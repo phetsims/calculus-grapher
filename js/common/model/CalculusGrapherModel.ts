@@ -145,19 +145,20 @@ export default class CalculusGrapherModel implements TModel {
 
     const toolsTandem = options.tandem.createTandem( 'tools' );
 
-    this.referenceLine = new ReferenceLine( this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve, {
-      tandem: toolsTandem.createTandem( 'referenceLine' )
-    } );
+    this.referenceLine = new ReferenceLine(
+      this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
+      toolsTandem.createTandem( 'referenceLine' )
+    );
 
-    this.tangentScrubber = new TangentScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
-      this.secondDerivativeCurve, {
-        tandem: options.phetioTangentScrubberInstrumented ? toolsTandem.createTandem( 'tangentScrubber' ) : Tandem.OPT_OUT
-      } );
+    this.tangentScrubber = new TangentScrubber(
+      this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
+      options.phetioTangentScrubberInstrumented ? toolsTandem.createTandem( 'tangentScrubber' ) : Tandem.OPT_OUT
+    );
 
-    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
-      this.secondDerivativeCurve, {
-        tandem: options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
-      } );
+    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber(
+      this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
+      options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
+    );
 
     // This exists so that we have something we can link to from the view.
     // See https://github.com/phetsims/calculus-grapher/issues/198
