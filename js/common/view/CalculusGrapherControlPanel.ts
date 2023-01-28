@@ -7,7 +7,7 @@
  * @author Brandon Li
  */
 
-import { HSeparator, Node, VBox } from '../../../../scenery/js/imports.js';
+import { Color, HSeparator, Node, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -52,22 +52,16 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    const predictModeRadioButtonGroup = new PredictModeRadioButtonGroup( predictModeEnabledProperty, {
-      tandem: options.tandem.createTandem( 'predictModeRadioButtonGroup' )
-    } );
+    const predictModeRadioButtonGroup = new PredictModeRadioButtonGroup( predictModeEnabledProperty,
+      options.tandem.createTandem( 'predictModeRadioButtonGroup' ) );
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
-    const curveManipulationControls = new CurveManipulationControls(
-      curveManipulationProperties,
-      predictModeEnabledProperty, {
-        tandem: options.tandem.createTandem( 'curveManipulationControls' )
-      } );
+    const curveManipulationControls = new CurveManipulationControls( curveManipulationProperties,
+      predictModeEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const pushButtonGroup = new CurvePushButtonGroup( curveToTransformProperty, {
-      hasSmoothButton: options.hasSmoothButton,
-      tandem: options.tandem.createTandem( 'pushButtonGroup' )
-    } );
+    const pushButtonGroup = new CurvePushButtonGroup( curveToTransformProperty, options.hasSmoothButton,
+      options.tandem.createTandem( 'pushButtonGroup' ) );
 
     // assemble all the scenery nodes
     const contentNode = new VBox( {
@@ -78,8 +72,8 @@ export default class CalculusGrapherControlPanel extends Panel {
         pushButtonGroup,
 
         // Additional content added via appendContent will be below this separator.
-        // VBox will automatically hide the separator is there is nothing below it.
-        new HSeparator( { stroke: 'rgb(200,200,200)' } )
+        // VBox will automatically hide the separator if there is nothing below it.
+        new HSeparator( { stroke: Color.grayColor( 200 ) } )
       ]
     } );
 

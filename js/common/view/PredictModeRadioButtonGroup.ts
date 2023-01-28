@@ -6,9 +6,8 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { AlignGroup, Text } from '../../../../scenery/js/imports.js';
-import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -18,28 +17,11 @@ import { LabelColorIcon } from './LabelColorIcon.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import GraphType from '../model/GraphType.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type PredictModeRadioButtonGroupOptions = SelfOptions & RectangularRadioButtonGroupOptions;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class PredictModeRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
-  public constructor( predictModeEnabledProperty: Property<boolean>,
-                      providedOptions: PredictModeRadioButtonGroupOptions ) {
-
-    const options = optionize<PredictModeRadioButtonGroupOptions, SelfOptions, RectangularRadioButtonGroupOptions>()( {
-
-      // RectangularRadioButtonGroupOptions
-      orientation: 'horizontal',
-      spacing: 5,
-      radioButtonOptions: {
-        baseColor: CalculusGrapherColors.panelFillProperty,
-        xMargin: 10,
-        yMargin: 10,
-        phetioVisiblePropertyInstrumented: false
-      }
-    }, providedOptions );
+  public constructor( predictModeEnabledProperty: Property<boolean>, tandem: Tandem ) {
 
     const originalCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
 
@@ -66,7 +48,17 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       }
     ];
 
-    super( predictModeEnabledProperty, rectangularRadioButtonGroupItems, options );
+    super( predictModeEnabledProperty, rectangularRadioButtonGroupItems, {
+      orientation: 'horizontal',
+      spacing: 5,
+      radioButtonOptions: {
+        baseColor: CalculusGrapherColors.panelFillProperty,
+        xMargin: 10,
+        yMargin: 10,
+        phetioVisiblePropertyInstrumented: false
+      },
+      tandem: tandem
+    } );
   }
 }
 
