@@ -39,21 +39,23 @@ simLauncher.launch( () => {
     new LabScreen( Tandem.ROOT.createTandem( 'labScreen' ) )
   ];
 
+  const preferencesModel = new PreferencesModel( {
+    simulationOptions: {
+      customPreferences: [ {
+        createContent: tandem => new CalculusGrapherPreferencesNode( tandem.createTandem( 'simPreferences' ) ),
+        modelLinkables: [
+          { property: CalculusGrapherPreferences.valuesVisibleProperty },
+          { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },
+          { property: CalculusGrapherPreferences.derivativeNotationProperty },
+          { property: CalculusGrapherPreferences.functionVariableProperty }
+        ]
+      } ]
+    }
+  } );
+
   const sim = new Sim( CalculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, screens, {
     credits: credits,
-    preferencesModel: new PreferencesModel( {
-      simulationOptions: {
-        customPreferences: [ {
-          createContent: tandem => new CalculusGrapherPreferencesNode( tandem.createTandem( 'simPreferences' ) ),
-          modelLinkables: [
-            { property: CalculusGrapherPreferences.valuesVisibleProperty },
-            { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },
-            { property: CalculusGrapherPreferences.derivativeNotationProperty },
-            { property: CalculusGrapherPreferences.functionVariableProperty }
-          ]
-        } ]
-      }
-    } )
+    preferencesModel: preferencesModel
   } );
 
   sim.start();
