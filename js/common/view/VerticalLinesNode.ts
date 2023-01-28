@@ -23,11 +23,10 @@ export default class VerticalLinesNode extends Node {
   public constructor( verticalLines: VerticalLine[], linkableElement: LinkableElement,
                       chartTransform: ChartTransform, tandem: Tandem ) {
 
-    // VerticalLineNode instances
+    // VerticalLineNode instances.
+    // Opt out of PhET-iO instrumentation, see https://github.com/phetsims/calculus-grapher/issues/198
     const verticalLineNodes = verticalLines.map( verticalLine =>
-      new VerticalLineNode( verticalLine, chartTransform, {
-        tandem: Tandem.OPT_OUT // see https://github.com/phetsims/calculus-grapher/issues/198
-      } ) );
+      new VerticalLineNode( verticalLine, chartTransform, Tandem.OPT_OUT ) );
 
     super( {
       children: verticalLineNodes,

@@ -8,40 +8,30 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import VerticalLine from '../model/VerticalLine.js';
-import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
+import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type VerticalLineNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class VerticalLineNode extends LineToolNode {
 
-  public constructor( verticalLine: VerticalLine,
-                      chartTransform: ChartTransform,
-                      providedOptions: VerticalLineNodeOptions ) {
+  public constructor( verticalLine: VerticalLine, chartTransform: ChartTransform, tandem: Tandem ) {
 
-    const options = optionize<VerticalLineNodeOptions, SelfOptions, LineToolNodeOptions>()( {
-
-      // LineToolNodeOptions
+    super( verticalLine.xProperty, chartTransform, verticalLine.lineColorProperty, {
       lineDash: [ 4, 2 ],
-      visibleProperty: verticalLine.visibleProperty
-    }, providedOptions );
-
-    super( verticalLine.xProperty, chartTransform, verticalLine.lineColorProperty, options );
+      visibleProperty: verticalLine.visibleProperty,
+      tandem: tandem
+    } );
 
     const text = new Text( verticalLine.labelProperty, {
       font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
       maxWidth: 50,
       centerX: 0,
-      tandem: options.tandem.createTandem( 'text' )
+      tandem: tandem.createTandem( 'text' )
     } );
 
     const labelNode = new BackgroundNode( text, {
@@ -57,7 +47,7 @@ export default class VerticalLineNode extends LineToolNode {
     } );
 
     this.addLinkedElement( verticalLine, {
-      tandem: options.tandem.createTandem( verticalLine.tandem.name )
+      tandem: tandem.createTandem( verticalLine.tandem.name )
     } );
   }
 }
