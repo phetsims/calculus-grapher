@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * CalculusGrapherPreferences is the model for sim-specific preferences, accessed via the Preferences dialog.
