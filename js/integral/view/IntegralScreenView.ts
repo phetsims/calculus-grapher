@@ -5,6 +5,7 @@
  *
  * @author Brandon Li
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';

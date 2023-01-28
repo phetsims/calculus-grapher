@@ -14,6 +14,7 @@
  * are left as-is and DerivativeCurves are never disposed.
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import Tandem from '../../../../tandem/js/Tandem.js';

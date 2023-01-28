@@ -13,6 +13,7 @@
  * as-is and IntegralCurves are never disposed.
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import Tandem from '../../../../tandem/js/Tandem.js';

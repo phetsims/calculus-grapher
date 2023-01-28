@@ -4,6 +4,7 @@
  * Curve Manipulation controls that allow the user to manipulate the curve
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';

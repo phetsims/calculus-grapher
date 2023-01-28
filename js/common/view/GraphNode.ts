@@ -15,6 +15,7 @@
  *
  * @author Martin Veillette
  * @author Brandon Li
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import AxisLine from '../../../../bamboo/js/AxisLine.js';

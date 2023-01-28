@@ -4,6 +4,7 @@
  * GraphSetRadioButtonGroup is a group of buttons for controlling visibility of a set of graph nodes
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';

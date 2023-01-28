@@ -5,6 +5,7 @@
  * The label updates its positions, and is set perpendicular to the tangent of the curve
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';

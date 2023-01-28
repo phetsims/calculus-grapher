@@ -4,6 +4,8 @@
  * Properties that are only used within the view hierarchy of the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
+ * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';

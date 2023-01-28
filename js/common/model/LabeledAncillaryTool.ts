@@ -4,6 +4,7 @@
  * LabeledAncillaryTool is the base class for ancillary tools that have a label.
  *
  * @author Martin Veillette
+ * @@author Chris Malley (PixelZoom, Inc.)
  */
 
 import Property from '../../../../axon/js/Property.js';

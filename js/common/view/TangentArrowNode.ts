@@ -1,8 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * TangentArrowNode is double-headed arrow that represents
- *  the tangent of a curve at a point.
+ * TangentArrowNode is double-headed arrow that represents the tangent of a curve at a point.
  *
  * @author Martin Veillette
  */

@@ -4,6 +4,8 @@
  * Base class for the top-level model of every screen in the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
+ * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';

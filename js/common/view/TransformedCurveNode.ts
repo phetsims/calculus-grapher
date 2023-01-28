@@ -8,6 +8,7 @@
  * are left as-is and TransformedCurves are never disposed.
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import { DragListener } from '../../../../scenery/js/imports.js';

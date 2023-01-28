@@ -5,6 +5,7 @@
  * smooth, erase and undo the original curve
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';

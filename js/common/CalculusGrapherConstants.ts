@@ -4,6 +4,8 @@
  * Constants used in multiple locations within the 'Calculus Grapher' simulation. All fields are static.
  *
  * @author Brandon Li
+ * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Range from '../../../dot/js/Range.js';

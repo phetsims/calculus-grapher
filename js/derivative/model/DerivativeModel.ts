@@ -4,6 +4,8 @@
  * Top level model for the 'Derivative' screen.
  *
  * @author Brandon Li
+ * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';

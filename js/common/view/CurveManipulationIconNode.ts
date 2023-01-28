@@ -4,7 +4,7 @@
  * CurveManipulationIconNode creates the Curve Manipulation Icons for the Radio Buttons
  *
  * @author Martin Veillette
- * */
+ */
 
 import calculusGrapher from '../../calculusGrapher.js';
 import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';

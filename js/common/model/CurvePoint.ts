@@ -12,6 +12,8 @@
  * at the start of the sim and are mutated when the Curve changes. CurvePoints are never disposed.
  *
  * @author Brandon Li
+ * @author Martin Veillette
+ * @@author Chris Malley (PixelZoom, Inc.)
  */
 
 import Vector2 from '../../../../dot/js/Vector2.js';

@@ -18,6 +18,7 @@
  * https://github.com/phetsims/calculus-grapher/blob/master/doc/implementation-notes.md
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import Emitter from '../../../../axon/js/Emitter.js';

@@ -5,6 +5,7 @@
  * GraphTypeLabelNode is the view representation for graph labels in 'Calculus Grapher'
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';

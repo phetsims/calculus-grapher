@@ -5,6 +5,7 @@
  * Scrubbing can be done by dragging the cursor.
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';

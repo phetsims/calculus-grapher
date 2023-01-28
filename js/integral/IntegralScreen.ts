@@ -4,6 +4,8 @@
  * The 'Integral Lab' screen.
  *
  * @author Brandon Li
+ * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Screen from '../../../joist/js/Screen.js';

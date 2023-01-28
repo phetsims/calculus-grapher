@@ -8,6 +8,7 @@
  * The shadedSphere is user controlled.
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';

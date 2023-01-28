@@ -8,6 +8,7 @@
  * the algorithms for responses to curve user-manipulation. Please also see TransformedCurve.js
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import Enumeration from '../../../../phet-core/js/Enumeration.js';

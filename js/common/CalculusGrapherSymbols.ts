@@ -7,6 +7,7 @@
  * MathSymbolFont.getRichTextMarkup, all occurrences of that symbol will be rendered using MathSymbolFont.
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import MathSymbolFont from '../../../scenery-phet/js/MathSymbolFont.js';

@@ -14,6 +14,7 @@
  * CurveNodes persist for the lifetime of the simulation and links are left as-is. See Curve.js for more background.
  *
  * @author Brandon Li
+ * @author Martin Veillette
  */
 
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';

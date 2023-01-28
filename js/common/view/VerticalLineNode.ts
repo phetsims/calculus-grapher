@@ -5,6 +5,7 @@
  * The line has a label node located atop of the vertical line
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';

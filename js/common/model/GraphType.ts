@@ -4,6 +4,7 @@
  * Types for identifying the types of graphs available, and sets of those graphs.
  *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Enumeration from '../../../../phet-core/js/Enumeration.js';

@@ -5,6 +5,7 @@
  *
  * @author Brandon Li
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../calculusGrapher.js';
