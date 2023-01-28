@@ -32,7 +32,6 @@ import Range from '../../../../dot/js/Range.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
-import { MathFunction } from './PresetFunctions.js';
 
 // constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -43,7 +42,6 @@ const SLOPE_THRESHOLD = CalculusGrapherQueryParameters.slopeThreshold;
 type SelfOptions = {
   xRange?: Range;
   numberOfPoints?: number;
-  mathFunction?: MathFunction;
   pointsPropertyReadOnly?: boolean;
 };
 
@@ -71,7 +69,6 @@ export default class Curve extends PhetioObject {
       // SelfOptions
       xRange: CURVE_X_RANGE,
       numberOfPoints: NUMBER_OF_POINTS,
-      mathFunction: () => 0,
 
       // PhetioObjectOptions
       phetioState: false,
@@ -84,8 +81,14 @@ export default class Curve extends PhetioObject {
     this.xRange = options.xRange;
     this.numberOfPoints = options.numberOfPoints;
 
-    // the Points that map out the curve within the domain. See the comment at the top of this file for full context.
-    const initialPoints = this.getFromMathFunction( options.mathFunction );
+    // Initial points, with equally-spaced x values, and y=0.
+    // These CurvePoint instances are reused throughout the lifetime of the sim, and never disposed.
+    const initialPoints: CurvePoint[] = [];
+    for ( let i = 0; i < this.numberOfPoints; i++ ) {
+      const xNormalized = i / ( this.numberOfPoints - 1 ); // in the range [0,1]
+      const x = this.xRange.expandNormalizedValue( xNormalized );
+      initialPoints.push( new CurvePoint( x, 0 ) );
+    }
 
     this.pointsProperty = new Property( initialPoints, {
       isValidValue: points => isValidPoints( initialPoints, points ),
@@ -194,26 +197,6 @@ export default class Curve extends PhetioObject {
 
       iterator( value, previousValue, i );
     }
-  }
-
-  private getFromMathFunction( mathFunction: MathFunction ): CurvePoint[] {
-    // Populate the points of the curve with CurvePoints that are close together. CurvePoints are created at the
-    // start of the simulation here and are never disposed.
-
-    const points: CurvePoint[] = [];
-
-    const numberOfPoints = this.numberOfPoints;
-
-    for ( let i = 0; i < numberOfPoints; i++ ) {
-
-      // a value ranging from 0 to 1, inclusive;
-      const normalizedValue = i / ( numberOfPoints - 1 );
-
-      const x = this.xRange.expandNormalizedValue( normalizedValue );
-
-      points.push( new CurvePoint( x, mathFunction( x ) ) );
-    }
-    return points;
   }
 
   private assignType(): void {
