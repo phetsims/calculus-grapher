@@ -31,13 +31,13 @@ import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
 import GraphType from '../model/GraphType.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type OriginalGraphNodeOptions = SelfOptions & StrictOmit<GraphNodeOptions, 'labelNode'>;
+type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'graphHeight' | 'tandem'>;
 
 export default class OriginalGraphNode extends GraphNode {
 
