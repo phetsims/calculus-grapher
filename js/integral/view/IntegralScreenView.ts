@@ -30,7 +30,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
 
       // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
-        smoothButtonVisible: false
+        hasSmoothButton: false
       }
     }, providedOptions );
 

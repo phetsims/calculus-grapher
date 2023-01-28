@@ -30,7 +30,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
       // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
-        smoothButtonVisible: false
+        hasSmoothButton: false
       }
     }, providedOptions );
 

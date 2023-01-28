@@ -23,7 +23,7 @@ import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
-  smoothButtonVisible?: boolean;
+  hasSmoothButton?: boolean;
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
@@ -41,7 +41,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
 
       // SelfOptions
-      smoothButtonVisible: true,
+      hasSmoothButton: true,
 
       // PanelOptions
       stroke: CalculusGrapherColors.panelStrokeProperty,
@@ -65,9 +65,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
     const curveButtons = new CurvePushButtonGroup( curveToTransformProperty, {
-      smoothButtonOptions: {
-        visible: options.smoothButtonVisible
-      },
+      hasSmoothButton: options.hasSmoothButton,
       tandem: options.tandem.createTandem( 'curveButtons' )
     } );
 
