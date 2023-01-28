@@ -50,21 +50,24 @@ export default class CurveManipulationControls extends VBox {
       ( predictModeEnabled, predictCurveStroke, originalCurveStroke ) =>
         predictModeEnabled ? predictCurveStroke : originalCurveStroke );
 
-    const displayNode = new CurveManipulationDisplayNode(
+    const widthControlTandem = options.tandem.createTandem( 'widthControl' );
+
+    const curveNode = new CurveManipulationDisplayNode(
       curveManipulationProperties,
       curveManipulationStrokeProperty, {
-        tandem: options.tandem.createTandem( 'displayNode' )
+        tandem: widthControlTandem.createTandem( 'curveNode' )
       } );
 
-    const widthSlider = new CurveManipulationWidthSlider( widthProperty, {
+    const slider = new CurveManipulationWidthSlider( widthProperty, {
       visibleProperty: new DerivedProperty( [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
-      tandem: options.tandem.createTandem( 'widthSlider' )
+      tandem: widthControlTandem.createTandem( 'slider' )
     } );
 
-    const displayAndSlider = new VBox( {
-      children: [ displayNode, widthSlider ],
+    const widthControl = new VBox( {
+      children: [ curveNode, slider ],
       spacing: 10,
-      excludeInvisibleChildrenFromBounds: false
+      excludeInvisibleChildrenFromBounds: false,
+      tandem: widthControlTandem
     } );
 
     // Radio Buttons that control the curveManipulationModeProperty.
@@ -72,7 +75,7 @@ export default class CurveManipulationControls extends VBox {
       tandem: options.tandem.createTandem( 'radioButtonGroup' )
     } );
 
-    options.children = [ displayAndSlider, radioButtonGroup ];
+    options.children = [ widthControl, radioButtonGroup ];
 
     super( options );
   }
