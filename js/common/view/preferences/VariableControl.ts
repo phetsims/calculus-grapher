@@ -7,10 +7,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { HBox, HBoxOptions, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../../sun/js/AquaRadioButtonGroup.js';
+import { combineOptions } from '../../../../../phet-core/js/optionize.js';
+import { HBox, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
@@ -19,39 +18,28 @@ import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
-import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type VariableControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'> & StrictOmit<HBoxOptions, 'children'>;
 
 export default class VariableControl extends HBox {
 
   private readonly disposeVariableControl: () => void;
 
-  public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>,
-                      providedOptions: VariableControlOptions ) {
-
-    const options = optionize<VariableControlOptions, SelfOptions, HBoxOptions>()( {
-
-      // HBoxOptions
-      align: 'top',
-      spacing: 15
-    }, providedOptions );
+  public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherStrings.variableStringProperty,
       combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
-        tandem: options.tandem.createTandem( 'labelText' )
+        tandem: tandem.createTandem( 'labelText' )
       } ) );
 
-    const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty, {
-      tandem: options.tandem.createTandem( 'radioButtonGroup' )
+    const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty,
+      tandem.createTandem( 'radioButtonGroup' ) );
+
+    super( {
+      children: [ labelText, radioButtonGroup ],
+      align: 'top',
+      spacing: 15,
+      tandem: tandem
     } );
-
-    options.children = [ labelText, radioButtonGroup ];
-
-    super( options );
 
     this.disposeVariableControl = () => {
       labelText.dispose();
@@ -68,26 +56,9 @@ export default class VariableControl extends HBox {
 /**
  * The radio button group for this control.
  */
-
-type VariableRadioButtonGroupSelfOptions = EmptySelfOptions;
-
-type VariableRadioButtonGroupOptions = SelfOptions & PickRequired<AquaRadioButtonGroupOptions, 'tandem'>;
-
 class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 
-  public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>,
-                      providedOptions: VariableRadioButtonGroupOptions ) {
-
-    const options = optionize<VariableRadioButtonGroupOptions, VariableRadioButtonGroupSelfOptions, AquaRadioButtonGroupOptions>()( {
-
-      // AquaRadioButtonGroupOptions
-      orientation: 'horizontal',
-      spacing: 20,
-      radioButtonOptions: {
-        phetioVisiblePropertyInstrumented: false
-      },
-      phetioVisiblePropertyInstrumented: false
-    }, providedOptions );
+  public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>, tandem: Tandem ) {
 
     const items: AquaRadioButtonGroupItem<FunctionVariable>[] = [
       {
@@ -102,7 +73,15 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
       }
     ];
 
-    super( functionVariableProperty, items, options );
+    super( functionVariableProperty, items, {
+      orientation: 'horizontal',
+      spacing: 20,
+      radioButtonOptions: {
+        phetioVisiblePropertyInstrumented: false
+      },
+      phetioVisiblePropertyInstrumented: false,
+      tandem: tandem
+    } );
   }
 }
 

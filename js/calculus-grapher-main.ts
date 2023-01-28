@@ -42,9 +42,7 @@ simLauncher.launch( () => {
     preferencesModel: new PreferencesModel( {
       simulationOptions: {
         customPreferences: [ {
-          createContent: tandem => new CalculusGrapherPreferencesNode( {
-            tandem: tandem.createTandem( 'simPreferences' )
-          } ),
+          createContent: tandem => new CalculusGrapherPreferencesNode( tandem.createTandem( 'simPreferences' ) ),
           modelLinkables: [
             { property: CalculusGrapherPreferences.valuesVisibleProperty },
             { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },

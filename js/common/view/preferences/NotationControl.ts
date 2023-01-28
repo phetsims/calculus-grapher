@@ -7,10 +7,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { HBox, HBoxOptions, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup, { AquaRadioButtonGroupItem, AquaRadioButtonGroupOptions } from '../../../../../sun/js/AquaRadioButtonGroup.js';
+import { combineOptions } from '../../../../../phet-core/js/optionize.js';
+import { HBox, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
@@ -19,40 +18,28 @@ import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
-import StrictOmit from '../../../../../phet-core/js/types/StrictOmit.js';
 import GraphType from '../../model/GraphType.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type NotationControlOptions = SelfOptions & PickRequired<HBoxOptions, 'tandem'> & StrictOmit<HBoxOptions, 'children'>;
 
 export default class NotationControl extends HBox {
 
   private readonly disposeNotationControl: () => void;
 
-  public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>,
-                      providedOptions: NotationControlOptions ) {
-
-    const options = optionize<NotationControlOptions, SelfOptions, HBoxOptions>()( {
-
-      // HBoxOptions
-      align: 'top',
-      spacing: 15
-    }, providedOptions );
+  public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherStrings.notationStringProperty,
       combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
-        tandem: options.tandem.createTandem( 'labelText' )
+        tandem: tandem.createTandem( 'labelText' )
       } ) );
 
-    const radioButtonGroup = new NotationRadioButtonGroup( derivativeNotationProperty, {
-      tandem: options.tandem.createTandem( 'radioButtonGroup' )
+    const radioButtonGroup = new NotationRadioButtonGroup( derivativeNotationProperty,
+      tandem.createTandem( 'radioButtonGroup' ) );
+
+    super( {
+      children: [ labelText, radioButtonGroup ],
+      align: 'top',
+      spacing: 15
     } );
-
-    options.children = [ labelText, radioButtonGroup ];
-
-    super( options );
 
     this.disposeNotationControl = () => {
       labelText.dispose();
@@ -69,26 +56,9 @@ export default class NotationControl extends HBox {
 /**
  * The radio button group for this control.
  */
-
-type NotationRadioButtonGroupSelfOptions = EmptySelfOptions;
-
-type NotationRadioButtonGroupOptions = SelfOptions & PickRequired<AquaRadioButtonGroupOptions, 'tandem'>;
-
 class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> {
 
-  public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>,
-                      providedOptions: NotationRadioButtonGroupOptions ) {
-
-    const options = optionize<NotationRadioButtonGroupOptions, NotationRadioButtonGroupSelfOptions, AquaRadioButtonGroupOptions>()( {
-
-      // AquaRadioButtonGroupOptions
-      orientation: 'vertical',
-      spacing: 10,
-      radioButtonOptions: {
-        phetioVisiblePropertyInstrumented: false
-      },
-      phetioVisiblePropertyInstrumented: false
-    }, providedOptions );
+  public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
 
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
@@ -105,7 +75,15 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
       }
     ];
 
-    super( derivativeNotationProperty, items, options );
+    super( derivativeNotationProperty, items, {
+      orientation: 'vertical',
+      spacing: 10,
+      radioButtonOptions: {
+        phetioVisiblePropertyInstrumented: false
+      },
+      phetioVisiblePropertyInstrumented: false,
+      tandem: tandem
+    } );
   }
 }
 

@@ -10,56 +10,41 @@
  * @author Martin Veillette
  */
 
-import { VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
+import { VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DiscontinuitiesControl from './preferences/DiscontinuitiesControl.js';
 import ValuesControl from './preferences/ValuesControl.js';
 import NotationControl from './preferences/NotationControl.js';
 import VariableControl from './preferences/VariableControl.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type CalculusGrapherPreferencesNodeOptions = SelfOptions & PickRequired<VBoxOptions, 'tandem'> &
-  StrictOmit<VBoxOptions, 'children'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CalculusGrapherPreferencesNode extends VBox {
 
   // Disposes of things that are specific to this class.
   private readonly disposeCalculusGrapherPreferencesNode: () => void;
 
-  public constructor( providedOptions: CalculusGrapherPreferencesNodeOptions ) {
+  public constructor( tandem: Tandem ) {
 
-    const options = optionize<CalculusGrapherPreferencesNodeOptions, SelfOptions, VBoxOptions>()( {
+    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
+      tandem.createTandem( 'valuesControl' ) );
 
-      // VBoxOptions
+    const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
+      tandem.createTandem( 'discontinuitiesControl' ) );
+
+    const notationControl = new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty,
+      tandem.createTandem( 'notationControl' ) );
+
+    const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
+      tandem.createTandem( 'variableControl' ) );
+
+    super( {
+      children: [ valuesControl, discontinuitiesControl, notationControl, variableControl ],
       align: 'left',
       spacing: 20,
-      phetioVisiblePropertyInstrumented: false
-    }, providedOptions );
-
-    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty, {
-      tandem: options.tandem.createTandem( 'valuesControl' )
+      phetioVisiblePropertyInstrumented: false,
+      tandem: tandem
     } );
-
-    const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty, {
-      tandem: options.tandem.createTandem( 'discontinuitiesControl' )
-    } );
-
-    const notationControl = new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty, {
-      tandem: options.tandem.createTandem( 'notationControl' )
-    } );
-
-    const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty, {
-      tandem: options.tandem.createTandem( 'variableControl' )
-    } );
-
-    options.children = [ valuesControl, discontinuitiesControl, notationControl, variableControl ];
-
-    super( options );
 
     this.disposeCalculusGrapherPreferencesNode = (): void => {
       valuesControl.dispose();
