@@ -217,7 +217,10 @@ export default class GraphNode extends Node {
     // Zoom button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
+        tandem: options.tandem.createTandem( 'zoomButtonGroup' ),
+        buttonOptions: {
+          phetioVisiblePropertyInstrumented: false
+        }
       }, options.plusMinusZoomButtonGroupOptions ) );
 
     const buttonSetNode = new VBox( {
