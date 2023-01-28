@@ -601,7 +601,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Set the curve based on a linear interpolation from an array of Vector2 coordinates.
    */
-  public applyFromSimplePoints( simplePoints: Vector2[] ): void {
+  private applyFromSimplePoints( simplePoints: Vector2[] ): void {
 
     // assign simplePoints
     simplePoints.forEach( simplePoint => {
