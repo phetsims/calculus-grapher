@@ -101,15 +101,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
-    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties, {
-      checkboxOptions: {
-        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
-      },
-      layoutOptions: {
-        xMargin: CalculusGrapherConstants.PANEL_X_MARGIN
-      },
-      tandem: options.tandem.createTandem( 'checkboxGroup' )
-    } );
+    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties,
+      options.tandem.createTandem( 'checkboxGroup' ) );
 
     const rightVBox = new VBox( {
       children: [ this.controlPanel, checkboxGroup ],
@@ -117,14 +110,12 @@ export default class CalculusGrapherScreenView extends ScreenView {
       align: 'left'
     } );
 
-    this.graphsNode = new GraphsNode( model,
-      this.graphSetProperty,
-      this.visibleProperties, {
-        graphSets: options.graphSets,
-        centerX: this.layoutBounds.centerX - 25,
-        y: this.layoutBounds.top + 40,
-        tandem: options.tandem.createTandem( 'graphsNode' )
-      } );
+    this.graphsNode = new GraphsNode( model, this.graphSetProperty, this.visibleProperties, {
+      graphSets: options.graphSets,
+      centerX: this.layoutBounds.centerX - 25,
+      y: this.layoutBounds.top + 40,
+      tandem: options.tandem.createTandem( 'graphsNode' )
+    } );
 
     // Put control panel in the negative space to the right of graphsNode, top-aligned with graphsNode.y.
     rightVBox.boundsProperty.link( () => {
@@ -139,9 +130,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
     ];
 
     if ( options.graphSetRadioButtonGroupItems.length > 0 ) {
-      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty, options.graphSetRadioButtonGroupItems, {
-        tandem: options.tandem.createTandem( 'graphSetRadioButtonGroup' )
-      } );
+      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
+        options.graphSetRadioButtonGroupItems, options.tandem.createTandem( 'graphSetRadioButtonGroup' ) );
       children.push( graphSetRadioButtonGroup );
 
       // Center in the negative space to the left of graphNode.

@@ -6,25 +6,19 @@
  * @author Martin Veillette
  */
 
-import VerticalCheckboxGroup, { VerticalCheckboxGroupItem, VerticalCheckboxGroupOptions } from '../../../../sun/js/VerticalCheckboxGroup.js';
+import VerticalCheckboxGroup, { VerticalCheckboxGroupItem } from '../../../../sun/js/VerticalCheckboxGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type CalculusGrapherCheckboxGroupOptions = SelfOptions & VerticalCheckboxGroupOptions;
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup {
 
-  public constructor( visibleProperties: CalculusGrapherVisibleProperties,
-                      providedOptions: CalculusGrapherCheckboxGroupOptions ) {
-
-    const options = providedOptions;
+  public constructor( visibleProperties: CalculusGrapherVisibleProperties, tandem: Tandem ) {
 
     const items: VerticalCheckboxGroupItem[] = [
 
@@ -35,7 +29,15 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
       createItem( ReferenceLineNode.getIcon(), visibleProperties.referenceLineVisibleProperty, 'referenceLineCheckbox' )
     ];
 
-    super( items, options );
+    super( items, {
+      checkboxOptions: {
+        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
+      },
+      layoutOptions: {
+        xMargin: CalculusGrapherConstants.PANEL_X_MARGIN
+      },
+      tandem: tandem
+    } );
   }
 }
 
