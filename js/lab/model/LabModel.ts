@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Top level model for the 'Lab' screen.
+ * Top-level model for the 'Lab' screen.
  *
  * @author Martin Veillette
  */

@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Top level model for the 'Advanced' screen.
+ * Top-level model for the 'Advanced' screen.
  *
  * @author Brandon Li
  */
