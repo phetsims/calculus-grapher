@@ -8,10 +8,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import { VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
-import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
-import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
 import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
@@ -19,9 +16,7 @@ import CurveManipulationProperties from '../model/CurveManipulationProperties.js
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import Property from '../../../../axon/js/Property.js';
-
-// curve manipulation modes that should not display a curve manipulation width slider
-const NO_SLIDER_MODES = [ CurveManipulationMode.TILT, CurveManipulationMode.SHIFT, CurveManipulationMode.FREEFORM ];
+import CurveManipulationWidthControl from './CurveManipulationWidthControl.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -39,9 +34,6 @@ export default class CurveManipulationControls extends VBox {
       spacing: 15
     }, providedOptions );
 
-    // destructure the properties of curveManipulationProperties for convenience
-    const { modeProperty, widthProperty } = curveManipulationProperties;
-
     const curveManipulationStrokeProperty = new DerivedProperty( [
         predictModeEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
@@ -50,30 +42,17 @@ export default class CurveManipulationControls extends VBox {
       ( predictModeEnabled, predictCurveStroke, originalCurveStroke ) =>
         predictModeEnabled ? predictCurveStroke : originalCurveStroke );
 
-    const widthControlTandem = options.tandem.createTandem( 'widthControl' );
-
-    const curveNode = new CurveManipulationDisplayNode(
-      curveManipulationProperties,
+    // Control that shows the width, with slider for modes that support adjustable width.
+    const widthControl = new CurveManipulationWidthControl( curveManipulationProperties,
       curveManipulationStrokeProperty, {
-        tandem: widthControlTandem.createTandem( 'curveNode' )
+        tandem: options.tandem.createTandem( 'widthControl' )
       } );
 
-    const slider = new CurveManipulationWidthSlider( widthProperty, {
-      visibleProperty: new DerivedProperty( [ modeProperty ], mode => !NO_SLIDER_MODES.includes( mode ) ),
-      tandem: widthControlTandem.createTandem( 'slider' )
-    } );
-
-    const widthControl = new VBox( {
-      children: [ curveNode, slider ],
-      spacing: 10,
-      excludeInvisibleChildrenFromBounds: false,
-      tandem: widthControlTandem
-    } );
-
-    // Radio Buttons that control the curveManipulationModeProperty.
-    const radioButtonGroup = new CurveManipulationModeRadioButtonGroup( modeProperty, curveManipulationStrokeProperty, {
-      tandem: options.tandem.createTandem( 'radioButtonGroup' )
-    } );
+    // Radio Buttons for choosing the manipulation mode
+    const radioButtonGroup = new CurveManipulationModeRadioButtonGroup( curveManipulationProperties.modeProperty,
+      curveManipulationStrokeProperty, {
+        tandem: options.tandem.createTandem( 'radioButtonGroup' )
+      } );
 
     options.children = [ widthControl, radioButtonGroup ];
 
