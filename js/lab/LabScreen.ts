@@ -6,27 +6,21 @@
  * @author Martin Veillette
  */
 
-import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
+import Screen from '../../../joist/js/Screen.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
-import { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import GraphType, { GraphSet } from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import { AlignGroup } from '../../../scenery/js/imports.js';
 import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type LabScreenOptions = SelfOptions & ScreenOptions;
+import Tandem from '../../../tandem/js/Tandem.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
-  public constructor( providedOptions: LabScreenOptions ) {
-
-    const options = providedOptions;
+  public constructor( tandem: Tandem ) {
 
     const graphSets: GraphSet[] = [
       [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ],
@@ -41,19 +35,19 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     const createModel = () => new LabModel( {
       graphSets: graphSets,
-      tandem: options.tandem.createTandem( 'model' )
+      tandem: tandem.createTandem( 'model' )
     } );
 
     const createView = ( model: LabModel ) => new LabScreenView( model, {
       graphSetRadioButtonGroupItems: graphSetRadioButtonGroupItems,
-      tandem: options.tandem.createTandem( 'view' )
+      tandem: tandem.createTandem( 'view' )
     } );
 
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.labStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
-      tandem: options.tandem
+      tandem: tandem
     } );
   }
 }

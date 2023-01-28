@@ -33,10 +33,10 @@ const simCredits: CreditsData = {
 simLauncher.launch( () => {
 
   const sim = new Sim( CalculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, [
-    new DerivativeScreen( { tandem: Tandem.ROOT.createTandem( 'derivativeScreen' ) } ),
-    new IntegralScreen( { tandem: Tandem.ROOT.createTandem( 'integralScreen' ) } ),
-    new AdvancedScreen( { tandem: Tandem.ROOT.createTandem( 'advancedScreen' ) } ),
-    new LabScreen( { tandem: Tandem.ROOT.createTandem( 'labScreen' ) } )
+    new DerivativeScreen( Tandem.ROOT.createTandem( 'derivativeScreen' ) ),
+    new IntegralScreen( Tandem.ROOT.createTandem( 'integralScreen' ) ),
+    new AdvancedScreen( Tandem.ROOT.createTandem( 'advancedScreen' ) ),
+    new LabScreen( Tandem.ROOT.createTandem( 'labScreen' ) )
   ], {
     credits: simCredits,
     preferencesModel: new PreferencesModel( {
