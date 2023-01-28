@@ -131,7 +131,10 @@ export default class GraphNode extends Node {
         buttonOptions: {
           stroke: 'black'
         }
-      }
+      },
+
+      // NodeOptions
+      phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
     // If labelNode was not provided, create the default.
