@@ -9,8 +9,6 @@
 import VerticalCheckboxGroup, { VerticalCheckboxGroupItem, VerticalCheckboxGroupOptions } from '../../../../sun/js/VerticalCheckboxGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import { Node } from '../../../../scenery/js/imports.js';
@@ -31,30 +29,21 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
     const items: VerticalCheckboxGroupItem[] = [
 
       // Item for grid checkbox
-      createItem( new GridIcon(), visibleProperties.gridVisibleProperty, {
-        tandemName: 'gridCheckbox'
-      } ),
+      createItem( new GridIcon(), visibleProperties.gridVisibleProperty, 'gridCheckbox' ),
 
       // Item for reference line checkbox
-      createItem( ReferenceLineNode.getIcon(), visibleProperties.referenceLineVisibleProperty, {
-        tandemName: 'referenceLineCheckbox'
-      } )
+      createItem( ReferenceLineNode.getIcon(), visibleProperties.referenceLineVisibleProperty, 'referenceLineCheckbox' )
     ];
 
     super( items, options );
   }
 }
 
-type ItemOptions = PickRequired<VerticalCheckboxGroupItem, 'tandemName'> & PickOptional<VerticalCheckboxGroupItem, 'options'>;
-
-function createItem( labelNode: Node,
-                     property: Property<boolean>,
-                     providedOptions: ItemOptions ): VerticalCheckboxGroupItem {
+function createItem( labelNode: Node, property: Property<boolean>, tandemName: string ): VerticalCheckboxGroupItem {
   return {
     createNode: () => labelNode,
     property: property,
-    options: providedOptions.options,
-    tandemName: providedOptions.tandemName
+    tandemName: tandemName
   };
 }
 
