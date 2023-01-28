@@ -128,10 +128,7 @@ export default class TransformedCurveNode extends CurveNode {
     this.wasDraggedProperty.reset();
   }
 
-  /**
-   * Forwards response to super-class
-   */
-  public override updateCurveNode(): void {
+  protected override updateCurveNode(): void {
     super.updateCurveNode();
     this.setPointerAreas();
   }
