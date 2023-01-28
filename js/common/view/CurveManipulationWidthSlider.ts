@@ -12,6 +12,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Property from '../../../../axon/js/Property.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
@@ -19,7 +20,7 @@ assert && assert( NUMBER_OF_TICKS % 2 === 1, 'must have an odd number of ticks f
 
 type SelfOptions = EmptySelfOptions;
 
-type CurveManipulationWidthSliderOptions = SelfOptions & HSliderOptions;
+type CurveManipulationWidthSliderOptions = SelfOptions & PickRequired<HSliderOptions, 'tandem' | 'visibleProperty'>;
 
 export default class CurveManipulationWidthSlider extends HSlider {
 
