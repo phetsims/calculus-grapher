@@ -19,7 +19,7 @@ import CalculusGrapherPreferencesNode from './common/view/CalculusGrapherPrefere
 import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import CalculusGrapherPreferences from './common/model/CalculusGrapherPreferences.js';
 
-const simCredits: CreditsData = {
+const credits: CreditsData = {
   leadDesign: '',
   softwareDevelopment: '',
   team: '',
@@ -32,13 +32,15 @@ const simCredits: CreditsData = {
 // Launch the 'Calculus Grapher' simulation.
 simLauncher.launch( () => {
 
-  const sim = new Sim( CalculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, [
+  const screens = [
     new DerivativeScreen( Tandem.ROOT.createTandem( 'derivativeScreen' ) ),
     new IntegralScreen( Tandem.ROOT.createTandem( 'integralScreen' ) ),
     new AdvancedScreen( Tandem.ROOT.createTandem( 'advancedScreen' ) ),
     new LabScreen( Tandem.ROOT.createTandem( 'labScreen' ) )
-  ], {
-    credits: simCredits,
+  ];
+
+  const sim = new Sim( CalculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, screens, {
+    credits: credits,
     preferencesModel: new PreferencesModel( {
       simulationOptions: {
         customPreferences: [ {
@@ -48,12 +50,10 @@ simLauncher.launch( () => {
             { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },
             { property: CalculusGrapherPreferences.derivativeNotationProperty },
             { property: CalculusGrapherPreferences.functionVariableProperty }
-
           ]
         } ]
       }
     } )
-
   } );
 
   sim.start();
