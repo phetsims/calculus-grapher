@@ -64,9 +64,9 @@ export default class CalculusGrapherControlPanel extends Panel {
       } );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const curveButtons = new CurvePushButtonGroup( curveToTransformProperty, {
+    const pushButtonGroup = new CurvePushButtonGroup( curveToTransformProperty, {
       hasSmoothButton: options.hasSmoothButton,
-      tandem: options.tandem.createTandem( 'curveButtons' )
+      tandem: options.tandem.createTandem( 'pushButtonGroup' )
     } );
 
     // assemble all the scenery nodes
@@ -75,7 +75,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       children: [
         predictModeRadioButtonGroup,
         curveManipulationControls,
-        curveButtons,
+        pushButtonGroup,
 
         // Additional content added via appendContent will be below this separator.
         // VBox will automatically hide the separator is there is nothing below it.
