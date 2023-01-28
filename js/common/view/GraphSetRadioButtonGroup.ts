@@ -30,7 +30,8 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
       radioButtonOptions: {
         baseColor: CalculusGrapherColors.panelFillProperty,
         xMargin: 10,
-        yMargin: 10
+        yMargin: 10,
+        phetioVisiblePropertyInstrumented: false
       },
       tandem: tandem
     } );
