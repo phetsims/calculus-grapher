@@ -51,7 +51,9 @@ export default class GraphNodes extends Node {
                       providedOptions?: GraphNodesOptions ) {
 
     const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {
-      // empty optionize because we're setting options.children below
+
+      // NodeOptions
+      phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
     super();
