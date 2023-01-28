@@ -135,16 +135,12 @@ export default class CurveNode extends Node {
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
 
-    const continuousLinePlotStrokeProperty = options.stroke;
-
-    // check that curve stroke is a ProfileColorProperty and not a readonly or derived property of color or else
-    if ( continuousLinePlotStrokeProperty instanceof ProfileColorProperty ) {
-
-      // add linked element for stroke
-      this.addLinkedElement( continuousLinePlotStrokeProperty, {
-        tandem: options.tandem.createTandem( 'continuousLinePlotStrokeProperty' )
+    // If stroke is something we can link to, create a linked element.
+    const strokeProperty = options.stroke;
+    if ( strokeProperty instanceof ProfileColorProperty ) {
+      this.addLinkedElement( strokeProperty, {
+        tandem: options.tandem.createTandem( 'stroke' )
       } );
-
     }
   }
 
