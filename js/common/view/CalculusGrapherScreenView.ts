@@ -50,7 +50,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     assert && assert( ( model.graphSets.length === 1 && options.graphSetRadioButtonGroupItems.length === 0 ) ||
                       ( model.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
-      'If > 1 graphSets, then there must be a radio button item for each graphSet' );
+      'If > 1 graphSets, then there must be a radio button for each graphSet' );
 
     super( options );
 
