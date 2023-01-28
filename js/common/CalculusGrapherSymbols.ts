@@ -15,7 +15,6 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 
 const CalculusGrapherSymbols = {
 
-  //TODO https://github.com/phetsims/calculus-grapher/issues/197 instrument these?
   dStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.dStringProperty ), // d
   xStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.xStringProperty ), // x
   fStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.fStringProperty ), // f
