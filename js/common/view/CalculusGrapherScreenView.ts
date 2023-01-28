@@ -73,7 +73,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.graphSetProperty = new Property( options.graphSets[ 0 ], {
       validValues: options.graphSets,
       tandem: options.tandem.createTandem( 'graphSetProperty' ),
-      phetioReadOnly: ( options.graphSets.length < 2 ), //TODO https://github.com/phetsims/studio/issues/290 workaround
       phetioValueType: ArrayIO( EnumerationIO( GraphType ) )
     } );
 
