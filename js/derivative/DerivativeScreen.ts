@@ -36,7 +36,6 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
     } );
 
     const createView = ( model: DerivativeModel ) => new DerivativeScreenView( model, {
-      graphSets: graphSets,
       tandem: options.tandem.createTandem( 'view' )
     } );
 

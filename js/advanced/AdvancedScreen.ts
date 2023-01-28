@@ -45,7 +45,6 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     } );
 
     const createView = ( model: AdvancedModel ) => new AdvancedScreenView( model, {
-      graphSets: graphSets,
       graphSetRadioButtonGroupItems: graphSetRadioButtonGroupItems,
       tandem: options.tandem.createTandem( 'view' )
     } );

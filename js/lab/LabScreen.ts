@@ -45,7 +45,6 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     } );
 
     const createView = ( model: LabModel ) => new LabScreenView( model, {
-      graphSets: graphSets,
       graphSetRadioButtonGroupItems: graphSetRadioButtonGroupItems,
       tandem: options.tandem.createTandem( 'view' )
     } );

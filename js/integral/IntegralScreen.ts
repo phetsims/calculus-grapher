@@ -36,7 +36,6 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
     } );
 
     const createView = ( model: IntegralModel ) => new IntegralScreenView( model, {
-      graphSets: graphSets,
       tandem: options.tandem.createTandem( 'view' )
     } );
 

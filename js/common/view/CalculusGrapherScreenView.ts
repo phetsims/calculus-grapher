@@ -17,18 +17,13 @@ import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.j
 import GraphsNode from './GraphsNode.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import Property from '../../../../axon/js/Property.js';
-import GraphType, { GraphSet } from '../model/GraphType.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import { Node, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
-import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import PresetFunctions from '../model/PresetFunctions.js';
 
 type SelfOptions = {
-  graphSets: GraphSet[];
   graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
   controlPanelOptions?: CalculusGrapherControlPanelOptions;
 };
@@ -41,7 +36,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
   private readonly model: CalculusGrapherModel;
   public readonly graphsNode: GraphsNode;
   protected readonly controlPanel: CalculusGrapherControlPanel;
-  protected readonly graphSetProperty: Property<GraphSet>;
   protected readonly screenViewRootNode: Node;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
@@ -54,27 +48,13 @@ export default class CalculusGrapherScreenView extends ScreenView {
       graphSetRadioButtonGroupItems: []
     }, providedOptions );
 
-    super( options );
-
-    assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
-
-    assert && assert( options.graphSets.every( graphSet =>
-      graphSet.length === _.uniq( graphSet ).length ), 'each element of the graphSet must be unique' );
-
-    assert && assert( ( options.graphSets.length === 1 && options.graphSetRadioButtonGroupItems.length === 0 ) ||
-                      ( options.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
+    assert && assert( ( model.graphSets.length === 1 && options.graphSetRadioButtonGroupItems.length === 0 ) ||
+                      ( model.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
       'If > 1 graphSets, then there must be a radio button item for each graphSet' );
 
-    assert && assert( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
-      'all elements of graphSets must have the same length, a current limitation of this sim' );
+    super( options );
 
     this.model = model;
-
-    this.graphSetProperty = new Property( options.graphSets[ 0 ], {
-      validValues: options.graphSets,
-      tandem: options.tandem.createTandem( 'graphSetProperty' ),
-      phetioValueType: ArrayIO( EnumerationIO( GraphType ) )
-    } );
 
     // Visibility Properties for the screen that are controllable via the UI
     this.visibleProperties = new CalculusGrapherVisibleProperties(
@@ -110,8 +90,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       align: 'left'
     } );
 
-    this.graphsNode = new GraphsNode( model, this.graphSetProperty, this.visibleProperties, {
-      graphSets: options.graphSets,
+    this.graphsNode = new GraphsNode( model, this.visibleProperties, {
       centerX: this.layoutBounds.centerX - 25,
       y: this.layoutBounds.top + 40,
       tandem: options.tandem.createTandem( 'graphsNode' )
@@ -130,7 +109,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     ];
 
     if ( options.graphSetRadioButtonGroupItems.length > 0 ) {
-      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( this.graphSetProperty,
+      const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( model.graphSetProperty,
         options.graphSetRadioButtonGroupItems, options.tandem.createTandem( 'graphSetRadioButtonGroup' ) );
       children.push( graphSetRadioButtonGroup );
 
@@ -162,7 +141,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.model.reset();
     this.visibleProperties.reset();
     this.graphsNode.reset();
-    this.graphSetProperty.reset();
   }
 }
 

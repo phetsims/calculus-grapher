@@ -28,6 +28,8 @@ import VerticalLine from './VerticalLine.js';
 import LabeledPoint from './LabeledPoint.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
+import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
+import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
 
 type SelfOptions = {
 
@@ -48,6 +50,9 @@ type SelfOptions = {
 export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class CalculusGrapherModel implements TModel {
+
+  public readonly graphSets: GraphSet[];
+  public readonly graphSetProperty: Property<GraphSet>;
 
   // Properties associated with curve manipulation
   public readonly curveManipulationProperties: CurveManipulationProperties;
@@ -86,6 +91,20 @@ export default class CalculusGrapherModel implements TModel {
       phetioTangentScrubberInstrumented: false,
       phetioAreaUnderCurveScrubberInstrumented: false
     }, providedOptions );
+
+    assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
+    assert && assert( options.graphSets.every( graphSet =>
+      graphSet.length === _.uniq( graphSet ).length ), 'each element of the graphSet must be unique' );
+    assert && assert( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
+      'all elements of graphSets must have the same length, a current limitation of this sim' );
+
+    this.graphSets = options.graphSets;
+
+    this.graphSetProperty = new Property( options.graphSets[ 0 ], {
+      validValues: options.graphSets,
+      tandem: options.tandem.createTandem( 'graphSetProperty' ),
+      phetioValueType: ArrayIO( EnumerationIO( GraphType ) )
+    } );
 
     this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
       tandem: options.tandem.createTandem( 'curveManipulationProperties' )
@@ -177,6 +196,7 @@ export default class CalculusGrapherModel implements TModel {
    * Reset all
    */
   public reset(): void {
+    this.graphSetProperty.reset();
     this.originalCurve.reset();
     this.predictCurve.reset();
     this.curveManipulationProperties.reset();

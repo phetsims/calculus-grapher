@@ -9,7 +9,7 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphNode from './GraphNode.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -21,7 +21,7 @@ import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
-import GraphType, { GraphSet } from '../model/GraphType.js';
+import GraphType from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import VerticalLinesNode from './VerticalLinesNode.js';
@@ -29,9 +29,7 @@ import VerticalLinesNode from './VerticalLinesNode.js';
 // How much VerticalLines extend above and below the graphs
 const VERTICAL_LINE_Y_EXTENT = 4;
 
-type SelfOptions = {
-  graphSets: GraphSet[];
-};
+type SelfOptions = EmptySelfOptions;
 
 type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
@@ -46,7 +44,6 @@ export default class GraphNodes extends Node {
   private readonly graphNodes: GraphNode[];
 
   public constructor( model: CalculusGrapherModel,
-                      graphSetProperty: TReadOnlyProperty<GraphSet>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
 
@@ -62,10 +59,10 @@ export default class GraphNodes extends Node {
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
     // determine the (view) height of the graph based on the number of visible graphs.
-    const graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / graphSetProperty.value.length;
+    const graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
     // the subset of graphTypes that should be instrumented
-    const subsetGraphTypes = options.graphSets.flat();
+    const subsetGraphTypes = model.graphSets.flat();
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
@@ -102,7 +99,7 @@ export default class GraphNodes extends Node {
 
     // To display a different set of graphs, get the GraphNodes, handle their layout, and adjust the position
     // of the reference line and vertical lines.
-    graphSetProperty.link( graphSet => {
+    model.graphSetProperty.link( graphSet => {
 
       // Get the GraphNode instances that correspond to graphSet.
       const content = this.graphNodes.filter( graphNode => graphSet.includes( graphNode.graphType ) );
@@ -132,6 +129,10 @@ export default class GraphNodes extends Node {
     options.children = [ graphSetNode, verticalLinesNode, referenceLineNode ];
 
     this.mutate( options );
+
+    this.addLinkedElement( model.graphSetProperty, {
+      tandem: options.tandem.createTandem( model.graphSetProperty.tandem.name )
+    } );
   }
 
   public reset(): void {
