@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * The 'Derivative Lab' screen. Conforms to the contract specified in joist/Screen.
+ * The 'Derivative Lab' screen.
  *
  * @author Brandon Li
  */

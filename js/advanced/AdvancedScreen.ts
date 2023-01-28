@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * The 'Advanced' screen. Conforms to the contract specified in joist/Screen.
+ * The 'Advanced' screen.
  *
  * @author Brandon Li
  */
