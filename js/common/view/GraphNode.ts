@@ -48,7 +48,6 @@ import PlottedPoint from './PlottedPoint.js';
 import GraphType from '../model/GraphType.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import Multilink from '../../../../axon/js/Multilink.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -156,6 +155,8 @@ export default class GraphNode extends Node {
       } );
     }
 
+    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
+
     this.curveNode = options.createCurveNode( this.chartTransform );
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
@@ -164,10 +165,9 @@ export default class GraphNode extends Node {
 
     this.curveLayer = new Node( {
       children: [ this.curveNode ],
+      clipArea: chartRectangle.getShape(),
       visibleProperty: this.curveLayerVisibleProperty
     } );
-
-    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
     // Major and minor grid lines, minor behind major.
     const xMajorGridLines = new GridLineSet( this.chartTransform, Orientation.HORIZONTAL, MAJOR_GRID_LINE_SPACING, MAJOR_GRID_LINE_OPTIONS );
@@ -223,28 +223,23 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
     } ) : null;
 
-    // Adjust clipping and labelNode position if the chartRectangle is resized.
-    chartRectangle.boundsProperty.link( () => {
-      this.curveLayer.clipArea = chartRectangle.getShape();
-
-      // label in upper-left corner of chartRectangle
-      labelNode.left = chartRectangle.left + CalculusGrapherConstants.GRAPH_X_MARGIN;
-      labelNode.top = chartRectangle.top + CalculusGrapherConstants.GRAPH_Y_MARGIN;
+    // labelNode in left-top corner of chartRectangle
+    labelNode.boundsProperty.link( () => {
+      labelNode.leftTop = chartRectangle.leftTop.addXY( CalculusGrapherConstants.GRAPH_X_MARGIN, CalculusGrapherConstants.GRAPH_Y_MARGIN );
     } );
 
-    // Adjust button positions if the chartRectangle is resized or ticks change visibility.
-    Multilink.multilink( [ chartRectangle.boundsProperty, ticksParent.visibleProperty ],
-      ( bounds, visible ) => {
-        const rightNode = visible ? ticksParent : chartRectangle;
+    // Adjust button positions when the visibility of ticks changes.
+    ticksParent.visibleProperty.link( ticksParentVisible => {
+      const rightNode = ticksParentVisible ? ticksParent : chartRectangle;
 
-        // eyeToggleButton at bottom-left of chart rectangle
-        eyeToggleButton.rightBottom = rightNode.leftBottom.addXY( -BUTTON_SPACING, 0 );
+      // eyeToggleButton at bottom-left of chart rectangle
+      eyeToggleButton.rightBottom = rightNode.leftBottom.addXY( -BUTTON_SPACING, 0 );
 
-        // yZoomButtonGroup at left-center of chart rectangle
-        if ( yZoomButtonGroup ) {
-          yZoomButtonGroup.rightCenter = rightNode.leftCenter.addXY( -BUTTON_SPACING, 0 );
-        }
-      } );
+      // yZoomButtonGroup at left-center of chart rectangle
+      if ( yZoomButtonGroup ) {
+        yZoomButtonGroup.rightCenter = rightNode.leftCenter.addXY( -BUTTON_SPACING, 0 );
+      }
+    } );
 
     const children = [
       chartRectangle,
