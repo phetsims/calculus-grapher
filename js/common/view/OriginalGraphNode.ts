@@ -16,7 +16,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { HBox, TColor, Text } from '../../../../scenery/js/imports.js';
+import { HBox, Rectangle, TColor, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
@@ -96,6 +96,21 @@ export default class OriginalGraphNode extends GraphNode {
     }, providedOptions );
 
     super( graphType, originalCurve, visibleProperties.gridVisibleProperty, options );
+
+    // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
+    // See https://github.com/phetsims/calculus-grapher/issues/204
+    const highlightRectangle = new Rectangle( 0, 0, this.chartRectangle.width + 6, this.chartRectangle.height + 6, {
+      center: this.chartRectangle.center,
+      opacity: 0.25,
+      fill: new DerivedProperty( [
+        model.predictModeEnabledProperty,
+        CalculusGrapherColors.predictCurveStrokeProperty,
+        CalculusGrapherColors.originalCurveStrokeProperty
+      ], ( predictModeEnabled, predictCurveStroke, originalCurveStroke ) =>
+        predictModeEnabled ? predictCurveStroke : originalCurveStroke )
+    } );
+    this.addChild( highlightRectangle );
+    highlightRectangle.moveToBack();
 
     // create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {

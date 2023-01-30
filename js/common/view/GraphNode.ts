@@ -111,6 +111,8 @@ export default class GraphNode extends Node {
   // Optional Property for zooming the y-axis
   protected readonly yZoomLevelProperty?: NumberProperty;
 
+  protected readonly chartRectangle: ChartRectangle;
+
   public constructor( graphType: GraphType,
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
@@ -159,7 +161,7 @@ export default class GraphNode extends Node {
       modelYRange: new Range( -DEFAULT_MAX_Y, DEFAULT_MAX_Y )
     } );
 
-    const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
+    this.chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
     this.curveNode = options.createCurveNode( this.chartTransform );
 
@@ -169,7 +171,7 @@ export default class GraphNode extends Node {
 
     this.curveLayer = new Node( {
       children: [ this.curveNode ],
-      clipArea: chartRectangle.getShape(),
+      clipArea: this.chartRectangle.getShape(),
       visibleProperty: this.curveLayerVisibleProperty
     } );
 
@@ -229,12 +231,12 @@ export default class GraphNode extends Node {
 
     // labelNode in left-top corner of chartRectangle
     labelNode.boundsProperty.link( () => {
-      labelNode.leftTop = chartRectangle.leftTop.addXY( CalculusGrapherConstants.GRAPH_X_MARGIN, CalculusGrapherConstants.GRAPH_Y_MARGIN );
+      labelNode.leftTop = this.chartRectangle.leftTop.addXY( CalculusGrapherConstants.GRAPH_X_MARGIN, CalculusGrapherConstants.GRAPH_Y_MARGIN );
     } );
 
     // Adjust button positions when the visibility of ticks changes.
     ticksParent.visibleProperty.link( ticksParentVisible => {
-      const rightNode = ticksParentVisible ? ticksParent : chartRectangle;
+      const rightNode = ticksParentVisible ? ticksParent : this.chartRectangle;
 
       // eyeToggleButton at bottom-left of chart rectangle
       eyeToggleButton.rightBottom = rightNode.leftBottom.addXY( -BUTTON_SPACING, 0 );
@@ -246,7 +248,7 @@ export default class GraphNode extends Node {
     } );
 
     const children = [
-      chartRectangle,
+      this.chartRectangle,
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
