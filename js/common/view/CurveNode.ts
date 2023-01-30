@@ -206,10 +206,6 @@ export default class CurveNode extends Node {
   private getAllPointsScatterPlotDataSet(): ScatterPlotDataSet {
     return this.curve.points.map( point => point.toVector() );
   }
-
-  public setPointerAreas(): void {
-    throw new Error( 'Set Pointer Areas not handled on base class' );
-  }
 }
 
 calculusGrapher.register( 'CurveNode', CurveNode );

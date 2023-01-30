@@ -119,6 +119,8 @@ export default class TransformedCurveNode extends CurveNode {
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
+    // Initialize pointer areas. They will be updated as the curve changes.
+    this.setPointerAreas();
   }
 
   /**
@@ -137,7 +139,7 @@ export default class TransformedCurveNode extends CurveNode {
   /**
    * Sets the pointer areas for manipulating the curve.
    */
-  public override setPointerAreas(): void {
+  private setPointerAreas(): void {
 
     // create a dilated shape based on the continuous line plot shape
     const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( LINE_STYLES );

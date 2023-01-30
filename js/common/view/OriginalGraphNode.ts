@@ -34,7 +34,6 @@ import GraphType from '../model/GraphType.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -89,10 +88,7 @@ export default class OriginalGraphNode extends GraphNode {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
-      plusMinusZoomButtonGroupOptions: {
-        visible: false,
-        tandem: Tandem.OPT_OUT // because OriginalGraphNode does not show zoom buttons
-      },
+      hasYZoom: false,
       labelNode: labelNode
     }, providedOptions );
 
@@ -108,7 +104,6 @@ export default class OriginalGraphNode extends GraphNode {
       },
       tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
     } );
-
     this.curveLayer.addChild( this.predictCurveNode );
 
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( visibleProperties.showOriginalCurveProperty, {
@@ -124,12 +119,6 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
-    this.yZoomLevelProperty.link( () => {
-
-      // TODO: find a way to update touch/mouse area without resorting to this: https://github.com/phetsims/calculus-grapher/issues/74
-      this.setCurvePointerAreas();
-    } );
-
     // Labeled points
     const labeledPointsNode = new LabeledPointsNode( model.labeledPoints, model.labeledPointsLinkableElement,
       this.chartTransform, model.predictModeEnabledProperty, this.curveLayerVisibleProperty,
@@ -141,11 +130,6 @@ export default class OriginalGraphNode extends GraphNode {
   public override reset(): void {
     super.reset();
     this.predictCurveNode.reset();
-  }
-
-  private setCurvePointerAreas(): void {
-    this.curveNode.setPointerAreas();
-    this.predictCurveNode.setPointerAreas();
   }
 
   /**

@@ -5,7 +5,7 @@
  *
  * Primary responsibilities are:
  * - Create an associated CurveNode
- * - Create a zoomButtonGroup with an associated property
+ * - Create an optional zoomButtonGroup with an associated property
  * - Create an eye toggle button that control the visibility of curve
  * - Create AxisLines, GridLines and Rectangle Chart
  * - Create a Chart Transform
@@ -26,14 +26,14 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, RectangleOptions, TColor, Text, VBox } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, RectangleOptions, TColor, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
 import Curve from '../model/Curve.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
+import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import EyeToggleButton from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -48,6 +48,7 @@ import PlottedPoint from './PlottedPoint.js';
 import GraphType from '../model/GraphType.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -58,6 +59,7 @@ const MINOR_GRID_LINE_OPTIONS = {
   stroke: CalculusGrapherColors.minorGridlinesStrokeProperty,
   lineWidth: 0.5
 };
+const BUTTON_SPACING = 10;
 
 // Lookup table for zoomLevelProperty
 type ZoomInfo = {
@@ -81,8 +83,8 @@ type SelfOptions = {
   graphHeight: number;
   chartRectangleOptions?: RectangleOptions;
   createCurveNode?: ( chartTransform: ChartTransform ) => CurveNode;
-  plusMinusZoomButtonGroupOptions?: StrictOmit<PlusMinusZoomButtonGroupOptions, 'orientation' | 'buttonOptions'>;
   labelNode?: Node;
+  hasYZoom?: boolean;
 };
 
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
@@ -90,6 +92,7 @@ export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 export default class GraphNode extends Node {
 
   public readonly graphType: GraphType;
+  public readonly chartTransform: ChartTransform;
 
   // The curve to be plotted
   protected readonly curve: Curve;
@@ -103,16 +106,15 @@ export default class GraphNode extends Node {
   // Visibility of curveLayer
   protected readonly curveLayerVisibleProperty: BooleanProperty;
 
-  protected readonly yZoomLevelProperty: NumberProperty;
-
-  public readonly chartTransform: ChartTransform;
+  // Optional Property for zooming the y-axis
+  protected readonly yZoomLevelProperty?: NumberProperty;
 
   public constructor( graphType: GraphType,
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'plusMinusZoomButtonGroupOptions'>, NodeOptions>()( {
+    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 
       // SelfOptions
       createCurveNode: ( chartTransform: ChartTransform ) => new CurveNode( curve, chartTransform, {
@@ -123,6 +125,7 @@ export default class GraphNode extends Node {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
       },
+      hasYZoom: true,
 
       // NodeOptions
       phetioVisiblePropertyInstrumented: false
@@ -145,11 +148,13 @@ export default class GraphNode extends Node {
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
     } );
 
-    // zoom level
-    this.yZoomLevelProperty = new NumberProperty( 3, {
-      range: new Range( 0, Y_ZOOM_INFO.length - 1 ),
-      tandem: options.tandem.createTandem( 'yZoomLevelProperty' )
-    } );
+    // optional y-axis zoom level
+    if ( options.hasYZoom ) {
+      this.yZoomLevelProperty = new NumberProperty( 3, {
+        range: new Range( 0, Y_ZOOM_INFO.length - 1 ),
+        tandem: options.tandem.createTandem( 'yZoomLevelProperty' )
+      } );
+    }
 
     this.curveNode = options.createCurveNode( this.chartTransform );
 
@@ -174,7 +179,7 @@ export default class GraphNode extends Node {
       visibleProperty: gridVisibleProperty
     } );
 
-    // Axes nodes are clipped in the chart
+    // Axes are clipped in the chart
     const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
     const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
 
@@ -208,57 +213,54 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 
-    const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty,
-      combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        orientation: 'vertical',
-        buttonOptions: {
-          stroke: 'black',
-          phetioVisiblePropertyInstrumented: false
-        },
-        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
-      }, options.plusMinusZoomButtonGroupOptions ) );
+    // Create yZoomButtonGroup if we have a yZoomLevelProperty.
+    const yZoomButtonGroup = this.yZoomLevelProperty ? new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
+      orientation: 'vertical',
+      buttonOptions: {
+        stroke: 'black',
+        phetioVisiblePropertyInstrumented: false
+      },
+      tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
+    } ) : null;
 
-    const buttonSetNode = new VBox( {
-      align: 'right',
-      // spacing is handled in chartRectangle.boundsProperty listener below
-      children: [
-        zoomButtonGroup,
-        eyeToggleButton
-      ]
-    } );
-
-    // Adjust layout if the chartRectangle is resized.
+    // Adjust clipping and labelNode position if the chartRectangle is resized.
     chartRectangle.boundsProperty.link( () => {
       this.curveLayer.clipArea = chartRectangle.getShape();
 
       // label in upper-left corner of chartRectangle
       labelNode.left = chartRectangle.left + CalculusGrapherConstants.GRAPH_X_MARGIN;
       labelNode.top = chartRectangle.top + CalculusGrapherConstants.GRAPH_Y_MARGIN;
-
-      // buttons bottom aligned with chartRectangle
-      buttonSetNode.bottom = chartRectangle.bottom;
-      buttonSetNode.spacing = ( chartRectangle.height / 2 ) - eyeToggleButton.height - zoomButtonGroup.height / 2;
     } );
 
-    // When the visibility of ticks changes, adjust the position of the buttons. This keeps the buttons close to
-    // the chartRectangle, without a gap when the ticks are invisible.
-    ticksParent.visibleProperty.link( visible => {
-      const rightNode = visible ? ticksParent : chartRectangle;
-      buttonSetNode.right = rightNode.left - 10;
-    } );
+    // Adjust button positions if the chartRectangle is resized or ticks change visibility.
+    Multilink.multilink( [ chartRectangle.boundsProperty, ticksParent.visibleProperty ],
+      ( bounds, visible ) => {
+        const rightNode = visible ? ticksParent : chartRectangle;
 
-    this.setChildren( [
+        // eyeToggleButton at bottom-left of chart rectangle
+        eyeToggleButton.rightBottom = rightNode.leftBottom.addXY( -BUTTON_SPACING, 0 );
+
+        // yZoomButtonGroup at left-center of chart rectangle
+        if ( yZoomButtonGroup ) {
+          yZoomButtonGroup.rightCenter = rightNode.leftCenter.addXY( -BUTTON_SPACING, 0 );
+        }
+      } );
+
+    const children = [
       chartRectangle,
       gridNode,
       horizontalAxisLine,
       verticalAxisLine,
       ticksParent,
-      buttonSetNode,
       labelNode,
-      this.curveLayer
-    ] );
+      this.curveLayer,
+      eyeToggleButton
+    ];
+    yZoomButtonGroup && children.push( yZoomButtonGroup );
+    this.children = children;
 
-    this.yZoomLevelProperty.link( zoomLevel => {
+    // If we have a yZoomLevelProperty, respond to changes.
+    this.yZoomLevelProperty && this.yZoomLevelProperty.link( zoomLevel => {
 
       // Remove previous yTickLabelSet and dispose of it
       ticksParent.removeChild( yTickLabelSet );
@@ -285,7 +287,7 @@ export default class GraphNode extends Node {
    * Reset all
    */
   public reset(): void {
-    this.yZoomLevelProperty.reset();
+    this.yZoomLevelProperty && this.yZoomLevelProperty.reset();
     this.curveLayerVisibleProperty.reset();
     this.curveNode.reset();
   }
