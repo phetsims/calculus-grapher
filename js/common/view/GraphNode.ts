@@ -58,7 +58,7 @@ const MINOR_GRID_LINE_OPTIONS = {
   stroke: CalculusGrapherColors.minorGridlinesStrokeProperty,
   lineWidth: 0.5
 };
-const BUTTON_SPACING = 10;
+const BUTTON_SPACING = 14; // space between buttons and tick labels or chartRectangle
 
 // Lookup table for zoomLevelProperty
 type ZoomInfo = {
