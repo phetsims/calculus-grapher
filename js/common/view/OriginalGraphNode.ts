@@ -80,6 +80,9 @@ export default class OriginalGraphNode extends GraphNode {
       createCurveNode: ( chartTransform: ChartTransform ) =>
         new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
           stroke: graphType.strokeProperty,
+          continuousLinePlotOptions: {
+            lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
+          },
           enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
           visibleProperty: originalCurveNodeVisibilityProperty,
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
@@ -99,9 +102,6 @@ export default class OriginalGraphNode extends GraphNode {
       enabledProperty: predictModeEnabledProperty,
       visibleProperty: predictModeEnabledProperty,
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,
-      continuousLinePlotOptions: {
-        lineWidth: 1.75
-      },
       tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
     } );
     this.curveLayer.addChild( this.predictCurveNode );
