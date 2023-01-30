@@ -4,7 +4,7 @@
  * BarometerAccordionBox is panel that shows a vertical axis with a barometer indicator
  *
  * @author Martin Veillette
- * @@author Chris Malley (PixelZoom, Inc.)
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';

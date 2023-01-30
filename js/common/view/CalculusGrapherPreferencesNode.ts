@@ -8,7 +8,7 @@
  * implement dispose, and all elements of CalculusGrapherPreferencesNode that have tandems must be disposed.
  *
  * @author Martin Veillette
- * @@author Chris Malley (PixelZoom, Inc.)
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import { VBox } from '../../../../scenery/js/imports.js';

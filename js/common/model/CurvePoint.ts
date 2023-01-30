@@ -13,7 +13,7 @@
  *
  * @author Brandon Li
  * @author Martin Veillette
- * @@author Chris Malley (PixelZoom, Inc.)
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Vector2 from '../../../../dot/js/Vector2.js';
