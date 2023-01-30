@@ -75,24 +75,24 @@ export default class OriginalGraphNode extends GraphNode {
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
-        createCurveNode: ( chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) =>
-          new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, providedOptions ),
-        curveNodeOptions: {
-          enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
-          visibleProperty: originalCurveNodeVisibilityProperty,
-          tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
-        },
-        chartRectangleOptions: {
-          fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
-          stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
-        },
-        plusMinusZoomButtonGroupOptions: {
-          visible: false,
-          phetioVisiblePropertyInstrumented: false
-        },
-        labelNode: labelNode
+      // GraphNodeOptions
+      createCurveNode: ( chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) =>
+        new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, providedOptions ),
+      curveNodeOptions: {
+        enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
+        visibleProperty: originalCurveNodeVisibilityProperty,
+        tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
       },
-      providedOptions );
+      chartRectangleOptions: {
+        fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
+        stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
+      },
+      plusMinusZoomButtonGroupOptions: {
+        visible: false,
+        phetioVisiblePropertyInstrumented: false
+      },
+      labelNode: labelNode
+    }, providedOptions );
 
     super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, options );
 
