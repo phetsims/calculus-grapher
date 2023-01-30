@@ -149,7 +149,11 @@ export default class CurvePoint {
   // get the slope between this point and targetPoint
   public getSlope( targetPoint: CurvePoint ): number {
     assert && assert( targetPoint !== this, 'you need two different points' );
-    return ( this.y - targetPoint.y ) / ( this.x - targetPoint.x );
+
+    const slope = ( this.y - targetPoint.y ) / ( this.x - targetPoint.x );
+
+    assert && assert( Number.isFinite( slope ), 'non finite slope' );
+    return slope;
   }
 
   public reset(): void {

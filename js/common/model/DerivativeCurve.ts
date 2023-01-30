@@ -92,13 +92,11 @@ export default class DerivativeCurve extends Curve {
         // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
         if ( previousPoint && previousPoint.isFinite && !( previousPoint.isDiscontinuous ) ) {
           leftSlope = point.getSlope( previousPoint );
-          assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
         }
 
         if ( nextPoint && nextPoint.isFinite && !( nextPoint.isCusp ) ) {
           // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
           rightSlope = point.getSlope( nextPoint );
-          assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
         }
         //----------------------------------------------------------------------------------------
 
