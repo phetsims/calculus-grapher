@@ -78,6 +78,9 @@ assert && assert( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoom
 assert && assert( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
   ( index === 0 || Y_ZOOM_INFO[ index - 1 ].max > zoomInfo.max ) ), 'must be sorted by descending max' );
 
+const DEFAULT_ZOOM_LEVEL = 3;
+const DEFAULT_MAX_Y = Y_ZOOM_INFO[ DEFAULT_ZOOM_LEVEL ].max;
+
 type SelfOptions = {
   graphHeight: number;
   chartRectangleOptions?: RectangleOptions;
@@ -140,20 +143,21 @@ export default class GraphNode extends Node {
     this.graphType = graphType;
     this.curve = curve;
 
-    // chart transform for the graph, the Y range will be updated later
-    this.chartTransform = new ChartTransform( {
-      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
-      viewHeight: options.graphHeight,
-      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE
-    } );
-
     // optional y-axis zoom level
     if ( options.hasYZoom ) {
-      this.yZoomLevelProperty = new NumberProperty( 3, {
+      this.yZoomLevelProperty = new NumberProperty( DEFAULT_ZOOM_LEVEL, {
         range: new Range( 0, Y_ZOOM_INFO.length - 1 ),
         tandem: options.tandem.createTandem( 'yZoomLevelProperty' )
       } );
     }
+
+    // chart transform for the graph
+    this.chartTransform = new ChartTransform( {
+      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
+      viewHeight: options.graphHeight,
+      modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
+      modelYRange: new Range( -DEFAULT_MAX_Y, DEFAULT_MAX_Y )
+    } );
 
     const chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
