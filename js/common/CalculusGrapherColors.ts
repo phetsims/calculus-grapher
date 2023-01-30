@@ -17,7 +17,7 @@ import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js'
 const tandem = Tandem.GLOBAL_VIEW.createTandem( 'colorProfile' );
 
 const integralCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
-  default: 'rgb(0,146,69)'
+  default: 'rgb( 0, 146, 69 )'
 }, {
   tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
 } );
@@ -31,7 +31,7 @@ const CalculusGrapherColors = {
 
   // Stroke for Panel-like Containers
   panelStrokeProperty: new ProfileColorProperty( calculusGrapher, 'panelStroke', {
-    default: 'rgb( 190, 190, 190 )'
+    default: Color.grayColor( 190 )
   } ),
 
   // Fill for Panel-like Containers
@@ -95,7 +95,7 @@ const CalculusGrapherColors = {
 
   // Stroke for second derivative curve
   secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
-    default: 'rgb(102,45,145)'
+    default: 'rgb( 102, 45, 145 )'
   }, {
     tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
   } ),
