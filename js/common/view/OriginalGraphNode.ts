@@ -49,7 +49,7 @@ export default class OriginalGraphNode extends GraphNode {
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: GraphNodeOptions ) {
 
-    // destructuring the calculus grapher model
+    // Destructuring fields from model into local constants, to improve readability.
     const { originalCurve, predictCurve, curveManipulationProperties, predictModeEnabledProperty } = model;
 
     // original curve is visible if not in predictMode or allOriginalCurveVisible is true
