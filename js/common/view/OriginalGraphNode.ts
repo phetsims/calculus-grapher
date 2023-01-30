@@ -18,7 +18,6 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import { HBox, TColor, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import { CurveNodeOptions } from './CurveNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
@@ -35,6 +34,7 @@ import GraphType from '../model/GraphType.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -57,6 +57,8 @@ export default class OriginalGraphNode extends GraphNode {
       [ predictModeEnabledProperty, visibleProperties.showOriginalCurveProperty ],
       ( predictModeEnabled, showOriginalCurve ) => !predictModeEnabled || showOriginalCurve );
 
+    const graphType = GraphType.ORIGINAL;
+
     // Label that toggles between 'Predict f(x)' and 'f(x)'
     const labelNodeTandem = providedOptions.tandem.createTandem( 'labelNode' );
     const labelNode = new HBox( {
@@ -67,7 +69,7 @@ export default class OriginalGraphNode extends GraphNode {
           visibleProperty: model.predictModeEnabledProperty, // show/hide 'Predict'
           tandem: labelNodeTandem.createTandem( 'predictText' )
         } ),
-        new GraphTypeLabelNode( GraphType.ORIGINAL )
+        new GraphTypeLabelNode( graphType )
       ],
       spacing: 5,
       tandem: labelNodeTandem
@@ -76,25 +78,25 @@ export default class OriginalGraphNode extends GraphNode {
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
       // GraphNodeOptions
-      createCurveNode: ( chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) =>
-        new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, providedOptions ),
-      curveNodeOptions: {
-        enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
-        visibleProperty: originalCurveNodeVisibilityProperty,
-        tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
-      },
+      createCurveNode: ( chartTransform: ChartTransform ) =>
+        new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
+          stroke: graphType.strokeProperty,
+          enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
+          visibleProperty: originalCurveNodeVisibilityProperty,
+          tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
+        } ),
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
       plusMinusZoomButtonGroupOptions: {
         visible: false,
-        phetioVisiblePropertyInstrumented: false
+        tandem: Tandem.OPT_OUT // because OriginalGraphNode does not show zoom buttons
       },
       labelNode: labelNode
     }, providedOptions );
 
-    super( GraphType.ORIGINAL, originalCurve, visibleProperties.gridVisibleProperty, options );
+    super( graphType, originalCurve, visibleProperties.gridVisibleProperty, options );
 
     // create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {

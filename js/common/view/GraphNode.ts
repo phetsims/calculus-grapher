@@ -29,7 +29,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import { Node, NodeOptions, RectangleOptions, TColor, Text, VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import CurveNode, { CurveNodeOptions } from './CurveNode.js';
+import CurveNode from './CurveNode.js';
 import Curve from '../model/Curve.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
@@ -80,10 +80,8 @@ assert && assert( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
 type SelfOptions = {
   graphHeight: number;
   chartRectangleOptions?: RectangleOptions;
-  curveNodeOptions?: CurveNodeOptions;
-  createCurveNode?: ( chartTransform: ChartTransform,
-                      providedOptions?: CurveNodeOptions ) => CurveNode;
-  plusMinusZoomButtonGroupOptions?: PlusMinusZoomButtonGroupOptions;
+  createCurveNode?: ( chartTransform: ChartTransform ) => CurveNode;
+  plusMinusZoomButtonGroupOptions?: StrictOmit<PlusMinusZoomButtonGroupOptions, 'orientation' | 'buttonOptions'>;
   labelNode?: Node;
 };
 
@@ -114,24 +112,16 @@ export default class GraphNode extends Node {
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
+    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'plusMinusZoomButtonGroupOptions'>, NodeOptions>()( {
 
       // SelfOptions
-      createCurveNode: ( chartTransform: ChartTransform,
-                         providedOptions?: CurveNodeOptions ) => new CurveNode( curve, chartTransform, providedOptions ),
+      createCurveNode: ( chartTransform: ChartTransform ) => new CurveNode( curve, chartTransform, {
+        stroke: graphType.strokeProperty,
+        tandem: providedOptions.tandem.createTandem( 'curveNode' )
+      } ),
       chartRectangleOptions: {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
-      },
-      curveNodeOptions: {
-        stroke: graphType.strokeProperty,
-        tandem: providedOptions.tandem.createTandem( 'curveNode' )
-      },
-      plusMinusZoomButtonGroupOptions: {
-        orientation: 'vertical',
-        buttonOptions: {
-          stroke: 'black'
-        }
       },
 
       // NodeOptions
@@ -161,7 +151,7 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'yZoomLevelProperty' )
     } );
 
-    this.curveNode = options.createCurveNode( this.chartTransform, options.curveNodeOptions );
+    this.curveNode = options.createCurveNode( this.chartTransform );
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveVisibleProperty' )
@@ -218,13 +208,14 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 
-    // Zoom button to the center left of the graph
     const zoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty,
       combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        tandem: options.tandem.createTandem( 'zoomButtonGroup' ),
+        orientation: 'vertical',
         buttonOptions: {
+          stroke: 'black',
           phetioVisiblePropertyInstrumented: false
-        }
+        },
+        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
       }, options.plusMinusZoomButtonGroupOptions ) );
 
     const buttonSetNode = new VBox( {
