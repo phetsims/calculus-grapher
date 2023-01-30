@@ -78,7 +78,7 @@ const CalculusGrapherColors = {
 
   // Stroke for the predict curve
   predictCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'predictCurveStroke', {
-    default: 'rgb(128, 128, 128)'
+    default: '#ff00cf'
   }, {
     tandem: tandem.createTandem( 'predictCurveStrokeProperty' )
   } ),
