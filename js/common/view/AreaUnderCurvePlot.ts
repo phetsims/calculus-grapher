@@ -19,7 +19,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type ShadedAreaChartOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
+export type AreaUnderCurvePlotOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 type CurvePointFunction = ( point: CurvePoint ) => boolean;
 
@@ -36,9 +36,9 @@ export default class AreaUnderCurvePlot extends Node {
                       curve: Curve,
                       chartTransform: ChartTransform,
                       xProperty: TReadOnlyProperty<number>,
-                      providedOptions?: ShadedAreaChartOptions ) {
+                      providedOptions?: AreaUnderCurvePlotOptions ) {
 
-    const options = optionize<ShadedAreaChartOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<AreaUnderCurvePlotOptions, SelfOptions, NodeOptions>()( {
       // we're setting options.children below
     }, providedOptions );
 
