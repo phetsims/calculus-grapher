@@ -44,6 +44,8 @@ export default class GraphNodes extends Node {
   // for iterating over all GraphNode instances
   private readonly graphNodes: GraphNode[];
 
+  private readonly graphHeight: number;
+
   public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions?: GraphNodesOptions ) {
@@ -60,22 +62,22 @@ export default class GraphNodes extends Node {
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
     // determine the (view) height of the graph based on the number of visible graphs.
-    const graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
+    this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
     // the subset of graphTypes that should be instrumented
     const subsetGraphTypes = model.graphSets.flat();
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
-    function createGraphNode( graphType: GraphType, curve: Curve ): GraphNode {
+    const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
       return new GraphNode( graphType, curve, gridVisibleProperty, {
-        graphHeight: graphHeight,
+        graphHeight: this.graphHeight,
         tandem: subsetGraphTypes.includes( graphType ) ?
                 options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
                 Tandem.OPT_OUT
       } );
-    }
+    };
 
     this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );
     this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
@@ -83,7 +85,7 @@ export default class GraphNodes extends Node {
 
     // originalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
-      graphHeight: graphHeight,
+      graphHeight: this.graphHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
 
@@ -103,22 +105,16 @@ export default class GraphNodes extends Node {
     model.graphSetProperty.link( graphSet => {
 
       // Get the GraphNode instances that correspond to graphSet.
-      const content = this.graphNodes.filter( graphNode => graphSet.includes( graphNode.graphType ) );
-      assert && assert( content.length > 0 );
-      graphSetNode.setChildren( content );
+      const graphNodes = this.graphNodes.filter( graphNode => graphSet.includes( graphNode.graphType ) );
+      assert && assert( graphNodes.length > 0 );
+      graphSetNode.setChildren( graphNodes );
 
       // Layout
-      content[ 0 ].x = 0;
-      content[ 0 ].y = 0;
-      const ySpacing = ( graphSet.length < 4 ) ? 20 : 12; // more graphs requires less spacing
-      for ( let i = 1; i < content.length; i++ ) {
-        content[ i ].x = content[ i - 1 ].x;
-        content[ i ].y = content[ i - 1 ].y + graphHeight + ySpacing;
-      }
+      this.updateLayout( graphNodes );
 
       // Resize vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,
       // so that the drag handle does not overlap scrubber.
-      const yOffset = ( content[ content.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
+      const yOffset = ( graphNodes[ graphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
       referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + yOffset );
 
       // Resize vertical VerticalLineNodes - same extent at top and bottom.
@@ -141,6 +137,16 @@ export default class GraphNodes extends Node {
     this.originalGraphNode.reset();
     this.derivativeGraphNode.reset();
     this.secondDerivativeGraphNode.reset();
+  }
+
+  private updateLayout( graphNodes: GraphNode[] ): void {
+    graphNodes[ 0 ].x = 0;
+    graphNodes[ 0 ].y = 0;
+    const ySpacing = ( graphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
+    for ( let i = 1; i < graphNodes.length; i++ ) {
+      graphNodes[ i ].x = graphNodes[ i - 1 ].x;
+      graphNodes[ i ].y = graphNodes[ i - 1 ].y + this.graphHeight + ySpacing;
+    }
   }
 
   /**
