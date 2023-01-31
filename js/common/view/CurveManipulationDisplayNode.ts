@@ -17,9 +17,9 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import { TColor } from '../../../../scenery/js/imports.js';
+import { Node, TColor } from '../../../../scenery/js/imports.js';
 
-export default class CurveManipulationDisplayNode extends CurveNode {
+export default class CurveManipulationDisplayNode extends Node {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       curveManipulationStroke: TColor,
@@ -41,10 +41,14 @@ export default class CurveManipulationDisplayNode extends CurveNode {
 
     const chartRectangle = new ChartRectangle( chartTransform );
 
-    super( curve, chartTransform, {
-      children: [ chartRectangle ],
+    const curveNode = new CurveNode( curve, chartTransform, {
       clipArea: chartRectangle.getShape(),
       stroke: curveManipulationStroke,
+      tandem: tandem
+    } );
+
+    super( {
+      children: [ chartRectangle, curveNode ],
       tandem: tandem
     } );
 

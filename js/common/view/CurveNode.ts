@@ -29,6 +29,8 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
@@ -47,7 +49,9 @@ type SelfOptions = {
   allPointsScatterPlotOptions?: ScatterPlotOptions;
 };
 
-export type CurveNodeOptions = SelfOptions & NodeOptions;
+export type CurveNodeOptions = SelfOptions &
+  PickOptional<NodeOptions, 'enabledProperty' | 'visibleProperty' | 'clipArea'> &
+  PickRequired<NodeOptions, 'tandem'>;
 
 export default class CurveNode extends Node {
 
