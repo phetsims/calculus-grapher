@@ -23,7 +23,7 @@ import CalculusGrapherPreferences from './common/model/CalculusGrapherPreference
 const credits: CreditsData = {
   leadDesign: 'Amanda McGarry',
   softwareDevelopment: 'Martin Veillette, Chris Malley (PixelZoom, Inc.), Brandon Li',
-  team: 'Catherine Carter, Michael Dubson, Brandon Li, Ariel Paul, Kathy Perkins',
+  team: 'Catherine Carter, Michael Dubson, Ariel Paul, Kathy Perkins',
   qualityAssurance: ''
 };
 
