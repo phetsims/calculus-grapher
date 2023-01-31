@@ -121,12 +121,13 @@ export default class CalculusGrapherModel implements TModel {
     this.originalCurve = new TransformedCurve( {
       // originalCurve is always instrumented, because it should always be present.
       tandem: curvesTandem.createTandem( 'originalCurve' ),
-      phetioDocumentation: 'The curve that corresponds to the original function'
+      phetioDocumentation: 'The curve that corresponds to the original function, f(x) or f(t)'
     } );
 
     this.predictCurve = new TransformedCurve( {
       // predictCurve is always instrumented, because it should always be present.
-      tandem: curvesTandem.createTandem( 'predictCurve' )
+      tandem: curvesTandem.createTandem( 'predictCurve' ),
+      phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the original function'
     } );
 
     this.curveToTransformProperty = new DerivedProperty( [ this.predictModeEnabledProperty ],
