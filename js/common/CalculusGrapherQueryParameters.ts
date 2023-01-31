@@ -173,7 +173,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   negativeAlpha: {
     type: 'number',
     isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
-    defaultValue: 0.5
+    defaultValue: 0.55
   }
 } );
 
