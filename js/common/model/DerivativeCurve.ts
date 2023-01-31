@@ -81,42 +81,60 @@ export default class DerivativeCurve extends Curve {
    *         * Both adjacent Points don't exist, meaning the derivative also doesn't exist.
    */
   private updateDerivative(): void {
-    // Loop through each trio of adjacent Points of the base Curve.
-    this.baseCurve.forEachAdjacentTrio( ( previousPoint, point, nextPoint, index ) => {
 
-        let leftSlope: null | number = null;
-        let rightSlope: null | number = null;
+    const basePoints = this.baseCurve.points;
 
-        // Compute the leftSlope and rightSlope.
+    const length = basePoints.length;
 
-        // Take the slope of the secant line between the left adjacent Point and the current Point, where m = dy/dx.
-        if ( previousPoint && previousPoint.isFinite && !( previousPoint.isDiscontinuous ) ) {
-          leftSlope = point.getSlope( previousPoint );
-        }
+    const leftSlopes: ( number | null )[] = [];
 
-        if ( nextPoint && nextPoint.isFinite && !( nextPoint.isCusp ) ) {
-          // Take the slope of the secant line between the current Point and the right adjacent Point, where m = dy/dx.
-          rightSlope = point.getSlope( nextPoint );
-        }
-        //----------------------------------------------------------------------------------------
+    // TODO: consolidate the iterations see #110
+    for ( let i = 0; i < length; i++ ) {
+      const point = basePoints[ i ];
+      const previousPoint = i > 0 ? basePoints[ i - 1 ] : null;
 
-        if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' && Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-          // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
-          // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
-          this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
-        }
-        else if ( typeof leftSlope === 'number' && Number.isFinite( leftSlope ) ) {
-
-          // If only the slope of the left side exists, use that as the derivative.
-          this.points[ index ].y = leftSlope;
-        }
-        else if ( typeof rightSlope === 'number' && Number.isFinite( rightSlope ) ) {
-
-          // If only the slope of the right side exists, use that as the derivative.
-          this.points[ index ].y = rightSlope;
-        }
+      if ( previousPoint === null || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
+        leftSlopes.push( null );
       }
-    );
+      else {
+        leftSlopes.push( point.getSlope( previousPoint ) );
+      }
+    }
+
+    const rightSlopes: ( number | null )[] = [];
+
+    for ( let i = 0; i < length; i++ ) {
+      const point = basePoints[ i ];
+      const nextPoint = i < length - 1 ? basePoints[ i + 1 ] : null;
+
+      if ( nextPoint === null || ( point.isDiscontinuous && nextPoint.isDiscontinuous ) || point.isCusp ) {
+        rightSlopes.push( null );
+      }
+      else {
+        rightSlopes.push( point.getSlope( nextPoint ) );
+      }
+    }
+
+    for ( let index = 0; index < length; index++ ) {
+      const leftSlope = leftSlopes[ index ];
+      const rightSlope = rightSlopes[ index ];
+
+      if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' ) {
+        // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
+        // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
+        this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
+      }
+      else if ( typeof leftSlope === 'number' ) {
+
+        // If only the slope of the left side exists, use that as the derivative.
+        this.points[ index ].y = leftSlope;
+      }
+      else if ( typeof rightSlope === 'number' ) {
+
+        // If only the slope of the right side exists, use that as the derivative.
+        this.points[ index ].y = rightSlope;
+      }
+    }
 
     // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
