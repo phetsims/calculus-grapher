@@ -60,7 +60,7 @@ export default class DerivativeCurve extends Curve {
    * Since the 'Calculus Grapher' sim has second derivatives, the 'base' curve could have cusps and/or non-finite
    * points. The algorithm for computing derivatives works by iterating through each Point of the 'base' Curve.
    *
-   *  TODO: add documentation
+   *  TODO https://github.com/phetsims/calculus-grapher/issues/110 add documentation
    */
   private updateDerivative(): void {
 

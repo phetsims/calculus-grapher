@@ -264,10 +264,13 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Allows the user to drag Points in the Curve to any desired position to create custom Curves shapes.
-   * This method will update the curve with the new position value.
+   * Allows the user to drag Points in the Curve to any desired position to create custom but smooth shapes.
+   * This method will update the curve with the new position value. It attempts to create a smooth curve
+   * between position and antepenultimatePosition. The penultimatePosition is used to infer the degree of
+   * curvature of the position and antepenultimatePosition.
+   * The main goal of the drawToForm method is to create a curve segment that is smooth enough that it can be
+   * twice differentiable without generating discontinuities.
    *
-   * TODO: add documentation
    * @param position - in model coordinates
    * @param penultimatePosition - in model coordinates
    * @param antepenultimatePosition - in model coordinates
@@ -285,7 +288,7 @@ export default class TransformedCurve extends Curve {
     // point associated with the last drag event
     const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
-    // TODO: explain why we dont want lastPoint
+    // we want to create a straight line between this point and the last drag event point
     this.interpolate( closestPoint.toVector(), new Vector2( lastPoint.x, penultimatePosition.y ) );
 
     if ( antepenultimatePosition instanceof Vector2
