@@ -288,7 +288,7 @@ export default class TransformedCurve extends Curve {
     // point associated with the last drag event
     const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
-    // TODO: explain why we dont want lastPoint
+    // we want to create a straight line between this point and the last drag event point
     this.interpolate( closestPoint.toVector(), new Vector2( lastPoint.x, penultimatePosition.y ) );
 
     if ( antepenultimatePosition instanceof Vector2
