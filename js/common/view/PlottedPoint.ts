@@ -12,12 +12,13 @@
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import { Circle, CircleOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type PlottedPointOptions = SelfOptions & CircleOptions;
+export type PlottedPointOptions = SelfOptions & PickOptional<CircleOptions, 'fill' | 'visibleProperty' | 'tandem'>;
 
 export default class PlottedPoint extends Circle {
 
