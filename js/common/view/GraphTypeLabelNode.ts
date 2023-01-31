@@ -1,6 +1,5 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/197 instrument any Text/RichText in here?
 /**
  * GraphTypeLabelNode is the view representation for graph labels in 'Calculus Grapher'
  *
