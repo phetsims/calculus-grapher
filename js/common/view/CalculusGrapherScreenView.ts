@@ -23,13 +23,14 @@ import { Node, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import PresetFunctions from '../model/PresetFunctions.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
   controlPanelOptions?: Partial<CalculusGrapherControlPanelOptions>;
 };
 
-export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
+export type CalculusGrapherScreenViewOptions = SelfOptions & PickRequired<ScreenViewOptions, 'tandem'>;
 
 export default class CalculusGrapherScreenView extends ScreenView {
 
