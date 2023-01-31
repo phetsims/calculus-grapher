@@ -21,13 +21,10 @@ import CalculusGrapherPreferences from './common/model/CalculusGrapherPreference
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/202 fill in credits
 const credits: CreditsData = {
-  leadDesign: '',
-  softwareDevelopment: '',
-  team: '',
-  qualityAssurance: '',
-  graphicArts: '',
-  soundDesign: '',
-  thanks: ''
+  leadDesign: 'Amanda McGarry',
+  softwareDevelopment: 'Martin Veillette, Chris Malley (PixelZoom, Inc.), Brandon Li',
+  team: 'Catherine Carter, Michael Dubson, Brandon Li, Ariel Paul, Kathy Perkins',
+  qualityAssurance: ''
 };
 
 // Launch the 'Calculus Grapher' simulation.
