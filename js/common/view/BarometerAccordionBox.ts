@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * BarometerAccordionBox is panel that shows a vertical axis with a barometer indicator
+ * BarometerAccordionBox is the base class accordion box that shows a vertical axis with a barometer indicator
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -37,9 +37,9 @@ export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBox
 
 export default class BarometerAccordionBox extends AccordionBox {
 
-  public constructor( valueProperty: TReadOnlyProperty<number>,
-                      labelStringProperty: TReadOnlyProperty<string>,
-                      providedOptions: BarometerAccordionBoxOptions ) {
+  protected constructor( valueProperty: TReadOnlyProperty<number>,
+                         labelStringProperty: TReadOnlyProperty<string>,
+                         providedOptions: BarometerAccordionBoxOptions ) {
 
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
