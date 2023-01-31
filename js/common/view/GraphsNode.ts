@@ -34,7 +34,7 @@ type SelfOptions = EmptySelfOptions;
 
 type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
-export default class GraphNodes extends Node {
+export default class GraphsNode extends Node {
 
   public readonly originalGraphNode: OriginalGraphNode;
   public readonly integralGraphNode: GraphNode;
@@ -100,7 +100,7 @@ export default class GraphNodes extends Node {
 
     const graphSetNode = new Node();
 
-    // To display a different set of graphs, get the GraphNodes, handle their layout, and adjust the position
+    // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
     // of the reference line and vertical lines.
     model.graphSetProperty.link( graphSet => {
 
@@ -202,4 +202,4 @@ export default class GraphNodes extends Node {
   }
 }
 
-calculusGrapher.register( 'GraphNodes', GraphNodes );
+calculusGrapher.register( 'GraphsNode', GraphsNode );
