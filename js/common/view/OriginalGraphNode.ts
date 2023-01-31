@@ -102,6 +102,7 @@ export default class OriginalGraphNode extends GraphNode {
     const highlightRectangle = new Rectangle( 0, 0, this.chartRectangle.width + 6, this.chartRectangle.height + 6, {
       center: this.chartRectangle.center,
       opacity: 0.25,
+      visibleProperty: this.curveLayerVisibleProperty,
       fill: new DerivedProperty( [
         model.predictModeEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
