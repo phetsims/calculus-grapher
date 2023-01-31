@@ -23,12 +23,13 @@ import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   hasSmoothButton?: boolean;
 };
 
-export type CalculusGrapherControlPanelOptions = SelfOptions & PanelOptions;
+export type CalculusGrapherControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
 
 export default class CalculusGrapherControlPanel extends Panel {
 

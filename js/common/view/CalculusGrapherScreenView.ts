@@ -26,7 +26,7 @@ import PresetFunctions from '../model/PresetFunctions.js';
 
 type SelfOptions = {
   graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
-  controlPanelOptions?: CalculusGrapherControlPanelOptions;
+  controlPanelOptions?: Partial<CalculusGrapherControlPanelOptions>;
 };
 
 export type CalculusGrapherScreenViewOptions = SelfOptions & ScreenViewOptions;
