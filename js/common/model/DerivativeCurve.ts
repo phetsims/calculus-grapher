@@ -86,38 +86,27 @@ export default class DerivativeCurve extends Curve {
 
     const length = basePoints.length;
 
-    const leftSlopes: ( number | null )[] = [];
-
-    // TODO: consolidate the iterations see #110
-    for ( let i = 0; i < length; i++ ) {
-      const point = basePoints[ i ];
-      const previousPoint = i > 0 ? basePoints[ i - 1 ] : null;
-
-      if ( previousPoint === null || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
-        leftSlopes.push( null );
-      }
-      else {
-        leftSlopes.push( point.getSlope( previousPoint ) );
-      }
-    }
-
-    const rightSlopes: ( number | null )[] = [];
-
-    for ( let i = 0; i < length; i++ ) {
-      const point = basePoints[ i ];
-      const nextPoint = i < length - 1 ? basePoints[ i + 1 ] : null;
-
-      if ( nextPoint === null || ( point.isDiscontinuous && nextPoint.isDiscontinuous ) || point.isCusp ) {
-        rightSlopes.push( null );
-      }
-      else {
-        rightSlopes.push( point.getSlope( nextPoint ) );
-      }
-    }
+    let leftSlope: number | null;
+    let rightSlope: number | null;
 
     for ( let index = 0; index < length; index++ ) {
-      const leftSlope = leftSlopes[ index ];
-      const rightSlope = rightSlopes[ index ];
+      const previousPoint = index > 0 ? basePoints[ index - 1 ] : null;
+      const point = basePoints[ index ];
+      const nextPoint = index < length - 1 ? basePoints[ index + 1 ] : null;
+
+      if ( previousPoint === null || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
+        leftSlope = null;
+      }
+      else {
+        leftSlope = point.getSlope( previousPoint );
+      }
+
+      if ( nextPoint === null || point.isCusp || ( point.isDiscontinuous && nextPoint.isDiscontinuous ) ) {
+        rightSlope = null;
+      }
+      else {
+        rightSlope = point.getSlope( nextPoint );
+      }
 
       if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' ) {
         // If both the left and right adjacent Points of the Point of the 'base' curve exist, the derivative is
