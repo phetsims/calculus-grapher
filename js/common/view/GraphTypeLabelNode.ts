@@ -19,6 +19,7 @@ import GraphType from '../model/GraphType.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 
 const HAIR_SPACE_STRING = '\u200A';
 const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;
@@ -46,7 +47,7 @@ type SelfOptions = {
   fontSizeOptions?: FontSizeOptions;
 };
 
-type GraphTypeLabelNodeOptions = SelfOptions & NodeOptions;
+type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem'>;
 
 export default class GraphTypeLabelNode extends Node {
 
