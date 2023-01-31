@@ -16,8 +16,10 @@ import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js'
 
 const tandem = Tandem.GLOBAL_VIEW.createTandem( 'colorProfile' );
 
+const SCREEN_BACKGROUND_COLOR = 'rgb( 243, 252, 254 )';
+
 const integralCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
-  default: 'rgb( 0, 146, 69 )'
+  default: '#00853E'
 }, {
   tandem: tandem.createTandem( 'integralCurveStrokeProperty' )
 } );
@@ -26,7 +28,7 @@ const CalculusGrapherColors = {
 
   // Background color used for all screens
   screenBackgroundColorProperty: new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
-    default: 'rgb( 243, 252, 254 )'
+    default: SCREEN_BACKGROUND_COLOR
   } ),
 
   // Stroke for Panel-like Containers
@@ -51,7 +53,7 @@ const CalculusGrapherColors = {
 
   // Fill for the background of all Graphs (besides Original)
   defaultChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
-    default: 'rgba( 228, 245, 250, 0.4 )'
+    default: SCREEN_BACKGROUND_COLOR
   } ),
 
   // Stroke for the background of all Graphs (besides Original)
