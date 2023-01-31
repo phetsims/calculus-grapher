@@ -11,7 +11,6 @@ import Property from '../../../../axon/js/Property.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import { DragListener } from '../../../../scenery/js/imports.js';
@@ -22,9 +21,7 @@ type SelfOptions = {
   yModel?: number; // y coordinate, in model coordinate frame
 };
 
-type XDragHandleNodeOptions = SelfOptions &
-  PickOptional<ShadedSphereNodeOptions, 'mainColor'> &
-  PickRequired<ShadedSphereNodeOptions, 'tandem'>;
+type XDragHandleNodeOptions = SelfOptions & PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem'>;
 
 export default class XDragHandleNode extends ShadedSphereNode {
 
