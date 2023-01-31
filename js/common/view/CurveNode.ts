@@ -163,48 +163,71 @@ export default class CurveNode extends Node {
 
   // data set for continuous portion of curve
   private getContinuousLinePlotDataSet(): LinePlotDataSet {
-    return this.curve.points.map( ( point, index, points ) => {
+    const dataSet = [];
+    const points = this.curve.points;
+    for ( let i = 0; i < this.curve.points.length; i++ ) {
+      const point = points[ i ];
+      dataSet.push( point.getVector() );
 
-      // in the model, a discontinuity is marked by tagging two adjacent points as discontinuous (the real discontinuity is in between the two)
-      // we need to insert a null value between two such adjacent points to break the continuous segments.
-      // the actual points of the discontinuities are included such that the continuous line goes right up to the discontinuity points.
-
-      const isNextPointWithinRange = index + 1 < points.length;
-      if ( isNextPointWithinRange && point.isDiscontinuous && points[ index + 1 ].isDiscontinuous ) {
-        return [ point.toVector(), null ];
+      //  in the model, a discontinuity is marked by tagging two adjacent points as discontinuous (the real discontinuity is in between the two)
+      //  we need to insert a null value between two such adjacent points to break the continuous segments.
+      //  the actual points of the discontinuities are included such that the continuous line goes right up to the discontinuity points.
+      const isNextPointWithinRange = i + 1 < points.length;
+      if ( isNextPointWithinRange && point.isDiscontinuous && points[ i + 1 ].isDiscontinuous ) {
+        dataSet.push( null );
       }
-      else {
-        return point.toVector();
-      }
-    } ).flat();
+    }
+    return dataSet;
   }
 
   // data set for discontinuous line plot (a set of vertical lines)
   private getDiscontinuousLinePlotDataSet(): LinePlotDataSet {
-    return this.curve.points.map( point => {
-
-      // In the curve model, a discontinuity tag is never unique but will be tagged for
-      // an adjacent pair of points.
-      // This ensures that we will have two adjacent vectors in the LinePlotDataSet
-      return point.isDiscontinuous ? point.toVector() : null;
-    } );
+    const dataSet = [];
+    const points = this.curve.points;
+    let previousDataPointWasNull = false;
+    for ( let i = 0; i < this.curve.points.length; i++ ) {
+      const point = points[ i ];
+      if ( point.isDiscontinuous ) {
+        dataSet.push( point.getVector() );
+        previousDataPointWasNull = false;
+      }
+      else if ( !previousDataPointWasNull ) {
+        dataSet.push( null );
+        previousDataPointWasNull = true;
+      }
+    }
+    return dataSet;
   }
 
   // data set for discontinuous scatter plot ( sets of circles )
   private getDiscontinuousPointsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.points.filter( point => point.isDiscontinuous )
-      .map( point => point.toVector() );
+    const dataSet = [];
+    const points = this.curve.points;
+    for ( let i = 0; i < this.curve.points.length; i++ ) {
+      const point = points[ i ];
+      if ( point.isDiscontinuous ) {
+        dataSet.push( point.getVector() );
+      }
+    }
+    return dataSet;
   }
 
   // data set for cusps points
   private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.points.filter( point => point.isCusp )
-      .map( point => point.toVector() );
+    const dataSet = [];
+    const points = this.curve.points;
+    for ( let i = 0; i < this.curve.points.length; i++ ) {
+      const point = points[ i ];
+      if ( point.isCusp ) {
+        dataSet.push( point.getVector() );
+      }
+    }
+    return dataSet;
   }
 
   // data set for all points
   private getAllPointsScatterPlotDataSet(): ScatterPlotDataSet {
-    return this.curve.points.map( point => point.toVector() );
+    return this.curve.points.map( point => point.getVector() );
   }
 }
 

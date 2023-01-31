@@ -56,6 +56,10 @@ export default class CurvePoint {
   // an array of all of this Point's saved states.
   private readonly savedStates: PointState [];
 
+  // Vector2 representation of this CurvePoint, to be used in bamboo data sets. This instance is allocated once
+  // at instantiation, then reused to prevent garbage collection.
+  private readonly vector: Vector2;
+
   public constructor( x: number, y = 0, pointType: PointType = 'smooth' ) {
     assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
 
@@ -69,10 +73,15 @@ export default class CurvePoint {
     };
 
     this.savedStates = [];
+    this.vector = new Vector2( x, y );
   }
 
-  public toVector(): Vector2 {
-    return new Vector2( this.x, this.y );
+  /**
+   * Returns a reference to the Vector2 representation of this CurvePoint. DO NOT MODIFY!
+   */
+  public getVector(): Vector2 {
+    this.vector.y = this.y; // defer update of y until we ask for it
+    return this.vector;
   }
 
   /**
