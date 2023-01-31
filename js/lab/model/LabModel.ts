@@ -9,10 +9,11 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type LabModelOptions = SelfOptions & CalculusGrapherModelOptions;
+type LabModelOptions = SelfOptions & PickRequired<CalculusGrapherModelOptions, 'graphSets' | 'tandem'>;
 
 export default class LabModel extends CalculusGrapherModel {
 

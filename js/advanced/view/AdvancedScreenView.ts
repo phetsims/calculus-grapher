@@ -7,13 +7,15 @@
  */
 
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import AdvancedModel from '../model/AdvancedModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type AdvancedScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+type AdvancedScreenViewOptions = SelfOptions &
+  PickRequired<CalculusGrapherScreenViewOptions, 'graphSetRadioButtonGroupItems' | 'tandem'>;
 
 export default class AdvancedScreenView extends CalculusGrapherScreenView {
 

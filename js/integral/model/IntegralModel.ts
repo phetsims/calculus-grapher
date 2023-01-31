@@ -12,10 +12,11 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type IntegralModelOptions = SelfOptions & CalculusGrapherModelOptions;
+type IntegralModelOptions = SelfOptions & PickRequired<CalculusGrapherModelOptions, 'graphSets' | 'tandem'>;
 
 export default class IntegralModel extends CalculusGrapherModel {
 

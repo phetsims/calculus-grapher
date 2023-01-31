@@ -18,10 +18,11 @@ import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type DerivativeScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+type DerivativeScreenViewOptions = SelfOptions & PickRequired<CalculusGrapherScreenViewOptions, 'tandem'>;
 
 export default class DerivativeScreenView extends CalculusGrapherScreenView {
 

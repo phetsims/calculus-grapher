@@ -18,10 +18,11 @@ import { RichText } from '../../../../scenery/js/imports.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type IntroScreenViewOptions = SelfOptions & CalculusGrapherScreenViewOptions;
+type IntroScreenViewOptions = SelfOptions & PickRequired<CalculusGrapherScreenViewOptions, 'tandem'>;
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 
