@@ -53,32 +53,14 @@ export default class DerivativeCurve extends Curve {
   /**
    * Updates the y-values of the DerivativeCurve to represent the derivative of the 'base' Curve.
    *
-   * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the slope of
-   * the secant line between each adjacent Point is considered to be the instantaneous derivative. Our version
-   * considers both the slope of the secant lines from the left and right side of every point. See
-   * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition
+   * The derivative is approximated as the slope of the secant line between each adjacent Point.
+   * Our version considers both the slope of the secant lines from the left and right side of every point. See
+   * https://en.wikipedia.org/wiki/Numerical_differentiation
    *
    * Since the 'Calculus Grapher' sim has second derivatives, the 'base' curve could have cusps and/or non-finite
    * points. The algorithm for computing derivatives works by iterating through each Point of the 'base' Curve.
-   * Here is the decision tree:
    *
-   *   - If the Point of the 'base' curve does not exist:
-   *      + The derivative at the corresponding x-value also doesn't exist.
-   *
-   *   - Otherwise:
-   *
-   *      + If both the left and right adjacent Points of the Point of the 'base' curve exist:
-   *
-   *         * If the slope of the secant lines from the left and right side are approximately equal:
-   *             - The slope is the average of the slopes.
-   *         * Otherwise:
-   *             - The derivative doesn't exist
-   *
-   *      + If only one of the two adjacent Points exists:
-   *         * The derivative is the slope of the secant line between the Point and the existing adjacent Point.
-   *
-   *      + Otherwise:
-   *         * Both adjacent Points don't exist, meaning the derivative also doesn't exist.
+   *  TODO: add documentation
    */
   private updateDerivative(): void {
 
@@ -93,6 +75,7 @@ export default class DerivativeCurve extends Curve {
       const previousPoint = index > 0 ? basePoints[ index - 1 ] : null;
       const point = basePoints[ index ];
       const nextPoint = index < length - 1 ? basePoints[ index + 1 ] : null;
+
 
       if ( previousPoint === null || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
         leftSlope = null;
