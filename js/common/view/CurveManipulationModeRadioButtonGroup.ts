@@ -32,9 +32,7 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
         mode => {
           return {
             value: mode,
-            createNode: () => new CurveManipulationIconNode( mode, {
-              stroke: curveManipulationStroke
-            } ),
+            createNode: () => new CurveManipulationIconNode( mode, curveManipulationStroke ),
             tandemName: `${mode.tandemPrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
           };
         }
