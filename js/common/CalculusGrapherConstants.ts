@@ -17,7 +17,8 @@ import { Text } from '../../../scenery/js/imports.js';
 const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
 
 // CAREFUL: Although there was a deliberate effort to scale other quantities based on
-// CURVE_X_RANGE, changing the CURVE_X_RANGE should lead to changes for the tick labels and tick marks spacing as well
+// CURVE_X_RANGE, changing the CURVE_X_RANGE should lead to manual changes
+// for the tick labels, tick marks and , lookup table for zoomLevelProperty in graphNode
 const CURVE_X_RANGE = new Range( 0, 10 );
 
 const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
