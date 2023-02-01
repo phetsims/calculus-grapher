@@ -36,7 +36,9 @@ export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOption
 
 export default class AncillaryTool extends PhetioObject {
 
-  // whether the tool is visible
+  // whether the tool is nominally visible (placed here for performance reason)
+  // The actual scenery visibility of the tool is often not solely based on it.
+  // Instead, it may be AXON/derived from this property.
   public readonly visibleProperty: Property<boolean>;
 
   // the x position of the tool
