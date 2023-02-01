@@ -86,7 +86,6 @@ type SelfOptions = {
   chartRectangleOptions?: RectangleOptions;
   createCurveNode?: ( chartTransform: ChartTransform ) => CurveNode;
   labelNode?: Node;
-  hasYZoom?: boolean;
 };
 
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
@@ -129,7 +128,6 @@ export default class GraphNode extends Node {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
       },
-      hasYZoom: true,
 
       // NodeOptions
       phetioVisiblePropertyInstrumented: false
@@ -145,8 +143,8 @@ export default class GraphNode extends Node {
     this.graphType = graphType;
     this.curve = curve;
 
-    // optional y-axis zoom level
-    if ( options.hasYZoom ) {
+    // The original graph does not have the zoom feature for the y-axis.
+    if ( graphType !== GraphType.ORIGINAL ) {
       this.yZoomLevelProperty = new NumberProperty( DEFAULT_ZOOM_LEVEL, {
         range: new Range( 0, Y_ZOOM_INFO.length - 1 ),
         tandem: options.tandem.createTandem( 'yZoomLevelProperty' )

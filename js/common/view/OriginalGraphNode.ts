@@ -91,7 +91,6 @@ export default class OriginalGraphNode extends GraphNode {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
-      hasYZoom: false,
       labelNode: labelNode
     }, providedOptions );
 
