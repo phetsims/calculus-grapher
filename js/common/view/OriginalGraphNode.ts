@@ -16,7 +16,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { HBox, Rectangle, TColor, Text } from '../../../../scenery/js/imports.js';
+import { DragListener, HBox, PressedDragListener, Rectangle, TColor, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
@@ -34,6 +34,9 @@ import GraphType from '../model/GraphType.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import Property from '../../../../axon/js/Property.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -141,6 +144,56 @@ export default class OriginalGraphNode extends GraphNode {
       options.tandem.createTandem( 'labeledPointsNode' )
     );
     this.addChild( labeledPointsNode );
+
+    const originalCurveNode = this.curveNode as TransformedCurveNode;
+    assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
+    const interactiveCurveNodeProperty = new DerivedProperty( [ model.predictModeEnabledProperty ],
+      predictModeEnabled => predictModeEnabled ? this.predictCurveNode : originalCurveNode
+    );
+
+    let penultimatePosition: Vector2;
+    let antepenultimatePosition: Vector2 | null = null;
+
+   const updateCurve = ( listener: PressedDragListener ): void => {
+
+      // current modelPosition
+      const modelPosition = this.chartTransform.viewToModelPosition( listener.modelPoint );
+
+      // previous (model) position the drag
+      penultimatePosition = this.chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
+
+      // update curve based on mode and width
+      interactiveCurveNodeProperty.value.transformedCurve.userManipulatedCurve(
+        curveManipulationProperties.mode,
+        curveManipulationProperties.width,
+        modelPosition,
+        penultimatePosition,
+        antepenultimatePosition );
+
+      // update antepenultimatePosition
+      antepenultimatePosition = penultimatePosition;
+    };
+
+    this.chartRectangle.cursor = 'pointer';
+    this.chartRectangle.addInputListener( new DragListener( {
+      dragBoundsProperty: new Property( new Bounds2( 0, 0, this.chartTransform.viewWidth, this.chartTransform.viewHeight ) ),
+      applyOffset: false,
+      start: ( event, listener ) => {
+
+        // Indicate that we've touched the curve, and hide the cueing arrows.
+        interactiveCurveNodeProperty.value.wasDraggedProperty.value = true;
+
+        // Save the current values of the Points for the next undoToLastSave call.
+        // This must be called once at the start of dragging (and not on each micro drag-position change).
+        interactiveCurveNodeProperty.value.transformedCurve.saveCurrentPoints();
+
+        // set the second to last position to null, since it is a new drag.
+        antepenultimatePosition = null;
+        updateCurve( listener );
+      },
+      drag: ( event, listener ) => updateCurve( listener ),
+      tandem: options.tandem.createTandem( 'dragListener' )
+    } ) );
   }
 
   public override reset(): void {
