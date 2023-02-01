@@ -62,17 +62,17 @@ export default class CalculusGrapherModel implements TModel {
   // Is the predict mode enabled for the original graph?
   public readonly predictModeEnabledProperty: Property<boolean>;
 
-  // model elements for the various curves
+  // Model elements for the various curves
   public readonly originalCurve: TransformedCurve;
   public readonly predictCurve: TransformedCurve;
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-  // which curve to apply operations to
+  // Which curve to apply operations to
   public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
 
-  // model elements for the various tools
+  // Model elements for the various tools
   public readonly referenceLine: ReferenceLine;
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
@@ -123,13 +123,13 @@ export default class CalculusGrapherModel implements TModel {
     const curvesTandem = options.tandem.createTandem( 'curves' );
 
     this.originalCurve = new TransformedCurve( {
-      // originalCurve is always instrumented, because it should always be present.
+      // OriginalCurve is always instrumented, because it should always be present.
       tandem: curvesTandem.createTandem( 'originalCurve' ),
       phetioDocumentation: 'The curve that corresponds to the original function, f(x) or f(t)'
     } );
 
     this.predictCurve = new TransformedCurve( {
-      // predictCurve is always instrumented, because it should always be present.
+      // PredictCurve is always instrumented, because it should always be present.
       tandem: curvesTandem.createTandem( 'predictCurve' ),
       phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the original function'
     } );
@@ -138,7 +138,7 @@ export default class CalculusGrapherModel implements TModel {
       predictModeEnabled => predictModeEnabled ? this.predictCurve : this.originalCurve
     );
 
-    // Create a flat array of the supported GraphTypes. This is then used to conditionally instrument curves.
+    // Creates a flat array of the supported GraphTypes. This is then used to conditionally instrument curves.
     const graphTypes = options.graphSets.flat();
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve,

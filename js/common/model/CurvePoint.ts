@@ -50,10 +50,10 @@ export default class CurvePoint {
 
   public pointType: PointType;
 
-  // the initial y-coordinate passed into the CurvePoint, for resetting purposes.
+  // The initial y-coordinate passed into the CurvePoint, for resetting purposes.
   private readonly initialState: PointState;
 
-  // an array of all of this Point's saved states.
+  // An array of all of this Point's saved states.
   private readonly savedStates: PointState [];
 
   // Vector2 representation of this CurvePoint, to be used in bamboo data sets. This instance is allocated once

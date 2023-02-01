@@ -23,7 +23,7 @@ import Curve from './Curve.js';
 
 export default class DerivativeCurve extends Curve {
 
-  // reference to the 'base' Curve that was passed-in.
+  // Reference to the 'base' Curve that was passed-in.
   private baseCurve: Curve;
 
   /**
@@ -42,11 +42,11 @@ export default class DerivativeCurve extends Curve {
 
     this.baseCurve = baseCurve;
 
-    // Observe when the 'base' Curve changes and update this curve to represent the derivative of the 'base' Curve.
+    // Observes when the 'base' Curve changes and update this curve to represent the derivative of the 'base' Curve.
     // Listener is never removed since DerivativeCurves are never disposed.
     baseCurve.curveChangedEmitter.addListener( this.updateDerivative.bind( this ) );
 
-    // Make the initial call to updateDerivative() to match the 'base' Curve upon initialization.
+    // Makes the initial call to updateDerivative() to match the 'base' Curve upon initialization.
     this.updateDerivative();
   }
 

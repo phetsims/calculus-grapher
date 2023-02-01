@@ -19,7 +19,7 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
-// constants
+// Constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 
 type SelfOptions = EmptySelfOptions;
@@ -28,10 +28,10 @@ type CurveManipulationPropertiesOptions = SelfOptions & PickRequired<PhetioObjec
 
 export default class CurveManipulationProperties {
 
-  // the 'mode' that user is in for manipulating curves. This is manipulated by the view.
+  // The 'mode' that user is in for manipulating curves.
   public readonly modeProperty: EnumerationProperty<CurveManipulationMode>;
 
-  // the width of the curve-manipulation. This only applies to some CurveManipulationModes
+  // The width of the curve-manipulation. This only applies to some CurveManipulationModes
   // and the value is interpreted differently for each response algorithm to curve
   // user-manipulation.
   public readonly widthProperty: NumberProperty;
@@ -41,7 +41,7 @@ export default class CurveManipulationProperties {
 
     const options = providedOptions;
 
-    // initial mode of the simulation
+    // Initial mode of the simulation
     const initialMode = CurveManipulationMode.HILL;
 
     assert && assert( curveManipulationModeChoices.includes( initialMode ),

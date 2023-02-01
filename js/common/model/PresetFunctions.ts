@@ -13,7 +13,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from './TransformedCurve.js';
 
-// convenience constants
+// Convenience constants
 const X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const WIDTH = X_RANGE.getLength();
 const CENTER_X = X_RANGE.getCenter();
@@ -35,7 +35,7 @@ const MATH_FUNCTIONS: MathFunction[] = [
 export type PresetFunction = {
   mathFunction: MathFunction;
 
-  // optional argument: used to create piecewise function. The math function is
+  // Optional argument: used to create piecewise function. The math function is
   // evaluated at the xPositions, and the remaining points are interpolated (linearly)
   xPositions?: number[];
 };

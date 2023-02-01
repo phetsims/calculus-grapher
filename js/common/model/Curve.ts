@@ -33,7 +33,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 
-// constants
+// Constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const NUMBER_OF_POINTS = CalculusGrapherQueryParameters.numberOfPoints;
 const ANGLE_MISMATCH_THRESHOLD = CalculusGrapherQueryParameters.angleMismatchThreshold;
@@ -42,6 +42,8 @@ const SLOPE_THRESHOLD = CalculusGrapherQueryParameters.slopeThreshold;
 type SelfOptions = {
   xRange?: Range;
   numberOfPoints?: number;
+
+  // For PhET-IO: Are the points property read only
   pointsPropertyReadOnly?: boolean;
 };
 

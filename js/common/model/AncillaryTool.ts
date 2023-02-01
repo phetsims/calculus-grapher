@@ -28,23 +28,27 @@ import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = {
-  x: number; // initial value of xProperty
-  visible?: boolean; // initial visibility of the tool
+
+  // Initial value of xProperty
+  x: number;
+
+  // Initial visibility of the tool
+  visible?: boolean;
 };
 
 export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class AncillaryTool extends PhetioObject {
 
-  // whether the tool is nominally visible (placed here for performance reason)
+  // Whether the tool is nominally visible (placed here for performance reason)
   // The actual scenery visibility of the tool is often not solely based on it.
   // Instead, it may be AXON/derived from this property.
   public readonly visibleProperty: Property<boolean>;
 
-  // the x position of the tool
+  // The x position of the tool
   public readonly xProperty: NumberProperty;
 
-  // y values from CurvePoint
+  // Y-values from CurvePoint
   public readonly yIntegralProperty: TReadOnlyProperty<number>;
   public readonly yOriginalProperty: TReadOnlyProperty<number>;
   public readonly yDerivativeProperty: TReadOnlyProperty<number>;
