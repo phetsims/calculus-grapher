@@ -169,7 +169,7 @@ export default class CurveNode extends Node {
   private getContinuousLinePlotDataSet(): LinePlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
-    for ( let i = 0; i < this.curve.points.length; i++ ) {
+    for ( let i = 0; i < points.length; i++ ) {
       const point = points[ i ];
       dataSet.push( point.getVector() );
 
@@ -189,7 +189,7 @@ export default class CurveNode extends Node {
     const dataSet = [];
     const points = this.curve.points;
     let previousDataPointWasNull = false;
-    for ( let i = 0; i < this.curve.points.length; i++ ) {
+    for ( let i = 0; i < points.length; i++ ) {
       const point = points[ i ];
       if ( point.isDiscontinuous ) {
         dataSet.push( point.getVector() );
@@ -207,7 +207,7 @@ export default class CurveNode extends Node {
   private getDiscontinuousPointsScatterPlotDataSet(): ScatterPlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
-    for ( let i = 0; i < this.curve.points.length; i++ ) {
+    for ( let i = 0; i < points.length; i++ ) {
       const point = points[ i ];
       if ( point.isDiscontinuous ) {
         dataSet.push( point.getVector() );
@@ -220,7 +220,7 @@ export default class CurveNode extends Node {
   private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
-    for ( let i = 0; i < this.curve.points.length; i++ ) {
+    for ( let i = 0; i < points.length; i++ ) {
       const point = points[ i ];
       if ( point.isCusp ) {
         dataSet.push( point.getVector() );
