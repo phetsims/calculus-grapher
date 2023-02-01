@@ -104,6 +104,10 @@ export default class CalculusGrapherModel implements TModel {
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ], {
       validValues: options.graphSets,
+
+      // Deserializing a value from PhET-iO will result in a difference array instance. We don't care about the actual
+      // array, but instead want to ensure the values of the array is correct.
+      valueComparisonStrategy: 'lodashDeep',
       tandem: options.tandem.createTandem( 'graphSetProperty' ),
       phetioValueType: ArrayIO( EnumerationIO( GraphType ) )
     } );
