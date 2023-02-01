@@ -23,8 +23,8 @@ export default class CurveManipulationWidthControl extends VBox {
                       curveManipulationStrokeProperty: TReadOnlyProperty<Color>,
                       tandem: Tandem ) {
 
-    const curveNode = new CurveManipulationDisplayNode( curveManipulationProperties,
-      curveManipulationStrokeProperty, tandem.createTandem( 'curveNode' ) );
+    const curveDisplayNode = new CurveManipulationDisplayNode( curveManipulationProperties,
+      curveManipulationStrokeProperty, tandem.createTandem( 'curveDisplayNode' ) );
 
     const slider = new CurveManipulationWidthSlider( curveManipulationProperties.widthProperty, {
       visibleProperty: new DerivedProperty( [ curveManipulationProperties.modeProperty ],
@@ -33,7 +33,7 @@ export default class CurveManipulationWidthControl extends VBox {
     } );
 
     super( {
-      children: [ curveNode, slider ],
+      children: [ curveDisplayNode, slider ],
       spacing: 10,
       excludeInvisibleChildrenFromBounds: false,
       tandem: tandem
