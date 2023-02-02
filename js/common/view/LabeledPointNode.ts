@@ -52,7 +52,7 @@ export default class LabeledPointNode extends Node {
     } );
 
     // label for the point
-    const text = new Text( labeledPoint.labelProperty, {
+    const text = new Text( labeledPoint.stringProperty, {
       font: CalculusGrapherConstants.POINT_LABEL_FONT,
       maxWidth: 50,
       tandem: options.tandem.createTandem( 'text' )
@@ -84,7 +84,7 @@ export default class LabeledPointNode extends Node {
       labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
-    Multilink.multilink( [ plottedPoint.boundsProperty, labeledPoint.yDerivativeProperty, labeledPoint.labelProperty ],
+    Multilink.multilink( [ plottedPoint.boundsProperty, labeledPoint.yDerivativeProperty, labeledPoint.stringProperty ],
       () => updateLabelPosition() );
 
     options.children = [ plottedPoint, labelNode ];

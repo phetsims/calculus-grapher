@@ -28,7 +28,7 @@ export default class VerticalLineNode extends LineToolNode {
       tandem: tandem
     } );
 
-    const text = new Text( verticalLine.labelProperty, {
+    const text = new Text( verticalLine.stringProperty, {
       font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
       maxWidth: 50,
       centerX: 0,

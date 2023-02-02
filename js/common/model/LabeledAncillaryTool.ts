@@ -7,6 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import { Text } from '../../../../scenery/js/imports.js';
 import Property from '../../../../axon/js/Property.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -22,7 +23,7 @@ export type LabeledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
 
 export default class LabeledAncillaryTool extends AncillaryTool {
 
-  public readonly labelProperty: Property<string>;
+  public readonly stringProperty: Property<string>;
 
   protected constructor(
     integralCurve: Curve,
@@ -35,8 +36,8 @@ export default class LabeledAncillaryTool extends AncillaryTool {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
 
-    this.labelProperty = new StringProperty( options.label, {
-      tandem: options.tandem.createTandem( 'labelProperty' )
+    this.stringProperty = new StringProperty( options.label, {
+      tandem: options.tandem.createTandem( Text.STRING_PROPERTY_TANDEM_NAME )
     } );
   }
 
