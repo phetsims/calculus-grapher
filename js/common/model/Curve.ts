@@ -96,7 +96,8 @@ export default class Curve extends PhetioObject {
       isValidValue: points => isValidPoints( initialPoints, points ),
       tandem: options.tandem.createTandem( 'pointsProperty' ),
       phetioValueType: ArrayIO( CurvePoint.CurvePointIO ),
-      phetioReadOnly: options.pointsPropertyReadOnly
+      phetioReadOnly: options.pointsPropertyReadOnly,
+      phetioDocumentation: 'The discrete points that are used to approximate the curve.'
     } );
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
