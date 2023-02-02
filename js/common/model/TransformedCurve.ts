@@ -131,24 +131,33 @@ export default class TransformedCurve extends Curve {
     const gaussianWeight = ( x: number, mu: number ) =>
       Math.exp( -1 * ( ( x - mu ) / EDGE_SLOPE_FACTOR ) ** 4 );
 
+    // Width at the top of pedestal: The width as defined above represents the width at the base, the plateau width
+    // must therefore take into account the width of the edges.
+    const plateauWidth = width - 2 * EDGE_SLOPE_FACTOR;
+
+    assert && assert( plateauWidth > 0, 'plateau width must be positive' );
+
     this.points.forEach( point => {
 
       // Weight for point transformation
       let P;
 
-      if ( Math.abs( point.x - closestPoint.x ) < width / 2 ) {
+      // Condition for the plateau
+      if ( Math.abs( point.x - closestPoint.x ) < plateauWidth / 2 ) {
         P = 1;
       }
+
+      // Condition for the left of the plateau
       else if ( point.x <= closestPoint.x ) {
 
         // Gaussian weight transitions smoothly from 0 to 1 as x increases
-        P = gaussianWeight( point.x, closestPoint.x - width / 2 );
+        P = gaussianWeight( point.x, closestPoint.x - plateauWidth / 2 );
       }
       else {
 
         // Point must be to the right of closestPoint
         // Gaussian weight transitions smoothly from 1 to 0 as x increases
-        P = gaussianWeight( point.x, closestPoint.x + width / 2 );
+        P = gaussianWeight( point.x, closestPoint.x + plateauWidth / 2 );
       }
 
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
@@ -232,15 +241,15 @@ export default class TransformedCurve extends Curve {
 
       // Weight associated with the sinusoidal function:  0<=P<=1
       // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
-        // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
-        let P: number;
+      // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
+      let P: number;
 
-        if ( point.x >= leftMax && point.x <= rightMin ) {
+      if ( point.x >= leftMax && point.x <= rightMin ) {
 
-          // In the inner region, always have a pure sinusoidal, weight of 1
-          P = 1;
-        }
-        else if ( point.x > leftMin && point.x < leftMax ) {
+        // In the inner region, always have a pure sinusoidal, weight of 1
+        P = 1;
+      }
+      else if ( point.x > leftMin && point.x < leftMax ) {
 
           // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
           P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );

@@ -95,7 +95,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   edgeSlopeFactor: {
     type: 'number',
     isValidValue: value => value >= 0,
-    defaultValue: 0.06 * CalculusGrapherConstants.CURVE_X_RANGE.getLength()
+    defaultValue: 0.04 * CalculusGrapherConstants.CURVE_X_RANGE.getLength()
   },
 
   /**
