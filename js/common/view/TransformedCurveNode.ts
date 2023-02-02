@@ -1,8 +1,8 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * TransformedCurveNode is a CurveNode sub-type for the main curve that the user interacts with and manipulates, which then
- * triggers a change in the model TransformedCurve's points.
+ * TransformedCurveNode is a CurveNode subclass for the main curve that the user interacts with and manipulates,
+ * which then triggers a change in the model TransformedCurve's points.
  *
  * It is responsible for creating a cueing arrow that disappears after the user interacts with the curve
  *
@@ -11,26 +11,18 @@
  *
  * @author Brandon Li
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import { LineStyles } from '../../../../kite/js/imports.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import Property from '../../../../axon/js/Property.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-
-// For use with Shape getStrokedShape
-const LINE_STYLES = new LineStyles( { lineWidth: 10 } );
 
 type SelfOptions = EmptySelfOptions;
 
@@ -38,10 +30,9 @@ type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
 export default class TransformedCurveNode extends CurveNode {
 
-  // Has this node ever been userDragged, used for tracking the visibility of the cueingArrows
-  private readonly wasDraggedProperty: BooleanProperty;
+  public readonly transformedCurve: TransformedCurve;
 
-  public constructor( curve: TransformedCurve,
+  public constructor( transformedCurve: TransformedCurve,
                       curveManipulationProperties: CurveManipulationProperties,
                       chartTransform: ChartTransform,
                       providedOptions?: TransformedCurveNodeOptions ) {
@@ -54,100 +45,21 @@ export default class TransformedCurveNode extends CurveNode {
       }
     }, providedOptions );
 
-    super( curve, chartTransform, options );
+    super( transformedCurve, chartTransform, options );
 
-    this.wasDraggedProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'wasDraggedProperty' ),
-      phetioReadOnly: true
-    } );
-
-    // xPosition for cueing arrows in model coordinate
-    const centerX = CalculusGrapherConstants.CURVE_X_RANGE.getCenter();
+    this.transformedCurve = transformedCurve;
 
     // Creates cueing arrows at the middle of the curve, centered at y=0
     const cueingArrowsNode = new CueingArrowsNode( {
-      center: chartTransform.modelToViewXY( centerX, 0 ),
+      center: chartTransform.modelToViewXY( CalculusGrapherConstants.CURVE_X_RANGE.getCenter(), 0 ),
 
       // Cueing arrow should not be visible if this node is not enabled
-      visibleProperty: new DerivedProperty( [ this.wasDraggedProperty, this.enabledProperty ],
-        ( wasDragged, enabled ) => !wasDragged && enabled ),
+      visibleProperty: new DerivedProperty( [ transformedCurve.wasManipulatedProperty, this.enabledProperty ],
+        ( wasManipulated, enabled ) => !wasManipulated && enabled ),
       tandem: options.tandem.createTandem( 'cueingArrowsNode' )
     } );
 
     this.addChild( cueingArrowsNode );
-
-    //----------------------------------------------------------------------------------------
-    // Adds a DragListener to the continuousLinePlot for manipulating the TransformedCurve model. Listener is never removed since
-    // TransformedCurveNodes are never disposed.
-
-    let penultimatePosition: Vector2;
-    let antepenultimatePosition: Vector2 | null = null;
-
-    this.continuousLinePlot.addInputListener( new DragListener( {
-      dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
-      applyOffset: false,
-      start: () => {
-
-        // We have touched the curve, then and hide the cueing arrows.
-        this.wasDraggedProperty.value = true;
-
-        // Save the current values of the Points for the next undoToLastSave call.
-        // This must be called once at the start of dragging (and not on each micro drag-position change).
-        curve.saveCurrentPoints();
-
-        // set the second to last position to null, since it is a new drag.
-        antepenultimatePosition = null;
-      },
-      drag: ( event, listener ) => {
-
-        // Current modelPosition
-        const modelPosition = chartTransform.viewToModelPosition( listener.modelPoint );
-
-        // Previous (model) position the drag
-        penultimatePosition = chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
-
-        // Updates curve based on mode and width
-        curve.userManipulatedCurve(
-          curveManipulationProperties.mode,
-          curveManipulationProperties.width,
-          modelPosition,
-          penultimatePosition,
-          antepenultimatePosition );
-
-        // Updates antepenultimatePosition
-        antepenultimatePosition = penultimatePosition;
-
-      },
-      tandem: options.tandem.createTandem( 'dragListener' )
-    } ) );
-
-    // Initializes pointer areas. They will be updated as the curve changes.
-    this.setPointerAreas();
-  }
-
-  /**
-   * Resets all
-   */
-  public override reset(): void {
-    super.reset();
-    this.wasDraggedProperty.reset();
-  }
-
-  protected override updateCurveNode(): void {
-    super.updateCurveNode();
-    this.setPointerAreas();
-  }
-
-  /**
-   * Sets the pointer areas for manipulating the curve.
-   */
-  private setPointerAreas(): void {
-
-    // Creates a dilated shape based on the continuous line plot shape
-    const dilatedCurveShape = this.continuousLinePlot.shape!.getStrokedShape( LINE_STYLES );
-
-    this.continuousLinePlot.touchArea = dilatedCurveShape;
-    this.continuousLinePlot.mouseArea = dilatedCurveShape;
   }
 }
 

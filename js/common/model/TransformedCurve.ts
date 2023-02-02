@@ -28,6 +28,8 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import { PresetFunction } from './PresetFunctions.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Property from '../../../../axon/js/Property.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -41,6 +43,9 @@ export type TransformedCurveOptions = SelfOptions & CurveOptions;
 
 export default class TransformedCurve extends Curve {
 
+  // Has the curve been manipulated since instantiation or the last reset call? Used by the view to show cueing arrows.
+  public readonly wasManipulatedProperty: Property<boolean>;
+
   public constructor( providedOptions: TransformedCurveOptions ) {
 
     const options = optionize<TransformedCurveOptions, SelfOptions, CurveOptions>()( {
@@ -50,15 +55,20 @@ export default class TransformedCurve extends Curve {
     }, providedOptions );
 
     super( options );
+
+    this.wasManipulatedProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'wasManipulatedProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'Has the curve been manipulated by the student?'
+    } );
   }
 
-  // Resets the curve points to their initial values
   public reset(): void {
+
+    this.wasManipulatedProperty.reset();
 
     // Resets every CurvePoint to its initial state.
     this.points.forEach( point => point.reset() );
-
-    // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 
@@ -87,7 +97,6 @@ export default class TransformedCurve extends Curve {
 
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
-
   }
 
   /**
@@ -116,7 +125,6 @@ export default class TransformedCurve extends Curve {
         point.y = point.lastSavedY;
       }
     } );
-
   }
 
   /**
@@ -162,7 +170,6 @@ export default class TransformedCurve extends Curve {
 
       point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
     } );
-
   }
 
   /**
@@ -239,37 +246,36 @@ export default class TransformedCurve extends Curve {
 
     this.points.forEach( point => {
 
-      // Weight associated with the sinusoidal function:  0<=P<=1
-      // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
-      // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
-      let P: number;
+        // Weight associated with the sinusoidal function:  0<=P<=1
+        // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
+        // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
+        let P: number;
 
-      if ( point.x >= leftMax && point.x <= rightMin ) {
+        if ( point.x >= leftMax && point.x <= rightMin ) {
 
-        // In the inner region, always have a pure sinusoidal, weight of 1
-        P = 1;
-      }
-      else if ( point.x > leftMin && point.x < leftMax ) {
+          // In the inner region, always have a pure sinusoidal, weight of 1
+          P = 1;
+        }
+        else if ( point.x > leftMin && point.x < leftMax ) {
 
-        // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
-        P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
-      }
-      else if ( point.x > rightMin && point.x < rightMax ) {
+          // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+        }
+        else if ( point.x > rightMin && point.x < rightMax ) {
 
-        // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
-        P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
-      }
-      else {
+          // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+        }
+        else {
 
           // Outside the cosine base, the weight is zero
           P = 0;
         }
 
-      // Assign the y value with the correct weight
+        // Assign the y value with the correct weight
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
       }
     );
-
   }
 
   /**
@@ -362,11 +368,13 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  public userManipulatedCurve( mode: CurveManipulationMode,
-                               width: number,
-                               position: Vector2,
-                               penultimatePosition: Vector2,
-                               antepenultimatePosition: Vector2 | null ): void {
+  public manipulateCurve( mode: CurveManipulationMode,
+                          width: number,
+                          position: Vector2,
+                          penultimatePosition: Vector2,
+                          antepenultimatePosition: Vector2 | null ): void {
+
+    this.wasManipulatedProperty.value = true;
 
     if ( mode === CurveManipulationMode.HILL ||
          mode === CurveManipulationMode.PARABOLA ||
