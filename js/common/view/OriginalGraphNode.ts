@@ -41,7 +41,7 @@ type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'gr
 
 export default class OriginalGraphNode extends GraphNode {
 
-  // node for the predict curve
+  // Node for the predict curve
   private readonly predictCurveNode: TransformedCurveNode;
 
   public constructor( model: CalculusGrapherModel,
@@ -96,7 +96,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     super( graphType, originalCurve, visibleProperties.gridVisibleProperty, options );
 
-    // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
+    // Adds a highlight around the chartRectangle, color coded to the curve that is interactive.
     // See https://github.com/phetsims/calculus-grapher/issues/204
     const highlightRectangle = new Rectangle( 0, 0, this.chartRectangle.width + 6, this.chartRectangle.height + 6, {
       center: this.chartRectangle.center,
@@ -112,7 +112,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
 
-    // create a predictCurveNode
+    // Creates a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
       enabledProperty: predictModeEnabledProperty,
       visibleProperty: predictModeEnabledProperty,
