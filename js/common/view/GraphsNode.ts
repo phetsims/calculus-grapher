@@ -41,9 +41,10 @@ export default class GraphsNode extends Node {
   public readonly derivativeGraphNode: GraphNode;
   public readonly secondDerivativeGraphNode: GraphNode;
 
-  // for iterating over all GraphNode instances
+  // For iterating over all GraphNode instances
   private readonly graphNodes: GraphNode[];
 
+  // Height of the graph in view coordinates
   private readonly graphHeight: number;
 
   public constructor( model: CalculusGrapherModel,
@@ -58,13 +59,13 @@ export default class GraphsNode extends Node {
 
     super();
 
-    // is the grid of each graph node visible
+    // Is the grid of each graph node visible
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
-    // determine the (view) height of the graph based on the number of visible graphs.
+    // The (view) height of the graph based on the number of visible graphs.
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
-    // the subset of graphTypes that should be instrumented
+    // The subset of graphTypes that should be instrumented
     const subsetGraphTypes = model.graphSets.flat();
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
@@ -83,7 +84,7 @@ export default class GraphsNode extends Node {
     this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
     this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve );
 
-    // originalGraphNode is always instrumented, because it should always be present.
+    // OriginalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
       graphHeight: this.graphHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
@@ -104,7 +105,7 @@ export default class GraphsNode extends Node {
     // of the reference line and vertical lines.
     model.graphSetProperty.link( graphSet => {
 
-      // Get the GraphNode instances that correspond to graphSet.
+      // Gets the GraphNode instances that correspond to graphSet.
       const graphNodes = this.graphNodes.filter( graphNode => graphSet.includes( graphNode.graphType ) );
       assert && assert( graphNodes.length > 0 );
       graphSetNode.setChildren( graphNodes );
@@ -112,12 +113,12 @@ export default class GraphsNode extends Node {
       // Layout
       this.updateLayout( graphNodes );
 
-      // Resize vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,
+      // Resizes vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,
       // so that the drag handle does not overlap scrubber.
       const yOffset = ( graphNodes[ graphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
       referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + yOffset );
 
-      // Resize vertical VerticalLineNodes - same extent at top and bottom.
+      // Resizes vertical VerticalLineNodes - same extent at top and bottom.
       verticalLinesNode.verticalLineNodes.forEach( verticalLineNode => {
         verticalLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT );
       } );
@@ -139,28 +140,18 @@ export default class GraphsNode extends Node {
     this.secondDerivativeGraphNode.reset();
   }
 
-  private updateLayout( graphNodes: GraphNode[] ): void {
-    graphNodes[ 0 ].x = 0;
-    graphNodes[ 0 ].y = 0;
-    const ySpacing = ( graphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
-    for ( let i = 1; i < graphNodes.length; i++ ) {
-      graphNodes[ i ].x = graphNodes[ i - 1 ].x;
-      graphNodes[ i ].y = graphNodes[ i - 1 ].y + this.graphHeight + ySpacing;
-    }
-  }
-
   /**
    * Decorates the appropriate graphs for the tangent feature.
    */
   public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
+    // Adds a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubberNode' );
 
-    // Add the double-headed tangent arrow at the tangent point on the original graph.
+    // Adds the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
 
-    // Plot a point on each graph that will stay in sync with tangentScrubber.
+    // Plots a point on each graph that will stay in sync with tangentScrubber.
     this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
   }
 
@@ -169,15 +160,26 @@ export default class GraphsNode extends Node {
    */
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
+    // Adds a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
       'areaUnderCurveScrubberNode' );
 
-    // Add a plot of the area under the curve on the original graph.
+    // Adds a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
 
-    // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
+    // Plots a point on each graph that will stay in sync with areaUnderCurveScrubber.
     this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
+  }
+
+  // Updates the location of all graph Nodes
+  private updateLayout( graphNodes: GraphNode[] ): void {
+    graphNodes[ 0 ].x = 0;
+    graphNodes[ 0 ].y = 0;
+    const ySpacing = ( graphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
+    for ( let i = 1; i < graphNodes.length; i++ ) {
+      graphNodes[ i ].x = graphNodes[ i - 1 ].x;
+      graphNodes[ i ].y = graphNodes[ i - 1 ].y + this.graphHeight + ySpacing;
+    }
   }
 
   /**
