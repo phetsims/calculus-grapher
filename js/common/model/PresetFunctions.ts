@@ -72,33 +72,35 @@ const PresetFunctions = {
 
     const length = PRESET_FUNCTIONS.length;
 
-    // index for the presetMath functions
+    // Index for the presetFunction array
     let index = 0;
 
-    // add a keyboard listener to ArrowLeft and ArrowRight
+    // Adds a keyboard listener to ArrowLeft and ArrowRight
     window.addEventListener( 'keydown', event => {
 
+      // The listener on window is global, but it should only act on this screen
       if ( screenVisibleProperty.value ) {
         const isLeft = event.code === 'ArrowLeft';
         const isRight = event.code === 'ArrowRight';
 
+        // Does not perform any action unless we have the right keys
         if ( isLeft || isRight ) {
 
           if ( isLeft ) {
 
-            // decrease index value
+            // Decreases index value by one
             index--;
           }
           else if ( isRight ) {
 
-            // increase index value
+            // Increases index value by one
             index++;
           }
 
-          // making sure the cycledIndex lies between 0 and length-1, even if index is negative
+          // Making sure the cycledIndex lies between 0 and length-1, even if index is negative
           const cycledIndex = ( index % length + length ) % length;
 
-          // apply the math function to the original curve
+          // Applies the math function to the original curve
           originalCurve.applyPresetFunction( PRESET_FUNCTIONS[ cycledIndex ] );
         }
       }

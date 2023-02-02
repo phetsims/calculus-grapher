@@ -41,21 +41,21 @@ export default class IntegralCurve extends Curve {
 
     this.baseCurve = baseCurve;
 
-    // Observe when the 'base' Curve changes and update this curve to represent the integral of the 'base' Curve.
+    // Observes when the 'base' Curve changes and update this curve to represent the integral of the 'base' Curve.
     // Listener is never removed since IntegralCurves are never disposed.
     baseCurve.curveChangedEmitter.addListener( this.updateIntegral.bind( this ) );
 
-    // Make the initial call to updateIntegral() to match the 'base' Curve upon initialization.
+    // Makes the initial call to update the integral to match the 'base' Curve upon initialization.
     this.updateIntegral();
   }
 
   /**
    * Updates the y-values of the IntegralCurve to represent the integral of the 'base' Curve.
    *
-   * Since each adjacent Point of the base curve is considered to be infinitesimally close to each other, the
-   * trapezoidal area between each adjacent Point is also considered to be infinitesimally small. Thus, summing up all
-   * trapezoidal areas correctly matches one of the definitions of an Integral where each y-value represents the 'area'
-   * under the 'base' Curve. See https://en.wikipedia.org/wiki/Integral#Riemann_integral
+   * The integral is approximated by performing a Riemann Sum.  A left Riemann Sum is used
+   * to determine the area of a series of rectangles to approximate the area under a curve. The left Riemann Sum
+   * uses the left side of the function for the height of the rectangle summing up all
+   * trapezoidal areas. See https://en.wikipedia.org/wiki/Riemann_sum for more details.
    *
    * The IntegralCurve exists at all points since TransformedCurve is finite at all points, so we don't need to consider
    * non-differentiable or non-finite points of the 'base' curve.
@@ -66,21 +66,21 @@ export default class IntegralCurve extends Curve {
     this.baseCurve.forEachAdjacentPair( ( point, previousPoint, index ) => {
       assert && assert( point.isFinite && previousPoint.isFinite );
 
-      // Take the integral from the minimum of the domain of Curves to the x-value of the current point using a
+      // Takes the integral from the minimum of the domain of Curves to the x-value of the current point using a
       // trapezoidal Riemann sum approximation. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
-      const trapezoidalArea = ( point.y + previousPoint.y ) / 2 * ( point.x - previousPoint.x );
+      const trapezoidalArea = 0.5 * ( point.y + previousPoint.y ) * ( point.x - previousPoint.x );
 
-      // Add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
+      // Sanity check that verifies that the area is well-defined at the current Point.
+      assert && assert( Number.isFinite( trapezoidalArea ) && point.isFinite, 'non-finite trapezoidal area' );
+
+      // Let's add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
       this.points[ index ].y = this.points[ index - 1 ].y + trapezoidalArea;
 
-      // integrals smooth out a  point discontinuity into a cusp, a cusp into a smooth,
+      // An integral smooths out a point discontinuity into a cusp and a cusp into a smooth.
       this.points[ index ].pointType = point.isDiscontinuous ? 'cusp' : 'smooth';
-
-      // Sanity check that verifies that the Integral exists at the current Point.
-      assert && assert( Number.isFinite( trapezoidalArea ) && point.isFinite, 'non-finite trapezoidal area' );
     } );
 
-    // Signal once that this Curve has changed.
+    // Signals once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 }
