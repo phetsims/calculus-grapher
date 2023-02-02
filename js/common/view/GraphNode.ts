@@ -95,19 +95,19 @@ export default class GraphNode extends Node {
   public readonly graphType: GraphType;
   public readonly chartTransform: ChartTransform;
 
-  // The curve to be plotted
+  // The model curve to be plotted
   protected readonly curve: Curve;
 
   // Node that plots the curve
   protected readonly curveNode: CurveNode;
 
-  // Layer for plotting all curves and their decorations
+  // Layer for plotting all curves and their decorations (e.g. Labeled Points, or Tools)
   protected readonly curveLayer: Node;
 
   // Visibility of curveLayer
   protected readonly curveLayerVisibleProperty: BooleanProperty;
 
-  // Optional Property for zooming the y-axis
+  // Optional Property for zooming the y-axisZXc mvb./
   protected readonly yZoomLevelProperty?: NumberProperty;
 
   protected readonly chartRectangle: ChartRectangle;
@@ -235,7 +235,7 @@ export default class GraphNode extends Node {
     ticksParent.visibleProperty.link( ticksParentVisible => {
       const rightNode = ticksParentVisible ? ticksParent : this.chartRectangle;
 
-      // eyeToggleButton at bottom-left of chart rectangle
+      // EyeToggleButton at bottom-left of chart rectangle
       eyeToggleButton.rightBottom = rightNode.leftBottom.addXY( -BUTTON_SPACING, 0 );
 
       // yZoomButtonGroup at left-center of chart rectangle
@@ -282,7 +282,7 @@ export default class GraphNode extends Node {
   }
 
   /**
-   * Reset all
+   * Resets all
    */
   public reset(): void {
     this.yZoomLevelProperty && this.yZoomLevelProperty.reset();
