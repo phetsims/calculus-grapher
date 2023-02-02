@@ -31,14 +31,14 @@ export default class ScrubberNode extends Node {
       // we're setting options.children below
     }, providedOptions );
 
-    // drag handle, for translating x
+    // Drag handle, for translating x
     const dragHandleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: color,
       tandem: options.tandem.createTandem( 'dragHandleNode' )
     } );
 
-    // horizontal line that extends from x=0 to the drag handle's position
+    // Horizontal line that extends from x=0 to the drag handle's position
     const horizontalLine = new Line( 0, 0, dragHandleNode.centerX, 0, {
       stroke: color,
       lineWidth: 2,
@@ -49,7 +49,7 @@ export default class ScrubberNode extends Node {
 
     super( options );
 
-    // Resize the horizontal line to match the drag handle's x position.
+    // Resizes the horizontal line to match the drag handle's x position.
     dragHandleNode.boundsProperty.link( () => {
       horizontalLine.x2 = dragHandleNode.centerX;
     } );

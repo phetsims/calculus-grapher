@@ -21,6 +21,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type AreaUnderCurvePlotOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
+// A function that will be used for filtering points from a dataSet
 type CurvePointFunction = ( point: CurvePoint ) => boolean;
 
 export default class AreaUnderCurvePlot extends Node {
@@ -42,9 +43,14 @@ export default class AreaUnderCurvePlot extends Node {
       // we're setting options.children below
     }, providedOptions );
 
+    // A curvePoint function to determine if the y-value of a curvePoint is positive
     const isPositiveFunction: CurvePointFunction = point => point.y > 0;
+
+    // A curvePoint function to determine if the y-value of a curvePoint is negative
     const isNegativeFunction: CurvePointFunction = point => point.y < 0;
 
+    // Function that returns a dataSet, filtered by a curvePointFunction
+    // All curve points that have an x-value greater than xProperty are filtered out
     const getDataSet = ( pointFunction: CurvePointFunction ) => {
       return curve.points.map( point => {
         if ( pointFunction( point ) && point.x <= xProperty.value ) {
@@ -56,10 +62,12 @@ export default class AreaUnderCurvePlot extends Node {
       } );
     };
 
+    // AreaPlot for the points with positive y values
     const positiveAreaPlot = new AreaPlot( chartTransform, getDataSet( isPositiveFunction ), {
       fill: areaUnderCurveScrubber.positiveFillProperty
     } );
 
+    // AreaPlot for the points with negative y values
     const negativeAreaPlot = new AreaPlot( chartTransform, getDataSet( isNegativeFunction ), {
       fill: areaUnderCurveScrubber.negativeFillProperty
     } );

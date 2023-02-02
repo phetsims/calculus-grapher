@@ -1,9 +1,10 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * TangentArrowNode is double-headed arrow that represents the tangent of a curve at a point.
+ * TangentArrowNode is a double-headed arrow that represents the tangent of the original curve at a point.
+ * It updates its angle and position, based on the tangentScrubber model.
  *
- * @author Martin Veillette
+ *  @author Martin Veillette
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -15,6 +16,8 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = {
+
+  // From head to head, in view coordinates
   arrowLength?: number;
 };
 
@@ -41,33 +44,36 @@ export default class TangentArrowNode extends ArrowNode {
       doubleHead: true
     }, providedOptions );
 
-    // initial arrow is horizontal: middle of the arrow is located at 0,0
+    // Initial arrow is horizontal: middle of the arrow is located at 0,0
     super( -options.arrowLength / 2, 0, options.arrowLength / 2, 0, options );
 
-    // initial angle of the arrow in view coordinates
+    // Initial angle of the arrow in view coordinates
     let oldTheta = Math.atan( this.tipY / this.tipX );
+
+    // Updates the position and orientation of the arrow.
+    // The double-headed arrow pivots around its center.
     const updateArrow = () => {
       const x = tangentScrubber.xProperty.value;
       const y = tangentScrubber.yOriginalProperty.value;
       const modelSlope = tangentScrubber.yDerivativeProperty.value;
 
-      // view position for center of the tangent arrow
+      // View position for center of the tangent arrow
       const point = chartTransform.modelToViewXY( x, y );
 
-      // must convert slope into viewCoordinates
-      // slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
+      // We must convert slope into viewCoordinates
+      // Slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
       const viewSlope = modelSlope * chartTransform.modelToViewDeltaY( 1 ) /
                         chartTransform.modelToViewDeltaX( 1 );
       const thetaView = Math.atan( viewSlope );
 
-      // move this point
+      // Moves this point
       this.translation = point;
 
-      // we rotate this node around in view coordinates, so we use angle in view coordinates
-      // thetaView already took into account the fact that we are using an inverted y-axis
+      // We rotate this node around in view coordinates, so model angles must be reversed
+      // Fortunately thetaView already takes into account the fact that we are using an inverted y-axis
       this.rotateAround( point, thetaView - oldTheta );
 
-      // update the value of old theta
+      // Updates the value of old theta
       oldTheta = thetaView;
     };
 
