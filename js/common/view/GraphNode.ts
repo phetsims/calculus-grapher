@@ -221,8 +221,7 @@ export default class GraphNode extends Node {
     const yZoomButtonGroup = this.yZoomLevelProperty ? new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
       orientation: 'vertical',
       buttonOptions: {
-        stroke: 'black',
-        phetioVisiblePropertyInstrumented: false
+        stroke: 'black'
       },
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
     } ) : null;
