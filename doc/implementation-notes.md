@@ -25,7 +25,7 @@ There are a number of query parameters for internal use.
 - `angleMismatchThreshold` sets the maximum difference between the angle of the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
 - `slopeThreshold` sets the maximum slope of a Point on a curve for it to be considered differentiable. The default value is 25 * Math.PI / 180.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
-- `cusps` shows all the cusps points as circles in a scatter plot. The default value is false.
+- `cuspPoints` shows all the cusp points as circles in a scatter plot. The default value is false.
 - `verticalLinesVisible` is used to make all VerticalLine instances initially visible. The default value is false.
 - `labeledPointsVisible` is used to make all LabeledPoint instances initially visible. The default value is false.
 
