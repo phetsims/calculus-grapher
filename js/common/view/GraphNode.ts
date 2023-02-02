@@ -107,7 +107,7 @@ export default class GraphNode extends Node {
   // Visibility of curveLayer
   protected readonly curveLayerVisibleProperty: BooleanProperty;
 
-  // Optional Property for zooming the y-axisZXc mvb./
+  // Optional Property for zooming the y-axis
   protected readonly yZoomLevelProperty?: NumberProperty;
 
   protected readonly chartRectangle: ChartRectangle;
