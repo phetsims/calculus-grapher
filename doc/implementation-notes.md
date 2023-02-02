@@ -24,6 +24,7 @@ There are a number of query parameters for internal use.
   rounded corners). A larger value creates a wider edge.
 - `angleMismatchThreshold` sets the maximum difference between the angle of the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
 - `slopeThreshold` sets the maximum slope of a Point on a curve for it to be considered differentiable. The default value is 25 * Math.PI / 180.
+- `presetFunctions` allows a user to iterate through a set of pre determined functions with the left and right arrow keys. The default value is false.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cuspPoints` shows all the cusp points as circles in a scatter plot. The default value is false.
 - `verticalLinesVisible` is used to make all VerticalLine instances initially visible. The default value is false.
@@ -35,15 +36,13 @@ There are a number of query parameters that are made public.
 - `derivativeNotation` is derivative notation to be used throughout the simulation. Valid values are 'lagrange' and 'leibniz'. The default value is 'lagrange'.
 - `functionVariable` represents the variable that would be used for the horizontal axis of the graph. Valid values are 'x' and 't'. The default value is 'x'.
 
-
-
 ### Curve Hierarchy
 
 `Curve` is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides
-functionality that is common to all types of curves, which are 'integrals', 'original', and 'derivative' curves, and is
+functionality that is common to all types of curves, which are 'integral', 'original', and 'derivative' curves, and is
 intended to be sub-classed for type-specific features.
 
-Curves are modeled by segmenting the curve into a finite number of CurvePoints that are close together and map out
+Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
