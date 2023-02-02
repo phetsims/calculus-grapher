@@ -49,12 +49,18 @@ export default class CurveManipulationProperties {
 
     this.modeProperty = new EnumerationProperty( initialMode, {
       validValues: curveManipulationModeChoices,
-      tandem: options.tandem.createTandem( 'modeProperty' )
+      tandem: options.tandem.createTandem( 'modeProperty' ),
+      phetioDocumentation: 'Determines how the curve will be modified (manipulated) when the student interacts with it. ' +
+                           'Applies to the interactive (original and predict) curves only.'
     } );
 
     this.widthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
       range: CURVE_MANIPULATION_WIDTH_RANGE,
-      tandem: options.tandem.createTandem( 'widthProperty' )
+      tandem: options.tandem.createTandem( 'widthProperty' ),
+      phetioDocumentation: 'Determines how wide the change is when modifying (manipulating) a curve.' +
+                           'Note that is not applicable to all manipulation modes. ' +
+                           'If a width slider is not shown for the selected manipulation mode, ' +
+                           'then width is irrelevant for that mode.'
     } );
   }
 
