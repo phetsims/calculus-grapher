@@ -5,7 +5,7 @@
  *  that can be user-manipulated as well as cueing arrows.
  * Labeled Points (only visible/accessible through PhET-IO) are also added to this graph
  * OriginalGraphNode extends GraphNode.
- * However, the zoom Button of GraphNode is set to invisible for OriginalGraphNode
+ * However, the zoom Button of GraphNode is set to be invisible in the OriginalGraphNode
  *
  * The public methods of OriginalGraphNode allow a client to add
  * - a ScrubberNode
@@ -106,7 +106,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     super( graphType, originalCurve, visibleProperties.gridVisibleProperty, options );
 
-    // Adds a highlight around the chartRectangle, color coded to the curve that is interactive.
+    // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
     // See https://github.com/phetsims/calculus-grapher/issues/204
     const highlightRectangle = new Rectangle( 0, 0, this.chartRectangle.width + 6, this.chartRectangle.height + 6, {
       center: this.chartRectangle.center,
@@ -122,7 +122,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
 
-    // Creates a predictCurveNode
+    // Create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
       isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
@@ -164,13 +164,13 @@ export default class OriginalGraphNode extends GraphNode {
     let antepenultimatePosition: Vector2 | null = null;
     const updateCurve = ( listener: PressedDragListener ): void => {
 
-      // current modelPosition
+      // Current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( listener.modelPoint );
 
-      // previous (model) position the drag
+      // Previous (model) position the drag
       penultimatePosition = this.chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
 
-      // update curve based on mode and width
+      // Update curve based on mode and width
       interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
         curveManipulationProperties.mode,
         curveManipulationProperties.width,
@@ -178,7 +178,7 @@ export default class OriginalGraphNode extends GraphNode {
         penultimatePosition,
         antepenultimatePosition );
 
-      // update antepenultimatePosition
+      // Update antepenultimatePosition
       antepenultimatePosition = penultimatePosition;
     };
 
@@ -196,7 +196,7 @@ export default class OriginalGraphNode extends GraphNode {
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         interactiveCurveNodeProperty.value.transformedCurve.saveCurrentPoints();
 
-        // set the second to last position to null, since it is a new drag.
+        // Set the second to last position to null, since it is a new drag.
         antepenultimatePosition = null;
         updateCurve( listener );
       },
