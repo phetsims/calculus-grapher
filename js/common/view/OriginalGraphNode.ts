@@ -151,16 +151,18 @@ export default class OriginalGraphNode extends GraphNode {
     );
     this.addChild( labeledPointsNode );
 
+    // We need to know that this.curveNode is of type TransformedCurveNode, as created by createCurveNode above.
     const originalCurveNode = this.curveNode as TransformedCurveNode;
     assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
+
     const interactiveCurveNodeProperty = new DerivedProperty( [ model.predictEnabledProperty ],
       predictEnabled => predictEnabled ? this.predictCurveNode : originalCurveNode
     );
 
+    // Update whichever curve is currently interactive.
     let penultimatePosition: Vector2;
     let antepenultimatePosition: Vector2 | null = null;
-
-   const updateCurve = ( listener: PressedDragListener ): void => {
+    const updateCurve = ( listener: PressedDragListener ): void => {
 
       // current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( listener.modelPoint );
@@ -180,6 +182,10 @@ export default class OriginalGraphNode extends GraphNode {
       antepenultimatePosition = penultimatePosition;
     };
 
+    // Instead of having a DragListener on each TransformedCurveNode, we have a single DragListener on the chartRectangle.
+    // This saves us the costly operation of creating pointer areas that match the Shapes of the curves.  And it allows
+    // the user to modify a curve by doing a 'pointer down' anywhere in the chartRectangle.
+    // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/74.
     this.chartRectangle.cursor = 'pointer';
     this.chartRectangle.addInputListener( new DragListener( {
       dragBoundsProperty: new Property( new Bounds2( 0, 0, this.chartTransform.viewWidth, this.chartTransform.viewHeight ) ),
