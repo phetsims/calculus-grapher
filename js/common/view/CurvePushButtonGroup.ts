@@ -25,7 +25,7 @@ export default class CurvePushButtonGroup extends VBox {
   public constructor( curveToTransformProperty: TReadOnlyProperty<TransformedCurve>,
                       hasSmoothButton: boolean, tandem: Tandem ) {
 
-    // create an undo Button
+    // Create an undo Button
     const undoButton = new UndoButton( {
       listener: () => curveToTransformProperty.value.undoToLastSave(),
       yMargin: 6,
@@ -33,7 +33,7 @@ export default class CurvePushButtonGroup extends VBox {
       tandem: tandem.createTandem( 'undoButton' )
     } );
 
-    // create an eraser Button
+    // Create an eraser Button
     const eraserButton = new EraserButton( {
       listener: () => curveToTransformProperty.value.reset(),
       iconWidth: 16,

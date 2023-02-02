@@ -142,8 +142,8 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     defaultValue: false
   },
 
-  // Shows the cusps points on a curve as circles in a scatter plot
-  cuspsPoints: {
+  // Shows the cusp points on a curve as circles in a scatter plot
+  cuspPoints: {
     type: 'boolean',
     defaultValue: false
   },

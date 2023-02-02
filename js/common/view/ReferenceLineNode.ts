@@ -2,10 +2,10 @@
 
 /**
  * ReferenceLineNode is the view representation of a vertical reference line
- * The reference line is composed of a vertical line, a shadedSphere and
+ * The reference line is composed of a vertical line, a XDragHandler and
  * a label that indicates the numerical value of its x- position (atop the vertical line)
  * The label is only visible if valuesVisibleProperty in the preferences is set to true
- * The shadedSphere is user controlled.
+ * The shadedSphere (in XDragHandler) is user controlled.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -38,7 +38,7 @@ export default class ReferenceLineNode extends LineToolNode {
       tandem: tandem
     } );
 
-    // add numerical label at the top of the vertical line
+    // Create and add a numerical label at the top of the vertical line
     const labelNode = new NumberDisplay( referenceLine.xProperty,
       CalculusGrapherConstants.CURVE_X_RANGE, {
         align: 'center',
@@ -59,7 +59,7 @@ export default class ReferenceLineNode extends LineToolNode {
       } );
     this.addChild( labelNode );
 
-    // drag handle, for translating x
+    // Drag handle, for translating x
     const dragHandle = new XDragHandleNode( referenceLine.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: CalculusGrapherColors.referenceLineHandleColorProperty,

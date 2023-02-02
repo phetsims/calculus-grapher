@@ -8,7 +8,7 @@
  *  - Create a LinePlot from the curve points
  *  - Create a dataSet of curve points that can be consumed by LinePlot
  *  - Update itself when curveChangeEmitter sends a signal
- *  - Create a scatterPlot representing cusps points
+ *  - Create a scatterPlot representing cusp points
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation. Thus,
  * CurveNodes persist for the lifetime of the simulation and links are left as-is. See Curve.js for more background.
@@ -32,6 +32,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
+// dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
 type ScatterPlotDataSet = ( Vector2 )[];
 
@@ -39,11 +40,11 @@ type SelfOptions = {
 
   stroke?: TColor;
 
-  // line plots
+  // Line plots
   continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
   discontinuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
 
-  // scatter plots
+  // Scatter plots
   discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
@@ -131,12 +132,14 @@ export default class CurveNode extends Node {
     this.addChild( this.discontinuousLinePlot );
     this.addChild( this.discontinuousPointsScatterPlot );
 
+    // For debug purposes
     if ( CalculusGrapherQueryParameters.allPoints ) {
       this.allPointsScatterPlot = new ScatterPlot( chartTransform, allPointsScatterPlotDataSet, options.allPointsScatterPlotOptions );
       this.addChild( this.allPointsScatterPlot );
     }
 
-    if ( CalculusGrapherQueryParameters.cuspsPoints ) {
+    // For debug purposes
+    if ( CalculusGrapherQueryParameters.cuspPoints ) {
       this.cuspsScatterPlot = new ScatterPlot( chartTransform, cuspsScatterPlotDataSet, options.cuspsScatterPlotOptions );
       this.addChild( this.cuspsScatterPlot );
     }
@@ -165,7 +168,7 @@ export default class CurveNode extends Node {
     this.cuspsScatterPlot && this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
   }
 
-  // data set for continuous portion of curve
+  // Gets a dataset for continuous portion of curve
   private getContinuousLinePlotDataSet(): LinePlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
@@ -184,7 +187,7 @@ export default class CurveNode extends Node {
     return dataSet;
   }
 
-  // data set for discontinuous line plot (a set of vertical lines)
+  // Gets a dataset for discontinuous line plot (a set of vertical lines)
   private getDiscontinuousLinePlotDataSet(): LinePlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
@@ -203,7 +206,7 @@ export default class CurveNode extends Node {
     return dataSet;
   }
 
-  // data set for discontinuous scatter plot ( sets of circles )
+  // Gets a dataset for discontinuous scatter plot ( sets of circles )
   private getDiscontinuousPointsScatterPlotDataSet(): ScatterPlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
@@ -216,7 +219,7 @@ export default class CurveNode extends Node {
     return dataSet;
   }
 
-  // data set for cusps points
+  // Gets a dataset for cusp points
   private getCuspsScatterPlotDataSet(): ScatterPlotDataSet {
     const dataSet = [];
     const points = this.curve.points;
@@ -229,7 +232,7 @@ export default class CurveNode extends Node {
     return dataSet;
   }
 
-  // data set for all points
+  // Gets a dataset for all points
   private getAllPointsScatterPlotDataSet(): ScatterPlotDataSet {
     return this.curve.points.map( point => point.getVector() );
   }

@@ -2,8 +2,15 @@
 
 /**
  * OriginalGraphNode is the view representation of an Original Graph, which includes two curves
- *  that can be user-manipulated as well as cueing arrows. OriginalGraphNode extends GraphNode.
- * The zoom Button of GraphNode is set to invisible for OriginalGraphNode
+ *  that can be user-manipulated as well as cueing arrows.
+ * Labeled Points (only visible/accessible through PhET-IO) are also added to this graph
+ * OriginalGraphNode extends GraphNode.
+ * However, the zoom Button of GraphNode is set to invisible for OriginalGraphNode
+ *
+ * The public methods of OriginalGraphNode allow a client to add
+ * - a ScrubberNode
+ * - a TangentArrowNode
+ * - an AreaUnderCurvePlot
  *
  * @author Martin Veillette
  * @author Brandon Li
