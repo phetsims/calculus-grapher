@@ -2,7 +2,8 @@
 
 /**
  * BarometerAccordionBox is the base class accordion box that shows a vertical axis with a barometer indicator
- *
+ * The barometer ticks and labels can toggle between a quantitative or a qualitative layer
+ * depending on the state of valuesVisibleProperty
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -30,6 +31,8 @@ type SelfOptions = {
   barometerStrokeProperty: TReadOnlyProperty<Color>;
   chartTransformOptions?: ChartTransformOptions;
   titleTextOptions?: StrictOmit<RichTextOptions, 'tandem'>;
+
+  // number of ticks for the quantitative layer (visible when valuesVisible is set to true)
   numberOfTicks?: number;
 };
 
@@ -77,6 +80,8 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
+    //---------quantitative mode with numerical values--------
+
     const tickSpacing = Utils.toFixedNumber(
       options.chartTransformOptions.modelYRange!.getLength() / ( options.numberOfTicks - 1 ), 0 );
 
@@ -98,11 +103,15 @@ export default class BarometerAccordionBox extends AccordionBox {
       extent: TICK_MARK_EXTENT
     } );
 
+    // Creates a layer for all the quantitative components, with appropriate visibility
     const quantitativeLayer = new Node( {
       children: [ tickLabelSet, minorTickMarkSet, majorTickMarkSet ],
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     } );
 
+    //---------qualitative mode with plus and minus symbols--------
+
+    // Convenience variables for the position of zeros
     const zeroX = chartTransform.modelToViewX( 0 );
     const zeroY = chartTransform.modelToViewY( 0 );
 
@@ -119,25 +128,31 @@ export default class BarometerAccordionBox extends AccordionBox {
       lineWidth: 1
     } );
 
+    // Creates a layer for all the qualitative components, with appropriate visibility
     const qualitativeLayer = new Node( {
       children: [ qualitativeLabels, zeroTickMark ],
       visibleProperty: DerivedProperty.not( CalculusGrapherPreferences.valuesVisibleProperty )
     } );
 
+    // Creates a very wide line to represent a barometer
     const barRectangle = new Line( {
-      y1: chartTransform.modelToViewY( 0 ),
+      y1: zeroY,
       y2: chartTransform.modelToViewY( valueProperty.value ),
       left: axisLine.right,
       stroke: options.barometerStrokeProperty,
       lineWidth: 10
     } );
 
+    // Adds axisLine and barometer (always visible), and qualitative and quantitative layers.
+    // barRectangle has to be last in z-order
     const barometerNode = new Node( {
       children: [ axisLine, quantitativeLayer, qualitativeLayer, barRectangle ]
     } );
 
     super( barometerNode, options );
 
+    // Adds a listener to the value Property. The range of the
+    // barometer line is clamped to prevent excessively high lines.
     const yRange = options.chartTransformOptions.modelYRange!;
     valueProperty.link( value => {
       const clampedValue = Utils.clamp( value, yRange.min, yRange.max );
