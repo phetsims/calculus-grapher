@@ -127,7 +127,7 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
   return new RichText( labelStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
     maxWidth: 50
-    // No PhET-iO instrumentation is desired.
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
 }
 
@@ -241,7 +241,7 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   const integralSymbolNode = new RichText( CalculusGrapherSymbols.integral, {
     font: new PhetFont( fontSizeOptions.integralSymbolFontSize ),
     maxWidth: 25
-    // No PhET-iO instrumentation is desired.
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
 
   const limitsFont = new PhetFont( fontSizeOptions.limitsFontSize );
@@ -250,14 +250,14 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   const lowerBoundNode = new RichText( '0', {
     font: limitsFont,
     maxWidth: 25
-    // No PhET-iO instrumentation is desired.
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
 
   // upper limit of integral
   const upperBoundNode = new RichText( variableStringProperty, {
     font: limitsFont,
     maxWidth: 25
-    // No PhET-iO instrumentation is desired.
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
 
   // integrand of integral: f(x)dx
@@ -268,7 +268,7 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   const integrandNode = new RichText( integrandStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
     maxWidth: 50
-    // No PhET-iO instrumentation is desired.
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
 
   // laying out the various nodes
@@ -296,7 +296,7 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
       new RichText( numeratorStringProperty, {
         font: fractionFont,
         maxWidth: 50
-        // No PhET-iO instrumentation is desired.
+        // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
       } ),
 
       // horizontal line between numerator and denominator, resized automatically by VBox
@@ -306,7 +306,7 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
       new RichText( denominatorStringProperty, {
         font: fractionFont,
         maxWidth: 50
-        // No PhET-iO instrumentation is desired.
+        // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
       } )
     ]
   } );

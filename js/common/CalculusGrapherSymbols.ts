@@ -18,6 +18,7 @@ const CalculusGrapherSymbols = {
 
   // No PhET-iO instrumentation is desired, because the associated string Properties are already instrumented.
   // Showing the additional markup that is created around those strings provides no additional value.
+  // See https://github.com/phetsims/calculus-grapher/issues/213
   dStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.dStringProperty ), // d
   xStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.xStringProperty ), // x
   fStringProperty: MathSymbolFont.createDerivedProperty( CalculusGrapherStrings.symbol.fStringProperty ), // f
