@@ -17,8 +17,12 @@ import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 type SelfOptions = {
+
+  // Radius of the sphere of the handle - in view coordinates
   radius?: number;
-  yModel?: number; // y coordinate, in model coordinate frame
+
+  // y coordinate of the drag handler, in model coordinate frame
+  yModel?: number;
 };
 
 type XDragHandleNodeOptions = SelfOptions & PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem'>;
