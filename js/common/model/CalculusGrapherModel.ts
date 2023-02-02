@@ -109,7 +109,10 @@ export default class CalculusGrapherModel implements TModel {
       // array, but instead want to ensure the values of the array is correct.
       valueComparisonStrategy: 'lodashDeep',
       tandem: options.tandem.createTandem( 'graphSetProperty' ),
-      phetioValueType: ArrayIO( EnumerationIO( GraphType ) )
+      phetioValueType: ArrayIO( EnumerationIO( GraphType ) ),
+      phetioDocumentation: 'Identifies the types of graphs that are displayed, and the groupings of those graphs. ' +
+                           'If there is more than one grouping of graphs, then radio buttons will be available ' +
+                           'for choosing the desired grouping. See graphSetRadioButtonGroup.'
     } );
 
     this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
