@@ -63,7 +63,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         tandem: areaUnderCurveCheckboxTandem.createTandem( 'text' )
       } ), {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-        enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
+        enabledProperty: DerivedProperty.not( model.predictEnabledProperty ),
         tandem: areaUnderCurveCheckboxTandem
       } );
     this.controlPanel.appendContent( areaUnderCurveCheckbox );

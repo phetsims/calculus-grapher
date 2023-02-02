@@ -22,13 +22,13 @@ export default class LabeledPointsNode extends Node {
   public constructor( labeledPoints: LabeledPoint[],
                       linkableElement: LinkableElement,
                       chartTransform: ChartTransform,
-                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       curveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
     // LabeledPointNode instances
     const labeledPointNodes = labeledPoints.map( labeledPoint =>
-      new LabeledPointNode( labeledPoint, chartTransform, predictModeEnabledProperty, curveLayerVisibleProperty, {
+      new LabeledPointNode( labeledPoint, chartTransform, predictEnabledProperty, curveLayerVisibleProperty, {
         tandem: Tandem.OPT_OUT // see https://github.com/phetsims/calculus-grapher/issues/198
       } ) );
 

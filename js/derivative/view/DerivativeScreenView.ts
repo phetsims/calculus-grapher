@@ -63,7 +63,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         tandem: tangentCheckboxTandem.createTandem( 'text' )
       } ), {
         boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-        enabledProperty: DerivedProperty.not( model.predictModeEnabledProperty ),
+        enabledProperty: DerivedProperty.not( model.predictEnabledProperty ),
         tandem: tangentCheckboxTandem
       } );
     this.controlPanel.appendContent( tangentCheckbox );

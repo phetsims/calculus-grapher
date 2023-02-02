@@ -31,7 +31,7 @@ export default class LabeledPointNode extends Node {
 
   public constructor( labeledPoint: LabeledPoint,
                       chartTransform: ChartTransform,
-                      predictModeEnabledProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       curveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: LabeledPointNodeOptions ) {
 
@@ -39,7 +39,7 @@ export default class LabeledPointNode extends Node {
 
       // NodeOptions
       visibleProperty: new DerivedProperty(
-        [ curveLayerVisibleProperty, labeledPoint.visibleProperty, predictModeEnabledProperty ],
+        [ curveLayerVisibleProperty, labeledPoint.visibleProperty, predictEnabledProperty ],
         ( curveLayerVisible, labeledPointVisible, predictMode ) => curveLayerVisible && labeledPointVisible && !predictMode, {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO

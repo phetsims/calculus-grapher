@@ -59,8 +59,8 @@ export default class CalculusGrapherModel implements TModel {
   // Properties associated with curve manipulation
   public readonly curveManipulationProperties: CurveManipulationProperties;
 
-  // Is the predict mode enabled for the original graph?
-  public readonly predictModeEnabledProperty: Property<boolean>;
+  // Is the 'Predict' feature enabled for the original graph?
+  public readonly predictEnabledProperty: Property<boolean>;
 
   // Model elements for the various curves
   public readonly originalCurve: TransformedCurve;
@@ -116,8 +116,8 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'curveManipulationProperties' )
     } );
 
-    this.predictModeEnabledProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'predictModeEnabledProperty' )
+    this.predictEnabledProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'predictEnabledProperty' )
     } );
 
     const curvesTandem = options.tandem.createTandem( 'curves' );
@@ -134,8 +134,8 @@ export default class CalculusGrapherModel implements TModel {
       phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the original function'
     } );
 
-    this.curveToTransformProperty = new DerivedProperty( [ this.predictModeEnabledProperty ],
-      predictModeEnabled => predictModeEnabled ? this.predictCurve : this.originalCurve
+    this.curveToTransformProperty = new DerivedProperty( [ this.predictEnabledProperty ],
+      predictEnabled => predictEnabled ? this.predictCurve : this.originalCurve
     );
 
     // Creates a flat array of the supported GraphTypes. This is then used to conditionally instrument curves.
@@ -208,7 +208,7 @@ export default class CalculusGrapherModel implements TModel {
     this.originalCurve.reset();
     this.predictCurve.reset();
     this.curveManipulationProperties.reset();
-    this.predictModeEnabledProperty.reset();
+    this.predictEnabledProperty.reset();
 
     // Reset tools
     this.referenceLine.reset();

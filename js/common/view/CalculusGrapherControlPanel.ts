@@ -36,7 +36,7 @@ export default class CalculusGrapherControlPanel extends Panel {
   private contentNode: Node;
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictModeEnabledProperty: Property<boolean>,
+                      predictEnabledProperty: Property<boolean>,
                       curveToTransformProperty: TReadOnlyProperty<TransformedCurve>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
@@ -55,12 +55,12 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    const predictModeRadioButtonGroup = new PredictModeRadioButtonGroup( predictModeEnabledProperty,
+    const predictModeRadioButtonGroup = new PredictModeRadioButtonGroup( predictEnabledProperty,
       options.tandem.createTandem( 'predictModeRadioButtonGroup' ) );
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls( curveManipulationProperties,
-      predictModeEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
+      predictEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
     const pushButtonGroup = new CurvePushButtonGroup( curveToTransformProperty, options.hasSmoothButton,

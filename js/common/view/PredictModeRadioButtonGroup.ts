@@ -21,7 +21,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class PredictModeRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
-  public constructor( predictModeEnabledProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( predictEnabledProperty: Property<boolean>, tandem: Tandem ) {
 
     const originalCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
 
@@ -48,7 +48,7 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
       }
     ];
 
-    super( predictModeEnabledProperty, rectangularRadioButtonGroupItems, {
+    super( predictEnabledProperty, rectangularRadioButtonGroupItems, {
       orientation: 'horizontal',
       spacing: 5,
       radioButtonOptions: {

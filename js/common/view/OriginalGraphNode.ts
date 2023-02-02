@@ -56,12 +56,12 @@ export default class OriginalGraphNode extends GraphNode {
                       providedOptions: GraphNodeOptions ) {
 
     // Destructuring fields from model into local constants, to improve readability.
-    const { originalCurve, predictCurve, curveManipulationProperties, predictModeEnabledProperty } = model;
+    const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
 
     // Original curve is visible if not in predictMode or 'Show f(x)' checkbox is checked.
     const originalCurveNodeVisibilityProperty = new DerivedProperty(
-      [ predictModeEnabledProperty, visibleProperties.showOriginalCurveProperty ],
-      ( predictModeEnabled, showOriginalCurve ) => !predictModeEnabled || showOriginalCurve );
+      [ predictEnabledProperty, visibleProperties.showOriginalCurveProperty ],
+      ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve );
 
     const graphType = GraphType.ORIGINAL;
 
@@ -72,7 +72,7 @@ export default class OriginalGraphNode extends GraphNode {
         new Text( CalculusGrapherStrings.predictStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
-          visibleProperty: model.predictModeEnabledProperty, // show/hide 'Predict'
+          visibleProperty: model.predictEnabledProperty, // show/hide 'Predict'
           tandem: labelNodeTandem.createTandem( 'predictText' )
         } ),
         new GraphTypeLabelNode( graphType )
@@ -90,7 +90,7 @@ export default class OriginalGraphNode extends GraphNode {
           continuousLinePlotOptions: {
             lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
           },
-          enabledProperty: DerivedProperty.not( predictModeEnabledProperty ),
+          enabledProperty: DerivedProperty.not( predictEnabledProperty ),
           visibleProperty: originalCurveNodeVisibilityProperty,
           tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
         } ),
@@ -110,26 +110,26 @@ export default class OriginalGraphNode extends GraphNode {
       opacity: 0.25,
       visibleProperty: this.curveLayerVisibleProperty,
       fill: new DerivedProperty( [
-        model.predictModeEnabledProperty,
+        model.predictEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
         CalculusGrapherColors.originalCurveStrokeProperty
-      ], ( predictModeEnabled, predictCurveStroke, originalCurveStroke ) =>
-        predictModeEnabled ? predictCurveStroke : originalCurveStroke )
+      ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
+        predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
 
     // Creates a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
-      enabledProperty: predictModeEnabledProperty,
-      visibleProperty: predictModeEnabledProperty,
+      enabledProperty: predictEnabledProperty,
+      visibleProperty: predictEnabledProperty,
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,
       tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
     } );
     this.curveLayer.addChild( this.predictCurveNode );
 
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( visibleProperties.showOriginalCurveProperty, {
-      visibleProperty: predictModeEnabledProperty,
+      visibleProperty: predictEnabledProperty,
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
     } );
     this.addChild( showOriginalCurveCheckbox );
@@ -143,7 +143,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Labeled points
     const labeledPointsNode = new LabeledPointsNode( model.labeledPoints, model.labeledPointsLinkableElement,
-      this.chartTransform, model.predictModeEnabledProperty, this.curveLayerVisibleProperty,
+      this.chartTransform, model.predictEnabledProperty, this.curveLayerVisibleProperty,
       options.tandem.createTandem( 'labeledPointsNode' )
     );
     this.addChild( labeledPointsNode );

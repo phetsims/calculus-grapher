@@ -63,7 +63,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.referenceLine.visibleProperty,
       model.tangentScrubber.visibleProperty,
       model.areaUnderCurveScrubber.visibleProperty,
-      model.predictModeEnabledProperty,
+      model.predictEnabledProperty,
       options.tandem.createTandem( 'visibleProperties' )
     );
 
@@ -76,7 +76,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
-      model.predictModeEnabledProperty,
+      model.predictEnabledProperty,
       model.curveToTransformProperty,
       this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {

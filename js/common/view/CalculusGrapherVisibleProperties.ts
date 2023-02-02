@@ -39,13 +39,13 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
    * @param referenceLineVisibleProperty - ReferenceLine.visibleProperty
    * @param tangentScrubberVisibleProperty - TangentScrubber.visibleProperty
    * @param areaUnderCurveScrubberVisibleProperty - AreaUnderCurveScrubber.visibleProperty
-   * @param predictModeEnabledProperty
+   * @param predictEnabledProperty
    * @param tandem
    */
   public constructor( referenceLineVisibleProperty: Property<boolean>,
                       tangentScrubberVisibleProperty: Property<boolean>,
                       areaUnderCurveScrubberVisibleProperty: Property<boolean>,
-                      predictModeEnabledProperty: Property<boolean>,
+                      predictEnabledProperty: Property<boolean>,
                       tandem: Tandem ) {
 
     super( {
@@ -62,16 +62,16 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
 
     // Tangent features are visible if the TangentScrubber is visible, and we are not in predict mode.
     this.tangentVisibleProperty = new DerivedProperty(
-      [ tangentScrubberVisibleProperty, predictModeEnabledProperty ],
-      ( tangentScrubberVisible, predictModeEnabled ) => tangentScrubberVisible && !predictModeEnabled, {
+      [ tangentScrubberVisibleProperty, predictEnabledProperty ],
+      ( tangentScrubberVisible, predictEnabled ) => tangentScrubberVisible && !predictEnabled, {
         tandem: tandem.createTandem( 'tangentVisibleProperty' ),
         phetioValueType: BooleanIO
       } );
 
     // Area Under Curve features are visible if the AreaUnderCurveScrubber is visible, and we are not in predict mode.
     this.areaUnderCurveVisibleProperty = new DerivedProperty(
-      [ areaUnderCurveScrubberVisibleProperty, predictModeEnabledProperty ],
-      ( areaUnderCurveScrubberVisible, predictModeEnabled ) => areaUnderCurveScrubberVisible && !predictModeEnabled, {
+      [ areaUnderCurveScrubberVisibleProperty, predictEnabledProperty ],
+      ( areaUnderCurveScrubberVisible, predictEnabled ) => areaUnderCurveScrubberVisible && !predictEnabled, {
         tandem: tandem.createTandem( 'areaUnderCurveVisibleProperty' ),
         phetioValueType: BooleanIO
       } );

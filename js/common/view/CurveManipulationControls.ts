@@ -20,16 +20,16 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 export default class CurveManipulationControls extends VBox {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictModeEnabledProperty: Property<boolean>,
+                      predictEnabledProperty: Property<boolean>,
                       tandem: Tandem ) {
 
     const curveManipulationStrokeProperty = new DerivedProperty( [
-        predictModeEnabledProperty,
+        predictEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
         CalculusGrapherColors.originalCurveStrokeProperty
       ],
-      ( predictModeEnabled, predictCurveStroke, originalCurveStroke ) =>
-        predictModeEnabled ? predictCurveStroke : originalCurveStroke );
+      ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
+        predictEnabled ? predictCurveStroke : originalCurveStroke );
 
     // Control that shows the width, with slider for modes that support adjustable width.
     const widthControl = new CurveManipulationWidthControl( curveManipulationProperties,
