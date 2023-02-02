@@ -17,14 +17,19 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+
+  // Whether this TransformedCurveNode is currently interactive.
+  isInteractiveProperty: TReadOnlyProperty<boolean>;
+};
 
 type TransformedCurveNodeOptions = SelfOptions & CurveNodeOptions;
 
@@ -54,8 +59,9 @@ export default class TransformedCurveNode extends CurveNode {
       center: chartTransform.modelToViewXY( CalculusGrapherConstants.CURVE_X_RANGE.getCenter(), 0 ),
 
       // Cueing arrow should not be visible if this node is not enabled
-      visibleProperty: new DerivedProperty( [ transformedCurve.wasManipulatedProperty, this.enabledProperty ],
-        ( wasManipulated, enabled ) => !wasManipulated && enabled ),
+      visibleProperty: new DerivedProperty(
+        [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty ],
+        ( wasManipulated, isInteractive ) => !wasManipulated && isInteractive ),
       tandem: options.tandem.createTandem( 'cueingArrowsNode' )
     } );
 
