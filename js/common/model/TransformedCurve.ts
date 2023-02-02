@@ -251,15 +251,15 @@ export default class TransformedCurve extends Curve {
       }
       else if ( point.x > leftMin && point.x < leftMax ) {
 
-          // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
-          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
-        }
-        else if ( point.x > rightMin && point.x < rightMax ) {
+        // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+        P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+      }
+      else if ( point.x > rightMin && point.x < rightMax ) {
 
-          // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
-          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
-        }
-        else {
+        // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+        P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+      }
+      else {
 
           // Outside the cosine base, the weight is zero
           P = 0;
@@ -524,9 +524,9 @@ export default class TransformedCurve extends Curve {
     // for all Points in the TransformedCurve.
     this.saveCurrentPoints();
 
-    // Gaussian kernel that will be used in the convolution of our curve
-    const gaussianFunction = ( x: number ) => Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 ) /
-                                              ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+    // Normalized gaussian kernel that will be used in the convolution of our curve
+    const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+    const gaussianFunction = ( x: number ) => normalizationFactor * Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 );
 
     // Loops through each Point of the curve and set the new y-value.
     this.points.forEach( point => {
