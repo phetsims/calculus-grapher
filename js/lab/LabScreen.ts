@@ -26,12 +26,15 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     const modelTandem = tandem.createTandem( 'model' );
 
-    let graphSetIndex = 0;
     const graphSets: GraphSet[] = [
-      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ],
-        modelTandem.createTandem( `${GraphSet.TANDEM_NAME_PREFIX}${graphSetIndex++}` ) ),
-      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ],
-        modelTandem.createTandem( `${GraphSet.TANDEM_NAME_PREFIX}${graphSetIndex++}` ) )
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
+        tandem: modelTandem.createTandem( 'graphSet0' ),
+        phetioDocumentation: 'Choosing this GraphSet shows integralGraphNode, originalGraphNode, and derivativeGraphNode.'
+      } ),
+      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ], {
+        tandem: modelTandem.createTandem( 'graphSet1' ),
+        phetioDocumentation: 'Choosing this GraphSet shows originalGraphNode, derivativeGraphNode, and secondDerivativeGraphNode.'
+      } )
     ];
 
     const labelAlignGroup = new AlignGroup(); // to give labels the same effective size

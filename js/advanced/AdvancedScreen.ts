@@ -27,12 +27,15 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     const modelTandem = tandem.createTandem( 'model' );
 
-    let graphSetIndex = 0;
     const graphSets: GraphSet[] = [
-      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ],
-        modelTandem.createTandem( `${GraphSet.TANDEM_NAME_PREFIX}${graphSetIndex++}` ) ),
-      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ],
-        modelTandem.createTandem( `${GraphSet.TANDEM_NAME_PREFIX}${graphSetIndex++}` ) )
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ], {
+        tandem: modelTandem.createTandem( 'graphSet0' ),
+        phetioDocumentation: 'Choosing this GraphSet shows integralGraphNode and originalGraphNode.'
+      } ),
+      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
+        tandem: modelTandem.createTandem( 'graphSet1' ),
+        phetioDocumentation: 'Choosing this GraphSet shows originalGraphNode and derivativeGraphNode.'
+      } )
     ];
 
     const labelAlignGroup = new AlignGroup(); // to give labels the same effective size

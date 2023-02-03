@@ -8,32 +8,33 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PhetioObject from '../../../../tandem/js/PhetioObject.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import GraphType from './GraphType.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import ReferenceIO, { ReferenceIOState } from '../../../../tandem/js/types/ReferenceIO.js';
+import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
-import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
-import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 
-type GraphSetStateObject = {
-  graphTypes: GraphType[];
-} & ReferenceIOState;
+type SelfOptions = EmptySelfOptions;
+
+type GraphSetOptions = SelfOptions & PickOptional<PhetioObject, 'phetioDocumentation' | 'tandem'>;
 
 export default class GraphSet extends PhetioObject {
 
   public readonly graphTypes: GraphType[];
-  public static readonly TANDEM_NAME_PREFIX = 'graphSet';
 
-  public constructor( graphTypes: GraphType[], tandem?: Tandem ) {
+  public constructor( graphTypes: GraphType[], providedOptions?: GraphSetOptions ) {
     assert && assert( graphTypes.length === _.uniq( graphTypes ).length, 'elements in the set must be unique' );
 
-    super( {
-      tandem: tandem ? tandem : Tandem.OPT_OUT,
+    super( optionize<GraphSetOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // PhetioObjectOptions
+      tandem: Tandem.OPT_OUT,
       phetioState: false,
       phetioType: GraphSet.GraphSetIO
-    } );
+    }, providedOptions ) );
 
     this.graphTypes = graphTypes;
   }
@@ -61,29 +62,14 @@ export default class GraphSet extends PhetioObject {
   }
 
   /**
-   * Serializes this object for PhET-iO.
-   */
-  private toStateObject(): GraphSetStateObject {
-    const graphSetReference = ReferenceIO( IOType.ObjectIO ).toStateObject( this );
-    graphSetReference.graphTypes = ArrayIO( EnumerationIO( GraphType ) ).toStateObject( this.graphTypes );
-    return graphSetReference;
-  }
-
-  /**
    * GraphSetIO handles PhET-iO serialization of GraphSet.
    * It implements 'Reference type serialization', as described in the Serialization section of
    * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
-   * It adds graphTypes to the default ReferenceIO implementation because we want graphTypes to be displayed
-   * in Studio.
    */
   public static readonly GraphSetIO = new IOType( 'GraphSetIO', {
     valueType: GraphSet,
     supertype: ReferenceIO( IOType.ObjectIO ),
-    documentation: 'An ordered set of graph types',
-    stateSchema: {
-      graphTypes: ArrayIO( EnumerationIO( GraphType ) )
-    },
-    toStateObject: graphSet => graphSet.toStateObject()
+    documentation: 'Describes an ordered set of graphs'
   } );
 }
 
