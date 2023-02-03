@@ -30,11 +30,11 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     const graphSets: GraphSet[] = [
       new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ], {
         tandem: modelTandem.createTandem( 'graphSet0' ),
-        phetioDocumentation: 'Choosing this GraphSet shows integralGraphNode and originalGraphNode.'
+        phetioDocumentation: 'Choosing this GraphSet shows the integral and original graphs.'
       } ),
       new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet1' ),
-        phetioDocumentation: 'Choosing this GraphSet shows originalGraphNode and derivativeGraphNode.'
+        phetioDocumentation: 'Choosing this GraphSet shows the original and derivative graphs.'
       } )
     ];
 

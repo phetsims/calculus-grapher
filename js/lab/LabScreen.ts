@@ -29,11 +29,11 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     const graphSets: GraphSet[] = [
       new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet0' ),
-        phetioDocumentation: 'Choosing this GraphSet shows integralGraphNode, originalGraphNode, and derivativeGraphNode.'
+        phetioDocumentation: 'Choosing this GraphSet shows the integral, original, and derivative graphs.'
       } ),
       new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet1' ),
-        phetioDocumentation: 'Choosing this GraphSet shows originalGraphNode, derivativeGraphNode, and secondDerivativeGraphNode.'
+        phetioDocumentation: 'Choosing this GraphSet shows the original, derivative, and second derivative graphs.'
       } )
     ];
 
