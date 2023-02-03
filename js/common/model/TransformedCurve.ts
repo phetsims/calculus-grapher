@@ -87,34 +87,34 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    */
-  private createHillAt( width: number, peak: Vector2 ): void {
+  private createHillAt( width: number, peakX: number, peakY: number ): void {
 
-    const closestPoint = this.getClosestPointAt( peak.x );
+    const closestPoint = this.getClosestPointAt( peakX );
 
     this.points.forEach( point => {
 
       const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
 
-      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
+      point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
     } );
   }
 
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
-  private createTriangleAt( width: number, peak: Vector2 ): void {
+  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
 
-    const closestPoint = this.getClosestPointAt( peak.x );
+    const closestPoint = this.getClosestPointAt( peakX );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peak.y - closestPoint.lastSavedY;
+    const deltaY = peakY - closestPoint.lastSavedY;
 
     // Sets the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
     // to this.curveManipulationWidth when the peak is at typicalY value
     const slope = TYPICAL_Y / ( width / 2 );
 
     this.points.forEach( point => {
-      const newY = peak.y - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
+      const newY = peakY - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
 
       // If the point is within the 'width' of the triangle, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
@@ -130,9 +130,9 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    */
-  private createPedestalAt( width: number, peak: Vector2 ): void {
+  private createPedestalAt( width: number, peakX: number, peakY: number ): void {
 
-    const closestPoint = this.getClosestPointAt( peak.x );
+    const closestPoint = this.getClosestPointAt( peakX );
 
     // Super gaussian function centered at `mu`, with min amplitude of 0 and max of 1;
     // use the square of a gaussian in order to have a very symmetric derivative at the edges
@@ -168,26 +168,26 @@ export default class TransformedCurve extends Curve {
         P = gaussianWeight( point.x, closestPoint.x + plateauWidth / 2 );
       }
 
-      point.y = P * peak.y + ( 1 - P ) * point.lastSavedY;
+      point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
     } );
   }
 
   /**
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    */
-  private createParabolaAt( width: number, peak: Vector2 ): void {
+  private createParabolaAt( width: number, peakX: number, peakY: number ): void {
 
-    const closestPoint = this.getClosestPointAt( peak.x );
+    const closestPoint = this.getClosestPointAt( peakX );
 
     // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peak.y - closestPoint.lastSavedY;
+    const deltaY = peakY - closestPoint.lastSavedY;
 
     // Will set the parabola coefficient such that the parabola at y=0 has a 'width' equal
     // to this.curveManipulationWidth when the peak is at a typicalY value
     const A = TYPICAL_Y * Math.pow( 2 / width, 2 );
 
     this.points.forEach( point => {
-      const newY = peak.y - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
+      const newY = peakY - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
 
       // If the point is within the 'width' of the parabola, modify the y position.
       // Otherwise , the point is not within the width and don't modify its position.
@@ -203,16 +203,16 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    */
-  private createSinusoidalAt( width: number, position: Vector2 ): void {
+  private createSinusoidalAt( width: number, x: number, y: number ): void {
 
-    const closestPoint = this.getClosestPointAt( position.x );
+    const closestPoint = this.getClosestPointAt( x );
 
     // Wavelength associated with the sinusoidal function
     const wavelength = width;
 
     // Cosine function to apply to points. Cosine function passes through `position`
     const cosineFunction = ( x: number ) =>
-      position.y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
+      y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
 
     // Weight function that goes from 1 to 0 from highX to lowX
     // Note that the fact that it is a cosine function is happenstance
@@ -303,10 +303,10 @@ export default class TransformedCurve extends Curve {
     const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
     // We want to create a straight line between this point and the last drag event point
-    this.interpolate( closestPoint.getVector(), new Vector2( lastPoint.x, penultimatePosition.y ) );
+    const closestVector = closestPoint.getVector();
+    this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
 
-    if ( antepenultimatePosition instanceof Vector2
-    ) {
+    if ( antepenultimatePosition ) {
 
       // Point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
@@ -381,11 +381,11 @@ export default class TransformedCurve extends Curve {
          mode === CurveManipulationMode.TRIANGLE ||
          mode === CurveManipulationMode.SINE
     ) {
-      this.widthManipulatedCurve( mode, width, position );
+      this.widthManipulatedCurve( mode, width, position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.TILT ||
               mode === CurveManipulationMode.SHIFT ) {
-      this.positionManipulatedCurve( mode, position );
+      this.positionManipulatedCurve( mode, position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
@@ -401,37 +401,37 @@ export default class TransformedCurve extends Curve {
   /**
    * Sets the y-value of points between position1 and position2 using a linear interpolation
    */
-  private interpolate( position1: Vector2, position2: Vector2 ): void {
+  private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
 
     // x-separation between two adjacent points in curve array
     const deltaX = this.deltaX;
 
     // x-distance between the new and old point
-    const distX = Math.abs( position1.x - position2.x );
+    const distX = Math.abs( x1 - x2 );
 
-    const signedOne: number = ( position1.x > position2.x ) ? -1 : 1;
+    const signedOne: number = ( x1 > x2 ) ? -1 : 1;
 
     // Performs a linear interpolation between position1 and position2
     for ( let dx = deltaX; dx < distX; dx += deltaX ) {
 
       // The xPosition of the point to be interpolated, is either to the left or right of position1
-      const xPosition = position1.x + signedOne * dx;
+      const xPosition = x1 + signedOne * dx;
 
       // Weight needed to interpolate the y-values, weight will never exceed 1.
       const W = dx / distX;
 
       // Updates the y value of an intermediate point
-      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * position1.y + W * position2.y;
+      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * y1 + W * y2;
     }
   }
 
   /**
    * Shifts the curve to the specified drag position, in model coordinates.
    */
-  public shiftToPosition( position: Vector2 ): void {
+  public shiftToPosition( x: number, y: number ): void {
 
     // Amount to shift the entire curve.
-    const deltaY = position.y - this.getClosestPointAt( position.x ).y;
+    const deltaY = y - this.getClosestPointAt( x ).y;
 
     // Shifts each of the CurvePoints by deltaY.
     this.points.forEach( point => {point.y += deltaY;} );
@@ -440,43 +440,43 @@ export default class TransformedCurve extends Curve {
   /**
    * Tilts the curve to the specified drag position, in model coordinates.
    */
-  private tiltToPosition( position: Vector2 ): void {
+  private tiltToPosition( x: number, y: number ): void {
 
-    if ( position.x !== 0 ) {
+    if ( x !== 0 ) {
 
       // Finds the angle of the tilt, based on where the user dragged the Curve
-      const angle = Math.atan( position.y / position.x );
+      const angle = Math.atan( y / x );
 
       // Clamped angle has to be between a range set by MAX_TILT
       const clampedAngle = Utils.clamp( angle, -MAX_TILT, MAX_TILT );
 
       // Amount to shift the CurvePoint closest to the passed-in position.
-      const deltaY = Math.tan( clampedAngle ) * position.x - this.getClosestPointAt( position.x ).lastSavedY;
+      const deltaY = Math.tan( clampedAngle ) * x - this.getClosestPointAt( x ).lastSavedY;
 
       // Shifts each of the CurvePoints by a factor of deltaY.
-      this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / position.x;} );
+      this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / x;} );
     }
   }
 
   /**
    * Sets the points for all the modes that can be manipulated through their width.
    */
-  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, position: Vector2 ): void {
+  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
 
     if ( mode === CurveManipulationMode.HILL ) {
-      this.createHillAt( width, position );
+      this.createHillAt( width, x, y );
     }
     else if ( mode === CurveManipulationMode.PARABOLA ) {
-      this.createParabolaAt( width, position );
+      this.createParabolaAt( width, x, y );
     }
     else if ( mode === CurveManipulationMode.PEDESTAL ) {
-      this.createPedestalAt( width, position );
+      this.createPedestalAt( width, x, y );
     }
     else if ( mode === CurveManipulationMode.TRIANGLE ) {
-      this.createTriangleAt( width, position );
+      this.createTriangleAt( width, x, y );
     }
     else if ( mode === CurveManipulationMode.SINE ) {
-      this.createSinusoidalAt( width, position );
+      this.createSinusoidalAt( width, x, y );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
@@ -486,13 +486,13 @@ export default class TransformedCurve extends Curve {
   /**
    * Sets the points for all modes that can be manipulated solely through a position argument.
    */
-  public positionManipulatedCurve( mode: CurveManipulationMode, position: Vector2 ): void {
+  public positionManipulatedCurve( mode: CurveManipulationMode, x: number, y: number ): void {
 
     if ( mode === CurveManipulationMode.TILT ) {
-      this.tiltToPosition( position );
+      this.tiltToPosition( x, y );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
-      this.shiftToPosition( position );
+      this.shiftToPosition( x, y );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
@@ -568,13 +568,13 @@ export default class TransformedCurve extends Curve {
     const xMin = this.xRange.getMin();
     const width = xLength / 4;
 
-    this.createHillAt( width, new Vector2( xMin + xLength / 5, yMin ) );
+    this.createHillAt( width, xMin + xLength / 5, yMin );
     this.saveCurrentPoints();
-    this.createTriangleAt( width, new Vector2( xMin + 2 * xLength / 5, yMax ) );
+    this.createTriangleAt( width, xMin + 2 * xLength / 5, yMax );
     this.saveCurrentPoints();
-    this.createParabolaAt( width, new Vector2( xMin + 3 * xLength / 5, yMin ) );
+    this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
     this.saveCurrentPoints();
-    this.createPedestalAt( width, new Vector2( xMin + 4 * xLength / 5, yMax ) );
+    this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
   }
 
   /**
@@ -627,7 +627,7 @@ export default class TransformedCurve extends Curve {
       const p2 = simplePoints[ i ];
 
       // An array of simple points that interpolates between p1 and p2
-      this.interpolate( p1, p2 );
+      this.interpolate( p1.x, p1.y, p2.x, p2.y );
     }
   }
 }

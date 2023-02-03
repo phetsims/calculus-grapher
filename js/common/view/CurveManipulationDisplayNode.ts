@@ -14,7 +14,6 @@ import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import { Node, TColor } from '../../../../scenery/js/imports.js';
@@ -68,22 +67,20 @@ export default class CurveManipulationDisplayNode extends Node {
         curve.reset();
 
         if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
-          curve.positionManipulatedCurve( mode, new Vector2( xMax, yMax ) );
+          curve.positionManipulatedCurve( mode, xMax, yMax );
         }
         else if ( mode === CurveManipulationMode.TRIANGLE ||
                   mode === CurveManipulationMode.PARABOLA ||
                   mode === CurveManipulationMode.PEDESTAL ||
                   mode === CurveManipulationMode.HILL ) {
-          const middlePosition = new Vector2( xCenter, yMax );
-          curve.widthManipulatedCurve( mode, width, middlePosition );
+          curve.widthManipulatedCurve( mode, width, xCenter, yMax );
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
           curve.freeformIconCurve( yMin, yMax );
         }
         else if ( mode === CurveManipulationMode.SINE ) {
-          const position = new Vector2( xCenter, yMax / 2 );
-          curve.widthManipulatedCurve( mode, width, position );
-          curve.shiftToPosition( new Vector2( xCenter, yMax ) );
+          curve.widthManipulatedCurve( mode, width, xCenter, yMax / 2 );
+          curve.shiftToPosition( xCenter, yMax );
         }
         else {
           throw new Error( 'Unsupported Curve Manipulation Mode' );

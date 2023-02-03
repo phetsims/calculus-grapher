@@ -12,7 +12,6 @@ import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode from './CurveNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -59,22 +58,21 @@ export default class CurveManipulationIconNode extends Node {
          mode === CurveManipulationMode.PEDESTAL ||
          mode === CurveManipulationMode.HILL ) {
 
-      const position = new Vector2( xCenter, yMax );
       const width = xLength / 4;
-      solidCurve.widthManipulatedCurve( mode, width, position );
+      solidCurve.widthManipulatedCurve( mode, width, xCenter, yMax );
     }
     else if ( mode === CurveManipulationMode.SINE ) {
 
-      const position = new Vector2( xCenter, yMax / 2 );
+      const y = yMax / 2;
       const width = xLength / 4.5;
-      solidCurve.widthManipulatedCurve( mode, width, position );
-      solidCurve.shiftToPosition( position );
+      solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
+      solidCurve.shiftToPosition( xCenter, y );
     }
     else if ( mode === CurveManipulationMode.SHIFT ||
               mode === CurveManipulationMode.TILT ) {
 
-      solidCurve.positionManipulatedCurve( mode, new Vector2( xMax, yMax ) );
-      dashedCurve.positionManipulatedCurve( mode, new Vector2( xMax, -yMax ) );
+      solidCurve.positionManipulatedCurve( mode, xMax, yMax );
+      dashedCurve.positionManipulatedCurve( mode, xMax, -yMax );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       solidCurve.freeformIconCurve( yMin, yMax );
