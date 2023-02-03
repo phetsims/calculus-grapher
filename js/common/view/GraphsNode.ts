@@ -1,7 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Class for the all the graphs in the 'Calculus Grapher' simulation.
+ * Class for all the graphs in the 'Calculus Grapher' simulation.
+ * It also adds the reference line and all the (PhET-IO) vertical lines at the bottom of the graphs
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -63,7 +64,7 @@ export default class GraphsNode extends Node {
 
     super();
 
-    // Is the grid of each graph node visible
+    // Is the grid (on each GraphNode) visible?
     const gridVisibleProperty = visibleProperties.gridVisibleProperty;
 
     // The (view) height of the graph based on the number of visible graphs.
@@ -116,7 +117,7 @@ export default class GraphsNode extends Node {
     // of the reference line and vertical lines.
     model.graphSetProperty.link( graphSet => {
 
-      // Gets the GraphNode instances that correspond to graphSet, in the same order as graphSet.
+      // Get the GraphNode instances that correspond to graphSet, in the same order as graphSet.
       const graphNodes: GraphNode[] = [];
       graphSet.graphTypes.forEach( graphType => {
         const graphNode = _.find( this.graphNodes, graphNode => graphNode.graphType === graphType );
@@ -127,12 +128,12 @@ export default class GraphsNode extends Node {
       // Layout
       this.updateLayout( graphNodes );
 
-      // Resizes vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,
+      // Resize vertical ReferenceLineNode - a bit more at the bottom if the bottom graph is the original graph,
       // so that the drag handle does not overlap scrubber.
       const yOffset = ( graphNodes[ graphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
       referenceLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT + yOffset );
 
-      // Resizes vertical VerticalLineNodes - same extent at top and bottom.
+      // Resize vertical VerticalLineNodes - same extent at top and bottom.
       verticalLinesNode.verticalLineNodes.forEach( verticalLineNode => {
         verticalLineNode.setLineTopAndBottom( graphSetNode.top - VERTICAL_LINE_Y_EXTENT, graphSetNode.bottom + VERTICAL_LINE_Y_EXTENT );
       } );
@@ -156,13 +157,13 @@ export default class GraphsNode extends Node {
    */
   public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Adds a scrubber to the original graph, for moving the x location of tangentScrubber.
+    // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubberNode' );
 
-    // Adds the double-headed tangent arrow at the tangent point on the original graph.
+    // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
 
-    // Plots a point on each graph that will stay in sync with tangentScrubber.
+    // Plot a point on each graph that will stay in sync with tangentScrubber.
     this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
   }
 
@@ -171,14 +172,14 @@ export default class GraphsNode extends Node {
    */
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
 
-    // Adds a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
+    // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
       'areaUnderCurveScrubberNode' );
 
-    // Adds a plot of the area under the curve on the original graph.
+    // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
 
-    // Plots a point on each graph that will stay in sync with areaUnderCurveScrubber.
+    // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
     this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
   }
 
