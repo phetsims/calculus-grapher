@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * TransformedCurve is a Curve sub-type for the main curve that the user interacts with and manipulates, which then
+ * TransformedCurve is a Curve subclass for the main curve that the user interacts with and manipulates, which then
  * triggers a change in the CurvePoints.
  *
  * TransformedCurve is mainly responsible for:

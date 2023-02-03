@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * DerivativeCurve is a Curve sub-type for a curve that represents the derivative of a 'base' curve. It is used
+ * DerivativeCurve is a Curve subclass for a curve that represents the derivative of a 'base' curve. It is used
  * as both the first derivative and second derivative of the TransformedCurve.
  *
  * DerivativeCurves' main responsibility is to observe when the 'base' Curve changes and differentiates it and update
