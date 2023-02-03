@@ -61,7 +61,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Destructuring fields from model into local constants, to improve readability.
     const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
 
-    // Original curve is visible if not in predictMode or 'Show f(x)' checkbox is checked.
+    // Original curve is visible if not in predictEnabled or 'Show f(x)' checkbox is checked.
     const originalCurveNodeVisibilityProperty = new DerivedProperty(
       [ predictEnabledProperty, visibleProperties.showOriginalCurveProperty ],
       ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve );
