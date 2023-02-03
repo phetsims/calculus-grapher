@@ -84,19 +84,22 @@ export default class GraphsNode extends Node {
       } );
     };
 
-    // OriginalGraphNode is always instrumented, because it should always be present.
-    this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
-      graphHeight: this.graphHeight,
-      tandem: options.tandem.createTandem( 'originalGraphNode' )
-    } );
-
-    this.graphNodes = [ this.originalGraphNode ];
+    // Order is important in this array. It determines the top-to-bottom order that the graphs will be displayed.
+    this.graphNodes = [];
 
     // Conditionally create the GraphNodes for the derived curves.
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
       this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );
       this.graphNodes.push( this.integralGraphNode );
     }
+
+    // OriginalGraphNode is always instrumented, because it should always be present.
+    this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
+      graphHeight: this.graphHeight,
+      tandem: options.tandem.createTandem( 'originalGraphNode' )
+    } );
+    this.graphNodes.push( this.originalGraphNode );
+
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
       this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
       this.graphNodes.push( this.derivativeGraphNode );
