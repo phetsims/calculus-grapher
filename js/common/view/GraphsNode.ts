@@ -33,7 +33,7 @@ const VERTICAL_LINE_Y_EXTENT = 4;
 
 type SelfOptions = EmptySelfOptions;
 
-type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type GraphsNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class GraphsNode extends Node {
 
@@ -53,9 +53,9 @@ export default class GraphsNode extends Node {
 
   public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,
-                      providedOptions?: GraphNodesOptions ) {
+                      providedOptions?: GraphsNodeOptions ) {
 
-    const options = optionize<GraphNodesOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<GraphsNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
       phetioVisiblePropertyInstrumented: false
