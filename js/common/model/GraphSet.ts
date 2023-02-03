@@ -53,16 +53,7 @@ export default class GraphSet extends PhetioObject {
   }
 
   /**
-   * Given an array of GraphSet, return the unique array of GraphType that it contains.
-   */
-  public static getGraphTypes( graphSets: GraphSet[] ): GraphType[] {
-    const graphTypes: GraphType[] = [];
-    graphSets.forEach( graphSet => graphTypes.push( ...graphSet.graphTypes ) );
-    return _.uniq( graphTypes );
-  }
-
-  /**
-   * Given an array of GraphSet, does it contain a specific GraphType.
+   * Given an array of GraphSet, does it include a specific GraphType.
    */
   public static includes( graphSets: GraphSet[], graphType: GraphType ): boolean {
     return !!_.find( graphSets, graphSet => graphSet.includes( graphType ) );

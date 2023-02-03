@@ -17,7 +17,7 @@ export default class CalculusGrapherScreenIcon extends ScreenIcon {
   public constructor( graphSets: GraphSet[] ) {
 
     // The unique set of GraphTypes in graphSets.
-    const graphTypes = GraphSet.getGraphTypes( graphSets );
+    const graphTypes = _.uniq( graphSets.map( graphSet => graphSet.graphTypes ).flat() );
 
     // The formulas for each GraphType, in a column.
     const iconNode = new VBox( {

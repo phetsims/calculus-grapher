@@ -69,16 +69,13 @@ export default class GraphsNode extends Node {
     // The (view) height of the graph based on the number of visible graphs.
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
-    // The subset of graphTypes that should be instrumented
-    const subsetGraphTypes = GraphSet.getGraphTypes( model.graphSets );
-
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
       return new GraphNode( graphType, curve, gridVisibleProperty, {
         graphHeight: this.graphHeight,
-        tandem: subsetGraphTypes.includes( graphType ) ?
+        tandem: GraphSet.includes( model.graphSets, graphType ) ?
                 options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
                 Tandem.OPT_OUT
       } );
