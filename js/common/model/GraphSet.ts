@@ -69,7 +69,7 @@ export default class GraphSet extends PhetioObject {
   public static readonly GraphSetIO = new IOType( 'GraphSetIO', {
     valueType: GraphSet,
     supertype: ReferenceIO( IOType.ObjectIO ),
-    documentation: 'Describes an ordered set of graphs'
+    documentation: 'An ordered set of graphs, to be displayed together in the user interface'
   } );
 }
 
