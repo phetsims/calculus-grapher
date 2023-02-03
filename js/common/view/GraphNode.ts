@@ -143,7 +143,8 @@ export default class GraphNode extends Node {
     this.graphType = graphType;
     this.curve = curve;
 
-    // The original graph does not have the zoom feature for the y-axis.
+    // The original graph does not have the zoom feature for the y-axis. If you'd like to add the zoom feature
+    // to the original graph in the future, remove the if statement that surrounds this block.
     if ( graphType !== GraphType.ORIGINAL ) {
       this.yZoomLevelProperty = new NumberProperty( DEFAULT_ZOOM_LEVEL, {
         range: new Range( 0, Y_ZOOM_INFO.length - 1 ),
