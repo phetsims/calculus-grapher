@@ -35,7 +35,4 @@ export default class GraphType extends EnumerationValue {
   }
 }
 
-// An ordered set of GraphType.
-export type GraphSet = GraphType[];
-
 calculusGrapher.register( 'GraphType', GraphType );

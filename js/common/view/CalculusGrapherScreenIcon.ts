@@ -9,15 +9,15 @@
 
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
 import { VBox } from '../../../../scenery/js/imports.js';
-import { GraphSet } from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import GraphSet from '../model/GraphSet.js';
 
 export default class CalculusGrapherScreenIcon extends ScreenIcon {
   public constructor( graphSets: GraphSet[] ) {
 
     // The unique set of GraphTypes in graphSets.
-    const graphTypes = _.uniq( graphSets.flat() );
+    const graphTypes = GraphSet.getGraphTypes( graphSets );
 
     // The formulas for each GraphType, in a column.
     const iconNode = new VBox( {

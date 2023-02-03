@@ -18,7 +18,7 @@ import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
 import TransformedCurve from './TransformedCurve.js';
 import TModel from '../../../../joist/js/TModel.js';
-import GraphType, { GraphSet } from './GraphType.js';
+import GraphType from './GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
@@ -30,8 +30,7 @@ import VerticalLine from './VerticalLine.js';
 import LabeledPoint from './LabeledPoint.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
-import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
-import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
+import GraphSet from './GraphSet.js';
 
 type SelfOptions = {
 
@@ -95,8 +94,6 @@ export default class CalculusGrapherModel implements TModel {
     }, providedOptions );
 
     assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
-    assert && assert( options.graphSets.every( graphSet =>
-      graphSet.length === _.uniq( graphSet ).length ), 'each element of the graphSet must be unique' );
     assert && assert( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
       'all elements of graphSets must have the same length, a current limitation of this sim' );
 
@@ -104,15 +101,11 @@ export default class CalculusGrapherModel implements TModel {
 
     this.graphSetProperty = new Property( options.graphSets[ 0 ], {
       validValues: options.graphSets,
-
-      // Deserializing a value from PhET-iO will result in a difference array instance. We don't care about the actual
-      // array, but instead want to ensure the values of the array is correct.
-      valueComparisonStrategy: 'lodashDeep',
-      tandem: options.tandem.createTandem( 'graphSetProperty' ),
-      phetioValueType: ArrayIO( EnumerationIO( GraphType ) ),
-      phetioDocumentation: 'Identifies the types of graphs that are displayed, and the groupings of those graphs. ' +
-                           'If there is more than one grouping of graphs, then radio buttons will be available ' +
-                           'for choosing the desired grouping. See graphSetRadioButtonGroup.'
+      tandem: ( options.graphSets.length > 1 ) ? options.tandem.createTandem( 'graphSetProperty' ) : Tandem.OPT_OUT,
+      phetioValueType: GraphSet.GraphSetIO,
+      phetioDocumentation: 'Identifies the types of graphs that are displayed, and how they are grouped. ' +
+                           'If there is more than one graph set, then radio buttons will be available ' +
+                           'for choosing the desired set. See graphSetRadioButtonGroup.'
     } );
 
     this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
@@ -141,17 +134,14 @@ export default class CalculusGrapherModel implements TModel {
       predictEnabled => predictEnabled ? this.predictCurve : this.originalCurve
     );
 
-    // Creates a flat array of the supported GraphTypes. This is then used to conditionally instrument curves.
-    const graphTypes = options.graphSets.flat();
+    // If graphSets includes graphType, then create a tandem, otherwise opt out.
+    const createCurveTandem = ( graphType: GraphType ) => {
+      return GraphSet.includes( this.graphSets, graphType ) ? curvesTandem.createTandem( graphType.tandemNamePrefix ) : Tandem.OPT_OUT;
+    };
 
-    this.derivativeCurve = new DerivativeCurve( this.originalCurve,
-      graphTypes.includes( GraphType.DERIVATIVE ) ? curvesTandem.createTandem( 'derivativeCurve' ) : Tandem.OPT_OUT );
-
-    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve,
-      graphTypes.includes( GraphType.SECOND_DERIVATIVE ) ? curvesTandem.createTandem( 'secondDerivativeCurve' ) : Tandem.OPT_OUT );
-
-    this.integralCurve = new IntegralCurve( this.originalCurve,
-      graphTypes.includes( GraphType.INTEGRAL ) ? curvesTandem.createTandem( 'integralCurve' ) : Tandem.OPT_OUT );
+    this.derivativeCurve = new DerivativeCurve( this.originalCurve, createCurveTandem( GraphType.DERIVATIVE ) );
+    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, createCurveTandem( GraphType.SECOND_DERIVATIVE ) );
+    this.integralCurve = new IntegralCurve( this.originalCurve, createCurveTandem( GraphType.INTEGRAL ) );
 
     const toolsTandem = options.tandem.createTandem( 'tools' );
 

@@ -14,16 +14,17 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import DerivativeModel from './model/DerivativeModel.js';
 import DerivativeScreenView from './view/DerivativeScreenView.js';
-import GraphType, { GraphSet } from '../common/model/GraphType.js';
+import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import GraphSet from '../common/model/GraphSet.js';
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 
   public constructor( tandem: Tandem ) {
 
     const graphSets: GraphSet[] = [
-      [ GraphType.ORIGINAL, GraphType.DERIVATIVE ]
+      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ] )
     ];
 
     const createModel = () => new DerivativeModel( {

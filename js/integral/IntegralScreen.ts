@@ -14,16 +14,17 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import IntegralModel from './model/IntegralModel.js';
 import IntegralScreenView from './view/IntegralScreenView.js';
-import GraphType, { GraphSet } from '../common/model/GraphType.js';
+import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import GraphSet from '../common/model/GraphSet.js';
 
 export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 
   public constructor( tandem: Tandem ) {
 
     const graphSets: GraphSet[] = [
-      [ GraphType.INTEGRAL, GraphType.ORIGINAL ]
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ] )
     ];
 
     const createModel = () => new IntegralModel( {

@@ -26,6 +26,7 @@ import GraphType from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import VerticalLinesNode from './VerticalLinesNode.js';
+import GraphSet from '../model/GraphSet.js';
 
 // How much VerticalLines extend above and below the graphs
 const VERTICAL_LINE_Y_EXTENT = 4;
@@ -66,7 +67,7 @@ export default class GraphsNode extends Node {
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
     // The subset of graphTypes that should be instrumented
-    const subsetGraphTypes = model.graphSets.flat();
+    const subsetGraphTypes = GraphSet.getGraphTypes( model.graphSets );
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {

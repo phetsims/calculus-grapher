@@ -13,19 +13,25 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
-import GraphType, { GraphSet } from '../common/model/GraphType.js';
+import GraphType from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import { AlignGroup } from '../../../scenery/js/imports.js';
 import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import GraphSet from '../common/model/GraphSet.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
   public constructor( tandem: Tandem ) {
 
+    const modelTandem = tandem.createTandem( 'model' );
+
+    let graphSetIndex = 0;
     const graphSets: GraphSet[] = [
-      [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ],
-      [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ]
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ],
+        modelTandem.createTandem( `${GraphSet.TANDEM_NAME_PREFIX}${graphSetIndex++}` ) ),
+      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ],
+        modelTandem.createTandem( `${GraphSet.TANDEM_NAME_PREFIX}${graphSetIndex++}` ) )
     ];
 
     const labelAlignGroup = new AlignGroup(); // to give labels the same effective size
@@ -36,7 +42,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     const createModel = () => new LabModel( {
       graphSets: graphSets,
-      tandem: tandem.createTandem( 'model' )
+      tandem: modelTandem
     } );
 
     const createView = ( model: LabModel ) => new LabScreenView( model, {
