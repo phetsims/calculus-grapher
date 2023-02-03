@@ -7,7 +7,7 @@
  *   - All of its previously 'saved' states. When the user finishes manipulating the TransformedCurve, the state of
  *     CurvePoint in the TransformedCurve is saved.
  *
- * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve (and its subtypes) to partition the curve
+ * For the 'Calculus Grapher' simulation, CurvePoints are used inside of Curve (and its subclasses) to partition the curve
  * into a finite number of close points that map out the general shape and curvature. CurvePoints are created
  * at the start of the sim and are mutated when the Curve changes. CurvePoints are never disposed.
  *

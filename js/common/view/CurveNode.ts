@@ -2,7 +2,7 @@
 
 /**
  * CurveNode is the view representation of a single Curve, which appears in all screens of the 'Calculus Grapher'
- * simulation. CurveNode is implemented to work for all Curve subtypes, so no CurveNode subtypes are needed.
+ * simulation. CurveNode is implemented to work for all Curve subclasses, so no CurveNode subclasses are needed.
  *
  * Primary responsibilities are:
  *  - Create a LinePlot from the curve points
