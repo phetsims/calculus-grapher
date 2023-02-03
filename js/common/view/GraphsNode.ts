@@ -37,10 +37,13 @@ type GraphNodesOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 
 export default class GraphsNode extends Node {
 
+  // An OriginalGraphNode is always present, because the student interacts with curves in the graph.
   public readonly originalGraphNode: OriginalGraphNode;
-  public readonly integralGraphNode: GraphNode;
-  public readonly derivativeGraphNode: GraphNode;
-  public readonly secondDerivativeGraphNode: GraphNode;
+
+  // These GraphNodes will be conditionally created, based on whether they appear in model.graphSets.
+  private readonly integralGraphNode?: GraphNode;
+  private readonly derivativeGraphNode?: GraphNode;
+  private readonly secondDerivativeGraphNode?: GraphNode;
 
   // For iterating over all GraphNode instances
   private readonly graphNodes: GraphNode[];
@@ -81,17 +84,27 @@ export default class GraphsNode extends Node {
       } );
     };
 
-    this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );
-    this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
-    this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve );
-
     // OriginalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
       graphHeight: this.graphHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
 
-    this.graphNodes = [ this.integralGraphNode, this.originalGraphNode, this.derivativeGraphNode, this.secondDerivativeGraphNode ];
+    this.graphNodes = [ this.originalGraphNode ];
+
+    // Conditionally create the GraphNodes for the derived curves.
+    if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
+      this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );
+      this.graphNodes.push( this.integralGraphNode );
+    }
+    if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
+      this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
+      this.graphNodes.push( this.derivativeGraphNode );
+    }
+    if ( GraphSet.includes( model.graphSets, GraphType.SECOND_DERIVATIVE ) ) {
+      this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve );
+      this.graphNodes.push( this.secondDerivativeGraphNode );
+    }
 
     const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
       options.tandem.createTandem( 'referenceLineNode' ) );
@@ -135,10 +148,7 @@ export default class GraphsNode extends Node {
   }
 
   public reset(): void {
-    this.integralGraphNode.reset();
-    this.originalGraphNode.reset();
-    this.derivativeGraphNode.reset();
-    this.secondDerivativeGraphNode.reset();
+    this.graphNodes.forEach( graphNode => graphNode.reset() );
   }
 
   /**
@@ -187,9 +197,16 @@ export default class GraphsNode extends Node {
    * Adds a PlottedPoint to each graph.
    */
   private addPlottedPoints( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
-    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.integralGraphNode, ancillaryTool.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
+
     this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.originalGraphNode, ancillaryTool.yOriginalProperty, CalculusGrapherColors.originalCurveStrokeProperty );
+
+    this.integralGraphNode &&
+    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.integralGraphNode, ancillaryTool.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
+
+    this.derivativeGraphNode &&
     this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.derivativeGraphNode, ancillaryTool.yDerivativeProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
+
+    this.secondDerivativeGraphNode &&
     this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.secondDerivativeGraphNode, ancillaryTool.ySecondDerivativeProperty, CalculusGrapherColors.secondDerivativeCurveStrokeProperty );
   }
 
