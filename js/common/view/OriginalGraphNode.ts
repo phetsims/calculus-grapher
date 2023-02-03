@@ -164,11 +164,15 @@ export default class OriginalGraphNode extends GraphNode {
     let antepenultimatePosition: Vector2 | null = null;
     const updateCurve = ( listener: PressedDragListener ): void => {
 
+      // These listener 'fields' are actually ES5 getters that allocate a Vector2, so call them only once.
+      const modelPoint = listener.modelPoint;
+      const modelDelta = listener.modelDelta;
+
       // Current modelPosition
-      const modelPosition = this.chartTransform.viewToModelPosition( listener.modelPoint );
+      const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
 
       // Previous (model) position the drag
-      penultimatePosition = this.chartTransform.viewToModelPosition( listener.modelPoint.minus( listener.modelDelta ) );
+      penultimatePosition = this.chartTransform.viewToModelPosition( modelPoint.minus( modelDelta ) );
 
       // Update curve based on mode and width
       interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
