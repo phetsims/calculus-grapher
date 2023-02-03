@@ -23,6 +23,7 @@ type GraphSetOptions = SelfOptions & PickOptional<PhetioObject, 'phetioDocumenta
 
 export default class GraphSet extends PhetioObject {
 
+  // The unique set of GraphTypes that are part of this set, in the top-to-bottom order that they will be displayed.
   public readonly graphTypes: GraphType[];
 
   public constructor( graphTypes: GraphType[], providedOptions?: GraphSetOptions ) {
@@ -39,8 +40,14 @@ export default class GraphSet extends PhetioObject {
     this.graphTypes = graphTypes;
   }
 
+  /**
+   * Gets the number of GraphTypes in this GraphSet.
+   */
   public get length(): number { return this.graphTypes.length; }
 
+  /**
+   * Determines whether this GraphSet includes a specific GraphType.
+   */
   public includes( graphType: GraphType ): boolean {
     return this.graphTypes.includes( graphType );
   }
