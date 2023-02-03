@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * PredictModeRadioButtonGroup is the radio button group for turning predict mode on/off.
+ * PredictEnabledRadioButtonGroup is the radio button group to enable/disable the predict curve
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -19,7 +19,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import GraphType from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
-export default class PredictModeRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
+export default class PredictEnabledRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
   public constructor( predictEnabledProperty: Property<boolean>, tandem: Tandem ) {
 
@@ -62,4 +62,4 @@ export default class PredictModeRadioButtonGroup extends RectangularRadioButtonG
   }
 }
 
-calculusGrapher.register( 'PredictModeRadioButtonGroup', PredictModeRadioButtonGroup );
+calculusGrapher.register( 'PredictEnabledRadioButtonGroup', PredictEnabledRadioButtonGroup );
