@@ -22,12 +22,12 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CurvePushButtonGroup extends VBox {
 
-  public constructor( curveToTransformProperty: TReadOnlyProperty<TransformedCurve>,
+  public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
                       hasSmoothButton: boolean, tandem: Tandem ) {
 
     // Create an undo Button
     const undoButton = new UndoButton( {
-      listener: () => curveToTransformProperty.value.undoToLastSave(),
+      listener: () => interactiveCurveProperty.value.undoToLastSave(),
       yMargin: 6,
       iconOptions: { height: 13 },
       tandem: tandem.createTandem( 'undoButton' )
@@ -35,7 +35,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Create an eraser Button
     const eraserButton = new EraserButton( {
-      listener: () => curveToTransformProperty.value.reset(),
+      listener: () => interactiveCurveProperty.value.reset(),
       iconWidth: 16,
       xMargin: 10,
       tandem: tandem.createTandem( 'resetButton' )
@@ -52,7 +52,7 @@ export default class CurvePushButtonGroup extends VBox {
     // Create a Smooth button, with width matching the HBox.
     if ( hasSmoothButton ) {
       const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
-        listener: () => curveToTransformProperty.value.smooth(),
+        listener: () => interactiveCurveProperty.value.smooth(),
         textNodeOptions: {
           font: CalculusGrapherConstants.CONTROL_FONT,
           fontWeight: 'bold'

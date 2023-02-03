@@ -68,8 +68,8 @@ export default class CalculusGrapherModel implements TModel {
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-  // Which curve to apply operations to
-  public readonly curveToTransformProperty: TReadOnlyProperty<TransformedCurve>;
+  // Track which curve to apply operations to on the original graph
+  public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
 
   // Model elements for the various tools
   public readonly referenceLine: ReferenceLine;
@@ -130,7 +130,7 @@ export default class CalculusGrapherModel implements TModel {
       phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the original function'
     } );
 
-    this.curveToTransformProperty = new DerivedProperty( [ this.predictEnabledProperty ],
+    this.interactiveCurveProperty = new DerivedProperty( [ this.predictEnabledProperty ],
       predictEnabled => predictEnabled ? this.predictCurve : this.originalCurve
     );
 

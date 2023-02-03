@@ -18,7 +18,7 @@ import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import PredictModeRadioButtonGroup from './PredictModeRadioButtonGroup.js';
+import PredictEnabledRadioButtonGroup from './PredictEnabledRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
@@ -37,7 +37,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       predictEnabledProperty: Property<boolean>,
-                      curveToTransformProperty: TReadOnlyProperty<TransformedCurve>,
+                      interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
@@ -55,22 +55,22 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    const predictModeRadioButtonGroup = new PredictModeRadioButtonGroup( predictEnabledProperty,
-      options.tandem.createTandem( 'predictModeRadioButtonGroup' ) );
+    const predictEnabledRadioButtonGroup = new PredictEnabledRadioButtonGroup( predictEnabledProperty,
+      options.tandem.createTandem( 'predictEnabledRadioButtonGroup' ) );
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls( curveManipulationProperties,
       predictEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const pushButtonGroup = new CurvePushButtonGroup( curveToTransformProperty, options.hasSmoothButton,
+    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, options.hasSmoothButton,
       options.tandem.createTandem( 'pushButtonGroup' ) );
 
     // assemble all the scenery nodes
     const contentNode = new VBox( {
       spacing: 10,
       children: [
-        predictModeRadioButtonGroup,
+        predictEnabledRadioButtonGroup,
         curveManipulationControls,
         pushButtonGroup,
 
