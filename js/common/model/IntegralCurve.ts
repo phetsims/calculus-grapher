@@ -23,7 +23,7 @@ import Curve from './Curve.js';
 export default class IntegralCurve extends Curve {
 
   // Reference to the 'base' Curve that was passed-in.
-  private baseCurve: Curve;
+  private readonly baseCurve: Curve;
 
   /**
    * @param baseCurve - the curve to integrate to get the values of this IntegralCurve.

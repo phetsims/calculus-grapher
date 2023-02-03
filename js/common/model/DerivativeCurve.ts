@@ -24,7 +24,7 @@ import Curve from './Curve.js';
 export default class DerivativeCurve extends Curve {
 
   // Reference to the 'base' Curve that was passed-in.
-  private baseCurve: Curve;
+  private readonly baseCurve: Curve;
 
   /**
    * @param baseCurve - the curve to differentiate to get the values of this DerivativeCurve
