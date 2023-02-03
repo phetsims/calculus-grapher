@@ -277,6 +277,37 @@ export default class TransformedCurve extends Curve {
     );
   }
 
+  public manipulateCurve( mode: CurveManipulationMode,
+                          width: number,
+                          position: Vector2,
+                          penultimatePosition: Vector2 | null,
+                          antepenultimatePosition: Vector2 | null ): void {
+
+    this.wasManipulatedProperty.value = true;
+
+    if ( mode === CurveManipulationMode.HILL ||
+         mode === CurveManipulationMode.PARABOLA ||
+         mode === CurveManipulationMode.PEDESTAL ||
+         mode === CurveManipulationMode.TRIANGLE ||
+         mode === CurveManipulationMode.SINE
+    ) {
+      this.widthManipulatedCurve( mode, width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.TILT ||
+              mode === CurveManipulationMode.SHIFT ) {
+      this.positionManipulatedCurve( mode, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+
+    // Signals that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
   /**
    * Allows the user to drag Points in the Curve to any desired position to create custom but smooth shapes.
    * This method will update the curve with the new position value. It attempts to create a smooth curve
@@ -290,7 +321,7 @@ export default class TransformedCurve extends Curve {
    * @param antepenultimatePosition - in model coordinates
    */
   private drawFreeformToPosition( position: Vector2,
-                                  penultimatePosition: Vector2,
+                                  penultimatePosition: Vector2 | null,
                                   antepenultimatePosition: Vector2 | null ): void {
 
     // Closest point associated with the position
@@ -300,13 +331,17 @@ export default class TransformedCurve extends Curve {
     closestPoint.y = position.y;
 
     // Point associated with the last drag event
-    const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+    if ( penultimatePosition ) {
+      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
-    // We want to create a straight line between this point and the last drag event point
-    const closestVector = closestPoint.getVector();
-    this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
 
-    if ( antepenultimatePosition ) {
+      // We want to create a straight line between this point and the last drag event point
+      const closestVector = closestPoint.getVector();
+      this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
+    }
+    if ( penultimatePosition && antepenultimatePosition ) {
+
+      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
       // Point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
@@ -365,37 +400,6 @@ export default class TransformedCurve extends Curve {
         }
       }
     }
-  }
-
-  public manipulateCurve( mode: CurveManipulationMode,
-                          width: number,
-                          position: Vector2,
-                          penultimatePosition: Vector2,
-                          antepenultimatePosition: Vector2 | null ): void {
-
-    this.wasManipulatedProperty.value = true;
-
-    if ( mode === CurveManipulationMode.HILL ||
-         mode === CurveManipulationMode.PARABOLA ||
-         mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.SINE
-    ) {
-      this.widthManipulatedCurve( mode, width, position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.TILT ||
-              mode === CurveManipulationMode.SHIFT ) {
-      this.positionManipulatedCurve( mode, position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
-
-    // Signals that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**

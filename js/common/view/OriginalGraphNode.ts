@@ -160,19 +160,18 @@ export default class OriginalGraphNode extends GraphNode {
     );
 
     // Update whichever curve is currently interactive.
-    let penultimatePosition: Vector2;
+    let penultimatePosition: Vector2 | null = null;
     let antepenultimatePosition: Vector2 | null = null;
     const updateCurve = ( listener: PressedDragListener ): void => {
 
       // These listener 'fields' are actually ES5 getters that allocate a Vector2, so call them only once.
       const modelPoint = listener.modelPoint;
-      const modelDelta = listener.modelDelta;
 
       // Current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
 
       // Previous (model) position the drag
-      penultimatePosition = this.chartTransform.viewToModelPosition( modelPoint.minus( modelDelta ) );
+
 
       // Update curve based on mode and width
       interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
@@ -184,6 +183,7 @@ export default class OriginalGraphNode extends GraphNode {
 
       // Update antepenultimatePosition
       antepenultimatePosition = penultimatePosition;
+      penultimatePosition = modelPosition;
     };
 
     // Instead of having a DragListener on each TransformedCurveNode, we have a single DragListener on the chartRectangle.
@@ -200,8 +200,9 @@ export default class OriginalGraphNode extends GraphNode {
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         interactiveCurveNodeProperty.value.transformedCurve.saveCurrentPoints();
 
-        // Set the second to last position to null, since it is a new drag.
+        // Set the previous last positions to null, since it is a new drag.
         antepenultimatePosition = null;
+        penultimatePosition = null;
         updateCurve( listener );
       },
       drag: ( event, listener ) => updateCurve( listener ),
