@@ -87,7 +87,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    */
-  public createHillAt( width: number, peak: Vector2 ): void {
+  private createHillAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -102,7 +102,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
-  public createTriangleAt( width: number, peak: Vector2 ): void {
+  private createTriangleAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -130,7 +130,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    */
-  public createPedestalAt( width: number, peak: Vector2 ): void {
+  private createPedestalAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -174,9 +174,8 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
-   *
    */
-  public createParabolaAt( width: number, peak: Vector2 ): void {
+  private createParabolaAt( width: number, peak: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( peak.x );
 
@@ -204,7 +203,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    */
-  public createSinusoidalAt( width: number, position: Vector2 ): void {
+  private createSinusoidalAt( width: number, position: Vector2 ): void {
 
     const closestPoint = this.getClosestPointAt( position.x );
 
@@ -290,9 +289,9 @@ export default class TransformedCurve extends Curve {
    * @param penultimatePosition - in model coordinates
    * @param antepenultimatePosition - in model coordinates
    */
-  public drawFreeformToPosition( position: Vector2,
-                                 penultimatePosition: Vector2,
-                                 antepenultimatePosition: Vector2 | null ): void {
+  private drawFreeformToPosition( position: Vector2,
+                                  penultimatePosition: Vector2,
+                                  antepenultimatePosition: Vector2 | null ): void {
 
     // Closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
@@ -400,9 +399,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   *  Sets the y-value of points between position1 and position2 using a linear interpolation
+   * Sets the y-value of points between position1 and position2 using a linear interpolation
    */
-  public interpolate( position1: Vector2, position2: Vector2 ): void {
+  private interpolate( position1: Vector2, position2: Vector2 ): void {
 
     // x-separation between two adjacent points in curve array
     const deltaX = this.deltaX;
@@ -427,9 +426,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Shifts the curve to the specified drag Position.
-   *
-   * @param position - in model coordinates
+   * Shifts the curve to the specified drag position, in model coordinates.
    */
   public shiftToPosition( position: Vector2 ): void {
 
@@ -441,11 +438,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Tilts the curve to the specified drag Position.
-   *
-   * @param position - in model coordinates
+   * Tilts the curve to the specified drag position, in model coordinates.
    */
-  public tiltToPosition( position: Vector2 ): void {
+  private tiltToPosition( position: Vector2 ): void {
 
     if ( position.x !== 0 ) {
 
@@ -464,11 +459,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the points for all the modes that can be manipulated through their width
+   * Sets the points for all the modes that can be manipulated through their width.
    */
-  public widthManipulatedCurve( mode: CurveManipulationMode,
-                                width: number,
-                                position: Vector2 ): void {
+  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, position: Vector2 ): void {
 
     if ( mode === CurveManipulationMode.HILL ) {
       this.createHillAt( width, position );
@@ -491,10 +484,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the points for all modes that can be manipulated solely through a position argument
+   * Sets the points for all modes that can be manipulated solely through a position argument.
    */
-  public positionManipulatedCurve( mode: CurveManipulationMode,
-                                   position: Vector2 ): void {
+  public positionManipulatedCurve( mode: CurveManipulationMode, position: Vector2 ): void {
 
     if ( mode === CurveManipulationMode.TILT ) {
       this.tiltToPosition( position );
