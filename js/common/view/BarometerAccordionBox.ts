@@ -135,7 +135,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
 
     // Creates a very wide line to represent a barometer
-    const barRectangle = new Line( {
+    const barLine = new Line( {
       y1: zeroY,
       y2: chartTransform.modelToViewY( valueProperty.value ),
       left: axisLine.right,
@@ -144,9 +144,9 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
 
     // Adds axisLine and barometer (always visible), and qualitative and quantitative layers.
-    // barRectangle has to be last in z-order
+    // barLine has to be last in z-order
     const barometerNode = new Node( {
-      children: [ axisLine, quantitativeLayer, qualitativeLayer, barRectangle ]
+      children: [ axisLine, quantitativeLayer, qualitativeLayer, barLine ]
     } );
 
     super( barometerNode, options );
@@ -156,7 +156,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     const yRange = options.chartTransformOptions.modelYRange!;
     valueProperty.link( value => {
       const clampedValue = Utils.clamp( value, yRange.min, yRange.max );
-      barRectangle.y2 = chartTransform.modelToViewY( clampedValue );
+      barLine.y2 = chartTransform.modelToViewY( clampedValue );
     } );
   }
 }
