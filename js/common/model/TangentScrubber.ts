@@ -16,6 +16,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class TangentScrubber extends AncillaryTool {
 
+  // Color for the spherical scrubber
   public readonly colorProperty: ProfileColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,

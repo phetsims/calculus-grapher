@@ -21,6 +21,7 @@ export default class GraphType extends EnumerationValue {
   // Tandem name prefix used for tandems related to the graph of this type.
   public readonly tandemNamePrefix: string;
 
+  // Enumeration values
   public static readonly ORIGINAL = new GraphType( CalculusGrapherColors.originalCurveStrokeProperty, 'original' );
   public static readonly INTEGRAL = new GraphType( CalculusGrapherColors.integralCurveStrokeProperty, 'integral' );
   public static readonly DERIVATIVE = new GraphType( CalculusGrapherColors.derivativeCurveStrokeProperty, 'derivative' );

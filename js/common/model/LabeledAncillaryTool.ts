@@ -23,6 +23,7 @@ export type LabeledAncillaryToolOptions = SelfOptions & AncillaryToolOptions;
 
 export default class LabeledAncillaryTool extends AncillaryTool {
 
+  // The string to be displayed on the tool
   public readonly stringProperty: Property<string>;
 
   protected constructor(

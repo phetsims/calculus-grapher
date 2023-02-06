@@ -21,8 +21,10 @@ const MIN_X = X_RANGE.min;
 const PI = Math.PI;
 const A = CalculusGrapherConstants.TYPICAL_Y;
 
+// f(x) => y
 export type MathFunction = ( x: number ) => number;
 
+// Math functions for our presets
 const MATH_FUNCTIONS: MathFunction[] = [
   x => A * Math.sin( 2 * PI * 5 * x / WIDTH ),
   x => A * Math.sin( 2 * PI * 20 * x / WIDTH ),
@@ -40,18 +42,18 @@ export type PresetFunction = {
   xPositions?: number[];
 };
 
-const PRESET_FUNCTIONS: PresetFunction[] =
-  [ { mathFunction: MATH_FUNCTIONS[ 0 ] },
-    { mathFunction: MATH_FUNCTIONS[ 0 ], xPositions: createXPositions( 0.25 ) },
-    { mathFunction: MATH_FUNCTIONS[ 1 ] },
-    { mathFunction: MATH_FUNCTIONS[ 2 ] },
-    { mathFunction: MATH_FUNCTIONS[ 3 ] },
-    { mathFunction: MATH_FUNCTIONS[ 3 ], xPositions: createXPositions( 1 ) },
-    { mathFunction: MATH_FUNCTIONS[ 4 ] },
-    { mathFunction: MATH_FUNCTIONS[ 4 ], xPositions: createXPositions( 1 ) },
-    { mathFunction: MATH_FUNCTIONS[ 5 ] },
-    { mathFunction: MATH_FUNCTIONS[ 5 ], xPositions: createXPositions( 1 ) }
-  ];
+const PRESET_FUNCTIONS: PresetFunction[] = [
+  { mathFunction: MATH_FUNCTIONS[ 0 ] },
+  { mathFunction: MATH_FUNCTIONS[ 0 ], xPositions: createXPositions( 0.25 ) },
+  { mathFunction: MATH_FUNCTIONS[ 1 ] },
+  { mathFunction: MATH_FUNCTIONS[ 2 ] },
+  { mathFunction: MATH_FUNCTIONS[ 3 ] },
+  { mathFunction: MATH_FUNCTIONS[ 3 ], xPositions: createXPositions( 1 ) },
+  { mathFunction: MATH_FUNCTIONS[ 4 ] },
+  { mathFunction: MATH_FUNCTIONS[ 4 ], xPositions: createXPositions( 1 ) },
+  { mathFunction: MATH_FUNCTIONS[ 5 ] },
+  { mathFunction: MATH_FUNCTIONS[ 5 ], xPositions: createXPositions( 1 ) }
+];
 
 /**
  * Creates an array of equally-spaced x positions over a curve's X_RANGE.

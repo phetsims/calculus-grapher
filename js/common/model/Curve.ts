@@ -40,10 +40,14 @@ const ANGLE_MISMATCH_THRESHOLD = CalculusGrapherQueryParameters.angleMismatchThr
 const SLOPE_THRESHOLD = CalculusGrapherQueryParameters.slopeThreshold;
 
 type SelfOptions = {
+
+  // Range of the x-axis
   xRange?: Range;
+
+  // Number of points (evenly-spaced along the x-axis) that will be used to approximate the curve
   numberOfPoints?: number;
 
-  // For PhET-IO: Are the points property read only
+  // For PhET-IO, is pointsProperty read-only?
   pointsPropertyReadOnly?: boolean;
 };
 
@@ -61,7 +65,10 @@ export default class Curve extends PhetioObject {
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public readonly curveChangedEmitter: Emitter;
 
+  // Range of the x-axis
   public readonly xRange: Range;
+
+  // Number of points (evenly-spaced along the x-axis) that will be used to approximate the curve
   public readonly numberOfPoints: number;
 
   protected constructor( providedOptions: CurveOptions ) {

@@ -21,6 +21,7 @@ type VerticalLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOption
 
 export default class VerticalLine extends LabeledAncillaryTool {
 
+  // Color for displaying the vertical line
   public readonly lineColorProperty: ColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,

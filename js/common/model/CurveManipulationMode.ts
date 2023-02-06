@@ -17,9 +17,13 @@ import calculusGrapher from '../../calculusGrapher.js';
 
 export default class CurveManipulationMode extends EnumerationValue {
 
+  // Prefix used for tandems related to a CurveManipulationMode
   public readonly tandemPrefix: string;
-  public readonly hasAdjustableWidth: boolean; // determines visibility of width slider
 
+  // Determines visibility of the width slider
+  public readonly hasAdjustableWidth: boolean;
+
+  // Enumeration values
   public static readonly HILL = new CurveManipulationMode( 'hill' );
   public static readonly TRIANGLE = new CurveManipulationMode( 'triangle' );
   public static readonly PEDESTAL = new CurveManipulationMode( 'pedestal' );

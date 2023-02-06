@@ -24,6 +24,7 @@ type LabeledPointOptions = SelfOptions & PickRequired<LabeledAncillaryToolOption
 
 export default class LabeledPoint extends LabeledAncillaryTool {
 
+  // Color to be used for displaying the point
   public readonly pointColorProperty: ColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,

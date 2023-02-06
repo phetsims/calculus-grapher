@@ -26,11 +26,13 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
 export type PointType = ( typeof PointTypeValues )[number];
 
+// For capturing the state of a CurvePoint, used to support Undo feature
 export type PointState = {
   y: number;
   pointType: PointType;
 };
 
+// PhET-iO state object, for serialization
 export type CurvePointStateObject = {
   x: number;
   y: number;
@@ -41,6 +43,7 @@ export type CurvePointStateObject = {
 
 export default class CurvePoint {
 
+  // The x coordinate is fixed.
   public readonly x: number;
 
   // Using an observable Property for the y-value was considered, but it was deemed to be
@@ -48,12 +51,13 @@ export default class CurvePoint {
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public y: number;
 
+  // Metadata that tells us a bit more about this point
   public pointType: PointType;
 
-  // The initial y-coordinate passed into the CurvePoint, for resetting purposes.
+  // The initial y-coordinate, for resetting purposes.
   private readonly initialState: PointState;
 
-  // An array of all of this Point's saved states.
+  // An array of all of this Point's saved states, for Undo feature.
   private readonly savedStates: PointState [];
 
   // Vector2 representation of this CurvePoint, to be used in bamboo data sets. This instance is allocated once
@@ -106,7 +110,7 @@ export default class CurvePoint {
   //----------------------------------------------------------------------------------------
 
   /**
-   * Gets the most recently saved y-value.
+   * Gets the most-recently saved y-value.
    */
   public get lastSavedY(): number {
     return ( this.savedStates.length === 0 ) ? this.initialState.y : _.last( this.savedStates )!.y;

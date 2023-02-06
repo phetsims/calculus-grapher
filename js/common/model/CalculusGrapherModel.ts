@@ -52,7 +52,10 @@ export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjec
 
 export default class CalculusGrapherModel implements TModel {
 
+  // The graph sets that are supported by this model
   public readonly graphSets: GraphSet[];
+
+  // The graphSet that is currently selected and displayed
   public readonly graphSetProperty: Property<GraphSet>;
 
   // Properties associated with curve manipulation

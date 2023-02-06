@@ -17,8 +17,13 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class AreaUnderCurveScrubber extends AncillaryTool {
 
+  // Color for the spherical scrubber
   public readonly colorProperty: ProfileColorProperty;
+
+  // Color used to fill the area that is above x=0
   public readonly positiveFillProperty: ReadOnlyProperty<Color>;
+
+  // Color used to fill the area that is below x=0
   public readonly negativeFillProperty: ReadOnlyProperty<Color>;
 
   public constructor(
