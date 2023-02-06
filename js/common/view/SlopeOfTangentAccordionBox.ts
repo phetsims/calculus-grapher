@@ -29,7 +29,7 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
     const options = optionize<SlopeOfTangentAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
-      barometerStrokeProperty: new DerivedProperty( [ tangentScrubber.colorProperty ],
+      barColorProperty: new DerivedProperty( [ tangentScrubber.colorProperty ],
         derivativeCurveStroke => derivativeCurveStroke.withAlpha( 0.6 ) ),
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE

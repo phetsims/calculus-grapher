@@ -26,15 +26,15 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
 
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber, providedOptions: NetSignedAreaAccordionBoxOptions ) {
 
-    // color associated with barometer rectangle: changes according to value of barometer
-    const barometerStrokeProperty = new DerivedProperty(
+    // Color of the vertical bar in the barometer
+    const barColorProperty = new DerivedProperty(
       [ areaUnderCurveScrubber.yIntegralProperty, areaUnderCurveScrubber.positiveFillProperty, areaUnderCurveScrubber.negativeFillProperty ],
       ( y, positiveFill, negativeFill ) => y > 0 ? positiveFill : negativeFill );
 
     const options = optionize<NetSignedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
-      barometerStrokeProperty: barometerStrokeProperty,
+      barColorProperty: barColorProperty,
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.NET_SIGNED_AREA_MODEL_RANGE
       },

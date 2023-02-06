@@ -28,7 +28,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 const TICK_MARK_EXTENT = 20;
 
 type SelfOptions = {
-  barometerStrokeProperty: TReadOnlyProperty<Color>;
+  barColorProperty: TReadOnlyProperty<Color>;
   chartTransformOptions?: ChartTransformOptions;
   titleTextOptions?: StrictOmit<RichTextOptions, 'tandem'>;
 
@@ -139,7 +139,7 @@ export default class BarometerAccordionBox extends AccordionBox {
       y1: zeroY,
       y2: chartTransform.modelToViewY( valueProperty.value ),
       left: axisLine.right,
-      stroke: options.barometerStrokeProperty,
+      stroke: options.barColorProperty,
       lineWidth: 10
     } );
 
