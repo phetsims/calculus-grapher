@@ -119,6 +119,9 @@ export default class GraphNode extends Node {
   // Optional Property for zooming the y-axis
   protected readonly yZoomLevelProperty?: NumberProperty;
 
+  // Label in upper-left corner of the graph
+  public readonly labelNode: Node;
+
   public constructor( graphType: GraphType,
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
@@ -149,6 +152,7 @@ export default class GraphNode extends Node {
 
     this.graphType = graphType;
     this.curve = curve;
+    this.labelNode = labelNode;
 
     // The original graph does not have the zoom feature for the y-axis. If you'd like to add the zoom feature
     // to the original graph in the future, remove the if statement that surrounds this block.

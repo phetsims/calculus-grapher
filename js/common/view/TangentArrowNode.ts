@@ -41,7 +41,8 @@ export default class TangentArrowNode extends ArrowNode {
       tailWidth: 2,
       fractionalHeadHeight: 0.5,
       stroke: null,
-      doubleHead: true
+      doubleHead: true,
+      pickable: false // performance optimization
     }, providedOptions );
 
     // Initial arrow is horizontal: middle of the arrow is located at 0,0

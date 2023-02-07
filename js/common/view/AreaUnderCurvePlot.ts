@@ -40,7 +40,9 @@ export default class AreaUnderCurvePlot extends Node {
                       providedOptions?: AreaUnderCurvePlotOptions ) {
 
     const options = optionize<AreaUnderCurvePlotOptions, SelfOptions, NodeOptions>()( {
-      // we're setting options.children below
+
+      // NodeOptions
+      pickable: false // performance optimization
     }, providedOptions );
 
     // A curvePoint function to determine if the y-value of a curvePoint is positive

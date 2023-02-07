@@ -32,7 +32,8 @@ export default class PlottedPoint extends Circle {
       // CircleOptions
       stroke: null,
       fill: 'black',
-      radius: 4
+      radius: 4,
+      pickable: false // performance optimization
     }, providedOptions );
 
     super( options );

@@ -208,6 +208,11 @@ export default class OriginalGraphNode extends GraphNode {
       drag: ( event, listener ) => updateCurve( listener ),
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
+
+    // Performance optimization, see https://github.com/phetsims/calculus-grapher/issues/210
+    this.curveNode.pickable = false;
+    this.predictCurveNode.pickable = false;
+    this.labelNode.pickable = false;
   }
 
   public override reset(): void {

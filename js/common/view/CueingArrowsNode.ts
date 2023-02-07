@@ -40,7 +40,8 @@ export default class CueingArrowsNode extends VBox {
 
       // VBox Options
       spacing: 15,
-      children: [ upArrow, downArrow ]
+      children: [ upArrow, downArrow ],
+      pickable: false // performance optimization
     }, providedOptions );
 
     super( options );
