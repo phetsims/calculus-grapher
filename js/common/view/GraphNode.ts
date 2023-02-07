@@ -83,7 +83,7 @@ const DEFAULT_MAX_Y = Y_ZOOM_INFO[ DEFAULT_ZOOM_LEVEL ].max;
 
 type SelfOptions = {
 
-  // height of  the graph, in view coordinates
+  // height of the graph, in view coordinates
   graphHeight: number;
 
   // options to the bamboo ChartRectangle
