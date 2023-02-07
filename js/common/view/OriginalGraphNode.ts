@@ -58,7 +58,7 @@ export default class OriginalGraphNode extends GraphNode {
                       visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: GraphNodeOptions ) {
 
-    // Destructuring fields from model into local constants, to improve readability.
+    // Destructuring fields from the model into local constants, to improve readability.
     const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
 
     // Original curve is visible if not in predictEnabled or 'Show f(x)' checkbox is checked.
@@ -171,7 +171,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Update whichever curve is currently interactive.
     const updateCurve = ( listener: PressedDragListener ): void => {
 
-      // This listener 'field' is actually an ES5 getter that allocate a Vector2, so call it only once.
+      // This listener 'field' is actually an ES5 getter that allocates a Vector2, so call it only once.
       const modelPoint = listener.modelPoint;
 
       // Current modelPosition
