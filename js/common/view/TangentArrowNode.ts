@@ -51,32 +51,39 @@ export default class TangentArrowNode extends ArrowNode {
     // Initial angle of the arrow in view coordinates
     let oldTheta = Math.atan( this.tipY / this.tipX );
 
-    // Updates the position and orientation of the arrow.
+    // Updates the position and orientation of the arrow if this Node is visible.
     // The double-headed arrow pivots around its center.
     const updateArrow = () => {
-      const x = tangentScrubber.xProperty.value;
-      const y = tangentScrubber.yOriginalProperty.value;
-      const modelSlope = tangentScrubber.yDerivativeProperty.value;
+      if ( this.visible ) {
+        const x = tangentScrubber.xProperty.value;
+        const y = tangentScrubber.yOriginalProperty.value;
+        const modelSlope = tangentScrubber.yDerivativeProperty.value;
 
-      // View position for center of the tangent arrow
-      const point = chartTransform.modelToViewXY( x, y );
+        // View position for center of the tangent arrow
+        const point = chartTransform.modelToViewXY( x, y );
 
-      // We must convert slope into viewCoordinates
-      // Slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
-      const viewSlope = modelSlope * chartTransform.modelToViewDeltaY( 1 ) /
-                        chartTransform.modelToViewDeltaX( 1 );
-      const thetaView = Math.atan( viewSlope );
+        // We must convert slope into viewCoordinates
+        // Slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
+        const viewSlope = modelSlope * chartTransform.modelToViewDeltaY( 1 ) /
+                          chartTransform.modelToViewDeltaX( 1 );
+        const thetaView = Math.atan( viewSlope );
 
-      // Moves this point
-      this.translation = point;
+        // Moves this point
+        this.translation = point;
 
-      // We rotate this node around in view coordinates, so model angles must be reversed
-      // Fortunately thetaView already takes into account the fact that we are using an inverted y-axis
-      this.rotateAround( point, thetaView - oldTheta );
+        // We rotate this node around in view coordinates, so model angles must be reversed
+        // Fortunately thetaView already takes into account the fact that we are using an inverted y-axis
+        this.rotateAround( point, thetaView - oldTheta );
 
-      // Updates the value of old theta
-      oldTheta = thetaView;
+        // Updates the value of old theta
+        oldTheta = thetaView;
+      }
     };
+
+    // Update when this Node becomes visible.
+    this.visibleProperty.link( visible => {
+      visible && updateArrow();
+    } );
 
     chartTransform.changedEmitter.addListener( () => updateArrow() );
     Multilink.multilink(
