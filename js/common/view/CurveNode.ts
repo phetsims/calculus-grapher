@@ -113,37 +113,33 @@ export default class CurveNode extends Node {
 
     this.curve = curve;
 
-    const allPointsScatterPlotDataSet = this.getAllPointsScatterPlotDataSet();
-    const cuspsScatterPlotDataSet = this.getCuspsScatterPlotDataSet();
-    const discontinuousLinePlotDataSet = this.getDiscontinuousLinePlotDataSet();
-    const continuousLinePlotDataSet = this.getContinuousLinePlotDataSet();
-    const discontinuousPointScatterPlotDataSet = this.getDiscontinuousPointsScatterPlotDataSet();
-
-    this.continuousLinePlot = new LinePlot( chartTransform, continuousLinePlotDataSet,
+    this.continuousLinePlot = new LinePlot( chartTransform, this.getContinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke
       }, options.continuousLinePlotOptions ) );
-    this.discontinuousLinePlot = new LinePlot( chartTransform, discontinuousLinePlotDataSet,
+    this.addChild( this.continuousLinePlot );
+
+    this.discontinuousLinePlot = new LinePlot( chartTransform, this.getDiscontinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke
       }, options.discontinuousLinePlotOptions ) );
-    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, discontinuousPointScatterPlotDataSet,
-      combineOptions<ScatterPlotOptions>( {
+    this.addChild( this.discontinuousLinePlot );
+
+    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(),
+      combineOptions<LinePlotOptions>( {
         stroke: options.stroke
       }, options.discontinuousPointsScatterPlotOptions ) );
-    this.addChild( this.continuousLinePlot );
-    this.addChild( this.discontinuousLinePlot );
     this.addChild( this.discontinuousPointsScatterPlot );
 
     // For debug purposes
     if ( CalculusGrapherQueryParameters.allPoints ) {
-      this.allPointsScatterPlot = new ScatterPlot( chartTransform, allPointsScatterPlotDataSet, options.allPointsScatterPlotOptions );
+      this.allPointsScatterPlot = new ScatterPlot( chartTransform, this.getAllPointsScatterPlotDataSet(), options.allPointsScatterPlotOptions );
       this.addChild( this.allPointsScatterPlot );
     }
 
     // For debug purposes
     if ( CalculusGrapherQueryParameters.cuspPoints ) {
-      this.cuspsScatterPlot = new ScatterPlot( chartTransform, cuspsScatterPlotDataSet, options.cuspsScatterPlotOptions );
+      this.cuspsScatterPlot = new ScatterPlot( chartTransform, this.getCuspsScatterPlotDataSet(), options.cuspsScatterPlotOptions );
       this.addChild( this.cuspsScatterPlot );
     }
 
@@ -167,6 +163,8 @@ export default class CurveNode extends Node {
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
     this.discontinuousLinePlot.setDataSet( this.getDiscontinuousLinePlotDataSet() );
     this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
+
+    // optional plots, for debugging
     this.allPointsScatterPlot && this.allPointsScatterPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );
     this.cuspsScatterPlot && this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
   }
