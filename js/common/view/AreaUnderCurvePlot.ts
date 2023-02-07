@@ -16,6 +16,7 @@ import CurvePoint from '../model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,7 +43,7 @@ export default class AreaUnderCurvePlot extends Node {
     const options = optionize<AreaUnderCurvePlotOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
-      pickable: false // performance optimization
+      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     }, providedOptions );
 
     // A curvePoint function to determine if the y-value of a curvePoint is positive
@@ -66,12 +67,14 @@ export default class AreaUnderCurvePlot extends Node {
 
     // AreaPlot for the points with positive y values
     const positiveAreaPlot = new AreaPlot( chartTransform, getDataSet( isPositiveFunction ), {
-      fill: areaUnderCurveScrubber.positiveFillProperty
+      fill: areaUnderCurveScrubber.positiveFillProperty,
+      boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
     } );
 
     // AreaPlot for the points with negative y values
     const negativeAreaPlot = new AreaPlot( chartTransform, getDataSet( isNegativeFunction ), {
-      fill: areaUnderCurveScrubber.negativeFillProperty
+      fill: areaUnderCurveScrubber.negativeFillProperty,
+      boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
     } );
 
     options.children = [ positiveAreaPlot, negativeAreaPlot ];

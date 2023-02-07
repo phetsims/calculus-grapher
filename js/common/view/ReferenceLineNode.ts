@@ -55,7 +55,8 @@ export default class ReferenceLineNode extends LineToolNode {
         },
         visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
         bottom: this.line.top - 5,
-        centerX: 0
+        centerX: 0,
+        pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       } );
     this.addChild( labelNode );
 

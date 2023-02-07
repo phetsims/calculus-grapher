@@ -132,6 +132,10 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveLayer.addChild( this.predictCurveNode );
 
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( visibleProperties.showOriginalCurveProperty, {
+      touchAreaXDilation: 6,
+      touchAreaYDilation: 6,
+      mouseAreaXDilation: 3,
+      mouseAreaYDilation: 3,
       visibleProperty: predictEnabledProperty,
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
     } );
@@ -208,11 +212,6 @@ export default class OriginalGraphNode extends GraphNode {
       drag: ( event, listener ) => updateCurve( listener ),
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
-
-    // Performance optimization, see https://github.com/phetsims/calculus-grapher/issues/210
-    this.curveNode.pickable = false;
-    this.predictCurveNode.pickable = false;
-    this.labelNode.pickable = false;
   }
 
   public override reset(): void {

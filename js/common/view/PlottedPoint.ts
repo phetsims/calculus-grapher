@@ -33,7 +33,7 @@ export default class PlottedPoint extends Circle {
       stroke: null,
       fill: 'black',
       radius: 4,
-      pickable: false // performance optimization
+      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     }, providedOptions );
 
     super( options );

@@ -31,6 +31,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
@@ -39,7 +40,7 @@ type ScatterPlotDataSet = ( Vector2 )[];
 type SelfOptions = {
 
   // Color used to stroke the curve path.
-  stroke?: TColor;
+  stroke: TColor;
 
   // Line plots
   continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
@@ -69,12 +70,11 @@ export default class CurveNode extends Node {
   private readonly allPointsScatterPlot?: ScatterPlot;
   private readonly cuspsScatterPlot?: ScatterPlot;
 
-  public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) {
+  public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions: CurveNodeOptions ) {
 
     const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
-      stroke: 'black',
       continuousLinePlotOptions: {
         lineWidth: 2
       },
@@ -115,19 +115,22 @@ export default class CurveNode extends Node {
 
     this.continuousLinePlot = new LinePlot( chartTransform, this.getContinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
-        stroke: options.stroke
+        stroke: options.stroke,
+        boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
       }, options.continuousLinePlotOptions ) );
     this.addChild( this.continuousLinePlot );
 
     this.discontinuousLinePlot = new LinePlot( chartTransform, this.getDiscontinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
-        stroke: options.stroke
+        stroke: options.stroke,
+        boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
       }, options.discontinuousLinePlotOptions ) );
     this.addChild( this.discontinuousLinePlot );
 
     this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(),
-      combineOptions<LinePlotOptions>( {
-        stroke: options.stroke
+      combineOptions<ScatterPlotOptions>( {
+        stroke: options.stroke,
+        boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
       }, options.discontinuousPointsScatterPlotOptions ) );
     this.addChild( this.discontinuousPointsScatterPlot );
 

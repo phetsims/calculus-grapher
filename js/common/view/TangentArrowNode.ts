@@ -14,6 +14,7 @@ import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNo
 import TangentScrubber from '../model/TangentScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
 
@@ -42,7 +43,8 @@ export default class TangentArrowNode extends ArrowNode {
       fractionalHeadHeight: 0.5,
       stroke: null,
       doubleHead: true,
-      pickable: false // performance optimization
+      pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
+      boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
     }, providedOptions );
 
     // Initial arrow is horizontal: middle of the arrow is located at 0,0

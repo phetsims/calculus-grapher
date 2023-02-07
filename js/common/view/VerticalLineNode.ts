@@ -23,6 +23,7 @@ export default class VerticalLineNode extends LineToolNode {
   public constructor( verticalLine: VerticalLine, chartTransform: ChartTransform, tandem: Tandem ) {
 
     super( verticalLine.xProperty, chartTransform, verticalLine.lineColorProperty, {
+      pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       lineDash: [ 4, 2 ],
       visibleProperty: verticalLine.visibleProperty,
       tandem: tandem

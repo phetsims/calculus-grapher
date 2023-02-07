@@ -21,7 +21,9 @@ type SelfOptions = {
   lineBottom?: number; // see setLineBottom
 } & PickOptional<LineOptions, 'lineDash' | 'stroke'>;
 
-export type LineToolNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
+export type LineToolNodeOptions = SelfOptions &
+  PickOptional<NodeOptions, 'pickable'> &
+  PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class LineToolNode extends Node {
 
@@ -42,7 +44,8 @@ export default class LineToolNode extends Node {
 
     const line = new Line( 0, 0, options.lineTop, options.lineBottom, {
       lineDash: options.lineDash,
-      stroke: options.stroke
+      stroke: options.stroke,
+      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     } );
 
     options.children = [ line ];

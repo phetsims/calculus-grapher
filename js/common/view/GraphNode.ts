@@ -119,9 +119,6 @@ export default class GraphNode extends Node {
   // Optional Property for zooming the y-axis
   protected readonly yZoomLevelProperty?: NumberProperty;
 
-  // Label in upper-left corner of the graph
-  public readonly labelNode: Node;
-
   public constructor( graphType: GraphType,
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
@@ -145,6 +142,7 @@ export default class GraphNode extends Node {
 
     // If labelNode was not provided, create the default.
     const labelNode = options.labelNode || new GraphTypeLabelNode( graphType, {
+      pickable: false,
       tandem: options.tandem.createTandem( 'labelNode' )
     } );
 
@@ -152,7 +150,6 @@ export default class GraphNode extends Node {
 
     this.graphType = graphType;
     this.curve = curve;
-    this.labelNode = labelNode;
 
     // The original graph does not have the zoom feature for the y-axis. If you'd like to add the zoom feature
     // to the original graph in the future, remove the if statement that surrounds this block.
@@ -182,7 +179,8 @@ export default class GraphNode extends Node {
     this.curveLayer = new Node( {
       children: [ this.curveNode ],
       clipArea: this.chartRectangle.getShape(),
-      visibleProperty: this.curveLayerVisibleProperty
+      visibleProperty: this.curveLayerVisibleProperty,
+      pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
     } );
 
     // Major and minor grid lines, minor behind major.
@@ -192,12 +190,17 @@ export default class GraphNode extends Node {
     const yMinorGridLines = new GridLineSet( this.chartTransform, Orientation.VERTICAL, MINOR_GRID_LINE_SPACING, MINOR_GRID_LINE_OPTIONS );
     const gridNode = new Node( {
       children: [ xMinorGridLines, yMinorGridLines, xMajorGridLines, yMajorGridLines ],
-      visibleProperty: gridVisibleProperty
+      visibleProperty: gridVisibleProperty,
+      pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
     } );
 
     // Axes are clipped in the chart
     const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
     const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
+    const axesParent = new Node( {
+      children: [ horizontalAxisLine, verticalAxisLine ],
+      pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
+    } );
 
     // x-axis tick marks and labels
     const xSkipCoordinates = [ 0 ];
@@ -218,7 +221,8 @@ export default class GraphNode extends Node {
 
     const ticksParent = new Node( {
       children: [ xTickLabelSet, xTickMarkSet, yTickMarkSet, yTickLabelSet ],
-      visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
+      visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
+      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
@@ -259,8 +263,7 @@ export default class GraphNode extends Node {
     const children = [
       this.chartRectangle,
       gridNode,
-      horizontalAxisLine,
-      verticalAxisLine,
+      axesParent,
       ticksParent,
       labelNode,
       this.curveLayer,

@@ -53,7 +53,7 @@ type SelfOptions = {
   fontSizeOptions?: FontSizeOptions;
 };
 
-type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem'>;
+type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem' | 'pickable'>;
 
 export default class GraphTypeLabelNode extends Node {
 

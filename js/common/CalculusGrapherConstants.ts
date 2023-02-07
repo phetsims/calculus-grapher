@@ -13,6 +13,7 @@ import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 import { Text } from '../../../scenery/js/imports.js';
+import { PathBoundsMethod } from '../../../scenery/js/imports.js';
 
 const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
 
@@ -28,6 +29,11 @@ const TYPICAL_Y = 0.1 * CURVE_X_LENGTH;
 
 // typical area of original graph, used to set scale of 'Net Signed Area' barometer
 const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
+
+// Because plots are typically clipped to the ChartRectangle, we do not care about their bounds.
+// So as a performance optimization, use 'none' for the boundsMethod where we're clipping to ChartRectangle.
+// See Path.setBoundsMethod and https://github.com/phetsims/calculus-grapher/issues/210
+const PLOT_BOUNDS_METHOD: PathBoundsMethod = 'none';
 
 const CalculusGrapherConstants = {
 
@@ -85,7 +91,9 @@ const CalculusGrapherConstants = {
 
   // PhET-iO ONLY constants
   NUMBER_OF_VERTICAL_LINES: 6,
-  NUMBER_OF_POINT_LABELS: 6
+  NUMBER_OF_POINT_LABELS: 6,
+
+  PLOT_BOUNDS_METHOD: PLOT_BOUNDS_METHOD
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
