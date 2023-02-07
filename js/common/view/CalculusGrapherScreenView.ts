@@ -26,7 +26,11 @@ import PresetFunctions from '../model/PresetFunctions.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
+
+  // Items to include in the GraphSetRadioButtonGroupItem
   graphSetRadioButtonGroupItems?: GraphSetRadioButtonGroupItem[];
+
+  // Options for the main control panel
   controlPanelOptions?: Partial<CalculusGrapherControlPanelOptions>;
 };
 
@@ -34,10 +38,19 @@ export type CalculusGrapherScreenViewOptions = SelfOptions & PickRequired<Screen
 
 export default class CalculusGrapherScreenView extends ScreenView {
 
-  protected readonly visibleProperties: CalculusGrapherVisibleProperties;
   private readonly model: CalculusGrapherModel;
+
+  // Properties related to visibility of things in the view
+  protected readonly visibleProperties: CalculusGrapherVisibleProperties;
+
+  // Node responsible for displaying all graphs and their decorations
   public readonly graphsNode: GraphsNode;
+
+  // The main control panel
   protected readonly controlPanel: CalculusGrapherControlPanel;
+
+  // Instead of adding children directly to the ScreenView, add them to this parent Node, so that keyboard traversal
+  // can be supported by setting pdomOrder on this Node.  See https://github.com/phetsims/calculus-grapher/issues/123
   protected readonly screenViewRootNode: Node;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
@@ -122,8 +135,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
       } );
     }
 
-    // Instead of adding children directly to the ScreenView, add them to a parent Node, so that we can set
-    // pdomOrder on this Node.  See https://github.com/phetsims/calculus-grapher/issues/123
     this.screenViewRootNode = new Node( {
       children: children
     } );

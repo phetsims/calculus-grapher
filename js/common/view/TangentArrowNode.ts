@@ -17,7 +17,7 @@ import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = {
 
-  // From head to head, in view coordinates
+  // Length from tip to tip, in view coordinates
   arrowLength?: number;
 };
 

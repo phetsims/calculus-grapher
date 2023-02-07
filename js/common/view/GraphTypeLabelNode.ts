@@ -42,8 +42,14 @@ type FontSizeOptions = {
 };
 
 type SelfOptions = {
+
+  // dynamic notation to use for the label (Lagrange or Leibniz)
   derivativeNotationProperty?: TReadOnlyProperty<DerivativeNotation>;
+
+  // dynamic function variable to use in the label (x or t)
   functionVariableProperty?: TReadOnlyProperty<FunctionVariable>;
+
+  // font sizes for the various parts of a label
   fontSizeOptions?: FontSizeOptions;
 };
 

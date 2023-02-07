@@ -19,14 +19,14 @@
  */
 
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
-import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
+import ChartRectangle, { ChartRectangleOptions } from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
 import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, RectangleOptions, TColor, Text } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, TColor, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
@@ -82,9 +82,17 @@ const DEFAULT_ZOOM_LEVEL = 3;
 const DEFAULT_MAX_Y = Y_ZOOM_INFO[ DEFAULT_ZOOM_LEVEL ].max;
 
 type SelfOptions = {
+
+  // height of  the graph, in view coordinates
   graphHeight: number;
-  chartRectangleOptions?: RectangleOptions;
+
+  // options to the bamboo ChartRectangle
+  chartRectangleOptions?: ChartRectangleOptions;
+
+  // options function to create the CurveNode associated with this graph
   createCurveNode?: ( chartTransform: ChartTransform ) => CurveNode;
+
+  // label that appears in the upper-left corner of the graph
   labelNode?: Node;
 };
 
@@ -94,6 +102,7 @@ export default class GraphNode extends Node {
 
   public readonly graphType: GraphType;
   public readonly chartTransform: ChartTransform;
+  protected readonly chartRectangle: ChartRectangle;
 
   // The model curve to be plotted
   protected readonly curve: Curve;
@@ -109,8 +118,6 @@ export default class GraphNode extends Node {
 
   // Optional Property for zooming the y-axis
   protected readonly yZoomLevelProperty?: NumberProperty;
-
-  protected readonly chartRectangle: ChartRectangle;
 
   public constructor( graphType: GraphType,
                       curve: Curve,

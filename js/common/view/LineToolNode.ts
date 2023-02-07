@@ -25,7 +25,7 @@ export type LineToolNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tande
 
 export default class LineToolNode extends Node {
 
-  // The SCENERY Line associated the tool
+  // vertical line displayed by the tool
   protected readonly line: Line;
 
   protected constructor( xProperty: TReadOnlyProperty<number>, chartTransform: ChartTransform, lineStroke: TColor,

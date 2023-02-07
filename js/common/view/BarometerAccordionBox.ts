@@ -28,8 +28,14 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 const TICK_MARK_EXTENT = 20;
 
 type SelfOptions = {
+
+  // Color of the vertical bar in the barometer
   barColorProperty: TReadOnlyProperty<Color>;
+
+  // bamboo ChartTransform
   chartTransformOptions?: ChartTransformOptions;
+
+  // options for the accordion box's title Text
   titleTextOptions?: StrictOmit<RichTextOptions, 'tandem'>;
 
   // number of ticks for the quantitative layer (visible when valuesVisible is set to true)

@@ -38,13 +38,14 @@ type ScatterPlotDataSet = ( Vector2 )[];
 
 type SelfOptions = {
 
+  // Color used to stroke the curve path.
   stroke?: TColor;
 
   // Line plots
   continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
   discontinuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
 
-  // Scatter plots
+  // Scatter plots, with optional plots for debugging
   discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
@@ -56,6 +57,10 @@ export type CurveNodeOptions = SelfOptions &
 
 export default class CurveNode extends Node {
 
+  // The curve that this Node displays
+  public readonly curve: Curve;
+
+  // plots
   protected readonly continuousLinePlot: LinePlot;
   private readonly discontinuousLinePlot: LinePlot;
   private readonly discontinuousPointsScatterPlot: ScatterPlot;
@@ -63,8 +68,6 @@ export default class CurveNode extends Node {
   // These plots are created conditionally for debugging. See ?allPoints and ?cuspPoints.
   private readonly allPointsScatterPlot?: ScatterPlot;
   private readonly cuspsScatterPlot?: ScatterPlot;
-
-  public readonly curve: Curve;
 
   public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions?: CurveNodeOptions ) {
 

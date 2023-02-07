@@ -26,14 +26,14 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
-  hasSmoothButton?: boolean;
+  hasSmoothButton?: boolean; // should the 'Smooth' button be included in CurvePushButtonGroup?
 };
 
 export type CalculusGrapherControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
 
 export default class CalculusGrapherControlPanel extends Panel {
 
-  private contentNode: Node;
+  private contentNode: Node; // the Node contained inside this Panel
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       predictEnabledProperty: Property<boolean>,
