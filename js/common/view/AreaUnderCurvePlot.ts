@@ -78,12 +78,20 @@ export default class AreaUnderCurvePlot extends Node {
 
     super( options );
 
+    // Update the plot if its visible
     const updateDataSets = () => {
-      positiveAreaPlot.setDataSet( getDataSet( isPositiveFunction ) );
-      negativeAreaPlot.setDataSet( getDataSet( isNegativeFunction ) );
+      if ( this.visible ) {
+        positiveAreaPlot.setDataSet( getDataSet( isPositiveFunction ) );
+        negativeAreaPlot.setDataSet( getDataSet( isNegativeFunction ) );
+      }
     };
     curve.curveChangedEmitter.addListener( updateDataSets );
     xProperty.link( updateDataSets );
+
+    // Update when this plot becomes visible
+    this.visibleProperty.link( visible => {
+      visible && updateDataSets();
+    } );
 
     this.addLinkedElement( areaUnderCurveScrubber, {
       tandem: options.tandem.createTandem( areaUnderCurveScrubber.tandem.name )
