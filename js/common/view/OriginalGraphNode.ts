@@ -170,9 +170,6 @@ export default class OriginalGraphNode extends GraphNode {
       // Current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
 
-      // Previous (model) position the drag
-
-
       // Update curve based on mode and width
       interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
         curveManipulationProperties.mode,
