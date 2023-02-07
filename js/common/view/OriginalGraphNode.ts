@@ -159,9 +159,12 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : originalCurveNode
     );
 
-    // Update whichever curve is currently interactive.
+    // Variables to keep track of old model positions associated with the dragListener.
+    // Set them to null as no drag event has occurred yet.
     let penultimatePosition: Vector2 | null = null;
     let antepenultimatePosition: Vector2 | null = null;
+
+    // Update whichever curve is currently interactive.
     const updateCurve = ( listener: PressedDragListener ): void => {
 
       // These listener 'fields' are actually ES5 getters that allocate a Vector2, so call them only once.
@@ -178,7 +181,7 @@ export default class OriginalGraphNode extends GraphNode {
         penultimatePosition,
         antepenultimatePosition );
 
-      // Update antepenultimatePosition
+      // Update (model) antepenultimatePosition and penultimatePosition
       antepenultimatePosition = penultimatePosition;
       penultimatePosition = modelPosition;
     };
