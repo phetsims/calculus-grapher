@@ -100,6 +100,55 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Smooths the curve. It is called when the user presses the 'smooth' button.
+   * This method uses a weighted-average algorithm for 'smoothing' a curve, using a gaussian kernel
+   * see https://en.wikipedia.org/wiki/Kernel_smoother
+   */
+  public smooth(): void {
+
+    // Saves the current values of our Points for the next undoToLastSave call.
+    // Note that the current y-values are the same as the previous y-values
+    // for all Points in the TransformedCurve.
+    this.saveCurrentPoints();
+
+    // Normalized gaussian kernel that will be used in the convolution of our curve
+    const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+    const gaussianFunction = ( x: number ) => normalizationFactor * Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 );
+
+    // Loops through each Point of the curve and set the new y-value.
+    this.points.forEach( point => {
+
+      // Flag that tracks the sum over all points of the weighted y-values
+      let weightedY = 0;
+      let totalWeight = 0;
+
+      // We want to use the kernel over a number of standard deviations.
+      // Beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so it becomes irrelevant.
+      const numberOfStandardDeviations = 3;
+
+      // Loops through each point on BOTH sides of the window, adding the y-value to our total.
+      for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
+            dx < numberOfStandardDeviations * STANDARD_DEVIATION;
+            dx += this.deltaX ) {
+
+        // Weight of the point
+        const weight = gaussianFunction( dx );
+
+        totalWeight += weight;
+
+        // Adds the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
+        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
+      }
+
+      // Sets the Point's new y-value to the weighted average.
+      point.y = weightedY / totalWeight;
+    } );
+
+    // Signals that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
   private createTriangleAt( width: number, peakX: number, peakY: number ): void {
@@ -117,7 +166,7 @@ export default class TransformedCurve extends Curve {
       const newY = peakY - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
 
       // If the point is within the 'width' of the triangle, modify the y position.
-      // Otherwise , the point is not within the width and don't modify its position.
+      // Otherwise, the point is not within the width and don't modify its position.
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
@@ -139,7 +188,7 @@ export default class TransformedCurve extends Curve {
     const gaussianWeight = ( x: number, mu: number ) =>
       Math.exp( -1 * ( ( x - mu ) / EDGE_SLOPE_FACTOR ) ** 4 );
 
-    // Width at the top of pedestal: The width as defined above represents the width at the base, the plateau width
+    // Width at the top of the pedestal: The width as defined above represents the width at the base, the plateau width
     // must therefore take into account the width of the edges.
     const plateauWidth = width - 2 * EDGE_SLOPE_FACTOR;
 
@@ -190,7 +239,7 @@ export default class TransformedCurve extends Curve {
       const newY = peakY - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
 
       // If the point is within the 'width' of the parabola, modify the y position.
-      // Otherwise , the point is not within the width and don't modify its position.
+      // Otherwise, the point is not within the width and don't modify its position.
       if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
         point.y = newY;
       }
@@ -198,6 +247,37 @@ export default class TransformedCurve extends Curve {
         point.y = point.lastSavedY;
       }
     } );
+  }
+
+  public manipulateCurve( mode: CurveManipulationMode,
+                          width: number,
+                          position: Vector2,
+                          penultimatePosition: Vector2 | null,
+                          antepenultimatePosition: Vector2 | null ): void {
+
+    this.wasManipulatedProperty.value = true;
+
+    if ( mode === CurveManipulationMode.HILL ||
+         mode === CurveManipulationMode.PARABOLA ||
+         mode === CurveManipulationMode.PEDESTAL ||
+         mode === CurveManipulationMode.TRIANGLE ||
+         mode === CurveManipulationMode.SINE
+    ) {
+      this.widthManipulatedCurve( mode, width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.TILT ||
+              mode === CurveManipulationMode.SHIFT ) {
+      this.positionManipulatedCurve( mode, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+
+    // Signals that this Curve has changed.
+    this.curveChangedEmitter.emit();
   }
 
   /**
@@ -219,7 +299,7 @@ export default class TransformedCurve extends Curve {
     const weightFunction = ( point: CurvePoint, highX: number, lowX: number ) =>
       Math.cos( Math.PI / 2 * ( point.x - highX ) / Math.abs( lowX - highX ) ) ** 2;
 
-    // Base width where we apply the sinusoidal function - ideally it should be an odd multiple of half wavelengths
+    // Base width where we apply the sinusoidal function - ideally it should be an odd multiple of half-wavelengths
     const cosineBase = 7 * ( wavelength / 2 );
 
     // Width of the transition region to the left and right - ideally should be less than a quarter wavelength
@@ -277,42 +357,11 @@ export default class TransformedCurve extends Curve {
     );
   }
 
-  public manipulateCurve( mode: CurveManipulationMode,
-                          width: number,
-                          position: Vector2,
-                          penultimatePosition: Vector2 | null,
-                          antepenultimatePosition: Vector2 | null ): void {
-
-    this.wasManipulatedProperty.value = true;
-
-    if ( mode === CurveManipulationMode.HILL ||
-         mode === CurveManipulationMode.PARABOLA ||
-         mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.SINE
-    ) {
-      this.widthManipulatedCurve( mode, width, position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.TILT ||
-              mode === CurveManipulationMode.SHIFT ) {
-      this.positionManipulatedCurve( mode, position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
-
-    // Signals that this Curve has changed.
-    this.curveChangedEmitter.emit();
-  }
-
   /**
-   * Allows the user to drag Points in the Curve to any desired position to create custom but smooth shapes.
+   * Allows the user to drag Points in the Curve to any desired position to create customs but smooth shapes.
    * This method will update the curve with the new position value. It attempts to create a smooth curve
    * between position and antepenultimatePosition. The penultimatePosition is used to infer the degree of
-   * curvature of the position and antepenultimatePosition.
+   * curvature from the position and antepenultimatePosition.
    * The main goal of the drawToForm method is to create a curve segment that is smooth enough that it can be
    * twice differentiable without generating discontinuities.
    *
@@ -356,7 +405,7 @@ export default class TransformedCurve extends Curve {
         // Checks that the lastPoint is between cp1 and cp2
         if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
 
-          // x separation between two adjacent points in curve array
+          // x separation between two adjacent points in a curve array
           const deltaX = this.deltaX;
 
           // x distance between cp1 and lastPoint
@@ -373,7 +422,7 @@ export default class TransformedCurve extends Curve {
           const b = 2 * signedOne * ( -cp1Point.x + lastPoint.x );
 
           // We want to iterate over all the points between cp1 and cp2
-          // and assign them a value associated with a quadratic Bezier curve P(t) where t='time'
+          // and assign them a value associated with a quadratic Bézier curve P(t) where t='time'
           // P(t) = (1-t^2)*cp1Point +2*(1-t)*lastPoint + t^2 cp2Point where t ranges from 0 to 1
 
           for ( let dx = deltaX; dx < distXl + distXR; dx += deltaX ) {
@@ -386,7 +435,6 @@ export default class TransformedCurve extends Curve {
             const epsilon = 0.00001;
             const t = roots.filter( t => t >= -epsilon && t <= 1 + epsilon )[ 0 ];
 
-            // Sanity check
             assert && assert( t >= -epsilon && t <= 1 + epsilon, `t should be between 0 and 1 (inclusive): 
            ${roots[ 0 ]} and ${roots[ 1 ]}: a:${a}, b:${b}, c:${-dx}` );
 
@@ -399,33 +447,6 @@ export default class TransformedCurve extends Curve {
           }
         }
       }
-    }
-  }
-
-  /**
-   * Sets the y-value of points between position1 and position2 using a linear interpolation
-   */
-  private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
-
-    // x-separation between two adjacent points in curve array
-    const deltaX = this.deltaX;
-
-    // x-distance between the new and old point
-    const distX = Math.abs( x1 - x2 );
-
-    const signedOne: number = ( x1 > x2 ) ? -1 : 1;
-
-    // Performs a linear interpolation between position1 and position2
-    for ( let dx = deltaX; dx < distX; dx += deltaX ) {
-
-      // The xPosition of the point to be interpolated, is either to the left or right of position1
-      const xPosition = x1 + signedOne * dx;
-
-      // Weight needed to interpolate the y-values, weight will never exceed 1.
-      const W = dx / distX;
-
-      // Updates the y value of an intermediate point
-      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * y1 + W * y2;
     }
   }
 
@@ -517,52 +538,30 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Smooths the curve. Called when the user presses the 'smooth' button
-   * This method uses a weighted-average algorithm for 'smoothing' a curve, using a gaussian kernel
-   * see https://en.wikipedia.org/wiki/Kernel_smoother
+   * Sets the y-value of points between position1 and position2 using a linear interpolation
    */
-  public smooth(): void {
+  private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
 
-    // Saves the current values of our Points for the next undoToLastSave call.
-    // Note that the current y-values are the same as the previous y-values
-    // for all Points in the TransformedCurve.
-    this.saveCurrentPoints();
+    // x-separation between two adjacent points in a curve array
+    const deltaX = this.deltaX;
 
-    // Normalized gaussian kernel that will be used in the convolution of our curve
-    const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
-    const gaussianFunction = ( x: number ) => normalizationFactor * Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 );
+    // x-distance between the new and old point
+    const distX = Math.abs( x1 - x2 );
 
-    // Loops through each Point of the curve and set the new y-value.
-    this.points.forEach( point => {
+    const signedOne: number = ( x1 > x2 ) ? -1 : 1;
 
-      // Flag that tracks the sum of the weighted y-values of all Points
-      let weightedY = 0;
-      let totalWeight = 0;
+    // Performs a linear interpolation between position1 and position2
+    for ( let dx = deltaX; dx < distX; dx += deltaX ) {
 
-      // We want to use the kernel over a number of standard deviations
-      // beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so it becomes irrelevant.
-      const numberOfStandardDeviations = 3;
+      // The xPosition of the point to be interpolated, is either to the left or right of position1
+      const xPosition = x1 + signedOne * dx;
 
-      // Loops through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
-            dx < numberOfStandardDeviations * STANDARD_DEVIATION;
-            dx += this.deltaX ) {
+      // Weight needed to interpolate the y-values, weight will never exceed 1.
+      const W = dx / distX;
 
-        // Weight of the point
-        const weight = gaussianFunction( dx );
-
-        totalWeight += weight;
-
-        // Adds the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
-        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
-      }
-
-      // Sets the Point's new y-value to the weighted average.
-      point.y = weightedY / totalWeight;
-    } );
-
-    // Signals that this Curve has changed.
-    this.curveChangedEmitter.emit();
+      // Updates the y value of an intermediate point
+      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * y1 + W * y2;
+    }
   }
 
   public freeformIconCurve( yMin: number, yMax: number ): void {
@@ -625,7 +624,7 @@ export default class TransformedCurve extends Curve {
       this.getClosestPointAt( simplePoint.x ).y = simplePoint.y;
     } );
 
-    // Assigns intermediate curve points by iterating over pair of simple points
+    // Assigns intermediate curve points by iterating over a pair of simple points
     for ( let i = 1; i < simplePoints.length; i++ ) {
       const p1 = simplePoints[ i - 1 ];
       const p2 = simplePoints[ i ];
