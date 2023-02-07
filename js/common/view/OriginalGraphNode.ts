@@ -167,7 +167,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Update whichever curve is currently interactive.
     const updateCurve = ( listener: PressedDragListener ): void => {
 
-      // These listener 'fields' are actually ES5 getters that allocate a Vector2, so call them only once.
+      // This listener 'field' is actually an ES5 getter that allocate a Vector2, so call it only once.
       const modelPoint = listener.modelPoint;
 
       // Current modelPosition
