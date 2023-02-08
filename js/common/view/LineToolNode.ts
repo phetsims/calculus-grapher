@@ -17,6 +17,8 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = {
+  lineStroke?: TColor;
+  lineWidth?: number;
   lineTop?: number;  // see setLineTop
   lineBottom?: number; // see setLineBottom
 } & PickOptional<LineOptions, 'lineDash' | 'stroke'>;
@@ -30,12 +32,14 @@ export default class LineToolNode extends Node {
   // vertical line displayed by the tool
   protected readonly line: Line;
 
-  protected constructor( xProperty: TReadOnlyProperty<number>, chartTransform: ChartTransform, lineStroke: TColor,
+  protected constructor( xProperty: TReadOnlyProperty<number>, chartTransform: ChartTransform,
                          providedOptions: LineToolNodeOptions ) {
 
     const options = optionize<LineToolNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
+      lineStroke: 'black',
+      lineWidth: 1,
       lineTop: 0,
       lineBottom: 100,
       lineDash: [],
@@ -43,8 +47,9 @@ export default class LineToolNode extends Node {
     }, providedOptions );
 
     const line = new Line( 0, 0, options.lineTop, options.lineBottom, {
+      stroke: options.lineStroke,
+      lineWidth: options.lineWidth,
       lineDash: options.lineDash,
-      stroke: options.stroke,
       pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     } );
 

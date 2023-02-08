@@ -33,7 +33,8 @@ export default class ReferenceLineNode extends LineToolNode {
                       chartTransform: ChartTransform,
                       tandem: Tandem ) {
 
-    super( referenceLine.xProperty, chartTransform, CalculusGrapherColors.referenceLineStrokeProperty, {
+    super( referenceLine.xProperty, chartTransform, {
+      lineStroke: CalculusGrapherColors.referenceLineStrokeProperty,
       visibleProperty: referenceLine.visibleProperty,
       tandem: tandem
     } );
