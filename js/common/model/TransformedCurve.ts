@@ -285,6 +285,8 @@ export default class TransformedCurve extends Curve {
    */
   public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
 
+    assert && assert( mode.hasAdjustableWidth, `mode must have adjustable width: ${mode}` );
+
     if ( mode === CurveManipulationMode.HILL ) {
       this.createHillAt( width, x, y );
     }
@@ -438,6 +440,24 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Sets the points for all modes that can be manipulated solely through a position argument.
+   */
+  public positionManipulatedCurve( mode: CurveManipulationMode, x: number, y: number ): void {
+
+    assert && assert( !mode.hasAdjustableWidth, `mode cannot have adjustable width: ${mode}` );
+
+    if ( mode === CurveManipulationMode.TILT ) {
+      this.tiltToPosition( x, y );
+    }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+      this.shiftToPosition( x, y );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+  }
+
+  /**
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    */
   private createSinusoidAt( width: number, x: number, y: number ): void {
@@ -483,7 +503,7 @@ export default class TransformedCurve extends Curve {
     this.points.forEach( point => {
 
         // Weight associated with the sinusoidal function:  0<=P<=1
-        // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
+      // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
       // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
         let P: number;
 
@@ -512,22 +532,6 @@ export default class TransformedCurve extends Curve {
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
       }
     );
-  }
-
-  /**
-   * Sets the points for all modes that can be manipulated solely through a position argument.
-   */
-  public positionManipulatedCurve( mode: CurveManipulationMode, x: number, y: number ): void {
-
-    if ( mode === CurveManipulationMode.TILT ) {
-      this.tiltToPosition( x, y );
-    }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
-      this.shiftToPosition( x, y );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
   }
 
   /**
