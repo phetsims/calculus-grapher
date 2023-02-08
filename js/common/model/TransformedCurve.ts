@@ -327,7 +327,7 @@ export default class TransformedCurve extends Curve {
 
         // Weight associated with the sinusoidal function:  0<=P<=1
         // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
-        // whereas P=0 is only the previous function/curve (sinusoidal function has no effect).
+      // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
         let P: number;
 
         if ( point.x >= leftMax && point.x <= rightMin ) {
