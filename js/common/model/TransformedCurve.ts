@@ -36,6 +36,7 @@ const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
 const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDeviation;
 const MAX_TILT = CalculusGrapherQueryParameters.maxTilt;
 const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
+const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
 
 type SelfOptions = EmptySelfOptions;
 
@@ -339,11 +340,12 @@ export default class TransformedCurve extends Curve {
     }
     else {
 
-      // it is the first point, create a hill with very narrow width
-
-      // TODO: remove magic number
-      this.createHillAt( 0.25, closestPoint.x, closestPoint.y );
+      // There is no position associated with the last drag event.
+      // Let's create a hill with a narrow width at the closestPoint.
+      // See https://github.com/phetsims/calculus-grapher/issues/218
+      this.createHillAt( WEE_WIDTH, closestPoint.x, closestPoint.y );
     }
+
     if ( penultimatePosition && antepenultimatePosition ) {
 
       const lastPoint = this.getClosestPointAt( penultimatePosition.x );
@@ -502,31 +504,31 @@ export default class TransformedCurve extends Curve {
 
     this.points.forEach( point => {
 
-        // Weight associated with the sinusoidal function:  0<=P<=1
+      // Weight associated with the sinusoidal function:  0<=P<=1
       // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
       // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
-        let P: number;
+      let P: number;
 
-        if ( point.x >= leftMax && point.x <= rightMin ) {
+      if ( point.x >= leftMax && point.x <= rightMin ) {
 
-          // In the inner region, always have a pure sinusoidal, weight of 1
-          P = 1;
-        }
-        else if ( point.x > leftMin && point.x < leftMax ) {
+        // In the inner region, always have a pure sinusoidal, weight of 1
+        P = 1;
+      }
+      else if ( point.x > leftMin && point.x < leftMax ) {
 
-          // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
-          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
-        }
-        else if ( point.x > rightMin && point.x < rightMax ) {
+        // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+        P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+      }
+      else if ( point.x > rightMin && point.x < rightMax ) {
 
-          // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
-          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
-        }
-        else {
+        // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+        P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+      }
+      else {
 
-          // Outside the cosine base, the weight is zero
-          P = 0;
-        }
+        // Outside the cosine base, the weight is zero
+        P = 0;
+      }
 
         // Assign the y value with the correct weight
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
