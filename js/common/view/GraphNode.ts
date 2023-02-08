@@ -128,6 +128,7 @@ export default class GraphNode extends Node {
 
       // SelfOptions
       createCurveNode: ( chartTransform: ChartTransform ) => new CurveNode( curve, chartTransform, {
+        plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
         stroke: graphType.strokeProperty,
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       } ),

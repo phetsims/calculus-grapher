@@ -31,7 +31,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
@@ -111,7 +110,7 @@ export default class CurveNode extends Node {
       // NodeOptions
       phetioVisiblePropertyInstrumented: false,
 
-      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
+      plotBoundsMethod: 'accurate'
 
     }, providedOptions );
 

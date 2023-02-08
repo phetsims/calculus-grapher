@@ -89,6 +89,7 @@ export default class OriginalGraphNode extends GraphNode {
       // GraphNodeOptions
       createCurveNode: ( chartTransform: ChartTransform ) =>
         new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
+          plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
           stroke: graphType.strokeProperty,
           continuousLinePlotOptions: {
             lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
@@ -124,6 +125,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
+      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
       isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,

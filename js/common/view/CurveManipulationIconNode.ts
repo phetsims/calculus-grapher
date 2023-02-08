@@ -83,7 +83,6 @@ export default class CurveManipulationIconNode extends Node {
 
     // Create the solid curve node.
     const solidCurveNode = new CurveNode( solidCurve, chartTransform, {
-      plotBoundsMethod: 'accurate', // see https://github.com/phetsims/calculus-grapher/issues/226
       stroke: stroke,
       tandem: Tandem.OPT_OUT
     } );
@@ -93,7 +92,6 @@ export default class CurveManipulationIconNode extends Node {
     // Create the dashed curve node for these modes only.
     if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
       const dashedCurveNode = new CurveNode( dashedCurve, chartTransform, {
-        plotBoundsMethod: 'accurate', // see https://github.com/phetsims/calculus-grapher/issues/226
         stroke: stroke,
         continuousLinePlotOptions: {
           lineDash: [ 4.5, 2 ],
