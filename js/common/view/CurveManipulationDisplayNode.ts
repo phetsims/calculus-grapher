@@ -41,6 +41,7 @@ export default class CurveManipulationDisplayNode extends Node {
     const chartRectangle = new ChartRectangle( chartTransform );
 
     const curveNode = new CurveNode( curve, chartTransform, {
+      plotBoundsMethod: 'accurate', // see https://github.com/phetsims/calculus-grapher/issues/226
       clipArea: chartRectangle.getShape(),
       stroke: curveManipulationStroke,
       tandem: tandem.createTandem( 'curveNode' )
