@@ -68,7 +68,7 @@ export default class TransformedCurve extends Curve {
 
     this.wasManipulatedProperty.reset();
 
-    // Resets every CurvePoint to its initial state.
+    // Reset every CurvePoint to its initial state.
     this.points.forEach( point => point.reset() );
     this.curveChangedEmitter.emit();
   }
@@ -83,21 +83,6 @@ export default class TransformedCurve extends Curve {
 
     // Save the current y-value of each CurvePoint.
     this.points.forEach( point => point.save() );
-  }
-
-  /**
-   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
-   */
-  private createHillAt( width: number, peakX: number, peakY: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peakX );
-
-    this.points.forEach( point => {
-
-      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
-
-      point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
-    } );
   }
 
   /**
@@ -137,11 +122,11 @@ export default class TransformedCurve extends Curve {
 
         totalWeight += weight;
 
-        // Adds the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
+        // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
         weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
       }
 
-      // Sets the Point's new y-value to the weighted average.
+      // Set the Point's new y-value to the weighted average.
       point.y = weightedY / totalWeight;
     } );
 
@@ -149,32 +134,47 @@ export default class TransformedCurve extends Curve {
     this.curveChangedEmitter.emit();
   }
 
+  public manipulateCurve( mode: CurveManipulationMode,
+                          width: number,
+                          position: Vector2,
+                          penultimatePosition: Vector2 | null,
+                          antepenultimatePosition: Vector2 | null ): void {
+
+    this.wasManipulatedProperty.value = true;
+
+    if ( mode === CurveManipulationMode.HILL ||
+         mode === CurveManipulationMode.PARABOLA ||
+         mode === CurveManipulationMode.PEDESTAL ||
+         mode === CurveManipulationMode.TRIANGLE ||
+         mode === CurveManipulationMode.SINUSOID
+    ) {
+      this.widthManipulatedCurve( mode, width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.TILT ||
+              mode === CurveManipulationMode.SHIFT ) {
+      this.positionManipulatedCurve( mode, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
   /**
-   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
+   * Shifts the curve to the specified drag position, in model coordinates.
    */
-  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
+  public shiftToPosition( x: number, y: number ): void {
 
-    const closestPoint = this.getClosestPointAt( peakX );
+    // Amount to shift the entire curve.
+    const deltaY = y - this.getClosestPointAt( x ).y;
 
-    // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peakY - closestPoint.lastSavedY;
-
-    // Sets the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
-    // to this.curveManipulationWidth when the peak is at typicalY value
-    const slope = TYPICAL_Y / ( width / 2 );
-
-    this.points.forEach( point => {
-      const newY = peakY - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
-
-      // If the point is within the 'width' of the triangle, modify the y position.
-      // Otherwise, the point is not within the width and don't modify its position.
-      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
-        point.y = newY;
-      }
-      else {
-        point.y = point.lastSavedY;
-      }
-    } );
+    // Shift each of the CurvePoints by deltaY.
+    this.points.forEach( point => {point.y += deltaY;} );
   }
 
   /**
@@ -250,34 +250,16 @@ export default class TransformedCurve extends Curve {
     } );
   }
 
-  public manipulateCurve( mode: CurveManipulationMode,
-                          width: number,
-                          position: Vector2,
-                          penultimatePosition: Vector2 | null,
-                          antepenultimatePosition: Vector2 | null ): void {
+  /**
+   * Sets the y-values of this CurvedPoints of this Curve to its last saved state.
+   * This method is invoked when the undo button is pressed, which successively undos the last action.
+   */
+  public undoToLastSave(): void {
 
-    this.wasManipulatedProperty.value = true;
+    // Revert to the saved y-value of each CurvePoint.
+    this.points.forEach( point => point.undoToLastSave() );
 
-    if ( mode === CurveManipulationMode.HILL ||
-         mode === CurveManipulationMode.PARABOLA ||
-         mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.SINUSOID
-    ) {
-      this.widthManipulatedCurve( mode, width, position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.TILT ||
-              mode === CurveManipulationMode.SHIFT ) {
-      this.positionManipulatedCurve( mode, position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
-
-    // Signals that this Curve has changed.
+    // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
 
@@ -309,136 +291,64 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Allows the user to drag Points in the Curve to any desired position to create customs but smooth shapes.
-   * This method will update the curve with the new position value. It attempts to create a smooth curve
-   * between position and antepenultimatePosition. The penultimatePosition is used to infer the degree of
-   * curvature from the position and antepenultimatePosition.
-   * The main goal of the drawToForm method is to create a curve segment that is smooth enough that it can be
-   * twice differentiable without generating discontinuities.
-   *
-   * @param position - in model coordinates
-   * @param penultimatePosition - in model coordinates
-   * @param antepenultimatePosition - in model coordinates
+   * Applies a preset function.
    */
-  private drawFreeformToPosition( position: Vector2,
-                                  penultimatePosition: Vector2 | null,
-                                  antepenultimatePosition: Vector2 | null ): void {
+  public applyPresetFunction( presetFunction: PresetFunction ): void {
 
-    // Closest point associated with the position
-    const closestPoint = this.getClosestPointAt( position.x );
-
-    // Amount to shift the CurvePoint closest to the passed-in position.
-    closestPoint.y = position.y;
-
-    // Point associated with the last drag event
-    if ( penultimatePosition ) {
-      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
-
-      // We want to create a straight line between this point and the last drag event point
-      const closestVector = closestPoint.getVector();
-      this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
+    if ( presetFunction.xPositions ) {
+      const simplePoints = presetFunction.xPositions.map( x => new Vector2( x, presetFunction.mathFunction( x ) ) );
+      this.applyFromSimplePoints( simplePoints );
     }
     else {
-
-      // There is no position associated with the last drag event.
-      // Let's create a hill with a narrow width at the closestPoint.
-      // See https://github.com/phetsims/calculus-grapher/issues/218
-      this.createHillAt( WEE_WIDTH, closestPoint.x, closestPoint.y );
+      this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
     }
 
-    if ( penultimatePosition && antepenultimatePosition ) {
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
 
-      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+  /**
+   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
+   */
+  private createHillAt( width: number, peakX: number, peakY: number ): void {
 
-      // Point associated with the last drag event
-      const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
+    const closestPoint = this.getClosestPointAt( peakX );
 
-      // Checks that lastPoint is in between closestPoint and lastPoint
-      if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
+    this.points.forEach( point => {
 
-        // Finds two control points that are approximately midway between our three points
-        const cp1Point = this.getClosestPointAt( ( closestPoint.x + lastPoint.x ) / 2 );
-        const cp2Point = this.getClosestPointAt( ( nextToLastPoint.x + lastPoint.x ) / 2 );
+      // Determine the weight associated with the peak
+      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
 
-        // Checks that the lastPoint is between cp1 and cp2
-        if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
+      point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
+    } );
+  }
 
-          // x separation between two adjacent points in a curve array
-          const deltaX = this.deltaX;
+  /**
+   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
+   */
+  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
 
-          // x distance between cp1 and lastPoint
-          const distXl = Math.abs( cp1Point.x - lastPoint.x );
+    const closestPoint = this.getClosestPointAt( peakX );
 
-          // x distance between the cp2 and lastPoint
-          const distXR = Math.abs( cp2Point.x - lastPoint.x );
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peakY - closestPoint.lastSavedY;
 
-          // Determines if cp1 is to the left or right of last point. Assign a sign of + 1 or -1.
-          const signedOne: number = ( cp1Point.x < lastPoint.x ) ? 1 : -1;
+    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at typicalY value
+    const slope = TYPICAL_Y / ( width / 2 );
 
-          // Parameter of a quadratic equation
-          const a = signedOne * ( cp1Point.x - 2 * lastPoint.x + cp2Point.x );
-          const b = 2 * signedOne * ( -cp1Point.x + lastPoint.x );
+    this.points.forEach( point => {
+      const newY = peakY - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
 
-          // We want to iterate over all the points between cp1 and cp2
-          // and assign them a value associated with a quadratic Bézier curve P(t) where t='time'
-          // P(t) = (1-t^2)*cp1Point +2*(1-t)*lastPoint + t^2 cp2Point where t ranges from 0 to 1
-
-          for ( let dx = deltaX; dx < distXl + distXR; dx += deltaX ) {
-
-            // Work backward by solving for the time, given a desired x position
-            // by construction, there will always be two real roots for the 'time' t
-            const roots = Utils.solveQuadraticRootsReal( a, b, -dx )!;
-
-            // One of these roots will always be between [0,1], allow for a bit of rounding errors (see #92)
-            const epsilon = 0.00001;
-            const t = roots.filter( t => t >= -epsilon && t <= 1 + epsilon )[ 0 ];
-
-            assert && assert( t >= -epsilon && t <= 1 + epsilon, `t should be between 0 and 1 (inclusive): 
-           ${roots[ 0 ]} and ${roots[ 1 ]}: a:${a}, b:${b}, c:${-dx}` );
-
-            const xPosition = cp1Point.x + signedOne * dx;
-
-            // Updates the y-value: We need to use the y old point value as we iterate on an array of points that includes it.
-            this.getClosestPointAt( xPosition ).y = ( 1 - t ) ** 2 * cp1Point.y +
-                                                    2 * ( 1 - t ) * t * penultimatePosition.y +
-                                                    ( t ** 2 ) * cp2Point.y;
-          }
-        }
+      // If the point is within the 'width' of the triangle, modify the y position.
+      // Otherwise, the point is not within the width and don't modify its position.
+      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
+        point.y = newY;
       }
-    }
-  }
-
-  /**
-   * Shifts the curve to the specified drag position, in model coordinates.
-   */
-  public shiftToPosition( x: number, y: number ): void {
-
-    // Amount to shift the entire curve.
-    const deltaY = y - this.getClosestPointAt( x ).y;
-
-    // Shifts each of the CurvePoints by deltaY.
-    this.points.forEach( point => {point.y += deltaY;} );
-  }
-
-  /**
-   * Tilts the curve to the specified drag position, in model coordinates.
-   */
-  private tiltToPosition( x: number, y: number ): void {
-
-    if ( x !== 0 ) {
-
-      // Finds the angle of the tilt, based on where the user dragged the Curve
-      const angle = Math.atan( y / x );
-
-      // Clamped angle has to be between a range set by MAX_TILT
-      const clampedAngle = Utils.clamp( angle, -MAX_TILT, MAX_TILT );
-
-      // Amount to shift the CurvePoint closest to the passed-in position.
-      const deltaY = Math.tan( clampedAngle ) * x - this.getClosestPointAt( x ).lastSavedY;
-
-      // Shifts each of the CurvePoints by a factor of deltaY.
-      this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / x;} );
-    }
+      else {
+        point.y = point.lastSavedY;
+      }
+    } );
   }
 
   /**
@@ -537,42 +447,123 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the y-values of this CurvedPoints of this Curve to its last saved state.
-   * This method is invoked when the undo button is pressed, which successively undos the last action.
+   * Allows the user to drag Points in the Curve to any desired position to create customs but smooth shapes.
+   * This method will update the curve with the new position value. It attempts to create a smooth curve
+   * between position and antepenultimatePosition. The penultimatePosition is used to infer the degree of
+   * curvature from the position and antepenultimatePosition.
+   * The main goal of the drawToForm method is to create a curve segment that is smooth enough that it can be
+   * twice differentiable without generating discontinuities.
+   *
+   * @param position - in model coordinates
+   * @param penultimatePosition - in model coordinates
+   * @param antepenultimatePosition - in model coordinates
    */
-  public undoToLastSave(): void {
+  private drawFreeformToPosition( position: Vector2,
+                                  penultimatePosition: Vector2 | null,
+                                  antepenultimatePosition: Vector2 | null ): void {
 
-    // Reverts to the saved y-value of each CurvePoint.
-    this.points.forEach( point => point.undoToLastSave() );
+    // Closest point associated with the position
+    const closestPoint = this.getClosestPointAt( position.x );
 
-    // Signals that this Curve has changed.
-    this.curveChangedEmitter.emit();
+    // Amount to shift the CurvePoint closest to the passed-in position.
+    closestPoint.y = position.y;
+
+    // Point associated with the last drag event
+    if ( penultimatePosition ) {
+      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+
+      // We want to create a straight line between this point and the last drag event point
+      const closestVector = closestPoint.getVector();
+      this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
+    }
+    else {
+
+      // There is no position associated with the last drag event.
+      // Let's create a hill with a narrow width at the closestPoint.
+      // See https://github.com/phetsims/calculus-grapher/issues/218
+      this.createHillAt( WEE_WIDTH, closestPoint.x, closestPoint.y );
+    }
+
+    if ( penultimatePosition && antepenultimatePosition ) {
+
+      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+
+      // Point associated with the last drag event
+      const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
+
+      // Checks that lastPoint is in between closestPoint and lastPoint
+      if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
+
+        // Finds two control points that are approximately midway between our three points
+        const cp1Point = this.getClosestPointAt( ( closestPoint.x + lastPoint.x ) / 2 );
+        const cp2Point = this.getClosestPointAt( ( nextToLastPoint.x + lastPoint.x ) / 2 );
+
+        // Check that the lastPoint is between cp1 and cp2
+        if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
+
+          // x separation between two adjacent points in a curve array
+          const deltaX = this.deltaX;
+
+          // x distance between cp1 and lastPoint
+          const distXl = Math.abs( cp1Point.x - lastPoint.x );
+
+          // x distance between the cp2 and lastPoint
+          const distXR = Math.abs( cp2Point.x - lastPoint.x );
+
+          // Determine if cp1 is to the left or right of last point. Assign a sign of + 1 or -1.
+          const signedOne: number = ( cp1Point.x < lastPoint.x ) ? 1 : -1;
+
+          // Parameter of a quadratic equation
+          const a = signedOne * ( cp1Point.x - 2 * lastPoint.x + cp2Point.x );
+          const b = 2 * signedOne * ( -cp1Point.x + lastPoint.x );
+
+          // We want to iterate over all the points between cp1 and cp2
+          // and assign them a value associated with a quadratic Bézier curve P(t) where t='time'
+          // P(t) = (1-t^2)*cp1Point +2*(1-t)*lastPoint + t^2 cp2Point where t ranges from 0 to 1
+
+          for ( let dx = deltaX; dx < distXl + distXR; dx += deltaX ) {
+
+            // Work backward by solving for the time, given a desired x position
+            // by construction, there will always be two real roots for the 'time' t
+            const roots = Utils.solveQuadraticRootsReal( a, b, -dx )!;
+
+            // One of these roots will always be between [0,1], allow for a bit of rounding errors (see #92)
+            const epsilon = 0.00001;
+            const t = roots.filter( t => t >= -epsilon && t <= 1 + epsilon )[ 0 ];
+
+            assert && assert( t >= -epsilon && t <= 1 + epsilon, `t should be between 0 and 1 (inclusive): 
+           ${roots[ 0 ]} and ${roots[ 1 ]}: a:${a}, b:${b}, c:${-dx}` );
+
+            const xPosition = cp1Point.x + signedOne * dx;
+
+            // Updates the y-value: We need to use the y old point value as we iterate on an array of points that includes it.
+            this.getClosestPointAt( xPosition ).y = ( 1 - t ) ** 2 * cp1Point.y +
+                                                    2 * ( 1 - t ) * t * penultimatePosition.y +
+                                                    ( t ** 2 ) * cp2Point.y;
+          }
+        }
+      }
+    }
   }
 
   /**
-   * Sets the y-value of points between position1 and position2 using a linear interpolation
+   * Tilts the curve to the specified drag position, in model coordinates.
    */
-  private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
+  private tiltToPosition( x: number, y: number ): void {
 
-    // x-separation between two adjacent points in a curve array
-    const deltaX = this.deltaX;
+    if ( x !== 0 ) {
 
-    // x-distance between the new and old point
-    const distX = Math.abs( x1 - x2 );
+      // Find the angle of the tilt, based on where the user dragged the Curve
+      const angle = Math.atan( y / x );
 
-    const signedOne: number = ( x1 > x2 ) ? -1 : 1;
+      // Clamped angle has to be between a range set by MAX_TILT
+      const clampedAngle = Utils.clamp( angle, -MAX_TILT, MAX_TILT );
 
-    // Performs a linear interpolation between position1 and position2
-    for ( let dx = deltaX; dx < distX; dx += deltaX ) {
+      // Amount to shift the CurvePoint closest to the passed-in position.
+      const deltaY = Math.tan( clampedAngle ) * x - this.getClosestPointAt( x ).lastSavedY;
 
-      // The xPosition of the point to be interpolated, is either to the left or right of position1
-      const xPosition = x1 + signedOne * dx;
-
-      // Weight needed to interpolate the y-values, weight will never exceed 1.
-      const W = dx / distX;
-
-      // Updates the y value of an intermediate point
-      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * y1 + W * y2;
+      // Shift each of the CurvePoints by a factor of deltaY.
+      this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / x;} );
     }
   }
 
@@ -593,20 +584,30 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Applies a preset function.
+   * Sets the y-value of points between position1 and position2 using a linear interpolation
    */
-  public applyPresetFunction( presetFunction: PresetFunction ): void {
+  private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
 
-    if ( presetFunction.xPositions ) {
-      const simplePoints = presetFunction.xPositions.map( x => new Vector2( x, presetFunction.mathFunction( x ) ) );
-      this.applyFromSimplePoints( simplePoints );
-    }
-    else {
-      this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
-    }
+    // x-separation between two adjacent points in a curve array
+    const deltaX = this.deltaX;
 
-    // Signals that this Curve has changed.
-    this.curveChangedEmitter.emit();
+    // x-distance between the new and old point
+    const distX = Math.abs( x1 - x2 );
+
+    const signedOne: number = ( x1 > x2 ) ? -1 : 1;
+
+    // Perform a linear interpolation between position1 and position2
+    for ( let dx = deltaX; dx < distX; dx += deltaX ) {
+
+      // The xPosition of the point to be interpolated, is either to the left or right of position1
+      const xPosition = x1 + signedOne * dx;
+
+      // Weight needed to interpolate the y-values, weight will never exceed 1.
+      const W = dx / distX;
+
+      // Update the y value of an intermediate point
+      this.getClosestPointAt( xPosition ).y = ( 1 - W ) * y1 + W * y2;
+    }
   }
 
   /**
