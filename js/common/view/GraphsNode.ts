@@ -164,6 +164,19 @@ export default class GraphsNode extends Node {
   }
 
   /**
+   * Creates a vertical layout of a set of GraphNodes, ordered top to bottom.
+   */
+  private updateLayout( graphNodes: GraphNode[] ): void {
+    graphNodes[ 0 ].x = 0;
+    graphNodes[ 0 ].y = 0;
+    const ySpacing = ( graphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
+    for ( let i = 1; i < graphNodes.length; i++ ) {
+      graphNodes[ i ].x = graphNodes[ i - 1 ].x;
+      graphNodes[ i ].y = graphNodes[ i - 1 ].y + this.graphHeight + ySpacing;
+    }
+  }
+
+  /**
    * Resizes a set of LineToolNodes so that they extend through all graphs.
    */
   private resizeLineToolNodes( lineToolNodes: LineToolNode[], topExtent: number, bottomExtent: number ): void {
@@ -203,17 +216,6 @@ export default class GraphsNode extends Node {
 
     // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
     this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
-  }
-
-  // Updates the location of all graph Nodes
-  private updateLayout( graphNodes: GraphNode[] ): void {
-    graphNodes[ 0 ].x = 0;
-    graphNodes[ 0 ].y = 0;
-    const ySpacing = ( graphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
-    for ( let i = 1; i < graphNodes.length; i++ ) {
-      graphNodes[ i ].x = graphNodes[ i - 1 ].x;
-      graphNodes[ i ].y = graphNodes[ i - 1 ].y + this.graphHeight + ySpacing;
-    }
   }
 
   /**
