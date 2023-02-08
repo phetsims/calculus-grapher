@@ -33,16 +33,16 @@ export default class CurveManipulationIconNode extends Node {
 
   public constructor( mode: CurveManipulationMode, stroke: TColor ) {
 
-    // chart transform for the graph, the height and Y range will be updated later
+    // Chart transform for the graph, the height and Y range will be updated later.
     const chartTransform = new ChartTransform( CHART_TRANSFORM_OPTIONS );
 
-    // chart Rectangle for the graph
+    // Chart Rectangle for the graph
     const chartRectangle = new ChartRectangle( chartTransform );
 
-    // create model for solid curve
+    // Create model for a solid curve.
     const solidCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
 
-    // create model for icon curve
+    // Create model for a dashed curve.
     const dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
 
     // To improve readability
@@ -58,11 +58,13 @@ export default class CurveManipulationIconNode extends Node {
          mode === CurveManipulationMode.PEDESTAL ||
          mode === CurveManipulationMode.HILL ) {
 
+      // The width of the curve is one quarter of the x-Range.
       const width = xLength / 4;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, yMax );
     }
     else if ( mode === CurveManipulationMode.SINE ) {
 
+      // Ad hoc variables to create sine function
       const y = yMax / 2;
       const width = xLength / 4.5;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
