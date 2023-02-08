@@ -18,7 +18,7 @@
  */
 
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import { Color, Node, NodeOptions, ProfileColorProperty, TColor } from '../../../../scenery/js/imports.js';
+import { Color, Node, NodeOptions, PathBoundsMethod, ProfileColorProperty, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
 import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
@@ -50,6 +50,10 @@ type SelfOptions = {
   discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
+
+  // boundsMethod to be used with LinePlot, see https://github.com/phetsims/calculus-grapher/issues/210 and
+  // https://github.com/phetsims/calculus-grapher/issues/226
+  plotBoundsMethod?: PathBoundsMethod;
 };
 
 export type CurveNodeOptions = SelfOptions &
@@ -105,7 +109,9 @@ export default class CurveNode extends Node {
       },
 
       // NodeOptions
-      phetioVisiblePropertyInstrumented: false
+      phetioVisiblePropertyInstrumented: false,
+
+      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
 
     }, providedOptions );
 
@@ -116,21 +122,21 @@ export default class CurveNode extends Node {
     this.continuousLinePlot = new LinePlot( chartTransform, this.getContinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke,
-        boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
+        boundsMethod: options.plotBoundsMethod
       }, options.continuousLinePlotOptions ) );
     this.addChild( this.continuousLinePlot );
 
     this.discontinuousLinePlot = new LinePlot( chartTransform, this.getDiscontinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke,
-        boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
+        boundsMethod: options.plotBoundsMethod
       }, options.discontinuousLinePlotOptions ) );
     this.addChild( this.discontinuousLinePlot );
 
     this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(),
       combineOptions<ScatterPlotOptions>( {
         stroke: options.stroke,
-        boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
+        boundsMethod: options.plotBoundsMethod
       }, options.discontinuousPointsScatterPlotOptions ) );
     this.addChild( this.discontinuousPointsScatterPlot );
 
