@@ -78,7 +78,7 @@ export default class CurveManipulationDisplayNode extends Node {
         else if ( mode === CurveManipulationMode.FREEFORM ) {
           curve.freeformIconCurve( yMin, yMax );
         }
-        else if ( mode === CurveManipulationMode.SINE ) {
+        else if ( mode === CurveManipulationMode.SINUSOID ) {
           curve.widthManipulatedCurve( mode, width, xCenter, yMax / 2 );
           curve.shiftToPosition( xCenter, yMax );
         }

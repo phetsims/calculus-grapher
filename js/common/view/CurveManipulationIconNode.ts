@@ -62,7 +62,7 @@ export default class CurveManipulationIconNode extends Node {
       const width = xLength / 4;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, yMax );
     }
-    else if ( mode === CurveManipulationMode.SINE ) {
+    else if ( mode === CurveManipulationMode.SINUSOID ) {
 
       // Ad hoc variables to create sine function
       const y = yMax / 2;

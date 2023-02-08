@@ -28,7 +28,7 @@ export default class CurveManipulationMode extends EnumerationValue {
   public static readonly TRIANGLE = new CurveManipulationMode( 'triangle' );
   public static readonly PEDESTAL = new CurveManipulationMode( 'pedestal' );
   public static readonly PARABOLA = new CurveManipulationMode( 'parabola' );
-  public static readonly SINE = new CurveManipulationMode( 'sine' );
+  public static readonly SINUSOID = new CurveManipulationMode( 'sinusoid' );
   public static readonly FREEFORM = new CurveManipulationMode( 'freeform', false );
   public static readonly TILT = new CurveManipulationMode( 'tilt', false );
   public static readonly SHIFT = new CurveManipulationMode( 'shift', false );

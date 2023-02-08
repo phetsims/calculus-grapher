@@ -261,7 +261,7 @@ export default class TransformedCurve extends Curve {
          mode === CurveManipulationMode.PARABOLA ||
          mode === CurveManipulationMode.PEDESTAL ||
          mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.SINE
+         mode === CurveManipulationMode.SINUSOID
     ) {
       this.widthManipulatedCurve( mode, width, position.x, position.y );
     }
@@ -281,80 +281,28 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
+   * Sets the points for all the modes that can be manipulated through their width.
    */
-  private createSinusoidalAt( width: number, x: number, y: number ): void {
+  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
 
-    const closestPoint = this.getClosestPointAt( x );
-
-    // Wavelength associated with the sinusoidal function
-    const wavelength = width;
-
-    // Cosine function to apply to points. Cosine function passes through `position`
-    const cosineFunction = ( x: number ) =>
-      y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
-
-    // Weight function that goes from 1 to 0 from highX to lowX
-    // Note that the fact that it is a cosine function is happenstance
-    const weightFunction = ( point: CurvePoint, highX: number, lowX: number ) =>
-      Math.cos( Math.PI / 2 * ( point.x - highX ) / Math.abs( lowX - highX ) ) ** 2;
-
-    // Base width where we apply the sinusoidal function - ideally it should be an odd multiple of half-wavelengths
-    const cosineBase = 7 * ( wavelength / 2 );
-
-    // Width of the transition region to the left and right - ideally should be less than a quarter wavelength
-    const edgeWidth = wavelength / 8;
-
-    //             |<---------------cosineBase-------------------->|
-    //   ----------|--------------|-----------------|--------------|----------
-    //          leftMin        leftMax         rightMin        rightMax
-    //   ----------|--------------|-----------------|--------------|----------
-    //             |<-edgeWidth-->|                 |<-edgeWidth-->|
-
-    // Bounds to the transition regions to the right and the left for the sinusoidal function
-    const rightMax = closestPoint.x + cosineBase / 2;
-    const leftMin = closestPoint.x - cosineBase / 2;
-    const rightMin = rightMax - edgeWidth;
-    const leftMax = leftMin + edgeWidth;
-
-    // Is the transition region to the left currently zero (or nearly zero)
-    const isLeftRegionZero = this.isRegionZero( leftMin, leftMax );
-
-    // Is the transition region to the right currently zero (or nearly zero)
-    const isRightRegionZero = this.isRegionZero( rightMin, rightMax );
-
-    this.points.forEach( point => {
-
-        // Weight associated with the sinusoidal function:  0<=P<=1
-        // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
-      // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
-        let P: number;
-
-        if ( point.x >= leftMax && point.x <= rightMin ) {
-
-          // In the inner region, always have a pure sinusoidal, weight of 1
-          P = 1;
-        }
-        else if ( point.x > leftMin && point.x < leftMax ) {
-
-          // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
-          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
-        }
-        else if ( point.x > rightMin && point.x < rightMax ) {
-
-          // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
-          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
-        }
-        else {
-
-          // Outside the cosine base, the weight is zero
-          P = 0;
-        }
-
-        // Assign the y value with the correct weight
-        point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
-      }
-    );
+    if ( mode === CurveManipulationMode.HILL ) {
+      this.createHillAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.PARABOLA ) {
+      this.createParabolaAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.PEDESTAL ) {
+      this.createPedestalAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.TRIANGLE ) {
+      this.createTriangleAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.SINUSOID ) {
+      this.createSinusoidAt( width, x, y );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
   }
 
   /**
@@ -490,28 +438,80 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the points for all the modes that can be manipulated through their width.
+   * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    */
-  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
+  private createSinusoidAt( width: number, x: number, y: number ): void {
 
-    if ( mode === CurveManipulationMode.HILL ) {
-      this.createHillAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.PARABOLA ) {
-      this.createParabolaAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.PEDESTAL ) {
-      this.createPedestalAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.TRIANGLE ) {
-      this.createTriangleAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.SINE ) {
-      this.createSinusoidalAt( width, x, y );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
+    const closestPoint = this.getClosestPointAt( x );
+
+    // Wavelength associated with the sinusoidal function
+    const wavelength = width;
+
+    // Cosine function to apply to points. Cosine function passes through `position`
+    const cosineFunction = ( x: number ) =>
+      y * Math.cos( Math.PI * 2 * ( ( closestPoint.x - x ) ) / wavelength );
+
+    // Weight function that goes from 1 to 0 from highX to lowX
+    // Note that the fact that it is a cosine function is happenstance
+    const weightFunction = ( point: CurvePoint, highX: number, lowX: number ) =>
+      Math.cos( Math.PI / 2 * ( point.x - highX ) / Math.abs( lowX - highX ) ) ** 2;
+
+    // Base width where we apply the sinusoidal function - ideally it should be an odd multiple of half-wavelengths
+    const cosineBase = 7 * ( wavelength / 2 );
+
+    // Width of the transition region to the left and right - ideally should be less than a quarter wavelength
+    const edgeWidth = wavelength / 8;
+
+    //             |<---------------cosineBase-------------------->|
+    //   ----------|--------------|-----------------|--------------|----------
+    //          leftMin        leftMax         rightMin        rightMax
+    //   ----------|--------------|-----------------|--------------|----------
+    //             |<-edgeWidth-->|                 |<-edgeWidth-->|
+
+    // Bounds to the transition regions to the right and the left for the sinusoidal function
+    const rightMax = closestPoint.x + cosineBase / 2;
+    const leftMin = closestPoint.x - cosineBase / 2;
+    const rightMin = rightMax - edgeWidth;
+    const leftMax = leftMin + edgeWidth;
+
+    // Is the transition region to the left currently zero (or nearly zero)
+    const isLeftRegionZero = this.isRegionZero( leftMin, leftMax );
+
+    // Is the transition region to the right currently zero (or nearly zero)
+    const isRightRegionZero = this.isRegionZero( rightMin, rightMax );
+
+    this.points.forEach( point => {
+
+        // Weight associated with the sinusoidal function:  0<=P<=1
+        // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
+      // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
+        let P: number;
+
+        if ( point.x >= leftMax && point.x <= rightMin ) {
+
+          // In the inner region, always have a pure sinusoidal, weight of 1
+          P = 1;
+        }
+        else if ( point.x > leftMin && point.x < leftMax ) {
+
+          // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+        }
+        else if ( point.x > rightMin && point.x < rightMax ) {
+
+          // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+        }
+        else {
+
+          // Outside the cosine base, the weight is zero
+          P = 0;
+        }
+
+        // Assign the y value with the correct weight
+        point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
+      }
+    );
   }
 
   /**
