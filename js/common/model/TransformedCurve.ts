@@ -383,10 +383,16 @@ export default class TransformedCurve extends Curve {
     if ( penultimatePosition ) {
       const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
-
       // We want to create a straight line between this point and the last drag event point
       const closestVector = closestPoint.getVector();
       this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
+    }
+    else {
+
+      // it is the first point, create a hill with very narrow width
+
+      // TODO: remove magic number
+      this.createHillAt( 0.25, closestPoint.x, closestPoint.y );
     }
     if ( penultimatePosition && antepenultimatePosition ) {
 
