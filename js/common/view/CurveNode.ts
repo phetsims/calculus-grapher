@@ -50,8 +50,8 @@ type SelfOptions = {
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
 
-  // boundsMethod to be used with LinePlot, see https://github.com/phetsims/calculus-grapher/issues/210 and
-  // https://github.com/phetsims/calculus-grapher/issues/226
+  // boundsMethod to be used with bamboo plots. Override this where performance optimization is needed.
+  // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/226
   plotBoundsMethod?: PathBoundsMethod;
 };
 
