@@ -26,6 +26,8 @@ type DerivativeScreenViewOptions = SelfOptions & PickRequired<CalculusGrapherScr
 
 export default class DerivativeScreenView extends CalculusGrapherScreenView {
 
+  private readonly resetDerivativeScreenView: () => void;
+
   public constructor( model: DerivativeModel, providedOptions: DerivativeScreenViewOptions ) {
 
     const options = optionize<DerivativeScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
@@ -66,9 +68,14 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
         tandem: tangentCheckboxTandem
       } );
     this.controlPanel.appendContent( tangentCheckbox );
+
+    this.resetDerivativeScreenView = () => {
+      slopeOfTangentAccordionBox.reset();
+    };
   }
 
   public override reset(): void {
+    this.resetDerivativeScreenView();
     super.reset();
   }
 }

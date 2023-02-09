@@ -26,6 +26,8 @@ type IntroScreenViewOptions = SelfOptions & PickRequired<CalculusGrapherScreenVi
 
 export default class IntegralScreenView extends CalculusGrapherScreenView {
 
+  private readonly resetIntegralScreenView: () => void;
+
   public constructor( model: IntegralModel, providedOptions: IntroScreenViewOptions ) {
 
     const options = optionize<IntroScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
@@ -67,9 +69,14 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
         tandem: areaUnderCurveCheckboxTandem
       } );
     this.controlPanel.appendContent( areaUnderCurveCheckbox );
+
+    this.resetIntegralScreenView = () => {
+      netSignedAreaAccordionBox.reset();
+    };
   }
 
   public override reset(): void {
+    this.resetIntegralScreenView();
     super.reset();
   }
 }
