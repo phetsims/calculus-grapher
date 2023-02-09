@@ -17,7 +17,6 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubber from '../model/TangentScrubber.js';
@@ -63,9 +62,7 @@ export default class GraphsNode extends Node {
   private readonly scrubberLineNodes: ScrubberLineNode[];
   private readonly scrubberLineNodesParent: Node;
 
-  public constructor( model: CalculusGrapherModel,
-                      visibleProperties: CalculusGrapherVisibleProperties,
-                      providedOptions?: GraphsNodeOptions ) {
+  public constructor( model: CalculusGrapherModel, providedOptions?: GraphsNodeOptions ) {
 
     const options = optionize<GraphsNodeOptions, SelfOptions, NodeOptions>()( {
 
@@ -75,9 +72,6 @@ export default class GraphsNode extends Node {
 
     super();
 
-    // Is the grid (on each GraphNode) visible?
-    const gridVisibleProperty = visibleProperties.gridVisibleProperty;
-
     // The (view) height of the graph based on the number of visible graphs.
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
@@ -85,7 +79,7 @@ export default class GraphsNode extends Node {
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
-      return new GraphNode( graphType, curve, gridVisibleProperty, {
+      return new GraphNode( graphType, curve, model.gridVisibleProperty, {
         graphHeight: this.graphHeight,
         tandem: GraphSet.includes( model.graphSets, graphType ) ?
                 options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
@@ -94,7 +88,7 @@ export default class GraphsNode extends Node {
     };
 
     // OriginalGraphNode is always instrumented, because it should always be present.
-    this.originalGraphNode = new OriginalGraphNode( model, visibleProperties, {
+    this.originalGraphNode = new OriginalGraphNode( model, {
       graphHeight: this.graphHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );

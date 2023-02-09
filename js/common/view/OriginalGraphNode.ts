@@ -27,7 +27,6 @@ import { DragListener, HBox, PressedDragListener, Rectangle, TColor, Text } from
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
@@ -60,9 +59,7 @@ export default class OriginalGraphNode extends GraphNode {
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly showOriginalCurveProperty: Property<boolean>;
 
-  public constructor( model: CalculusGrapherModel,
-                      visibleProperties: CalculusGrapherVisibleProperties,
-                      providedOptions: GraphNodeOptions ) {
+  public constructor( model: CalculusGrapherModel, providedOptions: GraphNodeOptions ) {
 
     // Destructuring fields from the model into local constants, to improve readability.
     const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
@@ -119,7 +116,7 @@ export default class OriginalGraphNode extends GraphNode {
       labelNode: labelNode
     }, providedOptions );
 
-    super( graphType, originalCurve, visibleProperties.gridVisibleProperty, options );
+    super( graphType, originalCurve, model.gridVisibleProperty, options );
 
     this.showOriginalCurveProperty = showOriginalCurveProperty;
 

@@ -64,6 +64,9 @@ export default class CalculusGrapherModel implements TModel {
   // Is the 'Predict' feature enabled for the original graph?
   public readonly predictEnabledProperty: Property<boolean>;
 
+  // Controls visibility of grid lines on all graphs
+  public readonly gridVisibleProperty: Property<boolean>;
+
   // Model elements for the various curves
   public readonly originalCurve: TransformedCurve;
   public readonly predictCurve: TransformedCurve;
@@ -117,6 +120,11 @@ export default class CalculusGrapherModel implements TModel {
 
     this.predictEnabledProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'predictEnabledProperty' )
+    } );
+
+    this.gridVisibleProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'gridVisibleProperty' ),
+      phetioDocumentation: 'Controls the visibility of the grid lines for all graphs.'
     } );
 
     const curvesTandem = options.tandem.createTandem( 'curves' );
@@ -205,6 +213,7 @@ export default class CalculusGrapherModel implements TModel {
     this.predictCurve.reset();
     this.curveManipulationProperties.reset();
     this.predictEnabledProperty.reset();
+    this.gridVisibleProperty.reset();
 
     // Reset tools
     this.referenceLine.reset();

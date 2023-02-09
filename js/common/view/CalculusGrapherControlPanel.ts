@@ -16,7 +16,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
-import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictEnabledRadioButtonGroup from './PredictEnabledRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -38,7 +37,6 @@ export default class CalculusGrapherControlPanel extends Panel {
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       predictEnabledProperty: Property<boolean>,
                       interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      visibleProperties: CalculusGrapherVisibleProperties,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {

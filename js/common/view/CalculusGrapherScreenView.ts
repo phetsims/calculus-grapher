@@ -12,7 +12,6 @@ import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.j
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
-import CalculusGrapherVisibleProperties from './CalculusGrapherVisibleProperties.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import GraphsNode from './GraphsNode.js';
@@ -39,9 +38,6 @@ export type CalculusGrapherScreenViewOptions = SelfOptions & PickRequired<Screen
 export default class CalculusGrapherScreenView extends ScreenView {
 
   private readonly model: CalculusGrapherModel;
-
-  // Properties related to visibility of things in the view
-  protected readonly visibleProperties: CalculusGrapherVisibleProperties;
 
   // Node responsible for displaying all graphs and their decorations
   public readonly graphsNode: GraphsNode;
@@ -71,9 +67,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.model = model;
 
-    // Visibility Properties for the screen that are controllable via the UI
-    this.visibleProperties = new CalculusGrapherVisibleProperties( options.tandem.createTandem( 'visibleProperties' ) );
-
     const resetAllButton = new ResetAllButton( {
       right: this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_X_MARGIN,
       bottom: this.layoutBounds.bottom - CalculusGrapherConstants.SCREEN_VIEW_Y_MARGIN,
@@ -85,12 +78,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.curveManipulationProperties,
       model.predictEnabledProperty,
       model.interactiveCurveProperty,
-      this.visibleProperties,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
-    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties.gridVisibleProperty,
+    const checkboxGroup = new CalculusGrapherCheckboxGroup( model.gridVisibleProperty,
       model.referenceLine.visibleProperty, options.tandem.createTandem( 'checkboxGroup' ) );
 
     const rightVBox = new VBox( {
@@ -99,7 +91,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       align: 'left'
     } );
 
-    this.graphsNode = new GraphsNode( model, this.visibleProperties, {
+    this.graphsNode = new GraphsNode( model, {
       centerX: this.layoutBounds.centerX - 25,
       y: this.layoutBounds.top + 40,
       tandem: options.tandem.createTandem( 'graphsNode' )
@@ -146,7 +138,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
    */
   public reset(): void {
     this.model.reset();
-    this.visibleProperties.reset();
     this.graphsNode.reset();
   }
 }
