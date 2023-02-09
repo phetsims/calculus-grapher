@@ -230,9 +230,9 @@ export default class OriginalGraphNode extends GraphNode {
   }
 
   public override reset(): void {
-    super.reset();
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
+    super.reset();
   }
 
   /**
