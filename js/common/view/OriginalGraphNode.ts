@@ -45,6 +45,7 @@ import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -54,6 +55,10 @@ export default class OriginalGraphNode extends GraphNode {
 
   // Node for the predict curve
   private readonly predictCurveNode: TransformedCurveNode;
+
+  // Indicates if the original curve is visible while in 'Predict' mode.
+  // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
+  private readonly showOriginalCurveProperty: Property<boolean>;
 
   public constructor( model: CalculusGrapherModel,
                       visibleProperties: CalculusGrapherVisibleProperties,
@@ -80,6 +85,11 @@ export default class OriginalGraphNode extends GraphNode {
       tandem: labelNodeTandem
     } );
 
+    const showOriginalCurveProperty = new BooleanProperty( false, {
+      tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
+      phetioDocumentation: 'Indicates if the original curve is visible while the Predict radio button is selected.'
+    } );
+
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
@@ -94,7 +104,7 @@ export default class OriginalGraphNode extends GraphNode {
           },
           isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
           visibleProperty: new DerivedProperty(
-            [ predictEnabledProperty, visibleProperties.showOriginalCurveProperty ],
+            [ predictEnabledProperty, showOriginalCurveProperty ],
             ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
               tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
               phetioValueType: BooleanIO
@@ -109,6 +119,8 @@ export default class OriginalGraphNode extends GraphNode {
     }, providedOptions );
 
     super( graphType, originalCurve, visibleProperties.gridVisibleProperty, options );
+
+    this.showOriginalCurveProperty = showOriginalCurveProperty;
 
     // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
     // See https://github.com/phetsims/calculus-grapher/issues/204
@@ -136,7 +148,7 @@ export default class OriginalGraphNode extends GraphNode {
     } );
     this.curveLayer.addChild( this.predictCurveNode );
 
-    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( visibleProperties.showOriginalCurveProperty, {
+    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( showOriginalCurveProperty, {
       touchAreaXDilation: 6,
       touchAreaYDilation: 6,
       mouseAreaXDilation: 3,
@@ -222,6 +234,7 @@ export default class OriginalGraphNode extends GraphNode {
   public override reset(): void {
     super.reset();
     this.predictCurveNode.reset();
+    this.showOriginalCurveProperty.reset();
   }
 
   /**

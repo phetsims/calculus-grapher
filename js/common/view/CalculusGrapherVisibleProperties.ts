@@ -31,10 +31,6 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
   // Indicates if the graph grid is visible.
   public readonly gridVisibleProperty: Property<boolean>;
 
-  // Indicates if the original curve is visible while in 'Predict' mode.
-  // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
-  public readonly showOriginalCurveProperty: Property<boolean>;
-
   /**
    * @param referenceLineVisibleProperty - ReferenceLine.visibleProperty
    * @param tangentScrubberVisibleProperty - TangentScrubber.visibleProperty
@@ -79,16 +75,10 @@ export default class CalculusGrapherVisibleProperties extends PhetioObject {
     this.gridVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'gridVisibleProperty' )
     } );
-
-    this.showOriginalCurveProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'showOriginalCurveProperty' ),
-      phetioDocumentation: 'Indicates if the original curve is visible while the Predict radio button is selected.'
-    } );
   }
 
   public reset(): void {
     this.gridVisibleProperty.reset();
-    this.showOriginalCurveProperty.reset();
   }
 }
 
