@@ -30,6 +30,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import { MathFunction, PresetFunction } from './PresetFunctions.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -503,44 +504,47 @@ export default class TransformedCurve extends Curve {
           // x separation between two adjacent points in a curve array
           const deltaX = this.deltaX;
 
+          // Vectors associated with the drag events.
+          // Note that the x-values are the allowed CurvePoints x-values but the
+          // y-values match the y value from the dragListener
+          const v1 = new Vector2( nextToLastPoint.x, antepenultimatePosition.y );
+          const v2 = new Vector2( lastPoint.x, penultimatePosition.y );
+          const v3 = new Vector2( closestPoint.x, position.y );
+
           // Are we dragging from left to right?
           const isAscending = nextToLastPoint.x < closestPoint.x;
 
-          // Linear function between position and penultimatePosition
-          const linearOne = this.linearFunction( closestPoint.x, position.y, lastPoint.x, penultimatePosition.y );
+          const sortedVectors = isAscending ? [ v1, v2, v3 ] : [ v3, v2, v1 ];
 
-          // Linear function between penultimatePosition and antepenultimate
-          const linearTwo = this.linearFunction( lastPoint.x, penultimatePosition.y,
-            nextToLastPoint.x, antepenultimatePosition.y );
+          // Piecewise function composed of the two linear functions.
+          const piecewiseFunction = new CompletePiecewiseLinearFunction( sortedVectors );
 
-          // Piecewise function composed of the two previous linear functions.
-          const piecewiseFunction: MathFunction = x => {
-
-            // Is the x value within the domain of linearOne
-            const isOneDomain = isAscending ? ( x > penultimatePosition.x ) : ( x < penultimatePosition.x );
-
-            // Assign the proper realm of the piecewise function
-            return isOneDomain ? linearOne( x ) : linearTwo( x );
-          };
-
+          // Distance over which we will mollify the points
           const distance = Math.abs( cp2Point.x - cp1Point.x );
           const numberSteps = distance / deltaX;
+
+          // Are we incrementing points from right to left or left to right?
           const signedDeltaX = isAscending ? deltaX : -deltaX;
 
           // A function of x used that will be used to mollify the piecewise function
           const mollifierFunction = this.mollifierFunction( distance );
 
           // Iterate over the intermediate x-values that need to be mollified.
-          for ( let i = 1; i < numberSteps; i++ ) {
-            let weight = 0;
-            let functionWeight = 0;
+          for ( let i = 0; i < numberSteps; i++ ) {
 
+            // x value of the point that needs to be mollified
             const x = cp2Point.x + i * signedDeltaX;
+
+            // Weight of the mollifier function
+            let weight = 0;
+
+            // Weight of the piecewiseFunction
+            let functionWeight = 0;
 
             // Apply the mollifying algorithm on the point located at x by convoluting it with nearby points
             for ( let dx = -distance; dx < distance; dx += deltaX / 4 ) {
               weight += mollifierFunction( dx );
-              functionWeight += mollifierFunction( dx ) * piecewiseFunction( x + dx );
+              functionWeight += mollifierFunction( dx ) * piecewiseFunction.evaluate( x + dx );
             }
             this.getClosestPointAt( x ).y = functionWeight / weight;
           }
@@ -549,14 +553,6 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  /**
-   * Returns a function of x that is a linear function (polynomial of degree one) that passes
-   * through points (x1,y1) and (x2,y2)
-   */
-  private linearFunction( x1: number, y1: number, x2: number, y2: number ): MathFunction {
-    assert && assert( x1 !== x2, 'linear requires different x values' );
-    return x => ( x - x2 ) * ( y1 - y2 ) / ( x1 - x2 ) + y2;
-  }
 
   /**
    * Returns a mollifier function of x, that is an infinitely differentiable functions
