@@ -198,7 +198,7 @@ export default class GraphsNode extends Node {
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
 
     // Plot a point on each graph that will stay in sync with tangentScrubber.
-    this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPoint' );
+    this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPointNode' );
   }
 
   /**
@@ -215,7 +215,7 @@ export default class GraphsNode extends Node {
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
 
     // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
-    this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePoint' );
+    this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePointNode' );
   }
 
   /**
