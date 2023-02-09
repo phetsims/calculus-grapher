@@ -27,7 +27,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import { PresetFunction } from './PresetFunctions.js';
+import { MathFunction, PresetFunction } from './PresetFunctions.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 
@@ -449,8 +449,7 @@ export default class TransformedCurve extends Curve {
   /**
    * Allows the user to drag Points in the Curve to any desired position to create customs but smooth shapes.
    * This method will update the curve with the new position value. It attempts to create a smooth curve
-   * between position and antepenultimatePosition. The penultimatePosition is used to infer the degree of
-   * curvature from the position and antepenultimatePosition.
+   * between position and antepenultimatePosition.
    * The main goal of the drawToForm method is to create a curve segment that is smooth enough that it can be
    * twice differentiable without generating discontinuities.
    *
@@ -495,8 +494,8 @@ export default class TransformedCurve extends Curve {
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 
         // Finds two control points that are approximately midway between our three points
-        const cp1Point = this.getClosestPointAt( ( closestPoint.x + lastPoint.x ) / 2 );
-        const cp2Point = this.getClosestPointAt( ( nextToLastPoint.x + lastPoint.x ) / 2 );
+        const cp1Point = this.getClosestPointAt( ( position.x + penultimatePosition.x ) / 2 );
+        const cp2Point = this.getClosestPointAt( ( penultimatePosition.x + antepenultimatePosition.x ) / 2 );
 
         // Check that the lastPoint is between cp1 and cp2
         if ( ( cp1Point.x - lastPoint.x ) * ( cp2Point.x - lastPoint.x ) < 0 ) {
@@ -504,46 +503,69 @@ export default class TransformedCurve extends Curve {
           // x separation between two adjacent points in a curve array
           const deltaX = this.deltaX;
 
-          // x distance between cp1 and lastPoint
-          const distXl = Math.abs( cp1Point.x - lastPoint.x );
+          // Are we dragging from left to right?
+          const isAscending = nextToLastPoint.x < closestPoint.x;
 
-          // x distance between the cp2 and lastPoint
-          const distXR = Math.abs( cp2Point.x - lastPoint.x );
+          // Linear function between position and penultimatePosition
+          const linearOne = this.linearFunction( closestPoint.x, position.y, lastPoint.x, penultimatePosition.y );
 
-          // Determine if cp1 is to the left or right of last point. Assign a sign of + 1 or -1.
-          const signedOne: number = ( cp1Point.x < lastPoint.x ) ? 1 : -1;
+          // Linear function between penultimatePosition and antepenultimate
+          const linearTwo = this.linearFunction( lastPoint.x, penultimatePosition.y,
+            nextToLastPoint.x, antepenultimatePosition.y );
 
-          // Parameter of a quadratic equation
-          const a = signedOne * ( cp1Point.x - 2 * lastPoint.x + cp2Point.x );
-          const b = 2 * signedOne * ( -cp1Point.x + lastPoint.x );
+          // Piecewise function composed of the two previous linear functions.
+          const piecewiseFunction: MathFunction = x => {
 
-          // We want to iterate over all the points between cp1 and cp2
-          // and assign them a value associated with a quadratic Bézier curve P(t) where t='time'
-          // P(t) = (1-t^2)*cp1Point +2*(1-t)*lastPoint + t^2 cp2Point where t ranges from 0 to 1
+            // Is the x value within the domain of linearOne
+            const isOneDomain = isAscending ? ( x > penultimatePosition.x ) : ( x < penultimatePosition.x );
 
-          for ( let dx = deltaX; dx < distXl + distXR; dx += deltaX ) {
+            // Assign the proper realm of the piecewise function
+            return isOneDomain ? linearOne( x ) : linearTwo( x );
+          };
 
-            // Work backward by solving for the time, given a desired x position
-            // by construction, there will always be two real roots for the 'time' t
-            const roots = Utils.solveQuadraticRootsReal( a, b, -dx )!;
+          const distance = Math.abs( cp2Point.x - cp1Point.x );
+          const numberSteps = distance / deltaX;
+          const signedDeltaX = isAscending ? deltaX : -deltaX;
 
-            // One of these roots will always be between [0,1], allow for a bit of rounding errors (see #92)
-            const epsilon = 0.00001;
-            const t = roots.filter( t => t >= -epsilon && t <= 1 + epsilon )[ 0 ];
+          // A function of x used that will be used to mollify the piecewise function
+          const mollifierFunction = this.mollifierFunction( distance );
 
-            assert && assert( t >= -epsilon && t <= 1 + epsilon, `t should be between 0 and 1 (inclusive): 
-           ${roots[ 0 ]} and ${roots[ 1 ]}: a:${a}, b:${b}, c:${-dx}` );
+          // Iterate over the intermediate x-values that need to be mollified.
+          for ( let i = 1; i < numberSteps; i++ ) {
+            let weight = 0;
+            let functionWeight = 0;
 
-            const xPosition = cp1Point.x + signedOne * dx;
+            const x = cp2Point.x + i * signedDeltaX;
 
-            // Updates the y-value: We need to use the y old point value as we iterate on an array of points that includes it.
-            this.getClosestPointAt( xPosition ).y = ( 1 - t ) ** 2 * cp1Point.y +
-                                                    2 * ( 1 - t ) * t * penultimatePosition.y +
-                                                    ( t ** 2 ) * cp2Point.y;
+            // Apply the mollifying algorithm on the point located at x by convoluting it with nearby points
+            for ( let dx = -distance; dx < distance; dx += deltaX / 4 ) {
+              weight += mollifierFunction( dx );
+              functionWeight += mollifierFunction( dx ) * piecewiseFunction( x + dx );
+            }
+            this.getClosestPointAt( x ).y = functionWeight / weight;
           }
         }
       }
     }
+  }
+
+  /**
+   * Returns a function of x that is a linear function (polynomial of degree one) that passes
+   * through points (x1,y1) and (x2,y2)
+   */
+  private linearFunction( x1: number, y1: number, x2: number, y2: number ): MathFunction {
+    assert && assert( x1 !== x2, 'linear requires different x values' );
+    return x => ( x - x2 ) * ( y1 - y2 ) / ( x1 - x2 ) + y2;
+  }
+
+  /**
+   * Returns a mollifier function of x, that is an infinitely differentiable functions
+   * Mollifier functions are used to smooth (i.e. mollify) other functions (see https://en.wikipedia.org/wiki/Mollifier)
+   * @param width - the width of for which the mollifying function does not return a zero value
+   */
+  private mollifierFunction( width: number ): MathFunction {
+    assert && assert( width > 0, 'width must be positive' );
+    return x => Math.abs( x ) < width / 2 ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
   }
 
   /**
