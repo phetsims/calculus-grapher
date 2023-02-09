@@ -44,6 +44,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -60,11 +61,6 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Destructuring fields from the model into local constants, to improve readability.
     const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
-
-    // Original curve is visible if not in predictEnabled or 'Show f(x)' checkbox is checked.
-    const originalCurveNodeVisibilityProperty = new DerivedProperty(
-      [ predictEnabledProperty, visibleProperties.showOriginalCurveProperty ],
-      ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve );
 
     const graphType = GraphType.ORIGINAL;
 
@@ -84,6 +80,8 @@ export default class OriginalGraphNode extends GraphNode {
       tandem: labelNodeTandem
     } );
 
+    const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
+
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
       // GraphNodeOptions
@@ -95,8 +93,13 @@ export default class OriginalGraphNode extends GraphNode {
             lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
           },
           isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
-          visibleProperty: originalCurveNodeVisibilityProperty,
-          tandem: providedOptions.tandem.createTandem( 'originalCurveNode' )
+          visibleProperty: new DerivedProperty(
+            [ predictEnabledProperty, visibleProperties.showOriginalCurveProperty ],
+            ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
+              tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
+              phetioValueType: BooleanIO
+            } ),
+          tandem: originalCurveNodeTandem
         } ),
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
