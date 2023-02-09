@@ -35,7 +35,9 @@ export default class ReferenceLineNode extends LineToolNode {
 
     super( referenceLine.xProperty, chartTransform, {
       lineStroke: CalculusGrapherColors.referenceLineStrokeProperty,
-      visibleProperty: referenceLine.visibleProperty,
+
+      // This is a hack to keep referenceLineNode.visibleProperty from showing up in Studio.
+      visibleProperty: new DerivedProperty( [ referenceLine.visibleProperty ], visible => visible ),
       tandem: tandem
     } );
 
