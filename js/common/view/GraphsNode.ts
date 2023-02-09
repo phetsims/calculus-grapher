@@ -30,6 +30,7 @@ import VerticalLinesNode from './VerticalLinesNode.js';
 import GraphSet from '../model/GraphSet.js';
 import ScrubberLineNode from './ScrubberLineNode.js';
 import LineToolNode from './LineToolNode.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 // How much VerticalLines extend above and below the graphs
 const VERTICAL_LINE_Y_EXTENT = 4;
@@ -188,34 +189,49 @@ export default class GraphsNode extends Node {
   /**
    * Decorates the appropriate graphs for the tangent feature.
    */
-  public addTangentView( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  public addTangentView( tangentScrubber: TangentScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
+
+    // Determines whether the tangent scrubber, tangent line, and associated points are visible on the graphs.
+    const tangentVisibleProperty = new DerivedProperty(
+      [ tangentScrubber.visibleProperty, predictEnabledProperty ],
+      ( tangentScrubberVisible, predictEnabled ) => tangentScrubberVisible && !predictEnabled, {
+        // No PhET-iO instrumentation because this is more complicated than is useful for clients.
+      } );
 
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
-    this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, visibleProperty, 'tangentScrubberNode' );
+    this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
+      'tangentScrubberNode' );
     this.addScrubberLineNode( tangentScrubber );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
-    this.originalGraphNode.addTangentArrowNode( tangentScrubber, visibleProperty );
+    this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
 
     // Plot a point on each graph that will stay in sync with tangentScrubber.
-    this.addPlottedPoints( tangentScrubber, visibleProperty, 'tangentPointNode' );
+    this.addPlottedPoints( tangentScrubber, tangentVisibleProperty, 'tangentPointNode' );
   }
 
   /**
    * Decorates the appropriate graphs for the 'area under curve' feature.
    */
-  public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, visibleProperty: TReadOnlyProperty<boolean> ): void {
+  public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
+
+    // Determines whether the area-under-curve scrubber, plot, and associated points are visible on the graphs.
+    const areaUnderCurveVisibleProperty = new DerivedProperty(
+      [ areaUnderCurveScrubber.visibleProperty, predictEnabledProperty ],
+      ( tangentScrubberVisible, predictEnabled ) => tangentScrubberVisible && !predictEnabled, {
+        // No PhET-iO instrumentation because this is more complicated than is useful for clients.
+      } );
 
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
-    this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty, visibleProperty,
-      'areaUnderCurveScrubberNode' );
+    this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
+      areaUnderCurveVisibleProperty, 'areaUnderCurveScrubberNode' );
     this.addScrubberLineNode( areaUnderCurveScrubber );
 
     // Add a plot of the area under the curve on the original graph.
-    this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, visibleProperty );
+    this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
 
     // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
-    this.addPlottedPoints( areaUnderCurveScrubber, visibleProperty, 'areaUnderCurvePointNode' );
+    this.addPlottedPoints( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode' );
   }
 
   /**

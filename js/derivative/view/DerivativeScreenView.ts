@@ -39,11 +39,10 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     super( model, options );
 
     // Add decorations to the graphs for the TangentScrubber.
-    this.graphsNode.addTangentView( model.tangentScrubber, this.visibleProperties.tangentVisibleProperty );
+    this.graphsNode.addTangentView( model.tangentScrubber, model.predictEnabledProperty );
 
     // The accordion box titled 'Slope Of Tangent'
-    const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentScrubber, {
-      visibleProperty: this.visibleProperties.tangentVisibleProperty,
+    const slopeOfTangentAccordionBox = new SlopeOfTangentAccordionBox( model.tangentScrubber, model.predictEnabledProperty, {
       tandem: options.tandem.createTandem( 'slopeOfTangentAccordionBox' )
     } );
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );

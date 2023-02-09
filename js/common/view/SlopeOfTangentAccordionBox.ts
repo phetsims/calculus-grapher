@@ -16,15 +16,17 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TangentScrubber from '../model/TangentScrubber.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type SlopeOfTangentAccordionBoxOptions = SelfOptions &
-  PickRequired<BarometerAccordionBoxOptions, 'visibleProperty' | 'tandem'>;
+type SlopeOfTangentAccordionBoxOptions = SelfOptions & PickRequired<BarometerAccordionBoxOptions, 'tandem'>;
 
 export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
 
-  public constructor( tangentScrubber: TangentScrubber, providedOptions: SlopeOfTangentAccordionBoxOptions ) {
+  public constructor( tangentScrubber: TangentScrubber,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      providedOptions: SlopeOfTangentAccordionBoxOptions ) {
 
     const options = optionize<SlopeOfTangentAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
@@ -39,7 +41,8 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       }
     }, providedOptions );
 
-    super( tangentScrubber.yDerivativeProperty, CalculusGrapherStrings.barometer.slopeOfTangentStringProperty, options );
+    super( tangentScrubber.yDerivativeProperty, CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,
+      tangentScrubber.visibleProperty, predictEnabledProperty, options );
   }
 }
 

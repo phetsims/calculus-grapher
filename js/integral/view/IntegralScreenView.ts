@@ -39,13 +39,13 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     super( model, options );
 
     // Add decorations to the graphs for the AreaUnderCurveScrubber.
-    this.graphsNode.addAreaUnderCurveView( model.areaUnderCurveScrubber, this.visibleProperties.areaUnderCurveVisibleProperty );
+    this.graphsNode.addAreaUnderCurveView( model.areaUnderCurveScrubber, model.predictEnabledProperty );
 
     // The accordion box titled 'Net Signed Area'
-    const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveScrubber, {
-      visibleProperty: this.visibleProperties.areaUnderCurveVisibleProperty,
-      tandem: options.tandem.createTandem( 'netSignedAreaAccordionBox' )
-    } );
+    const netSignedAreaAccordionBox = new NetSignedAreaAccordionBox( model.areaUnderCurveScrubber,
+      model.predictEnabledProperty, {
+        tandem: options.tandem.createTandem( 'netSignedAreaAccordionBox' )
+      } );
     this.screenViewRootNode.addChild( netSignedAreaAccordionBox );
 
     // Center netSignedAreaAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.

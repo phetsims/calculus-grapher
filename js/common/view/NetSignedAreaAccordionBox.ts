@@ -16,15 +16,17 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type NetSignedAreaAccordionBoxOptions = SelfOptions &
-  PickRequired<BarometerAccordionBoxOptions, 'visibleProperty' | 'tandem'>;
+type NetSignedAreaAccordionBoxOptions = SelfOptions & PickRequired<BarometerAccordionBoxOptions, 'tandem'>;
 
 export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
 
-  public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber, providedOptions: NetSignedAreaAccordionBoxOptions ) {
+  public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      providedOptions: NetSignedAreaAccordionBoxOptions ) {
 
     // Color of the vertical bar in the barometer
     const barColorProperty = new DerivedProperty(
@@ -43,7 +45,8 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       }
     }, providedOptions );
 
-    super( areaUnderCurveScrubber.yIntegralProperty, CalculusGrapherStrings.barometer.netSignedAreaStringProperty, options );
+    super( areaUnderCurveScrubber.yIntegralProperty, CalculusGrapherStrings.barometer.netSignedAreaStringProperty,
+      areaUnderCurveScrubber.visibleProperty, predictEnabledProperty, options );
   }
 }
 

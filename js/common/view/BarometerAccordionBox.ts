@@ -48,6 +48,8 @@ export default class BarometerAccordionBox extends AccordionBox {
 
   protected constructor( valueProperty: TReadOnlyProperty<number>,
                          labelStringProperty: TReadOnlyProperty<string>,
+                         ancillaryToolVisibleProperty: TReadOnlyProperty<boolean>,
+                         predictEnabledProperty: TReadOnlyProperty<boolean>,
                          providedOptions: BarometerAccordionBoxOptions ) {
 
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
@@ -73,7 +75,14 @@ export default class BarometerAccordionBox extends AccordionBox {
       buttonYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
       titleXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
       titleYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
-      titleXSpacing: 10
+      titleXSpacing: 10,
+
+      // visible if the associate tool is visible and the 'Predict' radio button is not selected
+      visibleProperty: new DerivedProperty(
+        [ ancillaryToolVisibleProperty, predictEnabledProperty ],
+        ( ancillaryToolVisible, predictEnabled ) => ( ancillaryToolVisible && !predictEnabled ), {
+          // No PhET-iO instrumentation because this is more complicated than is useful for clients.
+        } )
     }, providedOptions );
 
     const orientation = Orientation.VERTICAL;
