@@ -72,10 +72,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     this.model = model;
 
     // Visibility Properties for the screen that are controllable via the UI
-    this.visibleProperties = new CalculusGrapherVisibleProperties(
-      model.referenceLine.visibleProperty,
-      options.tandem.createTandem( 'visibleProperties' )
-    );
+    this.visibleProperties = new CalculusGrapherVisibleProperties( options.tandem.createTandem( 'visibleProperties' ) );
 
     const resetAllButton = new ResetAllButton( {
       right: this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_X_MARGIN,
@@ -93,8 +90,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
-    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties,
-      options.tandem.createTandem( 'checkboxGroup' ) );
+    const checkboxGroup = new CalculusGrapherCheckboxGroup( this.visibleProperties.gridVisibleProperty,
+      model.referenceLine.visibleProperty, options.tandem.createTandem( 'checkboxGroup' ) );
 
     const rightVBox = new VBox( {
       children: [ this.controlPanel, checkboxGroup ],

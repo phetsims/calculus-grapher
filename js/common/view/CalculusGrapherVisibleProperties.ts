@@ -16,28 +16,16 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class CalculusGrapherVisibleProperties extends PhetioObject {
 
-  // Indicates if the reference line is visible. This is a reference to model.referenceLine.visibleProperty.
-  public readonly referenceLineVisibleProperty: Property<boolean>;
-
   // Indicates if the graph grid is visible.
   public readonly gridVisibleProperty: Property<boolean>;
 
-  /**
-   * @param referenceLineVisibleProperty - ReferenceLine.visibleProperty
-   * @param tandem
-   */
-  public constructor( referenceLineVisibleProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( tandem: Tandem ) {
 
     super( {
 
       // PhetioObjectOptions
       tandem: tandem,
       phetioState: false
-    } );
-
-    this.referenceLineVisibleProperty = referenceLineVisibleProperty;
-    this.addLinkedElement( referenceLineVisibleProperty, {
-      tandem: tandem.createTandem( 'referenceLineVisibleProperty' )
     } );
 
     this.gridVisibleProperty = new BooleanProperty( false, {
