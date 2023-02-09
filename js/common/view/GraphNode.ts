@@ -110,7 +110,8 @@ export default class GraphNode extends Node {
   // Node that plots the curve
   protected readonly curveNode: CurveNode;
 
-  // Layer for plotting all curves and their decorations (e.g. Labeled Points, or Tools)
+  // Layer that contains the plots for any curves, optional tangent line and point (for Derivative screen),
+  // and optional area-under-curve plot and point (for Integral screen).
   protected readonly curveLayer: Node;
 
   // Visibility of curveLayer
