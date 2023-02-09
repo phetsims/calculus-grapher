@@ -174,7 +174,10 @@ export default class GraphNode extends Node {
     this.curveNode = options.createCurveNode( this.chartTransform );
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
-      tandem: options.tandem.createTandem( 'curveVisibleProperty' )
+      tandem: options.tandem.createTandem( 'curveLayerVisibleProperty' ),
+      phetioDocumentation: 'Controls whether the graph\'s curve layer is visible. The curve layer contains the plots ' +
+                           'for any curves, optional tangent line and point, and optional area-under-curve plot and point. ' +
+                           'The value of this Property can be toggled by pressing eyeToggleButton.'
     } );
 
     this.curveLayer = new Node( {
