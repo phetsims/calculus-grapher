@@ -24,6 +24,8 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 const TICK_MARK_EXTENT = 20;
 
@@ -42,7 +44,8 @@ type SelfOptions = {
   numberOfTicks?: number;
 };
 
-export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBoxOptions, 'titleNode'>;
+export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBoxOptions, 'titleNode'> &
+  PickRequired<AccordionBoxOptions, 'tandem'>;
 
 export default class BarometerAccordionBox extends AccordionBox {
 
@@ -81,7 +84,8 @@ export default class BarometerAccordionBox extends AccordionBox {
       visibleProperty: new DerivedProperty(
         [ ancillaryToolVisibleProperty, predictEnabledProperty ],
         ( ancillaryToolVisible, predictEnabled ) => ( ancillaryToolVisible && !predictEnabled ), {
-          // No PhET-iO instrumentation because this is more complicated than is useful for clients.
+          tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
+          phetioValueType: BooleanIO
         } )
     }, providedOptions );
 
