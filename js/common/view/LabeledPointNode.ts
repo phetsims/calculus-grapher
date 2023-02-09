@@ -39,8 +39,8 @@ export default class LabeledPointNode extends Node {
 
       // NodeOptions
       visibleProperty: new DerivedProperty(
-        [ curveLayerVisibleProperty, labeledPoint.visibleProperty, predictEnabledProperty ],
-        ( curveLayerVisible, labeledPointVisible, predictEnabled ) => curveLayerVisible && labeledPointVisible && !predictEnabled, {
+        [ labeledPoint.visibleProperty, curveLayerVisibleProperty, predictEnabledProperty ],
+        ( labeledPointVisible, curveLayerVisible, predictEnabled ) => labeledPointVisible && curveLayerVisible && !predictEnabled, {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } ),
