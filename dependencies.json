@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.0.0-dev.10 Tue Feb 07 2023 13:40:28 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.0.0-dev.11 Fri Feb 10 2023 09:54:35 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "master"
@@ -17,7 +17,7 @@
     "branch": "master"
   },
   "calculus-grapher": {
-    "sha": "06669a98e45d15567f187ef2b009709d4924a437",
+    "sha": "354e4f0f4c30c3e5a49b417f7d2cac13405a2295",
     "branch": "master"
   },
   "chipper": {
@@ -37,7 +37,7 @@
     "branch": "master"
   },
   "perennial-alias": {
-    "sha": "7880ecb0f2ee499f07d5fb6f14130b8e7d64babd",
+    "sha": "b281d677e5a1c134894692ea53dac5bea7c6a74c",
     "branch": "master"
   },
   "phet-core": {
@@ -49,7 +49,7 @@
     "branch": "master"
   },
   "phet-io-sim-specific": {
-    "sha": "b3b518e231cfa737aa5e51b6533647c2f3f7ca11",
+    "sha": "dbebf685fcc481584d4573e858563efb1336fb26",
     "branch": "master"
   },
   "phet-io-wrappers": {
@@ -69,7 +69,7 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "4c5f43218cc25c52fbbb43a82a32eb13e96d7ac5",
+    "sha": "6e34d8cdeacbcc82f64c1a7bbc4d537bdd94bc14",
     "branch": "master"
   },
   "scenery-phet": {
@@ -77,15 +77,15 @@
     "branch": "master"
   },
   "sherpa": {
-    "sha": "29f7761df05f453d625dd7d14ef6dcb6373f69cb",
+    "sha": "e30f3a18f980911cc0cbddab7cdd05f581ddc3b3",
     "branch": "master"
   },
   "studio": {
-    "sha": "bf6124ce6585c2de3307448be326172c20cc6b7c",
+    "sha": "fdbe3953f76168a29229293dfddfd948193db8ea",
     "branch": "master"
   },
   "sun": {
-    "sha": "0c13281a97001b3ec1b480cfffceb9e98b75048b",
+    "sha": "6baaf9c1526605f21070aed7353b642cb287ca90",
     "branch": "master"
   },
   "tambo": {
