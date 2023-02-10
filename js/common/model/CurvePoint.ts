@@ -57,7 +57,7 @@ export default class CurvePoint {
   // The initial y-coordinate, for resetting purposes.
   private readonly initialState: PointState;
 
-  // An array of all of this Point's saved states, for Undo feature.
+  // An array of this Point's saved states, for Undo feature.
   private readonly savedStates: PointState [];
 
   // Vector2 representation of this CurvePoint, to be used in bamboo data sets. This instance is allocated once
@@ -129,10 +129,10 @@ export default class CurvePoint {
       pointType: this.pointType
     } );
 
-    // empty first element of array if the number of saved values exceed MAX_UNDO
+    // Let's empty the first element of the array if the number of saved values exceeds MAX_UNDO
     while ( this.savedStates.length > CalculusGrapherConstants.MAX_UNDO ) {
 
-      // remove first value from array
+      // Remove the first value from the array
       this.savedStates.shift();
     }
   }
@@ -154,7 +154,7 @@ export default class CurvePoint {
    */
   public undoToLastSave(): void {
 
-    // Pop the state this CurvedPoint to the last saved state (if available).
+    // Pop the state of this CurvedPoint to the last saved state (if available).
     // As a side effect, the pop removes it from our savedStates
     // such that the next undoToLastSave() call successively reverts to the state before this one.
     const pointState = ( this.savedStates.length === 0 ) ? this.initialState : this.savedStates.pop()!;
