@@ -149,14 +149,18 @@ export default class CurvePoint {
   }
 
   /**
-   * Sets the y-value of this CurvedPoint to its last saved state.
-   * This method is invoked when the undo button is pressed, which successively undos the last action.
+   * Sets the state of this CurvedPoint to its last saved state.
+   * This method is invoked when the undo button is pressed, which successively undoes the last action.
    */
   public undoToLastSave(): void {
 
-    // Set the y-value of this CurvedPoint to the last saved state. The y-value is removed from our savedYValues
-    // so the next undoToLastSave() call successively reverts to the state before this one.
-    this.y = ( this.savedStates.length === 0 ) ? this.initialState.y : this.savedStates.pop()!.y;
+    // Pop the state this CurvedPoint to the last saved state (if available).
+    // As a side effect, the pop removes it from our savedStates
+    // such that the next undoToLastSave() call successively reverts to the state before this one.
+    const pointState = ( this.savedStates.length === 0 ) ? this.initialState : this.savedStates.pop()!;
+
+    this.y = pointState.y;
+    this.pointType = pointState.pointType;
   }
 
   // get the slope between this point and targetPoint
