@@ -27,7 +27,7 @@ const ARROW_NODE_OPTIONS = {
 type SelfOptions = EmptySelfOptions;
 
 type CueingArrowsNodeOptions = SelfOptions & NodeTranslationOptions &
-  PickRequired<VBoxOptions, 'tandem' | 'visibleProperty'>;
+  PickRequired<VBoxOptions, 'tandem' | 'phetioDocumentation' | 'visibleProperty'>;
 
 export default class CueingArrowsNode extends VBox {
 

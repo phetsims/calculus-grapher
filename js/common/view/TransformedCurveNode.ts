@@ -62,7 +62,8 @@ export default class TransformedCurveNode extends CurveNode {
       visibleProperty: new DerivedProperty(
         [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty ],
         ( wasManipulated, isInteractive ) => !wasManipulated && isInteractive ),
-      tandem: options.tandem.createTandem( 'cueingArrowsNode' )
+      tandem: options.tandem.createTandem( 'cueingArrowsNode' ),
+      phetioDocumentation: 'Cueing arrows on curve, visible prior to curve being interacted with.'
     } );
 
     this.addChild( cueingArrowsNode );
