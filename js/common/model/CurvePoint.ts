@@ -117,7 +117,7 @@ export default class CurvePoint {
   }
 
   /**
-   * Saves the current y-value of the Point for the next undoToLastSave() method.
+   * Saves the current state of the Point for the next undoToLastSave() method.
    * This method is invoked when the user finishes manipulating the TransformedCurve. When the undo button is pressed,
    * the Points of the TransformedCurve will be set to their last saved state.
    */
@@ -163,7 +163,7 @@ export default class CurvePoint {
     this.pointType = pointState.pointType;
   }
 
-  // get the slope between this point and targetPoint
+  // Gets the slope between this point and targetPoint.
   public getSlope( targetPoint: CurvePoint ): number {
     assert && assert( targetPoint !== this, 'you need two different points' );
 
