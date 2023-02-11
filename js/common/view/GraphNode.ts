@@ -257,7 +257,8 @@ export default class GraphNode extends Node {
       const rightNode = ticksParentVisible ? ticksParent : this.chartRectangle;
 
       // EyeToggleButton at bottom-left of chart rectangle
-      eyeToggleButton.rightBottom = rightNode.leftBottom.addXY( -BUTTON_SPACING, 0 );
+      eyeToggleButton.right = rightNode.left - BUTTON_SPACING;
+      eyeToggleButton.bottom = this.chartRectangle.bottom;
 
       // yZoomButtonGroup at left-center of chart rectangle
       if ( yZoomButtonGroup ) {
