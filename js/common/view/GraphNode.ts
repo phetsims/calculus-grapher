@@ -262,7 +262,8 @@ export default class GraphNode extends Node {
 
       // yZoomButtonGroup at left-center of chart rectangle
       if ( yZoomButtonGroup ) {
-        yZoomButtonGroup.rightCenter = rightNode.leftCenter.addXY( -BUTTON_SPACING, 0 );
+        yZoomButtonGroup.right = rightNode.left - BUTTON_SPACING;
+        yZoomButtonGroup.centerY = this.chartRectangle.centerY;
       }
     } );
 
