@@ -127,10 +127,10 @@ export default class GraphsNode extends Node {
     model.graphSetProperty.link( graphSet => {
 
       // Get the GraphNode instances that correspond to graphSet, in the same order as graphSet.
-      const graphNodes: GraphNode[] = [];
-      graphSet.graphTypes.forEach( graphType => {
-        const graphNode = _.find( this.graphNodes, graphNode => graphNode.graphType === graphType );
-        graphNode && graphNodes.push( graphNode );
+      const graphNodes = graphSet.graphTypes.map( graphType => {
+        const graphNode = _.find( this.graphNodes, graphNode => graphNode.graphType === graphType )!;
+        assert && assert( graphNode, `expected a GraphNode for graphType=${graphType}` );
+        return graphNode;
       } );
       this.graphSetNode.setChildren( graphNodes );
 
