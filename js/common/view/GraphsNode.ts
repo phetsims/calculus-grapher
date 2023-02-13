@@ -124,7 +124,9 @@ export default class GraphsNode extends Node {
     this.scrubberLineNodesParent = new Node();
 
     this.graphSetNode = new Node();
-    this.graphSetsAnimator = new GraphSetsAnimator( options.tandem.createTandem( 'graphSetsAnimator' ) );
+
+    this.graphSetsAnimator = new GraphSetsAnimator(
+      ( model.graphSets.length > 1 ) ? options.tandem.createTandem( 'graphSetsAnimator' ) : Tandem.OPT_OUT );
 
     // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
     // of the reference line and vertical lines.

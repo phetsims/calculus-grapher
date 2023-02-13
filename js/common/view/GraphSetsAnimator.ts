@@ -59,7 +59,7 @@ export default class GraphSetsAnimator {
       isValidValue: opacity => ( opacity >= 0 && opacity <= 1 ),
       tandem: tandem.createTandem( 'percentDistanceProperty' ),
       phetioState: true,
-      phetioDocumentation: 'Percent distance between start and end positions of graphs in a set.'
+      phetioDocumentation: 'Percent distance between start and end position, used to animate the positions of graphs in a set.'
     } );
 
     this.fadeOutAnimation = null;
