@@ -114,10 +114,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
         options.graphSetRadioButtonGroupItems, options.tandem.createTandem( 'graphSetRadioButtonGroup' ) );
       children.push( graphSetRadioButtonGroup );
 
-      // Center graphSetRadioButtonGroup in the negative space to the left of graphNode.
+      // Center graphSetRadioButtonGroup in the negative space to the left of graphNode. We're only adjusting centerX
+      // dynamically so that GraphSetsAnimation doesn't cause tiny shifts in y.
+      graphSetRadioButtonGroup.centerY = this.graphsNode.centerY;
       this.graphsNode.boundsProperty.link( () => {
         graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
-        graphSetRadioButtonGroup.centerY = this.graphsNode.centerY;
       } );
     }
 
@@ -139,6 +140,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
   public reset(): void {
     this.model.reset();
     this.graphsNode.reset();
+  }
+
+  public override step( dt: number ): void {
+    this.graphsNode.step( dt );
+    super.step( dt );
   }
 }
 

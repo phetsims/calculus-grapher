@@ -30,6 +30,7 @@ import GraphSet from '../model/GraphSet.js';
 import ScrubberLineNode from './ScrubberLineNode.js';
 import LineToolNode from './LineToolNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import GraphSetsAnimator from './GraphSetsAnimator.js';
 
 // How much VerticalLines extend above and below the graphs
 const VERTICAL_LINE_Y_EXTENT = 4;
@@ -61,6 +62,8 @@ export default class GraphsNode extends Node {
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
   private readonly scrubberLineNodes: ScrubberLineNode[];
   private readonly scrubberLineNodesParent: Node;
+
+  private readonly graphSetsAnimator: GraphSetsAnimator;
 
   public constructor( model: CalculusGrapherModel, providedOptions?: GraphsNodeOptions ) {
 
@@ -121,28 +124,26 @@ export default class GraphsNode extends Node {
     this.scrubberLineNodesParent = new Node();
 
     this.graphSetNode = new Node();
+    this.graphSetsAnimator = new GraphSetsAnimator( options.tandem.createTandem( 'graphSetsAnimator' ) );
 
     // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
     // of the reference line and vertical lines.
-    model.graphSetProperty.link( graphSet => {
+    model.graphSetProperty.link( ( newGraphSet, oldGraphSet ) => {
 
-      // Get the GraphNode instances that correspond to graphSet, in the same order as graphSet.
-      const graphNodes = graphSet.graphTypes.map( graphType => {
-        const graphNode = _.find( this.graphNodes, graphNode => graphNode.graphType === graphType )!;
-        assert && assert( graphNode, `expected a GraphNode for graphType=${graphType}` );
-        return graphNode;
-      } );
-      this.graphSetNode.setChildren( graphNodes );
+      // Get the GraphNode instances for the old and new GraphSets.
+      const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
+      const newGraphNodes = this.getGraphNodes( newGraphSet );
 
-      // Layout
-      this.updateLayout( graphNodes );
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight,
 
-      // Resize all LineToolNodes so that they extend through all graphs. For the referenceLine, add a bit more extent
-      // at the bottom if the bottom graph is the original graph, so that the drag handle does not overlap scrubber.
-      const bottomOffset = ( graphNodes[ graphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
-      this.resizeLineToolNodes( [ referenceLineNode ], VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT + bottomOffset );
-      this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT );
-      this.resizeLineToolNodes( this.scrubberLineNodes, SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
+        // Resize all LineToolNodes so that they extend through all graphs. For the referenceLine, add a bit more extent
+        // at the bottom if the bottom graph is the original graph, so that the drag handle does not overlap scrubber.
+        () => {
+          const bottomOffset = ( newGraphNodes[ newGraphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
+          this.resizeLineToolNodes( [ referenceLineNode ], VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT + bottomOffset );
+          this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT );
+          this.resizeLineToolNodes( this.scrubberLineNodes, SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
+        } );
     } );
 
     options.children = [ this.graphSetNode, this.scrubberLineNodesParent, verticalLinesNode, referenceLineNode ];
@@ -158,17 +159,19 @@ export default class GraphsNode extends Node {
     this.graphNodes.forEach( graphNode => graphNode.reset() );
   }
 
+  public step( dt: number ): void {
+    this.graphSetsAnimator.step( dt );
+  }
+
   /**
-   * Creates a vertical layout of a set of GraphNodes, ordered top to bottom.
+   * Gets the GraphNode instances that correspond to graphSet, in the same order as graphSet.
    */
-  private updateLayout( graphNodes: GraphNode[] ): void {
-    graphNodes[ 0 ].x = 0;
-    graphNodes[ 0 ].y = 0;
-    const ySpacing = ( graphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
-    for ( let i = 1; i < graphNodes.length; i++ ) {
-      graphNodes[ i ].x = graphNodes[ i - 1 ].x;
-      graphNodes[ i ].y = graphNodes[ i - 1 ].y + this.graphHeight + ySpacing;
-    }
+  private getGraphNodes( graphSet: GraphSet ): GraphNode[] {
+    return graphSet.graphTypes.map( graphType => {
+      const graphNode = _.find( this.graphNodes, graphNode => graphNode.graphType === graphType )!;
+      assert && assert( graphNode, `expected a GraphNode for graphType=${graphType}` );
+      return graphNode;
+    } );
   }
 
   /**
