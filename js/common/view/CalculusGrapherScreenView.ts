@@ -114,7 +114,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
         options.graphSetRadioButtonGroupItems, options.tandem.createTandem( 'graphSetRadioButtonGroup' ) );
       children.push( graphSetRadioButtonGroup );
 
-      // Center in the negative space to the left of graphNode.
+      // Center graphSetRadioButtonGroup in the negative space to the left of graphNode.
       this.graphsNode.boundsProperty.link( () => {
         graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
         graphSetRadioButtonGroup.centerY = this.graphsNode.centerY;
