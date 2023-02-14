@@ -12,9 +12,9 @@ import { Node } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import VerticalLine from '../model/VerticalLine.js';
 import VerticalLineNode from './VerticalLineNode.js';
-import { LinkableElement } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import LinkableElement from '../../../../tandem/js/LinkableElement.js';
 
 export default class VerticalLinesNode extends Node {
 

@@ -12,10 +12,10 @@ import { Node } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import LabeledPoint from '../model/LabeledPoint.js';
 import LabeledPointNode from './LabeledPointNode.js';
-import { LinkableElement } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import LinkableElement from '../../../../tandem/js/LinkableElement.js';
 
 export default class LabeledPointsNode extends Node {
 
