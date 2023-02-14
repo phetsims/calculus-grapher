@@ -225,6 +225,7 @@ export default class GraphSetsAnimator {
 
       this.fadeInAnimation.finishEmitter.addListener( () => {
         assert && assert( _.every( newGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ) );
+        assert && assert( _.every( newGraphNodes, graphNode => ( graphNode.opacity === 1 ) ) );
         this.activeAnimation = null;
         this.fadeInAnimation = null;
         this.fadeInOpacityProperty.unlinkAll();
