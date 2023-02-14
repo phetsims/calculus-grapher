@@ -87,8 +87,9 @@ export default class GraphSetsAnimator {
       yEndCoordinates.push( yEndCoordinates[ i - 1 ] + graphHeight + ySpacing );
     }
 
-    // If there are no old GraphNodes, or if an animation was in progress, move immediately to the new state.
-    if ( !oldGraphNodes || this.activeAnimation ) {
+    // Move immediately to the new state if:
+    // there are no old GraphNodes, an animation was in progress, or we're restoring PhET-iO state.
+    if ( !oldGraphNodes || this.activeAnimation || !phet.joist.sim.isSettingPhetioStateProperty.value ) {
 
       this.activeAnimation = null;
 
