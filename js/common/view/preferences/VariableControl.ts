@@ -7,8 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { HBox, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import { HBox, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -19,6 +18,7 @@ import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDi
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 
 export default class VariableControl extends HBox {
 
@@ -26,10 +26,10 @@ export default class VariableControl extends HBox {
 
   public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.variableStringProperty,
-      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
-        tandem: tandem.createTandem( 'labelText' )
-      } ) );
+    const labelText = new Text( CalculusGrapherStrings.variableStringProperty, {
+      font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      tandem: tandem.createTandem( 'labelText' )
+    } );
 
     const radioButtonGroup = new VariableRadioButtonGroup( functionVariableProperty,
       tandem.createTandem( 'radioButtonGroup' ) );
