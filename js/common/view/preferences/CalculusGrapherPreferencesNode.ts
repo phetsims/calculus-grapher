@@ -42,7 +42,7 @@ export default class CalculusGrapherPreferencesNode extends VBox {
     super( {
       children: [ discontinuitiesControl, notationControl, variableControl, valuesControl ],
       align: 'left',
-      spacing: 20,
+      spacing: 30,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );
