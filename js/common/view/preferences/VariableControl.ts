@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { HBox, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
+import { Node, RichText, Text } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -19,8 +19,9 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 
-export default class VariableControl extends HBox {
+export default class VariableControl extends PreferencesControl {
 
   private readonly disposeVariableControl: () => void;
 
@@ -35,9 +36,9 @@ export default class VariableControl extends HBox {
       tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
-      children: [ labelText, radioButtonGroup ],
-      align: 'top',
-      spacing: 15,
+      labelNode: labelText,
+      controlNode: radioButtonGroup,
+      labelSpacing: 20,
       tandem: tandem
     } );
 

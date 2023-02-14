@@ -38,7 +38,7 @@ export default class ValuesControl extends PreferencesControl {
     super( {
       labelNode: labelText,
       controlNode: toggleSwitch,
-      labelSpacing: 10,
+      labelSpacing: 20,
       tandem: tandem
     } );
 

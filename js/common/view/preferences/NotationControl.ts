@@ -20,8 +20,9 @@ import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 import GraphType from '../../model/GraphType.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 
-export default class NotationControl extends HBox {
+export default class NotationControl extends PreferencesControl {
 
   private readonly disposeNotationControl: () => void;
 
@@ -36,9 +37,10 @@ export default class NotationControl extends HBox {
       tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
-      children: [ labelText, radioButtonGroup ],
-      align: 'top',
-      spacing: 15
+      labelNode: labelText,
+      controlNode: radioButtonGroup,
+      labelSpacing: 20,
+      tandem: tandem
     } );
 
     this.disposeNotationControl = () => {

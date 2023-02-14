@@ -9,7 +9,7 @@
 
 import Property from '../../../../../axon/js/Property.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { Circle, HBox, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
+import { Circle, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
 import RectangularRadioButton from '../../../../../sun/js/buttons/RectangularRadioButton.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
@@ -18,8 +18,9 @@ import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import { ConnectDiscontinuities, ConnectDiscontinuitiesValues } from '../../CalculusGrapherQueryParameters.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 
-export default class DiscontinuitiesControl extends HBox {
+export default class DiscontinuitiesControl extends PreferencesControl {
 
   private readonly disposeDiscontinuitiesControl: () => void;
 
@@ -34,8 +35,9 @@ export default class DiscontinuitiesControl extends HBox {
       tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
-      children: [ labelText, radioButtonGroup ],
-      spacing: 15,
+      labelNode: labelText,
+      controlNode: radioButtonGroup,
+      labelSpacing: 20,
       tandem: tandem
     } );
 
