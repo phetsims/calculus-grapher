@@ -138,8 +138,9 @@ export default class GraphsNode extends Node {
       // Get the GraphNode instances for the old and new GraphSets.
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
+      const ySpacing = ( newGraphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
 
-      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight,
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, ySpacing,
 
         // Resize all LineToolNodes so that they extend through all graphs. For the referenceLine, add a bit more extent
         // at the bottom if the bottom graph is the original graph, so that the drag handle does not overlap scrubber.

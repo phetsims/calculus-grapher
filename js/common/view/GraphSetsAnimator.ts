@@ -68,7 +68,20 @@ export default class GraphSetsAnimator {
     this.activeAnimation = null;
   }
 
-  public changeGraphSets( graphSetNode: Node, oldGraphNodes: GraphNode[] | null, newGraphNodes: GraphNode[], graphHeight: number,
+  /**
+   * Switches between 2 graph sets.
+   * @param graphSetNode - parent Node for the GraphNodes
+   * @param oldGraphNodes - the current children of graphSetNode, null if it has no children
+   * @param newGraphNodes - the new children of graphSetNode
+   * @param graphHeight - the height of one GraphNode's ChartRectangle
+   * @param ySpacing - the vertical spacing between GraphNode instances
+   * @param endCallback - called when animation has completed
+   */
+  public changeGraphSets( graphSetNode: Node,
+                          oldGraphNodes: GraphNode[] | null,
+                          newGraphNodes: GraphNode[],
+                          graphHeight: number,
+                          ySpacing: number,
                           endCallback: () => void ): void {
 
     // Stop any animations that are in progress.
@@ -82,14 +95,13 @@ export default class GraphSetsAnimator {
     // Compute positions for GraphNodes in the new set.
     const x = newGraphNodes[ 0 ].x;
     const yEndCoordinates = [ 0 ];
-    const ySpacing = ( newGraphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
     for ( let i = 1; i < newGraphNodes.length; i++ ) {
       yEndCoordinates.push( yEndCoordinates[ i - 1 ] + graphHeight + ySpacing );
     }
 
     // Move immediately to the new state if:
     // there are no old GraphNodes, an animation was in progress, or we're restoring PhET-iO state.
-    if ( !oldGraphNodes || this.activeAnimation || !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+    if ( !oldGraphNodes || this.activeAnimation || phet.joist.sim.isSettingPhetioStateProperty.value ) {
 
       this.activeAnimation = null;
 
@@ -114,7 +126,7 @@ export default class GraphSetsAnimator {
 
       const graphNodesToRemove = oldGraphNodes.filter( graphNode => !newGraphNodes.includes( graphNode ) );
 
-      this.fadeOutOpacityProperty.value = 1;
+      this.fadeOutOpacityProperty.unlinkAll();
       this.fadeOutOpacityProperty.lazyLink( opacity => {
         graphNodesToRemove.forEach( graphNode => graphNode.setOpacity( opacity ) );
       } );
@@ -139,7 +151,8 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.fadeOutAnimation = null;
         this.fadeOutOpacityProperty.unlinkAll();
-        this.translationAnimation && this.translationAnimation.start();
+        assert && assert( this.translationAnimation );
+        this.translationAnimation!.start();
       } );
 
       //------------------------------------------------------------------------------------------------------------
@@ -150,7 +163,7 @@ export default class GraphSetsAnimator {
       const yStartCoordinates = newGraphNodes.map( graphNode => graphNode.y );
       assert && assert( yStartCoordinates.length === yEndCoordinates.length );
 
-      this.percentDistanceProperty.value = 0;
+      this.percentDistanceProperty.unlinkAll();
       this.percentDistanceProperty.lazyLink( percentDistance => {
         for ( let i = 0; i < newGraphNodes.length; i++ ) {
           const graphNode = newGraphNodes[ i ];
@@ -180,7 +193,8 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.translationAnimation = null;
         this.percentDistanceProperty.unlinkAll();
-        this.fadeInAnimation && this.fadeInAnimation.start();
+        assert && assert( this.fadeInAnimation );
+        this.fadeInAnimation!.start();
       } );
 
       //------------------------------------------------------------------------------------------------------------
@@ -189,8 +203,8 @@ export default class GraphSetsAnimator {
 
       const graphNodesToAdd = newGraphNodes.filter( graphNode => !oldGraphNodes.includes( graphNode ) );
 
-      this.fadeInOpacityProperty.value = 0;
-      this.fadeInOpacityProperty.link( opacity => {
+      this.fadeInOpacityProperty.unlinkAll();
+      this.fadeInOpacityProperty.lazyLink( opacity => {
         graphNodesToAdd.forEach( graphNode => graphNode.setOpacity( opacity ) );
       } );
 
