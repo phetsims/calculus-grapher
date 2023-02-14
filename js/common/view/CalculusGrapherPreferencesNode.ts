@@ -27,9 +27,6 @@ export default class CalculusGrapherPreferencesNode extends VBox {
 
   public constructor( tandem: Tandem ) {
 
-    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
-      tandem.createTandem( 'valuesControl' ) );
-
     const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
       tandem.createTandem( 'discontinuitiesControl' ) );
 
@@ -39,8 +36,11 @@ export default class CalculusGrapherPreferencesNode extends VBox {
     const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
       tandem.createTandem( 'variableControl' ) );
 
+    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
+      tandem.createTandem( 'valuesControl' ) );
+
     super( {
-      children: [ valuesControl, discontinuitiesControl, notationControl, variableControl ],
+      children: [ discontinuitiesControl, notationControl, variableControl, valuesControl ],
       align: 'left',
       spacing: 20,
       phetioVisiblePropertyInstrumented: false,
