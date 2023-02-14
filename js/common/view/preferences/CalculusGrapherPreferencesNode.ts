@@ -11,14 +11,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { VBox } from '../../../../scenery/js/imports.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import DiscontinuitiesControl from './preferences/DiscontinuitiesControl.js';
-import ValuesControl from './preferences/ValuesControl.js';
-import NotationControl from './preferences/NotationControl.js';
-import VariableControl from './preferences/VariableControl.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { VBox } from '../../../../../scenery/js/imports.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
+import DiscontinuitiesControl from './DiscontinuitiesControl.js';
+import ValuesControl from './ValuesControl.js';
+import NotationControl from './NotationControl.js';
+import VariableControl from './VariableControl.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 
 export default class CalculusGrapherPreferencesNode extends VBox {
 
@@ -26,9 +26,6 @@ export default class CalculusGrapherPreferencesNode extends VBox {
   private readonly disposeCalculusGrapherPreferencesNode: () => void;
 
   public constructor( tandem: Tandem ) {
-
-    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
-      tandem.createTandem( 'valuesControl' ) );
 
     const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
       tandem.createTandem( 'discontinuitiesControl' ) );
@@ -39,10 +36,13 @@ export default class CalculusGrapherPreferencesNode extends VBox {
     const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
       tandem.createTandem( 'variableControl' ) );
 
+    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
+      tandem.createTandem( 'valuesControl' ) );
+
     super( {
-      children: [ valuesControl, discontinuitiesControl, notationControl, variableControl ],
+      children: [ discontinuitiesControl, notationControl, variableControl, valuesControl ],
       align: 'left',
-      spacing: 20,
+      spacing: 30,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

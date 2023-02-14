@@ -131,11 +131,6 @@ const CalculusGrapherColors = {
   // the handle (shaded sphere) for moving the reference line
   referenceLineHandleColorProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineHandleColor', {
     default: 'blue'
-  } ),
-
-  // vertical line that extends through all graphs and follows a scrubber's x position
-  scrubberLineStrokeProperty: new ProfileColorProperty( calculusGrapher, 'scrubberLineStroke', {
-    default: Color.grayColor( 170 )
   } )
 };
 

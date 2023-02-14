@@ -10,13 +10,13 @@
 import Property from '../../../../../axon/js/Property.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import { Text } from '../../../../../scenery/js/imports.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
 import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
-import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 
 export default class ValuesControl extends PreferencesControl {
 
@@ -24,10 +24,10 @@ export default class ValuesControl extends PreferencesControl {
 
   public constructor( valuesVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty,
-      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
-        tandem: tandem.createTandem( 'labelText' )
-      } ) );
+    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, {
+      font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      tandem: tandem.createTandem( 'labelText' )
+    } );
 
     const toggleSwitch = new ToggleSwitch( valuesVisibleProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
@@ -38,7 +38,7 @@ export default class ValuesControl extends PreferencesControl {
     super( {
       labelNode: labelText,
       controlNode: toggleSwitch,
-      labelSpacing: 10,
+      labelSpacing: 20,
       tandem: tandem
     } );
 

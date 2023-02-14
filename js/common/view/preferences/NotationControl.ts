@@ -7,8 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { HBox, Node, RichText, Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import { HBox, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -20,25 +19,28 @@ import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrap
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 import GraphType from '../../model/GraphType.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 
-export default class NotationControl extends HBox {
+export default class NotationControl extends PreferencesControl {
 
   private readonly disposeNotationControl: () => void;
 
   public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.notationStringProperty,
-      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
-        tandem: tandem.createTandem( 'labelText' )
-      } ) );
+    const labelText = new Text( CalculusGrapherStrings.notationStringProperty, {
+      font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      tandem: tandem.createTandem( 'labelText' )
+    } );
 
     const radioButtonGroup = new NotationRadioButtonGroup( derivativeNotationProperty,
       tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
-      children: [ labelText, radioButtonGroup ],
-      align: 'top',
-      spacing: 15
+      labelNode: labelText,
+      controlNode: radioButtonGroup,
+      labelSpacing: 20,
+      tandem: tandem
     } );
 
     this.disposeNotationControl = () => {

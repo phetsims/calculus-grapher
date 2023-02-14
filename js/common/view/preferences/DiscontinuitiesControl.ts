@@ -9,33 +9,35 @@
 
 import Property from '../../../../../axon/js/Property.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { Circle, HBox, Line, LineOptions, Node, Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import { Circle, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
 import RectangularRadioButton from '../../../../../sun/js/buttons/RectangularRadioButton.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherColors from '../../CalculusGrapherColors.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
-import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
 import { ConnectDiscontinuities, ConnectDiscontinuitiesValues } from '../../CalculusGrapherQueryParameters.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 
-export default class DiscontinuitiesControl extends HBox {
+export default class DiscontinuitiesControl extends PreferencesControl {
 
   private readonly disposeDiscontinuitiesControl: () => void;
 
   public constructor( connectDiscontinuitiesProperty: Property<ConnectDiscontinuities>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty,
-      combineOptions<TextOptions>( {}, PreferencesDialog.PANEL_SECTION_CONTENT_OPTIONS, {
-        tandem: tandem.createTandem( 'labelText' )
-      } ) );
+    const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty, {
+      font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      tandem: tandem.createTandem( 'labelText' )
+    } );
 
     const radioButtonGroup = new DiscontinuitiesRadioButtonGroup( connectDiscontinuitiesProperty,
       tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
-      children: [ labelText, radioButtonGroup ],
-      spacing: 15,
+      labelNode: labelText,
+      controlNode: radioButtonGroup,
+      labelSpacing: 20,
       tandem: tandem
     } );
 

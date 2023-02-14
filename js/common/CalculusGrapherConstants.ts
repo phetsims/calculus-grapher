@@ -83,6 +83,10 @@ const CalculusGrapherConstants = {
   ACCORDION_BOX_VALUE_FONT: new PhetFont( 12 ), // for numerical values in Accordion box
   VERTICAL_LINE_FONT: new PhetFont( 16 ),
   POINT_LABEL_FONT: new PhetFont( 16 ),
+  PREFERENCES_LABEL_FONT: new PhetFont( {
+    size: 16,
+    weight: 'bold'
+  } ),
 
   CHECKBOX_WIDTH: new Text( 'A', { font: CONTROL_FONT } ).height,
 

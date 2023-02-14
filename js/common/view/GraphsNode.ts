@@ -31,10 +31,7 @@ import ScrubberLineNode from './ScrubberLineNode.js';
 import LineToolNode from './LineToolNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
-
-// How much VerticalLines extend above and below the graphs
-const VERTICAL_LINE_Y_EXTENT = 4;
-const SCRUBBER_LINE_Y_EXTENT = 0;
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -56,8 +53,14 @@ export default class GraphsNode extends Node {
   // The parent for all GraphNode instances that are part model.graphSetProperty.value
   private readonly graphSetNode: Node;
 
-  // Height of the graph in view coordinates
+  // Height of the graph, in view coordinates
   private readonly graphHeight: number;
+
+  // Vertical spacing between GraphNodes, in view coordinates
+  private readonly graphYSpacing: number;
+
+  // A reference line that extends vertically through all graphs
+  private readonly referenceLineNode: ReferenceLineNode;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
   private readonly scrubberLineNodes: ScrubberLineNode[];
@@ -77,6 +80,9 @@ export default class GraphsNode extends Node {
 
     // The (view) height of the graph based on the number of visible graphs.
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
+
+    // more graphs requires less spacing
+    this.graphYSpacing = ( model.graphSetProperty.value.length < 4 ) ? 20 : 12;
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
@@ -112,7 +118,7 @@ export default class GraphsNode extends Node {
       this.graphNodes.push( this.secondDerivativeGraphNode );
     }
 
-    const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
+    this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
       options.tandem.createTandem( 'referenceLineNode' ) );
 
     // Vertical lines
@@ -131,26 +137,32 @@ export default class GraphsNode extends Node {
     // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
     // of the reference line and vertical lines.
     model.graphSetProperty.link( ( newGraphSet, oldGraphSet ) => {
+      assert && assert( oldGraphSet === null || newGraphSet.length === oldGraphSet.length,
+        'graph sets must have the same length' );
+
+      // Interrupt any interactions that are in-progress.
+      this.interruptSubtreeInput();
 
       // Get the GraphNode instances for the old and new GraphSets.
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
 
-      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight,
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing,
 
-        // Resize all LineToolNodes so that they extend through all graphs. For the referenceLine, add a bit more extent
-        // at the bottom if the bottom graph is the original graph, so that the drag handle does not overlap scrubber.
+        // Resize all LineToolNodes so that they extend through all graphs.
+        // For the referenceLine, add a bit more extent at the bottom, so that the drag handle does not overlap scrubber.
         () => {
-          const bottomOffset = ( newGraphNodes[ newGraphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
-          this.resizeLineToolNodes( [ referenceLineNode ], VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT + bottomOffset );
-          this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT );
-          this.resizeLineToolNodes( this.scrubberLineNodes, SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
+          this.resizeReferenceLine();
+          this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, 13, 0 );
+          this.resizeLineToolNodes( this.scrubberLineNodes, 0, this.getScrubberLineBottomExtent() );
         } );
     } );
 
-    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, verticalLinesNode, referenceLineNode ];
+    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, verticalLinesNode, this.referenceLineNode ];
 
     this.mutate( options );
+
+    CalculusGrapherPreferences.valuesVisibleProperty.link( () => this.resizeReferenceLine() );
 
     this.addLinkedElement( model.graphSetProperty, {
       tandem: options.tandem.createTandem( model.graphSetProperty.tandem.name )
@@ -177,12 +189,22 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Resizes a set of LineToolNodes so that they extend through all graphs.
+   * Resizes a set of LineToolNodes so that they extend through all graphs.\
+   * NOTE: Top and bottom are computed so that they correspond to ChartRectangles, not GraphNodes.
    */
   private resizeLineToolNodes( lineToolNodes: LineToolNode[], topExtent: number, bottomExtent: number ): void {
-    lineToolNodes.forEach( lineToolNode =>
-      lineToolNode.setLineTopAndBottom( this.graphSetNode.top - topExtent, this.graphSetNode.bottom + bottomExtent )
-    );
+    lineToolNodes.forEach( lineToolNode => {
+      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
+      const top = this.graphSetNode.x - topExtent;
+      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) + bottomExtent;
+      lineToolNode.setLineTopAndBottom( top, bottom );
+    } );
+  }
+
+  private resizeReferenceLine(): void {
+    const topExtent = CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0; // add top extent when value is visible
+    const bottomExtent = 17; // long enough to avoid overlapping scrubber
+    this.resizeLineToolNodes( [ this.referenceLineNode ], topExtent, bottomExtent );
   }
 
   /**
@@ -200,7 +222,7 @@ export default class GraphsNode extends Node {
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
       'tangentScrubberNode' );
-    this.addScrubberLineNode( tangentScrubber );
+    this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
@@ -224,7 +246,7 @@ export default class GraphsNode extends Node {
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
       areaUnderCurveVisibleProperty, 'areaUnderCurveScrubberNode' );
-    this.addScrubberLineNode( areaUnderCurveScrubber );
+    this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
@@ -236,11 +258,20 @@ export default class GraphsNode extends Node {
   /**
    * Adds a vertical line that passes through all graphs and moves with scrubber's x position.
    */
-  private addScrubberLineNode( scrubber: AncillaryTool ): void {
-    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform );
+  private addScrubberLineNode( scrubber: AncillaryTool, lineStroke: TColor ): void {
+    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke );
     this.scrubberLineNodes.push( scrubberLineNode );
     this.scrubberLineNodesParent.addChild( scrubberLineNode );
-    this.resizeLineToolNodes( [ scrubberLineNode ], SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
+    this.resizeLineToolNodes( [ scrubberLineNode ], 0, this.getScrubberLineBottomExtent() );
+  }
+
+  /**
+   * If the scrubber is on the bottom graph, use a different extent to prevent the line from overlapping
+   * the drag handle.
+   */
+  private getScrubberLineBottomExtent(): number {
+    const bottomGraphSetNode = this.graphSetNode.getChildAt( this.graphSetNode.getChildrenCount() - 1 );
+    return ( bottomGraphSetNode instanceof OriginalGraphNode ) ? -9 : 0;
   }
 
   /**
@@ -248,7 +279,7 @@ export default class GraphsNode extends Node {
    */
   private addPlottedPoints( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
 
-    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.originalGraphNode, ancillaryTool.yOriginalProperty, CalculusGrapherColors.originalCurveStrokeProperty );
+    // Do not add a point on originalGraphNode, see https://github.com/phetsims/calculus-grapher/issues/207
 
     this.integralGraphNode &&
     this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.integralGraphNode, ancillaryTool.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
