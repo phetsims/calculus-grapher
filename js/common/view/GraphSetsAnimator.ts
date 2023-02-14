@@ -86,11 +86,8 @@ export default class GraphSetsAnimator {
 
     // Stop any animations that are in progress.
     this.fadeOutAnimation && this.fadeOutAnimation.stop();
-    this.fadeOutAnimation = null;
     this.fadeInAnimation && this.fadeInAnimation.stop();
-    this.fadeInAnimation = null;
     this.translationAnimation && this.translationAnimation.stop();
-    this.translationAnimation = null;
 
     // Compute positions for GraphNodes in the new set.
     const x = newGraphNodes[ 0 ].x;
