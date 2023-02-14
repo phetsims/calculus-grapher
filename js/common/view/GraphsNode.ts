@@ -33,7 +33,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 
 // How much VerticalLines extend above and below the graphs
-const VERTICAL_LINE_Y_EXTENT = 4;
+const VERTICAL_LINE_Y_EXTENT = 13;
 const SCRUBBER_LINE_Y_EXTENT = 0;
 
 type SelfOptions = EmptySelfOptions;
@@ -56,8 +56,11 @@ export default class GraphsNode extends Node {
   // The parent for all GraphNode instances that are part model.graphSetProperty.value
   private readonly graphSetNode: Node;
 
-  // Height of the graph in view coordinates
+  // Height of the graph, in view coordinates
   private readonly graphHeight: number;
+
+  // Vertical spacing between GraphNodes, in view coordinates
+  private readonly graphYSpacing: number;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
   private readonly scrubberLineNodes: ScrubberLineNode[];
@@ -77,6 +80,9 @@ export default class GraphsNode extends Node {
 
     // The (view) height of the graph based on the number of visible graphs.
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
+
+    // more graphs requires less spacing
+    this.graphYSpacing = ( model.graphSetProperty.value.length < 4 ) ? 20 : 12;
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
@@ -131,6 +137,8 @@ export default class GraphsNode extends Node {
     // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
     // of the reference line and vertical lines.
     model.graphSetProperty.link( ( newGraphSet, oldGraphSet ) => {
+      assert && assert( oldGraphSet === null || newGraphSet.length === oldGraphSet.length,
+        'graph sets must have the same length' );
 
       // Interrupt any interactions that are in-progress.
       this.interruptSubtreeInput();
@@ -138,9 +146,8 @@ export default class GraphsNode extends Node {
       // Get the GraphNode instances for the old and new GraphSets.
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
-      const ySpacing = ( newGraphNodes.length < 4 ) ? 20 : 12; // more graphs requires less spacing
 
-      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, ySpacing,
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing,
 
         // Resize all LineToolNodes so that they extend through all graphs. For the referenceLine, add a bit more extent
         // at the bottom if the bottom graph is the original graph, so that the drag handle does not overlap scrubber.
@@ -181,12 +188,16 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Resizes a set of LineToolNodes so that they extend through all graphs.
+   * Resizes a set of LineToolNodes so that they extend through all graphs.\
+   * NOTE: Top and bottom are computed so that they correspond to ChartRectangles, not GraphNodes.
    */
   private resizeLineToolNodes( lineToolNodes: LineToolNode[], topExtent: number, bottomExtent: number ): void {
-    lineToolNodes.forEach( lineToolNode =>
-      lineToolNode.setLineTopAndBottom( this.graphSetNode.top - topExtent, this.graphSetNode.bottom + bottomExtent )
-    );
+    lineToolNodes.forEach( lineToolNode => {
+      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
+      const top = this.graphSetNode.x - topExtent;
+      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) + bottomExtent;
+      lineToolNode.setLineTopAndBottom( top, bottom );
+      } );
   }
 
   /**
