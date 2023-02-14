@@ -31,10 +31,7 @@ import ScrubberLineNode from './ScrubberLineNode.js';
 import LineToolNode from './LineToolNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
-
-// How much VerticalLines extend above and below the graphs
-const VERTICAL_LINE_Y_EXTENT = 13;
-const SCRUBBER_LINE_Y_EXTENT = 0;
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -61,6 +58,9 @@ export default class GraphsNode extends Node {
 
   // Vertical spacing between GraphNodes, in view coordinates
   private readonly graphYSpacing: number;
+
+  // A reference line that extends vertically through all graphs
+  private readonly referenceLineNode: ReferenceLineNode;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
   private readonly scrubberLineNodes: ScrubberLineNode[];
@@ -118,7 +118,7 @@ export default class GraphsNode extends Node {
       this.graphNodes.push( this.secondDerivativeGraphNode );
     }
 
-    const referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
+    this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
       options.tandem.createTandem( 'referenceLineNode' ) );
 
     // Vertical lines
@@ -149,19 +149,20 @@ export default class GraphsNode extends Node {
 
       this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing,
 
-        // Resize all LineToolNodes so that they extend through all graphs. For the referenceLine, add a bit more extent
-        // at the bottom if the bottom graph is the original graph, so that the drag handle does not overlap scrubber.
+        // Resize all LineToolNodes so that they extend through all graphs.
+        // For the referenceLine, add a bit more extent at the bottom, so that the drag handle does not overlap scrubber.
         () => {
-          const bottomOffset = ( newGraphNodes[ newGraphNodes.length - 1 ] instanceof OriginalGraphNode ) ? 4 : 0;
-          this.resizeLineToolNodes( [ referenceLineNode ], VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT + bottomOffset );
-          this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, VERTICAL_LINE_Y_EXTENT, VERTICAL_LINE_Y_EXTENT );
-          this.resizeLineToolNodes( this.scrubberLineNodes, SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
+          this.resizeReferenceLine();
+          this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, 13, 0 );
+          this.resizeLineToolNodes( this.scrubberLineNodes, 0, 0 );
         } );
     } );
 
-    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, verticalLinesNode, referenceLineNode ];
+    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, verticalLinesNode, this.referenceLineNode ];
 
     this.mutate( options );
+
+    CalculusGrapherPreferences.valuesVisibleProperty.link( () => this.resizeReferenceLine() );
 
     this.addLinkedElement( model.graphSetProperty, {
       tandem: options.tandem.createTandem( model.graphSetProperty.tandem.name )
@@ -197,7 +198,13 @@ export default class GraphsNode extends Node {
       const top = this.graphSetNode.x - topExtent;
       const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) + bottomExtent;
       lineToolNode.setLineTopAndBottom( top, bottom );
-      } );
+    } );
+  }
+
+  private resizeReferenceLine(): void {
+    const topExtent = CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0; // top extend when value is visible
+    const bottomExtent = 17; // long enough to avoid overlapping scrubber
+    this.resizeLineToolNodes( [ this.referenceLineNode ], topExtent, bottomExtent );
   }
 
   /**
@@ -255,7 +262,7 @@ export default class GraphsNode extends Node {
     const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke );
     this.scrubberLineNodes.push( scrubberLineNode );
     this.scrubberLineNodesParent.addChild( scrubberLineNode );
-    this.resizeLineToolNodes( [ scrubberLineNode ], SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
+    this.resizeLineToolNodes( [ scrubberLineNode ], 0, 0 );
   }
 
   /**
