@@ -132,6 +132,9 @@ export default class GraphsNode extends Node {
     // of the reference line and vertical lines.
     model.graphSetProperty.link( ( newGraphSet, oldGraphSet ) => {
 
+      // Interrupt any interactions that are in-progress.
+      this.interruptSubtreeInput();
+
       // Get the GraphNode instances for the old and new GraphSets.
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
