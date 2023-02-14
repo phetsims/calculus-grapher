@@ -84,6 +84,8 @@ export default class GraphSetsAnimator {
                           ySpacing: number,
                           endCallback: () => void ): void {
 
+    assert && assert( oldGraphNodes === null || _.every( oldGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ) );
+
     // Stop any animations that are in progress.
     this.fadeOutAnimation && this.fadeOutAnimation.stop();
     this.fadeInAnimation && this.fadeInAnimation.stop();
@@ -222,6 +224,7 @@ export default class GraphSetsAnimator {
       } );
 
       this.fadeInAnimation.finishEmitter.addListener( () => {
+        assert && assert( _.every( newGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ) );
         this.activeAnimation = null;
         this.fadeInAnimation = null;
         this.fadeInOpacityProperty.unlinkAll();
