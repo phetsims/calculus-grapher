@@ -11,14 +11,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { VBox } from '../../../../scenery/js/imports.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import DiscontinuitiesControl from './preferences/DiscontinuitiesControl.js';
-import ValuesControl from './preferences/ValuesControl.js';
-import NotationControl from './preferences/NotationControl.js';
-import VariableControl from './preferences/VariableControl.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { VBox } from '../../../../../scenery/js/imports.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
+import DiscontinuitiesControl from './DiscontinuitiesControl.js';
+import ValuesControl from './ValuesControl.js';
+import NotationControl from './NotationControl.js';
+import VariableControl from './VariableControl.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 
 export default class CalculusGrapherPreferencesNode extends VBox {
 
