@@ -154,7 +154,7 @@ export default class GraphsNode extends Node {
         () => {
           this.resizeReferenceLine();
           this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, 13, 0 );
-          this.resizeLineToolNodes( this.scrubberLineNodes, 0, 0 );
+          this.resizeLineToolNodes( this.scrubberLineNodes, 0, this.getScrubberLineBottomExtent() );
         } );
     } );
 
@@ -202,7 +202,7 @@ export default class GraphsNode extends Node {
   }
 
   private resizeReferenceLine(): void {
-    const topExtent = CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0; // top extend when value is visible
+    const topExtent = CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0; // add top extent when value is visible
     const bottomExtent = 17; // long enough to avoid overlapping scrubber
     this.resizeLineToolNodes( [ this.referenceLineNode ], topExtent, bottomExtent );
   }
@@ -262,7 +262,16 @@ export default class GraphsNode extends Node {
     const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke );
     this.scrubberLineNodes.push( scrubberLineNode );
     this.scrubberLineNodesParent.addChild( scrubberLineNode );
-    this.resizeLineToolNodes( [ scrubberLineNode ], 0, 0 );
+    this.resizeLineToolNodes( [ scrubberLineNode ], 0, this.getScrubberLineBottomExtent() );
+  }
+
+  /**
+   * If the scrubber is on the bottom graph, use a different extent to prevent the line from overlapping
+   * the drag handle.
+   */
+  private getScrubberLineBottomExtent(): number {
+    const bottomGraphSetNode = this.graphSetNode.getChildAt( this.graphSetNode.getChildrenCount() - 1 );
+    return ( bottomGraphSetNode instanceof OriginalGraphNode ) ? -9 : 0;
   }
 
   /**
