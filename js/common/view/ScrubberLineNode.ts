@@ -11,13 +11,13 @@ import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import { TColor } from '../../../../scenery/js/imports.js';
 
 export default class ScrubberLineNode extends LineToolNode {
 
-  public constructor( scrubber: AncillaryTool, chartTransform: ChartTransform ) {
+  public constructor( scrubber: AncillaryTool, chartTransform: ChartTransform, lineStroke: TColor ) {
     super( scrubber.xProperty, chartTransform, {
-      lineStroke: CalculusGrapherColors.scrubberLineStrokeProperty,
+      lineStroke: lineStroke,
       lineWidth: 0.5,
       lineDash: [ 6, 6 ],
       visibleProperty: scrubber.visibleProperty,

@@ -200,7 +200,7 @@ export default class GraphsNode extends Node {
     // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
     this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
       'tangentScrubberNode' );
-    this.addScrubberLineNode( tangentScrubber );
+    this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
@@ -224,7 +224,7 @@ export default class GraphsNode extends Node {
     // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
       areaUnderCurveVisibleProperty, 'areaUnderCurveScrubberNode' );
-    this.addScrubberLineNode( areaUnderCurveScrubber );
+    this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
@@ -236,8 +236,8 @@ export default class GraphsNode extends Node {
   /**
    * Adds a vertical line that passes through all graphs and moves with scrubber's x position.
    */
-  private addScrubberLineNode( scrubber: AncillaryTool ): void {
-    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform );
+  private addScrubberLineNode( scrubber: AncillaryTool, lineStroke: TColor ): void {
+    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke );
     this.scrubberLineNodes.push( scrubberLineNode );
     this.scrubberLineNodesParent.addChild( scrubberLineNode );
     this.resizeLineToolNodes( [ scrubberLineNode ], SCRUBBER_LINE_Y_EXTENT, SCRUBBER_LINE_Y_EXTENT );
@@ -248,7 +248,7 @@ export default class GraphsNode extends Node {
    */
   private addPlottedPoints( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
 
-    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.originalGraphNode, ancillaryTool.yOriginalProperty, CalculusGrapherColors.originalCurveStrokeProperty );
+    // Do not add a point on originalGraphNode, see https://github.com/phetsims/calculus-grapher/issues/207
 
     this.integralGraphNode &&
     this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.integralGraphNode, ancillaryTool.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
