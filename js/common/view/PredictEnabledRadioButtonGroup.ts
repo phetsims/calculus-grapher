@@ -22,7 +22,7 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 export default class PredictEnabledRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
-  public constructor( predictEnabledProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( predictCurveSelectedProperty: Property<boolean>, tandem: Tandem ) {
 
     const originalCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
 
@@ -49,7 +49,7 @@ export default class PredictEnabledRadioButtonGroup extends RectangularRadioButt
       }
     ];
 
-    super( predictEnabledProperty, rectangularRadioButtonGroupItems, {
+    super( predictCurveSelectedProperty, rectangularRadioButtonGroupItems, {
       visibleProperty: CalculusGrapherPreferences.predictPreferenceEnabledProperty,
       orientation: 'horizontal',
       spacing: 5,

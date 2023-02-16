@@ -31,6 +31,8 @@ import LabeledPoint from './LabeledPoint.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
 import GraphSet from './GraphSet.js';
+import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = {
 
@@ -61,8 +63,12 @@ export default class CalculusGrapherModel implements TModel {
   // Properties associated with curve manipulation
   public readonly curveManipulationProperties: CurveManipulationProperties;
 
+  // true if the predictCurve is selected via the radio buttons, false if originalCurve is selected
+  public readonly predictCurveSelectedProperty: Property<boolean>;
+
   // Is the 'Predict' feature enabled for the original graph?
-  public readonly predictEnabledProperty: Property<boolean>;
+  // The Predict preferences must be turned on, and the Predict radio button must be selected.
+  public readonly predictEnabledProperty: TReadOnlyProperty<boolean>;
 
   // Controls visibility of grid lines on all graphs
   public readonly gridVisibleProperty: Property<boolean>;
@@ -118,9 +124,15 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'curveManipulationProperties' )
     } );
 
-    this.predictEnabledProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'predictEnabledProperty' )
+    this.predictCurveSelectedProperty = this.predictEnabledProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'predictCurveSelectedProperty' )
     } );
+
+    this.predictEnabledProperty = DerivedProperty.and(
+      [ CalculusGrapherPreferences.predictPreferenceEnabledProperty, this.predictCurveSelectedProperty ], {
+        tandem: options.tandem.createTandem( 'predictEnabledProperty' ),
+        phetioValueType: BooleanIO
+      } );
 
     this.gridVisibleProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'gridVisibleProperty' ),
@@ -212,7 +224,7 @@ export default class CalculusGrapherModel implements TModel {
     this.originalCurve.reset();
     this.predictCurve.reset();
     this.curveManipulationProperties.reset();
-    this.predictEnabledProperty.reset();
+    this.predictCurveSelectedProperty.reset();
     this.gridVisibleProperty.reset();
 
     // Reset tools

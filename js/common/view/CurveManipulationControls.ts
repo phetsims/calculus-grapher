@@ -13,14 +13,14 @@ import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioB
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import Property from '../../../../axon/js/Property.js';
 import CurveManipulationWidthControl from './CurveManipulationWidthControl.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 export default class CurveManipulationControls extends VBox {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictEnabledProperty: Property<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
     const curveManipulationStrokeProperty = new DerivedProperty( [
