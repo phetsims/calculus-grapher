@@ -64,5 +64,8 @@
   },
   "show": {
     "value": "Show"
+  },
+  "predictPreference": {
+    "value": "Predict"
   }
 }

@@ -21,11 +21,6 @@ export const functionVariable: FunctionVariable = CalculusGrapherQueryParameters
 
 const CalculusGrapherPreferences = {
 
-  valuesVisibleProperty: new BooleanProperty( CalculusGrapherQueryParameters.valuesVisible, {
-    tandem: Tandem.PREFERENCES.createTandem( 'valuesVisibleProperty' ),
-    phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
-  } ),
-
   connectDiscontinuitiesProperty: new StringUnionProperty( connectDiscontinuities, {
     validValues: ConnectDiscontinuitiesValues,
     tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
@@ -42,6 +37,18 @@ const CalculusGrapherPreferences = {
     validValues: FunctionVariableValues,
     tandem: Tandem.PREFERENCES.createTandem( 'functionVariableProperty' ),
     phetioDocumentation: 'the variable used in functions'
+  } ),
+
+  valuesVisibleProperty: new BooleanProperty( CalculusGrapherQueryParameters.valuesVisible, {
+    tandem: Tandem.PREFERENCES.createTandem( 'valuesVisibleProperty' ),
+    phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
+  } ),
+
+  // Note that this Preference is named predictFeatureEnabledProperty to distinguish it from
+  // CalculusGraphModel.predictEnabledProperty.
+  predictFeatureEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
+    tandem: Tandem.PREFERENCES.createTandem( 'predictFeatureEnabledProperty' ),
+    phetioDocumentation: 'Shows controls related to the Predict feature in the user interface'
   } )
 };
 

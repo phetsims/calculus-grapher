@@ -19,6 +19,7 @@ import ValuesControl from './ValuesControl.js';
 import NotationControl from './NotationControl.js';
 import VariableControl from './VariableControl.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
+import PredictFeatureControl from './PredictFeatureControl.js';
 
 export default class CalculusGrapherPreferencesNode extends VBox {
 
@@ -39,8 +40,11 @@ export default class CalculusGrapherPreferencesNode extends VBox {
     const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
       tandem.createTandem( 'valuesControl' ) );
 
+    const predictFeatureControl = new PredictFeatureControl( CalculusGrapherPreferences.predictFeatureEnabledProperty,
+      tandem.createTandem( 'predictFeatureControl' ) );
+
     super( {
-      children: [ discontinuitiesControl, notationControl, variableControl, valuesControl ],
+      children: [ discontinuitiesControl, notationControl, variableControl, valuesControl, predictFeatureControl ],
       align: 'left',
       spacing: 30,
       phetioVisiblePropertyInstrumented: false,
