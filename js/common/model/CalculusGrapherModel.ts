@@ -63,10 +63,10 @@ export default class CalculusGrapherModel implements TModel {
   // Properties associated with curve manipulation
   public readonly curveManipulationProperties: CurveManipulationProperties;
 
-  // true if the predictCurve is selected via the radio buttons, false if originalCurve is selected
-  public readonly predictCurveSelectedProperty: Property<boolean>;
+  // Whether the 'Predict' radio button is selected
+  public readonly predictSelectedProperty: Property<boolean>;
 
-  // Is the 'Predict' feature enabled for the original graph?
+  // Whether the 'Predict' feature is enabled for the original graph.
   // The Predict preferences must be turned on, and the Predict radio button must be selected.
   public readonly predictEnabledProperty: TReadOnlyProperty<boolean>;
 
@@ -124,14 +124,18 @@ export default class CalculusGrapherModel implements TModel {
       tandem: options.tandem.createTandem( 'curveManipulationProperties' )
     } );
 
-    this.predictCurveSelectedProperty = this.predictEnabledProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'predictCurveSelectedProperty' )
+    this.predictSelectedProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'predictSelectedProperty' ),
+      phetioDocumentation: 'Whether the Predict radio button is selected. This will have no affect unless the ' +
+                           'Predict preference is enabled.'
     } );
 
     this.predictEnabledProperty = DerivedProperty.and(
-      [ CalculusGrapherPreferences.predictPreferenceEnabledProperty, this.predictCurveSelectedProperty ], {
+      [ CalculusGrapherPreferences.predictPreferenceEnabledProperty, this.predictSelectedProperty ], {
         tandem: options.tandem.createTandem( 'predictEnabledProperty' ),
-        phetioValueType: BooleanIO
+        phetioValueType: BooleanIO,
+        phetioDocumentation: 'Whether the Predict feature is enabled. ' +
+                             'This is true only if the Predict preference is enabled, and the Predict radio button is selected.'
       } );
 
     this.gridVisibleProperty = new BooleanProperty( false, {
@@ -224,7 +228,7 @@ export default class CalculusGrapherModel implements TModel {
     this.originalCurve.reset();
     this.predictCurve.reset();
     this.curveManipulationProperties.reset();
-    this.predictCurveSelectedProperty.reset();
+    this.predictSelectedProperty.reset();
     this.gridVisibleProperty.reset();
 
     // Reset tools

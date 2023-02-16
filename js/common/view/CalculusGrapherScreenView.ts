@@ -76,7 +76,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
-      model.predictCurveSelectedProperty,
+      model.predictSelectedProperty,
       model.predictEnabledProperty,
       model.interactiveCurveProperty,
       combineOptions<CalculusGrapherControlPanelOptions>( {

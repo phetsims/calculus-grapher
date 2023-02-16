@@ -35,7 +35,7 @@ export default class CalculusGrapherControlPanel extends Panel {
   private contentNode: Node; // the Node contained inside this Panel
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
-                      predictCurveSelectedProperty: Property<boolean>,
+                      predictSelectedProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
@@ -54,7 +54,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    const predictRadioButtonGroup = new PredictRadioButtonGroup( predictCurveSelectedProperty,
+    const predictRadioButtonGroup = new PredictRadioButtonGroup( predictSelectedProperty,
       options.tandem.createTandem( 'predictRadioButtonGroup' ) );
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
