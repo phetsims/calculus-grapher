@@ -44,11 +44,11 @@ const CalculusGrapherPreferences = {
     phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
   } ),
 
-  // Note that this Preference is named predictFeatureEnabledProperty to distinguish it from
+  // Note that this Preference is named predictPreferenceEnabledProperty to distinguish it from
   // CalculusGraphModel.predictEnabledProperty.
-  predictFeatureEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
+  predictPreferenceEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
     tandem: Tandem.PREFERENCES.createTandem( 'predictFeatureEnabledProperty' ),
-    phetioDocumentation: 'Shows controls related to the Predict feature in the user interface'
+    phetioDocumentation: 'Preference used to show/hide the Predict feature in the user interface'
   } )
 };
 

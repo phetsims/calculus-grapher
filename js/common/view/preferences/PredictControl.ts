@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * PredictFeatureControl is the control in the Preferences dialog for setting whether the 'Predict' feature is
+ * PredictControl is the control in the Preferences dialog for setting whether the 'Predict' feature is
  * available in the user interface. It is a labeled on/off switch.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -18,18 +18,18 @@ import PreferencesDialogConstants from '../../../../../joist/js/preferences/Pref
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 
-export default class PredictFeatureControl extends PreferencesControl {
+export default class PredictControl extends PreferencesControl {
 
   private readonly disposePredictFeatureControl: () => void;
 
-  public constructor( predictFeatureEnabledProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( predictPreferenceEnabledProperty: Property<boolean>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherStrings.predictPreferenceStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       tandem: tandem.createTandem( 'labelText' )
     } );
 
-    const toggleSwitch = new ToggleSwitch( predictFeatureEnabledProperty, false, true,
+    const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
         tandem: tandem.createTandem( 'toggleSwitch' ),
         phetioVisiblePropertyInstrumented: false
@@ -54,4 +54,4 @@ export default class PredictFeatureControl extends PreferencesControl {
   }
 }
 
-calculusGrapher.register( 'PredictFeatureControl', PredictFeatureControl );
+calculusGrapher.register( 'PredictControl', PredictControl );
