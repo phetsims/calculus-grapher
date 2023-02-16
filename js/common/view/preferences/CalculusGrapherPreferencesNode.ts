@@ -4,8 +4,8 @@
  * CalculusGrapherPreferencesNode is the user interface for sim-specific preferences, accessed via the Preferences dialog.
  * These preferences are global, and affect all screens.
  *
- * The Preferences dialog is created on demand by joist, using a PhetioCapsule. So CalculusGrapherPreferencesNode must
- * implement dispose, and all elements of CalculusGrapherPreferencesNode that have tandems must be disposed.
+ * The Preferences dialog is created on demand by joist, using a PhetioCapsule. So this class must implement dispose,
+ * and all children that have tandems or link to String Properties must be disposed.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
