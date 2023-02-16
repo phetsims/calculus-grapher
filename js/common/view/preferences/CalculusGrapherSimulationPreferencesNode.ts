@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * CalculusGrapherSimulationPreferencesNode is the user interface for sim-specific preferences, accessed via the Preferences dialog.
- * These preferences are global, and affect all screens.
+ * CalculusGrapherSimulationPreferencesNode is the user interface for sim-specific preferences, accessed via the
+ * Simulation tab of the Preferences dialog. These preferences are global, and affect all screens.
  *
  * The Preferences dialog is created on demand by joist, using a PhetioCapsule. So this class must implement dispose,
  * and all children that have tandems or link to String Properties must be disposed.
