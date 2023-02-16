@@ -60,6 +60,15 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     public: true
   },
 
+  /**
+   * Whether the 'Predict' feature is available
+   */
+  predict: {
+    type: 'boolean',
+    defaultValue: false,
+    public: true
+  },
+
   //====================================================================================================================
   // private - for internal use only
   //====================================================================================================================
