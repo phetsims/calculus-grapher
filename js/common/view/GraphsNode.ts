@@ -227,7 +227,7 @@ export default class GraphsNode extends Node {
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
 
-    // Plot a point on each graph that will stay in sync with tangentScrubber.
+    // Plot a point on each derived graph that will stay in sync with tangentScrubber.
     this.addPlottedPoints( tangentScrubber, tangentVisibleProperty, 'tangentPointNode' );
   }
 
@@ -251,7 +251,7 @@ export default class GraphsNode extends Node {
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
 
-    // Plot a point on each graph that will stay in sync with areaUnderCurveScrubber.
+    // Plot a point on each derived graph that will stay in sync with areaUnderCurveScrubber.
     this.addPlottedPoints( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode' );
   }
 
@@ -275,7 +275,7 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Adds a PlottedPoint to each graph.
+   * Adds a PlottedPoint to each derived graph.
    */
   private addPlottedPoints( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
 
