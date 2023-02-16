@@ -17,7 +17,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import PredictEnabledRadioButtonGroup from './PredictEnabledRadioButtonGroup.js';
+import PredictRadioButtonGroup from './PredictRadioButtonGroup.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Property from '../../../../axon/js/Property.js';
@@ -54,8 +54,8 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     }, providedOptions );
 
-    const predictEnabledRadioButtonGroup = new PredictEnabledRadioButtonGroup( predictCurveSelectedProperty,
-      options.tandem.createTandem( 'predictEnabledRadioButtonGroup' ) );
+    const predictRadioButtonGroup = new PredictRadioButtonGroup( predictCurveSelectedProperty,
+      options.tandem.createTandem( 'predictRadioButtonGroup' ) );
 
     // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls( curveManipulationProperties,
@@ -69,7 +69,7 @@ export default class CalculusGrapherControlPanel extends Panel {
     const contentNode = new VBox( {
       spacing: 10,
       children: [
-        predictEnabledRadioButtonGroup,
+        predictRadioButtonGroup,
         curveManipulationControls,
         pushButtonGroup,
 
