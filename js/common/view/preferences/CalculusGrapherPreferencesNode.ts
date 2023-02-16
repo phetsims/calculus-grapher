@@ -28,23 +28,32 @@ export default class CalculusGrapherPreferencesNode extends VBox {
 
   public constructor( tandem: Tandem ) {
 
-    const discontinuitiesControl = new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
-      tandem.createTandem( 'discontinuitiesControl' ) );
+    // Controls in the order that they appear in the Simulation tab, from top-to-bottom.
+    const controls = [
 
-    const notationControl = new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty,
-      tandem.createTandem( 'notationControl' ) );
+      // Discontinuities
+      new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
+        tandem.createTandem( 'discontinuitiesControl' ) ),
 
-    const variableControl = new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
-      tandem.createTandem( 'variableControl' ) );
+      // Notation
+      new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty,
+        tandem.createTandem( 'notationControl' ) ),
 
-    const valuesControl = new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
-      tandem.createTandem( 'valuesControl' ) );
+      // Variable
+      new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
+        tandem.createTandem( 'variableControl' ) ),
 
-    const predictControl = new PredictControl( CalculusGrapherPreferences.predictPreferenceEnabledProperty,
-      tandem.createTandem( 'predictControl' ) );
+      // Values
+      new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
+        tandem.createTandem( 'valuesControl' ) ),
+
+      // Predict
+      new PredictControl( CalculusGrapherPreferences.predictPreferenceEnabledProperty,
+        tandem.createTandem( 'predictControl' ) )
+    ];
 
     super( {
-      children: [ discontinuitiesControl, notationControl, variableControl, valuesControl, predictControl ],
+      children: controls,
       align: 'left',
       spacing: 30,
       phetioVisiblePropertyInstrumented: false,
@@ -52,10 +61,7 @@ export default class CalculusGrapherPreferencesNode extends VBox {
     } );
 
     this.disposeCalculusGrapherPreferencesNode = (): void => {
-      valuesControl.dispose();
-      discontinuitiesControl.dispose();
-      notationControl.dispose();
-      variableControl.dispose();
+      controls.forEach( control => control.dispose() );
     };
   }
 
