@@ -18,6 +18,7 @@ import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import GraphType from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 export default class PredictEnabledRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
@@ -49,6 +50,7 @@ export default class PredictEnabledRadioButtonGroup extends RectangularRadioButt
     ];
 
     super( predictEnabledProperty, rectangularRadioButtonGroupItems, {
+      visibleProperty: CalculusGrapherPreferences.predictPreferenceEnabledProperty,
       orientation: 'horizontal',
       spacing: 5,
       radioButtonOptions: {
