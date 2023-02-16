@@ -15,7 +15,7 @@ import IntegralScreen from './integral/IntegralScreen.js';
 import LabScreen from './lab/LabScreen.js';
 import AdvancedScreen from './advanced/AdvancedScreen.js';
 import { CreditsData } from '../../joist/js/CreditsNode.js';
-import CalculusGrapherPreferencesNode from './common/view/preferences/CalculusGrapherPreferencesNode.js';
+import CalculusGrapherSimulationPreferencesNode from './common/view/preferences/CalculusGrapherSimulationPreferencesNode.js';
 import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import CalculusGrapherPreferences from './common/model/CalculusGrapherPreferences.js';
 
@@ -40,7 +40,7 @@ simLauncher.launch( () => {
   const preferencesModel = new PreferencesModel( {
     simulationOptions: {
       customPreferences: [ {
-        createContent: tandem => new CalculusGrapherPreferencesNode( tandem.createTandem( 'content' ) ),
+        createContent: tandem => new CalculusGrapherSimulationPreferencesNode( tandem.createTandem( 'content' ) ),
         modelLinkables: [
           { property: CalculusGrapherPreferences.valuesVisibleProperty },
           { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },

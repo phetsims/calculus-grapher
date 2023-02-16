@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * CalculusGrapherPreferencesNode is the user interface for sim-specific preferences, accessed via the Preferences dialog.
+ * CalculusGrapherSimulationPreferencesNode is the user interface for sim-specific preferences, accessed via the Preferences dialog.
  * These preferences are global, and affect all screens.
  *
  * The Preferences dialog is created on demand by joist, using a PhetioCapsule. So this class must implement dispose,
@@ -21,7 +21,7 @@ import VariableControl from './VariableControl.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import PredictControl from './PredictControl.js';
 
-export default class CalculusGrapherPreferencesNode extends VBox {
+export default class CalculusGrapherSimulationPreferencesNode extends VBox {
 
   // Disposes of things that are specific to this class.
   private readonly disposeCalculusGrapherPreferencesNode: () => void;
@@ -71,4 +71,4 @@ export default class CalculusGrapherPreferencesNode extends VBox {
   }
 }
 
-calculusGrapher.register( 'CalculusGrapherPreferencesNode', CalculusGrapherPreferencesNode );
+calculusGrapher.register( 'CalculusGrapherSimulationPreferencesNode', CalculusGrapherSimulationPreferencesNode );
