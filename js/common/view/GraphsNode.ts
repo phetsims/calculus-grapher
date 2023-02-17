@@ -225,7 +225,7 @@ export default class GraphsNode extends Node {
     // Add a scrubber to the derivative graph, for moving the x location of tangentScrubber.
     // See https://github.com/phetsims/calculus-grapher/issues/207
     derivativeGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
-      'tangentScrubberNode' );
+      false /* accumulationLineVisible */, 'tangentScrubberNode' );
     this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
@@ -253,7 +253,7 @@ export default class GraphsNode extends Node {
 
     // Add a scrubber to the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
-      areaUnderCurveVisibleProperty, 'areaUnderCurveScrubberNode' );
+      areaUnderCurveVisibleProperty, true /* accumulationLineVisible */, 'areaUnderCurveScrubberNode' );
     this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty );
 
     // Add a plot of the area under the curve on the original graph.

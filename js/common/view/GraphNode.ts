@@ -317,10 +317,11 @@ export default class GraphNode extends Node {
   /**
    * Adds an interactive scrubber that moves horizontally along the bottom of the graph.
    */
-  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor,
-                          visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): ScrubberNode {
+  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor, visibleProperty: TReadOnlyProperty<boolean>,
+                          accumulationLineVisible: boolean, tandemName: string ): ScrubberNode {
     const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, color, {
       visibleProperty: visibleProperty,
+      accumulationLineVisible: accumulationLineVisible,
       tandem: this.tandem.createTandem( tandemName )
     } );
     this.addChild( scrubberNode );

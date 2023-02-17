@@ -9,14 +9,16 @@
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Line, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import XDragHandleNode from './XDragHandleNode.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  accumulationLineVisible?: boolean;
+};
 
 export type ScrubberNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
@@ -28,7 +30,9 @@ export default class ScrubberNode extends Node {
                       providedOptions?: ScrubberNodeOptions ) {
 
     const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()( {
-      // we're setting options.children below
+
+      // SelfOptions
+      accumulationLineVisible: false
     }, providedOptions );
 
     // Drag handle, for translating x
@@ -38,20 +42,21 @@ export default class ScrubberNode extends Node {
       tandem: options.tandem.createTandem( 'dragHandleNode' )
     } );
 
-    // Horizontal line that extends from x=0 to the drag handle's position
-    const horizontalLine = new Line( 0, 0, dragHandleNode.centerX, 0, {
+    // Horizontal 'accumulation line' that extends from x=0 to the drag handle's position
+    const accumulationLine = new Line( 0, 0, dragHandleNode.centerX, 0, {
+      visible: options.accumulationLineVisible,
       stroke: color,
-      lineWidth: 2,
+      lineWidth: 3,
       centerY: dragHandleNode.centerY
     } );
 
-    options.children = [ horizontalLine, dragHandleNode ];
+    options.children = [ accumulationLine, dragHandleNode ];
 
     super( options );
 
     // Resizes the horizontal line to match the drag handle's x position.
     dragHandleNode.boundsProperty.link( () => {
-      horizontalLine.x2 = dragHandleNode.centerX;
+      accumulationLine.x2 = dragHandleNode.centerX;
     } );
 
     this.addLinkedElement( scrubber, {
