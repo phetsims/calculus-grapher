@@ -15,6 +15,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import { DragListener } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
 
@@ -34,7 +35,7 @@ export default class XDragHandleNode extends ShadedSphereNode {
     const options = optionize<XDragHandleNodeOptions, SelfOptions, ShadedSphereNodeOptions>()( {
 
       // SelfOptions
-      radius: 9,
+      radius: CalculusGrapherConstants.SCRUBBER_RADIUS,
       yModel: 0,
 
       // ShadedSphereNodeOptions

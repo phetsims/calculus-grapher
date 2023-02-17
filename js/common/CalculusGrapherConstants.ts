@@ -97,7 +97,10 @@ const CalculusGrapherConstants = {
   NUMBER_OF_VERTICAL_LINES: 6,
   NUMBER_OF_POINT_LABELS: 6,
 
-  PLOT_BOUNDS_METHOD: PLOT_BOUNDS_METHOD
+  PLOT_BOUNDS_METHOD: PLOT_BOUNDS_METHOD,
+
+  // radius of scrubber handles
+  SCRUBBER_RADIUS: 9
 };
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
