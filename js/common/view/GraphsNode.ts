@@ -212,6 +212,9 @@ export default class GraphsNode extends Node {
    */
   public addTangentView( tangentScrubber: TangentScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
+    const derivativeGraphNode = this.derivativeGraphNode!;
+    assert && assert( derivativeGraphNode );
+
     // Determines whether the tangent scrubber, tangent line, and associated points are visible on the graphs.
     const tangentVisibleProperty = new DerivedProperty(
       [ tangentScrubber.visibleProperty, predictEnabledProperty ],
@@ -219,22 +222,27 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
-    // Add a scrubber to the original graph, for moving the x location of tangentScrubber.
-    this.originalGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
+    // Add a scrubber to the derivative graph, for moving the x location of tangentScrubber.
+    // See https://github.com/phetsims/calculus-grapher/issues/207
+    derivativeGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
       'tangentScrubberNode' );
     this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
 
-    // Plot a point on each derived graph that will stay in sync with tangentScrubber.
-    this.addPlottedPoints( tangentScrubber, tangentVisibleProperty, 'tangentPointNode' );
+    // Plot a point on the derivative graph, to show the point that corresponds to the slope of the tangent.
+    this.addPlottedPoint( tangentScrubber, tangentVisibleProperty, 'tangentPointNode', derivativeGraphNode,
+      tangentScrubber.yDerivativeProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
   }
 
   /**
    * Decorates the appropriate graphs for the 'area under curve' feature.
    */
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
+
+    const integralGraphNode = this.integralGraphNode!;
+    assert && assert( integralGraphNode );
 
     // Determines whether the area-under-curve scrubber, plot, and associated points are visible on the graphs.
     const areaUnderCurveVisibleProperty = new DerivedProperty(
@@ -243,7 +251,7 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
-    // Add a scrubber on the original graph, for moving the x location of areaUnderCurveScrubber.
+    // Add a scrubber to the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
       areaUnderCurveVisibleProperty, 'areaUnderCurveScrubberNode' );
     this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty );
@@ -251,8 +259,9 @@ export default class GraphsNode extends Node {
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
 
-    // Plot a point on each derived graph that will stay in sync with areaUnderCurveScrubber.
-    this.addPlottedPoints( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode' );
+    // Plot a point on the integral graph, to show the point that corresponds to the area under the curve.
+    this.addPlottedPoint( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode',
+      integralGraphNode, areaUnderCurveScrubber.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
   }
 
   /**
@@ -275,24 +284,7 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Adds a PlottedPoint to each derived graph.
-   */
-  private addPlottedPoints( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): void {
-
-    // Do not add a point on originalGraphNode, see https://github.com/phetsims/calculus-grapher/issues/207
-
-    this.integralGraphNode &&
-    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.integralGraphNode, ancillaryTool.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
-
-    this.derivativeGraphNode &&
-    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.derivativeGraphNode, ancillaryTool.yDerivativeProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
-
-    this.secondDerivativeGraphNode &&
-    this.addPlottedPoint( ancillaryTool, visibleProperty, tandemName, this.secondDerivativeGraphNode, ancillaryTool.ySecondDerivativeProperty, CalculusGrapherColors.secondDerivativeCurveStrokeProperty );
-  }
-
-  /**
-   * Adds a PlottedPoint to one graph.
+   * Adds a PlottedPoint to a graph.
    */
   private addPlottedPoint( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string,
                            graphNode: GraphNode, yProperty: TReadOnlyProperty<number>, fill: TColor ): void {

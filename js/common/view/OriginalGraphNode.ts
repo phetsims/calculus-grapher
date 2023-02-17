@@ -23,7 +23,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { DragListener, HBox, PressedDragListener, Rectangle, TColor, Text } from '../../../../scenery/js/imports.js';
+import { DragListener, HBox, PressedDragListener, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
@@ -34,8 +34,6 @@ import TangentScrubber from '../model/TangentScrubber.js';
 import TangentArrowNode from './TangentArrowNode.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import ScrubberNode from './ScrubberNode.js';
 import GraphType from '../model/GraphType.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
@@ -233,19 +231,6 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
     super.reset();
-  }
-
-  /**
-   * Adds a scrubber to OriginalGraphNode.
-   */
-  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor,
-                          visibleProperty: TReadOnlyProperty<boolean>, tandemName: string ): ScrubberNode {
-    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, color, {
-      visibleProperty: visibleProperty,
-      tandem: this.tandem.createTandem( tandemName )
-    } );
-    this.addChild( scrubberNode );
-    return scrubberNode;
   }
 
   /**
