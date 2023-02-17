@@ -23,7 +23,7 @@ export default class TangentScrubber extends AncillaryTool {
                       tandem: Tandem ) {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
-      x: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3,
+      x: Math.floor( CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3 ),
       tandem: tandem
     } );
 
