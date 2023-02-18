@@ -14,7 +14,6 @@ import CalculusGrapherQueryParameters, { ConnectDiscontinuities, ConnectDisconti
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
 
-//TODO QueryStringMachine needs a string union type
 const connectDiscontinuities: ConnectDiscontinuities = CalculusGrapherQueryParameters.connectDiscontinuities === 'noLine' ? 'noLine' : 'dashedLine';
 export const derivationNotation: DerivativeNotation = CalculusGrapherQueryParameters.derivativeNotation === 'lagrange' ? 'lagrange' : 'leibniz';
 export const functionVariable: FunctionVariable = CalculusGrapherQueryParameters.functionVariable === 'x' ? 'x' : 't';
