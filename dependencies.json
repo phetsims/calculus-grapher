@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.0.0-dev.12 Thu Feb 16 2023 18:23:44 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.0.0-dev.13 Mon Feb 20 2023 09:56:50 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "master"
@@ -9,7 +9,7 @@
     "branch": "master"
   },
   "bamboo": {
-    "sha": "4fafbd88694a223a44ac17709f04311349bd7546",
+    "sha": "260072371e62edaf1815e5cfaf87a708a77ce5b0",
     "branch": "master"
   },
   "brand": {
@@ -17,11 +17,11 @@
     "branch": "master"
   },
   "calculus-grapher": {
-    "sha": "4859cce4b895356ac8e59ae85b8c349d478e62af",
+    "sha": "ea2cc9a057fadb69679d1d34bb011e73297d62d3",
     "branch": "master"
   },
   "chipper": {
-    "sha": "77029aad5a21f214da7ace0c34eaa8330335d1d7",
+    "sha": "b1d0435cb0995a09a876d542a683393226edc5d7",
     "branch": "master"
   },
   "dot": {
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "aa18b4864ba0d7b18d52eb37b7e718c171fcd910",
+    "sha": "2eb0988aea1ac0250bd6bcf2ef9ed76f05a52a60",
     "branch": "master"
   },
   "kite": {
@@ -41,7 +41,7 @@
     "branch": "master"
   },
   "phet-core": {
-    "sha": "cfb3c684bb0751f4c6badd191a592623300f00d0",
+    "sha": "1fb878c4b1322bd244637d1ed191c2a6b9f35498",
     "branch": "master"
   },
   "phet-io": {
@@ -49,7 +49,7 @@
     "branch": "master"
   },
   "phet-io-sim-specific": {
-    "sha": "018c03533ad1307d2547b6263ea53d76505ad3b9",
+    "sha": "8651f3a1c29606e673e52e9d7fba5d72cb2c3f2e",
     "branch": "master"
   },
   "phet-io-wrappers": {
@@ -73,7 +73,7 @@
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "fc2549f3a9a472a347f39330a95e43a045d66080",
+    "sha": "01a4b982dd2e7ad4951291473650d42966dc8cef",
     "branch": "master"
   },
   "sherpa": {
@@ -85,7 +85,7 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "8e2df9fe9fbd4a483a4fc4941a90c2124f5fca53",
+    "sha": "ec37fb13198d2d4e979feace8590add2299d80a3",
     "branch": "master"
   },
   "tambo": {
