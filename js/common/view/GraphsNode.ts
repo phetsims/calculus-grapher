@@ -189,7 +189,7 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Resizes a set of LineToolNodes so that they extend through all graphs.\
+   * Resizes a set of LineToolNodes so that they extend through all graphs.
    * NOTE: Top and bottom are computed so that they correspond to ChartRectangles, not GraphNodes.
    */
   private resizeLineToolNodes( lineToolNodes: LineToolNode[], topExtent: number, bottomExtent: number ): void {
