@@ -12,13 +12,9 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import DerivativeModel from '../model/DerivativeModel.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import TangentCheckbox from './TangentCheckbox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -56,17 +52,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     } );
 
     // Add 'Tangent' checkbox to the bottom of the main control panel.
-    const tangentCheckboxTandem = this.controlPanel.tandem.createTandem( 'tangentCheckbox' );
-    const tangentCheckbox = new Checkbox( model.tangentScrubber.visibleProperty,
-      new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
-        font: CalculusGrapherConstants.CONTROL_FONT,
-        maxWidth: 100,
-        tandem: tangentCheckboxTandem.createTandem( 'text' )
-      } ), {
-        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-        enabledProperty: DerivedProperty.not( model.predictEnabledProperty ),
-        tandem: tangentCheckboxTandem
-      } );
+    const tangentCheckbox = new TangentCheckbox( model.tangentScrubber.visibleProperty, model.predictEnabledProperty,
+      this.controlPanel.tandem.createTandem( 'tangentCheckbox' ) );
     this.controlPanel.appendContent( tangentCheckbox );
 
     this.resetDerivativeScreenView = () => {
