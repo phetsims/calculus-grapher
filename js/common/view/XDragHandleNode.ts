@@ -39,7 +39,7 @@ export default class XDragHandleNode extends ShadedSphereNode {
       yModel: 0,
 
       // ShadedSphereNodeOptions
-      cursor: 'pointer',
+      cursor: 'ew-resize',
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
