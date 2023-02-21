@@ -25,7 +25,6 @@ import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import XDragHandleNode from './XDragHandleNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import ScrubberNode from './ScrubberNode.js';
 
 export default class ReferenceLineNode extends LineToolNode {
 
@@ -91,10 +90,10 @@ export default class ReferenceLineNode extends LineToolNode {
       stroke: CalculusGrapherColors.referenceLineStrokeProperty
     } );
 
-    const scrubberNode = ScrubberNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty );
+    const dragHandleIcon = XDragHandleNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty );
 
     return new VBox( {
-      children: [ verticalLine, scrubberNode ]
+      children: [ verticalLine, dragHandleIcon ]
     } );
   }
 }

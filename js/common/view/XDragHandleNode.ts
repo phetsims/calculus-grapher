@@ -13,7 +13,7 @@ import { Shape } from '../../../../kite/js/imports.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import { DragListener } from '../../../../scenery/js/imports.js';
+import { DragListener, Node, TColor } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
@@ -64,6 +64,15 @@ export default class XDragHandleNode extends ShadedSphereNode {
     // As xProperty changes, translate this Node.
     xProperty.link( x => {
       this.x = chartTransform.modelToViewX( x );
+    } );
+  }
+
+  /**
+   * Creates an icon for the drag handle.
+   */
+  public static createIcon( color: TColor, radius = CalculusGrapherConstants.SCRUBBER_RADIUS ): Node {
+    return new ShadedSphereNode( 2 * radius, {
+      mainColor: color
     } );
   }
 }
