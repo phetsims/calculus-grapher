@@ -15,6 +15,8 @@ import { Line, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.
 import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import XDragHandleNode from './XDragHandleNode.js';
+import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   accumulationLineVisible?: boolean;
@@ -63,5 +65,15 @@ export default class ScrubberNode extends Node {
       tandem: options.tandem.createTandem( scrubber.tandem.name )
     } );
   }
+
+  /**
+   * Creates an icon for a scrubber.
+   */
+  public static createIcon( color: TColor ): Node {
+    return new ShadedSphereNode( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, {
+      mainColor: color
+    } );
+  }
 }
+
 calculusGrapher.register( 'ScrubberNode', ScrubberNode );

@@ -10,12 +10,14 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import { RichText } from '../../../../scenery/js/imports.js';
+import { HBox, RichText } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
+import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
+import ScrubberNode from '../../common/view/ScrubberNode.js';
 
 export default class AreaUnderCurveCheckbox extends Checkbox {
 
@@ -28,7 +30,14 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
       tandem: tandem.createTandem( 'text' )
     } );
 
-    super( scrubberVisibleProperty, text, {
+    const icon = ScrubberNode.createIcon( CalculusGrapherColors.integralCurveStrokeProperty );
+
+    const box = new HBox( {
+      children: [ text, icon ],
+      spacing: 6
+    } );
+
+    super( scrubberVisibleProperty, box, {
       boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
       enabledProperty: DerivedProperty.not( predictEnabledProperty ),
       tandem: tandem
