@@ -46,7 +46,7 @@ export default class XDragHandleNode extends ShadedSphereNode {
     // y coordinate position is fixed.
     options.y = chartTransform.modelToViewY( options.yModel );
 
-    // Dilate the pointer areas a bit. (see https://github.com/phetsims/calculus-grapher/issues/230)
+    // Dilate the pointer areas a bit. See https://github.com/phetsims/calculus-grapher/issues/230
     options.touchArea = Shape.circle( 0, 0, options.radius + 5 );
     options.mouseArea = Shape.circle( 0, 0, options.radius + 2 );
 
