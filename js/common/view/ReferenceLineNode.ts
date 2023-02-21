@@ -14,7 +14,6 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import { Line, Node, VBox } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
@@ -26,6 +25,7 @@ import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import XDragHandleNode from './XDragHandleNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import ScrubberNode from './ScrubberNode.js';
 
 export default class ReferenceLineNode extends LineToolNode {
 
@@ -85,18 +85,16 @@ export default class ReferenceLineNode extends LineToolNode {
   /**
    * Returns an icon for a ReferenceLine
    */
-  public static getIcon(): Node {
+  public static createIcon(): Node {
 
     const verticalLine = new Line( 0, 0, 0, 11, {
       stroke: CalculusGrapherColors.referenceLineStrokeProperty
     } );
 
-    const dragHandle = new ShadedSphereNode( 8, {
-      mainColor: CalculusGrapherColors.referenceLineHandleColorProperty
-    } );
+    const scrubberNode = ScrubberNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty );
 
     return new VBox( {
-      children: [ verticalLine, dragHandle ]
+      children: [ verticalLine, scrubberNode ]
     } );
   }
 }

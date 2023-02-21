@@ -25,7 +25,7 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
       createItem( new GridIcon(), gridVisibleProperty, 'gridCheckbox' ),
 
       // Item for reference line checkbox
-      createItem( ReferenceLineNode.getIcon(), referenceLineVisibleProperty, 'referenceLineCheckbox' )
+      createItem( ReferenceLineNode.createIcon(), referenceLineVisibleProperty, 'referenceLineCheckbox' )
     ];
 
     super( items, {

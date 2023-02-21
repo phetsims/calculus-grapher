@@ -69,8 +69,8 @@ export default class ScrubberNode extends Node {
   /**
    * Creates an icon for a scrubber.
    */
-  public static createIcon( color: TColor ): Node {
-    return new ShadedSphereNode( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, {
+  public static createIcon( color: TColor, radius = CalculusGrapherConstants.SCRUBBER_RADIUS ): Node {
+    return new ShadedSphereNode( 2 * radius, {
       mainColor: color
     } );
   }
