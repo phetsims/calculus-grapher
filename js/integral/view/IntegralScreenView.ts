@@ -12,13 +12,9 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import IntegralModel from '../model/IntegralModel.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import AreaUnderCurveCheckbox from './AreaUnderCurveCheckbox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -57,17 +53,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     } );
 
     // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
-    const areaUnderCurveCheckboxTandem = this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' );
-    const areaUnderCurveCheckbox = new Checkbox( model.areaUnderCurveScrubber.visibleProperty,
-      new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
-        font: CalculusGrapherConstants.CONTROL_FONT,
-        maxWidth: 100,
-        tandem: areaUnderCurveCheckboxTandem.createTandem( 'text' )
-      } ), {
-        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-        enabledProperty: DerivedProperty.not( model.predictEnabledProperty ),
-        tandem: areaUnderCurveCheckboxTandem
-      } );
+    const areaUnderCurveCheckbox = new AreaUnderCurveCheckbox( model.areaUnderCurveScrubber.visibleProperty,
+      model.predictEnabledProperty, this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' ) );
     this.controlPanel.appendContent( areaUnderCurveCheckbox );
 
     this.resetIntegralScreenView = () => {

@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TangentCheckbox is the checkbox labeled 'Tangent', for making the tangent feature visible.
+ * AreaUnderCurveCheckbox is the checkbox labeled 'Area Under Curve', for making the area-under-curve feature visible.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -17,12 +17,12 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 
-export default class TangentCheckbox extends Checkbox {
+export default class AreaUnderCurveCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
 
-    const text = new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
+    const text = new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 100,
       tandem: tandem.createTandem( 'text' )
@@ -36,4 +36,4 @@ export default class TangentCheckbox extends Checkbox {
   }
 }
 
-calculusGrapher.register( 'TangentCheckbox', TangentCheckbox );
+calculusGrapher.register( 'AreaUnderCurveCheckbox', AreaUnderCurveCheckbox );
