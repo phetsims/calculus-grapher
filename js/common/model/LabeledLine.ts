@@ -31,7 +31,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
     const options = optionize<LabeledLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
 
       // LabeledAncillaryToolOptions
-      visible: CalculusGrapherQueryParameters.verticalLinesVisible
+      visible: CalculusGrapherQueryParameters.labeledLinesVisible
     }, providedOptions );
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );

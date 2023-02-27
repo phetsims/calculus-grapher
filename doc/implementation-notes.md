@@ -24,10 +24,10 @@ There are a number of query parameters for internal use.
   rounded corners). A larger value creates a wider edge.
 - `angleMismatchThreshold` sets the maximum difference between the angle of the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
 - `slopeThreshold` sets the maximum slope of a Point on a curve for it to be considered differentiable. The default value is 25 * Math.PI / 180.
-- `presetFunctions` allows a user to iterate through a set of pre determined functions with the left and right arrow keys. The default value is false.
+- `presetFunctions` allows a user to iterate through a set of predetermined functions with the left and right arrow keys. The default value is false.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cuspPoints` shows all the cusp points as circles in a scatter plot. The default value is false.
-- `verticalLinesVisible` is used to make all LabeledLine instances initially visible. The default value is false.
+- `labeledLinesVisible` is used to make all LabeledLine instances initially visible. The default value is false.
 - `labeledPointsVisible` is used to make all LabeledPoint instances initially visible. The default value is false.
 
 There are a number of query parameters that are made public.

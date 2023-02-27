@@ -167,7 +167,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   // For debugging, to make all LabeledLine instances initially visible.
-  verticalLinesVisible: {
+  labeledLinesVisible: {
     type: 'boolean',
     defaultValue: false
   },
