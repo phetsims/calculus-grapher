@@ -18,7 +18,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type LabeledlLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
+type LabeledLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
 
 export default class LabeledLine extends LabeledAncillaryTool {
 
@@ -26,9 +26,9 @@ export default class LabeledLine extends LabeledAncillaryTool {
   public readonly lineColorProperty: ColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                      providedOptions: LabeledlLineOptions ) {
+                      providedOptions: LabeledLineOptions ) {
 
-    const options = optionize<LabeledlLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
+    const options = optionize<LabeledLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
 
       // LabeledAncillaryToolOptions
       visible: CalculusGrapherQueryParameters.verticalLinesVisible
