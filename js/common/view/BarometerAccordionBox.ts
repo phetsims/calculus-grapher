@@ -26,6 +26,7 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 const TICK_MARK_EXTENT = 20;
 
@@ -55,6 +56,14 @@ export default class BarometerAccordionBox extends AccordionBox {
                          predictEnabledProperty: TReadOnlyProperty<boolean>,
                          providedOptions: BarometerAccordionBoxOptions ) {
 
+    // PhET-iO only Property, for permanently hiding this BarometerAccordionBox.
+    // See https://github.com/phetsims/calculus-grapher/issues/239
+    const featureEnabledProperty = new BooleanProperty( true, {
+      tandem: providedOptions.tandem.createTandem( 'featureEnabledProperty' ),
+      phetioDocumentation: 'Setting this to false will permanently hide this accordion box, ' +
+                           'regardless of other simulation settings.'
+    } );
+
     const options = optionize<BarometerAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
       // SelfOptions
@@ -82,8 +91,8 @@ export default class BarometerAccordionBox extends AccordionBox {
 
       // visible if the associate tool is visible and the 'Predict' radio button is not selected
       visibleProperty: new DerivedProperty(
-        [ ancillaryToolVisibleProperty, predictEnabledProperty ],
-        ( ancillaryToolVisible, predictEnabled ) => ( ancillaryToolVisible && !predictEnabled ), {
+        [ featureEnabledProperty, ancillaryToolVisibleProperty, predictEnabledProperty ],
+        ( featureEnabled, ancillaryToolVisible, predictEnabled ) => ( featureEnabled && ancillaryToolVisible && !predictEnabled ), {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } )
