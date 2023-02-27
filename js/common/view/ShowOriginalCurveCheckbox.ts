@@ -19,21 +19,31 @@ import Property from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
 type ShowOriginalCurveCheckboxOptions = SelfOptions &
   StrictOmit<CheckboxOptions, 'boxWidth'> &
-  PickRequired<CheckboxOptions, 'tandem' | 'visibleProperty'>;
+  PickRequired<CheckboxOptions, 'tandem'>;
 
 export default class ShowOriginalCurveCheckbox extends Checkbox {
 
-  public constructor( showOriginalCurveProperty: Property<boolean>, providedOptions: ShowOriginalCurveCheckboxOptions ) {
+  public constructor( showOriginalCurveProperty: Property<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      providedOptions: ShowOriginalCurveCheckboxOptions ) {
 
     const options = optionize<ShowOriginalCurveCheckboxOptions, SelfOptions, CheckboxOptions>()( {
 
       // CheckboxOptions
-      boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
+      boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
+      visibleProperty: DerivedProperty.and( [ predictEnabledProperty, CalculusGrapherPreferences.hasShowOriginalCurveCheckboxProperty ], {
+        tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
+        phetioValueType: BooleanIO
+      } )
     }, providedOptions );
 
     const content = new HBox( {
