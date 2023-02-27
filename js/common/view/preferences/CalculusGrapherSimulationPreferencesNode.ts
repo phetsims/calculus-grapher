@@ -31,25 +31,25 @@ export default class CalculusGrapherSimulationPreferencesNode extends VBox {
     // Controls in the order that they appear in the Simulation tab, from top-to-bottom.
     const controls = [
 
-      // Discontinuities
-      new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
-        tandem.createTandem( 'discontinuitiesControl' ) ),
+      // Variable
+      new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
+        tandem.createTandem( 'variableControl' ) ),
 
       // Notation
       new NotationControl( CalculusGrapherPreferences.derivativeNotationProperty,
         tandem.createTandem( 'notationControl' ) ),
 
-      // Variable
-      new VariableControl( CalculusGrapherPreferences.functionVariableProperty,
-        tandem.createTandem( 'variableControl' ) ),
-
-      // Values
-      new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
-        tandem.createTandem( 'valuesControl' ) ),
+      // Discontinuities
+      new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
+        tandem.createTandem( 'discontinuitiesControl' ) ),
 
       // Predict
       new PredictControl( CalculusGrapherPreferences.predictPreferenceEnabledProperty,
-        tandem.createTandem( 'predictControl' ) )
+        tandem.createTandem( 'predictControl' ) ),
+
+      // Values
+      new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
+        tandem.createTandem( 'valuesControl' ) )
     ];
 
     super( {
