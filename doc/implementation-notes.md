@@ -27,7 +27,7 @@ There are a number of query parameters for internal use.
 - `presetFunctions` allows a user to iterate through a set of pre determined functions with the left and right arrow keys. The default value is false.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cuspPoints` shows all the cusp points as circles in a scatter plot. The default value is false.
-- `verticalLinesVisible` is used to make all VerticalLine instances initially visible. The default value is false.
+- `verticalLinesVisible` is used to make all LabeledLine instances initially visible. The default value is false.
 - `labeledPointsVisible` is used to make all LabeledPoint instances initially visible. The default value is false.
 
 There are a number of query parameters that are made public.

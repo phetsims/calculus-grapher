@@ -13,14 +13,14 @@ import { Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import VerticalLine from '../model/VerticalLine.js';
+import LabeledLine from '../model/LabeledLine.js';
 import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class LabeledLineNode extends LineToolNode {
 
-  public constructor( verticalLine: VerticalLine, chartTransform: ChartTransform, tandem: Tandem ) {
+  public constructor( verticalLine: LabeledLine, chartTransform: ChartTransform, tandem: Tandem ) {
 
     super( verticalLine.xProperty, chartTransform, {
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210

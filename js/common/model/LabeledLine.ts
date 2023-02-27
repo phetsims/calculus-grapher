@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * VerticalLine is the model element for a vertical line tool.
+ * LabeledLine is the model element for a vertical line tool.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -19,7 +19,7 @@ type SelfOptions = EmptySelfOptions;
 
 type VerticalLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
 
-export default class VerticalLine extends LabeledAncillaryTool {
+export default class LabeledLine extends LabeledAncillaryTool {
 
   // Color for displaying the vertical line
   public readonly lineColorProperty: ColorProperty;
@@ -41,15 +41,15 @@ export default class VerticalLine extends LabeledAncillaryTool {
   }
 
   /**
-   * Creates a specified number of VerticalLine instances, with evenly spaced initialCoordinates,
+   * Creates a specified number of LabeledLine instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
   public static createVerticalLines( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
                                      derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                                     parentTandem: Tandem ): VerticalLine[] {
+                                     parentTandem: Tandem ): LabeledLine[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>
-        new VerticalLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+        new LabeledLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
           label: label,
           tandem: parentTandem.createTandem( `${label}VerticalLine` )
@@ -57,4 +57,4 @@ export default class VerticalLine extends LabeledAncillaryTool {
   }
 }
 
-calculusGrapher.register( 'VerticalLine', VerticalLine );
+calculusGrapher.register( 'LabeledLine', LabeledLine );

@@ -3,14 +3,14 @@
 /**
  * LabeledLinesNode is the set of LabeledLineNode instances. Those instances are not instrumented for PhET-iO,
  * because everything that the PhET-iO client can change is in the model. So this class also provides a link to
- * the collection of VerticalLine instances in the model.
+ * the collection of LabeledLine instances in the model.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import { Node } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import VerticalLine from '../model/VerticalLine.js';
+import LabeledLine from '../model/LabeledLine.js';
 import LabeledLineNode from './LabeledLineNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
@@ -20,7 +20,7 @@ export default class LabeledLinesNode extends Node {
 
   public readonly verticalLineNodes: LabeledLineNode[];
 
-  public constructor( verticalLines: VerticalLine[], linkableElement: LinkableElement,
+  public constructor( verticalLines: LabeledLine[], linkableElement: LinkableElement,
                       chartTransform: ChartTransform, tandem: Tandem ) {
 
     // LabeledLineNode instances.

@@ -26,7 +26,7 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ReferenceLine from './ReferenceLine.js';
-import VerticalLine from './VerticalLine.js';
+import LabeledLine from './LabeledLine.js';
 import LabeledPoint from './LabeledPoint.js';
 import TangentScrubber from './TangentScrubber.js';
 import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
@@ -88,7 +88,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly labeledPoints: LabeledPoint[];
-  public readonly verticalLines: VerticalLine[];
+  public readonly verticalLines: LabeledLine[];
 
   // These exist so that we have something to link to from the view.
   // See https://github.com/phetsims/calculus-grapher/issues/198
@@ -209,8 +209,8 @@ export default class CalculusGrapherModel implements TModel {
       phetioState: false
     } );
 
-    // VerticalLine instances, will appear to be children of 'verticalLines' in the Studio tree.
-    this.verticalLines = VerticalLine.createVerticalLines(
+    // LabeledLine instances, will appear to be children of 'verticalLines' in the Studio tree.
+    this.verticalLines = LabeledLine.createVerticalLines(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,
