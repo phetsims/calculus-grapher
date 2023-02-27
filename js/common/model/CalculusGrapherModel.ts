@@ -205,12 +205,12 @@ export default class CalculusGrapherModel implements TModel {
     // This exists so that we have something we can link to from the view.
     // See https://github.com/phetsims/calculus-grapher/issues/198
     this.verticalLinesLinkableElement = new PhetioObject( {
-      tandem: toolsTandem.createTandem( 'verticalLines' ),
+      tandem: toolsTandem.createTandem( 'labeledLines' ),
       phetioState: false
     } );
 
-    // LabeledLine instances, will appear to be children of 'verticalLines' in the Studio tree.
-    this.verticalLines = LabeledLine.createVerticalLines(
+    // LabeledLine instances, will appear to be children of 'labeledLines' in the Studio tree.
+    this.verticalLines = LabeledLine.createLabeledLines(
       CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
       this.integralCurve,
       this.originalCurve,

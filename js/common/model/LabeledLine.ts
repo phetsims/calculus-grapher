@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * LabeledLine is the model element for a vertical line tool.
+ * LabeledLine is the model element for a labeled line tool. This is tool consists of a vertical line with a label
+ * positioned at the top of the line.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -17,7 +18,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type VerticalLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
+type LabeledlLineOptions = SelfOptions & PickRequired<LabeledAncillaryToolOptions, 'x' | 'label' | 'tandem'>;
 
 export default class LabeledLine extends LabeledAncillaryTool {
 
@@ -25,9 +26,9 @@ export default class LabeledLine extends LabeledAncillaryTool {
   public readonly lineColorProperty: ColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                      providedOptions: VerticalLineOptions ) {
+                      providedOptions: LabeledlLineOptions ) {
 
-    const options = optionize<VerticalLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
+    const options = optionize<LabeledlLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
 
       // LabeledAncillaryToolOptions
       visible: CalculusGrapherQueryParameters.verticalLinesVisible
@@ -44,7 +45,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
    * Creates a specified number of LabeledLine instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createVerticalLines( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
+  public static createLabeledLines( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
                                      derivativeCurve: Curve, secondDerivativeCurve: Curve,
                                      parentTandem: Tandem ): LabeledLine[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
