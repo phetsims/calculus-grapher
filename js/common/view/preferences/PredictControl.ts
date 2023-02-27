@@ -10,13 +10,15 @@
 import Property from '../../../../../axon/js/Property.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { RichText, Text } from '../../../../../scenery/js/imports.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
 import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
+import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 
 export default class PredictControl extends PreferencesControl {
 
@@ -35,9 +37,20 @@ export default class PredictControl extends PreferencesControl {
         phetioVisiblePropertyInstrumented: false
       } ) );
 
+    const descriptionStringProperty = new PatternStringProperty( CalculusGrapherStrings.predictPreferenceDescriptionStringProperty, {
+      variable: CalculusGrapherPreferences.functionVariableProperty,
+      tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
+    } );
+    const descriptionText = new RichText( descriptionStringProperty, {
+      lineWrap: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_LINE_WRAP,
+      font: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_FONT,
+      tandem: tandem.createTandem( 'descriptionText' )
+    } );
+
     super( {
       labelNode: labelText,
       controlNode: toggleSwitch,
+      descriptionNode: descriptionText,
       labelSpacing: 20,
       tandem: tandem
     } );

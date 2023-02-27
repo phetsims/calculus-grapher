@@ -87,6 +87,9 @@ const CalculusGrapherConstants = {
     size: 16,
     weight: 'bold'
   } ),
+  PREFERENCES_DESCRIPTION_FONT: new PhetFont( 16 ),
+
+  PREFERENCES_DESCRIPTION_LINE_WRAP: 325,
 
   CHECKBOX_WIDTH: new Text( 'A', { font: CONTROL_FONT } ).height,
 

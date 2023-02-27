@@ -10,7 +10,7 @@
 import Property from '../../../../../axon/js/Property.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { RichText, Text } from '../../../../../scenery/js/imports.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
@@ -35,9 +35,16 @@ export default class ValuesControl extends PreferencesControl {
         phetioVisiblePropertyInstrumented: false
       } ) );
 
+    const descriptionText = new RichText( CalculusGrapherStrings.valuesPreferenceDescriptionStringProperty, {
+      lineWrap: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_LINE_WRAP,
+      font: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_FONT,
+      tandem: tandem.createTandem( 'descriptionText' )
+    } );
+
     super( {
       labelNode: labelText,
       controlNode: toggleSwitch,
+      descriptionNode: descriptionText,
       labelSpacing: 20,
       tandem: tandem
     } );

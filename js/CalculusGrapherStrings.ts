@@ -42,6 +42,8 @@ type StringsType = {
   'predictStringProperty': LinkableProperty<string>;
   'showStringProperty': LinkableProperty<string>;
   'predictPreferenceStringProperty': LinkableProperty<string>;
+  'valuesPreferenceDescriptionStringProperty': LinkableProperty<string>;
+  'predictPreferenceDescriptionStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
