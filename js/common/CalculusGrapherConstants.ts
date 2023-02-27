@@ -81,7 +81,7 @@ const CalculusGrapherConstants = {
   CONTROL_FONT: CONTROL_FONT, // for text on checkboxes, radio buttons, push buttons, etc.
   ACCORDION_BOX_FONT: new PhetFont( 16 ), // for accordion box title and non-numerical text
   ACCORDION_BOX_VALUE_FONT: new PhetFont( 12 ), // for numerical values in Accordion box
-  VERTICAL_LINE_FONT: new PhetFont( 16 ),
+  LABELED_LINE_FONT: new PhetFont( 16 ),
   POINT_LABEL_FONT: new PhetFont( 16 ),
   PREFERENCES_LABEL_FONT: new PhetFont( {
     size: 16,
@@ -97,8 +97,8 @@ const CalculusGrapherConstants = {
   CORNER_RADIUS: 5,
 
   // PhET-iO ONLY constants
-  NUMBER_OF_VERTICAL_LINES: 6,
-  NUMBER_OF_POINT_LABELS: 6,
+  NUMBER_OF_LABELED_LINES: 6,
+  NUMBER_OF_LABELED_POINTS: 6,
 
   PLOT_BOUNDS_METHOD: PLOT_BOUNDS_METHOD,
 

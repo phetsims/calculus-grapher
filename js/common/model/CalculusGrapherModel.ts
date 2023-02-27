@@ -88,12 +88,12 @@ export default class CalculusGrapherModel implements TModel {
   public readonly tangentScrubber: TangentScrubber;
   public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly labeledPoints: LabeledPoint[];
-  public readonly verticalLines: LabeledLine[];
+  public readonly labeledLines: LabeledLine[];
 
   // These exist so that we have something to link to from the view.
   // See https://github.com/phetsims/calculus-grapher/issues/198
   public readonly labeledPointsLinkableElement: PhetioObject;
-  public readonly verticalLinesLinkableElement: PhetioObject;
+  public readonly labeledLinesLinkableElement: PhetioObject;
 
   protected constructor( providedOptions: CalculusGrapherModelOptions ) {
 
@@ -195,7 +195,7 @@ export default class CalculusGrapherModel implements TModel {
 
     // LabeledPoint instances, will appear to be children of 'labeledPoints' in the Studio tree.
     this.labeledPoints = LabeledPoint.createLabeledPoints(
-      CalculusGrapherConstants.NUMBER_OF_POINT_LABELS,
+      CalculusGrapherConstants.NUMBER_OF_LABELED_POINTS,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
@@ -204,19 +204,19 @@ export default class CalculusGrapherModel implements TModel {
 
     // This exists so that we have something we can link to from the view.
     // See https://github.com/phetsims/calculus-grapher/issues/198
-    this.verticalLinesLinkableElement = new PhetioObject( {
+    this.labeledLinesLinkableElement = new PhetioObject( {
       tandem: toolsTandem.createTandem( 'labeledLines' ),
       phetioState: false
     } );
 
     // LabeledLine instances, will appear to be children of 'labeledLines' in the Studio tree.
-    this.verticalLines = LabeledLine.createLabeledLines(
-      CalculusGrapherConstants.NUMBER_OF_VERTICAL_LINES,
+    this.labeledLines = LabeledLine.createLabeledLines(
+      CalculusGrapherConstants.NUMBER_OF_LABELED_LINES,
       this.integralCurve,
       this.originalCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
-      this.verticalLinesLinkableElement.tandem );
+      this.labeledLinesLinkableElement.tandem );
   }
 
   /**
@@ -235,7 +235,7 @@ export default class CalculusGrapherModel implements TModel {
     this.tangentScrubber.reset();
     this.areaUnderCurveScrubber.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
-    // Do not reset this.verticalLines, because they are configured only via PhET-iO.
+    // Do not reset this.labeledLines, because they are configured only via PhET-iO.
   }
 }
 calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );

@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * LabeledLineNode is the view representation of vertical line that can spans multiple graphs.
- * The line has a label node located atop of the vertical line
+ * LabeledLineNode is the view representation of a labeled line that spans multiple graphs.
+ * The line has a label node located at the top of its vertical line.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -20,18 +20,18 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class LabeledLineNode extends LineToolNode {
 
-  public constructor( verticalLine: LabeledLine, chartTransform: ChartTransform, tandem: Tandem ) {
+  public constructor( labeledLine: LabeledLine, chartTransform: ChartTransform, tandem: Tandem ) {
 
-    super( verticalLine.xProperty, chartTransform, {
+    super( labeledLine.xProperty, chartTransform, {
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
-      lineStroke: verticalLine.lineColorProperty,
+      lineStroke: labeledLine.lineColorProperty,
       lineDash: [ 4, 2 ],
-      visibleProperty: verticalLine.visibleProperty,
+      visibleProperty: labeledLine.visibleProperty,
       tandem: tandem
     } );
 
-    const text = new Text( verticalLine.stringProperty, {
-      font: CalculusGrapherConstants.VERTICAL_LINE_FONT,
+    const text = new Text( labeledLine.stringProperty, {
+      font: CalculusGrapherConstants.LABELED_LINE_FONT,
       maxWidth: 50,
       centerX: 0,
       tandem: tandem.createTandem( 'text' )
@@ -49,8 +49,8 @@ export default class LabeledLineNode extends LineToolNode {
       labelNode.centerBottom = this.line.centerTop;
     } );
 
-    this.addLinkedElement( verticalLine, {
-      tandem: tandem.createTandem( verticalLine.tandem.name )
+    this.addLinkedElement( labeledLine, {
+      tandem: tandem.createTandem( labeledLine.tandem.name )
     } );
   }
 }

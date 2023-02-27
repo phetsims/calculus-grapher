@@ -2,7 +2,7 @@
 
 /**
  * Class for all the graphs in the 'Calculus Grapher' simulation.
- * It also adds the reference line and all the (PhET-IO) vertical lines at the bottom of the graphs
+ * It also adds the reference line and all the (PhET-IO) labeled lines at the bottom of the graphs
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -122,7 +122,7 @@ export default class GraphsNode extends Node {
       options.tandem.createTandem( 'referenceLineNode' ) );
 
     // Labeled lines
-    const labeledLinesNode = new LabeledLinesNode( model.verticalLines, model.verticalLinesLinkableElement,
+    const labeledLinesNode = new LabeledLinesNode( model.labeledLines, model.labeledLinesLinkableElement,
       this.originalGraphNode.chartTransform, options.tandem.createTandem( 'labeledLinesNode' ) );
 
     // Scrubber lines
@@ -135,7 +135,7 @@ export default class GraphsNode extends Node {
       ( model.graphSets.length > 1 ) ? options.tandem.createTandem( 'graphSetsAnimator' ) : Tandem.OPT_OUT );
 
     // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
-    // of the reference line and vertical lines.
+    // of the reference line and labeled lines.
     model.graphSetProperty.link( ( newGraphSet, oldGraphSet ) => {
       assert && assert( oldGraphSet === null || newGraphSet.length === oldGraphSet.length,
         'graph sets must have the same length' );
@@ -153,7 +153,7 @@ export default class GraphsNode extends Node {
         // For the referenceLine, add a bit more extent at the bottom, so that the drag handle does not overlap scrubber.
         () => {
           this.resizeReferenceLine();
-          this.resizeLineToolNodes( labeledLinesNode.verticalLineNodes, 13, 0 );
+          this.resizeLineToolNodes( labeledLinesNode.labeledLineNodes, 13, 0 );
           this.resizeLineToolNodes( this.scrubberLineNodes, 0, -CalculusGrapherConstants.SCRUBBER_RADIUS );
         } );
     } );

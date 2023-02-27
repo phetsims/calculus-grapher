@@ -86,14 +86,14 @@ export default class ReferenceLineNode extends LineToolNode {
    */
   public static createIcon(): Node {
 
-    const verticalLine = new Line( 0, 0, 0, 11, {
+    const line = new Line( 0, 0, 0, 11, {
       stroke: CalculusGrapherColors.referenceLineStrokeProperty
     } );
 
     const dragHandleIcon = XDragHandleNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty );
 
     return new VBox( {
-      children: [ verticalLine, dragHandleIcon ]
+      children: [ line, dragHandleIcon ]
     } );
   }
 }

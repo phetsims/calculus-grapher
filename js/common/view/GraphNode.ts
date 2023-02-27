@@ -205,10 +205,10 @@ export default class GraphNode extends Node {
     } );
 
     // Axes are clipped in the chart
-    const horizontalAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
-    const verticalAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
+    const xAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
+    const yAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
     const axesParent = new Node( {
-      children: [ horizontalAxisLine, verticalAxisLine ],
+      children: [ xAxisLine, yAxisLine ],
       pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
     } );
 

@@ -18,27 +18,27 @@ import LinkableElement from '../../../../tandem/js/LinkableElement.js';
 
 export default class LabeledLinesNode extends Node {
 
-  public readonly verticalLineNodes: LabeledLineNode[];
+  public readonly labeledLineNodes: LabeledLineNode[];
 
-  public constructor( verticalLines: LabeledLine[], linkableElement: LinkableElement,
+  public constructor( labeledLines: LabeledLine[], linkableElement: LinkableElement,
                       chartTransform: ChartTransform, tandem: Tandem ) {
 
     // LabeledLineNode instances.
     // Opt out of PhET-iO instrumentation, see https://github.com/phetsims/calculus-grapher/issues/198
-    const verticalLineNodes = verticalLines.map( verticalLine =>
-      new LabeledLineNode( verticalLine, chartTransform, Tandem.OPT_OUT ) );
+    const labeledLineNodes = labeledLines.map( labeledLine =>
+      new LabeledLineNode( labeledLine, chartTransform, Tandem.OPT_OUT ) );
 
     super( {
-      children: verticalLineNodes,
+      children: labeledLineNodes,
       tandem: tandem,
       phetioVisiblePropertyInstrumented: false
     } );
 
-    this.verticalLineNodes = verticalLineNodes;
+    this.labeledLineNodes = labeledLineNodes;
 
-    // Link to model.tools.verticalLines
+    // Link to model.tools.labeledLines
     this.addLinkedElement( linkableElement, {
-      tandem: tandem.createTandem( 'verticalLines' )
+      tandem: tandem.createTandem( 'labeledLines' )
     } );
   }
 }
