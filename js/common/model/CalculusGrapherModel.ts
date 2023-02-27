@@ -116,8 +116,7 @@ export default class CalculusGrapherModel implements TModel {
       tandem: ( options.graphSets.length > 1 ) ? options.tandem.createTandem( 'graphSetProperty' ) : Tandem.OPT_OUT,
       phetioValueType: GraphSet.GraphSetIO,
       phetioDocumentation: 'Identifies the types of graphs that are displayed, and how they are grouped. ' +
-                           'If there is more than one graph set, then radio buttons will be available ' +
-                           'for choosing the desired set. See graphSetRadioButtonGroup.'
+                           'Radio buttons are available for choosing the desired set. See graphSetRadioButtonGroup.'
     } );
 
     this.curveManipulationProperties = new CurveManipulationProperties( options.curveManipulationModeChoices, {
