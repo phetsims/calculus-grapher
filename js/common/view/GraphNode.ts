@@ -50,6 +50,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -98,7 +99,9 @@ type SelfOptions = {
   labelNode?: Node;
 };
 
-export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type GraphNodeOptions = SelfOptions &
+  PickOptional<NodeOptions, 'phetioInputEnabledPropertyInstrumented'> &
+  PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphNode extends Node {
 

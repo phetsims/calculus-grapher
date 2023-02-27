@@ -111,7 +111,8 @@ export default class OriginalGraphNode extends GraphNode {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
-      labelNode: labelNode
+      labelNode: labelNode,
+      phetioInputEnabledPropertyInstrumented: true // see https://github.com/phetsims/calculus-grapher/issues/240
     }, providedOptions );
 
     super( graphType, originalCurve, model.gridVisibleProperty, options );
