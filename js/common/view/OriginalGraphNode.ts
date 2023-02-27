@@ -140,17 +140,12 @@ export default class OriginalGraphNode extends GraphNode {
       isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,
-      tandem: providedOptions.tandem.createTandem( 'predictCurveNode' )
+      tandem: options.tandem.createTandem( 'predictCurveNode' )
     } );
     this.curveLayer.addChild( this.predictCurveNode );
 
-    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( showOriginalCurveProperty, model.predictEnabledProperty, {
-      touchAreaXDilation: 6,
-      touchAreaYDilation: 6,
-      mouseAreaXDilation: 3,
-      mouseAreaYDilation: 3,
-      tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
-    } );
+    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( showOriginalCurveProperty,
+      model.predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
     this.addChild( showOriginalCurveCheckbox );
 
     // Upper-right corner of the chart
