@@ -53,7 +53,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
         new LabeledLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
           label: label,
-          tandem: parentTandem.createTandem( `${label}VerticalLine` )
+          tandem: parentTandem.createTandem( `${label}Line` )
         } ) );
   }
 }
