@@ -69,6 +69,15 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     public: true
   },
 
+  /**
+   * Whether the 'Show f(x)' checkbox will be shown when in 'Predict' mode.
+   */
+  hasShowOriginalCurveCheckbox: {
+    type: 'boolean',
+    defaultValue: true,
+    public: true
+  },
+
   //====================================================================================================================
   // private - for internal use only
   //====================================================================================================================

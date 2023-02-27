@@ -48,6 +48,12 @@ const CalculusGrapherPreferences = {
   predictPreferenceEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
     tandem: Tandem.PREFERENCES.createTandem( 'predictFeatureEnabledProperty' ),
     phetioDocumentation: 'Preference used to show/hide the Predict feature in the user interface'
+  } ),
+
+  hasShowOriginalCurveCheckboxProperty: new BooleanProperty( CalculusGrapherQueryParameters.hasShowOriginalCurveCheckbox, {
+    tandem: Tandem.PREFERENCES.createTandem( 'hasShowOriginalCurveCheckboxProperty' ),
+    phetioDocumentation: 'Setting this to false will permanently hide the "Show f(x)" checkbox, which is ' +
+                         'displayed on the f(x) graph when the Predict radio button is selected.'
   } )
 };
 

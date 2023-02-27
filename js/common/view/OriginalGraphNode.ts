@@ -43,6 +43,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -149,7 +150,7 @@ export default class OriginalGraphNode extends GraphNode {
       touchAreaYDilation: 6,
       mouseAreaXDilation: 3,
       mouseAreaYDilation: 3,
-      visibleProperty: predictEnabledProperty,
+      visibleProperty: DerivedProperty.and( [ predictEnabledProperty, CalculusGrapherPreferences.hasShowOriginalCurveCheckboxProperty ] ),
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveCheckbox' )
     } );
     this.addChild( showOriginalCurveCheckbox );
