@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * VerticalLineNode is the view representation of vertical line that can spans multiple graphs.
+ * LabeledLineNode is the view representation of vertical line that can spans multiple graphs.
  * The line has a label node located atop of the vertical line
  *
  * @author Martin Veillette
@@ -18,7 +18,7 @@ import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
-export default class VerticalLineNode extends LineToolNode {
+export default class LabeledLineNode extends LineToolNode {
 
   public constructor( verticalLine: VerticalLine, chartTransform: ChartTransform, tandem: Tandem ) {
 
@@ -55,4 +55,4 @@ export default class VerticalLineNode extends LineToolNode {
   }
 }
 
-calculusGrapher.register( 'VerticalLineNode', VerticalLineNode );
+calculusGrapher.register( 'LabeledLineNode', LabeledLineNode );
