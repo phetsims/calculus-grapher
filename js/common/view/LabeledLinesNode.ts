@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * VerticalLinesNode is the set of VerticalLineNode instances. Those instances are not instrumented for PhET-iO,
+ * LabeledLinesNode is the set of VerticalLineNode instances. Those instances are not instrumented for PhET-iO,
  * because everything that the PhET-iO client can change is in the model. So this class also provides a link to
  * the collection of VerticalLine instances in the model.
  *
@@ -16,7 +16,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import LinkableElement from '../../../../tandem/js/LinkableElement.js';
 
-export default class VerticalLinesNode extends Node {
+export default class LabeledLinesNode extends Node {
 
   public readonly verticalLineNodes: VerticalLineNode[];
 
@@ -43,4 +43,4 @@ export default class VerticalLinesNode extends Node {
   }
 }
 
-calculusGrapher.register( 'VerticalLinesNode', VerticalLinesNode );
+calculusGrapher.register( 'LabeledLinesNode', LabeledLinesNode );

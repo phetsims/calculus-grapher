@@ -25,7 +25,7 @@ import AncillaryTool from '../model/AncillaryTool.js';
 import GraphType from '../model/GraphType.js';
 import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import VerticalLinesNode from './VerticalLinesNode.js';
+import LabeledLinesNode from './LabeledLinesNode.js';
 import GraphSet from '../model/GraphSet.js';
 import ScrubberLineNode from './ScrubberLineNode.js';
 import LineToolNode from './LineToolNode.js';
@@ -121,9 +121,9 @@ export default class GraphsNode extends Node {
     this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
       options.tandem.createTandem( 'referenceLineNode' ) );
 
-    // Vertical lines
-    const verticalLinesNode = new VerticalLinesNode( model.verticalLines, model.verticalLinesLinkableElement,
-      this.originalGraphNode.chartTransform, options.tandem.createTandem( 'verticalLinesNode' ) );
+    // Labeled lines
+    const labeledLinesNode = new LabeledLinesNode( model.verticalLines, model.verticalLinesLinkableElement,
+      this.originalGraphNode.chartTransform, options.tandem.createTandem( 'labeledLinesNode' ) );
 
     // Scrubber lines
     this.scrubberLineNodes = [];
@@ -153,12 +153,12 @@ export default class GraphsNode extends Node {
         // For the referenceLine, add a bit more extent at the bottom, so that the drag handle does not overlap scrubber.
         () => {
           this.resizeReferenceLine();
-          this.resizeLineToolNodes( verticalLinesNode.verticalLineNodes, 13, 0 );
+          this.resizeLineToolNodes( labeledLinesNode.verticalLineNodes, 13, 0 );
           this.resizeLineToolNodes( this.scrubberLineNodes, 0, -CalculusGrapherConstants.SCRUBBER_RADIUS );
         } );
     } );
 
-    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, verticalLinesNode, this.referenceLineNode ];
+    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, labeledLinesNode, this.referenceLineNode ];
 
     this.mutate( options );
 
