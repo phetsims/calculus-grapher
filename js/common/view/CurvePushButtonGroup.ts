@@ -38,7 +38,7 @@ export default class CurvePushButtonGroup extends VBox {
       listener: () => interactiveCurveProperty.value.reset(),
       iconWidth: 16,
       xMargin: 10,
-      tandem: tandem.createTandem( 'resetButton' )
+      tandem: tandem.createTandem( 'eraserButton' )
     } );
 
     // Put the eraser and undo buttons side by side
