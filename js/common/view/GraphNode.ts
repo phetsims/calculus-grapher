@@ -100,7 +100,7 @@ type SelfOptions = {
 };
 
 export type GraphNodeOptions = SelfOptions &
-  PickOptional<NodeOptions, 'phetioInputEnabledPropertyInstrumented'> &
+  PickOptional<NodeOptions, 'inputEnabledProperty'> &
   PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphNode extends Node {

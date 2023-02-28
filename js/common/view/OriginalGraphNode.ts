@@ -86,6 +86,11 @@ export default class OriginalGraphNode extends GraphNode {
                            'The value of this Property can be changed by toggling showOriginalCurveCheckbox.'
     } );
 
+    const originalCurveInputEnabledProperty = new BooleanProperty( true, {
+      tandem: providedOptions.tandem.createTandem( 'originalCurveInputEnabledProperty' ),
+      phetioDocumentation: 'Use this Property to disable interactivity of the original curve.'
+    } );
+
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
@@ -112,7 +117,10 @@ export default class OriginalGraphNode extends GraphNode {
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
       labelNode: labelNode,
-      phetioInputEnabledPropertyInstrumented: true // see https://github.com/phetsims/calculus-grapher/issues/240
+      inputEnabledProperty: DerivedProperty.or( [ predictEnabledProperty, originalCurveInputEnabledProperty ], {
+        tandem: providedOptions.tandem.createTandem( 'inputEnabledProperty' ),
+        phetioValueType: BooleanIO
+      } )
     }, providedOptions );
 
     super( graphType, originalCurve, model.gridVisibleProperty, options );
