@@ -54,11 +54,11 @@ export default class TransformedCurveNode extends CurveNode {
 
     this.transformedCurve = transformedCurve;
 
-    // Creates cueing arrows at the middle of the curve, centered at y=0
+    // Creates cueing arrows at the middle of the curve, centered at y=0.
     const cueingArrowsNode = new CueingArrowsNode( {
       center: chartTransform.modelToViewXY( CalculusGrapherConstants.CURVE_X_RANGE.getCenter(), 0 ),
 
-      // Cueing arrow should not be visible if this node is not enabled
+      // Cueing arrows should not be visible if this node is not interactive.
       visibleProperty: new DerivedProperty(
         [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty ],
         ( wasManipulated, isInteractive ) => !wasManipulated && isInteractive ),
