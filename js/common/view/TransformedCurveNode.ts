@@ -24,6 +24,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 
 type SelfOptions = {
 
@@ -55,14 +56,18 @@ export default class TransformedCurveNode extends CurveNode {
     this.transformedCurve = transformedCurve;
 
     // Creates cueing arrows at the middle of the curve, centered at y=0.
+    const cueingArrowsNodeTandem = options.tandem.createTandem( 'cueingArrowsNode' );
     const cueingArrowsNode = new CueingArrowsNode( {
       center: chartTransform.modelToViewXY( CalculusGrapherConstants.CURVE_X_RANGE.getCenter(), 0 ),
 
       // Cueing arrows should not be visible if this node is not interactive.
       visibleProperty: new DerivedProperty(
         [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty, this.inputEnabledProperty ],
-        ( wasManipulated, isInteractive, inputEnabled ) => !wasManipulated && isInteractive && inputEnabled ),
-      tandem: options.tandem.createTandem( 'cueingArrowsNode' ),
+        ( wasManipulated, isInteractive, inputEnabled ) => !wasManipulated && isInteractive && inputEnabled, {
+          tandem: cueingArrowsNodeTandem.createTandem( 'visibleProperty' ),
+          phetioValueType: BooleanIO
+        } ),
+      tandem: cueingArrowsNodeTandem,
       phetioDocumentation: 'Cueing arrows on curve, visible prior to curve being interacted with.'
     } );
 
