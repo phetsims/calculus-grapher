@@ -60,8 +60,8 @@ export default class TransformedCurveNode extends CurveNode {
 
       // Cueing arrows should not be visible if this node is not interactive.
       visibleProperty: new DerivedProperty(
-        [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty ],
-        ( wasManipulated, isInteractive ) => !wasManipulated && isInteractive ),
+        [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty, this.inputEnabledProperty ],
+        ( wasManipulated, isInteractive, inputEnabled ) => !wasManipulated && isInteractive && inputEnabled ),
       tandem: options.tandem.createTandem( 'cueingArrowsNode' ),
       phetioDocumentation: 'Cueing arrows on curve, visible prior to curve being interacted with.'
     } );

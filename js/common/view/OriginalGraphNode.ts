@@ -88,13 +88,6 @@ export default class OriginalGraphNode extends GraphNode {
 
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
 
-    // Note that we're making this look like a child of originalCurveNode. But that element is actually not
-    // interactive, it's OriginalGraphNode that is interactive.
-    const originalCurveInputEnabledProperty = new BooleanProperty( true, {
-      tandem: originalCurveNodeTandem.createTandem( 'inputEnabledProperty' ),
-      phetioDocumentation: 'Use this Property to disable interactivity of the original curve.'
-    } );
-
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
       // GraphNodeOptions
@@ -113,21 +106,31 @@ export default class OriginalGraphNode extends GraphNode {
               phetioValueType: BooleanIO
             } ),
           tandem: originalCurveNodeTandem,
-          // ... because we're being creating with originalGraphNode.inputEnabledProperty above.
-          phetioInputEnabledPropertyInstrumented: false
+
+          // originalCurveNode does not have an input listener, but we want to allow PhET-iO clients to use
+          // originalCurveNode.inputEnabledProperty to control originalGraphNode.inputEnabledProperty (see derivation below).
+          // See https://github.com/phetsims/calculus-grapher/issues/240
+          phetioInputEnabledPropertyInstrumented: true
         } ),
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
-      labelNode: labelNode,
-      inputEnabledProperty: DerivedProperty.or( [ predictEnabledProperty, originalCurveInputEnabledProperty ], {
-        tandem: providedOptions.tandem.createTandem( 'inputEnabledProperty' ),
-        phetioValueType: BooleanIO
-      } )
+      labelNode: labelNode
     }, providedOptions );
 
     super( graphType, originalCurve, model.gridVisibleProperty, options );
+
+    // We need to know that this.curveNode is of type TransformedCurveNode, as created by createCurveNode above.
+    const originalCurveNode = this.curveNode as TransformedCurveNode;
+    assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
+
+    // Allow PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity.
+    // See https://github.com/phetsims/calculus-grapher/issues/240
+    this.inputEnabledProperty = DerivedProperty.or( [ predictEnabledProperty, originalCurveNode.inputEnabledProperty ], {
+      tandem: providedOptions.tandem.createTandem( 'inputEnabledProperty' ),
+      phetioValueType: BooleanIO
+    } );
 
     this.showOriginalCurveProperty = showOriginalCurveProperty;
 
@@ -174,10 +177,6 @@ export default class OriginalGraphNode extends GraphNode {
       options.tandem.createTandem( 'labeledPointsNode' )
     );
     this.addChild( labeledPointsNode );
-
-    // We need to know that this.curveNode is of type TransformedCurveNode, as created by createCurveNode above.
-    const originalCurveNode = this.curveNode as TransformedCurveNode;
-    assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
 
     const interactiveCurveNodeProperty = new DerivedProperty( [ model.predictEnabledProperty ],
       predictEnabled => predictEnabled ? this.predictCurveNode : originalCurveNode
