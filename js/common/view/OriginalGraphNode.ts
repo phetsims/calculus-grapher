@@ -86,32 +86,34 @@ export default class OriginalGraphNode extends GraphNode {
                            'The value of this Property can be changed by toggling showOriginalCurveCheckbox.'
     } );
 
+    // Creates PhET-iO element 'graphsNode.originalCurveNode'
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
+    const createOriginalCurveNode = ( chartTransform: ChartTransform ) =>
+      new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
+        plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+        stroke: graphType.strokeProperty,
+        continuousLinePlotOptions: {
+          lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
+        },
+        isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
+        visibleProperty: new DerivedProperty(
+          [ predictEnabledProperty, showOriginalCurveProperty ],
+          ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
+            tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
+            phetioValueType: BooleanIO
+          } ),
+        tandem: originalCurveNodeTandem,
+
+        // originalCurveNode does not have an input listener, but we want to allow PhET-iO clients to use
+        // originalCurveNode.inputEnabledProperty to control originalGraphNode.inputEnabledProperty (see derivation below).
+        // See https://github.com/phetsims/calculus-grapher/issues/240
+        phetioInputEnabledPropertyInstrumented: true
+      } );
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
       // GraphNodeOptions
-      createCurveNode: ( chartTransform: ChartTransform ) =>
-        new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
-          plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-          stroke: graphType.strokeProperty,
-          continuousLinePlotOptions: {
-            lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
-          },
-          isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
-          visibleProperty: new DerivedProperty(
-            [ predictEnabledProperty, showOriginalCurveProperty ],
-            ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
-              tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
-              phetioValueType: BooleanIO
-            } ),
-          tandem: originalCurveNodeTandem,
-
-          // originalCurveNode does not have an input listener, but we want to allow PhET-iO clients to use
-          // originalCurveNode.inputEnabledProperty to control originalGraphNode.inputEnabledProperty (see derivation below).
-          // See https://github.com/phetsims/calculus-grapher/issues/240
-          phetioInputEnabledPropertyInstrumented: true
-        } ),
+      createCurveNode: createOriginalCurveNode,
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
