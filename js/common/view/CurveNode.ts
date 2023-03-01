@@ -108,8 +108,6 @@ export default class CurveNode extends Node {
       },
 
       // NodeOptions
-      phetioVisiblePropertyInstrumented: false,
-
       plotBoundsMethod: 'accurate'
 
     }, providedOptions );
