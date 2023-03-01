@@ -86,12 +86,14 @@ export default class OriginalGraphNode extends GraphNode {
                            'The value of this Property can be changed by toggling showOriginalCurveCheckbox.'
     } );
 
+    const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
+
+    // Note that we're making this look like a child of originalCurveNode. But that element is actually not
+    // interactive, it's OriginalGraphNode that is interactive.
     const originalCurveInputEnabledProperty = new BooleanProperty( true, {
-      tandem: providedOptions.tandem.createTandem( 'originalCurveInputEnabledProperty' ),
+      tandem: originalCurveNodeTandem.createTandem( 'inputEnabledProperty' ),
       phetioDocumentation: 'Use this Property to disable interactivity of the original curve.'
     } );
-
-    const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
 
     const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
@@ -110,7 +112,9 @@ export default class OriginalGraphNode extends GraphNode {
               tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
               phetioValueType: BooleanIO
             } ),
-          tandem: originalCurveNodeTandem
+          tandem: originalCurveNodeTandem,
+          // ... because we're being creating with originalGraphNode.inputEnabledProperty above.
+          phetioInputEnabledPropertyInstrumented: false
         } ),
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,

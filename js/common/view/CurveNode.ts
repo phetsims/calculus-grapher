@@ -56,7 +56,7 @@ type SelfOptions = {
 };
 
 export type CurveNodeOptions = SelfOptions &
-  PickOptional<NodeOptions, 'visibleProperty' | 'clipArea'> &
+  PickOptional<NodeOptions, 'visibleProperty' | 'clipArea' | 'phetioInputEnabledPropertyInstrumented'> &
   PickRequired<NodeOptions, 'tandem'>;
 
 export default class CurveNode extends Node {
