@@ -128,11 +128,8 @@ export default class OriginalGraphNode extends GraphNode {
     assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
 
     // Allow PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity.
-    // See https://github.com/phetsims/calculus-grapher/issues/240
-    this.inputEnabledProperty = DerivedProperty.or( [ predictEnabledProperty, originalCurveNode.inputEnabledProperty ], {
-      tandem: providedOptions.tandem.createTandem( 'inputEnabledProperty' ),
-      phetioValueType: BooleanIO
-    } );
+    // No not instrument. See https://github.com/phetsims/calculus-grapher/issues/240
+    this.inputEnabledProperty = DerivedProperty.or( [ predictEnabledProperty, originalCurveNode.inputEnabledProperty ] );
 
     this.showOriginalCurveProperty = showOriginalCurveProperty;
 
