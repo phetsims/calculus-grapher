@@ -63,7 +63,10 @@ export default class IntegralCurve extends Curve {
   private updateIntegral(): void {
 
     // Loop through each pair of adjacent Points of the base Curve.
-    this.baseCurve.forEachAdjacentPair( ( point, previousPoint, index ) => {
+    for ( let index = 1; index < this.baseCurve.points.length; index++ ) {
+      const point = this.baseCurve.points[ index ];
+      const previousPoint = this.baseCurve.points[ index - 1 ];
+
       assert && assert( point.isFinite && previousPoint.isFinite );
 
       // Takes the integral from the minimum of the domain of Curves to the x-value of the current point using a
@@ -78,7 +81,7 @@ export default class IntegralCurve extends Curve {
 
       // An integral smooths out a point discontinuity into a cusp and a cusp into a smooth.
       this.points[ index ].pointType = point.isDiscontinuous ? 'cusp' : 'smooth';
-    } );
+    }
 
     // Signals once that this Curve has changed.
     this.curveChangedEmitter.emit();

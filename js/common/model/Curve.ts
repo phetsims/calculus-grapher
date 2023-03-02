@@ -176,22 +176,6 @@ export default class Curve extends PhetioObject {
   }
 
   /**
-   * Iterates through an array in trios, passing the previous value, the current value, and the next value, to the iterator function.
-   * forEachAdjacentTrio( [ 1, 2, 3, 4], f ) would invoke f(null, 1, 2),  f( 1, 2, 3 ), f( 2, 3, 4 ), f( 3, 4, null )
-   */
-  public forEachAdjacentTrio( iterator: ( previousPoint: CurvePoint | null, point: CurvePoint, nextPoint: CurvePoint | null, index: number ) => void ): void {
-
-    for ( let i = 0; i < this.points.length; i++
-    ) {
-      const value = this.points[ i ];
-      const previousValue = i > 0 ? this.points[ i - 1 ] : null;
-      const nextValue = i < this.points.length ? this.points[ i + 1 ] : null;
-
-      iterator( previousValue, value, nextValue, i );
-    }
-  }
-
-  /**
    * Iterates through an array in pairs, passing the current value and the previous value to the iterator function.
    * For instance, forEachAdjacentPair( [ 1, 2, 3, 4 ], f ) would invoke f( 2, 1 ), f( 3, 2 ), and f( 4, 3 ).
    *
@@ -211,8 +195,14 @@ export default class Curve extends PhetioObject {
 
   private assignType(): void {
 
-    // Loop through each trio of adjacent Points of the curve.
-    this.forEachAdjacentTrio( ( previousPoint, point, nextPoint ) => {
+
+    for ( let i = 0; i < this.points.length; i++ ) {
+
+      // Loop through each trio of adjacent Points of the curve.
+      const point = this.points[ i ];
+      const previousPoint = i > 0 ? this.points[ i - 1 ] : null;
+      const nextPoint = i < this.points.length ? this.points[ i + 1 ] : null;
+
 
       let leftSideDifference: null | number = null;
       let rightSideDifference: null | number = null;
@@ -257,7 +247,7 @@ export default class Curve extends PhetioObject {
           point.pointType = 'smooth';
         }
       }
-    } );
+    }
   }
 }
 
