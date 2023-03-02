@@ -58,8 +58,8 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     // PhET-iO only Property, for permanently hiding this BarometerAccordionBox.
     // See https://github.com/phetsims/calculus-grapher/issues/239
-    const featureEnabledProperty = new BooleanProperty( true, {
-      tandem: providedOptions.tandem.createTandem( 'featureEnabledProperty' ),
+    const featureVisibleProperty = new BooleanProperty( true, {
+      tandem: providedOptions.tandem.createTandem( 'featureVisibleProperty' ),
       phetioDocumentation: 'Setting this to false will permanently hide this accordion box, ' +
                            'regardless of other simulation settings.'
     } );
@@ -91,8 +91,8 @@ export default class BarometerAccordionBox extends AccordionBox {
 
       // visible if the associate tool is visible and the 'Predict' radio button is not selected
       visibleProperty: new DerivedProperty(
-        [ featureEnabledProperty, ancillaryToolVisibleProperty, predictEnabledProperty ],
-        ( featureEnabled, ancillaryToolVisible, predictEnabled ) => ( featureEnabled && ancillaryToolVisible && !predictEnabled ), {
+        [ featureVisibleProperty, ancillaryToolVisibleProperty, predictEnabledProperty ],
+        ( featureVisible, ancillaryToolVisible, predictEnabled ) => ( featureVisible && ancillaryToolVisible && !predictEnabled ), {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } )
