@@ -59,6 +59,10 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
       tandem: tandem.createTandem( 'negativeFillProperty' ),
       phetioDocumentation: 'Color for negative area in the area plot, and in the "Net Signed Area" accordion box.'
     } );
+
+    // Note: It would be nice to provide 'areaUnderCurveProperty' as a link to 'yIntegralProperty'. But element
+    // 'yIntegralProperty' is not the same as this.yIntegralProperty, and we do not have access to it here.
+    // See function createProperties in AncillaryTool.ts.
   }
 }
 

@@ -155,8 +155,8 @@ function createProperties( xProperty: TReadOnlyProperty<number>, curve: Curve, t
 
   const yProperty = DerivedProperty.deriveAny( [ curvePointProperty ], () => curvePointProperty.value.y );
 
-  // We are creating this Property solely for PhET-iO, to present the y value. For discontinuities, we present null.
-  // This Property persists because it is referenced by the tandem registry.
+  // We are creating this Property solely for PhET-iO, to present the y value. And the difference here is that
+  // we present discontinuities as null. This Property persists because it is referenced by the tandem registry.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const yPhetioProperty = new DerivedProperty( [ curvePointProperty ],
     curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, {
@@ -164,7 +164,7 @@ function createProperties( xProperty: TReadOnlyProperty<number>, curve: Curve, t
       phetioValueType: NullableIO( NumberIO )
     } );
 
-  return yProperty;
+  return yProperty; // Careful! This is not the instrumented Property shown in Studio.
 }
 
 calculusGrapher.register( 'AncillaryTool', AncillaryTool );
