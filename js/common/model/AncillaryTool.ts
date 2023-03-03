@@ -140,7 +140,7 @@ export default class AncillaryTool extends PhetioObject {
 }
 
 /**
- * Creates 3 Properties associates with evaluating the y value for a curve. Only one of these Properties
+ * Creates 3 Properties associated with evaluating the y value for a curve. Only one of these Properties
  * is returned. For the other 2: one (curvePointProperty) is a dependency and the other (yStudioProperty)
  * is created solely for PhET-iO. See https://github.com/phetsims/calculus-grapher/issues/133.
  * @param xProperty
