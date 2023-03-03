@@ -18,7 +18,6 @@
  * @author Martin Veillette
  */
 
-import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -571,19 +570,27 @@ export default class TransformedCurve extends Curve {
    */
   private tiltToPosition( x: number, y: number ): void {
 
-    if ( x !== 0 ) {
+    // Fulcrum point: chosen to be the leftmost point.
+    const pivotPoint = this.points[ 0 ];
 
-      // Find the angle of the tilt, based on where the user dragged the Curve
-      const angle = Math.atan( y / x );
+    const leverArm = x - pivotPoint.x;
 
-      // Clamped angle has to be between a range set by MAX_TILT
-      const clampedAngle = Utils.clamp( angle, -MAX_TILT, MAX_TILT );
+    // Exclude drags with zero leverArm
+    if ( leverArm !== 0 ) {
 
-      // Amount to shift the CurvePoint closest to the passed-in position.
-      const deltaY = Math.tan( clampedAngle ) * x - this.getClosestPointAt( x ).lastSavedY;
+      // Slope between drag position and pivotPoint
+      const targetSlope = ( y - pivotPoint.y ) / leverArm;
 
-      // Shift each of the CurvePoints by a factor of deltaY.
-      this.points.forEach( point => { point.y = point.lastSavedY + deltaY * point.x / x;} );
+      // Update points only if the targetSlope is less than MAX_TILT
+      if ( Math.abs( targetSlope ) < MAX_TILT ) {
+
+        const oldSlope = ( this.getClosestPointAt( x ).lastSavedY - pivotPoint.y ) / leverArm;
+
+        const incrementSlope = targetSlope - oldSlope;
+
+        // Shift each of the CurvePoints by a factor associated with the incrementSlope.
+        this.points.forEach( point => { point.y = point.lastSavedY + incrementSlope * ( point.x - pivotPoint.x );} );
+      }
     }
   }
 
