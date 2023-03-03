@@ -555,9 +555,9 @@ export default class TransformedCurve extends Curve {
 
 
   /**
-   * Returns a mollifier function of x, that is an infinitely differentiable functions
-   * Mollifier functions are used to smooth (i.e. mollify) other functions (see https://en.wikipedia.org/wiki/Mollifier)
-   * @param width - the width of for which the mollifying function does not return a zero value
+   * Returns a mollifier function of x, that is an infinitely differentiable function
+   * Mollifier functions are used to smooth (a.k.a. mollify) other functions (see https://en.wikipedia.org/wiki/Mollifier)
+   * @param width - the width for which the mollifying function does not return a zero value
    */
   private mollifierFunction( width: number ): MathFunction {
     assert && assert( width > 0, 'width must be positive' );
@@ -566,6 +566,8 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Tilts the curve to the specified drag position, in model coordinates.
+   * @param x - x-coordinate of the drag position
+   * @param y - y-coordinate of the drag position
    */
   private tiltToPosition( x: number, y: number ): void {
 
