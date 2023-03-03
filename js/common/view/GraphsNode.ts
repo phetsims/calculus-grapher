@@ -226,7 +226,8 @@ export default class GraphsNode extends Node {
     // See https://github.com/phetsims/calculus-grapher/issues/207
     derivativeGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
       false /* accumulationLineVisible */, 'tangentScrubberNode' );
-    this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty );
+    this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty,
+      tangentVisibleProperty );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
@@ -254,7 +255,8 @@ export default class GraphsNode extends Node {
     // Add a scrubber to the original graph, for moving the x location of areaUnderCurveScrubber.
     this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
       areaUnderCurveVisibleProperty, true /* accumulationLineVisible */, 'areaUnderCurveScrubberNode' );
-    this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty );
+    this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty,
+      areaUnderCurveVisibleProperty );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
@@ -267,8 +269,8 @@ export default class GraphsNode extends Node {
   /**
    * Adds a vertical line that passes through all graphs and moves with scrubber's x position.
    */
-  private addScrubberLineNode( scrubber: AncillaryTool, lineStroke: TColor ): void {
-    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke );
+  private addScrubberLineNode( scrubber: AncillaryTool, lineStroke: TColor, visibleProperty: TReadOnlyProperty<boolean> ): void {
+    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke, visibleProperty );
     this.scrubberLineNodes.push( scrubberLineNode );
     this.scrubberLineNodesParent.addChild( scrubberLineNode );
     this.resizeLineToolNodes( [ scrubberLineNode ], 0, -CalculusGrapherConstants.SCRUBBER_RADIUS );
