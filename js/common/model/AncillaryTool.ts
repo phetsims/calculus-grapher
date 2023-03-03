@@ -54,7 +54,7 @@ export default class AncillaryTool extends PhetioObject {
   public readonly secondDerivativeCurvePointProperty: ReadOnlyProperty<CurvePoint>;
 
   // CurvePoints for each curve at the location of xProperty.
-  // These are of type ReadOnlyProperty because we may want to link to them in subclasses.
+  // These are of type ReadOnlyProperty in case we want to link to them via addLinkedElement in subclasses.
   protected readonly yIntegralProperty: ReadOnlyProperty<number | null>;
   protected readonly yOriginalProperty: ReadOnlyProperty<number | null>;
   protected readonly yDerivativeProperty: ReadOnlyProperty<number | null>;
