@@ -27,6 +27,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import CurvePoint from '../model/CurvePoint.js';
 
 const TICK_MARK_EXTENT = 20;
 
@@ -50,7 +51,7 @@ export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBox
 
 export default class BarometerAccordionBox extends AccordionBox {
 
-  protected constructor( valueProperty: TReadOnlyProperty<number>,
+  protected constructor( curvePointProperty: TReadOnlyProperty<CurvePoint>,
                          labelStringProperty: TReadOnlyProperty<string>,
                          ancillaryToolVisibleProperty: TReadOnlyProperty<boolean>,
                          predictEnabledProperty: TReadOnlyProperty<boolean>,
@@ -165,7 +166,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     // Creates a very wide line to represent a barometer
     const barLine = new Line( {
       y1: zeroY,
-      y2: chartTransform.modelToViewY( valueProperty.value ),
+      y2: chartTransform.modelToViewY( curvePointProperty.value.y ),
       left: axisLine.right,
       stroke: options.barColorProperty,
       lineWidth: 10
@@ -182,8 +183,8 @@ export default class BarometerAccordionBox extends AccordionBox {
     // Adds a listener to the value Property. The range of the
     // barometer line is clamped to prevent excessively high lines.
     const yRange = options.chartTransformOptions.modelYRange!;
-    valueProperty.link( value => {
-      const clampedValue = Utils.clamp( value, yRange.min, yRange.max );
+    curvePointProperty.link( curvePoint => {
+      const clampedValue = Utils.clamp( curvePoint.y, yRange.min, yRange.max );
       barLine.y2 = chartTransform.modelToViewY( clampedValue );
     } );
   }

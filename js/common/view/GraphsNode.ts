@@ -32,6 +32,7 @@ import LineToolNode from './LineToolNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import CurvePoint from '../model/CurvePoint.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -234,7 +235,7 @@ export default class GraphsNode extends Node {
 
     // Plot a point on the derivative graph, to show the point that corresponds to the slope of the tangent.
     this.addPlottedPoint( tangentScrubber, tangentVisibleProperty, 'tangentPointNode', derivativeGraphNode,
-      tangentScrubber.yDerivativeProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
+      tangentScrubber.derivativeCurvePointProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
   }
 
   /**
@@ -263,7 +264,7 @@ export default class GraphsNode extends Node {
 
     // Plot a point on the integral graph, to show the point that corresponds to the area under the curve.
     this.addPlottedPoint( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode',
-      integralGraphNode, areaUnderCurveScrubber.yIntegralProperty, CalculusGrapherColors.integralCurveStrokeProperty );
+      integralGraphNode, areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherColors.integralCurveStrokeProperty );
   }
 
   /**
@@ -280,8 +281,8 @@ export default class GraphsNode extends Node {
    * Adds a PlottedPoint to a graph.
    */
   private addPlottedPoint( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string,
-                           graphNode: GraphNode, yProperty: TReadOnlyProperty<number>, fill: TColor ): void {
-    const plottedPoint = graphNode.addPlottedPoint( ancillaryTool.xProperty, yProperty, fill, visibleProperty, tandemName );
+                           graphNode: GraphNode, curvePointProperty: TReadOnlyProperty<CurvePoint>, fill: TColor ): void {
+    const plottedPoint = graphNode.addPlottedPoint( curvePointProperty, fill, visibleProperty, tandemName );
     plottedPoint.addLinkedElement( ancillaryTool, {
       tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
     } );

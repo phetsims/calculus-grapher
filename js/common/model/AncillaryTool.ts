@@ -12,7 +12,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import DerivedProperty, { UnknownDerivedProperty } from '../../../../axon/js/DerivedProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
@@ -26,14 +26,12 @@ import Curve from './Curve.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import CurvePoint from './CurvePoint.js';
+import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 
 type SelfOptions = {
-
-  // Initial value of xProperty
-  x: number;
-
-  // Initial visibility of the tool
-  visible?: boolean;
+  x: number; // Initial value of xProperty
+  visible?: boolean; // Initial visibility of the tool
 };
 
 export type AncillaryToolOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -48,18 +46,22 @@ export default class AncillaryTool extends PhetioObject {
   // The x coordinate of the tool
   public readonly xProperty: NumberProperty;
 
-  // y coordinates for each curve, at the location of xProperty
-  public readonly yIntegralProperty: TReadOnlyProperty<number>;
-  public readonly yOriginalProperty: TReadOnlyProperty<number>;
-  public readonly yDerivativeProperty: TReadOnlyProperty<number>;
-  public readonly ySecondDerivativeProperty: TReadOnlyProperty<number>;
+  // CurvePoints for each curve at the location of xProperty.
+  // These are of type ReadOnlyProperty so that we can call notifyListenersStatic.
+  public readonly integralCurvePointProperty: ReadOnlyProperty<CurvePoint>;
+  public readonly originalCurvePointProperty: ReadOnlyProperty<CurvePoint>;
+  public readonly derivativeCurvePointProperty: ReadOnlyProperty<CurvePoint>;
+  public readonly secondDerivativeCurvePointProperty: ReadOnlyProperty<CurvePoint>;
 
-  protected constructor(
-    integralCurve: Curve,
-    originalCurve: Curve,
-    derivativeCurve: Curve,
-    secondDerivativeCurve: Curve,
-    providedOptions: AncillaryToolOptions ) {
+  // CurvePoints for each curve at the location of xProperty.
+  // These are of type ReadOnlyProperty because we may want to link to them in subclasses.
+  protected readonly yIntegralProperty: ReadOnlyProperty<number | null>;
+  protected readonly yOriginalProperty: ReadOnlyProperty<number | null>;
+  protected readonly yDerivativeProperty: ReadOnlyProperty<number | null>;
+  protected readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
+
+  protected constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
+                         providedOptions: AncillaryToolOptions ) {
 
     const options = optionize<AncillaryToolOptions, SelfOptions, PhetioObjectOptions>()( {
 
@@ -81,17 +83,27 @@ export default class AncillaryTool extends PhetioObject {
       tandem: options.tandem.createTandem( 'xCoordinateProperty' )
     } );
 
-    // Create the Properties associated with each curve.
-    const yIntegralProperty = createProperties( this.xProperty, integralCurve, options.tandem.createTandem( 'yIntegralProperty' ) );
-    const yOriginalProperty = createProperties( this.xProperty, originalCurve, options.tandem.createTandem( 'yOriginalProperty' ) );
-    const yDerivativeProperty = createProperties( this.xProperty, derivativeCurve, options.tandem.createTandem( 'yDerivativeProperty' ) );
-    const ySecondDerivativeProperty = createProperties( this.xProperty, secondDerivativeCurve, options.tandem.createTandem( 'ySecondDerivativeProperty' ) );
+    // The CurvePoint at xProperty for each curve.
+    this.integralCurvePointProperty = createCurvePointProperty( integralCurve, this.xProperty );
+    this.originalCurvePointProperty = createCurvePointProperty( originalCurve, this.xProperty );
+    this.derivativeCurvePointProperty = createCurvePointProperty( derivativeCurve, this.xProperty );
+    this.secondDerivativeCurvePointProperty = createCurvePointProperty( secondDerivativeCurve, this.xProperty );
 
-    // When a curve is changed, update its associated y Property.
-    const integralCurveListener = () => yIntegralProperty.recomputeDerivation();
-    const originalCurveListener = () => yOriginalProperty.recomputeDerivation();
-    const derivativeCurveListener = () => yDerivativeProperty.recomputeDerivation();
-    const secondDerivativeCurveListener = () => ySecondDerivativeProperty.recomputeDerivation();
+    // Create PhET-iO-only Properties for each of the above CurvePointProperty instances, where y is mapped to null
+    // when there is a discontinuity. These are not used anywhere in the code - they exist solely so that the PhET-iO
+    // client can inspect them. They are not garbage collected because they are registered with the PhET-iO tandem registry.
+    this.yIntegralProperty = createYProperty( this.integralCurvePointProperty, options.tandem.createTandem( 'yIntegralProperty' ) );
+    this.yOriginalProperty = createYProperty( this.originalCurvePointProperty, options.tandem.createTandem( 'yOriginalProperty' ) );
+    this.yDerivativeProperty = createYProperty( this.derivativeCurvePointProperty, options.tandem.createTandem( 'yDerivativeProperty' ) );
+    this.ySecondDerivativeProperty = createYProperty( this.secondDerivativeCurvePointProperty, options.tandem.createTandem( 'ySecondDerivativeProperty' ) );
+
+    // When a curve changes, force listeners of CurvePointProperty instances to be notified, which will cause them
+    // to re-inspect the CurvePoint values. We need to do this because CurvePoint instance are mutated as a curve is
+    // manipulated, and the value of these Properties will therefore not change.
+    const integralCurveListener = () => this.integralCurvePointProperty.notifyListenersStatic();
+    const originalCurveListener = () => this.originalCurvePointProperty.notifyListenersStatic();
+    const derivativeCurveListener = () => this.derivativeCurvePointProperty.notifyListenersStatic();
+    const secondDerivativeCurveListener = () => this.secondDerivativeCurvePointProperty.notifyListenersStatic();
 
     // Optimization: Only listen to curveChangedEmitter when this tool is visible.
     this.visibleProperty.link( visible => {
@@ -124,13 +136,6 @@ export default class AncillaryTool extends PhetioObject {
         }
       }
     } );
-
-    // We used const above for each DerivedProperty so that we could call recomputeDerivation.
-    // So now assign them to fields of type TReadOnlyProperty<number>.
-    this.yIntegralProperty = yIntegralProperty;
-    this.yOriginalProperty = yOriginalProperty;
-    this.yDerivativeProperty = yDerivativeProperty;
-    this.ySecondDerivativeProperty = ySecondDerivativeProperty;
   }
 
   public reset(): void {
@@ -140,31 +145,23 @@ export default class AncillaryTool extends PhetioObject {
 }
 
 /**
- * Creates 3 Properties associated with evaluating the y value for a curve. Only one of these Properties
- * is returned. For the other 2: one (curvePointProperty) is a dependency and the other (yStudioProperty)
- * is created solely for PhET-iO. See https://github.com/phetsims/calculus-grapher/issues/133.
- * @param xProperty
- * @param curve
- * @param tandem - CAREFUL! This tandem instruments the PhET-iO Property, not the Property used by AncillaryTool.
+ * As the xProperty for a curve changes, provide the corresponding CurvePoint.
+ * Return type is ReadOnlyProperty so that we can call notifyListenersStatic.
  */
-function createProperties( xProperty: TReadOnlyProperty<number>, curve: Curve, tandem: Tandem ): UnknownDerivedProperty<number> {
+function createCurvePointProperty( curve: Curve, xProperty: TReadOnlyProperty<number> ): ReadOnlyProperty<CurvePoint> {
+  return new DerivedProperty( [ xProperty ], x => curve.getClosestPointAt( x ) );
+}
 
-  const curvePointProperty = new DerivedProperty( [ xProperty ],
-    x => curve.getClosestPointAt( x )
-  );
-
-  const yProperty = DerivedProperty.deriveAny( [ curvePointProperty ], () => curvePointProperty.value.y );
-
-  // We are creating this Property solely for PhET-iO, to present the y value. And the difference here is that
-  // we present discontinuities as null. This Property persists because it is referenced by the tandem registry.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const yPhetioProperty = new DerivedProperty( [ curvePointProperty ],
-    curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, {
-      tandem: tandem,
-      phetioValueType: NullableIO( NumberIO )
-    } );
-
-  return yProperty; // Careful! This is not the instrumented Property shown in Studio.
+/**
+ * As a CurvePoint changes, provide the corresponding y value, mapping discontinuities to null.
+ * This null representation is used only for presentation in PhET-iO/Studio.
+ * The return type is ReadOnlyProperty because we may want to link to these in subclasses.
+ */
+function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, tandem: Tandem ): ReadOnlyProperty<number | null> {
+  return new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, {
+    tandem: tandem,
+    phetioValueType: NullableIO( NumberIO )
+  } );
 }
 
 calculusGrapher.register( 'AncillaryTool', AncillaryTool );

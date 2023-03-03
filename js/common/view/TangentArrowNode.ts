@@ -57,9 +57,9 @@ export default class TangentArrowNode extends ArrowNode {
     // The double-headed arrow pivots around its center.
     const updateArrow = () => {
       if ( this.visible ) {
-        const x = tangentScrubber.xProperty.value;
-        const y = tangentScrubber.yOriginalProperty.value;
-        const modelSlope = tangentScrubber.yDerivativeProperty.value;
+        const x = tangentScrubber.originalCurvePointProperty.value.x;
+        const y = tangentScrubber.originalCurvePointProperty.value.y;
+        const modelSlope = tangentScrubber.derivativeCurvePointProperty.value.y;
 
         // View position for center of the tangent arrow
         const point = chartTransform.modelToViewXY( x, y );
@@ -89,7 +89,7 @@ export default class TangentArrowNode extends ArrowNode {
 
     chartTransform.changedEmitter.addListener( () => updateArrow() );
     Multilink.multilink(
-      [ tangentScrubber.xProperty, tangentScrubber.yOriginalProperty, tangentScrubber.yDerivativeProperty ],
+      [ tangentScrubber.xProperty, tangentScrubber.originalCurvePointProperty, tangentScrubber.derivativeCurvePointProperty ],
       () => updateArrow() );
 
     this.addLinkedElement( tangentScrubber, {

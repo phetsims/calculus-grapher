@@ -48,7 +48,7 @@ export default class LabeledPointNode extends Node {
     }, providedOptions );
 
     // point that is plotted on the curve
-    const plottedPoint = new PlottedPoint( labeledPoint.xProperty, labeledPoint.yOriginalProperty, chartTransform, {
+    const plottedPoint = new PlottedPoint( labeledPoint.originalCurvePointProperty, chartTransform, {
       fill: labeledPoint.pointColorProperty
     } );
 
@@ -70,7 +70,7 @@ export default class LabeledPointNode extends Node {
     const updateLabelPosition = () => {
 
       // value of the tangent (slope) at the y point
-      const tangent = labeledPoint.yDerivativeProperty.value;
+      const tangent = labeledPoint.derivativeCurvePointProperty.value.y;
 
       // angle (with respect to x-axis) associated with the normal vector to the tangent
       const modelPerpendicularTangent = Math.atan( tangent ) + Math.PI / 2;
@@ -85,7 +85,7 @@ export default class LabeledPointNode extends Node {
       labelNode.center = plottedPoint.center.plus( perpendicularDisplacement );
     };
 
-    Multilink.multilink( [ plottedPoint.boundsProperty, labeledPoint.yDerivativeProperty, labeledPoint.stringProperty ],
+    Multilink.multilink( [ plottedPoint.boundsProperty, labeledPoint.derivativeCurvePointProperty, labeledPoint.stringProperty ],
       () => updateLabelPosition() );
 
     options.children = [ plottedPoint, labelNode ];

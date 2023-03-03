@@ -30,8 +30,8 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
 
     // Color of the vertical bar in the barometer
     const barColorProperty = new DerivedProperty(
-      [ areaUnderCurveScrubber.yIntegralProperty, areaUnderCurveScrubber.positiveFillProperty, areaUnderCurveScrubber.negativeFillProperty ],
-      ( y, positiveFill, negativeFill ) => y > 0 ? positiveFill : negativeFill );
+      [ areaUnderCurveScrubber.integralCurvePointProperty, areaUnderCurveScrubber.positiveFillProperty, areaUnderCurveScrubber.negativeFillProperty ],
+      ( curvePoint, positiveFill, negativeFill ) => ( curvePoint.y > 0 ) ? positiveFill : negativeFill );
 
     const options = optionize<NetSignedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
@@ -45,7 +45,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       }
     }, providedOptions );
 
-    super( areaUnderCurveScrubber.yIntegralProperty, CalculusGrapherStrings.barometer.netSignedAreaStringProperty,
+    super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherStrings.barometer.netSignedAreaStringProperty,
       areaUnderCurveScrubber.visibleProperty, predictEnabledProperty, options );
   }
 }

@@ -15,6 +15,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import { Circle, CircleOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CurvePoint from '../model/CurvePoint.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -22,8 +23,7 @@ export type PlottedPointOptions = SelfOptions & PickOptional<CircleOptions, 'fil
 
 export default class PlottedPoint extends Circle {
 
-  public constructor( xProperty: TReadOnlyProperty<number>,
-                      yProperty: TReadOnlyProperty<number>,
+  public constructor( curvePointProperty: TReadOnlyProperty<CurvePoint>,
                       chartTransform: ChartTransform,
                       providedOptions: PlottedPointOptions ) {
 
@@ -39,14 +39,11 @@ export default class PlottedPoint extends Circle {
     super( options );
 
     const updatePosition = () => {
-
-      const x = xProperty.value;
-      const y = yProperty.value;
+      const x = curvePointProperty.value.x;
+      const y = curvePointProperty.value.y;
       this.center = chartTransform.modelToViewXY( x, y );
     };
-
-    xProperty.link( updatePosition );
-    yProperty.link( updatePosition );
+    curvePointProperty.link( updatePosition );
     chartTransform.changedEmitter.addListener( updatePosition );
   }
 }

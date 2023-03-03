@@ -51,6 +51,7 @@ import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberNode from './ScrubberNode.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import CurvePoint from '../model/CurvePoint.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -334,10 +335,10 @@ export default class GraphNode extends Node {
   /**
    * Adds a PlottedPoint to this GraphNode.
    */
-  public addPlottedPoint( xProperty: TReadOnlyProperty<number>, yProperty: TReadOnlyProperty<number>,
+  public addPlottedPoint( curvePointProperty: TReadOnlyProperty<CurvePoint>,
                           fill: TColor, visibleProperty: TReadOnlyProperty<boolean>,
                           tandemName: string ): PlottedPoint {
-    const plottedPoint = new PlottedPoint( xProperty, yProperty, this.chartTransform, {
+    const plottedPoint = new PlottedPoint( curvePointProperty, this.chartTransform, {
       visibleProperty: visibleProperty,
       fill: fill,
       tandem: this.tandem.createTandem( tandemName )

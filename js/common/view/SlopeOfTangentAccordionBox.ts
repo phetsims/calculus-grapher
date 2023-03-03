@@ -41,7 +41,7 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       }
     }, providedOptions );
 
-    super( tangentScrubber.yDerivativeProperty, CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,
+    super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,
       tangentScrubber.visibleProperty, predictEnabledProperty, options );
   }
 }
