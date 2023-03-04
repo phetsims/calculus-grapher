@@ -41,6 +41,7 @@ export default class CurveManipulationDisplayNode extends Node {
     const chartRectangle = new ChartRectangle( chartTransform );
 
     const curveNode = new CurveNode( curve, chartTransform, {
+      renderer: 'canvas',
       clipArea: chartRectangle.getShape(),
       stroke: curveManipulationStroke,
       tandem: tandem.createTandem( 'curveNode' )
