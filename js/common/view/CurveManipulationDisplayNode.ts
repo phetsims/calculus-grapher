@@ -41,7 +41,7 @@ export default class CurveManipulationDisplayNode extends Node {
     const chartRectangle = new ChartRectangle( chartTransform );
 
     const curveNode = new CurveNode( curve, chartTransform, {
-      renderer: 'canvas',
+      renderer: 'canvas', // address aliasing on iPad, see https://github.com/phetsims/calculus-grapher/issues/242
       clipArea: chartRectangle.getShape(),
       stroke: curveManipulationStroke,
       tandem: tandem.createTandem( 'curveNode' )
