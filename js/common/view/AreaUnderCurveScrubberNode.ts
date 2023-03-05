@@ -20,15 +20,15 @@ import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type ScrubberNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem' | 'visibleProperty'>;
+type AreaUnderCurveScrubberNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class AreaUnderCurveScrubberNode extends LineToolNode {
 
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       chartTransform: ChartTransform,
-                      providedOptions?: ScrubberNodeOptions ) {
+                      providedOptions?: AreaUnderCurveScrubberNodeOptions ) {
 
-    const options = optionize<ScrubberNodeOptions, SelfOptions, LineToolNodeOptions>()( {
+    const options = optionize<AreaUnderCurveScrubberNodeOptions, SelfOptions, LineToolNodeOptions>()( {
 
       // LineToolNodeOptions
       handleColor: CalculusGrapherColors.integralCurveStrokeProperty,

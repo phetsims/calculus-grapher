@@ -8,7 +8,6 @@
 
 import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { ScrubberNodeOptions } from './AreaUnderCurveScrubberNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -25,7 +24,7 @@ export default class TangentScrubberNode extends LineToolNode {
                       chartTransform: ChartTransform,
                       providedOptions?: TangentScrubberNodeOptions ) {
 
-    const options = optionize<ScrubberNodeOptions, SelfOptions, LineToolNodeOptions>()( {
+    const options = optionize<TangentScrubberNodeOptions, SelfOptions, LineToolNodeOptions>()( {
 
       // LineToolNodeOptions
       handleColor: CalculusGrapherColors.derivativeCurveStrokeProperty,
