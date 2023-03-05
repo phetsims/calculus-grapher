@@ -2,7 +2,7 @@
 
 /**
  * AreaUnderCurveScrubberNode is a subclass of ScrubberNode. In addition to setting the appropriate colors for
- * the scrubber, it adds a horizontal 'accumulationLine' from x=0 to the x position of the scrubber.
+ * the scrubber, it adds a horizontal 'accumulation line' from x=0 to the x position of the scrubber.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
