@@ -13,13 +13,13 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Line } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import ScrubberNode, { LineToolNodeOptions } from './ScrubberNode.js';
+import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type AreaUnderCurveScrubberNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem' | 'visibleProperty'>;
+type AreaUnderCurveScrubberNodeOptions = SelfOptions & PickRequired<ScrubberNodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
@@ -27,9 +27,9 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
                       chartTransform: ChartTransform,
                       providedOptions?: AreaUnderCurveScrubberNodeOptions ) {
 
-    const options = optionize<AreaUnderCurveScrubberNodeOptions, SelfOptions, LineToolNodeOptions>()( {
+    const options = optionize<AreaUnderCurveScrubberNodeOptions, SelfOptions, ScrubberNodeOptions>()( {
 
-      // LineToolNodeOptions
+      // ScrubberNodeOptions
       handleColor: CalculusGrapherColors.integralCurveStrokeProperty,
       lineStroke: CalculusGrapherColors.integralCurveStrokeProperty
     }, providedOptions );

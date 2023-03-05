@@ -1,10 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/207 rename AreaUnderCurveScrubberNode
 /**
- * ScrubberNode is the base class for the view of ancillary tools that involve a vertical line.
- * This includes ReferenceLineNode and LabeledLineNode. It's responsible for the line, the x coordinate of the line,
- * and the line's y coordinates can be adjusted via setLineTopAndBottom.
+ * ScrubberNode is the base class for the view of scrubbers. It includes a shaded sphere 'handle' for dragging the 
+ * scrubber to modify its x position, and a vertical line that extends through all graphs.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -30,7 +28,7 @@ type SelfOptions = {
   lineBottom?: number;
 };
 
-export type LineToolNodeOptions = SelfOptions &
+export type ScrubberNodeOptions = SelfOptions &
   PickOptional<NodeOptions, 'pickable'> &
   PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
@@ -42,9 +40,9 @@ export default class ScrubberNode extends Node {
   protected readonly handleNode: Node; //TODO https://github.com/phetsims/calculus-grapher/issues/207 delete this field
 
   protected constructor( ancillaryTool: AncillaryTool, chartTransform: ChartTransform,
-                         providedOptions: LineToolNodeOptions ) {
+                         providedOptions: ScrubberNodeOptions ) {
 
-    const options = optionize<LineToolNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
       handleColor: 'black',
