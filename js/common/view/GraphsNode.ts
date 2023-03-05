@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Class for all the graphs in the 'Calculus Grapher' simulation.
- * It also adds the reference line and all the (PhET-IO) labeled lines at the bottom of the graphs
+ * GraphsNode is responsible for all graphs, animation between 'graph sets', the reference line, scrubbers,
+ * labeled lines, labeled points.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
