@@ -1,6 +1,5 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/207 make LabeledLineNode extend Node, copy 'line' bits from LineToolNode
 /**
  * LabeledLineNode is the view representation of a labeled line that spans multiple graphs.
  * The line has a label node located at the top of its vertical line.
