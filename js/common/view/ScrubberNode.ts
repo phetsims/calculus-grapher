@@ -23,7 +23,7 @@ type SelfOptions = {
   lineWidth?: number;
   lineDash?: number[];
 
-  // see setLineTopAndBottom
+  // The top and bottom coordinates of the line, in GraphsNode view coordinate frame.
   lineTop?: number;
   lineBottom?: number;
 };
@@ -82,7 +82,7 @@ export default class ScrubberNode extends Node {
     // Keep the handle centered at the bottom of the line.
     Multilink.multilink( [ line.boundsProperty ], () => {
       handleNode.centerX = line.centerX;
-      handleNode.top = line.bottom;
+      handleNode.centerY = line.bottom;
     } );
 
     this.addLinkedElement( scrubber, {

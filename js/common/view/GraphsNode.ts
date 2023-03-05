@@ -195,30 +195,40 @@ export default class GraphsNode extends Node {
   }
 
   private resizeReferenceLine(): void {
-    const topExtent = CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0; // add top extent when value is visible
-    const bottomExtent = 17; // long enough to avoid overlapping scrubber
-    const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
-    const top = this.graphSetNode.x - topExtent;
-    const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) + bottomExtent;
+    const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0 );
+    const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers
     this.referenceLineNode.setLineTopAndBottom( top, bottom );
   }
 
   private resizeScrubberNodes( scrubberNodes: AreaUnderCurveScrubberNode[] ): void {
     scrubberNodes.forEach( scrubberNode => {
-      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
-      const top = this.graphSetNode.x;
-      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) - CalculusGrapherConstants.SCRUBBER_RADIUS;
+      const top = this.getChartRectanglesTop();
+      const bottom = this.getChartRectanglesBottom();
       scrubberNode.setLineTopAndBottom( top, bottom );
     } );
   }
 
   private resizeLabeledLineNodes( labeledLineNodes: LabeledLineNode[] ): void {
     labeledLineNodes.forEach( labeledLineNode => {
-      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
-      const top = this.graphSetNode.x - 13;
-      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing );
+      const top = this.getChartRectanglesTop() - 13;
+      const bottom = this.getChartRectanglesBottom();
       labeledLineNode.setLineTopAndBottom( top, bottom );
     } );
+  }
+
+  /**
+   * Gets the y coordinate of the top of the top-most ChartRectangle.
+   */
+  private getChartRectanglesTop(): number {
+    return this.graphSetNode.x;
+  }
+
+  /**
+   * Gets the y coordinate of the bottom of the bottom-most ChartRectangle.
+   */
+  private getChartRectanglesBottom(): number {
+    const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
+    return this.getChartRectanglesTop() + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing );
   }
 
   /**
