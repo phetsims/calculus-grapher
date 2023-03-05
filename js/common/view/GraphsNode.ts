@@ -27,12 +27,13 @@ import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import LabeledLinesNode from './LabeledLinesNode.js';
 import GraphSet from '../model/GraphSet.js';
-import ScrubberLineNode from './ScrubberLineNode.js';
-import LineToolNode from './LineToolNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CurvePoint from '../model/CurvePoint.js';
+import ScrubberNode from './ScrubberNode.js';
+import LabeledLineNode from './LabeledLineNode.js';
+import TangentScrubberNode from './TangentScrubberNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -64,8 +65,8 @@ export default class GraphsNode extends Node {
   private readonly referenceLineNode: ReferenceLineNode;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
-  private readonly scrubberLineNodes: ScrubberLineNode[];
-  private readonly scrubberLineNodesParent: Node;
+  private readonly scrubberNodes: ScrubberNode[];
+  private readonly scrubberNodesParent: Node;
 
   private readonly graphSetsAnimator: GraphSetsAnimator;
 
@@ -119,16 +120,20 @@ export default class GraphsNode extends Node {
       this.graphNodes.push( this.secondDerivativeGraphNode );
     }
 
+    //TODO https://github.com/phetsims/calculus-grapher/issues/207 instantiate after model.graphSetProperty.link
+    //TODO https://github.com/phetsims/calculus-grapher/issues/207 observe valuesVisibleProperty to set lineTop and lineBottom
     this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
       options.tandem.createTandem( 'referenceLineNode' ) );
 
     // Labeled lines
     const labeledLinesNode = new LabeledLinesNode( model.labeledLines, model.labeledLinesLinkableElement,
-      this.originalGraphNode.chartTransform, options.tandem.createTandem( 'labeledLinesNode' ) );
+      this.originalGraphNode.chartTransform, {
+        tandem: options.tandem.createTandem( 'labeledLinesNode' )
+      } );
 
     // Scrubber lines
-    this.scrubberLineNodes = [];
-    this.scrubberLineNodesParent = new Node();
+    this.scrubberNodes = [];
+    this.scrubberNodesParent = new Node();
 
     this.graphSetNode = new Node();
 
@@ -150,16 +155,16 @@ export default class GraphsNode extends Node {
 
       this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing,
 
-        // Resize all LineToolNodes so that they extend through all graphs.
-        // For the referenceLine, add a bit more extent at the bottom, so that the drag handle does not overlap scrubber.
+        // Resize tools so that they extend through all graphs.
+        //TODO https://github.com/phetsims/calculus-grapher/issues/207 delete this callback
         () => {
           this.resizeReferenceLine();
-          this.resizeLineToolNodes( labeledLinesNode.labeledLineNodes, 13, 0 );
-          this.resizeLineToolNodes( this.scrubberLineNodes, 0, -CalculusGrapherConstants.SCRUBBER_RADIUS );
+          this.resizeScrubberNodes( this.scrubberNodes );
+          this.resizeLabeledLineNodes( labeledLinesNode.labeledLineNodes );
         } );
     } );
 
-    options.children = [ this.graphSetNode, this.scrubberLineNodesParent, labeledLinesNode, this.referenceLineNode ];
+    options.children = [ this.graphSetNode, this.scrubberNodesParent, labeledLinesNode, this.referenceLineNode ];
 
     this.mutate( options );
 
@@ -189,23 +194,31 @@ export default class GraphsNode extends Node {
     } );
   }
 
-  /**
-   * Resizes a set of LineToolNodes so that they extend through all graphs.
-   * NOTE: Top and bottom are computed so that they correspond to ChartRectangles, not GraphNodes.
-   */
-  private resizeLineToolNodes( lineToolNodes: LineToolNode[], topExtent: number, bottomExtent: number ): void {
-    lineToolNodes.forEach( lineToolNode => {
-      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
-      const top = this.graphSetNode.x - topExtent;
-      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) + bottomExtent;
-      lineToolNode.setLineTopAndBottom( top, bottom );
-    } );
-  }
-
   private resizeReferenceLine(): void {
     const topExtent = CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0; // add top extent when value is visible
     const bottomExtent = 17; // long enough to avoid overlapping scrubber
-    this.resizeLineToolNodes( [ this.referenceLineNode ], topExtent, bottomExtent );
+    const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
+    const top = this.graphSetNode.x - topExtent;
+    const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) + bottomExtent;
+    this.referenceLineNode.setLineTopAndBottom( top, bottom );
+  }
+
+  private resizeScrubberNodes( scrubberNodes: ScrubberNode[] ): void {
+    scrubberNodes.forEach( scrubberNode => {
+      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
+      const top = this.graphSetNode.x;
+      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing ) - CalculusGrapherConstants.SCRUBBER_RADIUS;
+      scrubberNode.setLineTopAndBottom( top, bottom );
+    } );
+  }
+
+  private resizeLabeledLineNodes( labeledLineNodes: LabeledLineNode[] ): void {
+    labeledLineNodes.forEach( labeledLineNode => {
+      const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
+      const top = this.graphSetNode.x - 13;
+      const bottom = this.graphSetNode.x + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing );
+      labeledLineNode.setLineTopAndBottom( top, bottom );
+    } );
   }
 
   /**
@@ -223,12 +236,14 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
-    // Add a scrubber to the derivative graph, for moving the x location of tangentScrubber.
-    // See https://github.com/phetsims/calculus-grapher/issues/207
-    derivativeGraphNode.addScrubberNode( tangentScrubber, tangentScrubber.colorProperty, tangentVisibleProperty,
-      false /* accumulationLineVisible */, 'tangentScrubberNode' );
-    this.addScrubberLineNode( tangentScrubber, CalculusGrapherColors.derivativeCurveStrokeProperty,
-      tangentVisibleProperty );
+    // Add the scrubber
+    const tangentScrubberNode = new TangentScrubberNode( tangentScrubber, this.originalGraphNode.chartTransform, {
+      visibleProperty: tangentVisibleProperty,
+      tandem: this.tandem.createTandem( 'tangentScrubberNode' )
+    } );
+    this.scrubberNodes.push( tangentScrubberNode );
+    this.scrubberNodesParent.addChild( tangentScrubberNode );
+    this.resizeScrubberNodes( this.scrubberNodes );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
@@ -253,11 +268,14 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
-    // Add a scrubber to the original graph, for moving the x location of areaUnderCurveScrubber.
-    this.originalGraphNode.addScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubber.colorProperty,
-      areaUnderCurveVisibleProperty, true /* accumulationLineVisible */, 'areaUnderCurveScrubberNode' );
-    this.addScrubberLineNode( areaUnderCurveScrubber, CalculusGrapherColors.integralCurveStrokeProperty,
-      areaUnderCurveVisibleProperty );
+    // Add the scrubber
+    const areaUnderCurveScrubberNode = new ScrubberNode( areaUnderCurveScrubber, this.originalGraphNode.chartTransform, {
+      visibleProperty: areaUnderCurveVisibleProperty,
+      tandem: this.tandem.createTandem( 'areaUnderCurveScrubberNode' )
+    } );
+    this.scrubberNodes.push( areaUnderCurveScrubberNode );
+    this.scrubberNodesParent.addChild( areaUnderCurveScrubberNode );
+    this.resizeScrubberNodes( this.scrubberNodes );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
@@ -265,16 +283,6 @@ export default class GraphsNode extends Node {
     // Plot a point on the integral graph, to show the point that corresponds to the area under the curve.
     this.addPlottedPoint( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode',
       integralGraphNode, areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherColors.integralCurveStrokeProperty );
-  }
-
-  /**
-   * Adds a vertical line that passes through all graphs and moves with scrubber's x position.
-   */
-  private addScrubberLineNode( scrubber: AncillaryTool, lineStroke: TColor, visibleProperty: TReadOnlyProperty<boolean> ): void {
-    const scrubberLineNode = new ScrubberLineNode( scrubber, this.originalGraphNode.chartTransform, lineStroke, visibleProperty );
-    this.scrubberLineNodes.push( scrubberLineNode );
-    this.scrubberLineNodesParent.addChild( scrubberLineNode );
-    this.resizeLineToolNodes( [ scrubberLineNode ], 0, -CalculusGrapherConstants.SCRUBBER_RADIUS );
   }
 
   /**

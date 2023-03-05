@@ -32,7 +32,8 @@ export default class ReferenceLineNode extends LineToolNode {
                       chartTransform: ChartTransform,
                       tandem: Tandem ) {
 
-    super( referenceLine.xProperty, chartTransform, {
+    super( referenceLine, chartTransform, {
+      handleColor: CalculusGrapherColors.referenceLineHandleColorProperty,
       lineStroke: CalculusGrapherColors.referenceLineStrokeProperty,
 
       // This is a hack to keep referenceLineNode.visibleProperty from showing up in Studio.
@@ -41,7 +42,7 @@ export default class ReferenceLineNode extends LineToolNode {
     } );
 
     // Create and add a numerical label at the top of the vertical line
-    const labelNode = new NumberDisplay( referenceLine.xProperty,
+    const numberDisplay = new NumberDisplay( referenceLine.xProperty,
       CalculusGrapherConstants.CURVE_X_RANGE, {
         align: 'center',
         decimalPlaces: 1,
@@ -60,24 +61,11 @@ export default class ReferenceLineNode extends LineToolNode {
         centerX: 0,
         pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       } );
-    this.addChild( labelNode );
+    this.addChild( numberDisplay );
 
-    // Drag handle, for translating x
-    const dragHandle = new XDragHandleNode( referenceLine.xProperty, chartTransform, {
-      yModel: chartTransform.modelYRange.min,
-      mainColor: CalculusGrapherColors.referenceLineHandleColorProperty,
-      tandem: tandem.createTandem( 'dragHandle' )
-    } );
-    this.addChild( dragHandle );
-
-    // Reposition the label and drag handle
-    Multilink.multilink( [ this.line.boundsProperty, labelNode.boundsProperty ], () => {
-      labelNode.centerBottom = this.line.centerTop;
-      dragHandle.top = this.line.bottom; // x position is the responsibility of dragHandle
-    } );
-
-    this.addLinkedElement( referenceLine, {
-      tandem: tandem.createTandem( referenceLine.tandem.name )
+    // Keep the numberDisplay centered at the top of the line.
+    Multilink.multilink( [ this.line.boundsProperty, numberDisplay.boundsProperty ], () => {
+      numberDisplay.centerBottom = this.line.centerTop;
     } );
   }
 

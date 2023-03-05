@@ -1,5 +1,6 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
+//TODO https://github.com/phetsims/calculus-grapher/issues/207 make LabeledLineNode extend Node, copy 'line' bits from LineToolNode
 /**
  * LabeledLineNode is the view representation of a labeled line that spans multiple graphs.
  * The line has a label node located at the top of its vertical line.
@@ -9,49 +10,76 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import LabeledLine from '../model/LabeledLine.js';
-import LineToolNode from './LineToolNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 
-export default class LabeledLineNode extends LineToolNode {
+type SelfOptions = {
 
-  public constructor( labeledLine: LabeledLine, chartTransform: ChartTransform, tandem: Tandem ) {
+  // see setLineTopAndBottom
+  lineTop?: number;
+  lineBottom?: number;
+};
 
-    super( labeledLine.xProperty, chartTransform, {
+export type LabeledLineNodeOptions = SelfOptions;
+
+export default class LabeledLineNode extends Node {
+
+  private readonly line: Line;
+
+  public constructor( labeledLine: LabeledLine, chartTransform: ChartTransform, providedOptions?: LabeledLineNodeOptions ) {
+
+    const options = optionize<LabeledLineNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
+      lineTop: 0,
+      lineBottom: 100,
+
+      // NodeOptions
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
-      lineStroke: labeledLine.lineColorProperty,
+      visibleProperty: labeledLine.visibleProperty
+    }, providedOptions );
+
+    super( options );
+
+    // vertical line
+    const line = new Line( 0, options.lineTop, 0, options.lineBottom, {
+      stroke: labeledLine.lineColorProperty,
       lineDash: [ 4, 2 ],
-      visibleProperty: labeledLine.visibleProperty,
-      tandem: tandem
+      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     } );
+    this.addChild( line );
+    this.line = line;
 
     const text = new Text( labeledLine.stringProperty, {
       font: CalculusGrapherConstants.LABELED_LINE_FONT,
       maxWidth: 50,
-      centerX: 0,
-      tandem: tandem.createTandem( 'text' )
+      centerX: 0
     } );
 
     const labelNode = new BackgroundNode( text, {
       rectangleOptions: {
         cornerRadius: 3
-      },
-      phetioVisiblePropertyInstrumented: false
+      }
     } );
     this.addChild( labelNode );
 
-    Multilink.multilink( [ this.line.boundsProperty, labelNode.boundsProperty ], () => {
-      labelNode.centerBottom = this.line.centerTop;
+    labeledLine.xProperty.link( x => {
+      line.x = chartTransform.modelToViewX( x );
     } );
 
-    this.addLinkedElement( labeledLine, {
-      tandem: tandem.createTandem( labeledLine.tandem.name )
+    Multilink.multilink( [ line.boundsProperty, labelNode.boundsProperty ], () => {
+      labelNode.centerBottom = line.centerTop;
     } );
+  }
+
+  public setLineTopAndBottom( yTop: number, yBottom: number ): void {
+    this.line.setY1( yTop );
+    this.line.setY2( yBottom );
   }
 }
 

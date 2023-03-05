@@ -48,8 +48,6 @@ import PlottedPoint from './PlottedPoint.js';
 import GraphType from '../model/GraphType.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import ScrubberNode from './ScrubberNode.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import CurvePoint from '../model/CurvePoint.js';
 
@@ -316,20 +314,6 @@ export default class GraphNode extends Node {
     this.yZoomLevelProperty && this.yZoomLevelProperty.reset();
     this.curveLayerVisibleProperty.reset();
     this.curveNode.reset();
-  }
-
-  /**
-   * Adds an interactive scrubber that moves horizontally along the bottom of the graph.
-   */
-  public addScrubberNode( ancillaryTool: AncillaryTool, color: TColor, visibleProperty: TReadOnlyProperty<boolean>,
-                          accumulationLineVisible: boolean, tandemName: string ): ScrubberNode {
-    const scrubberNode = new ScrubberNode( ancillaryTool, this.chartTransform, color, {
-      visibleProperty: visibleProperty,
-      accumulationLineVisible: accumulationLineVisible,
-      tandem: this.tandem.createTandem( tandemName )
-    } );
-    this.addChild( scrubberNode );
-    return scrubberNode;
   }
 
   /**

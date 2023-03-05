@@ -8,37 +8,47 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Node } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import LabeledLine from '../model/LabeledLine.js';
-import LabeledLineNode from './LabeledLineNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import LabeledLineNode, { LabeledLineNodeOptions } from './LabeledLineNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import LinkableElement from '../../../../tandem/js/LinkableElement.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+
+type SelfOptions = {
+  labeledLineOptions?: LabeledLineNodeOptions;
+};
+
+type LabeledLinesNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class LabeledLinesNode extends Node {
 
   public readonly labeledLineNodes: LabeledLineNode[];
 
-  public constructor( labeledLines: LabeledLine[], linkableElement: LinkableElement,
-                      chartTransform: ChartTransform, tandem: Tandem ) {
+  public constructor( labeledLines: LabeledLine[], labeledLinesLinkableElement: LinkableElement,
+                      chartTransform: ChartTransform, providedOptions: LabeledLinesNodeOptions ) {
+
+    const options = optionize<LabeledLinesNodeOptions, StrictOmit<SelfOptions, 'labeledLineOptions'>, NodeOptions>()( {
+
+      // NodeOptions
+      phetioVisiblePropertyInstrumented: false
+    }, providedOptions );
 
     // LabeledLineNode instances.
-    // Opt out of PhET-iO instrumentation, see https://github.com/phetsims/calculus-grapher/issues/198
-    const labeledLineNodes = labeledLines.map( labeledLine =>
-      new LabeledLineNode( labeledLine, chartTransform, Tandem.OPT_OUT ) );
+    const labeledLineNodes = labeledLines.map( labeledLine => new LabeledLineNode( labeledLine, chartTransform, options.labeledLineOptions ) );
 
-    super( {
-      children: labeledLineNodes,
-      tandem: tandem,
-      phetioVisiblePropertyInstrumented: false
-    } );
+    options.children = labeledLineNodes;
+
+    super( options );
 
     this.labeledLineNodes = labeledLineNodes;
 
     // Link to model.tools.labeledLines
-    this.addLinkedElement( linkableElement, {
-      tandem: tandem.createTandem( 'labeledLines' )
+    this.addLinkedElement( labeledLinesLinkableElement, {
+      tandem: options.tandem.createTandem( 'labeledLines' )
     } );
   }
 }
