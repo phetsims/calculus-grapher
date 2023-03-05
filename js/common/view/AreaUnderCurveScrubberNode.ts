@@ -1,9 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/207 rename AreaUnderCurveScrubberNode
 /**
- * AreaUnderCurveScrubberNode is a cursor at the bottom of the graph.
- * Scrubbing can be done by dragging the cursor.
+ * AreaUnderCurveScrubberNode is a subclass of ScrubberNode. In addition to setting the appropriate colors for
+ * the scrubber, it adds a horizontal 'accumulationLine' from x=0 to the x position of the scrubber.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
