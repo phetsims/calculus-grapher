@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * ScrubberNode is the base class for the view of scrubbers. It includes a shaded sphere 'handle' for dragging the 
+ * ScrubberNode is the base class for the view of scrubbers. It includes a shaded sphere 'handle' for dragging the
  * scrubber to modify its x position, and a vertical line that extends through all graphs.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -37,7 +37,7 @@ export default class ScrubberNode extends Node {
   // vertical line displayed by the tool
   protected readonly line: Line;
 
-  protected readonly handleNode: Node; //TODO https://github.com/phetsims/calculus-grapher/issues/207 delete this field
+  protected readonly handleNode: Node;
 
   protected constructor( scrubber: AncillaryTool, chartTransform: ChartTransform,
                          providedOptions: ScrubberNodeOptions ) {

@@ -45,7 +45,6 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
     accumulationLine.moveToBack();
 
     // Resizes the horizontal line to match the drag handle's x position.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/207 observe xProperty instead of handleNode.boundsProperty
     this.handleNode.boundsProperty.link( () => {
       accumulationLine.x2 = this.handleNode.centerX;
       accumulationLine.centerY = this.handleNode.centerY;
