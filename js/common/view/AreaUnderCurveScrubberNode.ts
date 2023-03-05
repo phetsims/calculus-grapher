@@ -2,7 +2,7 @@
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/207 rename AreaUnderCurveScrubberNode
 /**
- * ScrubberNode is a cursor at the bottom of the graph.
+ * AreaUnderCurveScrubberNode is a cursor at the bottom of the graph.
  * Scrubbing can be done by dragging the cursor.
  *
  * @author Martin Veillette
@@ -22,7 +22,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type ScrubberNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class ScrubberNode extends LineToolNode {
+export default class AreaUnderCurveScrubberNode extends LineToolNode {
 
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       chartTransform: ChartTransform,
@@ -54,4 +54,4 @@ export default class ScrubberNode extends LineToolNode {
   }
 }
 
-calculusGrapher.register( 'ScrubberNode', ScrubberNode );
+calculusGrapher.register( 'AreaUnderCurveScrubberNode', AreaUnderCurveScrubberNode );

@@ -31,7 +31,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CurvePoint from '../model/CurvePoint.js';
-import ScrubberNode from './ScrubberNode.js';
+import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import LabeledLineNode from './LabeledLineNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 
@@ -65,7 +65,7 @@ export default class GraphsNode extends Node {
   private readonly referenceLineNode: ReferenceLineNode;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
-  private readonly scrubberNodes: ScrubberNode[];
+  private readonly scrubberNodes: AreaUnderCurveScrubberNode[];
   private readonly scrubberNodesParent: Node;
 
   private readonly graphSetsAnimator: GraphSetsAnimator;
@@ -203,7 +203,7 @@ export default class GraphsNode extends Node {
     this.referenceLineNode.setLineTopAndBottom( top, bottom );
   }
 
-  private resizeScrubberNodes( scrubberNodes: ScrubberNode[] ): void {
+  private resizeScrubberNodes( scrubberNodes: AreaUnderCurveScrubberNode[] ): void {
     scrubberNodes.forEach( scrubberNode => {
       const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
       const top = this.graphSetNode.x;
@@ -269,7 +269,7 @@ export default class GraphsNode extends Node {
       } );
 
     // Add the scrubber
-    const areaUnderCurveScrubberNode = new ScrubberNode( areaUnderCurveScrubber, this.originalGraphNode.chartTransform, {
+    const areaUnderCurveScrubberNode = new AreaUnderCurveScrubberNode( areaUnderCurveScrubber, this.originalGraphNode.chartTransform, {
       visibleProperty: areaUnderCurveVisibleProperty,
       tandem: this.tandem.createTandem( 'areaUnderCurveScrubberNode' )
     } );

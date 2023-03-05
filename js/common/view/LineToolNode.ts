@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/207 rename ScrubberNode
+//TODO https://github.com/phetsims/calculus-grapher/issues/207 rename AreaUnderCurveScrubberNode
 /**
  * LineToolNode is the base class for the view of ancillary tools that involve a vertical line.
  * This includes ReferenceLineNode and LabeledLineNode. It's responsible for the line, the x coordinate of the line,

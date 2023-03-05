@@ -8,7 +8,7 @@
 
 import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { ScrubberNodeOptions } from './ScrubberNode.js';
+import { ScrubberNodeOptions } from './AreaUnderCurveScrubberNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
