@@ -21,12 +21,12 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLine from '../model/ReferenceLine.js';
-import LineToolNode from './LineToolNode.js';
+import ScrubberNode from './ScrubberNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import XDragHandleNode from './XDragHandleNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
-export default class ReferenceLineNode extends LineToolNode {
+export default class ReferenceLineNode extends ScrubberNode {
 
   public constructor( referenceLine: ReferenceLine,
                       chartTransform: ChartTransform,

@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
+import ScrubberNode, { LineToolNodeOptions } from './ScrubberNode.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -18,7 +18,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type TangentScrubberNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class TangentScrubberNode extends LineToolNode {
+export default class TangentScrubberNode extends ScrubberNode {
 
   public constructor( tangetScrubber: TangentScrubber,
                       chartTransform: ChartTransform,

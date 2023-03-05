@@ -13,7 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Line } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import LineToolNode, { LineToolNodeOptions } from './LineToolNode.js';
+import ScrubberNode, { LineToolNodeOptions } from './ScrubberNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
@@ -21,7 +21,7 @@ type SelfOptions = EmptySelfOptions;
 
 type AreaUnderCurveScrubberNodeOptions = SelfOptions & PickRequired<LineToolNodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class AreaUnderCurveScrubberNode extends LineToolNode {
+export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       chartTransform: ChartTransform,

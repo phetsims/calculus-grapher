@@ -2,7 +2,7 @@
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/207 rename AreaUnderCurveScrubberNode
 /**
- * LineToolNode is the base class for the view of ancillary tools that involve a vertical line.
+ * ScrubberNode is the base class for the view of ancillary tools that involve a vertical line.
  * This includes ReferenceLineNode and LabeledLineNode. It's responsible for the line, the x coordinate of the line,
  * and the line's y coordinates can be adjusted via setLineTopAndBottom.
  *
@@ -34,7 +34,7 @@ export type LineToolNodeOptions = SelfOptions &
   PickOptional<NodeOptions, 'pickable'> &
   PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class LineToolNode extends Node {
+export default class ScrubberNode extends Node {
 
   // vertical line displayed by the tool
   protected readonly line: Line;
@@ -101,4 +101,4 @@ export default class LineToolNode extends Node {
   }
 }
 
-calculusGrapher.register( 'LineToolNode', LineToolNode );
+calculusGrapher.register( 'ScrubberNode', ScrubberNode );
