@@ -39,7 +39,7 @@ export default class ScrubberNode extends Node {
 
   protected readonly handleNode: Node; //TODO https://github.com/phetsims/calculus-grapher/issues/207 delete this field
 
-  protected constructor( ancillaryTool: AncillaryTool, chartTransform: ChartTransform,
+  protected constructor( scrubber: AncillaryTool, chartTransform: ChartTransform,
                          providedOptions: ScrubberNodeOptions ) {
 
     const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()( {
@@ -62,7 +62,7 @@ export default class ScrubberNode extends Node {
     } );
 
     // Draggable handle, for translating x
-    const handleNode = new XDragHandleNode( ancillaryTool.xProperty, chartTransform, {
+    const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: options.handleColor,
       tandem: options.tandem.createTandem( 'handleNode' )
@@ -75,7 +75,7 @@ export default class ScrubberNode extends Node {
     this.line = line;
     this.handleNode = handleNode;
 
-    ancillaryTool.xProperty.link( x => {
+    scrubber.xProperty.link( x => {
       this.line.x = chartTransform.modelToViewX( x );
     } );
 
@@ -85,8 +85,8 @@ export default class ScrubberNode extends Node {
       handleNode.top = line.bottom;
     } );
 
-    this.addLinkedElement( ancillaryTool, {
-      tandem: options.tandem.createTandem( ancillaryTool.tandem.name )
+    this.addLinkedElement( scrubber, {
+      tandem: options.tandem.createTandem( scrubber.tandem.name )
     } );
   }
 
