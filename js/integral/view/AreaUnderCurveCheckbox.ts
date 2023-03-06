@@ -33,7 +33,7 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
 
     const box = new HBox( {
       children: [ icon, text ],
-      spacing: 6
+      spacing: 8
     } );
 
     super( scrubberVisibleProperty, box, {

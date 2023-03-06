@@ -73,5 +73,8 @@
   },
   "predictPreferenceDescription": {
     "value": "Adds a mode that allows you to predict f({{variable}})."
+  },
+  "referenceLine": {
+    "value": "Reference<br>Line"
   }
 }

@@ -44,6 +44,7 @@ type StringsType = {
   'predictPreferenceStringProperty': LinkableProperty<string>;
   'valuesPreferenceDescriptionStringProperty': LinkableProperty<string>;
   'predictPreferenceDescriptionStringProperty': LinkableProperty<string>;
+  'referenceLineStringProperty': LinkableProperty<string>;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

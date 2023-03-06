@@ -6,46 +6,29 @@
  * @author Martin Veillette
  */
 
-import VerticalCheckboxGroup, { VerticalCheckboxGroupItem } from '../../../../sun/js/VerticalCheckboxGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
-import ReferenceLineNode from './ReferenceLineNode.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import { VBox } from '../../../../scenery/js/imports.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import ReferenceLineCheckbox from './ReferenceLineCheckbox.js';
+import GridCheckbox from './GridCheckbox.js';
 
-export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup {
+export default class CalculusGrapherCheckboxGroup extends VBox {
 
   public constructor( gridVisibleProperty: Property<boolean>, referenceLineVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
-    const items: VerticalCheckboxGroupItem[] = [
+    const referenceLineCheckbox = new ReferenceLineCheckbox( referenceLineVisibleProperty,
+      tandem.createTandem( 'referenceLineCheckbox' ) );
 
-      // Item for reference line checkbox
-      createItem( ReferenceLineNode.createIcon(), referenceLineVisibleProperty, 'referenceLineCheckbox' ),
+    const gridCheckbox = new GridCheckbox( gridVisibleProperty, tandem.createTandem( 'gridCheckbox' ) );
 
-      // Item for grid checkbox
-      createItem( new GridIcon(), gridVisibleProperty, 'gridCheckbox' )
-    ];
-
-    super( items, {
-      checkboxOptions: {
-        boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH
-      },
-      layoutOptions: {
-        xMargin: CalculusGrapherConstants.PANEL_X_MARGIN
-      },
+    super( {
+      children: [ referenceLineCheckbox, gridCheckbox ],
+      align: 'left',
+      spacing: 10,
       tandem: tandem
     } );
   }
-}
-
-function createItem( labelNode: Node, property: Property<boolean>, tandemName: string ): VerticalCheckboxGroupItem {
-  return {
-    createNode: () => labelNode,
-    property: property,
-    tandemName: tandemName
-  };
 }
 
 calculusGrapher.register( 'CalculusGrapherCheckboxGroup', CalculusGrapherCheckboxGroup );
