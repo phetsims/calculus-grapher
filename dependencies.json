@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.0.0-dev.19 Sat Mar 04 2023 09:49:11 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.0.0-dev.20 Mon Mar 06 2023 13:13:25 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "master"
@@ -9,7 +9,7 @@
     "branch": "master"
   },
   "bamboo": {
-    "sha": "26586082f14c1c7095fac93081ff0e2dadac1a4b",
+    "sha": "15497c730f982db3886d8535426871fc713c8908",
     "branch": "master"
   },
   "brand": {
@@ -17,7 +17,7 @@
     "branch": "master"
   },
   "calculus-grapher": {
-    "sha": "e2398725afb985661d09e92c5864fc1603de73d8",
+    "sha": "77c6fdc01f6cf452674ddc2040adcfda541c2773",
     "branch": "master"
   },
   "chipper": {
@@ -69,7 +69,7 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "0a063f41e09b2249e9d7f65350f123d556786d2c",
+    "sha": "5997ccea1cec6b41490ccd4721f08e3ff37c46bf",
     "branch": "master"
   },
   "scenery-phet": {
