@@ -16,7 +16,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class TangentScrubber extends AncillaryTool {
 
-  // Color for the spherical scrubber
   public readonly colorProperty: ProfileColorProperty;
 
   public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
@@ -31,7 +30,7 @@ export default class TangentScrubber extends AncillaryTool {
 
     this.addLinkedElement( this.colorProperty, {
       tandem: tandem.createTandem( 'colorProperty' ),
-      phetioDocumentation: 'Color for the tangent line, scrubber, and the bar in the "Slope of Tangent" accordion box.'
+      phetioDocumentation: 'Color for the tangent scrubber handle, vertical line, and the bar in the "Slope of Tangent" accordion box.'
     } );
   }
 }

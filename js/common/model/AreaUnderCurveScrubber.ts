@@ -17,7 +17,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class AreaUnderCurveScrubber extends AncillaryTool {
 
-  // Color for the spherical scrubber
+  // Color for the scrubber handle, vertical line, and 'accumulation line'
   public readonly colorProperty: ProfileColorProperty;
 
   // Color used to fill the area that is above x=0
@@ -47,7 +47,7 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
 
     this.addLinkedElement( this.colorProperty, {
       tandem: tandem.createTandem( 'colorProperty' ),
-      phetioDocumentation: 'Color for the scrubber.'
+      phetioDocumentation: 'Color for the scrubber handle, vertical line, and accumulation line.'
     } );
 
     this.addLinkedElement( this.positiveFillProperty, {
