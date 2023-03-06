@@ -13,7 +13,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import TangentScrubber from '../model/TangentScrubber.js';
-import XDragHandleNode from './XDragHandleNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -40,8 +39,8 @@ export default class TangentScrubberNode extends ScrubberNode {
   /**
    * Creates an icon for the tangent scrubber.
    */
-  public static createIcon(): Node {
-    return XDragHandleNode.createIcon( CalculusGrapherColors.derivativeCurveStrokeProperty );
+  public static override createIcon(): Node {
+    return ScrubberNode.createIcon( CalculusGrapherColors.derivativeCurveStrokeProperty );
   }
 }
 

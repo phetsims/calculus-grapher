@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Line, Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
+import { Line, Node, NodeOptions, TColor, VBox } from '../../../../scenery/js/imports.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import optionize from '../../../../phet-core/js/optionize.js';
@@ -96,6 +96,22 @@ export default class ScrubberNode extends Node {
   public setLineTopAndBottom( yTop: number, yBottom: number ): void {
     this.line.setY1( yTop );
     this.line.setY2( yBottom );
+  }
+
+  /**
+   * Creates an icon for a scrubber.
+   */
+  public static createIcon( handleColor: TColor, lineStroke?: TColor ): Node {
+
+    const line = new Line( 0, 0, 0, 11, {
+      stroke: lineStroke ? lineStroke : handleColor
+    } );
+
+    const handleIcon = XDragHandleNode.createIcon( handleColor );
+
+    return new VBox( {
+      children: [ line, handleIcon ]
+    } );
   }
 }
 

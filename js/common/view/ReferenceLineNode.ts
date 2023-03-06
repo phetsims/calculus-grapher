@@ -12,7 +12,7 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Line, Node, VBox } from '../../../../scenery/js/imports.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -23,7 +23,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ReferenceLine from '../model/ReferenceLine.js';
 import ScrubberNode from './ScrubberNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import XDragHandleNode from './XDragHandleNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class ReferenceLineNode extends ScrubberNode {
@@ -73,17 +72,8 @@ export default class ReferenceLineNode extends ScrubberNode {
   /**
    * Creates an icon for the reference line.
    */
-  public static createIcon(): Node {
-
-    const line = new Line( 0, 0, 0, 11, {
-      stroke: CalculusGrapherColors.referenceLineStrokeProperty
-    } );
-
-    const dragHandleIcon = XDragHandleNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty );
-
-    return new VBox( {
-      children: [ line, dragHandleIcon ]
-    } );
+  public static override createIcon(): Node {
+    return ScrubberNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty, CalculusGrapherColors.referenceLineStrokeProperty );
   }
 }
 calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );
