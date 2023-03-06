@@ -38,13 +38,13 @@ export default class LabeledPointNode extends Node {
     const options = optionize<LabeledPointNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
+      pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       visibleProperty: new DerivedProperty(
         [ labeledPoint.visibleProperty, curveLayerVisibleProperty, predictEnabledProperty ],
         ( labeledPointVisible, curveLayerVisible, predictEnabled ) => labeledPointVisible && curveLayerVisible && !predictEnabled, {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
-        } ),
-      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
+        } )
     }, providedOptions );
 
     // point that is plotted on the curve

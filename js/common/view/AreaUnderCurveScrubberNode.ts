@@ -40,7 +40,8 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
     // Horizontal 'accumulation line' that extends from x=0 to the drag handle's position
     const accumulationLine = new Line( 0, 0, this.handleNode.centerX, 0, {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
-      lineWidth: 3
+      lineWidth: 3,
+      pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     } );
     this.addChild( accumulationLine );
     accumulationLine.moveToBack();

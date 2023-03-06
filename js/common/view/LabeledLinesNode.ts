@@ -34,6 +34,7 @@ export default class LabeledLinesNode extends Node {
     const options = optionize<LabeledLinesNodeOptions, StrictOmit<SelfOptions, 'labeledLineOptions'>, NodeOptions>()( {
 
       // NodeOptions
+      pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
