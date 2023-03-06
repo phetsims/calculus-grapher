@@ -11,10 +11,12 @@
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Line } from '../../../../scenery/js/imports.js';
+import { Line, Node } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
+import XDragHandleNode from './XDragHandleNode.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -50,6 +52,13 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
       accumulationLine.x2 = this.handleNode.centerX;
       accumulationLine.centerY = this.handleNode.centerY;
     } );
+  }
+
+  /**
+   * Creates an icon for the area-under-curve scrubber.
+   */
+  public static createIcon(): Node {
+    return XDragHandleNode.createIcon( CalculusGrapherColors.integralCurveStrokeProperty );
   }
 }
 

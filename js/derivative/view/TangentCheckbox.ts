@@ -16,8 +16,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
-import XDragHandleNode from '../../common/view/XDragHandleNode.js';
+import TangentScrubberNode from '../../common/view/TangentScrubberNode.js';
 
 export default class TangentCheckbox extends Checkbox {
 
@@ -30,7 +29,7 @@ export default class TangentCheckbox extends Checkbox {
       tandem: tandem.createTandem( 'text' )
     } );
 
-    const dragHandleIcon = XDragHandleNode.createIcon( CalculusGrapherColors.derivativeCurveStrokeProperty );
+    const dragHandleIcon = TangentScrubberNode.createIcon();
 
     const box = new HBox( {
       children: [ text, dragHandleIcon ],

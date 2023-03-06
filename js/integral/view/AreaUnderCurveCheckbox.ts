@@ -16,8 +16,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import CalculusGrapherColors from '../../common/CalculusGrapherColors.js';
-import XDragHandleNode from '../../common/view/XDragHandleNode.js';
+import AreaUnderCurveScrubberNode from '../../common/view/AreaUnderCurveScrubberNode.js';
 
 export default class AreaUnderCurveCheckbox extends Checkbox {
 
@@ -30,7 +29,7 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
       tandem: tandem.createTandem( 'text' )
     } );
 
-    const dragHandleIcon = XDragHandleNode.createIcon( CalculusGrapherColors.integralCurveStrokeProperty );
+    const dragHandleIcon = AreaUnderCurveScrubberNode.createIcon();
 
     const box = new HBox( {
       children: [ text, dragHandleIcon ],

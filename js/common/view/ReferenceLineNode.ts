@@ -71,7 +71,7 @@ export default class ReferenceLineNode extends ScrubberNode {
   }
 
   /**
-   * Returns an icon for a ReferenceLine
+   * Creates an icon for the reference line.
    */
   public static createIcon(): Node {
 
