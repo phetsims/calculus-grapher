@@ -33,8 +33,8 @@ export default class ReferenceLineNode extends ScrubberNode {
                       tandem: Tandem ) {
 
     super( referenceLine, chartTransform, {
-      handleColor: CalculusGrapherColors.referenceLineHandleColorProperty,
-      lineStroke: CalculusGrapherColors.referenceLineStrokeProperty,
+      handleColor: referenceLine.handleColorProperty,
+      lineStroke: referenceLine.lineColorProperty,
       lineDash: [], // solid line
 
       // This is a hack to keep referenceLineNode.visibleProperty from linking to referenceLine.visibleProperty in Studio.
