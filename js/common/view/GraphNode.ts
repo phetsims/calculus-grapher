@@ -27,7 +27,7 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, TColor, Text } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, TColor, Text, TPaint } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
@@ -93,7 +93,7 @@ type SelfOptions = {
   chartRectangleOptions?: ChartRectangleOptions;
 
   // options function to create the CurveNode associated with this graph
-  createCurveNode?: ( chartTransform: ChartTransform ) => CurveNode;
+  createCurveNode?: ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) => CurveNode;
 
   // label that appears in the upper-left corner of the graph
   labelNode?: Node;
@@ -133,9 +133,12 @@ export default class GraphNode extends Node {
     const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 
       // SelfOptions
-      createCurveNode: ( chartTransform: ChartTransform ) => new CurveNode( curve, chartTransform, {
+      createCurveNode: ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) => new CurveNode( curve, chartTransform, {
         plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
         stroke: graphType.strokeProperty,
+        discontinuousPointsScatterPlotOptions: {
+          fill: chartRectangleFill
+        },
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       } ),
       chartRectangleOptions: {
@@ -177,7 +180,7 @@ export default class GraphNode extends Node {
 
     this.chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
-    this.curveNode = options.createCurveNode( this.chartTransform );
+    this.curveNode = options.createCurveNode( this.chartTransform, options.chartRectangleOptions.fill! );
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveLayerVisibleProperty' ),

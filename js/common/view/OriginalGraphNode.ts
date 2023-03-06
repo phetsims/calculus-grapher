@@ -23,7 +23,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { DragListener, HBox, PressedDragListener, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import { DragListener, HBox, PressedDragListener, Rectangle, Text, TPaint } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
@@ -88,10 +88,13 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Creates PhET-iO element 'graphsNode.originalCurveNode'
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
-    const createOriginalCurveNode = ( chartTransform: ChartTransform ) =>
+    const createOriginalCurveNode = ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) =>
       new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
         plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
         stroke: graphType.strokeProperty,
+        discontinuousPointsScatterPlotOptions: {
+          fill: chartRectangleFill
+        },
         continuousLinePlotOptions: {
           lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
         },
