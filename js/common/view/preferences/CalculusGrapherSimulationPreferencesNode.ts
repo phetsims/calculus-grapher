@@ -43,13 +43,13 @@ export default class CalculusGrapherSimulationPreferencesNode extends VBox {
       new DiscontinuitiesControl( CalculusGrapherPreferences.connectDiscontinuitiesProperty,
         tandem.createTandem( 'discontinuitiesControl' ) ),
 
-      // Predict
-      new PredictControl( CalculusGrapherPreferences.predictPreferenceEnabledProperty,
-        tandem.createTandem( 'predictControl' ) ),
-
       // Values
       new ValuesControl( CalculusGrapherPreferences.valuesVisibleProperty,
-        tandem.createTandem( 'valuesControl' ) )
+        tandem.createTandem( 'valuesControl' ) ),
+
+      // Predict
+      new PredictControl( CalculusGrapherPreferences.predictPreferenceEnabledProperty,
+        tandem.createTandem( 'predictControl' ) )
     ];
 
     super( {
