@@ -204,7 +204,8 @@ export default class GraphNode extends Node {
       pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
     } );
 
-    // Axes are clipped in the chart
+    // Axes with arrow heads pointing in the positive direction only.
+    // See https://github.com/phetsims/calculus-grapher/issues/253
     const axisArrowNodeOptions: AxisArrowNodeOptions = {
       doubleHead: false,
       extension: 0
