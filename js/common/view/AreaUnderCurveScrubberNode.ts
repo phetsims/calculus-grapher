@@ -14,7 +14,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Line } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -31,15 +30,15 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
     const options = optionize<AreaUnderCurveScrubberNodeOptions, SelfOptions, ScrubberNodeOptions>()( {
 
       // ScrubberNodeOptions
-      handleColor: CalculusGrapherColors.integralCurveStrokeProperty,
-      lineStroke: CalculusGrapherColors.integralCurveStrokeProperty
+      handleColor: areaUnderCurveScrubber.colorProperty,
+      lineStroke: areaUnderCurveScrubber.colorProperty
     }, providedOptions );
 
     super( areaUnderCurveScrubber, chartTransform, options );
 
     // Horizontal 'accumulation line' that extends from x=0 to the drag handle's position
     const accumulationLine = new Line( 0, 0, this.handleNode.centerX, 0, {
-      stroke: CalculusGrapherColors.integralCurveStrokeProperty,
+      stroke: areaUnderCurveScrubber.colorProperty,
       lineWidth: 3,
       pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     } );
