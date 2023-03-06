@@ -126,11 +126,17 @@ const CalculusGrapherColors = {
   // the vertical reference line
   referenceLineStrokeProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineStroke', {
     default: 'black'
+  }, {
+    tandem: tandem.createTandem( 'referenceLineStrokeProperty' ),
+    phetioValueType: Color.ColorIO
   } ),
 
   // the handle (shaded sphere) for moving the reference line
   referenceLineHandleColorProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineHandleColor', {
     default: 'blue'
+  }, {
+    tandem: tandem.createTandem( 'referenceLineHandleColorProperty' ),
+    phetioValueType: Color.ColorIO
   } )
 };
 
