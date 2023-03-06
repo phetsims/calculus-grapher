@@ -19,7 +19,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import AxisLine from '../../../../bamboo/js/AxisLine.js';
+import AxisArrowNode, { AxisArrowNodeOptions } from '../../../../bamboo/js/AxisArrowNode.js';
 import ChartRectangle, { ChartRectangleOptions } from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
@@ -205,10 +205,14 @@ export default class GraphNode extends Node {
     } );
 
     // Axes are clipped in the chart
-    const xAxisLine = new AxisLine( this.chartTransform, Orientation.HORIZONTAL );
-    const yAxisLine = new AxisLine( this.chartTransform, Orientation.VERTICAL );
+    const axisArrowNodeOptions: AxisArrowNodeOptions = {
+      doubleHead: false,
+      extension: 0
+    };
+    const xAxis = new AxisArrowNode( this.chartTransform, Orientation.HORIZONTAL, axisArrowNodeOptions );
+    const yAxis = new AxisArrowNode( this.chartTransform, Orientation.VERTICAL, axisArrowNodeOptions );
     const axesParent = new Node( {
-      children: [ xAxisLine, yAxisLine ],
+      children: [ xAxis, yAxis ],
       pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
     } );
 
