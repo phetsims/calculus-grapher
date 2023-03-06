@@ -23,7 +23,7 @@ type SelfOptions = {
   lineWidth?: number;
   lineDash?: number[];
 
-  // The top and bottom coordinates of the line, in GraphsNode view coordinate frame.
+  // The top and bottom coordinates of the vertical line, in GraphsNode view coordinate frame.
   lineTop?: number;
   lineBottom?: number;
 };
