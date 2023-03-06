@@ -51,10 +51,10 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
     } );
 
-    // Add 'Tangent' checkbox to the bottom of the main control panel.
+    // Add 'Tangent' checkbox to the top of the checkbox group.
     const tangentCheckbox = new TangentCheckbox( model.tangentScrubber.visibleProperty, model.predictEnabledProperty,
-      this.controlPanel.tandem.createTandem( 'tangentCheckbox' ) );
-    this.controlPanel.appendContent( tangentCheckbox );
+      this.checkboxGroup.tandem.createTandem( 'tangentCheckbox' ) );
+    this.checkboxGroup.insertChild( 0, tangentCheckbox );
 
     this.resetDerivativeScreenView = () => {
       slopeOfTangentAccordionBox.reset();

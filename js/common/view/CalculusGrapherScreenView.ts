@@ -42,8 +42,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
   // Node responsible for displaying all graphs and their decorations
   public readonly graphsNode: GraphsNode;
 
-  // The main control panel
-  protected readonly controlPanel: CalculusGrapherControlPanel;
+  // The checkbox group that appears below the control panel
+  protected readonly checkboxGroup: CalculusGrapherCheckboxGroup;
 
   // Instead of adding children directly to the ScreenView, add them to this parent Node, so that keyboard traversal
   // can be supported by setting pdomOrder on this Node.  See https://github.com/phetsims/calculus-grapher/issues/123
@@ -74,7 +74,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    this.controlPanel = new CalculusGrapherControlPanel(
+    const controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
       model.predictSelectedProperty,
       model.predictEnabledProperty,
@@ -83,11 +83,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );
 
-    const checkboxGroup = new CalculusGrapherCheckboxGroup( model.gridVisibleProperty,
+    this.checkboxGroup = new CalculusGrapherCheckboxGroup( model.gridVisibleProperty,
       model.referenceLine.visibleProperty, options.tandem.createTandem( 'checkboxGroup' ) );
 
     const rightVBox = new VBox( {
-      children: [ this.controlPanel, checkboxGroup ],
+      children: [ controlPanel, this.checkboxGroup ],
       spacing: 20,
       align: 'left'
     } );

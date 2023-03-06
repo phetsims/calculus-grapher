@@ -23,16 +23,16 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
   public constructor( scrubberVisibleProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
 
+    const icon = AreaUnderCurveScrubberNode.createIcon();
+
     const text = new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 100,
       tandem: tandem.createTandem( 'text' )
     } );
 
-    const dragHandleIcon = AreaUnderCurveScrubberNode.createIcon();
-
     const box = new HBox( {
-      children: [ text, dragHandleIcon ],
+      children: [ icon, text ],
       spacing: 6
     } );
 

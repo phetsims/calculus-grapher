@@ -21,11 +21,11 @@ export default class CalculusGrapherCheckboxGroup extends VerticalCheckboxGroup 
 
     const items: VerticalCheckboxGroupItem[] = [
 
-      // Item for grid checkbox
-      createItem( new GridIcon(), gridVisibleProperty, 'gridCheckbox' ),
-
       // Item for reference line checkbox
-      createItem( ReferenceLineNode.createIcon(), referenceLineVisibleProperty, 'referenceLineCheckbox' )
+      createItem( ReferenceLineNode.createIcon(), referenceLineVisibleProperty, 'referenceLineCheckbox' ),
+
+      // Item for grid checkbox
+      createItem( new GridIcon(), gridVisibleProperty, 'gridCheckbox' )
     ];
 
     super( items, {

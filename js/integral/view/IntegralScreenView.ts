@@ -52,10 +52,10 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
     } );
 
-    // Add 'Area Under Curve' checkbox to the bottom of the main control panel.
+    // Add 'Area Under Curve' checkbox to the top of the checkbox group.
     const areaUnderCurveCheckbox = new AreaUnderCurveCheckbox( model.areaUnderCurveScrubber.visibleProperty,
-      model.predictEnabledProperty, this.controlPanel.tandem.createTandem( 'areaUnderCurveCheckbox' ) );
-    this.controlPanel.appendContent( areaUnderCurveCheckbox );
+      model.predictEnabledProperty, this.checkboxGroup.tandem.createTandem( 'areaUnderCurveCheckbox' ) );
+    this.checkboxGroup.insertChild( 0, areaUnderCurveCheckbox );
 
     this.resetIntegralScreenView = () => {
       netSignedAreaAccordionBox.reset();

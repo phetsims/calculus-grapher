@@ -83,12 +83,5 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     this.contentNode = contentNode;
   }
-
-  /**
-   * Appends a Node to this panel's content.
-   */
-  public appendContent( node: Node ): void {
-    this.contentNode.addChild( node );
-  }
 }
 calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
