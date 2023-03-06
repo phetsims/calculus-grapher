@@ -35,7 +35,7 @@ export default class ReferenceLineNode extends ScrubberNode {
     super( referenceLine, chartTransform, {
       handleColor: CalculusGrapherColors.referenceLineHandleColorProperty,
       lineStroke: CalculusGrapherColors.referenceLineStrokeProperty,
-      lineDash: [],
+      lineDash: [], // solid line
 
       //TODO https://github.com/phetsims/calculus-grapher/issues/207 is this still necessary?
       // This is a hack to keep referenceLineNode.visibleProperty from showing up in Studio.
