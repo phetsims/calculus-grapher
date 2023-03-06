@@ -37,8 +37,8 @@ export default class TangentArrowNode extends ArrowNode {
 
       // ArrowNodeOptions
       fill: tangentScrubber.colorProperty,
-      headWidth: 8,
-      headHeight: 8,
+      headWidth: 10,
+      headHeight: 10,
       tailWidth: 2,
       fractionalHeadHeight: 0.5,
       stroke: null,
