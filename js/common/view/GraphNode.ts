@@ -211,7 +211,8 @@ export default class GraphNode extends Node {
     // See https://github.com/phetsims/calculus-grapher/issues/253
     const axisArrowNodeOptions: AxisArrowNodeOptions = {
       doubleHead: false,
-      extension: 0
+      extension: 0,
+      stroke: null
     };
     const xAxis = new AxisArrowNode( this.chartTransform, Orientation.HORIZONTAL, axisArrowNodeOptions );
     const yAxis = new AxisArrowNode( this.chartTransform, Orientation.VERTICAL, axisArrowNodeOptions );
