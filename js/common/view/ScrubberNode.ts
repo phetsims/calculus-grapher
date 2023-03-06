@@ -48,7 +48,7 @@ export default class ScrubberNode extends Node {
       handleColor: 'black',
       lineStroke: 'black',
       lineWidth: 1,
-      lineDash: [],
+      lineDash: [ 6, 6 ],
       lineTop: 0,
       lineBottom: 100
     }, providedOptions );
