@@ -92,7 +92,7 @@ export default class CurveNode extends Node {
       discontinuousPointsScatterPlotOptions: {
         fill: 'white', //TODO https://github.com/phetsims/calculus-grapher/issues/256 use ChartRectangle.fill
         lineWidth: 2,
-        radius: 3
+        radius: 2.5
       },
 
       cuspsScatterPlotOptions: {
