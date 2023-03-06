@@ -13,6 +13,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Property from '../../../../axon/js/Property.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { Color } from '../../../../scenery/js/imports.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
@@ -37,6 +38,8 @@ export default class CurveManipulationWidthSlider extends HSlider {
       trackSize: new Dimension2( 100, 1 ),
       majorTickLength: 20,
       minorTickLength: 15,
+      minorTickStroke: Color.grayColor( 120 ),
+      minorTickLineWidth: 0.5,
       thumbSize: new Dimension2( 15, 30 ),
 
       // snap to ticks
