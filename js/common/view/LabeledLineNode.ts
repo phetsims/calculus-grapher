@@ -9,7 +9,7 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import { Color, Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -61,7 +61,12 @@ export default class LabeledLineNode extends Node {
     } );
 
     const labelNode = new BackgroundNode( text, {
+      xMargin: 4,
+      yMargin: 2,
       rectangleOptions: {
+        fill: 'white',
+        stroke: Color.grayColor( 210 ),
+        lineWidth: 0.5,
         cornerRadius: 3
       }
     } );
