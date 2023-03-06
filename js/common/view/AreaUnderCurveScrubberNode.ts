@@ -19,7 +19,8 @@ import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type AreaUnderCurveScrubberNodeOptions = SelfOptions & PickRequired<ScrubberNodeOptions, 'tandem' | 'visibleProperty'>;
+type AreaUnderCurveScrubberNodeOptions = SelfOptions &
+  PickRequired<ScrubberNodeOptions, 'lineTop' | 'lineBottom' | 'tandem' | 'visibleProperty'>;
 
 export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 

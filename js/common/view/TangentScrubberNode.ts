@@ -16,7 +16,8 @@ import TangentScrubber from '../model/TangentScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type TangentScrubberNodeOptions = SelfOptions & PickRequired<ScrubberNodeOptions, 'tandem' | 'visibleProperty'>;
+export type TangentScrubberNodeOptions = SelfOptions &
+  PickRequired<ScrubberNodeOptions, 'lineTop' | 'lineBottom' | 'tandem' | 'visibleProperty'>;
 
 export default class TangentScrubberNode extends ScrubberNode {
 

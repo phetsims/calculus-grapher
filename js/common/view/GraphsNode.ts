@@ -32,7 +32,6 @@ import GraphSetsAnimator from './GraphSetsAnimator.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CurvePoint from '../model/CurvePoint.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
-import LabeledLineNode from './LabeledLineNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -65,7 +64,6 @@ export default class GraphsNode extends Node {
   private readonly referenceLineNode: ReferenceLineNode;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
-  private readonly scrubberNodes: AreaUnderCurveScrubberNode[];
   private readonly scrubberNodesParent: Node;
 
   private readonly graphSetsAnimator: GraphSetsAnimator;
@@ -120,21 +118,6 @@ export default class GraphsNode extends Node {
       this.graphNodes.push( this.secondDerivativeGraphNode );
     }
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/207 instantiate after model.graphSetProperty.link
-    //TODO https://github.com/phetsims/calculus-grapher/issues/207 observe valuesVisibleProperty to set lineTop and lineBottom
-    this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
-      options.tandem.createTandem( 'referenceLineNode' ) );
-
-    // Labeled lines
-    const labeledLinesNode = new LabeledLinesNode( model.labeledLines, model.labeledLinesLinkableElement,
-      this.originalGraphNode.chartTransform, {
-        tandem: options.tandem.createTandem( 'labeledLinesNode' )
-      } );
-
-    // Scrubber lines
-    this.scrubberNodes = [];
-    this.scrubberNodesParent = new Node();
-
     this.graphSetNode = new Node();
 
     this.graphSetsAnimator = new GraphSetsAnimator(
@@ -153,22 +136,34 @@ export default class GraphsNode extends Node {
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
 
-      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing,
-
-        // Resize tools so that they extend through all graphs.
-        //TODO https://github.com/phetsims/calculus-grapher/issues/207 delete this callback
-        () => {
-          this.resizeReferenceLine();
-          this.resizeScrubberNodes( this.scrubberNodes );
-          this.resizeLabeledLineNodes( labeledLinesNode.labeledLineNodes );
-        } );
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing );
     } );
+
+    // Reference Line, length adjusted depending on whether values are visible.
+    this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
+      options.tandem.createTandem( 'referenceLineNode' ) );
+    CalculusGrapherPreferences.valuesVisibleProperty.link( () => {
+      const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 10 : 0 );
+      const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers
+      this.referenceLineNode.setLineTopAndBottom( top, bottom );
+    } );
+
+    // Labeled Lines
+    const labeledLinesNode = new LabeledLinesNode( model.labeledLines, model.labeledLinesLinkableElement,
+      this.originalGraphNode.chartTransform, {
+        labeledLineOptions: {
+          lineTop: this.getChartRectanglesTop() - 13,
+          lineBottom: this.getChartRectanglesBottom()
+        },
+        tandem: options.tandem.createTandem( 'labeledLinesNode' )
+      } );
+
+    // Parent for optional scrubbers, to maintain rendering order.
+    this.scrubberNodesParent = new Node();
 
     options.children = [ this.graphSetNode, this.scrubberNodesParent, labeledLinesNode, this.referenceLineNode ];
 
     this.mutate( options );
-
-    CalculusGrapherPreferences.valuesVisibleProperty.link( () => this.resizeReferenceLine() );
 
     this.addLinkedElement( model.graphSetProperty, {
       tandem: options.tandem.createTandem( model.graphSetProperty.tandem.name )
@@ -194,28 +189,6 @@ export default class GraphsNode extends Node {
     } );
   }
 
-  private resizeReferenceLine(): void {
-    const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 13 : 0 );
-    const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers
-    this.referenceLineNode.setLineTopAndBottom( top, bottom );
-  }
-
-  private resizeScrubberNodes( scrubberNodes: AreaUnderCurveScrubberNode[] ): void {
-    scrubberNodes.forEach( scrubberNode => {
-      const top = this.getChartRectanglesTop();
-      const bottom = this.getChartRectanglesBottom();
-      scrubberNode.setLineTopAndBottom( top, bottom );
-    } );
-  }
-
-  private resizeLabeledLineNodes( labeledLineNodes: LabeledLineNode[] ): void {
-    labeledLineNodes.forEach( labeledLineNode => {
-      const top = this.getChartRectanglesTop() - 13;
-      const bottom = this.getChartRectanglesBottom();
-      labeledLineNode.setLineTopAndBottom( top, bottom );
-    } );
-  }
-
   /**
    * Gets the y coordinate of the top of the top-most ChartRectangle.
    */
@@ -232,7 +205,7 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Decorates the appropriate graphs for the tangent feature.
+   * Adds the tangent feature to this collection of graphs.
    */
   public addTangentView( tangentScrubber: TangentScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
@@ -248,23 +221,24 @@ export default class GraphsNode extends Node {
 
     // Add the scrubber
     const tangentScrubberNode = new TangentScrubberNode( tangentScrubber, this.originalGraphNode.chartTransform, {
+      lineTop: this.getChartRectanglesTop(),
+      lineBottom: this.getChartRectanglesBottom(),
       visibleProperty: tangentVisibleProperty,
       tandem: this.tandem.createTandem( 'tangentScrubberNode' )
     } );
-    this.scrubberNodes.push( tangentScrubberNode );
     this.scrubberNodesParent.addChild( tangentScrubberNode );
-    this.resizeScrubberNodes( this.scrubberNodes );
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
 
     // Plot a point on the derivative graph, to show the point that corresponds to the slope of the tangent.
-    this.addPlottedPoint( tangentScrubber, tangentVisibleProperty, 'tangentPointNode', derivativeGraphNode,
-      tangentScrubber.derivativeCurvePointProperty, CalculusGrapherColors.derivativeCurveStrokeProperty );
+    this.addPlottedPoint( tangentScrubber, tangentVisibleProperty, derivativeGraphNode,
+      tangentScrubber.derivativeCurvePointProperty, CalculusGrapherColors.derivativeCurveStrokeProperty,
+      'tangentPointNode' );
   }
 
   /**
-   * Decorates the appropriate graphs for the 'area under curve' feature.
+   * Adds the 'area under curve' feature to this collection of graphs.
    */
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
@@ -280,26 +254,28 @@ export default class GraphsNode extends Node {
 
     // Add the scrubber
     const areaUnderCurveScrubberNode = new AreaUnderCurveScrubberNode( areaUnderCurveScrubber, this.originalGraphNode.chartTransform, {
+      lineTop: this.getChartRectanglesTop(),
+      lineBottom: this.getChartRectanglesBottom(),
       visibleProperty: areaUnderCurveVisibleProperty,
       tandem: this.tandem.createTandem( 'areaUnderCurveScrubberNode' )
     } );
-    this.scrubberNodes.push( areaUnderCurveScrubberNode );
     this.scrubberNodesParent.addChild( areaUnderCurveScrubberNode );
-    this.resizeScrubberNodes( this.scrubberNodes );
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
 
     // Plot a point on the integral graph, to show the point that corresponds to the area under the curve.
-    this.addPlottedPoint( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, 'areaUnderCurvePointNode',
-      integralGraphNode, areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherColors.integralCurveStrokeProperty );
+    this.addPlottedPoint( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, integralGraphNode,
+      areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherColors.integralCurveStrokeProperty,
+      'areaUnderCurvePointNode' );
   }
 
   /**
-   * Adds a PlottedPoint to a graph.
+   * Adds a PlottedPoint to a specific graph.
    */
-  private addPlottedPoint( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>, tandemName: string,
-                           graphNode: GraphNode, curvePointProperty: TReadOnlyProperty<CurvePoint>, fill: TColor ): void {
+  private addPlottedPoint( ancillaryTool: AncillaryTool, visibleProperty: TReadOnlyProperty<boolean>,
+                           graphNode: GraphNode, curvePointProperty: TReadOnlyProperty<CurvePoint>,
+                           fill: TColor, tandemName: string ): void {
     const plottedPoint = graphNode.addPlottedPoint( curvePointProperty, fill, visibleProperty, tandemName );
     plottedPoint.addLinkedElement( ancillaryTool, {
       tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
