@@ -40,6 +40,9 @@ type SelfOptions = {
   // be instrumented for PhET-iO.
   graphSets: GraphSet[];
 
+  // Initial graph set selected, must be a member of graphSets
+  graphSet?: GraphSet;
+
   // Identifies the curve manipulation modes that are supported by the screen associated with this model.
   curveManipulationModeChoices?: CurveManipulationMode[];
 
@@ -100,6 +103,7 @@ export default class CalculusGrapherModel implements TModel {
     const options = optionize<CalculusGrapherModelOptions, SelfOptions>()( {
 
       // SelfOptions
+      graphSet: providedOptions.graphSets[ 0 ],
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
       phetioTangentScrubberInstrumented: false,
       phetioAreaUnderCurveScrubberInstrumented: false
@@ -108,10 +112,11 @@ export default class CalculusGrapherModel implements TModel {
     assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
     assert && assert( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
       'all elements of graphSets must have the same length, a current limitation of this sim' );
+    assert && assert( options.graphSets.includes( options.graphSet ) );
 
     this.graphSets = options.graphSets;
 
-    this.graphSetProperty = new Property( options.graphSets[ 0 ], {
+    this.graphSetProperty = new Property( options.graphSet, {
       validValues: options.graphSets,
       tandem: ( options.graphSets.length > 1 ) ? options.tandem.createTandem( 'graphSetProperty' ) : Tandem.OPT_OUT,
       phetioValueType: GraphSet.GraphSetIO,

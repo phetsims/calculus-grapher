@@ -46,6 +46,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     const createModel = () => new AdvancedModel( {
       graphSets: graphSets,
+      graphSet: graphSets[ 1 ],
       tandem: modelTandem
     } );
 
