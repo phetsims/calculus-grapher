@@ -1,7 +1,8 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * GraphNode is the view representation of a Graph, which includes a curve, a chart ( grid and axes) and zoom buttons
+ * GraphNode is the view representation of a Graph, which includes a curve, a chart ( grid and axes) and zoom buttons.
+ * The origin (0,0) is the upper-left corner of the ChartRectangle, this.this.chartRectangle.leftTop.
  *
  * Primary responsibilities are:
  * - Create an associated CurveNode

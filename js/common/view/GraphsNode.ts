@@ -2,7 +2,8 @@
 
 /**
  * GraphsNode is responsible for all graphs, animation between 'graph sets', the reference line, scrubbers,
- * labeled lines, labeled points.
+ * labeled lines, labeled points.  The origin (0,0) is at this.graphSetNode.leftTop, the upper-left corner
+ * of the top GraphNode's ChartRectangle,
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
