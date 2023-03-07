@@ -235,18 +235,17 @@ export default class TransformedCurve extends Curve {
     // Will set the parabola coefficient such that the parabola at y=0 has a 'width' equal
     // to this.curveManipulationWidth when the peak is at a typicalY value
     const A = TYPICAL_Y * Math.pow( 2 / width, 2 );
-
+    
     this.points.forEach( point => {
       const newY = peakY - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
 
-      // If the point is within the 'width' of the parabola, modify the y position.
-      // Otherwise, the point is not within the width and don't modify its position.
-      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
-        point.y = newY;
-      }
-      else {
-        point.y = point.lastSavedY;
-      }
+      // If the point is within the 'width' of the parabola
+      const isWithin = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
+
+      //  modify the y position if within the width of the parabola.
+      // Otherwise, the point is not within the width and don't change its position.
+      point.y = isWithin ? newY : point.lastSavedY;
+
     } );
   }
 
