@@ -16,7 +16,6 @@ import CurvePoint from '../model/CurvePoint.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -67,14 +66,12 @@ export default class AreaUnderCurvePlot extends Node {
 
     // AreaPlot for the points with positive y values
     const positiveAreaPlot = new AreaPlot( chartTransform, getDataSet( isPositiveFunction ), {
-      fill: areaUnderCurveScrubber.positiveFillProperty,
-      boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
+      fill: areaUnderCurveScrubber.positiveFillProperty
     } );
 
     // AreaPlot for the points with negative y values
     const negativeAreaPlot = new AreaPlot( chartTransform, getDataSet( isNegativeFunction ), {
-      fill: areaUnderCurveScrubber.negativeFillProperty,
-      boundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD
+      fill: areaUnderCurveScrubber.negativeFillProperty
     } );
 
     options.children = [ positiveAreaPlot, negativeAreaPlot ];
