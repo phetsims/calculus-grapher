@@ -18,8 +18,9 @@ import GraphType from '../common/model/GraphType.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import { Line, VBox } from '../../../scenery/js/imports.js';
+import { AlignBox, Line, VBox } from '../../../scenery/js/imports.js';
 import GraphTypeLabelNode from '../common/view/GraphTypeLabelNode.js';
+import DerivativeScreen from '../derivative/DerivativeScreen.js';
 
 export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 
@@ -51,8 +52,11 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
  * Creates the icon for this screen.
  */
 function createScreenIcon(): ScreenIcon {
-  const expressionNode = new GraphTypeLabelNode( GraphType.INTEGRAL );
-  const curveNode = new Line( 0, 0, expressionNode.width, 0, {
+  const xWidth = 50;
+  const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.INTEGRAL ), {
+    group: DerivativeScreen.SCREEN_ICON_EXPRESSION_ALIGN_GROUP
+  } );
+  const curveNode = new Line( 0, 0, xWidth, 0, {
     stroke: CalculusGrapherColors.integralCurveStrokeProperty,
     lineWidth: 2
   } );

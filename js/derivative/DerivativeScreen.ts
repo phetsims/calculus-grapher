@@ -18,10 +18,12 @@ import GraphType from '../common/model/GraphType.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import { Line, VBox } from '../../../scenery/js/imports.js';
+import { AlignBox, AlignGroup, Line, VBox } from '../../../scenery/js/imports.js';
 import GraphTypeLabelNode from '../common/view/GraphTypeLabelNode.js';
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
+
+  public static readonly SCREEN_ICON_EXPRESSION_ALIGN_GROUP = new AlignGroup();
 
   public constructor( tandem: Tandem ) {
 
@@ -51,8 +53,11 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
  * Creates the icon for this screen.
  */
 function createScreenIcon(): ScreenIcon {
-  const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
-  const curveNode = new Line( 0, 0, expressionNode.width, 0, {
+  const xWidth = 50;
+  const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.DERIVATIVE ), {
+    group: DerivativeScreen.SCREEN_ICON_EXPRESSION_ALIGN_GROUP
+  } );
+  const curveNode = new Line( 0, 0, xWidth, 0, {
     stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
     lineWidth: 2
   } );
