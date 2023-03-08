@@ -17,6 +17,27 @@ import { Shape } from '../../../../kite/js/imports.js';
 const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
 
+function createGaussianShape( curveHeight = 10 ): Shape {
+
+  const bellWidth = 0.8 * CURVE_WIDTH;
+  const xStart = ( CURVE_WIDTH - bellWidth ) / 2;
+  const xEnd = CURVE_WIDTH - xStart;
+
+  // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
+  const a = curveHeight;
+  const b = xStart + bellWidth / 2;
+  const c = 6; // standard deviation
+
+  const shape = new Shape().moveTo( 0, 0 ).lineTo( xStart, 0 );
+  for ( let x = xStart; x < xEnd; x++ ) {
+    const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) );
+    shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
+  }
+  shape.lineTo( CURVE_WIDTH, 0 );
+
+  return shape;
+}
+
 function createBezierShape( curveHeight = 50 ): Shape {
   return new Shape()
     .moveTo( 0, 0 ) // start point
@@ -37,7 +58,7 @@ const CalculusGrapherScreenIconFactory = {
     const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
 
     // A sample curve, rendered with the color of the derivative curve
-    const curveNode = new Path( createBezierShape(), {
+    const curveNode = new Path( createGaussianShape(), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -63,7 +84,7 @@ const CalculusGrapherScreenIconFactory = {
     const expressionNode = new GraphTypeLabelNode( GraphType.INTEGRAL );
 
     // A sample curve, rendered with the color of the integral curve.
-    const curveNode = new Path( createBezierShape(), {
+    const curveNode = new Path( createGaussianShape(), {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
