@@ -249,6 +249,8 @@ export default class GraphNode extends Node {
       scale: 0.5,
       baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
+      touchAreaXDilation: 8,
+      touchAreaYDilation: 8,
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 
@@ -258,6 +260,8 @@ export default class GraphNode extends Node {
       buttonOptions: {
         stroke: 'black'
       },
+      touchAreaXDilation: 6,
+      touchAreaYDilation: 3,
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
     } ) : null;
 
