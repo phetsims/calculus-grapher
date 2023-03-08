@@ -191,7 +191,7 @@ export default class Curve extends PhetioObject {
     }
   }
 
-  private assignType(): void {
+  protected assignType(): void {
 
 
     for ( let i = 0; i < this.points.length; i++ ) {
