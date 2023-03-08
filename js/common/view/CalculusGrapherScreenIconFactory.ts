@@ -21,8 +21,11 @@ const LINE_WIDTH = 2; // lineWidth value for Paths
 function createBezierShape(): Shape {
   const curveHeight = 50;
   return new Shape()
-    .moveTo( 0, 0 )
-    .cubicCurveTo( 0.4 * CURVE_WIDTH, -curveHeight / 2, 0.6 * CURVE_WIDTH, curveHeight / 2, CURVE_WIDTH, 0 );
+    .moveTo( 0, 0 ) // start point
+    .cubicCurveTo(
+      0.4 * CURVE_WIDTH, -curveHeight / 2, // control point 1
+      0.6 * CURVE_WIDTH, curveHeight / 2, // control point 2
+      CURVE_WIDTH, 0 ); // end point
 }
 
 const CalculusGrapherScreenIconFactory = {
