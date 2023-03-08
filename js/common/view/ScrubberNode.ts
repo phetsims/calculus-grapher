@@ -18,12 +18,12 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 
 type SelfOptions = {
-  handleColor?: TColor;
-  lineStroke?: TColor;
-  lineWidth?: number;
-  lineDash?: number[];
+  handleColor?: TColor; // color of the scrubber's handle
+  lineStroke?: TColor; // color used to stroke the vertical line
+  lineWidth?: number; // width of the vertical line
+  lineDash?: number[]; // line dash for the vertical line, [] is a solid line
 
-  // The top and bottom coordinates of the vertical line, in GraphsNode view coordinate frame.
+  // The top and bottom y-coordinates of the vertical line, in GraphsNode view coordinate frame.
   lineTop?: number;
   lineBottom?: number;
 };
@@ -34,9 +34,10 @@ export type ScrubberNodeOptions = SelfOptions &
 
 export default class ScrubberNode extends Node {
 
-  // vertical line displayed by the tool
+  // vertical line displayed by the scrubber
   protected readonly line: Line;
 
+  // spherical handle for dragging the scrubber
   protected readonly handleNode: Node;
 
   protected constructor( scrubber: AncillaryTool, chartTransform: ChartTransform,

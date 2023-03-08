@@ -19,7 +19,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
-  labeledLineOptions?: LabeledLineNodeOptions;
+  labeledLineOptions?: LabeledLineNodeOptions; // propagated to LabeledLineNode
 };
 
 type LabeledLinesNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;

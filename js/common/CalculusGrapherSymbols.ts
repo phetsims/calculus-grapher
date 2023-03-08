@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Symbols used to label graphs and checkboxes.
+ * Symbols used throughout this simulation.
  *
  * This is also where MathSymbolFont is applied to symbols. By adding RichText markup to a symbol with
  * MathSymbolFont.getRichTextMarkup, all occurrences of that symbol will be rendered using MathSymbolFont.

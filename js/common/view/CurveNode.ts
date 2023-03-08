@@ -41,12 +41,14 @@ type SelfOptions = {
   // Color used to stroke the curve path.
   stroke: TColor;
 
-  // Line plots
+  // options propagated to LinePlots
   continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
   discontinuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
 
-  // Scatter plots, with optional plots for debugging
+  // options propagated to the ScatterPlot for point of discontinuity
   discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
+
+  // options propagated to the ScatterPlot for debugging
   cuspsScatterPlotOptions?: ScatterPlotOptions;
   allPointsScatterPlotOptions?: ScatterPlotOptions;
 
@@ -64,9 +66,13 @@ export default class CurveNode extends Node {
   // The curve that this Node displays
   public readonly curve: Curve;
 
-  // plots
+  // Plots the continuous parts of the curve
   protected readonly continuousLinePlot: LinePlot;
+
+  // Plots the optional dashed lines that connect discontinuities (see Discontinuities in the Preferences dialog)
   private readonly discontinuousLinePlot: LinePlot;
+
+  // Plots points at discontinuities
   private readonly discontinuousPointsScatterPlot: ScatterPlot;
 
   // These plots are created conditionally for debugging. See ?allPoints and ?cuspPoints.
@@ -108,7 +114,6 @@ export default class CurveNode extends Node {
         radius: 1
       },
 
-      // NodeOptions
       plotBoundsMethod: 'accurate'
 
     }, providedOptions );

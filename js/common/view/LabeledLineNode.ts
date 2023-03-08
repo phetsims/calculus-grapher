@@ -19,7 +19,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 
 type SelfOptions = {
 
-  // see setLineTopAndBottom
+// The top and bottom y-coordinates of the vertical line, in GraphsNode view coordinate frame.
   lineTop?: number;
   lineBottom?: number;
 };

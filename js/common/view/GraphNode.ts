@@ -81,8 +81,8 @@ assert && assert( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoom
 assert && assert( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
   ( index === 0 || Y_ZOOM_INFO[ index - 1 ].max > zoomInfo.max ) ), 'must be sorted by descending max' );
 
-const DEFAULT_ZOOM_LEVEL = 3;
-const DEFAULT_MAX_Y = Y_ZOOM_INFO[ DEFAULT_ZOOM_LEVEL ].max;
+const DEFAULT_ZOOM_LEVEL = 3; // default value for yZoomLevelProperty
+const DEFAULT_MAX_Y = Y_ZOOM_INFO[ DEFAULT_ZOOM_LEVEL ].max; // default y-range (symmetrical) of the ChartTransform
 
 type SelfOptions = {
 
@@ -105,8 +105,13 @@ export type GraphNodeOptions = SelfOptions &
 
 export default class GraphNode extends Node {
 
+  // The type of graph that this GraphNode renders
   public readonly graphType: GraphType;
+
+  // bamboo model-view transform
   public readonly chartTransform: ChartTransform;
+
+  // Outer rectangle of the chart
   protected readonly chartRectangle: ChartRectangle;
 
   // The model curve to be plotted

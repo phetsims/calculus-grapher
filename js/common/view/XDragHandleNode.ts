@@ -19,10 +19,10 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
 
-  // Radius of the sphere of the handle - in view coordinates
+  // Radius of the handle, in view coordinates
   radius?: number;
 
-  // y coordinate of the drag handler, in model coordinate frame
+  // y-coordinate of the handle, in model coordinate frame
   yModel?: number;
 };
 
