@@ -31,7 +31,8 @@ const CalculusGrapherScreenIconFactory = {
     } );
 
     // A sample curve, rendered with the color of the derivative curve
-    const curveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+    const curveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
+    const curveNode = new Path( curveShape, {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -59,7 +60,8 @@ const CalculusGrapherScreenIconFactory = {
     } );
 
     // A sample curve, rendered with the color of the integral curve.
-    const curveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+    const curveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
+    const curveNode = new Path( curveShape, {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -141,15 +143,20 @@ const CalculusGrapherScreenIconFactory = {
   createLabScreenIcon(): ScreenIcon {
 
     // 3 curves, as in the Lab screen
-    const originalCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+    const originalCurveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
+    const originalCurveNode = new Path( originalCurveShape, {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
-    const derivativeCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+
+    const derivativeCurveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
+    const derivativeCurveNode = new Path( derivativeCurveShape, {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
-    const secondDerivativeCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+
+    const secondDerivativeCurveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
+    const secondDerivativeCurveNode = new Path( secondDerivativeCurveShape, {
       stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
