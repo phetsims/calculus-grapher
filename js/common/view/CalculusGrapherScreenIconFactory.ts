@@ -18,6 +18,13 @@ const EXPRESSION_ALIGN_GROUP = new AlignGroup(); // To give all math expressions
 const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
 
+function createBezierShape(): Shape {
+  const curveHeight = 50;
+  return new Shape()
+    .moveTo( 0, 0 )
+    .cubicCurveTo( 0.4 * CURVE_WIDTH, -curveHeight / 2, 0.6 * CURVE_WIDTH, curveHeight / 2, CURVE_WIDTH, 0 );
+}
+
 const CalculusGrapherScreenIconFactory = {
 
   /**
@@ -31,8 +38,7 @@ const CalculusGrapherScreenIconFactory = {
     } );
 
     // A sample curve, rendered with the color of the derivative curve
-    const curveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
-    const curveNode = new Path( curveShape, {
+    const curveNode = new Path( createBezierShape(), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -60,8 +66,7 @@ const CalculusGrapherScreenIconFactory = {
     } );
 
     // A sample curve, rendered with the color of the integral curve.
-    const curveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
-    const curveNode = new Path( curveShape, {
+    const curveNode = new Path( createBezierShape(), {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
