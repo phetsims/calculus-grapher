@@ -11,9 +11,8 @@ import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import GraphType from '../model/GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
-import { AlignBox, AlignGroup, Circle, Line, Node, Path, Text, VBox } from '../../../../scenery/js/imports.js';
+import { AlignBox, AlignGroup, Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 const EXPRESSION_ALIGN_GROUP = new AlignGroup(); // To give all math expressions the same effective size
 const CURVE_WIDTH = 50; // width of the curves in each icon
@@ -120,7 +119,22 @@ const CalculusGrapherScreenIconFactory = {
    * Creates the ScreenIcon for the 'Lab' screen.
    */
   createLabScreenIcon(): ScreenIcon {
-    const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
+    const originalCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+      stroke: CalculusGrapherColors.originalCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const derivativeCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const secondDerivativeCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+      stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const iconNode = new VBox( {
+      children: [ originalCurveNode, derivativeCurveNode, secondDerivativeCurveNode ],
+      spacing: 6
+    } );
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
