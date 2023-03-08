@@ -17,8 +17,7 @@ import { Shape } from '../../../../kite/js/imports.js';
 const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
 
-function createBezierShape(): Shape {
-  const curveHeight = 50;
+function createBezierShape( curveHeight = 50 ): Shape {
   return new Shape()
     .moveTo( 0, 0 ) // start point
     .cubicCurveTo(
@@ -145,21 +144,20 @@ const CalculusGrapherScreenIconFactory = {
    */
   createLabScreenIcon(): ScreenIcon {
 
+    const curveHeight = 15;
+
     // 3 curves, as in the Lab screen
-    const originalCurveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
-    const originalCurveNode = new Path( originalCurveShape, {
+    const originalCurveNode = new Path( createBezierShape( curveHeight ), {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
-    const derivativeCurveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
-    const derivativeCurveNode = new Path( derivativeCurveShape, {
+    const derivativeCurveNode = new Path( createBezierShape( curveHeight ), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
-    const secondDerivativeCurveShape = new Shape().moveTo( 0, 0 ).lineTo( CURVE_WIDTH, 0 );
-    const secondDerivativeCurveNode = new Path( secondDerivativeCurveShape, {
+    const secondDerivativeCurveNode = new Path( createBezierShape( curveHeight ), {
       stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
