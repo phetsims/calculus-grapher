@@ -86,8 +86,8 @@ const DEFAULT_MAX_Y = Y_ZOOM_INFO[ DEFAULT_ZOOM_LEVEL ].max; // default y-range 
 
 type SelfOptions = {
 
-  // height of the graph, in view coordinates
-  graphHeight: number;
+  // height of the ChartRectangle, in view coordinates
+  chartRectangleHeight: number;
 
   // options to the bamboo ChartRectangle
   chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
@@ -178,7 +178,7 @@ export default class GraphNode extends Node {
     // chart transform for the graph
     this.chartTransform = new ChartTransform( {
       viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
-      viewHeight: options.graphHeight,
+      viewHeight: options.chartRectangleHeight,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
       modelYRange: new Range( -DEFAULT_MAX_Y, DEFAULT_MAX_Y )
     } );

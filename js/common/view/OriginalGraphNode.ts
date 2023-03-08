@@ -46,7 +46,7 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'graphHeight' | 'tandem'>;
+type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'chartRectangleHeight' | 'tandem'>;
 
 export default class OriginalGraphNode extends GraphNode {
 

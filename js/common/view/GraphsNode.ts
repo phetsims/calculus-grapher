@@ -57,8 +57,8 @@ export default class GraphsNode extends Node {
   // The parent for all GraphNode instances that are part model.graphSetProperty.value
   private readonly graphSetNode: Node;
 
-  // Height of the graph, in view coordinates
-  private readonly graphHeight: number;
+  // Height of the ChartRectangles, in view coordinates
+  private readonly chartRectangleHeight: number;
 
   // A reference line that extends vertically through all graphs
   private readonly referenceLineNode: ReferenceLineNode;
@@ -79,14 +79,14 @@ export default class GraphsNode extends Node {
     super();
 
     // The (view) height of the graph based on the number of visible graphs.
-    this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
+    this.chartRectangleHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
       assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
 
       return new GraphNode( graphType, curve, model.gridVisibleProperty, {
-        graphHeight: this.graphHeight,
+        chartRectangleHeight: this.chartRectangleHeight,
         tandem: GraphSet.includes( model.graphSets, graphType ) ?
                 options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
                 Tandem.OPT_OUT
@@ -95,7 +95,7 @@ export default class GraphsNode extends Node {
 
     // OriginalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, {
-      graphHeight: this.graphHeight,
+      chartRectangleHeight: this.chartRectangleHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
     } );
 
@@ -133,7 +133,8 @@ export default class GraphsNode extends Node {
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
 
-      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, GRAPH_NODE_Y_SPACING );
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes,
+        this.chartRectangleHeight, GRAPH_NODE_Y_SPACING );
     } );
 
     // Reference Line, length adjusted depending on whether values are visible.
@@ -198,7 +199,8 @@ export default class GraphsNode extends Node {
    */
   private getChartRectanglesBottom(): number {
     const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
-    return this.getChartRectanglesTop() + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * GRAPH_NODE_Y_SPACING );
+    return this.getChartRectanglesTop() + ( numberOfGraphNodes * this.chartRectangleHeight ) +
+           ( ( numberOfGraphNodes - 1 ) * GRAPH_NODE_Y_SPACING );
   }
 
   /**

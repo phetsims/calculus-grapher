@@ -73,14 +73,14 @@ export default class GraphSetsAnimator {
    * @param graphSetNode - parent Node for the GraphNodes
    * @param oldGraphNodes - the current children of graphSetNode, null if it has no children
    * @param newGraphNodes - the new children of graphSetNode
-   * @param graphHeight - the height of one GraphNode's ChartRectangle
+   * @param chartRectangleHeight - the height of one GraphNode's ChartRectangle
    * @param ySpacing - the vertical spacing between GraphNode instances
    * @param [endCallback] - called when animation has completed
    */
   public changeGraphSets( graphSetNode: Node,
                           oldGraphNodes: GraphNode[] | null,
                           newGraphNodes: GraphNode[],
-                          graphHeight: number,
+                          chartRectangleHeight: number,
                           ySpacing: number,
                           endCallback?: () => void ): void {
 
@@ -93,7 +93,7 @@ export default class GraphSetsAnimator {
     const x = newGraphNodes[ 0 ].x;
     const yEndCoordinates = [ 0 ];
     for ( let i = 1; i < newGraphNodes.length; i++ ) {
-      yEndCoordinates.push( yEndCoordinates[ i - 1 ] + graphHeight + ySpacing );
+      yEndCoordinates.push( yEndCoordinates[ i - 1 ] + chartRectangleHeight + ySpacing );
     }
 
     // Move immediately to the new state if:
