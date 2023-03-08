@@ -11,10 +11,9 @@ import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import GraphType from '../model/GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
-import { AlignBox, AlignGroup, Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
+import { Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
 import { Shape } from '../../../../kite/js/imports.js';
 
-const EXPRESSION_ALIGN_GROUP = new AlignGroup(); // To give all math expressions the same effective size
 const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
 
@@ -36,9 +35,7 @@ const CalculusGrapherScreenIconFactory = {
   createDerivativeScreenIcon(): ScreenIcon {
 
     // Derivative math expression, the form of which changes based on 'Variable' and 'Notation' preferences
-    const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.DERIVATIVE ), {
-      group: EXPRESSION_ALIGN_GROUP
-    } );
+    const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
 
     // A sample curve, rendered with the color of the derivative curve
     const curveNode = new Path( createBezierShape(), {
@@ -64,9 +61,7 @@ const CalculusGrapherScreenIconFactory = {
   createIntegralScreenIcon(): ScreenIcon {
 
     // Integral math expression, the form of which changes based on 'Variable' and 'Notation' preferences.
-    const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.INTEGRAL ), {
-      group: EXPRESSION_ALIGN_GROUP
-    } );
+    const expressionNode = new GraphTypeLabelNode( GraphType.INTEGRAL );
 
     // A sample curve, rendered with the color of the integral curve.
     const curveNode = new Path( createBezierShape(), {
