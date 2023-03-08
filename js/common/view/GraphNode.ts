@@ -93,7 +93,7 @@ type SelfOptions = {
   chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
 
   // options function to create the CurveNode associated with this graph
-  createCurveNode?: ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) => CurveNode;
+  createCurveNode?: ( chartTransform: ChartTransform, chartRectangleFill: TPaint, plotBounds: Bounds2 ) => CurveNode;
 
   // label that appears in the upper-left corner of the graph
   labelNode?: Node;
@@ -138,8 +138,9 @@ export default class GraphNode extends Node {
     const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 
       // SelfOptions
-      createCurveNode: ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) => new CurveNode( curve, chartTransform, {
+      createCurveNode: ( chartTransform: ChartTransform, chartRectangleFill: TPaint, plotBounds: Bounds2 ) => new CurveNode( curve, chartTransform, {
         plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+        plotBounds: plotBounds, // see https://github.com/phetsims/calculus-grapher/issues/259
         stroke: graphType.strokeProperty,
         discontinuousPointsScatterPlotOptions: {
           fill: chartRectangleFill
@@ -185,7 +186,7 @@ export default class GraphNode extends Node {
 
     this.chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
-    this.curveNode = options.createCurveNode( this.chartTransform, options.chartRectangleOptions.fill! );
+    this.curveNode = options.createCurveNode( this.chartTransform, options.chartRectangleOptions.fill!, this.getChartBounds() );
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveLayerVisibleProperty' ),
@@ -324,6 +325,10 @@ export default class GraphNode extends Node {
       // Hide the y-axis minor grid lines if they get too close together.
       yMinorGridLines.visible = ( Math.abs( this.chartTransform.modelToViewDeltaY( MINOR_GRID_LINE_SPACING ) ) > 5 );
     } );
+  }
+
+  protected getChartBounds(): Bounds2 {
+    return this.chartRectangle.getShape().bounds;
   }
 
   /**

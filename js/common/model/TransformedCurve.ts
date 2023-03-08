@@ -223,33 +223,6 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
-   */
-  private createParabolaAt( width: number, peakX: number, peakY: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peakX );
-
-    // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peakY - closestPoint.lastSavedY;
-
-    // Will set the parabola coefficient such that the parabola at y=0 has a 'width' equal
-    // to this.curveManipulationWidth when the peak is at a typicalY value
-    const A = TYPICAL_Y * Math.pow( 2 / width, 2 );
-    
-    this.points.forEach( point => {
-      const newY = peakY - Math.sign( deltaY ) * A * Math.pow( point.x - closestPoint.x, 2 );
-
-      // If the point is within the 'width' of the parabola
-      const isWithin = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
-
-      //  modify the y position if within the width of the parabola.
-      // Otherwise, the point is not within the width and don't change its position.
-      point.y = isWithin ? newY : point.lastSavedY;
-
-    } );
-  }
-
-  /**
    * Sets the state of this CurvedPoint on this Curve to its last saved state.
    * This method is invoked when the undo button is pressed, which successively undoes the last action.
    */
@@ -322,6 +295,44 @@ export default class TransformedCurve extends Curve {
     } );
   }
 
+  public iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
+
+    this.points.forEach( point => {
+      const newY = peakFunction( deltaY, point.x );
+
+      // If the point is within the 'width' of the triangle, modify the y position.
+      // Otherwise, the point is not within the width and don't modify its position.
+      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
+        point.y = newY;
+      }
+      else {
+        point.y = point.lastSavedY;
+      }
+    } );
+  }
+
+  /**
+   * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
+   */
+  private createParabolaAt( width: number, peakX: number, peakY: number ): void {
+
+    const closestPoint = this.getClosestPointAt( peakX );
+
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peakY - closestPoint.lastSavedY;
+
+    // Will set the parabola coefficient such that the parabola at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at a typicalY value
+    const A = TYPICAL_Y * Math.pow( 2 / width, 2 );
+
+    const peakFunction = ( deltaY: number, x: number ): number => {
+
+      return peakY - Math.sign( deltaY ) * A * Math.pow( x - closestPoint.x, 2 );
+    };
+
+    this.iterateFunctionOverPoints( peakFunction, deltaY );
+  }
+
   /**
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    */
@@ -336,18 +347,11 @@ export default class TransformedCurve extends Curve {
     // to this.curveManipulationWidth when the peak is at typicalY value
     const slope = TYPICAL_Y / ( width / 2 );
 
-    this.points.forEach( point => {
-      const newY = peakY - Math.sign( deltaY ) * slope * Math.abs( point.x - closestPoint.x );
+    const peakFunction = ( deltaY: number, x: number ): number => {
+      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
+    };
 
-      // If the point is within the 'width' of the triangle, modify the y position.
-      // Otherwise, the point is not within the width and don't modify its position.
-      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
-        point.y = newY;
-      }
-      else {
-        point.y = point.lastSavedY;
-      }
-    } );
+    this.iterateFunctionOverPoints( peakFunction, deltaY );
   }
 
   /**
