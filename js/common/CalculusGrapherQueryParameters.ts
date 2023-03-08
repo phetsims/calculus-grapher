@@ -27,31 +27,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   // public
   //====================================================================================================================
 
-  /**
-   * Shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.
-   */
-  valuesVisible: {
-    type: 'boolean',
-    defaultValue: false,
-    public: true
-  },
-
-  // Whether to connect discontinuities with nothing or a dashed line
-  connectDiscontinuities: {
-    type: 'string',
-    defaultValue: 'noLine',
-    validValues: ConnectDiscontinuitiesValues,
-    public: true
-  },
-
-  // The derivative notation to be used throughout the simulation
-  derivativeNotation: {
-    type: 'string',
-    defaultValue: 'lagrange',
-    validValues: DerivativeNotationValues,
-    public: true
-  },
-
+  // Initial value of the 'Variable' preference.
   // The function variable to be used throughout the simulation
   functionVariable: {
     type: 'string',
@@ -60,18 +36,41 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     public: true
   },
 
-  /**
-   * Whether the 'Predict' feature is available
-   */
+  // Initial value of the 'Notation' preference.
+  // The derivative notation to be used throughout the simulation
+  derivativeNotation: {
+    type: 'string',
+    defaultValue: 'lagrange',
+    validValues: DerivativeNotationValues,
+    public: true
+  },
+
+  // Initial value of the 'Discontinuities' preference.
+  // Whether to connect discontinuities with nothing or a dashed line
+  connectDiscontinuities: {
+    type: 'string',
+    defaultValue: 'noLine',
+    validValues: ConnectDiscontinuitiesValues,
+    public: true
+  },
+
+  // Initial value of the 'Values' preference.
+  // Shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.
+  valuesVisible: {
+    type: 'boolean',
+    defaultValue: false,
+    public: true
+  },
+
+  // Initial value of the 'Predict' preference.
+  // Determines whether features related to the predict curve are shown in the UI.
   predict: {
     type: 'boolean',
     defaultValue: false,
     public: true
   },
 
-  /**
-   * Whether the 'Show f(x)' checkbox will be shown when in 'Predict' mode.
-   */
+  // Whether the 'Show f(x)' checkbox will be shown when in 'Predict' mode.
   hasShowOriginalCurveCheckbox: {
     type: 'boolean',
     defaultValue: true,

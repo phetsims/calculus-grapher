@@ -20,29 +20,34 @@ export const functionVariable: FunctionVariable = CalculusGrapherQueryParameters
 
 const CalculusGrapherPreferences = {
 
-  connectDiscontinuitiesProperty: new StringUnionProperty( connectDiscontinuities, {
-    validValues: ConnectDiscontinuitiesValues,
-    tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
-    phetioDocumentation: 'Whether to leave a gap between discontinuities, or connect them with a dashed line'
-  } ),
-
-  derivativeNotationProperty: new StringUnionProperty( derivationNotation, {
-    validValues: DerivativeNotationValues,
-    tandem: Tandem.PREFERENCES.createTandem( 'derivativeNotationProperty' ),
-    phetioDocumentation: 'the notation used for functions'
-  } ),
-
+  // Property for the 'Variable' preference
   functionVariableProperty: new StringUnionProperty( functionVariable, {
     validValues: FunctionVariableValues,
     tandem: Tandem.PREFERENCES.createTandem( 'functionVariableProperty' ),
     phetioDocumentation: 'the variable used in functions'
   } ),
 
+  // Property for the 'Notation' preference
+  derivativeNotationProperty: new StringUnionProperty( derivationNotation, {
+    validValues: DerivativeNotationValues,
+    tandem: Tandem.PREFERENCES.createTandem( 'derivativeNotationProperty' ),
+    phetioDocumentation: 'the notation used for functions'
+  } ),
+
+  // Property for the 'Discontinuities' preference
+  connectDiscontinuitiesProperty: new StringUnionProperty( connectDiscontinuities, {
+    validValues: ConnectDiscontinuitiesValues,
+    tandem: Tandem.PREFERENCES.createTandem( 'connectDiscontinuitiesProperty' ),
+    phetioDocumentation: 'Whether to leave a gap between discontinuities, or connect them with a dashed line'
+  } ),
+
+  // Property for the 'Values' preference
   valuesVisibleProperty: new BooleanProperty( CalculusGrapherQueryParameters.valuesVisible, {
     tandem: Tandem.PREFERENCES.createTandem( 'valuesVisibleProperty' ),
     phetioDocumentation: 'Shows numerical values wherever they appear in the simulation'
   } ),
 
+  // Property for the 'Predict' preference.
   // Note that this Preference is named predictPreferenceEnabledProperty to distinguish it from
   // CalculusGraphModel.predictEnabledProperty.
   predictPreferenceEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
@@ -50,6 +55,7 @@ const CalculusGrapherPreferences = {
     phetioDocumentation: 'Preference used to show/hide the Predict feature in the user interface'
   } ),
 
+  // This preference does not have a control in the Preferences dialog. It is provided for PhET-iO clients.
   hasShowOriginalCurveCheckboxProperty: new BooleanProperty( CalculusGrapherQueryParameters.hasShowOriginalCurveCheckbox, {
     tandem: Tandem.PREFERENCES.createTandem( 'hasShowOriginalCurveCheckboxProperty' ),
     phetioDocumentation: 'Setting this to false will permanently hide the "Show f(x)" checkbox, which is ' +
