@@ -81,11 +81,6 @@ export default class LabeledLineNode extends Node {
       labelNode.centerBottom = line.centerTop;
     } );
   }
-
-  public setLineTopAndBottom( yTop: number, yBottom: number ): void {
-    this.line.setY1( yTop );
-    this.line.setY2( yBottom );
-  }
 }
 
 calculusGrapher.register( 'LabeledLineNode', LabeledLineNode );
