@@ -61,21 +61,20 @@ function createIntegralShape( curveHeight = 10 ): Shape {
 // Derivative of Gaussian
 function createDerivativeShape( curveHeight = 10 ): Shape {
 
-  const bellWidth = 0.8 * CURVE_WIDTH;
-  const xStart = ( CURVE_WIDTH - bellWidth ) / 2;
-  const xEnd = CURVE_WIDTH - xStart;
+  const bellWidth = CURVE_WIDTH;
+  const xStart = 0;
+  const xEnd = CURVE_WIDTH;
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
   const a = curveHeight;
   const b = xStart + bellWidth / 2;
   const c = 6; // standard deviation
 
-  const shape = new Shape().moveTo( 0, 0 ).lineTo( xStart, 0 );
+  const shape = new Shape().moveTo( 0, 0 );
   for ( let x = xStart; x < xEnd; x++ ) {
     const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
-  shape.lineTo( CURVE_WIDTH, 0 );
 
   return shape;
 }
