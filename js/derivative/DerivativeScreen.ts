@@ -47,6 +47,7 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
   }
 }
 
+//TODO https://github.com/phetsims/calculus-grapher/issues/139
 /**
  * Creates the icon for this screen.
  */

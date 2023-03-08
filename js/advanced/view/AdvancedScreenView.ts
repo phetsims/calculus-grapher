@@ -1,7 +1,8 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * Top-level view for the 'Advanced' screen.
+ * Top-level view for the 'Advanced' screen. This class adds no additional functionality, but is provided for
+ * completeness of the ScreenView class hierarchy.
  *
  * @author Brandon Li
  */

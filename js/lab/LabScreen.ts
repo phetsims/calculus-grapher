@@ -63,6 +63,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
   }
 }
 
+//TODO https://github.com/phetsims/calculus-grapher/issues/139
 /**
  * Creates the icon for this screen.
  */
