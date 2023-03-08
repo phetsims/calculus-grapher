@@ -14,6 +14,7 @@ import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 import { Text } from '../../../scenery/js/imports.js';
 import { PathBoundsMethod } from '../../../scenery/js/imports.js';
+import { CheckboxOptions } from '../../../sun/js/Checkbox.js';
 
 const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
 
@@ -34,6 +35,14 @@ const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 // So as a performance optimization, use 'none' for the boundsMethod where we're clipping to ChartRectangle.
 // See Path.setBoundsMethod and https://github.com/phetsims/calculus-grapher/issues/210
 const PLOT_BOUNDS_METHOD: PathBoundsMethod = 'none';
+
+const CHECKBOX_OPTIONS: CheckboxOptions = {
+  boxWidth: new Text( 'A', { font: CONTROL_FONT } ).height,
+  touchAreaXDilation: 6,
+  touchAreaYDilation: 3,
+  mouseAreaXDilation: 6,
+  mouseAreaYDilation: 3
+};
 
 const CalculusGrapherConstants = {
 
@@ -91,7 +100,7 @@ const CalculusGrapherConstants = {
 
   PREFERENCES_DESCRIPTION_LINE_WRAP: 325,
 
-  CHECKBOX_WIDTH: new Text( 'A', { font: CONTROL_FONT } ).height,
+  CHECKBOX_OPTIONS: CHECKBOX_OPTIONS,
 
   // for Panels and AccordionBoxes
   CORNER_RADIUS: 5,

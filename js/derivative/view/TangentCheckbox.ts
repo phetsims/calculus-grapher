@@ -10,8 +10,9 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { HBox, RichText } from '../../../../scenery/js/imports.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
+import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -36,11 +37,11 @@ export default class TangentCheckbox extends Checkbox {
       spacing: 8
     } );
 
-    super( scrubberVisibleProperty, box, {
-      boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-      enabledProperty: DerivedProperty.not( predictEnabledProperty ),
-      tandem: tandem
-    } );
+    super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
+      {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        enabledProperty: DerivedProperty.not( predictEnabledProperty ),
+        tandem: tandem
+      } ) );
   }
 }
 

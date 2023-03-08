@@ -7,8 +7,9 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import { HBox, RichText } from '../../../../scenery/js/imports.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
+import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -32,10 +33,10 @@ export default class ReferenceLineCheckbox extends Checkbox {
       spacing: 8
     } );
 
-    super( scrubberVisibleProperty, box, {
-      boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-      tandem: tandem
-    } );
+    super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
+      {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        tandem: tandem
+      } ) );
   }
 }
 

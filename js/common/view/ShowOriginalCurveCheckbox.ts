@@ -17,7 +17,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import GraphType from '../model/GraphType.js';
 import { HBox, Text } from '../../../../scenery/js/imports.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
+import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Property from '../../../../axon/js/Property.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
@@ -26,6 +26,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
 
 const POINTER_AREA_DILATION = 6;
 
@@ -47,17 +48,17 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
       spacing: 5
     } );
 
-    const checkbox = new Checkbox( showOriginalCurveProperty, checkboxContent, {
-      boxWidth: CalculusGrapherConstants.CHECKBOX_WIDTH,
-      touchAreaXDilation: POINTER_AREA_DILATION,
-      touchAreaYDilation: POINTER_AREA_DILATION,
-      mouseAreaXDilation: POINTER_AREA_DILATION,
-      mouseAreaYDilation: POINTER_AREA_DILATION,
-      tandem: tandem,
+    const checkbox = new Checkbox( showOriginalCurveProperty, checkboxContent,
+      combineOptions<CheckboxOptions>( {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        touchAreaXDilation: POINTER_AREA_DILATION,
+        touchAreaYDilation: POINTER_AREA_DILATION,
+        mouseAreaXDilation: POINTER_AREA_DILATION,
+        mouseAreaYDilation: POINTER_AREA_DILATION,
+        tandem: tandem,
 
-      // because 'showOriginalCurveCheckbox.visibleProperty' is the tandem name for BackgroundNode's visibleProperty
-      phetioVisiblePropertyInstrumented: false
-    } );
+        // because 'showOriginalCurveCheckbox.visibleProperty' is the tandem name for BackgroundNode's visibleProperty
+        phetioVisiblePropertyInstrumented: false
+      } ) );
 
     super( checkbox, {
       xMargin: POINTER_AREA_DILATION,
