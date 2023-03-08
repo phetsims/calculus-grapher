@@ -65,7 +65,7 @@ export default class CurvePoint {
   private readonly vector: Vector2;
 
   public constructor( x: number, y = 0, pointType: PointType = 'smooth' ) {
-    assert && assert( Number.isFinite( x ) && CalculusGrapherConstants.CURVE_X_RANGE.contains( x ), `invalid x: ${x}` );
+    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
     this.x = x;
     this.y = y;
