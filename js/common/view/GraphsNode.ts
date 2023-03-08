@@ -35,6 +35,8 @@ import CurvePoint from '../model/CurvePoint.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 
+const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
+
 type SelfOptions = EmptySelfOptions;
 
 type GraphsNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
@@ -58,9 +60,6 @@ export default class GraphsNode extends Node {
   // Height of the graph, in view coordinates
   private readonly graphHeight: number;
 
-  // Vertical spacing between GraphNodes, in view coordinates
-  private readonly graphYSpacing: number;
-
   // A reference line that extends vertically through all graphs
   private readonly referenceLineNode: ReferenceLineNode;
 
@@ -81,9 +80,6 @@ export default class GraphsNode extends Node {
 
     // The (view) height of the graph based on the number of visible graphs.
     this.graphHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
-
-    // more graphs requires less spacing
-    this.graphYSpacing = ( model.graphSetProperty.value.length < 4 ) ? 20 : 12;
 
     // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
     const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
@@ -137,7 +133,7 @@ export default class GraphsNode extends Node {
       const oldGraphNodes = oldGraphSet ? this.getGraphNodes( oldGraphSet ) : null;
       const newGraphNodes = this.getGraphNodes( newGraphSet );
 
-      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, this.graphYSpacing );
+      this.graphSetsAnimator.changeGraphSets( this.graphSetNode, oldGraphNodes, newGraphNodes, this.graphHeight, GRAPH_NODE_Y_SPACING );
     } );
 
     // Reference Line, length adjusted depending on whether values are visible.
@@ -202,7 +198,7 @@ export default class GraphsNode extends Node {
    */
   private getChartRectanglesBottom(): number {
     const numberOfGraphNodes = this.graphSetNode.getChildrenCount();
-    return this.getChartRectanglesTop() + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * this.graphYSpacing );
+    return this.getChartRectanglesTop() + ( numberOfGraphNodes * this.graphHeight ) + ( ( numberOfGraphNodes - 1 ) * GRAPH_NODE_Y_SPACING );
   }
 
   /**
