@@ -77,14 +77,14 @@ export default class DerivativeCurve extends Curve {
       const nextPoint = index < length - 1 ? basePoints[ index + 1 ] : null;
 
 
-      if ( previousPoint === null || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
+      if ( previousPoint === null || point.isCusp && previousPoint.isCusp || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
         leftSlope = null;
       }
       else {
         leftSlope = point.getSlope( previousPoint );
       }
 
-      if ( nextPoint === null || point.isCusp || ( point.isDiscontinuous && nextPoint.isDiscontinuous ) ) {
+      if ( nextPoint === null || point.isCusp && nextPoint.isCusp || ( point.isDiscontinuous && nextPoint.isDiscontinuous ) ) {
         rightSlope = null;
       }
       else {
@@ -106,6 +106,18 @@ export default class DerivativeCurve extends Curve {
         // If only the slope of the right side exists, use that as the derivative.
         this.points[ index ].y = rightSlope;
       }
+
+      if ( point.isCusp ) {
+        this.points[ index ].pointType = 'discontinuous';
+        // this.points[ index + 1 ].pointType = 'discontinuous';
+      }
+      else if ( point.isDiscontinuous ) {
+        this.points[ index ].pointType = 'discontinuous';
+      }
+      else {
+        this.points[ index ].pointType = 'smooth';
+      }
+
     }
 
     // Signal once that this Curve has changed.

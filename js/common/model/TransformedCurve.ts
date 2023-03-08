@@ -128,6 +128,9 @@ export default class TransformedCurve extends Curve {
 
       // Set the Point's new y-value to the weighted average.
       point.y = weightedY / totalWeight;
+
+      // Set all points to smooth type;
+      point.pointType = 'smooth';
     } );
 
     // Signals that this Curve has changed.
@@ -219,6 +222,9 @@ export default class TransformedCurve extends Curve {
       }
 
       point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
+
+      this.updatePointType( point, P );
+
     } );
   }
 
@@ -292,22 +298,41 @@ export default class TransformedCurve extends Curve {
       const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
 
       point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
+
+      this.updatePointType( point, P );
     } );
   }
 
-  public iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
+  /**
+   * Update type of a point to smooth if the weight associated to the new function is very large,
+   * otherwise leave as is.
+   */
+  private updatePointType( point: CurvePoint, weight: number ): void {
 
-    this.points.forEach( point => {
+    point.pointType = ( weight > 0.99 ) ? 'smooth' : point.lastSavedType;
+  }
+
+  private iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
+
+    let wasPreviousPointModified: boolean | null = null;
+    this.points.forEach( ( point, index ) => {
+
+      // New Y value, subject to conditions below
       const newY = peakFunction( deltaY, point.x );
 
-      // If the point is within the 'width' of the triangle, modify the y position.
-      // Otherwise, the point is not within the width and don't modify its position.
-      if ( ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY ) ) {
-        point.y = newY;
+      // Is the point within the 'width' and the change "larger" than the previous y value.
+      const isModified = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
+
+      point.y = isModified ? newY : point.lastSavedY;
+
+      point.pointType = isModified ? 'smooth' : point.lastSavedType;
+
+      if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
+        point.pointType = 'cusp';
+        this.points[ index - 1 ].pointType = 'cusp';
       }
-      else {
-        point.y = point.lastSavedY;
-      }
+
+      wasPreviousPointModified = isModified;
     } );
   }
 
@@ -351,7 +376,12 @@ export default class TransformedCurve extends Curve {
       return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
     };
 
+
     this.iterateFunctionOverPoints( peakFunction, deltaY );
+
+    closestPoint.pointType = 'cusp';
+    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
+
   }
 
   /**
@@ -417,34 +447,36 @@ export default class TransformedCurve extends Curve {
 
     this.points.forEach( point => {
 
-      // Weight associated with the sinusoidal function:  0<=P<=1
-      // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
-      // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
-      let P: number;
+        // Weight associated with the sinusoidal function:  0<=P<=1
+        // P=1 corresponds to a pure sinusoidal function (overriding the previous function)
+        // whereas P=0 gives all the weight to the initial (saved) function/curve (sinusoidal function has no effect).
+        let P: number;
 
-      if ( point.x >= leftMax && point.x <= rightMin ) {
+        if ( point.x >= leftMax && point.x <= rightMin ) {
 
-        // In the inner region, always have a pure sinusoidal, weight of 1
-        P = 1;
-      }
-      else if ( point.x > leftMin && point.x < leftMax ) {
+          // In the inner region, always have a pure sinusoidal, weight of 1
+          P = 1;
+        }
+        else if ( point.x > leftMin && point.x < leftMax ) {
 
-        // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
-        P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
-      }
-      else if ( point.x > rightMin && point.x < rightMax ) {
+          // In the outer region to the left P transitions from 0 to 1, unless it is empty, in which case it is 1
+          P = isLeftRegionZero ? 1 : weightFunction( point, leftMax, leftMin );
+        }
+        else if ( point.x > rightMin && point.x < rightMax ) {
 
-        // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
-        P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
-      }
-      else {
+          // In the outer region to the right P transitions from 1 to 0, unless it is empty, in which case it is 1
+          P = isRightRegionZero ? 1 : weightFunction( point, rightMin, rightMax );
+        }
+        else {
 
-        // Outside the cosine base, the weight is zero
-        P = 0;
-      }
+          // Outside the cosine base, the weight is zero
+          P = 0;
+        }
 
         // Assign the y value with the correct weight
         point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
+
+        this.updatePointType( point, P );
       }
     );
   }
@@ -477,6 +509,14 @@ export default class TransformedCurve extends Curve {
       // We want to create a straight line between this point and the last drag event point
       const closestVector = closestPoint.getVector();
       this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
+
+      closestPoint.pointType = 'discontinuous';
+      if ( lastPoint.x > closestPoint.x ) {
+        this.getClosestPointAt( position.x - this.deltaX ).pointType = 'discontinuous';
+      }
+      else {
+        this.getClosestPointAt( position.x + this.deltaX ).pointType = 'discontinuous';
+      }
     }
     else {
 
@@ -549,6 +589,7 @@ export default class TransformedCurve extends Curve {
               functionWeight += mollifierFunction( dx ) * piecewiseFunction.evaluate( x + dx );
             }
             this.getClosestPointAt( x ).y = functionWeight / weight;
+            this.getClosestPointAt( x ).pointType = 'smooth';
           }
         }
       }
