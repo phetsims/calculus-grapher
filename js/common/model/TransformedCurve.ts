@@ -129,7 +129,7 @@ export default class TransformedCurve extends Curve {
       // Set the Point's new y-value to the weighted average.
       point.y = weightedY / totalWeight;
 
-      // Set all point types to smooth;
+      // Set all points to smooth type;
       point.pointType = 'smooth';
     } );
 
