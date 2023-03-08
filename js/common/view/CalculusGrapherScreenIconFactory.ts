@@ -24,17 +24,24 @@ const CalculusGrapherScreenIconFactory = {
    * Creates the ScreenIcon for the 'Derivative' screen.
    */
   createDerivativeScreenIcon(): ScreenIcon {
+
+    // Derivative math expression, the form of which changes based on 'Variable' and 'Notation' preferences
     const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.DERIVATIVE ), {
       group: EXPRESSION_ALIGN_GROUP
     } );
+
+    // A sample curve, rendered with the color of the derivative curve
     const curveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
+
+    // Math expression above the curve
     const iconNode = new VBox( {
       children: [ expressionNode, curveNode ],
       spacing: 4
     } );
+
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty,
       maxIconWidthProportion: 0.85
@@ -45,17 +52,24 @@ const CalculusGrapherScreenIconFactory = {
    * Creates the ScreenIcon for the 'Integral' screen.
    */
   createIntegralScreenIcon(): ScreenIcon {
+
+    // Integral math expression, the form of which changes based on 'Variable' and 'Notation' preferences.
     const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.INTEGRAL ), {
       group: EXPRESSION_ALIGN_GROUP
     } );
+
+    // A sample curve, rendered with the color of the integral curve.
     const curveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
+
+    // Math expression above the curve
     const iconNode = new VBox( {
       children: [ expressionNode, curveNode ],
       spacing: 4
     } );
+
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty,
       maxIconWidthProportion: 0.85
@@ -71,6 +85,7 @@ const CalculusGrapherScreenIconFactory = {
     const triangleHeight = 12;
     const discontinuityPointRadius = 2;
 
+    // Triangle curve, rendered with the color of the original curve
     const triangleShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( triangleWidth / 2, -triangleHeight )
@@ -79,6 +94,8 @@ const CalculusGrapherScreenIconFactory = {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
+
+    // Derivative curve, which contains a discontinuity at the peak of the triangle
     const leftLine = new Line( 0, 0, triangleWidth / 2, 0, {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
@@ -106,10 +123,13 @@ const CalculusGrapherScreenIconFactory = {
     const derivativeNode = new Node( {
       children: [ leftLine, rightLine, leftDiscontinuityPoint, rightDiscontinuityPoint ]
     } );
+
+    // Original curve above the derivative curve
     const iconNode = new VBox( {
       children: [ trianglePath, derivativeNode ],
       spacing: 5
     } );
+
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
@@ -119,6 +139,8 @@ const CalculusGrapherScreenIconFactory = {
    * Creates the ScreenIcon for the 'Lab' screen.
    */
   createLabScreenIcon(): ScreenIcon {
+
+    // 3 curves, as in the Lab screen
     const originalCurveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
@@ -131,6 +153,8 @@ const CalculusGrapherScreenIconFactory = {
       stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
+
+    // Vertical layout of the 3 curves
     const iconNode = new VBox( {
       children: [ originalCurveNode, derivativeCurveNode, secondDerivativeCurveNode ],
       spacing: 6
