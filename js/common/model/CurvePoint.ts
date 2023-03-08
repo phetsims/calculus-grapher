@@ -117,6 +117,13 @@ export default class CurvePoint {
   }
 
   /**
+   * Gets the most-recently saved point type.
+   */
+  public get lastSavedType(): PointType {
+    return ( this.savedStates.length === 0 ) ? this.initialState.pointType : _.last( this.savedStates )!.pointType;
+  }
+
+  /**
    * Saves the current state of the Point for the next undoToLastSave() method.
    * This method is invoked when the user finishes manipulating the TransformedCurve. When the undo button is pressed,
    * the Points of the TransformedCurve will be set to their last saved state.
