@@ -16,10 +16,11 @@ import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
 import GraphType from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
-import { AlignGroup } from '../../../scenery/js/imports.js';
-import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
+import { AlignGroup, Text } from '../../../scenery/js/imports.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 
 export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreenView> {
 
@@ -58,10 +59,20 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.advancedStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
-      homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
+      homeScreenIcon: createScreenIcon(),
       tandem: tandem
     } );
   }
+}
+
+/**
+ * Creates the icon for this screen.
+ */
+function createScreenIcon(): ScreenIcon {
+  const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
+  return new ScreenIcon( iconNode, {
+    fill: CalculusGrapherColors.screenBackgroundColorProperty
+  } );
 }
 
 calculusGrapher.register( 'AdvancedScreen', AdvancedScreen );

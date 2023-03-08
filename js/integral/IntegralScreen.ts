@@ -15,9 +15,11 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import IntegralModel from './model/IntegralModel.js';
 import IntegralScreenView from './view/IntegralScreenView.js';
 import GraphType from '../common/model/GraphType.js';
-import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
+import { Text } from '../../../scenery/js/imports.js';
 
 export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 
@@ -39,10 +41,20 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.integralStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
-      homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
+      homeScreenIcon: createScreenIcon(),
       tandem: tandem
     } );
   }
+}
+
+/**
+ * Creates the icon for this screen.
+ */
+function createScreenIcon(): ScreenIcon {
+  const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
+  return new ScreenIcon( iconNode, {
+    fill: CalculusGrapherColors.screenBackgroundColorProperty
+  } );
 }
 
 calculusGrapher.register( 'IntegralScreen', IntegralScreen );

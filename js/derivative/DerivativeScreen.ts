@@ -15,9 +15,11 @@ import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import DerivativeModel from './model/DerivativeModel.js';
 import DerivativeScreenView from './view/DerivativeScreenView.js';
 import GraphType from '../common/model/GraphType.js';
-import CalculusGrapherScreenIcon from '../common/view/CalculusGrapherScreenIcon.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import { Text } from '../../../scenery/js/imports.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 
@@ -39,10 +41,20 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.derivativeStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
-      homeScreenIcon: new CalculusGrapherScreenIcon( graphSets ),
+      homeScreenIcon: createScreenIcon(),
       tandem: tandem
     } );
   }
+}
+
+/**
+ * Creates the icon for this screen.
+ */
+function createScreenIcon(): ScreenIcon {
+  const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
+  return new ScreenIcon( iconNode, {
+    fill: CalculusGrapherColors.screenBackgroundColorProperty
+  } );
 }
 
 calculusGrapher.register( 'DerivativeScreen', DerivativeScreen );
