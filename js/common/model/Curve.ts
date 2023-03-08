@@ -119,8 +119,6 @@ export default class Curve extends PhetioObject {
 
     this.curveChangedEmitter.addListener( () => {
 
-      // assign point type for entire curve
-      this.assignType();
 
       // This is needed to notify Studio that pointsProperty has effectively changed.
       if ( notifyListeners ) {
