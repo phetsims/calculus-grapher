@@ -88,9 +88,10 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Creates PhET-iO element 'graphsNode.originalCurveNode'
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
-    const createOriginalCurveNode = ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) =>
+    const createOriginalCurveNode = ( chartTransform: ChartTransform, chartRectangleFill: TPaint, plotBounds: Bounds2 ) =>
       new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
         plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+        plotBounds: plotBounds, // see https://github.com/phetsims/calculus-grapher/issues/259
         stroke: graphType.strokeProperty,
         discontinuousPointsScatterPlotOptions: {
           fill: chartRectangleFill
@@ -155,6 +156,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Create a predictCurveNode
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,

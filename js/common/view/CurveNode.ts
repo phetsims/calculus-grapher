@@ -31,6 +31,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
@@ -55,6 +56,10 @@ type SelfOptions = {
   // boundsMethod to be used with bamboo plots. Override this where performance optimization is needed.
   // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/226
   plotBoundsMethod?: PathBoundsMethod;
+
+  // When plotBoundsMethod is 'none', plotBounds will be required to give correct (potential) bounds for the plot.
+  // See https://github.com/phetsims/calculus-grapher/issues/259
+  plotBounds?: Bounds2 | null;
 };
 
 export type CurveNodeOptions = SelfOptions &
@@ -114,7 +119,8 @@ export default class CurveNode extends Node {
         radius: 1
       },
 
-      plotBoundsMethod: 'accurate'
+      plotBoundsMethod: 'accurate',
+      plotBounds: null
 
     }, providedOptions );
 
@@ -142,6 +148,14 @@ export default class CurveNode extends Node {
         boundsMethod: options.plotBoundsMethod
       }, options.discontinuousPointsScatterPlotOptions ) );
     this.addChild( this.discontinuousPointsScatterPlot );
+
+    assert && assert( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,
+      'plotBounds must be provided when plotBoundsMethod is none' );
+    if ( options.plotBounds ) {
+      this.continuousLinePlot.localBounds = options.plotBounds;
+      this.discontinuousLinePlot.localBounds = options.plotBounds;
+      this.discontinuousPointsScatterPlot.localBounds = options.plotBounds;
+    }
 
     // For debug purposes
     if ( CalculusGrapherQueryParameters.allPoints ) {
