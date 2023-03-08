@@ -1,0 +1,131 @@
+// Copyright 2023, University of Colorado Boulder
+
+/**
+ * CalculusGrapherScreenIconFactory is a collection of factory methods for creating ScreenIcons.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
+ */
+
+import calculusGrapher from '../../calculusGrapher.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import GraphType from '../model/GraphType.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
+import { AlignBox, AlignGroup, Circle, Line, Node, Path, Text, VBox } from '../../../../scenery/js/imports.js';
+import { Shape } from '../../../../kite/js/imports.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+
+const EXPRESSION_ALIGN_GROUP = new AlignGroup(); // To give all math expressions the same effective size
+const CURVE_WIDTH = 50; // width of the curves in each icon
+const LINE_WIDTH = 2; // lineWidth value for Paths
+
+const CalculusGrapherScreenIconFactory = {
+
+  /**
+   * Creates the ScreenIcon for the 'Derivative' screen.
+   */
+  createDerivativeScreenIcon(): ScreenIcon {
+    const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.DERIVATIVE ), {
+      group: EXPRESSION_ALIGN_GROUP
+    } );
+    const curveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const iconNode = new VBox( {
+      children: [ expressionNode, curveNode ],
+      spacing: 4
+    } );
+    return new ScreenIcon( iconNode, {
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      maxIconWidthProportion: 0.85
+    } );
+  },
+
+  /**
+   * Creates the ScreenIcon for the 'Integral' screen.
+   */
+  createIntegralScreenIcon(): ScreenIcon {
+    const expressionNode = new AlignBox( new GraphTypeLabelNode( GraphType.INTEGRAL ), {
+      group: EXPRESSION_ALIGN_GROUP
+    } );
+    const curveNode = new Line( 0, 0, CURVE_WIDTH, 0, {
+      stroke: CalculusGrapherColors.integralCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const iconNode = new VBox( {
+      children: [ expressionNode, curveNode ],
+      spacing: 4
+    } );
+    return new ScreenIcon( iconNode, {
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      maxIconWidthProportion: 0.85
+    } );
+  },
+
+  /**
+   * Creates the ScreenIcon for the 'Advanced' screen.
+   */
+  createAdvancedScreenIcon(): ScreenIcon {
+
+    const triangleWidth = CURVE_WIDTH;
+    const triangleHeight = 12;
+    const discontinuityPointRadius = 2;
+
+    const triangleShape = new Shape()
+      .moveTo( 0, 0 )
+      .lineTo( triangleWidth / 2, -triangleHeight )
+      .lineTo( triangleWidth, 0 );
+    const trianglePath = new Path( triangleShape, {
+      stroke: CalculusGrapherColors.originalCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const leftLine = new Line( 0, 0, triangleWidth / 2, 0, {
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const rightLine = new Line( triangleWidth / 2, triangleHeight, triangleWidth, triangleHeight, {
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const leftDiscontinuityPoint = new Circle( {
+      x: triangleWidth / 2,
+      y: 0,
+      radius: discontinuityPointRadius,
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const rightDiscontinuityPoint = new Circle( {
+      x: triangleWidth / 2,
+      y: triangleHeight,
+      radius: discontinuityPointRadius,
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      lineWidth: LINE_WIDTH
+    } );
+    const derivativeNode = new Node( {
+      children: [ leftLine, rightLine, leftDiscontinuityPoint, rightDiscontinuityPoint ]
+    } );
+    const iconNode = new VBox( {
+      children: [ trianglePath, derivativeNode ],
+      spacing: 5
+    } );
+    return new ScreenIcon( iconNode, {
+      fill: CalculusGrapherColors.screenBackgroundColorProperty
+    } );
+  },
+
+  /**
+   * Creates the ScreenIcon for the 'Lab' screen.
+   */
+  createLabScreenIcon(): ScreenIcon {
+    const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
+    return new ScreenIcon( iconNode, {
+      fill: CalculusGrapherColors.screenBackgroundColorProperty
+    } );
+  }
+};
+
+calculusGrapher.register( 'CalculusGrapherScreenIconFactory', CalculusGrapherScreenIconFactory );
+export default CalculusGrapherScreenIconFactory;

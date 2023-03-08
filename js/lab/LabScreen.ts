@@ -15,11 +15,10 @@ import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
 import GraphType from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
-import { AlignGroup, Text } from '../../../scenery/js/imports.js';
+import { AlignGroup } from '../../../scenery/js/imports.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
-import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import PhetFont from '../../../scenery-phet/js/PhetFont.js';
+import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
@@ -57,21 +56,10 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.labStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
-      homeScreenIcon: createScreenIcon(),
+      homeScreenIcon: CalculusGrapherScreenIconFactory.createLabScreenIcon(),
       tandem: tandem
     } );
   }
-}
-
-//TODO https://github.com/phetsims/calculus-grapher/issues/139
-/**
- * Creates the icon for this screen.
- */
-function createScreenIcon(): ScreenIcon {
-  const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
-  return new ScreenIcon( iconNode, {
-    fill: CalculusGrapherColors.screenBackgroundColorProperty
-  } );
 }
 
 calculusGrapher.register( 'LabScreen', LabScreen );

@@ -16,11 +16,10 @@ import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
 import GraphType from '../common/model/GraphType.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
-import { AlignGroup, Circle, Line, Node, Path, VBox } from '../../../scenery/js/imports.js';
+import { AlignGroup } from '../../../scenery/js/imports.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
-import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import { Shape } from '../../../kite/js/imports.js';
+import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 
 export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreenView> {
 
@@ -59,64 +58,10 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     super( createModel, createView, {
       name: CalculusGrapherStrings.screen.advancedStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
-      homeScreenIcon: createScreenIcon(),
+      homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
       tandem: tandem
     } );
   }
-}
-
-/**
- * Creates the icon for this screen.
- */
-function createScreenIcon(): ScreenIcon {
-
-  const lineWidth = 2;
-  const triangleWidth = 40;
-  const triangleHeight = 10;
-  const discontinuityPointRadius = 2;
-
-  const triangleShape = new Shape()
-    .moveTo( 0, 0 )
-    .lineTo( triangleWidth / 2, -triangleHeight )
-    .lineTo( triangleWidth, 0 );
-  const trianglePath = new Path( triangleShape, {
-    stroke: CalculusGrapherColors.originalCurveStrokeProperty,
-    lineWidth: lineWidth
-  } );
-  const leftLine = new Line( 0, 0, triangleWidth / 2, 0, {
-    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
-    lineWidth: lineWidth
-  } );
-  const rightLine = new Line( triangleWidth / 2, triangleHeight, triangleWidth, triangleHeight, {
-    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
-    lineWidth: lineWidth
-  } );
-  const leftDiscontinuityPoint = new Circle( {
-    x: triangleWidth / 2,
-    y: 0,
-    radius: discontinuityPointRadius,
-    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
-    fill: CalculusGrapherColors.screenBackgroundColorProperty,
-    lineWidth: lineWidth
-  } );
-  const rightDiscontinuityPoint = new Circle( {
-    x: triangleWidth / 2,
-    y: triangleHeight,
-    radius: discontinuityPointRadius,
-    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
-    fill: CalculusGrapherColors.screenBackgroundColorProperty,
-    lineWidth: lineWidth
-  } );
-  const derivativeNode = new Node( {
-    children: [ leftLine, rightLine, leftDiscontinuityPoint, rightDiscontinuityPoint ]
-  } );
-  const iconNode = new VBox( {
-    children: [ trianglePath, derivativeNode ],
-    spacing: 5
-  } );
-  return new ScreenIcon( iconNode, {
-    fill: CalculusGrapherColors.screenBackgroundColorProperty
-  } );
 }
 
 calculusGrapher.register( 'AdvancedScreen', AdvancedScreen );
