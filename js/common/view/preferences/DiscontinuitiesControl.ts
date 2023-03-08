@@ -28,6 +28,7 @@ export default class DiscontinuitiesControl extends PreferencesControl {
 
     const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
     } );
 

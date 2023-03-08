@@ -28,6 +28,7 @@ export default class PredictControl extends PreferencesControl {
 
     const labelText = new Text( CalculusGrapherStrings.predictPreferenceStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
     } );
 

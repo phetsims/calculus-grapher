@@ -29,6 +29,7 @@ export default class VariableControl extends PreferencesControl {
 
     const labelText = new Text( CalculusGrapherStrings.variableStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
     } );
 
@@ -92,6 +93,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 function createLabel( functionVariableStringProperty: TReadOnlyProperty<string>, tandem: Tandem ): Node {
   return new RichText( functionVariableStringProperty, {
     font: PreferencesDialog.CONTENT_FONT,
+    maxWidth: 100,
     tandem: tandem.createTandem( 'text' )
   } );
 }

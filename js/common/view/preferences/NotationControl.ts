@@ -30,6 +30,7 @@ export default class NotationControl extends PreferencesControl {
 
     const labelText = new Text( CalculusGrapherStrings.notationStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
+      maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
     } );
 
@@ -99,6 +100,7 @@ function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
   // Name of the notation
   const text = new RichText( derivedNotationStringProperty, {
     font: PreferencesDialog.CONTENT_FONT,
+    maxWidth: 150,
     tandem: tandem.createTandem( 'text' )
   } );
 
