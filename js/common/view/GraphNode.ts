@@ -90,7 +90,7 @@ type SelfOptions = {
   graphHeight: number;
 
   // options to the bamboo ChartRectangle
-  chartRectangleOptions?: ChartRectangleOptions;
+  chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
 
   // options function to create the CurveNode associated with this graph
   createCurveNode?: ( chartTransform: ChartTransform, chartRectangleFill: TPaint ) => CurveNode;
