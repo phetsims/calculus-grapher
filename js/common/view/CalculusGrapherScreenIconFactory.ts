@@ -89,12 +89,12 @@ const CalculusGrapherScreenIconFactory = {
     const triangleHeight = 12;
     const discontinuityPointRadius = 2;
 
-    // Triangle curve, rendered with the color of the original curve
+    // Original curve, a triangle rendered with the color of the original curve
     const triangleShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( triangleWidth / 2, -triangleHeight )
       .lineTo( triangleWidth, 0 );
-    const trianglePath = new Path( triangleShape, {
+    const originalCurveNode = new Path( triangleShape, {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -124,13 +124,13 @@ const CalculusGrapherScreenIconFactory = {
       fill: CalculusGrapherColors.screenBackgroundColorProperty,
       lineWidth: LINE_WIDTH
     } );
-    const derivativeNode = new Node( {
+    const derivativeCurveNode = new Node( {
       children: [ leftLine, rightLine, leftDiscontinuityPoint, rightDiscontinuityPoint ]
     } );
 
     // Original curve above the derivative curve
     const iconNode = new VBox( {
-      children: [ trianglePath, derivativeNode ],
+      children: [ originalCurveNode, derivativeCurveNode ],
       spacing: 5
     } );
 
