@@ -17,7 +17,8 @@ import { Shape } from '../../../../kite/js/imports.js';
 const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
 
-function createGaussianShape( curveHeight = 10 ): Shape {
+// Gaussian
+function createOriginalShape( curveHeight = 10 ): Shape {
 
   const bellWidth = 0.8 * CURVE_WIDTH;
   const xStart = ( CURVE_WIDTH - bellWidth ) / 2;
@@ -38,13 +39,45 @@ function createGaussianShape( curveHeight = 10 ): Shape {
   return shape;
 }
 
-function createBezierShape( curveHeight = 50 ): Shape {
-  return new Shape()
-    .moveTo( 0, 0 ) // start point
-    .cubicCurveTo(
-      0.4 * CURVE_WIDTH, -curveHeight / 2, // control point 1
-      0.6 * CURVE_WIDTH, curveHeight / 2, // control point 2
-      CURVE_WIDTH, 0 ); // end point
+// Sigmoid, integral of Gaussian
+function createIntegralShape( curveHeight = 10 ): Shape {
+
+  const sigmoidWidth = CURVE_WIDTH;
+  const xStart = 0;
+  const xEnd = CURVE_WIDTH;
+
+  const a = curveHeight;
+  const b = 0.03 * sigmoidWidth;
+
+  const shape = new Shape();
+  for ( let x = xStart; x < xEnd; x++ ) {
+    const y = a / ( 1 + Math.exp( -( x - CURVE_WIDTH / 2 ) / b ) );
+    shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
+  }
+
+  return shape;
+}
+
+// Derivative of Gaussian
+function createDerivativeShape( curveHeight = 10 ): Shape {
+
+  const bellWidth = 0.8 * CURVE_WIDTH;
+  const xStart = ( CURVE_WIDTH - bellWidth ) / 2;
+  const xEnd = CURVE_WIDTH - xStart;
+
+  // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
+  const a = curveHeight;
+  const b = xStart + bellWidth / 2;
+  const c = 6; // standard deviation
+
+  const shape = new Shape().moveTo( 0, 0 ).lineTo( xStart, 0 );
+  for ( let x = xStart; x < xEnd; x++ ) {
+    const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
+    shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
+  }
+  shape.lineTo( CURVE_WIDTH, 0 );
+
+  return shape;
 }
 
 const CalculusGrapherScreenIconFactory = {
@@ -58,7 +91,7 @@ const CalculusGrapherScreenIconFactory = {
     const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
 
     // A sample curve, rendered with the color of the derivative curve
-    const curveNode = new Path( createGaussianShape(), {
+    const curveNode = new Path( createDerivativeShape( 2.5 ), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -84,7 +117,7 @@ const CalculusGrapherScreenIconFactory = {
     const expressionNode = new GraphTypeLabelNode( GraphType.INTEGRAL );
 
     // A sample curve, rendered with the color of the integral curve.
-    const curveNode = new Path( createGaussianShape(), {
+    const curveNode = new Path( createIntegralShape(), {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -168,24 +201,24 @@ const CalculusGrapherScreenIconFactory = {
     const curveHeight = 15;
 
     // 3 curves, as in the Lab screen
-    const originalCurveNode = new Path( createBezierShape( curveHeight ), {
+    const integralCurveNode = new Path( createIntegralShape( curveHeight ), {
+      stroke: CalculusGrapherColors.integralCurveStrokeProperty,
+      lineWidth: LINE_WIDTH
+    } );
+
+    const originalCurveNode = new Path( createOriginalShape( curveHeight ), {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
-    const derivativeCurveNode = new Path( createBezierShape( curveHeight ), {
+    const derivativeCurveNode = new Path( createDerivativeShape( 0.25 * curveHeight ), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
-      lineWidth: LINE_WIDTH
-    } );
-
-    const secondDerivativeCurveNode = new Path( createBezierShape( curveHeight ), {
-      stroke: CalculusGrapherColors.secondDerivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
     // Vertical layout of the 3 curves
     const iconNode = new VBox( {
-      children: [ originalCurveNode, derivativeCurveNode, secondDerivativeCurveNode ],
+      children: [ integralCurveNode, originalCurveNode, derivativeCurveNode ],
       spacing: 6
     } );
     return new ScreenIcon( iconNode, {
