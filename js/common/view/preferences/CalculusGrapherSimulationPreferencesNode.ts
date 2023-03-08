@@ -23,7 +23,6 @@ import PredictControl from './PredictControl.js';
 
 export default class CalculusGrapherSimulationPreferencesNode extends VBox {
 
-  // Disposes of things that are specific to this class.
   private readonly disposeCalculusGrapherPreferencesNode: () => void;
 
   public constructor( tandem: Tandem ) {
