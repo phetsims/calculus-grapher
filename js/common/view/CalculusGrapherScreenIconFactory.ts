@@ -20,26 +20,25 @@ const LINE_WIDTH = 2; // lineWidth value for Paths
 // Gaussian
 function createOriginalShape( curveHeight = 10 ): Shape {
 
-  const bellWidth = 0.8 * CURVE_WIDTH;
-  const xStart = ( CURVE_WIDTH - bellWidth ) / 2;
-  const xEnd = CURVE_WIDTH - xStart;
+  const bellWidth = CURVE_WIDTH;
+  const xStart = 0;
+  const xEnd = CURVE_WIDTH;
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
   const a = curveHeight;
   const b = xStart + bellWidth / 2;
   const c = 6; // standard deviation
 
-  const shape = new Shape().moveTo( 0, 0 ).lineTo( xStart, 0 );
-  for ( let x = xStart; x < xEnd; x++ ) {
+  const shape = new Shape().moveTo( xStart, 0 );
+  for ( let x = xStart + 1; x < xEnd; x++ ) {
     const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
-  shape.lineTo( CURVE_WIDTH, 0 );
 
   return shape;
 }
 
-// Sigmoid, integral of Gaussian
+// Integral of Gaussian (a sigmoid)
 function createIntegralShape( curveHeight = 10 ): Shape {
 
   const sigmoidWidth = CURVE_WIDTH;
@@ -49,8 +48,8 @@ function createIntegralShape( curveHeight = 10 ): Shape {
   const a = curveHeight;
   const b = 0.03 * sigmoidWidth;
 
-  const shape = new Shape();
-  for ( let x = xStart; x < xEnd; x++ ) {
+  const shape = new Shape().moveTo( xStart, 0 );
+  for ( let x = xStart + 1; x < xEnd; x++ ) {
     const y = a / ( 1 + Math.exp( -( x - CURVE_WIDTH / 2 ) / b ) );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
@@ -69,10 +68,11 @@ function createDerivativeShape( curveHeight = 10 ): Shape {
   const a = curveHeight;
   const b = xStart + bellWidth / 2;
   const c = 6; // standard deviation
+  const yFactor = 0.25; // to scale, because this is the derivative of a Gaussian
 
-  const shape = new Shape().moveTo( 0, 0 );
-  for ( let x = xStart; x < xEnd; x++ ) {
-    const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
+  const shape = new Shape().moveTo( xStart, 0 );
+  for ( let x = xStart + 1; x < xEnd; x++ ) {
+    const y = yFactor * a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
 
@@ -90,7 +90,7 @@ const CalculusGrapherScreenIconFactory = {
     const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
 
     // A sample curve, rendered with the color of the derivative curve
-    const curveNode = new Path( createDerivativeShape( 2.5 ), {
+    const curveNode = new Path( createDerivativeShape(), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -197,20 +197,18 @@ const CalculusGrapherScreenIconFactory = {
    */
   createLabScreenIcon(): ScreenIcon {
 
-    const curveHeight = 15;
-
     // 3 curves, as in the Lab screen
-    const integralCurveNode = new Path( createIntegralShape( curveHeight ), {
+    const integralCurveNode = new Path( createIntegralShape(), {
       stroke: CalculusGrapherColors.integralCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
-    const originalCurveNode = new Path( createOriginalShape( curveHeight ), {
+    const originalCurveNode = new Path( createOriginalShape(), {
       stroke: CalculusGrapherColors.originalCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
-    const derivativeCurveNode = new Path( createDerivativeShape( 0.25 * curveHeight ), {
+    const derivativeCurveNode = new Path( createDerivativeShape(), {
       stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
