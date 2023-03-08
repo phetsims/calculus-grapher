@@ -18,8 +18,8 @@ import GraphType from '../common/model/GraphType.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import GraphSet from '../common/model/GraphSet.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import { Text } from '../../../scenery/js/imports.js';
-import PhetFont from '../../../scenery-phet/js/PhetFont.js';
+import { Line, VBox } from '../../../scenery/js/imports.js';
+import GraphTypeLabelNode from '../common/view/GraphTypeLabelNode.js';
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 
@@ -47,14 +47,22 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
   }
 }
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/139
 /**
  * Creates the icon for this screen.
  */
 function createScreenIcon(): ScreenIcon {
-  const iconNode = new Text( '?', { font: new PhetFont( 32 ) } );
+  const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
+  const curveNode = new Line( 0, 0, expressionNode.width, 0, {
+    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty,
+    lineWidth: 2
+  } );
+  const iconNode = new VBox( {
+    children: [ expressionNode, curveNode ],
+    spacing: 5
+  } );
   return new ScreenIcon( iconNode, {
-    fill: CalculusGrapherColors.screenBackgroundColorProperty
+    fill: CalculusGrapherColors.screenBackgroundColorProperty,
+    maxIconWidthProportion: 0.65
   } );
 }
 
