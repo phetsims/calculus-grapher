@@ -2,11 +2,16 @@
 
 /**
  * CalculusGrapherScreenIconFactory is a collection of factory methods for creating dynamic ScreenIcons.
+ * See https://github.com/phetsims/calculus-grapher/issues/139 for design history.
  *
  * The curves for these icons are created solely using kite.Shape, not using bamboo. Colors are Properties
  * from CalculusGrapherColors, so that color changes (via the phetmarks Color Editor, or via Studio) cause
  * the icons to update. The math expressions in these icons update when the 'Variable' and 'Notation'
  * preferences are changed.
+ *
+ * Note that the same 3 Shapes are used for curves in the Derivative, Integral, and Lab screen icons. If there's
+ * a need to customize these curves in the future, then the functions that create them will need to be further
+ * parameterized, and the arguments will need to be tweaked to provide the desired look.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
