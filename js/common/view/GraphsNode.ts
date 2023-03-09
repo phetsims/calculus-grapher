@@ -191,7 +191,7 @@ export default class GraphsNode extends Node {
    * Gets the y coordinate of the top of the top-most ChartRectangle.
    */
   private getChartRectanglesTop(): number {
-    return this.graphSetNode.x;
+    return this.graphSetNode.y;
   }
 
   /**
