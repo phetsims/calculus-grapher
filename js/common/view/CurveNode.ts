@@ -114,8 +114,8 @@ export default class CurveNode extends Node {
       },
 
       allPointsScatterPlotOptions: {
-        fill: Color.RED,
-        stroke: Color.YELLOW,
+        fill: Color.WHITE,
+        stroke: Color.BLACK,
         radius: 1
       },
 
