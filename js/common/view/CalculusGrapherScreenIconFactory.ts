@@ -14,11 +14,12 @@ import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
 import { Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
 import { Shape } from '../../../../kite/js/imports.js';
 
-const CURVE_WIDTH = 50; // width of the curves in each icon
+const CURVE_WIDTH = 100; // width of the curves in each icon
+const DEFAULT_CURVE_HEIGHT = 10; // default curve height
 const LINE_WIDTH = 2; // lineWidth value for Paths
 
 // Gaussian
-function createOriginalShape( curveHeight = 10 ): Shape {
+function createOriginalShape( curveHeight = DEFAULT_CURVE_HEIGHT ): Shape {
 
   const bellWidth = CURVE_WIDTH;
   const xStart = 0;
@@ -39,7 +40,7 @@ function createOriginalShape( curveHeight = 10 ): Shape {
 }
 
 // Integral of Gaussian (a sigmoid)
-function createIntegralShape( curveHeight = 10 ): Shape {
+function createIntegralShape( curveHeight = DEFAULT_CURVE_HEIGHT ): Shape {
 
   const sigmoidWidth = CURVE_WIDTH;
   const xStart = 0;
@@ -58,7 +59,7 @@ function createIntegralShape( curveHeight = 10 ): Shape {
 }
 
 // Derivative of Gaussian
-function createDerivativeShape( curveHeight = 10 ): Shape {
+function createDerivativeShape( curveHeight = DEFAULT_CURVE_HEIGHT ): Shape {
 
   const bellWidth = CURVE_WIDTH;
   const xStart = 0;
@@ -98,12 +99,12 @@ const CalculusGrapherScreenIconFactory = {
     // Math expression above the curve
     const iconNode = new VBox( {
       children: [ expressionNode, curveNode ],
-      spacing: 4
+      spacing: 8
     } );
 
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty,
-      maxIconWidthProportion: 0.85
+      maxIconWidthProportion: 1
     } );
   },
 
@@ -129,7 +130,7 @@ const CalculusGrapherScreenIconFactory = {
 
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty,
-      maxIconWidthProportion: 0.85
+      maxIconWidthProportion: 1
     } );
   },
 
@@ -139,7 +140,7 @@ const CalculusGrapherScreenIconFactory = {
   createAdvancedScreenIcon(): ScreenIcon {
 
     const triangleWidth = CURVE_WIDTH;
-    const triangleHeight = 12;
+    const triangleHeight = 18;
     const discontinuityPointRadius = 2;
 
     // Original curve, a triangle rendered with the color of the original curve
@@ -184,11 +185,12 @@ const CalculusGrapherScreenIconFactory = {
     // Original curve above the derivative curve
     const iconNode = new VBox( {
       children: [ originalCurveNode, derivativeCurveNode ],
-      spacing: 5
+      spacing: 8
     } );
 
     return new ScreenIcon( iconNode, {
-      fill: CalculusGrapherColors.screenBackgroundColorProperty
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      maxIconWidthProportion: 1
     } );
   },
 
@@ -219,7 +221,8 @@ const CalculusGrapherScreenIconFactory = {
       spacing: 6
     } );
     return new ScreenIcon( iconNode, {
-      fill: CalculusGrapherColors.screenBackgroundColorProperty
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      maxIconWidthProportion: 1
     } );
   }
 };
