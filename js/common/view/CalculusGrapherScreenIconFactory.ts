@@ -19,17 +19,18 @@ import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
 import { Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
 import { Shape } from '../../../../kite/js/imports.js';
 
-const CURVE_WIDTH = 50; // width of the curves in each icon
+const CURVE_WIDTH = 50; // width of the curves for the Derivative, Integral, and Lab screen icons
+const CURVE_HEIGHT = 10; // height of the curves for the Derivative, Integral, and Lab screen icons
 const LINE_WIDTH = 2; // lineWidth value for Paths
 const STANDARD_DEVIATION = 6; // of the Gaussian curve and its derivative
 
 /**
  * Creates a Gaussian shape for the original curve.
  */
-function createOriginalShape( curveHeight = 10 ): Shape {
+function createOriginalShape(): Shape {
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
-  const a = -curveHeight; // sign is flipped for scenery view coordinate frame
+  const a = -CURVE_HEIGHT; // sign is flipped for scenery view coordinate frame
   const b = CURVE_WIDTH / 2;
   const c = STANDARD_DEVIATION;
 
@@ -52,9 +53,9 @@ function createOriginalShape( curveHeight = 10 ): Shape {
  * Creates a derivative-of-Gaussian shape for the original curve.
  * The implementation is similar to createOriginalShape, but with a yFactor and different y computation.
  */
-function createDerivativeShape( curveHeight = 10 ): Shape {
+function createDerivativeShape(): Shape {
 
-  const a = -curveHeight; // sign is flipped for scenery view coordinate frame
+  const a = -CURVE_HEIGHT; // sign is flipped for scenery view coordinate frame
   const b = CURVE_WIDTH / 2;
   const c = STANDARD_DEVIATION;
   const yFactor = 0.25; // to scale, because this is the derivative of a Gaussian
@@ -76,9 +77,9 @@ function createDerivativeShape( curveHeight = 10 ): Shape {
 /**
  * Creates an integral-of-Gaussian curve (a sigmoid).
  */
-function createIntegralShape( curveHeight = 10 ): Shape {
+function createIntegralShape(): Shape {
 
-  const a = -curveHeight; // sign is flipped for scenery view coordinate frame
+  const a = -CURVE_HEIGHT; // sign is flipped for scenery view coordinate frame
   const b = 0.03 * CURVE_WIDTH;
 
   const shape = new Shape();
