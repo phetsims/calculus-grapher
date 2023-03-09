@@ -102,8 +102,7 @@ const CalculusGrapherScreenIconFactory = {
     } );
 
     return new ScreenIcon( iconNode, {
-      fill: CalculusGrapherColors.screenBackgroundColorProperty,
-      maxIconWidthProportion: 0.85
+      fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
   },
 
@@ -128,8 +127,7 @@ const CalculusGrapherScreenIconFactory = {
     } );
 
     return new ScreenIcon( iconNode, {
-      fill: CalculusGrapherColors.screenBackgroundColorProperty,
-      maxIconWidthProportion: 0.85
+      fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
   },
 
