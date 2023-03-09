@@ -22,14 +22,20 @@ const STANDARD_DEVIATION = 6; // of the Gaussian curve and its derivative
 function createOriginalShape( curveHeight = 10 ): Shape {
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
-  const a = curveHeight;
+  const a = -curveHeight; // sign is flipped for scenery view coordinate frame
   const b = CURVE_WIDTH / 2;
   const c = STANDARD_DEVIATION;
 
-  const shape = new Shape().moveTo( 0, 0 );
-  for ( let x = 1; x <= CURVE_WIDTH; x++ ) {
+  const shape = new Shape();
+  for ( let x = 0; x <= CURVE_WIDTH; x++ ) {
+    // sign is flipped for scenery view coordinate frame
     const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) );
-    shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
+    if ( x === 0 ) {
+      shape.moveTo( x, y );
+    }
+    else {
+      shape.lineTo( x, y );
+    }
   }
 
   return shape;
@@ -38,13 +44,18 @@ function createOriginalShape( curveHeight = 10 ): Shape {
 // Integral of Gaussian (a sigmoid)
 function createIntegralShape( curveHeight = 10 ): Shape {
 
-  const a = curveHeight;
+  const a = -curveHeight; // sign is flipped for scenery view coordinate frame
   const b = 0.03 * CURVE_WIDTH;
 
-  const shape = new Shape().moveTo( 0, 0 );
-  for ( let x = 1; x <= CURVE_WIDTH; x++ ) {
+  const shape = new Shape();
+  for ( let x = 0; x <= CURVE_WIDTH; x++ ) {
     const y = a / ( 1 + Math.exp( -( x - CURVE_WIDTH / 2 ) / b ) );
-    shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
+    if ( x === 0 ) {
+      shape.moveTo( x, y );
+    }
+    else {
+      shape.lineTo( x, y );
+    }
   }
 
   return shape;
@@ -54,15 +65,20 @@ function createIntegralShape( curveHeight = 10 ): Shape {
 function createDerivativeShape( curveHeight = 10 ): Shape {
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
-  const a = curveHeight;
+  const a = -curveHeight; // sign is flipped for scenery view coordinate frame
   const b = CURVE_WIDTH / 2;
   const c = STANDARD_DEVIATION;
   const yFactor = 0.25; // to scale, because this is the derivative of a Gaussian
 
-  const shape = new Shape().moveTo( 0, 0 );
-  for ( let x = 1; x <= CURVE_WIDTH; x++ ) {
+  const shape = new Shape();
+  for ( let x = 0; x <= CURVE_WIDTH; x++ ) {
     const y = yFactor * a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
-    shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
+    if ( x === 0 ) {
+      shape.moveTo( x, y );
+    }
+    else {
+      shape.lineTo( x, y );
+    }
   }
 
   return shape;
