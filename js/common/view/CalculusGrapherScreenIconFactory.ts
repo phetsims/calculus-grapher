@@ -16,21 +16,18 @@ import { Shape } from '../../../../kite/js/imports.js';
 
 const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
+const STANDARD_DEVIATION = 6; // of the Gaussian curve and its derivative
 
 // Gaussian
 function createOriginalShape( curveHeight = 10 ): Shape {
 
-  const bellWidth = CURVE_WIDTH;
-  const xStart = 0;
-  const xEnd = CURVE_WIDTH;
-
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
   const a = curveHeight;
-  const b = xStart + bellWidth / 2;
-  const c = 6; // standard deviation
+  const b = CURVE_WIDTH / 2;
+  const c = STANDARD_DEVIATION;
 
-  const shape = new Shape().moveTo( xStart, 0 );
-  for ( let x = xStart + 1; x < xEnd; x++ ) {
+  const shape = new Shape().moveTo( 0, 0 );
+  for ( let x = 1; x <= CURVE_WIDTH; x++ ) {
     const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
@@ -41,15 +38,11 @@ function createOriginalShape( curveHeight = 10 ): Shape {
 // Integral of Gaussian (a sigmoid)
 function createIntegralShape( curveHeight = 10 ): Shape {
 
-  const sigmoidWidth = CURVE_WIDTH;
-  const xStart = 0;
-  const xEnd = CURVE_WIDTH;
-
   const a = curveHeight;
-  const b = 0.03 * sigmoidWidth;
+  const b = 0.03 * CURVE_WIDTH;
 
-  const shape = new Shape().moveTo( xStart, 0 );
-  for ( let x = xStart + 1; x < xEnd; x++ ) {
+  const shape = new Shape().moveTo( 0, 0 );
+  for ( let x = 1; x <= CURVE_WIDTH; x++ ) {
     const y = a / ( 1 + Math.exp( -( x - CURVE_WIDTH / 2 ) / b ) );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
@@ -60,18 +53,14 @@ function createIntegralShape( curveHeight = 10 ): Shape {
 // Derivative of Gaussian
 function createDerivativeShape( curveHeight = 10 ): Shape {
 
-  const bellWidth = CURVE_WIDTH;
-  const xStart = 0;
-  const xEnd = CURVE_WIDTH;
-
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
   const a = curveHeight;
-  const b = xStart + bellWidth / 2;
-  const c = 6; // standard deviation
+  const b = CURVE_WIDTH / 2;
+  const c = STANDARD_DEVIATION;
   const yFactor = 0.25; // to scale, because this is the derivative of a Gaussian
 
-  const shape = new Shape().moveTo( xStart, 0 );
-  for ( let x = xStart + 1; x < xEnd; x++ ) {
+  const shape = new Shape().moveTo( 0, 0 );
+  for ( let x = 1; x <= CURVE_WIDTH; x++ ) {
     const y = yFactor * a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
     shape.lineTo( x, -y ); // flip the sign for scenery view coordinate frame
   }
