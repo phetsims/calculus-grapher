@@ -437,8 +437,8 @@ export default class TransformedCurve extends Curve {
     //             |<-edgeWidth-->|                 |<-edgeWidth-->|
 
     // Bounds to the transition regions to the right and the left for the sinusoidal function
-    const rightMax = closestPoint.x + cosineBase / 2;
-    const leftMin = closestPoint.x - cosineBase / 2;
+    const rightMax = this.getClosestPointAt( closestPoint.x + cosineBase / 2 ).x;
+    const leftMin = this.getClosestPointAt( closestPoint.x - cosineBase / 2 ).x;
     const rightMin = rightMax - edgeWidth;
     const leftMax = leftMin + edgeWidth;
 
@@ -485,16 +485,16 @@ export default class TransformedCurve extends Curve {
     if ( isLeftRegionZero ) {
       const index = this.getClosestIndexAt( leftMin );
       this.points[ index ].pointType = 'cusp';
-      if ( this.points[ index - 1 ] ) {
-        this.points[ index - 1 ].pointType = 'cusp';
+      if ( this.points[ index + 1 ] ) {
+        this.points[ index + 1 ].pointType = 'cusp';
       }
     }
 
     if ( isRightRegionZero ) {
       const index = this.getClosestIndexAt( rightMax );
       this.points[ index ].pointType = 'cusp';
-      if ( this.points[ index + 1 ] ) {
-        this.points[ index + 1 ].pointType = 'cusp';
+      if ( this.points[ index - 1 ] ) {
+        this.points[ index - 1 ].pointType = 'cusp';
       }
     }
 
