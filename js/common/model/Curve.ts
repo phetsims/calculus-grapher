@@ -173,24 +173,6 @@ export default class Curve extends PhetioObject {
     return Utils.clamp( index, 0, this.points.length - 1 );
   }
 
-  /**
-   * Iterates through an array in pairs, passing the current value and the previous value to the iterator function.
-   * For instance, forEachAdjacentPair( [ 1, 2, 3, 4 ], f ) would invoke f( 2, 1 ), f( 3, 2 ), and f( 4, 3 ).
-   *
-   */
-  public forEachAdjacentPair( iterator: {
-    ( point: CurvePoint, previousPoint: CurvePoint, index: number ): void;
-  } ): void {
-
-    for ( let i = 1; i < this.points.length; i++
-    ) {
-      const value = this.points[ i ];
-      const previousValue = this.points[ i - 1 ];
-
-      iterator( value, previousValue, i );
-    }
-  }
-
   protected assignType(): void {
 
 
