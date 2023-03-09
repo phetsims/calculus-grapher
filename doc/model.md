@@ -43,10 +43,16 @@ hand side of each graph.
 A finite difference method is used to determine the derivative. To illustrate non-differential points in f(x), open
 circles appear at the non-differential points for the derivative.
 
+The tangent checkbox below the control panel triggers the visibility three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) a tangent arrow on the original graph, and (3) an accordion box with  barometer of the value of the tangent. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
+
+
 ## _Integral_ Screen
 
 At the top of the _Integral_ screen, one finds the definite integral of f(x). Underneath this graph, user controlled
 function f(x) is displayed. The definite integral is calculated numerically through a trapezoidal Riemann sum.
+
+The area under curve checkbox below the control panel triggers the visibility three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) an area chart arrow on the original graph, and (3) an accordion box with  barometer of the value of the area under the curve. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
+
 
 ## _Advanced_ Screen
 
