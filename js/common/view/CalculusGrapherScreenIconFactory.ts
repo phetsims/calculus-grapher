@@ -136,8 +136,8 @@ const CalculusGrapherScreenIconFactory = {
    */
   createAdvancedScreenIcon(): ScreenIcon {
 
-    const triangleWidth = CURVE_WIDTH;
-    const triangleHeight = 12;
+    const triangleWidth = 80;
+    const triangleHeight = 15;
     const discontinuityPointRadius = 2;
 
     // Original curve, a triangle rendered with the color of the original curve
@@ -182,11 +182,12 @@ const CalculusGrapherScreenIconFactory = {
     // Original curve above the derivative curve
     const iconNode = new VBox( {
       children: [ originalCurveNode, derivativeCurveNode ],
-      spacing: 5
+      spacing: 8
     } );
 
     return new ScreenIcon( iconNode, {
-      fill: CalculusGrapherColors.screenBackgroundColorProperty
+      fill: CalculusGrapherColors.screenBackgroundColorProperty,
+      maxIconWidthProportion: 1
     } );
   },
 
