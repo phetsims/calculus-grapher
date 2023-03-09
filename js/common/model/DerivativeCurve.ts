@@ -109,7 +109,6 @@ export default class DerivativeCurve extends Curve {
 
       if ( point.isCusp ) {
         this.points[ index ].pointType = 'discontinuous';
-        // this.points[ index + 1 ].pointType = 'discontinuous';
       }
       else if ( point.isDiscontinuous ) {
         this.points[ index ].pointType = 'discontinuous';
