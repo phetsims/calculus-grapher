@@ -35,6 +35,9 @@ There are a number of query parameters that are made public.
 - `connectDiscontinuities` connects curve discontinuities with a dashed line (true) or leave a gap (false). The default value is true.
 - `derivativeNotation` is derivative notation to be used throughout the simulation. Valid values are 'lagrange' and 'leibniz'. The default value is 'lagrange'.
 - `functionVariable` represents the variable that would be used for the horizontal axis of the graph. Valid values are 'x' and 't'. The default value is 'x'.
+- `predict` shows features related to the predict curve are shown in the UI when set to true. The default value is false.
+- `hasShowOriginalCurveCheckbox` whether the 'Show f(x)' checkbox will be shown when in 'predict' mode.
+The default value is true. Note the visibility of the checkbox is contingent on the status of 'predict' being true.
 
 ### Curve Hierarchy
 
