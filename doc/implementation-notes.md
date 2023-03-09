@@ -49,7 +49,7 @@ Curves are modeled by segmenting the curve into a large number of evenly spaced 
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
-`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a change in the CurvePoints and the TransformedCurve's integral, derivative, and second-derivative Curves.
+`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a change in the CurvePoints and the Curve's integral, derivative, and second-derivative Curves.
 
 `TransformedCurve` is mainly responsible for:
 - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
