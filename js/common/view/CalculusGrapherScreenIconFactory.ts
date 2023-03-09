@@ -1,7 +1,12 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * CalculusGrapherScreenIconFactory is a collection of factory methods for creating ScreenIcons.
+ * CalculusGrapherScreenIconFactory is a collection of factory methods for creating dynamic ScreenIcons.
+ *
+ * The curves for these icons are created solely using kite.Shape, not using bamboo. Colors are Properties
+ * from CalculusGrapherColors, so that color changes (via the phetmarks Color Editor, or via Studio) cause
+ * the icons to update. The math expressions in these icons update when the 'Variable' and 'Notation'
+ * preferences are changed.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -18,7 +23,9 @@ const CURVE_WIDTH = 50; // width of the curves in each icon
 const LINE_WIDTH = 2; // lineWidth value for Paths
 const STANDARD_DEVIATION = 6; // of the Gaussian curve and its derivative
 
-// Gaussian
+/**
+ * Creates a Gaussian shape for the original curve.
+ */
 function createOriginalShape( curveHeight = 10 ): Shape {
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
@@ -41,15 +48,20 @@ function createOriginalShape( curveHeight = 10 ): Shape {
   return shape;
 }
 
-// Integral of Gaussian (a sigmoid)
-function createIntegralShape( curveHeight = 10 ): Shape {
+/**
+ * Creates a derivative-of-Gaussian shape for the original curve.
+ * The implementation is similar to createOriginalShape, but with a yFactor and different y computation.
+ */
+function createDerivativeShape( curveHeight = 10 ): Shape {
 
   const a = -curveHeight; // sign is flipped for scenery view coordinate frame
-  const b = 0.03 * CURVE_WIDTH;
+  const b = CURVE_WIDTH / 2;
+  const c = STANDARD_DEVIATION;
+  const yFactor = 0.25; // to scale, because this is the derivative of a Gaussian
 
   const shape = new Shape();
   for ( let x = 0; x <= CURVE_WIDTH; x++ ) {
-    const y = a / ( 1 + Math.exp( -( x - CURVE_WIDTH / 2 ) / b ) );
+    const y = yFactor * a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
     if ( x === 0 ) {
       shape.moveTo( x, y );
     }
@@ -61,18 +73,17 @@ function createIntegralShape( curveHeight = 10 ): Shape {
   return shape;
 }
 
-// Derivative of Gaussian
-function createDerivativeShape( curveHeight = 10 ): Shape {
+/**
+ * Creates an integral-of-Gaussian curve (a sigmoid).
+ */
+function createIntegralShape( curveHeight = 10 ): Shape {
 
-  // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
   const a = -curveHeight; // sign is flipped for scenery view coordinate frame
-  const b = CURVE_WIDTH / 2;
-  const c = STANDARD_DEVIATION;
-  const yFactor = 0.25; // to scale, because this is the derivative of a Gaussian
+  const b = 0.03 * CURVE_WIDTH;
 
   const shape = new Shape();
   for ( let x = 0; x <= CURVE_WIDTH; x++ ) {
-    const y = yFactor * a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) ) * ( b - x );
+    const y = a / ( 1 + Math.exp( -( x - CURVE_WIDTH / 2 ) / b ) );
     if ( x === 0 ) {
       shape.moveTo( x, y );
     }
