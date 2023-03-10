@@ -57,7 +57,8 @@ export default class CurvePoint {
   // The initial y-coordinate, for resetting purposes.
   private readonly initialState: CurvePointState;
 
-  // An array of this CurvePoint's saved states, for the Undo feature. This is used as a stack (last in, first out).
+  // An array of this CurvePoint's saved states, for the Undo feature. This is a stack (last in, first out)
+  // that has a maximum length. When the maximum length is reached, the oldest saved state is discarded.
   // When save() is called, the current state of this CurvePoint is pushed onto the end of the stack.
   // When undo() is called, the last state that was pushed to the stack is popped off, and used to restore
   // the state of this CurvePoint. Note that this field is not serialized as part of PhET-iO state, see
@@ -140,10 +141,9 @@ export default class CurvePoint {
       pointType: this.pointType
     } );
 
-    // Let's empty the first element of the array if the number of saved values exceeds MAX_UNDO
+    // If we've reached the maximum length of our undo stack, remove the oldest state from the stack, which
+    // is the first element in the array.
     while ( this.undoStack.length > CalculusGrapherConstants.MAX_UNDO ) {
-
-      // Remove the first value from the array
       this.undoStack.shift();
     }
   }
