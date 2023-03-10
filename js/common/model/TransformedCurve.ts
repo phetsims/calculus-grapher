@@ -74,10 +74,10 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Saves the current state ( y-value and pointType) of the Points for the next undoToLastSave() method.
+   * Saves the current state (y-value and pointType) of the Points for the next undo() call.
    *
    * This method is invoked when the user starts manipulating the TransformedCurve. When the undo button is pressed,
-   * the Points of the TransformedCurve will be set to their last saved state.
+   * the CurvePoints of the TransformedCurve will be set to their last saved state.
    */
   public saveCurrentPoints(): void {
 
@@ -92,7 +92,7 @@ export default class TransformedCurve extends Curve {
    */
   public smooth(): void {
 
-    // Saves the current values of our Points for the next undoToLastSave call.
+    // Saves the current values of our Points for the next undo() call.
     // Note that the current y-values are the same as the previous y-values
     // for all Points in the TransformedCurve.
     this.saveCurrentPoints();
@@ -232,10 +232,10 @@ export default class TransformedCurve extends Curve {
    * Sets the state of this CurvedPoint on this Curve to its last saved state.
    * This method is invoked when the undo button is pressed, which successively undoes the last action.
    */
-  public undoToLastSave(): void {
+  public undo(): void {
 
     // Revert to the saved pointState of each CurvePoint.
-    this.points.forEach( point => point.undoToLastSave() );
+    this.points.forEach( point => point.undo() );
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();

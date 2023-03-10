@@ -27,7 +27,7 @@ const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
 export type PointType = ( typeof PointTypeValues )[number];
 
 // For capturing the state of a CurvePoint, used to support Undo feature
-export type PointState = {
+type CurvePointState = {
   y: number;
   pointType: PointType;
 };
@@ -55,10 +55,14 @@ export default class CurvePoint {
   public pointType: PointType;
 
   // The initial y-coordinate, for resetting purposes.
-  private readonly initialState: PointState;
+  private readonly initialState: CurvePointState;
 
-  // An array of this Point's saved states, for Undo feature.
-  private readonly savedStates: PointState [];
+  // An array of this CurvePoint's saved states, for the Undo feature. This is used as a stack (last in, first out).
+  // When save() is called, the current state of this CurvePoint is pushed onto the end of the stack.
+  // When undo() is called, the last state that was pushed to the stack is popped off, and used to restore
+  // the state of this CurvePoint. Note that this field is not serialized as part of PhET-iO state, see
+  // https://github.com/phetsims/calculus-grapher/issues/65
+  private readonly undoStack: CurvePointState[];
 
   // Vector2 representation of this CurvePoint, to be used in bamboo data sets. This instance is allocated once
   // at instantiation, then reused to prevent garbage collection.
@@ -76,7 +80,7 @@ export default class CurvePoint {
       pointType: pointType
     };
 
-    this.savedStates = [];
+    this.undoStack = [];
     this.vector = new Vector2( x, y );
   }
 
@@ -113,34 +117,34 @@ export default class CurvePoint {
    * Gets the most-recently saved y-value.
    */
   public get lastSavedY(): number {
-    return ( this.savedStates.length === 0 ) ? this.initialState.y : _.last( this.savedStates )!.y;
+    return ( this.undoStack.length === 0 ) ? this.initialState.y : _.last( this.undoStack )!.y;
   }
 
   /**
    * Gets the most-recently saved point type.
    */
   public get lastSavedType(): PointType {
-    return ( this.savedStates.length === 0 ) ? this.initialState.pointType : _.last( this.savedStates )!.pointType;
+    return ( this.undoStack.length === 0 ) ? this.initialState.pointType : _.last( this.undoStack )!.pointType;
   }
 
   /**
-   * Saves the current state of the Point for the next undoToLastSave() method.
-   * This method is invoked when the user finishes manipulating the TransformedCurve. When the undo button is pressed,
-   * the Points of the TransformedCurve will be set to their last saved state.
+   * Saves the current state of the CurvePoint. This method is invoked when the user finishes manipulating the
+   * TransformedCurve. When the undo button is pressed, the Points of the TransformedCurve will be set to their
+   * most-recent saved state.
    */
   public save(): void {
 
     // Save the current state of the CurvePoint.
-    this.savedStates.push( {
+    this.undoStack.push( {
       y: this.y,
       pointType: this.pointType
     } );
 
     // Let's empty the first element of the array if the number of saved values exceeds MAX_UNDO
-    while ( this.savedStates.length > CalculusGrapherConstants.MAX_UNDO ) {
+    while ( this.undoStack.length > CalculusGrapherConstants.MAX_UNDO ) {
 
       // Remove the first value from the array
-      this.savedStates.shift();
+      this.undoStack.shift();
     }
   }
 
@@ -159,12 +163,11 @@ export default class CurvePoint {
    * Sets the state of this CurvedPoint to its last saved state.
    * This method is invoked when the undo button is pressed, which successively undoes the last action.
    */
-  public undoToLastSave(): void {
+  public undo(): void {
 
-    // Pop the state of this CurvedPoint to the last saved state (if available).
-    // As a side effect, the pop removes it from our savedStates
-    // such that the next undoToLastSave() call successively reverts to the state before this one.
-    const pointState = ( this.savedStates.length === 0 ) ? this.initialState : this.savedStates.pop()!;
+    // Reverts the state of this CurvedPoint to its most-recently saved state (if available).
+    // As a side effect, the state is popped off undoStack.
+    const pointState = ( this.undoStack.length === 0 ) ? this.initialState : this.undoStack.pop()!;
 
     this.y = pointState.y;
     this.pointType = pointState.pointType;
@@ -183,10 +186,10 @@ export default class CurvePoint {
   public reset(): void {
     this.y = this.initialState.y;
     this.pointType = this.initialState.pointType;
-    this.savedStates.length = 0;
+    this.undoStack.length = 0;
   }
 
-  // the savedStates of the curvePoint are purposefully not serialized (see https://github.com/phetsims/calculus-grapher/issues/65 )
+  // undoStack is purposefully not serialized (see https://github.com/phetsims/calculus-grapher/issues/65)
   public toStateObject(): CurvePointStateObject {
     return {
       x: this.x,

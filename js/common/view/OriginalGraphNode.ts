@@ -219,7 +219,7 @@ export default class OriginalGraphNode extends GraphNode {
       applyOffset: false,
       start: ( event, listener ) => {
 
-        // Save the current values of the Points for the next undoToLastSave call.
+        // Save the current values of the CurvePoints for the next undo() call.
         // This must be called once at the start of dragging (and not on each micro drag-position change).
         interactiveCurveNodeProperty.value.transformedCurve.saveCurrentPoints();
 

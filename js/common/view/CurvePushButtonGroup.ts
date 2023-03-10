@@ -28,7 +28,7 @@ export default class CurvePushButtonGroup extends VBox {
     // Create an undo Button. Disabling this button when there's nothing to undo is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
     const undoButton = new UndoButton( {
-      listener: () => interactiveCurveProperty.value.undoToLastSave(),
+      listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
       iconOptions: { height: 13 },
       tandem: tandem.createTandem( 'undoButton' )
