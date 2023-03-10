@@ -23,9 +23,8 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { DragListener, HBox, PressedDragListener, Rectangle, Text, TPaint } from '../../../../scenery/js/imports.js';
+import { DragListener, HBox, PressedDragListener, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
@@ -50,7 +49,10 @@ type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'ch
 
 export default class OriginalGraphNode extends GraphNode {
 
-  // Node for the predict curve
+  // Node for the original curve f(x), which is interactive
+  private readonly originalCurveNode: TransformedCurveNode;
+
+  // Node for the predict curve, which is interactive
   private readonly predictCurveNode: TransformedCurveNode;
 
   // Indicates if the original curve is visible while in 'Predict' mode.
@@ -80,58 +82,63 @@ export default class OriginalGraphNode extends GraphNode {
       tandem: labelNodeTandem
     } );
 
-    const showOriginalCurveProperty = new BooleanProperty( false, {
+    const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
+
+      // GraphNodeOptions
+      labelNode: labelNode,
+      hasDefaultCurveNode: false, // We'll be creating our own CurveNode for model.originalCurve.
+      chartRectangleOptions: {
+        fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
+        stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
+      }
+    }, providedOptions );
+
+    super( graphType, originalCurve, model.gridVisibleProperty, options );
+
+    this.showOriginalCurveProperty = new BooleanProperty( false, {
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
       phetioDocumentation: 'Controls whether the original curve is visible while the Predict radio button is selected.' +
                            'The value of this Property can be changed by toggling showOriginalCurveCheckbox.'
     } );
 
-    // Creates PhET-iO element 'graphsNode.originalCurveNode'
+    // Interactive f(x) 'original' curve
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
-    const createOriginalCurveNode = ( chartTransform: ChartTransform, chartRectangleFill: TPaint, plotBounds: Bounds2 ) =>
-      new TransformedCurveNode( originalCurve, curveManipulationProperties, chartTransform, {
-        plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-        plotBounds: plotBounds, // see https://github.com/phetsims/calculus-grapher/issues/259
-        stroke: graphType.strokeProperty,
-        discontinuousPointsScatterPlotOptions: {
-          fill: chartRectangleFill
-        },
-        continuousLinePlotOptions: {
-          lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
-        },
-        isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
-        visibleProperty: new DerivedProperty(
-          [ predictEnabledProperty, showOriginalCurveProperty ],
-          ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
-            tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
-            phetioValueType: BooleanIO
-          } ),
-        tandem: originalCurveNodeTandem,
-
-        // originalCurveNode does not have an input listener, but we want to allow PhET-iO clients to use
-        // originalCurveNode.inputEnabledProperty to control originalGraphNode.inputEnabledProperty (see derivation below).
-        // See https://github.com/phetsims/calculus-grapher/issues/240
-        phetioInputEnabledPropertyInstrumented: true
-      } );
-
-    const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
-
-      // GraphNodeOptions
-      createCurveNode: createOriginalCurveNode,
-      chartRectangleOptions: {
-        fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
-        stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
+    this.originalCurveNode = new TransformedCurveNode( originalCurve, curveManipulationProperties, this.chartTransform, {
+      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
+      stroke: graphType.strokeProperty,
+      discontinuousPointsScatterPlotOptions: {
+        fill: options.chartRectangleOptions.fill!
       },
-      labelNode: labelNode
-    }, providedOptions );
+      continuousLinePlotOptions: {
+        lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
+      },
+      isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
+      visibleProperty: new DerivedProperty(
+        [ predictEnabledProperty, this.showOriginalCurveProperty ],
+        ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
+          tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
+          phetioValueType: BooleanIO
+        } ),
+      tandem: originalCurveNodeTandem,
 
-    super( graphType, originalCurve, model.gridVisibleProperty, options );
+      // originalCurveNode does not have an input listener, but we want to allow PhET-iO clients to use
+      // originalCurveNode.inputEnabledProperty to control chartRectangle.inputEnabledProperty (see derivation below).
+      // See https://github.com/phetsims/calculus-grapher/issues/240
+      phetioInputEnabledPropertyInstrumented: true
+    } );
+    this.curveLayer.addChild( this.originalCurveNode );
 
-    // We need to know that this.curveNode is of type TransformedCurveNode, as created by createCurveNode above.
-    const originalCurveNode = this.curveNode as TransformedCurveNode;
-    assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
-
-    this.showOriginalCurveProperty = showOriginalCurveProperty;
+    // Interactive 'Predict' curve
+    this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
+      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
+      isInteractiveProperty: predictEnabledProperty,
+      visibleProperty: predictEnabledProperty,
+      stroke: CalculusGrapherColors.predictCurveStrokeProperty,
+      tandem: options.tandem.createTandem( 'predictCurveNode' )
+    } );
+    this.curveLayer.addChild( this.predictCurveNode );
 
     // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
     // See https://github.com/phetsims/calculus-grapher/issues/204
@@ -149,22 +156,10 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
 
-    // Create a predictCurveNode
-    this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
-      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
-      isInteractiveProperty: predictEnabledProperty,
-      visibleProperty: predictEnabledProperty,
-      stroke: CalculusGrapherColors.predictCurveStrokeProperty,
-      tandem: options.tandem.createTandem( 'predictCurveNode' )
-    } );
-    this.curveLayer.addChild( this.predictCurveNode );
-
-    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( showOriginalCurveProperty,
+    // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
+    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
       model.predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
     this.addChild( showOriginalCurveCheckbox );
-
-    // Upper-right corner of the chart
     showOriginalCurveCheckbox.boundsProperty.link( () => {
       showOriginalCurveCheckbox.right =
         this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
@@ -178,8 +173,9 @@ export default class OriginalGraphNode extends GraphNode {
     );
     this.addChild( labeledPointsNode );
 
+    // Which of the CurveNode instances is currently interactive
     const interactiveCurveNodeProperty = new DerivedProperty( [ model.predictEnabledProperty ],
-      predictEnabled => predictEnabled ? this.predictCurveNode : originalCurveNode
+      predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
     // Variables to keep track of old model positions associated with the dragListener.
@@ -237,13 +233,14 @@ export default class OriginalGraphNode extends GraphNode {
     // See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
     // Do not instrument.
     this.chartRectangle.setInputEnabledProperty( new DerivedProperty(
-      [ originalCurveNode.inputEnabledProperty, predictEnabledProperty, this.curveLayerVisibleProperty ],
+      [ this.originalCurveNode.inputEnabledProperty, predictEnabledProperty, this.curveLayerVisibleProperty ],
       ( originalCurveNodeInputEnabled, predictEnabled, curveLayerVisible ) =>
         ( originalCurveNodeInputEnabled || predictEnabled ) && curveLayerVisible
     ) );
   }
 
   public override reset(): void {
+    this.originalCurveNode.reset();
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
     super.reset();

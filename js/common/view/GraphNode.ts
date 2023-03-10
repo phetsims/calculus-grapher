@@ -27,7 +27,7 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../../dot/js/Range.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, TColor, Text, TPaint } from '../../../../scenery/js/imports.js';
+import { Node, NodeOptions, TColor, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CurveNode from './CurveNode.js';
@@ -92,8 +92,8 @@ type SelfOptions = {
   // options to the bamboo ChartRectangle
   chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
 
-  // options function to create the CurveNode associated with this graph
-  createCurveNode?: ( chartTransform: ChartTransform, chartRectangleFill: TPaint, plotBounds: Bounds2 ) => CurveNode;
+  // Whether to create the default CurveNode, which is not interactive
+  hasDefaultCurveNode?: boolean;
 
   // label that appears in the upper-left corner of the graph
   labelNode?: Node;
@@ -117,8 +117,8 @@ export default class GraphNode extends Node {
   // The model curve to be plotted
   protected readonly curve: Curve;
 
-  // Node that plots the curve
-  protected readonly curveNode: CurveNode;
+  // Optional non-interactive Node that plots the curve
+  private readonly curveNode?: CurveNode;
 
   // Layer that contains the plots for any curves, optional tangent line and point (for Derivative screen),
   // and optional area-under-curve plot and point (for Integral screen).
@@ -128,7 +128,7 @@ export default class GraphNode extends Node {
   protected readonly curveLayerVisibleProperty: BooleanProperty;
 
   // Optional Property for zooming the y-axis
-  protected readonly yZoomLevelProperty?: NumberProperty;
+  private readonly yZoomLevelProperty?: NumberProperty;
 
   public constructor( graphType: GraphType,
                       curve: Curve,
@@ -138,15 +138,7 @@ export default class GraphNode extends Node {
     const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 
       // SelfOptions
-      createCurveNode: ( chartTransform: ChartTransform, chartRectangleFill: TPaint, plotBounds: Bounds2 ) => new CurveNode( curve, chartTransform, {
-        plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-        plotBounds: plotBounds, // see https://github.com/phetsims/calculus-grapher/issues/259
-        stroke: graphType.strokeProperty,
-        discontinuousPointsScatterPlotOptions: {
-          fill: chartRectangleFill
-        },
-        tandem: providedOptions.tandem.createTandem( 'curveNode' )
-      } ),
+      hasDefaultCurveNode: true,
       chartRectangleOptions: {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
@@ -186,7 +178,18 @@ export default class GraphNode extends Node {
 
     this.chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
-    this.curveNode = options.createCurveNode( this.chartTransform, options.chartRectangleOptions.fill!, this.getChartBounds() );
+    // Create a non-interactive Node that plots the curve.
+    if ( options.hasDefaultCurveNode ) {
+      this.curveNode = new CurveNode( curve, this.chartTransform, {
+        plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+        plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
+        stroke: graphType.strokeProperty,
+        discontinuousPointsScatterPlotOptions: {
+          fill: options.chartRectangleOptions.fill!
+        },
+        tandem: providedOptions.tandem.createTandem( 'curveNode' )
+      } );
+    }
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveLayerVisibleProperty' ),
@@ -195,8 +198,10 @@ export default class GraphNode extends Node {
                            'The value of this Property can be toggled by pressing eyeToggleButton.'
     } );
 
+    const curveLayerChildren = [];
+    this.curveNode && curveLayerChildren.push( this.curveNode );
     this.curveLayer = new Node( {
-      children: [ this.curveNode ],
+      children: curveLayerChildren,
       clipArea: this.chartRectangle.getShape(),
       visibleProperty: this.curveLayerVisibleProperty,
       pickable: false // optimization, https://github.com/phetsims/calculus-grapher/issues/210
@@ -337,7 +342,7 @@ export default class GraphNode extends Node {
   public reset(): void {
     this.yZoomLevelProperty && this.yZoomLevelProperty.reset();
     this.curveLayerVisibleProperty.reset();
-    this.curveNode.reset();
+    this.curveNode && this.curveNode.reset();
   }
 
   /**
