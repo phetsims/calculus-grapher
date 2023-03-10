@@ -217,30 +217,23 @@ export default class OriginalGraphNode extends GraphNode {
     // This saves us the costly operation of creating pointer areas that match the Shapes of the curves.  And it allows
     // the user to modify a curve by doing a 'pointer down' anywhere in the chartRectangle.
     // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/74.
-    // Note that the start and drag methods are short-circuited when the curves are not visible,
-    // see https://github.com/phetsims/calculus-grapher/issues/270.
     this.chartRectangle.cursor = 'pointer';
+    this.chartRectangle.setInputEnabledProperty( this.curveLayerVisibleProperty ); // see https://github.com/phetsims/calculus-grapher/issues/270
     this.chartRectangle.addInputListener( new DragListener( {
       dragBoundsProperty: new Property( new Bounds2( 0, 0, this.chartTransform.viewWidth, this.chartTransform.viewHeight ) ),
       applyOffset: false,
       start: ( event, listener ) => {
-        if ( this.curveLayerVisibleProperty.value ) {
 
-          // Save the current values of the Points for the next undoToLastSave call.
-          // This must be called once at the start of dragging (and not on each micro drag-position change).
-          interactiveCurveNodeProperty.value.transformedCurve.saveCurrentPoints();
+        // Save the current values of the Points for the next undoToLastSave call.
+        // This must be called once at the start of dragging (and not on each micro drag-position change).
+        interactiveCurveNodeProperty.value.transformedCurve.saveCurrentPoints();
 
-          // Set the previous last positions to null, since it is a new drag.
-          antepenultimatePosition = null;
-          penultimatePosition = null;
-          updateCurve( listener );
-        }
+        // Set the previous last positions to null, since it is a new drag.
+        antepenultimatePosition = null;
+        penultimatePosition = null;
+        updateCurve( listener );
       },
-      drag: ( event, listener ) => {
-        if ( this.curveLayerVisibleProperty.value ) {
-          updateCurve( listener );
-        }
-      },
+      drag: ( event, listener ) => updateCurve( listener ),
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
   }
