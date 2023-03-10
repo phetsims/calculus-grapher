@@ -9,10 +9,10 @@
  *   - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
  *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
  *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
- *
  *   - Saving the curve
  *   - Implementing smoothing, undoing, and other interactions.
  *   - Resetting all the points of the curve
+ *
  *  TransformedCurve is created at the start and persists for the lifetime of the simulation.
  *
  * @author Martin Veillette
