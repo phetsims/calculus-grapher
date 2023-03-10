@@ -22,8 +22,6 @@ There are a number of query parameters for internal use.
 - `maxTilt` sets the maximum tilting angle (in tilt mode) of curves relative to the horizontal. The default value is 45.
 - `edgeSlopeFactor` sets the width of the rounded corner in pedestal mode (continuous trapezoidal-shaped curve with
   rounded corners). A larger value creates a wider edge.
-- `angleMismatchThreshold` sets the maximum difference between the angle of the slope of the left and right secant lines of a Point on a curve for it to be considered differentiable. The default value is 12.
-- `slopeThreshold` sets the maximum slope of a Point on a curve for it to be considered differentiable. The default value is 25 * Math.PI / 180.
 - `presetFunctions` allows a user to iterate through a set of predetermined functions with the left and right arrow keys. The default value is false.
 - `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
 - `cuspPoints` shows all the cusp points as circles in a scatter plot. The default value is false.

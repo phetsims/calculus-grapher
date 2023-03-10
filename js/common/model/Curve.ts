@@ -36,8 +36,6 @@ import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 // Constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const NUMBER_OF_POINTS = CalculusGrapherQueryParameters.numberOfPoints;
-const ANGLE_MISMATCH_THRESHOLD = CalculusGrapherQueryParameters.angleMismatchThreshold;
-const SLOPE_THRESHOLD = CalculusGrapherQueryParameters.slopeThreshold;
 
 type SelfOptions = {
 
@@ -171,63 +169,6 @@ export default class Curve extends PhetioObject {
 
     // Clamp the index to a point inside our range.
     return Utils.clamp( index, 0, this.points.length - 1 );
-  }
-
-  protected assignType(): void {
-
-
-    for ( let i = 0; i < this.points.length; i++ ) {
-
-      // Loop through each trio of adjacent Points of the curve.
-      const point = this.points[ i ];
-      const previousPoint = i > 0 ? this.points[ i - 1 ] : null;
-      const nextPoint = i < this.points.length ? this.points[ i + 1 ] : null;
-
-
-      let leftSideDifference: null | number = null;
-      let rightSideDifference: null | number = null;
-
-      let leftSlope: null | number = null;
-      let rightSlope: null | number = null;
-
-      // Compute the leftDifference and rightDifference.
-      if ( previousPoint && previousPoint.isFinite ) {
-        leftSideDifference = ( point.y - previousPoint.y );
-        assert && assert( Number.isFinite( leftSideDifference ), 'non finite left side difference' );
-        leftSlope = leftSideDifference / ( point.x - previousPoint.x );
-        assert && assert( Number.isFinite( leftSlope ), 'non finite slope' );
-      }
-
-      if ( nextPoint && nextPoint.isFinite ) {
-        rightSideDifference = ( nextPoint.y - point.y );
-        assert && assert( Number.isFinite( rightSideDifference ), 'non finite right side difference' );
-        rightSlope = rightSideDifference / ( nextPoint.x - point.x );
-        assert && assert( Number.isFinite( rightSlope ), 'non finite slope' );
-      }
-
-      if ( typeof leftSideDifference === 'number' && typeof rightSideDifference === 'number' &&
-           Number.isFinite( leftSideDifference ) && Number.isFinite( rightSideDifference ) &&
-           typeof leftSlope === 'number' && typeof rightSlope === 'number' &&
-           Number.isFinite( leftSlope ) && Number.isFinite( rightSlope ) ) {
-
-        // find max jump
-        const jump = Math.max( Math.abs( leftSideDifference ), Math.abs( rightSideDifference ) );
-        const maxSlope = jump / this.deltaX;
-
-        // find difference in angle of slopes
-        const K = Math.abs( ( Math.atan( leftSlope ) - Math.atan( rightSlope ) ) );
-
-        if ( maxSlope >= SLOPE_THRESHOLD ) {
-          point.pointType = 'discontinuous';
-        }
-        else if ( K >= ANGLE_MISMATCH_THRESHOLD ) {
-          point.pointType = 'cusp';
-        }
-        else {
-          point.pointType = 'smooth';
-        }
-      }
-    }
   }
 }
 

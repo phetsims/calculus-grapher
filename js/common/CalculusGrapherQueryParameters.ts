@@ -125,28 +125,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     defaultValue: 3
   },
 
-  /**
-   * The maximum difference between the angle (in radians) of the left and right secant lines of a Point on a curve for it to be
-   * considered differentiable. Otherwise, the point will be labeled a cusp.
-   * See https://github.com/phetsims/calculus-grapher/issues/28
-   */
-  angleMismatchThreshold: {
-    type: 'number',
-    isValidValue: value => value > 0,
-    defaultValue: 25 * Math.PI / 180
-  },
-
-  /**
-   * The maximum slope at a Point on a curve for it to be considered differentiable.
-   * Beyond this value, the point will be considered discontinuous
-   * See https://github.com/phetsims/calculus-grapher/issues/28
-   */
-  slopeThreshold: {
-    type: 'number',
-    isValidValue: value => value > 0,
-    defaultValue: 200
-  },
-
   // Cycle through preset functions using the left/right arrow keys.
   presetFunctions: {
     type: 'boolean',

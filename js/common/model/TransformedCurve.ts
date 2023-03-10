@@ -281,9 +281,6 @@ export default class TransformedCurve extends Curve {
       this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
     }
 
-    // Assign the appropriate types to all points
-    this.assignType();
-
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
