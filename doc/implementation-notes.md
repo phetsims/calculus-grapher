@@ -39,11 +39,39 @@ There are a number of query parameters that are made public.
 - `hasShowOriginalCurveCheckbox` whether the 'Show f(x)' checkbox will be shown when in 'predict' mode.
 The default value is true. Note the visibility of the checkbox is contingent on the status of 'predict' being true.
 
+### Hierarchy from Common Model
+
+The four-screen simulation is based almost solely from the common model trunk. Individual screens are typically customized by passing appropriate options fields to the common trunk. As a result, it is important for future maintainers to familiarize themselves with the common model of the simulation. Below we provide an overview of  all the common class model and their relationships.
+
+CalculusGrapherModel - The main entry point of the model
+
+GraphType - Types for identifying the types of graphs available, and sets of those graphs.
+GraphSet - GraphSet is an ordered set of GraphType
+
+CurveManipulationMode - Enumeration of the possible 'modes' of manipulating OriginalCurve, such as Parabola, Triangle, etc.
+CurveManipulationProperties - Track the Curve Width and the Curve Mode
+CurvePoint - A point tracking the x, y and pointType of a curve. CurvePoint are never disposed but merely mutated.
+Curve - A collection of CurvePoints. Intended to be sub-classed
+- TransformedCurve - A Curve that can be manipulated by user transformation. Extends Curve.
+- IntegralCurve - The integral of a Curve. Extends Curve.
+- DerivativeCurve - The derivative of a Curve. Extends Curve.
+
+AncillaryTool - A model base class associated with an x value on the graph. Intended to be sub-classed
+- AreaUnderCurveScrubber - Model for the scrubber 'AreaUnderCurve'.  Extends AncillaryTool.
+- TangentScrubber - Model for the scrubber 'Tangent'- Extends AncillaryTool.
+- ReferenceLine - Model for a vertical Line. Extends AncillaryTool
+- LabeledAncillaryTool - A model base class for a labelled ancillary tool. Extends AncillaryTool
+   -LabeledLine - A model for a labeled vertical line. Extends LabeledAncillaryTool
+   -LabeledPoint - A model for a labeled point.  Extends LabeledAncillaryTool
+
+PresetFunctions - Include a set of mathematical functions for Curves - used for debug purposes.
+
+CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferences dialog.
+
 ### Curve Hierarchy
 
 `Curve` is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides
-functionality that is common to all types of curves, which are 'integral', 'original', and 'derivative' curves, and is
-intended to be sub-classed for type-specific features.
+functionality that is common to all types of curves, which are 'integral', 'original', and 'derivative' curves, and is intended to be sub-classed for type-specific features.
 
 Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
