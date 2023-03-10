@@ -125,12 +125,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     defaultValue: 3
   },
 
-  // Cycle through preset functions using the left/right arrow keys.
-  presetFunctions: {
-    type: 'boolean',
-    defaultValue: false
-  },
-
   // Shows all the curve points as circles in a scatter plot.
   allPoints: {
     type: 'boolean',

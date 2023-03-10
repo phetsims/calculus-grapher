@@ -26,7 +26,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import { MathFunction, PresetFunction } from './PresetFunctions.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js';
@@ -37,6 +36,8 @@ const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDevia
 const MAX_TILT = CalculusGrapherQueryParameters.maxTilt;
 const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
+
+type MathFunction = ( x: number ) => number;
 
 type SelfOptions = EmptySelfOptions;
 
@@ -266,23 +267,6 @@ export default class TransformedCurve extends Curve {
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
     }
-  }
-
-  /**
-   * Applies a preset function.
-   */
-  public applyPresetFunction( presetFunction: PresetFunction ): void {
-
-    if ( presetFunction.xPositions ) {
-      const simplePoints = presetFunction.xPositions.map( x => new Vector2( x, presetFunction.mathFunction( x ) ) );
-      this.applyFromSimplePoints( simplePoints );
-    }
-    else {
-      this.points.forEach( point => { point.y = presetFunction.mathFunction( point.x );} );
-    }
-
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
   }
 
   /**
@@ -712,27 +696,6 @@ export default class TransformedCurve extends Curve {
     } );
   }
 
-  /**
-   * Sets the curve based on a linear interpolation from an array of Vector2 coordinates.
-   */
-  private applyFromSimplePoints( simplePoints: Vector2[] ): void {
-
-    // Assigns simplePoints to the curve point
-    simplePoints.forEach( simplePoint => {
-
-      // set position of the two outside points
-      this.getClosestPointAt( simplePoint.x ).y = simplePoint.y;
-    } );
-
-    // Assigns intermediate curve points by iterating over a pair of simple points
-    for ( let i = 1; i < simplePoints.length; i++ ) {
-      const p1 = simplePoints[ i - 1 ];
-      const p2 = simplePoints[ i ];
-
-      // An array of simple points that interpolates between p1 and p2
-      this.interpolate( p1.x, p1.y, p2.x, p2.y );
-    }
-  }
 }
 
 calculusGrapher.register( 'TransformedCurve', TransformedCurve );
