@@ -131,10 +131,6 @@ export default class OriginalGraphNode extends GraphNode {
     const originalCurveNode = this.curveNode as TransformedCurveNode;
     assert && assert( originalCurveNode instanceof TransformedCurveNode ); // eslint-disable-line no-simple-type-checking-assertions
 
-    // Allow PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity.
-    // No not instrument. See https://github.com/phetsims/calculus-grapher/issues/240
-    this.inputEnabledProperty = DerivedProperty.or( [ predictEnabledProperty, originalCurveNode.inputEnabledProperty ] );
-
     this.showOriginalCurveProperty = showOriginalCurveProperty;
 
     // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
@@ -218,7 +214,6 @@ export default class OriginalGraphNode extends GraphNode {
     // the user to modify a curve by doing a 'pointer down' anywhere in the chartRectangle.
     // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/74.
     this.chartRectangle.cursor = 'pointer';
-    this.chartRectangle.setInputEnabledProperty( this.curveLayerVisibleProperty ); // see https://github.com/phetsims/calculus-grapher/issues/270
     this.chartRectangle.addInputListener( new DragListener( {
       dragBoundsProperty: new Property( new Bounds2( 0, 0, this.chartTransform.viewWidth, this.chartTransform.viewHeight ) ),
       applyOffset: false,
@@ -236,6 +231,16 @@ export default class OriginalGraphNode extends GraphNode {
       drag: ( event, listener ) => updateCurve( listener ),
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
+
+    // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
+    // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
+    // See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
+    // Do not instrument.
+    this.chartRectangle.setInputEnabledProperty( new DerivedProperty(
+      [ originalCurveNode.inputEnabledProperty, predictEnabledProperty, this.curveLayerVisibleProperty ],
+      ( originalCurveNodeInputEnabled, predictEnabled, curveLayerVisible ) =>
+        ( originalCurveNodeInputEnabled || predictEnabled ) && curveLayerVisible
+    ) );
   }
 
   public override reset(): void {
