@@ -54,7 +54,7 @@ export type CurveOptions = SelfOptions & PhetioObjectOptions;
 export default class Curve extends PhetioObject {
 
   // The collection of points that describe the curve. This is an array of CurvePoint instances that are typically
-  // mutated in place, so that we have acceptable performance. If Curve was instantiated with positionPropertyReadOnly:true,
+  // mutated in place, so that we have acceptable performance. If Curve was instantiated with pointsPropertyReadOnly:true,
   // then it is possible to set pointsProperty via PhET-iO.
   private readonly pointsProperty: Property<CurvePoint[]>;
 
@@ -122,7 +122,7 @@ export default class Curve extends PhetioObject {
       }
     } );
 
-    // For Curve instances created with positionPropertyReadOnly:true, pointsProperty may be set via PhET-iO.
+    // For Curve instances created with pointsPropertyReadOnly:true, pointsProperty may be set via PhET-iO.
     // If that happens, notify listeners.
     this.pointsProperty.link( ( newPoints, oldPoints ) => {
       if ( newPoints !== oldPoints ) {
