@@ -24,7 +24,6 @@ import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import GraphType from '../model/GraphType.js';
-import Curve from '../model/Curve.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import LabeledLinesNode from './LabeledLinesNode.js';
 import GraphSet from '../model/GraphSet.js';
@@ -78,20 +77,8 @@ export default class GraphsNode extends Node {
 
     super();
 
-    // The (view) height of the graph based on the number of visible graphs.
+    // The view height of the graph's chartRectangle, based on the number of visible graphs.
     this.chartRectangleHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
-
-    // Creates a GraphNode instance, and instruments it if its GraphType is included in graphSets.
-    const createGraphNode = ( graphType: GraphType, curve: Curve ) => {
-      assert && assert( graphType !== GraphType.ORIGINAL, 'does not support GraphType.ORIGINAL' );
-
-      return new GraphNode( graphType, curve, model.gridVisibleProperty, {
-        chartRectangleHeight: this.chartRectangleHeight,
-        tandem: GraphSet.includes( model.graphSets, graphType ) ?
-                options.tandem.createTandem( `${graphType.tandemNamePrefix}GraphNode` ) :
-                Tandem.OPT_OUT
-      } );
-    };
 
     // OriginalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, {
@@ -103,15 +90,26 @@ export default class GraphsNode extends Node {
 
     // Conditionally create the GraphNodes for the derived curves, if they are in model.graphSets.
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
-      this.integralGraphNode = createGraphNode( GraphType.INTEGRAL, model.integralCurve );
+      this.integralGraphNode = new GraphNode( GraphType.INTEGRAL, model.integralCurve, model.gridVisibleProperty, {
+        chartRectangleHeight: this.chartRectangleHeight,
+        tandem: options.tandem.createTandem( 'integralGraphNode' )
+      } );
       this.graphNodes.push( this.integralGraphNode );
     }
+
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
-      this.derivativeGraphNode = createGraphNode( GraphType.DERIVATIVE, model.derivativeCurve );
+      this.derivativeGraphNode = new GraphNode( GraphType.DERIVATIVE, model.derivativeCurve, model.gridVisibleProperty, {
+        chartRectangleHeight: this.chartRectangleHeight,
+        tandem: options.tandem.createTandem( 'derivativeGraphNode' )
+      } );
       this.graphNodes.push( this.derivativeGraphNode );
     }
+
     if ( GraphSet.includes( model.graphSets, GraphType.SECOND_DERIVATIVE ) ) {
-      this.secondDerivativeGraphNode = createGraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve );
+      this.secondDerivativeGraphNode = new GraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve, model.gridVisibleProperty, {
+        chartRectangleHeight: this.chartRectangleHeight,
+        tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
+      } );
       this.graphNodes.push( this.secondDerivativeGraphNode );
     }
 
