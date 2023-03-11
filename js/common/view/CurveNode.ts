@@ -28,10 +28,10 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
@@ -45,9 +45,8 @@ type SelfOptions = {
   // fill for discontinuous points, which should be the same as the chart or panel background
   discontinuousPointsFill: TPaint;
 
-  // options propagated to LinePlots
-  continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
-  discontinuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
+  // options propagated to continuousLinePlot
+  continuousLinePlotOptions?: PickOptional<LinePlot, 'lineWidth' | 'lineDash'>;
 
   // boundsMethod to be used with bamboo plots. Override this where performance optimization is needed.
   // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/226
@@ -82,23 +81,11 @@ export default class CurveNode extends Node {
 
   public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions: CurveNodeOptions ) {
 
-    const options = optionize<CurveNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<CurveNodeOptions, StrictOmit<SelfOptions, 'continuousLinePlotOptions'>, NodeOptions>()( {
 
       // SelfOptions
-      continuousLinePlotOptions: {
-        lineWidth: 2
-      },
-
-      discontinuousLinePlotOptions: {
-        lineWidth: 2,
-        lineDash: [ 2, 2 ],
-        visibleProperty: new DerivedProperty( [ CalculusGrapherPreferences.connectDiscontinuitiesProperty ],
-          connectDiscontinuities => connectDiscontinuities === 'dashedLine' )
-      },
-
       plotBoundsMethod: 'accurate',
       plotBounds: null
-
     }, providedOptions );
 
     super( options );
@@ -108,15 +95,19 @@ export default class CurveNode extends Node {
     this.continuousLinePlot = new LinePlot( chartTransform, this.getContinuousLinePlotDataSet(),
       combineOptions<LinePlotOptions>( {
         stroke: options.stroke,
+        lineWidth: 2,
         boundsMethod: options.plotBoundsMethod
       }, options.continuousLinePlotOptions ) );
     this.addChild( this.continuousLinePlot );
 
-    this.discontinuousLinePlot = new LinePlot( chartTransform, this.getDiscontinuousLinePlotDataSet(),
-      combineOptions<LinePlotOptions>( {
-        stroke: options.stroke,
-        boundsMethod: options.plotBoundsMethod
-      }, options.discontinuousLinePlotOptions ) );
+    this.discontinuousLinePlot = new LinePlot( chartTransform, this.getDiscontinuousLinePlotDataSet(), {
+      stroke: options.stroke,
+      lineWidth: 2,
+      lineDash: [ 2, 2 ],
+      boundsMethod: options.plotBoundsMethod,
+      visibleProperty: new DerivedProperty( [ CalculusGrapherPreferences.connectDiscontinuitiesProperty ],
+        connectDiscontinuities => connectDiscontinuities === 'dashedLine' )
+    } );
     this.addChild( this.discontinuousLinePlot );
 
     this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(), {
