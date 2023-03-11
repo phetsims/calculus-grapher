@@ -111,23 +111,26 @@ export default class Curve extends PhetioObject {
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
+    // Use this to short-circuit reentrant behavior where curveChangedEmitter and pointsProperty listeners (below)
+    // call each other.
+    let notifyListeners = true;
+
+    // For interactive and derived Curves, we mutate CurvePoints. The value of pointsProperty therefore does not change
+    // unless set via PhET-iO for a Curve instantiated with pointsPropertyReadOnly:false. So this is needed to notify
+    // Studio that pointsProperty has effectively changed.
+    this.curveChangedEmitter.addListener( () => {
+      if ( notifyListeners ) {
+        this.pointsProperty.notifyListenersStatic();
+      }
+    } );
+
     // For Curve instances created with pointsPropertyReadOnly:false, pointsProperty may be set via PhET-iO.
-    // If that happens, notify listeners.
+    // If that happens, notify listeners. And guard against pointsProperty's listener and curveChangedEmitter
+    // calling each other.
     if ( !options.pointsPropertyReadOnly ) {
-
-      // Use this to short-circuit reentrant behavior where curveChangedEmitter and pointsProperty listeners (below)
-      // call each other.
-      let notifyListeners = true;
-
-      // This is needed to notify Studio that pointsProperty has effectively changed.
-      this.curveChangedEmitter.addListener( () => {
-        if ( notifyListeners ) {
-          this.pointsProperty.notifyListenersStatic();
-        }
-      } );
-
       this.pointsProperty.link( ( newPoints, oldPoints ) => {
         if ( newPoints !== oldPoints ) {
+          console.log( `pointProperty ${Date.now()}` );
           notifyListeners = false;
           this.curveChangedEmitter.emit();
           notifyListeners = true;
