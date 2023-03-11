@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * AreaUnderCurveScrubber is the model element for the area-under-curve scrubber.
+ * AreaUnderCurveScrubber is the model element for the area-under-curve scrubber. It can be moved horizontally,
+ * and the accumulated area (or 'net signed area') is the area between x=0 and the scrubber's x position.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TangentScrubber is the model element for the tangent scrubber.
+ * TangentScrubber is the model element for the tangent scrubber. It can be moved horizontally to position the
+ * tangent line on the original curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
