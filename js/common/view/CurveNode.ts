@@ -40,10 +40,10 @@ type ScatterPlotDataSet = ( Vector2 )[];
 
 type SelfOptions = {
 
-  // Color used to stroke the curve path.
+  // Fill for the curve path
   stroke: TColor;
 
-  // fill for discontinuous points, which should be the same as the chart or panel background
+  // Fill for discontinuous points, which is typically the same as the chart or panel background
   discontinuousPointsFill: TPaint;
 
   // options propagated to continuousLinePlot
