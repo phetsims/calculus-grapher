@@ -104,15 +104,13 @@ export default class OriginalGraphNode extends GraphNode {
     // Interactive f(x) 'original' curve
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
     this.originalCurveNode = new TransformedCurveNode( originalCurve, curveManipulationProperties, this.chartTransform, {
-      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       stroke: graphType.strokeProperty,
-      discontinuousPointsScatterPlotOptions: {
-        fill: options.chartRectangleOptions.fill!
-      },
+      discontinuousPointsFill: options.chartRectangleOptions.fill!,
       continuousLinePlotOptions: {
         lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
       },
+      plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
+      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
       visibleProperty: new DerivedProperty(
         [ predictEnabledProperty, this.showOriginalCurveProperty ],
@@ -131,11 +129,12 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Interactive 'Predict' curve
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
+      stroke: CalculusGrapherColors.predictCurveStrokeProperty,
+      discontinuousPointsFill: options.chartRectangleOptions.fill!,
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
       plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
-      stroke: CalculusGrapherColors.predictCurveStrokeProperty,
       tandem: options.tandem.createTandem( 'predictCurveNode' )
     } );
     this.curveLayer.addChild( this.predictCurveNode );

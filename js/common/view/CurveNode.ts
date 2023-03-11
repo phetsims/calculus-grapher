@@ -18,11 +18,11 @@
  */
 
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import { Color, Node, NodeOptions, PathBoundsMethod, ProfileColorProperty, TColor } from '../../../../scenery/js/imports.js';
+import { Color, Node, NodeOptions, PathBoundsMethod, ProfileColorProperty, TColor, TPaint } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from '../model/Curve.js';
 import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
-import ScatterPlot, { ScatterPlotOptions } from '../../../../bamboo/js/ScatterPlot.js';
+import ScatterPlot from '../../../../bamboo/js/ScatterPlot.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -42,12 +42,12 @@ type SelfOptions = {
   // Color used to stroke the curve path.
   stroke: TColor;
 
+  // fill for discontinuous points, which should be the same as the chart or panel background
+  discontinuousPointsFill: TPaint;
+
   // options propagated to LinePlots
   continuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
   discontinuousLinePlotOptions?: StrictOmit<LinePlotOptions, 'stroke'>;
-
-  // options propagated to the ScatterPlot for point of discontinuity
-  discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
 
   // boundsMethod to be used with bamboo plots. Override this where performance optimization is needed.
   // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/226
@@ -96,12 +96,6 @@ export default class CurveNode extends Node {
           connectDiscontinuities => connectDiscontinuities === 'dashedLine' )
       },
 
-      discontinuousPointsScatterPlotOptions: {
-        fill: 'white', //TODO https://github.com/phetsims/calculus-grapher/issues/256 use ChartRectangle.fill
-        lineWidth: 2,
-        radius: 2.5
-      },
-
       plotBoundsMethod: 'accurate',
       plotBounds: null
 
@@ -125,11 +119,13 @@ export default class CurveNode extends Node {
       }, options.discontinuousLinePlotOptions ) );
     this.addChild( this.discontinuousLinePlot );
 
-    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(),
-      combineOptions<ScatterPlotOptions>( {
-        stroke: options.stroke,
-        boundsMethod: options.plotBoundsMethod
-      }, options.discontinuousPointsScatterPlotOptions ) );
+    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(), {
+      radius: 2.5,
+      lineWidth: 2,
+      fill: options.discontinuousPointsFill,
+      stroke: options.stroke,
+      boundsMethod: options.plotBoundsMethod
+    } );
     this.addChild( this.discontinuousPointsScatterPlot );
 
     assert && assert( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,

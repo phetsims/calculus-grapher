@@ -15,6 +15,7 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode from './CurveNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 const CHART_TRANSFORM_OPTIONS = {
   viewWidth: 70,
@@ -86,6 +87,7 @@ export default class CurveManipulationIconNode extends Node {
     // Create the solid curve node.
     const solidCurveNode = new CurveNode( solidCurve, chartTransform, {
       stroke: stroke,
+      discontinuousPointsFill: CalculusGrapherColors.panelFillProperty,
       tandem: Tandem.OPT_OUT // CurveNodes for icons are not instrumented
     } );
 
@@ -95,6 +97,7 @@ export default class CurveManipulationIconNode extends Node {
     if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
       const dashedCurveNode = new CurveNode( dashedCurve, chartTransform, {
         stroke: stroke,
+        discontinuousPointsFill: CalculusGrapherColors.panelFillProperty,
         continuousLinePlotOptions: {
           lineDash: [ 4.5, 2 ],
           lineWidth: 1

@@ -17,6 +17,7 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import { Node, TColor } from '../../../../scenery/js/imports.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 export default class CurveManipulationDisplayNode extends Node {
 
@@ -44,6 +45,7 @@ export default class CurveManipulationDisplayNode extends Node {
       renderer: 'canvas', // address aliasing on iPad, see https://github.com/phetsims/calculus-grapher/issues/242
       clipArea: chartRectangle.getShape(),
       stroke: curveManipulationStroke,
+      discontinuousPointsFill: CalculusGrapherColors.panelFillProperty,
       tandem: tandem.createTandem( 'curveNode' )
     } );
 

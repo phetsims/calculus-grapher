@@ -181,12 +181,10 @@ export default class GraphNode extends Node {
     // Create a non-interactive Node that plots the curve.
     if ( options.hasDefaultCurveNode ) {
       this.curveNode = new CurveNode( curve, this.chartTransform, {
+        stroke: graphType.strokeProperty,
+        discontinuousPointsFill: options.chartRectangleOptions.fill!,
         plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
         plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
-        stroke: graphType.strokeProperty,
-        discontinuousPointsScatterPlotOptions: {
-          fill: options.chartRectangleOptions.fill!
-        },
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       } );
     }
