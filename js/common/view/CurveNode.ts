@@ -49,10 +49,6 @@ type SelfOptions = {
   // options propagated to the ScatterPlot for point of discontinuity
   discontinuousPointsScatterPlotOptions?: StrictOmit<ScatterPlotOptions, 'stroke'>;
 
-  // options propagated to the ScatterPlot for debugging
-  cuspsScatterPlotOptions?: ScatterPlotOptions;
-  allPointsScatterPlotOptions?: ScatterPlotOptions;
-
   // boundsMethod to be used with bamboo plots. Override this where performance optimization is needed.
   // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/226
   plotBoundsMethod?: PathBoundsMethod;
@@ -106,19 +102,6 @@ export default class CurveNode extends Node {
         radius: 2.5
       },
 
-      cuspsScatterPlotOptions: {
-        fill: Color.BLACK,
-        stroke: Color.GREEN,
-        lineWidth: 1,
-        radius: 2
-      },
-
-      allPointsScatterPlotOptions: {
-        fill: Color.WHITE,
-        stroke: Color.BLACK,
-        radius: 1
-      },
-
       plotBoundsMethod: 'accurate',
       plotBounds: null
 
@@ -159,13 +142,22 @@ export default class CurveNode extends Node {
 
     // For debug purposes
     if ( CalculusGrapherQueryParameters.allPoints ) {
-      this.allPointsScatterPlot = new ScatterPlot( chartTransform, this.getAllPointsScatterPlotDataSet(), options.allPointsScatterPlotOptions );
+      this.allPointsScatterPlot = new ScatterPlot( chartTransform, this.getAllPointsScatterPlotDataSet(), {
+        fill: Color.WHITE,
+        stroke: Color.BLACK,
+        radius: 1
+      } );
       this.addChild( this.allPointsScatterPlot );
     }
 
     // For debug purposes
     if ( CalculusGrapherQueryParameters.cuspPoints ) {
-      this.cuspsScatterPlot = new ScatterPlot( chartTransform, this.getCuspsScatterPlotDataSet(), options.cuspsScatterPlotOptions );
+      this.cuspsScatterPlot = new ScatterPlot( chartTransform, this.getCuspsScatterPlotDataSet(), {
+        fill: Color.BLACK,
+        stroke: Color.GREEN,
+        lineWidth: 1,
+        radius: 2
+      } );
       this.addChild( this.cuspsScatterPlot );
     }
 
