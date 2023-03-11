@@ -26,7 +26,7 @@ const CHART_TRANSFORM_OPTIONS = {
 const TRANSFORMED_CURVE_OPTIONS = {
   numberOfPoints: 70,
   xRange: CalculusGrapherConstants.CURVE_X_RANGE,
-  tandem: Tandem.OPT_OUT
+  tandem: Tandem.OPT_OUT // curves for icons are not instrumented
 };
 
 export default class CurveManipulationIconNode extends Node {
@@ -86,7 +86,7 @@ export default class CurveManipulationIconNode extends Node {
     // Create the solid curve node.
     const solidCurveNode = new CurveNode( solidCurve, chartTransform, {
       stroke: stroke,
-      tandem: Tandem.OPT_OUT
+      tandem: Tandem.OPT_OUT // CurveNodes for icons are not instrumented
     } );
 
     const children = [ chartRectangle, solidCurveNode ];
@@ -99,7 +99,7 @@ export default class CurveManipulationIconNode extends Node {
           lineDash: [ 4.5, 2 ],
           lineWidth: 1
         },
-        tandem: Tandem.OPT_OUT
+        tandem: Tandem.OPT_OUT // CurveNodes for icons are not instrumented
       } );
       children.push( dashedCurveNode );
     }

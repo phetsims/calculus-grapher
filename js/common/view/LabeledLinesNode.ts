@@ -38,8 +38,10 @@ export default class LabeledLinesNode extends Node {
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
-    // LabeledLineNode instances.
-    const labeledLineNodes = labeledLines.map( labeledLine => new LabeledLineNode( labeledLine, chartTransform, options.labeledLineOptions ) );
+    // LabeledLineNode instances are not instrumented. The entire PhET-iO API lives in the model.
+    // See model.tools.labeledLines and https://github.com/phetsims/calculus-grapher/issues/198
+    const labeledLineNodes = labeledLines.map( labeledLine =>
+      new LabeledLineNode( labeledLine, chartTransform, options.labeledLineOptions ) );
 
     options.children = labeledLineNodes;
 

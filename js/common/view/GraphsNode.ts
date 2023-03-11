@@ -117,6 +117,8 @@ export default class GraphsNode extends Node {
 
     this.graphSetNode = new Node();
 
+    // graphSetsAnimator is only PhET-iO instrumented if we have more than one GraphSet. If there is only one
+    // graphSet, then it exists to put that GraphSet in its correct position, and then it never changes.
     this.graphSetsAnimator = new GraphSetsAnimator(
       ( model.graphSets.length > 1 ) ? options.tandem.createTandem( 'graphSetsAnimator' ) : Tandem.OPT_OUT );
 

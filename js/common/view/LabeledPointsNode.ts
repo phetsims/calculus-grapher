@@ -29,7 +29,10 @@ export default class LabeledPointsNode extends Node {
     // LabeledPointNode instances
     const labeledPointNodes = labeledPoints.map( labeledPoint =>
       new LabeledPointNode( labeledPoint, chartTransform, predictEnabledProperty, curveLayerVisibleProperty, {
-        tandem: Tandem.OPT_OUT // see https://github.com/phetsims/calculus-grapher/issues/198
+
+        // LabeledPointNode instances are not instrumented. The entire PhET-iO API lives in the model.
+        // See model.tools.labeledPoints and https://github.com/phetsims/calculus-grapher/issues/198
+        tandem: Tandem.OPT_OUT
       } ) );
 
     super( {
