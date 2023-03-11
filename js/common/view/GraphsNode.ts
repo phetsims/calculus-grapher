@@ -78,7 +78,7 @@ export default class GraphsNode extends Node {
     super();
 
     // The view height of the graph's chartRectangle, based on the number of visible graphs.
-    this.chartRectangleHeight = CalculusGrapherConstants.SINGLE_GRAPH_HEIGHT / model.graphSetProperty.value.length;
+    this.chartRectangleHeight = CalculusGrapherConstants.SINGLE_CHART_RECTANGLE_HEIGHT / model.graphSetProperty.value.length;
 
     // OriginalGraphNode is always instrumented, because it should always be present.
     this.originalGraphNode = new OriginalGraphNode( model, {
