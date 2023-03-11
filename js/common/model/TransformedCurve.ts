@@ -36,6 +36,11 @@ const STANDARD_DEVIATION = CalculusGrapherQueryParameters.smoothingStandardDevia
 const MAX_TILT = CalculusGrapherQueryParameters.maxTilt;
 const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
+const UPPER_WEIGHT = 0.999; // a very large cutoff for weights
+const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contributions.
+
+assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
+assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
 
 type MathFunction = ( x: number ) => number;
 
@@ -222,8 +227,7 @@ export default class TransformedCurve extends Curve {
         P = gaussianWeight( point.x, closestPoint.x + plateauWidth / 2 );
       }
 
-      point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
-
+      this.updatePointValue( point, P, peakY );
       this.updatePointType( point, P );
 
     } );
@@ -281,8 +285,7 @@ export default class TransformedCurve extends Curve {
       // Determine the weight associated with the peak
       const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
 
-      point.y = P * peakY + ( 1 - P ) * point.lastSavedY;
-
+      this.updatePointValue( point, P, peakY );
       this.updatePointType( point, P );
     } );
   }
@@ -293,7 +296,22 @@ export default class TransformedCurve extends Curve {
    */
   private updatePointType( point: CurvePoint, weight: number ): void {
 
-    point.pointType = ( weight > 0.99 ) ? 'smooth' : point.lastSavedType;
+    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
+
+    // If the weight is very large, we have effectively replaced the previous values by the new function, which we know to be smooth.
+    point.pointType = ( weight > UPPER_WEIGHT ) ? 'smooth' : point.lastSavedType;
+  }
+
+  /**
+   * Update pointValue with appropriate weight, but if weight is very small leave as is.
+   * (see https://github.com/phetsims/calculus-grapher/issues/261)
+   */
+  private updatePointValue( point: CurvePoint, weight: number, peakY: number ): void {
+
+    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
+
+    // If the weight is very small, we are practically ignoring the new function. Let's explicitly replace it by the lastSavedY instead.
+    point.y = ( weight > LOWER_WEIGHT ) ? weight * peakY + ( 1 - weight ) * point.lastSavedY : point.lastSavedY;
   }
 
   private iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
