@@ -31,7 +31,7 @@ type CueingArrowsNodeOptions = SelfOptions & NodeTranslationOptions &
 
 export default class CueingArrowsNode extends VBox {
 
-  public constructor( providedOptions?: CueingArrowsNodeOptions ) {
+  public constructor( providedOptions: CueingArrowsNodeOptions ) {
 
     const upArrow = new ArrowNode( 0, 0, 0, -ARROW_LENGTH, ARROW_NODE_OPTIONS );
     const downArrow = new ArrowNode( 0, 0, 0, ARROW_LENGTH, ARROW_NODE_OPTIONS );

@@ -25,7 +25,7 @@ type CurveManipulationWidthSliderOptions = SelfOptions & PickRequired<HSliderOpt
 export default class CurveManipulationWidthSlider extends HSlider {
 
   public constructor( curveManipulationWidthProperty: Property<number>,
-                      providedOptions?: CurveManipulationWidthSliderOptions ) {
+                      providedOptions: CurveManipulationWidthSliderOptions ) {
 
     // an array of numbers corresponding to the positions of the ticks (in model coordinate)
     const tickValues = [ ...Array( NUMBER_OF_TICKS ) ].map( ( x, i ) =>

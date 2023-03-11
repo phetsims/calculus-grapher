@@ -26,7 +26,7 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       chartTransform: ChartTransform,
-                      providedOptions?: AreaUnderCurveScrubberNodeOptions ) {
+                      providedOptions: AreaUnderCurveScrubberNodeOptions ) {
 
     const options = optionize<AreaUnderCurveScrubberNodeOptions, SelfOptions, ScrubberNodeOptions>()( {
 

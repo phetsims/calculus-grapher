@@ -37,7 +37,7 @@ export default class AreaUnderCurvePlot extends Node {
                       curve: Curve,
                       chartTransform: ChartTransform,
                       xProperty: TReadOnlyProperty<number>,
-                      providedOptions?: AreaUnderCurvePlotOptions ) {
+                      providedOptions: AreaUnderCurvePlotOptions ) {
 
     const options = optionize<AreaUnderCurvePlotOptions, SelfOptions, NodeOptions>()( {
 

@@ -24,7 +24,7 @@ export default class TangentScrubberNode extends ScrubberNode {
 
   public constructor( tangentScrubber: TangentScrubber,
                       chartTransform: ChartTransform,
-                      providedOptions?: TangentScrubberNodeOptions ) {
+                      providedOptions: TangentScrubberNodeOptions ) {
 
     const options = optionize<TangentScrubberNodeOptions, SelfOptions, ScrubberNodeOptions>()( {
 

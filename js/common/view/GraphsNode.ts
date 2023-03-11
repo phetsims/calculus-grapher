@@ -33,12 +33,13 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CurvePoint from '../model/CurvePoint.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
 
 type SelfOptions = EmptySelfOptions;
 
-type GraphsNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
+type GraphsNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'> & PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphsNode extends Node {
 
@@ -67,7 +68,7 @@ export default class GraphsNode extends Node {
 
   private readonly graphSetsAnimator: GraphSetsAnimator;
 
-  public constructor( model: CalculusGrapherModel, providedOptions?: GraphsNodeOptions ) {
+  public constructor( model: CalculusGrapherModel, providedOptions: GraphsNodeOptions ) {
 
     const options = optionize<GraphsNodeOptions, SelfOptions, NodeOptions>()( {
 
