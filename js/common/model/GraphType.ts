@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Types for identifying the types of graphs available, and sets of those graphs.
+ * GraphType identifies the types of graphs available in this simulation.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
