@@ -118,15 +118,16 @@ export default class Curve extends PhetioObject {
     // For interactive and derived Curves, we mutate CurvePoints. The value of pointsProperty therefore does not change
     // unless set via PhET-iO for a Curve instantiated with pointsPropertyReadOnly:false. So this is needed to notify
     // Studio that pointsProperty has effectively changed.
+    // See https://github.com/phetsims/calculus-grapher/issues/90 and https://github.com/phetsims/calculus-grapher/issues/278
     this.curveChangedEmitter.addListener( () => {
       if ( notifyListeners ) {
         this.pointsProperty.notifyListenersStatic();
       }
     } );
 
-    // For Curve instances created with pointsPropertyReadOnly:false, pointsProperty may be set via PhET-iO.
-    // If that happens, notify listeners. And guard against pointsProperty's listener and curveChangedEmitter
-    // calling each other.
+    // For Curve instances created with pointsPropertyReadOnly:false, pointsProperty may be set via PhET-iO. If that
+    // happens, notify listeners. Guard against pointsProperty's listener and curveChangedEmitter calling each other.
+    // See https://github.com/phetsims/calculus-grapher/issues/90 and https://github.com/phetsims/calculus-grapher/issues/278
     if ( !options.pointsPropertyReadOnly ) {
       this.pointsProperty.link( ( newPoints, oldPoints ) => {
         if ( newPoints !== oldPoints ) {
