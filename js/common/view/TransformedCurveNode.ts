@@ -17,7 +17,6 @@
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
-import optionize from '../../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -40,9 +39,9 @@ export default class TransformedCurveNode extends CurveNode {
   public constructor( transformedCurve: TransformedCurve,
                       curveManipulationProperties: CurveManipulationProperties,
                       chartTransform: ChartTransform,
-                      providedOptions?: TransformedCurveNodeOptions ) {
+                      providedOptions: TransformedCurveNodeOptions ) {
 
-    const options = optionize<TransformedCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {}, providedOptions );
+    const options = providedOptions;
 
     super( transformedCurve, chartTransform, options );
 
