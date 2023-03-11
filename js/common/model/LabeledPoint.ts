@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * LabeledPoint is the model element for a labeled point on a curve.
+ * LabeledPoint is the model element for a labeled point on a curve. These elements can only be made visible
+ * via PhET-iO, or via the (developer) query parameter 'labeledPointsVisible'.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

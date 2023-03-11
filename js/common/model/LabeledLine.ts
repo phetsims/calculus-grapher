@@ -2,7 +2,8 @@
 
 /**
  * LabeledLine is the model element for a labeled line tool. This is tool consists of a vertical line with a label
- * positioned at the top of the line.
+ * positioned at the top of the line.  These elements can only be made visible via PhET-iO, or via the (developer)
+ * query parameter 'labeledLinesVisible'.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
