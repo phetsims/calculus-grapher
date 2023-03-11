@@ -18,7 +18,7 @@ import { Circle, CircleOptions, Node, PathOptions, TPaint } from '../../../../sc
 import calculusGrapher from '../../calculusGrapher.js';
 
 // These are specific to Calculus Grapher, and not appropriate if migrated to bamboo.
-const RADIUS = 10;
+const RADIUS = 2.5;
 const LINE_WIDTH = 2;
 
 type SelfOptions = PickOptional<CircleOptions, 'fill' | 'stroke'>;

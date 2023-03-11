@@ -32,6 +32,7 @@ import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import DiscontinuousPointsPlot from './DiscontinuousPointsPlot.js';
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
@@ -73,7 +74,7 @@ export default class CurveNode extends Node {
   private readonly discontinuousLinePlot: LinePlot;
 
   // Plots points at discontinuities
-  private readonly discontinuousPointsScatterPlot: ScatterPlot;
+  private readonly discontinuousPointsScatterPlot: DiscontinuousPointsPlot;
 
   // These plots are created conditionally for debugging. See ?allPoints and ?cuspPoints.
   private readonly allPointsScatterPlot?: ScatterPlot;
@@ -110,12 +111,9 @@ export default class CurveNode extends Node {
     } );
     this.addChild( this.discontinuousLinePlot );
 
-    this.discontinuousPointsScatterPlot = new ScatterPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(), {
-      radius: 2.5,
-      lineWidth: 2,
+    this.discontinuousPointsScatterPlot = new DiscontinuousPointsPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(), {
       fill: options.discontinuousPointsFill,
-      stroke: options.stroke,
-      boundsMethod: options.plotBoundsMethod
+      stroke: options.stroke
     } );
     this.addChild( this.discontinuousPointsScatterPlot );
 
