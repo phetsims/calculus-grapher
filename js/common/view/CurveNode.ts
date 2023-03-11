@@ -77,8 +77,8 @@ export default class CurveNode extends Node {
   private readonly discontinuousPointsPlot: DiscontinuousPointsPlot;
 
   // These plots are created conditionally for debugging. See ?allPoints and ?cuspPoints.
-  private readonly allPointsScatterPlot?: ScatterPlot;
-  private readonly cuspsScatterPlot?: ScatterPlot;
+  private readonly allPointsPlot?: ScatterPlot;
+  private readonly cuspPointsPlot?: ScatterPlot;
 
   public constructor( curve: Curve, chartTransform: ChartTransform, providedOptions: CurveNodeOptions ) {
 
@@ -127,25 +127,25 @@ export default class CurveNode extends Node {
       this.discontinuousPointsPlot.localBounds = options.plotBounds;
     }
 
-    // For debug purposes
+    // For debug purposes, draws all points used to approximate the curve.
     if ( CalculusGrapherQueryParameters.allPoints ) {
-      this.allPointsScatterPlot = new ScatterPlot( chartTransform, this.getAllPointsScatterPlotDataSet(), {
+      this.allPointsPlot = new ScatterPlot( chartTransform, this.getAllPointsScatterPlotDataSet(), {
         fill: Color.WHITE,
         stroke: Color.BLACK,
         radius: 1
       } );
-      this.addChild( this.allPointsScatterPlot );
+      this.addChild( this.allPointsPlot );
     }
 
-    // For debug purposes
+    // For debug purposes, draws cusp points.
     if ( CalculusGrapherQueryParameters.cuspPoints ) {
-      this.cuspsScatterPlot = new ScatterPlot( chartTransform, this.getCuspsScatterPlotDataSet(), {
+      this.cuspPointsPlot = new ScatterPlot( chartTransform, this.getCuspsScatterPlotDataSet(), {
         fill: Color.BLACK,
         stroke: Color.GREEN,
         lineWidth: 1,
         radius: 2
       } );
-      this.addChild( this.cuspsScatterPlot );
+      this.addChild( this.cuspPointsPlot );
     }
 
     curve.curveChangedEmitter.addListener( this.updateCurveNode.bind( this ) );
@@ -170,8 +170,8 @@ export default class CurveNode extends Node {
     this.discontinuousPointsPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
 
     // optional plots, for debugging
-    this.allPointsScatterPlot && this.allPointsScatterPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );
-    this.cuspsScatterPlot && this.cuspsScatterPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
+    this.allPointsPlot && this.allPointsPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );
+    this.cuspPointsPlot && this.cuspPointsPlot.setDataSet( this.getCuspsScatterPlotDataSet() );
   }
 
   // Gets a dataset for continuous portion of curve
