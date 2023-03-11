@@ -61,8 +61,6 @@ AncillaryTool - A model base class associated with an x value on the graph. Inte
    -LabeledLine - A model for a labeled vertical line. Extends LabeledAncillaryTool
    -LabeledPoint - A model for a labeled point.  Extends LabeledAncillaryTool
 
-PresetFunctions - Include a set of mathematical functions for Curves - used for debug purposes.
-
 CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferences dialog.
 
 ### Curve Hierarchy
