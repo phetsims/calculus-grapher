@@ -89,6 +89,9 @@ export default class CurveNode extends Node {
       plotBounds: null
     }, providedOptions );
 
+    assert && assert( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,
+      'plotBounds must be provided when plotBoundsMethod is none' );
+
     super( options );
 
     this.curve = curve;
@@ -117,8 +120,6 @@ export default class CurveNode extends Node {
     } );
     this.addChild( this.discontinuousPointsScatterPlot );
 
-    assert && assert( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,
-      'plotBounds must be provided when plotBoundsMethod is none' );
     if ( options.plotBounds ) {
       this.continuousLinePlot.localBounds = options.plotBounds;
       this.discontinuousLinePlot.localBounds = options.plotBounds;
