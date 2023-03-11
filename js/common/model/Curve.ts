@@ -115,10 +115,8 @@ export default class Curve extends PhetioObject {
     // call each other.
     let notifyListeners = true;
 
+    // This is needed to notify Studio that pointsProperty has effectively changed.
     this.curveChangedEmitter.addListener( () => {
-
-
-      // This is needed to notify Studio that pointsProperty has effectively changed.
       if ( notifyListeners ) {
         this.pointsProperty.notifyListenersStatic();
       }
