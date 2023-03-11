@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * The 'Integral Lab' screen.
+ * The 'Integral' screen.
  *
  * @author Brandon Li
  * @author Martin Veillette

@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * Base class for the top-level model of every screen in the 'Calculus Grapher' simulation.
+ * CalculusGrapherModel is the base class for the top-level model of every screen in the 'Calculus Grapher' simulation.
  *
  * @author Brandon Li
  * @author Martin Veillette
@@ -28,8 +28,6 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ReferenceLine from './ReferenceLine.js';
 import LabeledLine from './LabeledLine.js';
 import LabeledPoint from './LabeledPoint.js';
-import TangentScrubber from './TangentScrubber.js';
-import AreaUnderCurveScrubber from './AreaUnderCurveScrubber.js';
 import GraphSet from './GraphSet.js';
 import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
@@ -46,11 +44,11 @@ type SelfOptions = {
   // Identifies the curve manipulation modes that are supported by the screen associated with this model.
   curveManipulationModeChoices?: CurveManipulationMode[];
 
-  // Should the TangentScrubber be instrumented for PhET-iO?
-  phetioTangentScrubberInstrumented?: boolean;
+  // Should the model create a TangentScrubber?
+  hasTangentScrubber?: boolean;
 
-  // Should the AreaUnderCurveScrubber be instrumented for PhET-iO?
-  phetioAreaUnderCurveScrubberInstrumented?: boolean;
+  // Should the model create an AreaUnderCurveScrubber?
+  hasAreaUnderCurveScrubber?: boolean;
 };
 
 export type CalculusGrapherModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -88,10 +86,11 @@ export default class CalculusGrapherModel implements TModel {
 
   // Model elements for the various tools
   public readonly referenceLine: ReferenceLine;
-  public readonly tangentScrubber: TangentScrubber;
-  public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
   public readonly labeledPoints: LabeledPoint[];
   public readonly labeledLines: LabeledLine[];
+
+  // Tandem that can be used to add additional tools in the subclasses
+  protected readonly toolsTandem: Tandem;
 
   // These exist so that we have something to link to from the view.
   // See https://github.com/phetsims/calculus-grapher/issues/198
@@ -105,8 +104,8 @@ export default class CalculusGrapherModel implements TModel {
       // SelfOptions
       graphSet: providedOptions.graphSets[ 0 ],
       curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
-      phetioTangentScrubberInstrumented: false,
-      phetioAreaUnderCurveScrubberInstrumented: false
+      hasTangentScrubber: false,
+      hasAreaUnderCurveScrubber: false
     }, providedOptions );
 
     assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
@@ -174,27 +173,17 @@ export default class CalculusGrapherModel implements TModel {
     this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, createCurveTandem( GraphType.SECOND_DERIVATIVE ) );
     this.integralCurve = new IntegralCurve( this.originalCurve, createCurveTandem( GraphType.INTEGRAL ) );
 
-    const toolsTandem = options.tandem.createTandem( 'tools' );
+    this.toolsTandem = options.tandem.createTandem( 'tools' );
 
     this.referenceLine = new ReferenceLine(
       this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
-      toolsTandem.createTandem( 'referenceLine' )
-    );
-
-    this.tangentScrubber = new TangentScrubber(
-      this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
-      options.phetioTangentScrubberInstrumented ? toolsTandem.createTandem( 'tangentScrubber' ) : Tandem.OPT_OUT
-    );
-
-    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber(
-      this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
-      options.phetioAreaUnderCurveScrubberInstrumented ? toolsTandem.createTandem( 'areaUnderCurveScrubber' ) : Tandem.OPT_OUT
+      this.toolsTandem.createTandem( 'referenceLine' )
     );
 
     // This exists so that we have something we can link to from the view.
     // See https://github.com/phetsims/calculus-grapher/issues/198
     this.labeledPointsLinkableElement = new PhetioObject( {
-      tandem: toolsTandem.createTandem( 'labeledPoints' ),
+      tandem: this.toolsTandem.createTandem( 'labeledPoints' ),
       phetioState: false
     } );
 
@@ -210,7 +199,7 @@ export default class CalculusGrapherModel implements TModel {
     // This exists so that we have something we can link to from the view.
     // See https://github.com/phetsims/calculus-grapher/issues/198
     this.labeledLinesLinkableElement = new PhetioObject( {
-      tandem: toolsTandem.createTandem( 'labeledLines' ),
+      tandem: this.toolsTandem.createTandem( 'labeledLines' ),
       phetioState: false
     } );
 
@@ -237,8 +226,6 @@ export default class CalculusGrapherModel implements TModel {
 
     // Reset tools
     this.referenceLine.reset();
-    this.tangentScrubber.reset();
-    this.areaUnderCurveScrubber.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.labeledLines, because they are configured only via PhET-iO.
   }

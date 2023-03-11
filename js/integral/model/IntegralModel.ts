@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * Top-level model for the 'Integral Lab' screen.
+ * Top-level model for the 'Integral' screen.
  *
  * @author Brandon Li
  * @author Martin Veillette
@@ -13,12 +13,15 @@ import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import AreaUnderCurveScrubber from '../../common/model/AreaUnderCurveScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
 type IntegralModelOptions = SelfOptions & PickRequired<CalculusGrapherModelOptions, 'graphSets' | 'tandem'>;
 
 export default class IntegralModel extends CalculusGrapherModel {
+
+  public readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
 
   public constructor( providedOptions: IntegralModelOptions ) {
 
@@ -31,10 +34,18 @@ export default class IntegralModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      phetioAreaUnderCurveScrubberInstrumented: true
+      hasAreaUnderCurveScrubber: true
     }, providedOptions );
 
     super( options );
+
+    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve,
+      this.derivativeCurve, this.secondDerivativeCurve, this.toolsTandem.createTandem( 'areaUnderCurveScrubber' ) );
+  }
+
+  public override reset(): void {
+    this.areaUnderCurveScrubber.reset();
+    super.reset();
   }
 }
 

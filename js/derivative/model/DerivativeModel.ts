@@ -13,12 +13,15 @@ import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import TangentScrubber from '../../common/model/TangentScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
 
 type DerivativeModelOptions = SelfOptions & PickRequired<CalculusGrapherModelOptions, 'graphSets' | 'tandem'>;
 
 export default class DerivativeModel extends CalculusGrapherModel {
+
+  public readonly tangentScrubber: TangentScrubber;
 
   public constructor( providedOptions: DerivativeModelOptions ) {
 
@@ -31,10 +34,19 @@ export default class DerivativeModel extends CalculusGrapherModel {
         CurveManipulationMode.TILT,
         CurveManipulationMode.SHIFT
       ],
-      phetioTangentScrubberInstrumented: true
+      hasTangentScrubber: true
     }, providedOptions );
 
     super( options );
+
+    this.tangentScrubber = new TangentScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
+      this.secondDerivativeCurve, this.toolsTandem.createTandem( 'tangentScrubber' )
+    );
+  }
+
+  public override reset(): void {
+    this.tangentScrubber.reset();
+    super.reset();
   }
 }
 calculusGrapher.register( 'DerivativeModel', DerivativeModel );
