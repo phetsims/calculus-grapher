@@ -74,7 +74,7 @@ export default class CurveNode extends Node {
   private readonly discontinuousLinePlot: LinePlot;
 
   // Plots points at discontinuities
-  private readonly discontinuousPointsScatterPlot: DiscontinuousPointsPlot;
+  private readonly discontinuousPointsPlot: DiscontinuousPointsPlot;
 
   // These plots are created conditionally for debugging. See ?allPoints and ?cuspPoints.
   private readonly allPointsScatterPlot?: ScatterPlot;
@@ -114,16 +114,17 @@ export default class CurveNode extends Node {
     } );
     this.addChild( this.discontinuousLinePlot );
 
-    this.discontinuousPointsScatterPlot = new DiscontinuousPointsPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(), {
+    this.discontinuousPointsPlot = new DiscontinuousPointsPlot( chartTransform, this.getDiscontinuousPointsScatterPlotDataSet(), {
       fill: options.discontinuousPointsFill,
-      stroke: options.stroke
+      stroke: options.stroke,
+      boundsMethod: options.plotBoundsMethod
     } );
-    this.addChild( this.discontinuousPointsScatterPlot );
+    this.addChild( this.discontinuousPointsPlot );
 
     if ( options.plotBounds ) {
       this.continuousLinePlot.localBounds = options.plotBounds;
       this.discontinuousLinePlot.localBounds = options.plotBounds;
-      this.discontinuousPointsScatterPlot.localBounds = options.plotBounds;
+      this.discontinuousPointsPlot.localBounds = options.plotBounds;
     }
 
     // For debug purposes
@@ -166,7 +167,7 @@ export default class CurveNode extends Node {
   protected updateCurveNode(): void {
     this.continuousLinePlot.setDataSet( this.getContinuousLinePlotDataSet() );
     this.discontinuousLinePlot.setDataSet( this.getDiscontinuousLinePlotDataSet() );
-    this.discontinuousPointsScatterPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
+    this.discontinuousPointsPlot.setDataSet( this.getDiscontinuousPointsScatterPlotDataSet() );
 
     // optional plots, for debugging
     this.allPointsScatterPlot && this.allPointsScatterPlot.setDataSet( this.getAllPointsScatterPlotDataSet() );

@@ -21,7 +21,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 const RADIUS = 2.5;
 const LINE_WIDTH = 2;
 
-type SelfOptions = PickOptional<CircleOptions, 'fill' | 'stroke'>;
+type SelfOptions = PickOptional<CircleOptions, 'fill' | 'stroke' | 'boundsMethod'>;
 
 export type DiscontinuousPointsPlotOptions = SelfOptions;
 
@@ -42,7 +42,8 @@ export default class DiscontinuousPointsPlot extends Node {
 
       // SelfOptions
       fill: 'white',
-      stroke: 'black'
+      stroke: 'black',
+      boundsMethod: 'accurate'
     }, providedOptions );
 
     super( options );
