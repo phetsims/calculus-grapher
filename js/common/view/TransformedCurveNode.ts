@@ -42,13 +42,7 @@ export default class TransformedCurveNode extends CurveNode {
                       chartTransform: ChartTransform,
                       providedOptions?: TransformedCurveNodeOptions ) {
 
-    const options = optionize<TransformedCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {
-
-      // CurveNodeOptions
-      continuousLinePlotOptions: {
-        cursor: 'pointer'
-      }
-    }, providedOptions );
+    const options = optionize<TransformedCurveNodeOptions, SelfOptions, CurveNodeOptions>()( {}, providedOptions );
 
     super( transformedCurve, chartTransform, options );
 
