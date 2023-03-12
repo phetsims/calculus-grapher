@@ -14,7 +14,7 @@ import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../
 import DerivativeModel from '../model/DerivativeModel.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import TangentCheckbox from './TangentCheckbox.js';
+import TangentCheckbox from '../../common/view/TangentCheckbox.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -16,8 +16,8 @@ import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import TangentScrubberNode from '../../common/view/TangentScrubberNode.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import TangentScrubberNode from './TangentScrubberNode.js';
 
 export default class TangentCheckbox extends Checkbox {
 
