@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2023, University of Colorado Boulder
 
 /**
  * Plots discontinuity points for a curve. We wanted to use ScatterPlot here, but it has problems drawing points
