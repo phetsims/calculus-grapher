@@ -12,6 +12,9 @@
  * - a TangentArrowNode
  * - an AreaUnderCurvePlot
  *
+ * The decision to use the names 'original curve' and 'original graph' is documented in
+ * https://github.com/phetsims/calculus-grapher/issues/119
+ *
  * @author Martin Veillette
  * @author Brandon Li
  * @author Chris Malley (PixelZoom, Inc.)

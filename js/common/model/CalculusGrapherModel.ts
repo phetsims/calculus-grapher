@@ -74,14 +74,23 @@ export default class CalculusGrapherModel implements TModel {
   // Controls visibility of grid lines on all graphs
   public readonly gridVisibleProperty: Property<boolean>;
 
-  // Model elements for the various curves
+  // The curve that appears as f(x) or f(t), depending on the 'Variable' preference setting.
+  // The user can manipulate this curve by clicking of click-dragging in the graph.
+  // The decision to call it the 'original' curve is documented in https://github.com/phetsims/calculus-grapher/issues/119
   public readonly originalCurve: TransformedCurve;
+
+  // The curve that appears when the user has turned on the 'Predict' preference setting, and has selected the
+  // Predict radio button that appears in the control panel. This curve can also be manipulated by the user.
+  // Its purpose is to facilitate predicting what originalCurve looks like, based on seeing one or more of the
+  // derived curves.
   public readonly predictCurve: TransformedCurve;
+
+  // These curves are derived from originalCurve.
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
 
-  // Track which curve to apply operations to on the original graph
+  // Indicates which curve (originalCurve or predictCurve) is being modified by the user.
   public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
 
   // Model elements for the various tools
@@ -89,10 +98,10 @@ export default class CalculusGrapherModel implements TModel {
   public readonly labeledPoints: LabeledPoint[];
   public readonly labeledLines: LabeledLine[];
 
-  // Tandem that can be used to add additional tools in the subclasses
+  // If subclasses add additional tools, use this as the parent tandem for those tools.
   protected readonly toolsTandem: Tandem;
 
-  // These exist so that we have something to link to from the view.
+  // These exist so that we have something to PhET-iO link to from the view.
   // See https://github.com/phetsims/calculus-grapher/issues/198
   public readonly labeledPointsLinkableElement: PhetioObject;
   public readonly labeledLinesLinkableElement: PhetioObject;
