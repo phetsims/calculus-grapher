@@ -39,7 +39,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       } )
     ];
 
-    const labelAlignGroup = new AlignGroup(); // to give labels the same effective size
+    const labelAlignGroup = new AlignGroup(); // to give radio-button labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.DERIVATIVE, labelAlignGroup )
