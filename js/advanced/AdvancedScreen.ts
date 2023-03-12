@@ -27,6 +27,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     const modelTandem = tandem.createTandem( 'model' );
 
+    // In the order that they will appear in radio buttons
     const graphSets: GraphSet[] = [
       new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ], {
         tandem: modelTandem.createTandem( 'graphSet0' ),
@@ -46,7 +47,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     const createModel = () => new AdvancedModel( {
       graphSets: graphSets,
-      graphSet: graphSets[ 1 ],
+      graphSet: graphSets[ 1 ], // see https://github.com/phetsims/calculus-grapher/issues/250
       tandem: modelTandem
     } );
 

@@ -26,6 +26,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     const modelTandem = tandem.createTandem( 'model' );
 
+    // In the order that they will appear in radio buttons
     const graphSets: GraphSet[] = [
       new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet0' ),
