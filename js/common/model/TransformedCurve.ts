@@ -41,6 +41,7 @@ const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contr
 
 assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
 assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
+assert && assert( LOWER_WEIGHT < UPPER_WEIGHT, 'LOWER_WEIGHT must be < UPPER_WEIGHT' );
 
 type MathFunction = ( x: number ) => number;
 
