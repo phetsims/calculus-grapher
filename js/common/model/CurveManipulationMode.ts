@@ -1,14 +1,15 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * Enumeration of the possible 'modes' of manipulating OriginalCurves.
+ * CurveManipulationMode is an enumeration of the possible 'modes' for manipulating curves.
  *
- * When the user drags on the TransformedCurve, the curve is manipulated based on the current CurveManipulationMode,
+ * When the user drags on a TransformedCurve, the curve is manipulated based on the current CurveManipulationMode,
  * allowing the user to create custom curves. The documentation in this file is not exhaustive and does not describe
  * the algorithms for responses to curve user-manipulation. Please also see TransformedCurve.js
  *
  * @author Brandon Li
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Enumeration from '../../../../phet-core/js/Enumeration.js';

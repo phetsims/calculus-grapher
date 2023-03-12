@@ -1,8 +1,8 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * IntegralCurve is a Curve subclass for the curve that represents the integral of the TransformedCurve. The TransformedCurve
- * is referenced as the 'base' Curve of the IntegralCurve.
+ * IntegralCurve is a Curve subclass for the curve that represents the integral of the TransformedCurve.
+ * The TransformedCurve is referenced as the 'base' Curve of the IntegralCurve.
  *
  * IntegralCurve's main responsibility is to observe when the 'base' Curve changes and integrate it and update the
  * Points of the Integral. For a general background on integration, see https://en.wikipedia.org/wiki/Integral. Our
