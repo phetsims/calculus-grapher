@@ -14,7 +14,7 @@ import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../
 import IntegralModel from '../model/IntegralModel.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import AreaUnderCurveCheckbox from './AreaUnderCurveCheckbox.js';
+import AreaUnderCurveCheckbox from '../../common/view/AreaUnderCurveCheckbox.js';
 
 type SelfOptions = EmptySelfOptions;
 

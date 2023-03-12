@@ -16,8 +16,8 @@ import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import AreaUnderCurveScrubberNode from '../../common/view/AreaUnderCurveScrubberNode.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 
 export default class AreaUnderCurveCheckbox extends Checkbox {
 
