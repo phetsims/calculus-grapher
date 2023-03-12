@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Top-level model for the 'Advanced' screen. This class adds no additional functionality, but is provided for
- * completeness of the TModel class hierarchy.
+ * AdvancedModel is the top-level model for the 'Advanced' screen. This class adds no additional functionality,
+ * but is provided for completeness of the TModel class hierarchy.
  *
  * @author Brandon Li
  */

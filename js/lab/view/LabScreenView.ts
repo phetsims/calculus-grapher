@@ -1,8 +1,8 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * Top-level view for the 'Lab' screen. This class adds no additional functionality, but is provided for
- * completeness of the ScreenView class hierarchy.
+ * LabScreenView is the top-level view for the 'Lab' screen. This class adds no additional functionality, but is
+ * provided for completeness of the ScreenView class hierarchy.
  *
  * @author Martin Veillette
  */

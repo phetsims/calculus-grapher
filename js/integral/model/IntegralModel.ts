@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * Top-level model for the 'Integral' screen.
+ * IntegralModel is the top-level model for the 'Integral' screen.
  *
  * @author Brandon Li
  * @author Martin Veillette

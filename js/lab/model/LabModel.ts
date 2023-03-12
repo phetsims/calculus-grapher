@@ -1,8 +1,8 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Top-level model for the 'Lab' screen. This class adds no additional functionality, but is provided for
- * completeness of the TModel class hierarchy.
+ * LabModel is the top-level model for the 'Lab' screen. This class adds no additional functionality, but is
+ * provided for completeness of the TModel class hierarchy.
  *
  * @author Martin Veillette
  */
