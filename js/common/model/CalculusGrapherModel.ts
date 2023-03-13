@@ -85,7 +85,7 @@ export default class CalculusGrapherModel implements TModel {
   // derived curves.
   public readonly predictCurve: TransformedCurve;
 
-  // These curves are derived from originalCurve.
+  // These curves are derived, not manipulated by the user.
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: DerivativeCurve;
