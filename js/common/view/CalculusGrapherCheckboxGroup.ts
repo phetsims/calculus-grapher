@@ -3,7 +3,15 @@
 /**
  * CalculusGrapherCheckboxGroup is a group of checkboxes for controlling visibility of the grid lines and the reference line
  *
+ * NOTE! This is not a subclass of VerticalCheckboxGroup for 2 important reasons:
+ * (1) Subclasses need to add additional checkboxes, and VerticalCheckboxGroup does not support adding additional items.
+ * (2) VerticalCheckboxGroup makes all checkboxes have pointer areas with uniform widths, and there's no way to
+ *     opt-out of that behavior. That's a problem in the Lab screen, where turning on the 'Predict' preference will
+ *     cause the GridCheckbox pointer areas to overlap with the ResetAllButton. So in this sim, having uniform pointer
+ *     area widths is undesirable.
+ *
  * @author Martin Veillette
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
