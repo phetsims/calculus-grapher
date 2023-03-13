@@ -40,8 +40,10 @@ export default class LabeledPointNode extends Node {
       // NodeOptions
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       visibleProperty: new DerivedProperty(
-        [ labeledPoint.visibleProperty, curveLayerVisibleProperty, predictEnabledProperty ],
-        ( labeledPointVisible, curveLayerVisible, predictEnabled ) => labeledPointVisible && curveLayerVisible && !predictEnabled, {
+        [ labeledPoint.visibleProperty, curveLayerVisibleProperty, predictEnabledProperty,
+          labeledPoint.originalCurvePointProperty ],
+        ( labeledPointVisible, curveLayerVisible, predictEnabled, point ) =>
+          labeledPointVisible && curveLayerVisible && !predictEnabled && chartTransform.modelXRange.contains( point.x ) && chartTransform.modelYRange.contains( point.y ), {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } )
