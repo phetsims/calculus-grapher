@@ -38,7 +38,9 @@ export default class CurveManipulationIconNode extends Node {
     const chartTransform = new ChartTransform( CHART_TRANSFORM_OPTIONS );
 
     // Chart Rectangle for the graph
-    const chartRectangle = new ChartRectangle( chartTransform );
+    const chartRectangle = new ChartRectangle( chartTransform, {
+      stroke: phet.chipper.queryParameters.dev ? 'red' : null // if running with ?dev, stroke the ChartRectangle
+    } );
 
     // Create model for a solid curve.
     const solidCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
