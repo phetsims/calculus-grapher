@@ -1,10 +1,11 @@
 // Copyright 2023, University of Colorado Boulder
 
+//TODO https://github.com/phetsims/bamboo/issues/63 replace with ScatterPlot when it works correctly with fill and stroke
 /**
- * Plots discontinuity points for a curve. We wanted to use ScatterPlot here, but it has problems drawing points
- * that overlap. So this implementation uses scenery.Circle to draw each point. Note that this is not a scalable
- * approach, so not appropriate for bamboo. But the number of discontinuity points is relatively small, so it's
- * an acceptable workaround/trade-off for this sim.
+ * DiscontinuousPointsPlot plots discontinuity points for a curve. We wanted to use ScatterPlot here, but it has
+ * problems drawing points that overlap. So this implementation is essentially a workaround. It uses scenery.Circle
+ * to draw each point. Note that this is not a scalable approach, so not appropriate for bamboo. But the number of
+ * discontinuity points is relatively small, so it's an acceptable workaround/trade-off for this sim.
  * See https://github.com/phetsims/calculus-grapher/issues/256 and https://github.com/phetsims/bamboo/issues/63.
  *
  * @author Chris Malley (PixelZoom, Inc.)

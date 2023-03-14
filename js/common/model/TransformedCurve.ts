@@ -144,6 +144,16 @@ export default class TransformedCurve extends Curve {
     this.curveChangedEmitter.emit();
   }
 
+  /**
+   * Modifies the points based on the curveManipulationMode and selected width.
+   * Responsible for signalling that this Curve has changed.
+   *
+   * @param mode
+   * @param width
+   * @param position - position of cursor in model coordinates
+   * @param penultimatePosition - last position of cursor in model coordinates
+   * @param antepenultimatePosition - before last position in model coordinates
+   */
   public manipulateCurve( mode: CurveManipulationMode,
                           width: number,
                           position: Vector2,
@@ -315,6 +325,34 @@ export default class TransformedCurve extends Curve {
     point.y = ( weight > LOWER_WEIGHT ) ? weight * peakY + ( 1 - weight ) * point.lastSavedY : point.lastSavedY;
   }
 
+  /**
+   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve
+   * We arbitrarily made the free form icon out of four segments
+   *
+   * @param yMin - the minimum y-value for the curve
+   * @param yMax - the maximum y-value for the curve
+   */
+  public freeformIconCurve( yMin: number, yMax: number ): void {
+
+    // Convenience variables
+    const xLength = this.xRange.getLength();
+    const xMin = this.xRange.getMin();
+    const width = xLength / 4;
+
+    this.createHillAt( width, xMin + xLength / 5, yMin );
+    this.saveCurrentPoints();
+    this.createTriangleAt( width, xMin + 2 * xLength / 5, yMax );
+    this.saveCurrentPoints();
+    this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
+    this.saveCurrentPoints();
+    this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
+  }
+
+  /**
+   * Applies the peak function to the curve points and update their point type
+   * @param peakFunction - the function to be applied to the curve
+   * @param deltaY - the y offset of the drag
+   */
   private iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
 
     let wasPreviousPointModified: boolean | null = null;
@@ -358,33 +396,8 @@ export default class TransformedCurve extends Curve {
       return peakY - Math.sign( deltaY ) * A * Math.pow( x - closestPoint.x, 2 );
     };
 
+    // Update the y values and point types of the points
     this.iterateFunctionOverPoints( peakFunction, deltaY );
-  }
-
-  /**
-   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
-   */
-  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peakX );
-
-    // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peakY - closestPoint.lastSavedY;
-
-    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
-    // to this.curveManipulationWidth when the peak is at typicalY value
-    const slope = TYPICAL_Y / ( width / 2 );
-
-    const peakFunction = ( deltaY: number, x: number ): number => {
-      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
-    };
-
-
-    this.iterateFunctionOverPoints( peakFunction, deltaY );
-
-    closestPoint.pointType = 'cusp';
-    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
-
   }
 
   /**
@@ -666,20 +679,31 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-  public freeformIconCurve( yMin: number, yMax: number ): void {
+  /**
+   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
+   */
+  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
 
-    // Convenience variables
-    const xLength = this.xRange.getLength();
-    const xMin = this.xRange.getMin();
-    const width = xLength / 4;
+    const closestPoint = this.getClosestPointAt( peakX );
 
-    this.createHillAt( width, xMin + xLength / 5, yMin );
-    this.saveCurrentPoints();
-    this.createTriangleAt( width, xMin + 2 * xLength / 5, yMax );
-    this.saveCurrentPoints();
-    this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
-    this.saveCurrentPoints();
-    this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peakY - closestPoint.lastSavedY;
+
+    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at typicalY value
+    const slope = TYPICAL_Y / ( width / 2 );
+
+    const peakFunction = ( deltaY: number, x: number ): number => {
+      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
+    };
+
+    // Update the y values and point types of the points
+    this.iterateFunctionOverPoints( peakFunction, deltaY );
+
+    // IterateFunctionOverPoints assumes the peakFunction is smooth, but we have a cusp at the peak of the triangle
+    closestPoint.pointType = 'cusp';
+    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
+
   }
 
   /**
