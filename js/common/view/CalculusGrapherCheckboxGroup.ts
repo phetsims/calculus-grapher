@@ -26,7 +26,7 @@ export default class CalculusGrapherCheckboxGroup extends VBox {
   // For checkboxes added to this group, if their labels are RichText, they should use these max dimensions.
   // See https://github.com/phetsims/calculus-grapher/issues/283
   public static readonly RICH_TEXT_MAX_WIDTH = 100;
-  public static readonly RICH_TEXT_MAX_HEIGHT = 60;
+  public static readonly RICH_TEXT_MAX_HEIGHT = 40;
 
   public constructor( gridVisibleProperty: Property<boolean>, referenceLineVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
