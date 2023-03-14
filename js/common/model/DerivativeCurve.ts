@@ -88,7 +88,10 @@ export default class DerivativeCurve extends Curve {
       }
 
       if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' ) {
-        // If both the left and right adjacent Points of the Point of the originalCurve exist, the derivative is
+
+        // REVIEW: What does approximately equal mean? I see no analysis of how equal the slopes are before setting the
+        // REVIEW: derivative.
+        // If both the left and right adjacent Points of the Point of the originalCurve curve exist, the derivative is
         // the average of the slopes if they are approximately equal. Otherwise, the derivative doesn't exist.
         this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
       }

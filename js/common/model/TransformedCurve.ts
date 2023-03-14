@@ -12,6 +12,7 @@
  *   - Saving the curve
  *   - Implementing smoothing, undoing, and other interactions.
  *   - Resetting all the points of the curve
+ *
  *  TransformedCurve is created at the start and persists for the lifetime of the simulation.
  *
  * @author Martin Veillette
@@ -193,7 +194,7 @@ export default class TransformedCurve extends Curve {
     const deltaY = y - this.getClosestPointAt( x ).y;
 
     // Shift each of the CurvePoints by deltaY.
-    this.points.forEach( point => {point.y += deltaY;} );
+    this.points.forEach( point => { point.y += deltaY; } );
   }
 
   /**
@@ -203,6 +204,7 @@ export default class TransformedCurve extends Curve {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
+    // REVIEW: I do not understand what the variable `mu` represents
     // Super gaussian function centered at `mu`, with min amplitude of 0 and max of 1;
     // use the square of a gaussian in order to have a very symmetric derivative at the edges
     const gaussianWeight = ( x: number, mu: number ) =>
@@ -572,6 +574,7 @@ export default class TransformedCurve extends Curve {
       // Point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
 
+      // REVIEW: should this be "lastPoint is in between closestPoint and nextToLastPoint"?
       // Checks that lastPoint is in between closestPoint and lastPoint
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 

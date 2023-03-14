@@ -182,7 +182,7 @@ export default class Curve extends PhetioObject {
 }
 
 /**
- * Determines whether a new set of points is value.
+ * Determines whether a new set of points is valid.
  */
 function isValidPoints( initialPoints: CurvePoint[], points: CurvePoint[] ): boolean {
 

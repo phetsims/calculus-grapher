@@ -38,21 +38,24 @@ export default class SecondDerivativeCurve extends Curve {
 
     this.originalCurve = originalCurve;
 
-    // Observes when the originalCurve changes and update this curve to represent the second derivative of the originalCurve.
+    // Observes when the 'base' Curve changes and update this curve to represent the second derivative of the 'base' Curve.
     // Listener is never removed since SecondDerivative is never disposed.
     originalCurve.curveChangedEmitter.addListener( this.updateSecondDerivative.bind( this ) );
 
-    // Makes the initial call to updateSecondDerivative() to match the originalCurve upon initialization.
+    // Makes the initial call to updateSecondDerivative() to match the 'base' Curve upon initialization.
     this.updateSecondDerivative();
   }
 
   /**
+   * // REVIEW: This makes it sound like we're grabbing the derivative of the originalCurve.
+   * // REVIEW: But we're actually grabbing the derivative of the originalCurve derivative.
    * Updates the y-values of the SecondDerivative to represent the derivative of the originalCurve.
    *
    * To update the second derivative, we (1) assume that the points are smooth,
    * and evaluate the second derivative using the standard finite difference algorithm.
    * For points that are not smooth, we correct for the wrong assumption, by assigning
    * their second derivative to a smooth point directly next to it.
+   *
    */
   private updateSecondDerivative(): void {
 
@@ -115,6 +118,6 @@ export default class SecondDerivativeCurve extends Curve {
     // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
-}
 
+}
 calculusGrapher.register( 'SecondDerivativeCurve', SecondDerivativeCurve );
