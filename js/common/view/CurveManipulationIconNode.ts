@@ -18,8 +18,8 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 const CHART_TRANSFORM_OPTIONS = {
-  viewWidth: 70,
-  viewHeight: 7,
+  viewWidth: 50,
+  viewHeight: 25,
   modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
   modelYRange: CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE
 };
@@ -59,8 +59,7 @@ export default class CurveManipulationIconNode extends Node {
          mode === CurveManipulationMode.PEDESTAL ||
          mode === CurveManipulationMode.HILL ) {
 
-      // The width of the curve is one quarter of the x-Range.
-      const width = xLength / 4;
+      const width = 0.5 * xLength;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, yMax );
     }
     else if ( mode === CurveManipulationMode.SINUSOID ) {
@@ -71,14 +70,15 @@ export default class CurveManipulationIconNode extends Node {
       solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
       solidCurve.shiftToPosition( xCenter, y );
     }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      solidCurve.freeformIconCurve( yMin, yMax );
+    }
     else if ( mode === CurveManipulationMode.SHIFT ||
               mode === CurveManipulationMode.TILT ) {
 
-      solidCurve.positionManipulatedCurve( mode, xMax, yMax );
-      dashedCurve.positionManipulatedCurve( mode, xMax, -yMax );
-    }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      solidCurve.freeformIconCurve( yMin, yMax );
+      const y = yMax / 2;
+      solidCurve.positionManipulatedCurve( mode, xMax, y );
+      dashedCurve.positionManipulatedCurve( mode, xMax, -y );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
