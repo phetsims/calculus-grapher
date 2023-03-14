@@ -80,6 +80,7 @@ export default class ScrubberNode extends Node {
       this.line.x = chartTransform.modelToViewX( x );
     } );
 
+    // REVIEW: Why is this a `multilink` instead of a `boundsProperty.link`?
     // Keep the handle centered at the bottom of the line.
     Multilink.multilink( [ line.boundsProperty ], () => {
       handleNode.centerX = line.centerX;
