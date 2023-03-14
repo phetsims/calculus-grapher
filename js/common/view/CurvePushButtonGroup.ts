@@ -57,14 +57,17 @@ export default class CurvePushButtonGroup extends VBox {
         listener: () => interactiveCurveProperty.value.smooth(),
         textNodeOptions: {
           font: CalculusGrapherConstants.CONTROL_FONT,
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          maxWidth: 55
         },
         baseColor: PhetColorScheme.BUTTON_YELLOW,
-        maxWidth: hBox.width,
-        minWidth: hBox.width,
+        layoutOptions: {
+          stretch: true
+        },
         tandem: tandem.createTandem( 'smoothButton' )
       } );
       children.push( smoothButton );
+      console.log( smoothButton.width );
     }
 
     children.push( hBox );
