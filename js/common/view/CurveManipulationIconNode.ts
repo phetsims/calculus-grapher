@@ -67,8 +67,8 @@ export default class CurveManipulationIconNode extends Node {
     else if ( mode === CurveManipulationMode.SINUSOID ) {
 
       // Ad hoc variables to create sine function
-      const y = yMax / 2;
-      const width = xLength / 4.5;
+      const y = 0.5 * yMax;
+      const width = 0.25 * xLength;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
       solidCurve.shiftToPosition( xCenter, y );
     }
@@ -77,7 +77,7 @@ export default class CurveManipulationIconNode extends Node {
     }
     else if ( mode === CurveManipulationMode.TILT ) {
 
-      const y = yMax / 2;
+      const y = 0.5 * yMax;
       solidCurve.positionManipulatedCurve( mode, xMax, y );
       dashedCurve.positionManipulatedCurve( mode, xMax, -y );
     }
