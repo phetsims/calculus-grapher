@@ -67,7 +67,6 @@ export default class CurvePushButtonGroup extends VBox {
         tandem: tandem.createTandem( 'smoothButton' )
       } );
       children.push( smoothButton );
-      console.log( smoothButton.width );
     }
 
     children.push( hBox );
