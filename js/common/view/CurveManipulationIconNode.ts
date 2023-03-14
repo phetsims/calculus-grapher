@@ -75,12 +75,17 @@ export default class CurveManipulationIconNode extends Node {
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       solidCurve.freeformIconCurve( yMin, yMax );
     }
-    else if ( mode === CurveManipulationMode.SHIFT ||
-              mode === CurveManipulationMode.TILT ) {
+    else if ( mode === CurveManipulationMode.TILT ) {
 
       const y = yMax / 2;
       solidCurve.positionManipulatedCurve( mode, xMax, y );
       dashedCurve.positionManipulatedCurve( mode, xMax, -y );
+    }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+
+      const yOffset = 0.25 * yMax;
+      solidCurve.positionManipulatedCurve( mode, xMax, yMax - yOffset );
+      dashedCurve.positionManipulatedCurve( mode, xMax, yMin + yOffset );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
