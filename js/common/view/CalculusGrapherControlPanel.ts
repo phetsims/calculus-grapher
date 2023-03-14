@@ -9,7 +9,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Color, HSeparator, Node, VBox } from '../../../../scenery/js/imports.js';
+import { Node, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -71,12 +71,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       children: [
         predictRadioButtonGroup,
         curveManipulationControls,
-        pushButtonGroup,
-
-        // REVIEW: I don't see any usage of appendContent in this repo. What is this safeguard for?
-        // Additional content added via appendContent will be below this separator.
-        // VBox will automatically hide the separator if there is nothing below it.
-        new HSeparator( { stroke: Color.grayColor( 200 ) } )
+        pushButtonGroup
       ]
     } );
 
