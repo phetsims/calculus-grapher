@@ -10,6 +10,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import DerivativeCurve from './DerivativeCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import IntegralCurve from './IntegralCurve.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -88,7 +89,7 @@ export default class CalculusGrapherModel implements TModel {
   // These curves are derived, not manipulated by the user.
   public readonly derivativeCurve: DerivativeCurve;
   public readonly integralCurve: IntegralCurve;
-  public readonly secondDerivativeCurve: DerivativeCurve;
+  public readonly secondDerivativeCurve: SecondDerivativeCurve;
 
   // Indicates which curve (originalCurve or predictCurve) is being modified by the user.
   public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
@@ -179,7 +180,7 @@ export default class CalculusGrapherModel implements TModel {
     };
 
     this.derivativeCurve = new DerivativeCurve( this.originalCurve, createCurveTandem( GraphType.DERIVATIVE ) );
-    this.secondDerivativeCurve = new DerivativeCurve( this.derivativeCurve, createCurveTandem( GraphType.SECOND_DERIVATIVE ) );
+    this.secondDerivativeCurve = new SecondDerivativeCurve( this.originalCurve, createCurveTandem( GraphType.SECOND_DERIVATIVE ) );
     this.integralCurve = new IntegralCurve( this.originalCurve, createCurveTandem( GraphType.INTEGRAL ) );
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
