@@ -437,8 +437,12 @@ export default class TransformedCurve extends Curve {
     //             |<-edgeWidth-->|                 |<-edgeWidth-->|
 
     // Bounds to the transition regions to the right and the left for the sinusoidal function
-    const rightMax = this.getClosestPointAt( closestPoint.x + cosineBase / 2 ).x;
-    const leftMin = this.getClosestPointAt( closestPoint.x - cosineBase / 2 ).x;
+
+    const cosineBaseMax = closestPoint.x + cosineBase / 2;
+    const cosineBaseMin = closestPoint.x - cosineBase / 2;
+
+    const rightMax = ( cosineBaseMax > this.xRange.max ) ? cosineBaseMax : this.getClosestPointAt( cosineBaseMax ).x;
+    const leftMin = ( cosineBaseMin < this.xRange.min ) ? cosineBaseMin : this.getClosestPointAt( cosineBaseMin ).x;
     const rightMin = rightMax - edgeWidth;
     const leftMax = leftMin + edgeWidth;
 
@@ -479,10 +483,13 @@ export default class TransformedCurve extends Curve {
       // Assign the y value with the correct weight
       point.y = P * cosineFunction( point.x ) + ( 1 - P ) * point.lastSavedY;
 
+      // Assign the point type
       this.updatePointType( point, P );
     } );
 
-    if ( isLeftRegionZero ) {
+    // If the left region was zero and within the range of the curve, then the sinusoidal function will have a kink.
+    // So we must tag the cusps at the left edge of the curve in that case
+    if ( isLeftRegionZero && ( cosineBaseMin > this.xRange.min ) ) {
       const index = this.getClosestIndexAt( leftMin );
       this.points[ index ].pointType = 'cusp';
       if ( this.points[ index + 1 ] ) {
@@ -490,14 +497,15 @@ export default class TransformedCurve extends Curve {
       }
     }
 
-    if ( isRightRegionZero ) {
+    // If the right region was zero and within the range of the curve, then the sinusoidal function will have a kink on the right side
+    // So we must tag the cusps at the right edge of the curve in that case.
+    if ( isRightRegionZero && ( cosineBaseMax < this.xRange.max ) ) {
       const index = this.getClosestIndexAt( rightMax );
       this.points[ index ].pointType = 'cusp';
       if ( this.points[ index - 1 ] ) {
         this.points[ index - 1 ].pointType = 'cusp';
       }
     }
-
   }
 
   /**
