@@ -204,6 +204,7 @@ export default class TransformedCurve extends Curve {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
+    // REVIEW: I do not understand what the variable `mu` represents
     // Super gaussian function centered at `mu`, with min amplitude of 0 and max of 1;
     // use the square of a gaussian in order to have a very symmetric derivative at the edges
     const gaussianWeight = ( x: number, mu: number ) =>
