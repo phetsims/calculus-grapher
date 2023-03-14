@@ -25,6 +25,7 @@ export default class ReferenceLineCheckbox extends Checkbox {
     const text = new RichText( CalculusGrapherStrings.referenceLineStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 100,
+      maxHeight: 60, // see https://github.com/phetsims/calculus-grapher/issues/283
       tandem: tandem.createTandem( 'text' )
     } );
 

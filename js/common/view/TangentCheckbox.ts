@@ -29,6 +29,7 @@ export default class TangentCheckbox extends Checkbox {
     const text = new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 100,
+      maxHeight: 60, // https://github.com/phetsims/calculus-grapher/issues/283
       tandem: tandem.createTandem( 'text' )
     } );
 

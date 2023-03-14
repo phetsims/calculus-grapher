@@ -29,6 +29,7 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
     const text = new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: 100,
+      maxHeight: 60, // see https://github.com/phetsims/calculus-grapher/issues/283
       tandem: tandem.createTandem( 'text' )
     } );
 
