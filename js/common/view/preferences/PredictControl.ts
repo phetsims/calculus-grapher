@@ -45,7 +45,8 @@ export default class PredictControl extends PreferencesControl {
       } ) );
 
     const descriptionStringProperty = new PatternStringProperty( CalculusGrapherStrings.predictPreferenceDescriptionStringProperty, {
-      variable: CalculusGrapherPreferences.functionVariableProperty,
+      variable: CalculusGrapherPreferences.functionVariableProperty
+    }, {
       tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
     } );
     const descriptionText = new RichText( descriptionStringProperty, {
