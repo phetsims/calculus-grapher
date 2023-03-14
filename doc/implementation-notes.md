@@ -67,7 +67,7 @@ CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferen
 ### Curve Hierarchy
 
 `Curve` is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides
-functionality that is common to all types of curves, which are 'integral', 'original', and 'derivative' curves, and is intended to be sub-classed for type-specific features.
+functionality that is common to all types of curves, which are 'integral', 'original', 'derivative' and 'secondDerivative' curves, and is intended to be sub-classed for type-specific features.
 
 Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
