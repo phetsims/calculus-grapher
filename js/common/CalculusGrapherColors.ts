@@ -41,7 +41,7 @@ const CalculusGrapherColors = {
     default: 'white'
   } ),
 
-  // Fill for the background of Original Graph
+  // Fill for the background of the original Graph
   originalChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundFill', {
     default: 'white'
   } ),
@@ -95,7 +95,7 @@ const CalculusGrapherColors = {
     tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' )
   } ),
 
-  // Stroke for second derivative curve
+  // Stroke for the second derivative curve
   secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
     default: 'rgb( 102, 45, 145 )'
   }, {
@@ -110,7 +110,7 @@ const CalculusGrapherColors = {
       phetioDocumentation: 'Color for positive area in the "Net Signed Area" accordion box.'
     } ),
 
-  // Fill for integral curve (when area is negative)
+  // Fill for the integral curve (when area is negative)
   integralNegativeFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.negativeAlpha ), {
       tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
@@ -118,7 +118,7 @@ const CalculusGrapherColors = {
       phetioDocumentation: 'Color for negative area in the "Net Signed Area" accordion box.'
     } ),
 
-  // fill for the cueing arrows on original graph
+  // fill for the cueing arrows on the original graph
   cueingArrowsFillProperty: new ProfileColorProperty( calculusGrapher, 'cueingArrowsFill', {
     default: Color.ORANGE
   } ),

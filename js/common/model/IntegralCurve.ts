@@ -56,14 +56,14 @@ export default class IntegralCurve extends Curve {
    */
   private updateIntegral(): void {
 
-    // Loop through each pair of adjacent points of the original curve.
+    // Loop through each adjacent pair of points on the original curve.
     for ( let index = 1; index < this.originalCurve.points.length; index++ ) {
       const point = this.originalCurve.points[ index ];
       const previousPoint = this.originalCurve.points[ index - 1 ];
 
       assert && assert( point.isFinite && previousPoint.isFinite );
 
-      // Takes the integral from the minimum of the domain of Curves to the x-value of the current point using a
+      // Takes the integral from the minimum of curve the x-domain to the x-value of the current point using a
       // trapezoidal Riemann sum approximation. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
       const trapezoidalArea = 0.5 * ( point.y + previousPoint.y ) * ( point.x - previousPoint.x );
 

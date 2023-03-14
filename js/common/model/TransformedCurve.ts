@@ -303,7 +303,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Update type of a point to smooth if the weight associated to the new function is very large,
+   * Update the type of a point to smooth if the weight associated to the new function is very large,
    * otherwise leave as is.
    */
   private updatePointType( point: CurvePoint, weight: number ): void {

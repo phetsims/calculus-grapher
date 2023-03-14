@@ -98,7 +98,7 @@ export default class AncillaryTool extends PhetioObject {
     this.ySecondDerivativeProperty = createYProperty( this.secondDerivativeCurvePointProperty, options.tandem.createTandem( 'ySecondDerivativeProperty' ) );
 
     // When a curve changes, force listeners of CurvePointProperty instances to be notified, which will cause them
-    // to re-inspect the CurvePoint values. We need to do this because CurvePoint instance are mutated as a curve is
+    // to re-inspect the CurvePoint values. We need to do this because CurvePoint instances are mutated as a curve is
     // manipulated, and the value of these Properties will therefore not change.
     const integralCurveListener = () => this.integralCurvePointProperty.notifyListenersStatic();
     const originalCurveListener = () => this.originalCurvePointProperty.notifyListenersStatic();

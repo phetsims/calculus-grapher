@@ -5,7 +5,7 @@
  * functionality that is common to all types of curves, and is intended to be sub-classed for type-specific features.
  *
  * Curves are modeled by segmenting the curve into a finite number of CurvePoints that are close together and map out
- * the y-values of the shape and curvature of the Curve. Adjacent CurvePoints are considered to be infinitesimally close
+ * their y-values to the shape of a function. Adjacent CurvePoints are considered to be infinitesimally close
  * enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
  *
  * Responsibilities are:
@@ -14,7 +14,7 @@
  *   - Provide other convenience methods to set the initial value of the curve points.
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation, so no
- * dispose method is necessary. For an overview of the class hierarchy of Curves, see
+ * dispose method is necessary. An overview for the class hierarchy of Curves is given in
  * https://github.com/phetsims/calculus-grapher/blob/master/doc/implementation-notes.md
  *
  * @author Brandon Li

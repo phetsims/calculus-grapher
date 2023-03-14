@@ -2,7 +2,7 @@
 
 /**
  * CurveManipulationProperties is responsible for
- *  - Keeping track of the (shared) current mode of curves. When the user drags a TransformedCurve, the curve is
+ *  - Keeping track of the (shared) current mode associated with curves. When the user drags a TransformedCurve, the curve is
  *    manipulated based on the current CurveManipulationMode, allowing the user to create custom curves.
  *  - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
  *     and SINUSOID, and the value is interpreted differently for each response algorithm to curve user-manipulation.

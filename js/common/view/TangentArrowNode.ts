@@ -45,7 +45,7 @@ export default class TangentArrowNode extends ArrowNode {
       pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     }, providedOptions );
 
-    // Initial arrow is horizontal: middle of the arrow is located at 0,0
+    // Initial arrow is horizontal: the middle of the arrow is located at 0,0
     super( -options.arrowLength / 2, 0, options.arrowLength / 2, 0, options );
 
     // Initial angle of the arrow in view coordinates
@@ -59,11 +59,11 @@ export default class TangentArrowNode extends ArrowNode {
         const y = tangentScrubber.originalCurvePointProperty.value.y;
         const modelSlope = tangentScrubber.derivativeCurvePointProperty.value.y;
 
-        // View position for center of the tangent arrow
+        // View position for the center of the tangent arrow
         const point = chartTransform.modelToViewXY( x, y );
 
-        // We must convert slope into viewCoordinates
-        // Slope is dY/dX: (sign of view slope will have its sign flipped but that is expected)
+        // We must convert the slope into viewCoordinates
+        // Slope is dY/dX: (sign of viewSlope will have its sign flipped but that is expected)
         const viewSlope = modelSlope * chartTransform.modelToViewDeltaY( 1 ) /
                           chartTransform.modelToViewDeltaX( 1 );
         const thetaView = Math.atan( viewSlope );

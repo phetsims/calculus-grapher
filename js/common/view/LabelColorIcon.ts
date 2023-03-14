@@ -1,7 +1,7 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * LabelColorIcon is an icon that consist of a label with a horizontal colored line below it.
+ * LabelColorIcon is an icon that consists of a label with a horizontal-colored line below it.
  * It is used on radio button to indicate a graph or curve, and its associated stroke color.
  *
  * @author Chris Malley (PixelZoom, Inc,)

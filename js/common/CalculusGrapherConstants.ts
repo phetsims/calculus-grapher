@@ -12,8 +12,7 @@ import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import calculusGrapher from '../calculusGrapher.js';
-import { Text } from '../../../scenery/js/imports.js';
-import { PathBoundsMethod } from '../../../scenery/js/imports.js';
+import { PathBoundsMethod, Text } from '../../../scenery/js/imports.js';
 import { CheckboxOptions } from '../../../sun/js/Checkbox.js';
 
 const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
@@ -28,7 +27,7 @@ const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
 // See CalculusGrapherConstants.TYPICAL_Y documentation below.
 const TYPICAL_Y = 0.1 * CURVE_X_LENGTH;
 
-// typical area of original graph, used to set scale of 'Net Signed Area' barometer
+// Typical area of original graph, used to set a scale of 'Net Signed Area' barometer
 const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 
 // Because plots are typically clipped to the ChartRectangle, we do not care about their bounds.
@@ -63,7 +62,7 @@ const CalculusGrapherConstants = {
   // range for curve x-axis
   CURVE_X_RANGE: CURVE_X_RANGE,
 
-  // a typical Y value: PARABOLA, and TRIANGLE are CurveManipulation modes that don't have an intrinsic width,
+  // A typical Y value: PARABOLA, and TRIANGLE are CurveManipulation modes that don't have an intrinsic width,
   // but a curvature and a slope. We use TYPICAL_Y as a roundabout way to assign a meaning to the curve width parameter:
   // the function has a width across the baseline, when the peak of the function is at TYPICAL_Y.
   TYPICAL_Y: TYPICAL_Y,
@@ -89,7 +88,7 @@ const CalculusGrapherConstants = {
   TICK_LABEL_FONT: new PhetFont( 8 ), // for tick labels on graphs
   CONTROL_FONT: CONTROL_FONT, // for text on checkboxes, radio buttons, push buttons, etc.
   ACCORDION_BOX_FONT: new PhetFont( 16 ), // for accordion box title and non-numerical text
-  ACCORDION_BOX_VALUE_FONT: new PhetFont( 12 ), // for numerical values in Accordion box
+  ACCORDION_BOX_VALUE_FONT: new PhetFont( 12 ), // for numerical values in the Accordion box
   LABELED_LINE_FONT: new PhetFont( 16 ),
   POINT_LABEL_FONT: new PhetFont( 16 ),
   PREFERENCES_LABEL_FONT: new PhetFont( {

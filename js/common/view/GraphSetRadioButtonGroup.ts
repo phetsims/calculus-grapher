@@ -1,7 +1,7 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * GraphSetRadioButtonGroup is a group of buttons for controlling visibility of a set of graph nodes
+ * GraphSetRadioButtonGroup is a group of buttons for controlling the visibility of a set of graph nodes
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)

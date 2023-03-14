@@ -1,13 +1,13 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * GraphNode is the view representation of a Graph, which includes a curve, a chart ( grid and axes) and zoom buttons.
+ * GraphNode is the view representation of a Graph, which includes a curve, a chart (grid and axes) and zoom buttons.
  * The origin (0,0) is the upper-left corner of the ChartRectangle, this.this.chartRectangle.leftTop.
  *
  * Primary responsibilities are:
  * - Create an associated CurveNode
  * - Create an optional zoomButtonGroup with an associated property
- * - Create an eye toggle button that control the visibility of curve
+ * - Create an eye toggle button that controls the visibility of curve
  * - Create AxisLines, GridLines and Rectangle Chart
  * - Create a Chart Transform
  * - Updating the model y Range of the graph based on the zoom level
@@ -160,7 +160,7 @@ export default class GraphNode extends Node {
     this.curve = curve;
 
     // The original graph does not have the zoom feature for the y-axis. If you'd like to add the zoom feature
-    // to the original graph in the future, remove the if statement that surrounds this block.
+    // to the original graph in the future, remove the if-statement that surrounds this block.
     if ( graphType !== GraphType.ORIGINAL ) {
       this.yZoomLevelProperty = new NumberProperty( DEFAULT_ZOOM_LEVEL, {
         range: new Range( 0, Y_ZOOM_INFO.length - 1 ),

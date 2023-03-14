@@ -5,7 +5,7 @@
  * The reference line is composed of a vertical line, a XDragHandler and
  * a label that indicates the numerical value of its x- position (atop the vertical line)
  * The label is only visible if valuesVisibleProperty in the preferences is set to true
- * The shadedSphere (in XDragHandler) is user controlled.
+ * The shadedSphere (in XDragHandler) is user-controlled.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
