@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Node, RichText, Text } from '../../../../../scenery/js/imports.js';
+import { RichText, Text } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -65,12 +65,12 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
     const items: AquaRadioButtonGroupItem<FunctionVariable>[] = [
       {
         value: 'x',
-        createNode: tandem => createLabel( CalculusGrapherSymbols.xStringProperty, tandem ),
+        createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.xStringProperty, radioButtonTandem ),
         tandemName: `x${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 't',
-        createNode: tandem => createLabel( CalculusGrapherSymbols.tStringProperty, tandem ),
+        createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.tStringProperty, radioButtonTandem ),
         tandemName: `t${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
@@ -88,14 +88,17 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
 }
 
 /**
- * Creates the label for a radio button.
+ * Labels for the radio buttons.
  */
-function createLabel( functionVariableStringProperty: TReadOnlyProperty<string>, tandem: Tandem ): Node {
-  return new RichText( functionVariableStringProperty, {
-    font: PreferencesDialog.CONTENT_FONT,
-    maxWidth: 100,
-    tandem: tandem.createTandem( 'text' )
-  } );
+class VariableRadioButtonText extends RichText {
+
+  public constructor( functionVariableStringProperty: TReadOnlyProperty<string>, radioButtonTandem: Tandem ) {
+    super( functionVariableStringProperty, {
+      font: PreferencesDialog.CONTENT_FONT,
+      maxWidth: 100,
+      tandem: radioButtonTandem.createTandem( 'text' )
+    } );
+  }
 }
 
 calculusGrapher.register( 'VariableControl', VariableControl );

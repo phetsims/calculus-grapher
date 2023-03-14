@@ -64,7 +64,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
     const items: RectangularRadioButtonGroupItem<ConnectDiscontinuities>[] = ConnectDiscontinuitiesValues.map( value => {
       return {
         value: value,
-        createNode: () => createIcon( value ),
+        createNode: () => new DiscontinuitiesRadioButtonLabel( value ),
         tandemName: `${value}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
       };
     } );
@@ -87,53 +87,66 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
 }
 
 /**
- * Creates the icon for a radio button.
+ * Labels for the radio buttons.
  */
-function createIcon( value: ConnectDiscontinuities ): Node {
+class DiscontinuitiesRadioButtonLabel extends Node {
 
-  const lineWidth = 2;
-  const verticalGap = 25;
+  private readonly disposeDiscontinuitiesRadioButtonLabel: () => void;
 
-  // 2 horizontal lines
-  const lineLength = 20;
-  const lineOptions = {
-    lineWidth: lineWidth,
-    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
-  };
-  const leftLine = new Line( 0, 0, lineLength, 0, lineOptions );
-  const rightLine = new Line( 0, 0, lineLength, 0, lineOptions );
+  public constructor( value: ConnectDiscontinuities ) {
 
-  // 2 open circles
-  const circleOptions = {
-    radius: 3,
-    lineWidth: 2,
-    stroke: CalculusGrapherColors.derivativeCurveStrokeProperty
-  };
-  const leftCircle = new Circle( circleOptions );
-  const rightCircle = new Circle( circleOptions );
+    const lineWidth = 2;
+    const verticalGap = 25;
 
-  // layout, left to right
-  leftCircle.left = leftLine.right;
-  leftCircle.centerY = leftLine.centerY;
-  rightCircle.x = leftCircle.x;
-  rightCircle.centerY = leftCircle.centerY - verticalGap;
-  rightLine.left = rightCircle.right;
-  rightLine.centerY = rightCircle.centerY;
+    // 2 horizontal lines
+    const lineLength = 20;
+    const lineOptions = {
+      lineWidth: lineWidth,
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty // Nodes that use circleOptions must be disposed!
+    };
+    const leftLine = new Line( 0, 0, lineLength, 0, lineOptions );
+    const rightLine = new Line( 0, 0, lineLength, 0, lineOptions );
 
-  const children = [ leftLine, rightLine, leftCircle, rightCircle ];
+    // 2 open circles
+    const circleOptions = {
+      radius: 3,
+      lineWidth: 2,
+      stroke: CalculusGrapherColors.derivativeCurveStrokeProperty // Nodes that use circleOptions must be disposed!
+    };
+    const leftCircle = new Circle( circleOptions );
+    const rightCircle = new Circle( circleOptions );
 
-  // optional vertical dashed line, connecting the 2 circles
-  if ( value === 'dashedLine' ) {
-    children.push( new Line( leftCircle.centerX, leftCircle.top, rightCircle.centerX, rightCircle.bottom,
-      combineOptions<LineOptions>( {
-        lineDash: [ 2, 2 ]
-      }, lineOptions ) )
-    );
+    // layout, left to right
+    leftCircle.left = leftLine.right;
+    leftCircle.centerY = leftLine.centerY;
+    rightCircle.x = leftCircle.x;
+    rightCircle.centerY = leftCircle.centerY - verticalGap;
+    rightLine.left = rightCircle.right;
+    rightLine.centerY = rightCircle.centerY;
+
+    const children = [ leftLine, rightLine, leftCircle, rightCircle ];
+
+    // optional vertical dashed line, connecting the 2 circles
+    let dashedLine: Line;
+    if ( value === 'dashedLine' ) {
+      dashedLine = new Line( leftCircle.centerX, leftCircle.top, rightCircle.centerX, rightCircle.bottom,
+        combineOptions<LineOptions>( {
+          lineDash: [ 2, 2 ]
+        }, lineOptions ) );
+      children.push( dashedLine );
+    }
+
+    super( {
+      children: children
+    } );
+
+    this.disposeDiscontinuitiesRadioButtonLabel = () => children.forEach( child => child.dispose() );
   }
 
-  return new Node( {
-    children: children
-  } );
+  public override dispose(): void {
+    this.disposeDiscontinuitiesRadioButtonLabel();
+    super.dispose();
+  }
 }
 
 calculusGrapher.register( 'DiscontinuitiesControl', DiscontinuitiesControl );

@@ -53,6 +53,7 @@ export default class ValuesControl extends PreferencesControl {
     this.disposeValuesControl = () => {
       labelText.dispose();
       toggleSwitch.dispose();
+      descriptionText.dispose();
     };
   }
 

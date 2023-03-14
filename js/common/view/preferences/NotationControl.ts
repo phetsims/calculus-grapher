@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { HBox, Node, RichText, Text } from '../../../../../scenery/js/imports.js';
+import { HBox, RichText, Text } from '../../../../../scenery/js/imports.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
@@ -66,14 +66,14 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
         value: 'lagrange',
-        createNode: tandem => createLabel( CalculusGrapherStrings.lagrangeStringProperty,
-          new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), tandem ),
+        createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.lagrangeStringProperty,
+          new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: `lagrange${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 'leibniz',
-        createNode: tandem => createLabel( CalculusGrapherStrings.leibnizStringProperty,
-          new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), tandem ),
+        createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.leibnizStringProperty,
+          new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: `leibniz${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }
     ];
@@ -91,28 +91,42 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
 }
 
 /**
- * Creates the label for a radio button.
+ * Labels for the radio buttons.
  */
-function createLabel( derivedNotationStringProperty: TReadOnlyProperty<string>,
+class NotationRadioButtonLabel extends HBox {
+
+  private readonly disposeNotationRadioButtonLabel: () => void;
+
+  public constructor( derivedNotationStringProperty: TReadOnlyProperty<string>,
                       derivativeNotationProperty: StringUnionProperty<DerivativeNotation>,
-                      tandem: Tandem ): Node {
+                      radioButtonTandem: Tandem ) {
 
-  // Name of the notation
-  const text = new RichText( derivedNotationStringProperty, {
-    font: PreferencesDialog.CONTENT_FONT,
-    maxWidth: 150,
-    tandem: tandem.createTandem( 'text' )
-  } );
+    // Name of the notation
+    const text = new RichText( derivedNotationStringProperty, {
+      font: PreferencesDialog.CONTENT_FONT,
+      maxWidth: 150,
+      tandem: radioButtonTandem.createTandem( 'text' )
+    } );
 
-  // An example of the notation
-  const exampleNode = new GraphTypeLabelNode( GraphType.DERIVATIVE, {
-    derivativeNotationProperty: derivativeNotationProperty
-  } );
+    // An example of the notation
+    const exampleNode = new GraphTypeLabelNode( GraphType.DERIVATIVE, {
+      derivativeNotationProperty: derivativeNotationProperty
+    } );
 
-  return new HBox( {
-    children: [ text, exampleNode ],
-    spacing: 15
-  } );
+    const children = [ text, exampleNode ];
+
+    super( {
+      children: children,
+      spacing: 15
+    } );
+
+    this.disposeNotationRadioButtonLabel = () => children.forEach( child => child.dispose() );
+  }
+
+  public override dispose(): void {
+    this.disposeNotationRadioButtonLabel();
+    super.dispose();
+  }
 }
 
 calculusGrapher.register( 'NotationControl', NotationControl );

@@ -65,6 +65,8 @@ export default class PredictControl extends PreferencesControl {
     this.disposePredictFeatureControl = () => {
       labelText.dispose();
       toggleSwitch.dispose();
+      descriptionStringProperty.dispose();
+      descriptionText.dispose();
     };
   }
 
