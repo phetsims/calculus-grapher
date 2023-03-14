@@ -73,6 +73,7 @@ export default class CalculusGrapherControlPanel extends Panel {
         curveManipulationControls,
         pushButtonGroup,
 
+        // REVIEW: I don't see any usage of appendContent in this repo. What is this safeguard for?
         // Additional content added via appendContent will be below this separator.
         // VBox will automatically hide the separator if there is nothing below it.
         new HSeparator( { stroke: Color.grayColor( 200 ) } )
