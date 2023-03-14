@@ -115,7 +115,6 @@ export default class SecondDerivativeCurve extends Curve {
     // Signal once that this Curve has changed.
     this.curveChangedEmitter.emit();
   }
-
-
 }
+
 calculusGrapher.register( 'SecondDerivativeCurve', SecondDerivativeCurve );
