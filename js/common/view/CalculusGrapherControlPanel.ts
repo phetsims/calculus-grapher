@@ -67,7 +67,7 @@ export default class CalculusGrapherControlPanel extends Panel {
 
     // assemble all the scenery nodes
     const contentNode = new VBox( {
-      spacing: 10,
+      spacing: 12,
       children: [
         predictRadioButtonGroup,
         curveManipulationControls,
