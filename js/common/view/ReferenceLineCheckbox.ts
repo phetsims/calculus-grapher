@@ -15,6 +15,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
+import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 
 export default class ReferenceLineCheckbox extends Checkbox {
 
@@ -24,8 +25,8 @@ export default class ReferenceLineCheckbox extends Checkbox {
 
     const text = new RichText( CalculusGrapherStrings.referenceLineStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
-      maxWidth: 100,
-      maxHeight: 60, // see https://github.com/phetsims/calculus-grapher/issues/283
+      maxWidth: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_WIDTH,
+      maxHeight: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_HEIGHT,
       tandem: tandem.createTandem( 'text' )
     } );
 

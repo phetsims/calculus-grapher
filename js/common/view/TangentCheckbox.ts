@@ -18,6 +18,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
+import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 
 export default class TangentCheckbox extends Checkbox {
 
@@ -28,8 +29,8 @@ export default class TangentCheckbox extends Checkbox {
 
     const text = new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
-      maxWidth: 100,
-      maxHeight: 60, // https://github.com/phetsims/calculus-grapher/issues/283
+      maxWidth: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_WIDTH,
+      maxHeight: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_HEIGHT,
       tandem: tandem.createTandem( 'text' )
     } );
 
