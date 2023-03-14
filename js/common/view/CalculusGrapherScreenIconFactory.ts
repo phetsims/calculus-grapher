@@ -41,6 +41,7 @@ function createOriginalShape(): Shape {
 
   const shape = new Shape();
   for ( let x = 0; x <= CURVE_WIDTH; x++ ) {
+
     // sign is flipped for scenery view coordinate frame
     const y = a * Math.exp( -Math.pow( x - b, 2 ) / ( 2 * c * c ) );
     if ( x === 0 ) {
