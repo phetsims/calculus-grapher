@@ -204,6 +204,9 @@ export default class CurveNode extends Node {
         dataSet.push( point.getVector() );
         previousDataPointWasNull = false;
       }
+
+      // REVIEW: More documentation for this `else if` would be helpful. The documentation in getContinuousLinePlotDataSet
+      // REVIEW: is so nice, and this lacks in comparison
       else if ( !previousDataPointWasNull ) {
         dataSet.push( null );
         previousDataPointWasNull = true;
