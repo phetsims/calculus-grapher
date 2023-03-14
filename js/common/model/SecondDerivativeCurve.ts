@@ -46,6 +46,8 @@ export default class SecondDerivativeCurve extends Curve {
   }
 
   /**
+   * // REVIEW: This makes it sound like we're grabbing the derivative of the "base"/"original"
+   * // REVIEW: curve. But we're actually grabbing the derivative of the OG curve derivative.
    * Updates the y-values of the SecondDerivative to represent the derivative of the 'base' Curve.
    *
    * To update the second derivative, we (1) assume that the points are smooth,

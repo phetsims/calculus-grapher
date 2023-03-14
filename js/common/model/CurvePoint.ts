@@ -161,6 +161,7 @@ export default class CurvePoint {
    */
   public undo(): void {
 
+    // REVIEW: Why revert to initial state when we reach the undo limit? This seems strange to me https://github.com/phetsims/calculus-grapher/issues/287
     // Reverts the state of this CurvedPoint to its most-recently saved state (if available).
     // As a side effect, the state is popped off undoStack.
     const pointState = ( this.undoStack.length === 0 ) ? this.initialState : this.undoStack.pop()!;

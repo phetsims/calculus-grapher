@@ -184,7 +184,7 @@ export default class TransformedCurve extends Curve {
     const deltaY = y - this.getClosestPointAt( x ).y;
 
     // Shift each of the CurvePoints by deltaY.
-    this.points.forEach( point => {point.y += deltaY;} );
+    this.points.forEach( point => { point.y += deltaY; } );
   }
 
   /**
@@ -560,6 +560,7 @@ export default class TransformedCurve extends Curve {
       // Point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
 
+      // REVIEW: should this be "lastPoint is in between closestPoint and nextToLastPoint"?
       // Checks that lastPoint is in between closestPoint and lastPoint
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 
