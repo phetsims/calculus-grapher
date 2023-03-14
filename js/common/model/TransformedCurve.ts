@@ -327,8 +327,8 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve
-   * We arbitrarily made the free form icon out of four segments
+   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
+   * We arbitrarily made the free form icon out of four segments.
    *
    * @param yMin - the minimum y-value for the curve
    * @param yMax - the maximum y-value for the curve
@@ -350,7 +350,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Applies the peak function to the curve points and update their point type
+   * Applies the peak function to the curve points and updates their point type.
    * @param peakFunction - the function to be applied to the curve
    * @param deltaY - the y offset of the drag
    */
