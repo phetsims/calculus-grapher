@@ -10,7 +10,7 @@
  * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition.
  *
  * Like Curve, DerivativeCurve is created at the start and persists for the lifetime of the simulation. Links
- * are left as-is and DerivativeCurves are never disposed.
+ * are left as-is since instances of DerivativeCurve are never disposed.
  *
  * @author Brandon Li
  * @author Martin Veillette
@@ -45,18 +45,23 @@ export default class DerivativeCurve extends Curve {
     // Listener is never removed since DerivativeCurves are never disposed.
     originalCurve.curveChangedEmitter.addListener( this.updateDerivative.bind( this ) );
 
-    // Makes the initial call to updateDerivative() to match the originalCurve upon initialization.
+    // Makes the initial call to updateDerivative() to evaluate the derivative the originalCurve upon initialization.
     this.updateDerivative();
   }
 
   /**
-   * Updates the y-values of the DerivativeCurve to represent the derivative of the originalCurve.
+   * Updates the y-values and pointTypes of the DerivativeCurve to represent the derivative of the originalCurve.
    *
    * The derivative is approximated as the slope of the secant line between each adjacent Point.
    * Our version considers both the slope of the secant lines from the left and right side of every point. See
    * https://en.wikipedia.org/wiki/Numerical_differentiation
    *
-   *  TODO https://github.com/phetsims/calculus-grapher/issues/110 add documentation
+   * Special consideration is given to points of originalCurve that are 'cusp' or 'discontinuous'
+   * For these cases, the simple algorithm of averaging the slope of the secant lines from the left and right side of every point
+   * is incorrect. Instead, for points at the edge of discontinuities, we use the value of the slope that is available.
+   *
+   * The point type of the derivative is updated. The point type are "promoted", which means that 'cusp' and 'discontinuous'
+   * type in the original curve becomes discontinuity in the derivative, but 'smooth' original point remains 'smooth'.
    */
   private updateDerivative(): void {
 
