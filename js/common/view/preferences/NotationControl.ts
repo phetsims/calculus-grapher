@@ -66,13 +66,13 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
         value: 'lagrange',
-        createNode: tandem => createLabel( CalculusGrapherStrings.LagrangeStringProperty,
+        createNode: tandem => createLabel( CalculusGrapherStrings.lagrangeStringProperty,
           new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), tandem ),
         tandemName: `lagrange${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       },
       {
         value: 'leibniz',
-        createNode: tandem => createLabel( CalculusGrapherStrings.LeibnizStringProperty,
+        createNode: tandem => createLabel( CalculusGrapherStrings.leibnizStringProperty,
           new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), tandem ),
         tandemName: `leibniz${AquaRadioButton.TANDEM_NAME_SUFFIX}`
       }

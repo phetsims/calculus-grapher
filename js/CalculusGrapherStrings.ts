@@ -28,8 +28,8 @@ type StringsType = {
   'discontinuitiesStringProperty': LinkableProperty<string>;
   'valuesStringProperty': LinkableProperty<string>;
   'notationStringProperty': LinkableProperty<string>;
-  'LagrangeStringProperty': LinkableProperty<string>;
-  'LeibnizStringProperty': LinkableProperty<string>;
+  'lagrangeStringProperty': LinkableProperty<string>;
+  'leibnizStringProperty': LinkableProperty<string>;
   'variableStringProperty': LinkableProperty<string>;
   'checkbox': {
     'areaUnderCurveStringProperty': LinkableProperty<string>;
