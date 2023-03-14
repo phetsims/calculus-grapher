@@ -51,7 +51,8 @@ CurvePoint - A point tracking the x, y and pointType of a curve. CurvePoint are 
 Curve - A collection of CurvePoints. Intended to be sub-classed
 - TransformedCurve - A Curve that can be manipulated by user transformation. Extends Curve.
 - IntegralCurve - The integral of a Curve. Extends Curve.
-- DerivativeCurve - The derivative of a Curve. Extends Curve.
+- DerivativeCurve - The first derivative of a Curve. Extends Curve.
+- SecondDerivativeCurve - The second derivative of a Curve. Extends Curve.
 
 AncillaryTool - A model base class associated with an x value on the graph. Intended to be sub-classed
 - AreaUnderCurveScrubber - Model for the scrubber 'AreaUnderCurve'.  Extends AncillaryTool.
@@ -81,9 +82,7 @@ enough for derivative and integral computations and are considered to cover 'eve
 - Saving the curve
 - Resetting all the points of the curve
 
-DerivativeCurve's main responsibility is to observe when the 'base' Curve changes and differentiates it and update
-the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
-of every point.
+DerivativeCurve and SecondDerivativeCurve's main responsibility is to observe when the 'base' Curve changes and differentiates it and update the Points of the first and second derivative. Derivatives are computed by considering the slope of the secant lines from both sides of every point.
 
 `IntegralCurve` is a Curve subtype for the curve that represents the integral of the TransformedCurve. The TransformedCurve
 is referenced as the 'base' Curve of the IntegralCurve.
