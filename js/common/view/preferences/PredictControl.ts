@@ -30,8 +30,8 @@ export default class PredictControl extends PreferencesControl {
     // radio button. It's not uncommon to duplicate strings when they have very different contexts, because translators
     // or PhET-iO clients may want to use different strings for the different contexts. In the case of "Predict" -
     // No one questioned labeling the radio button with "Predict". But there was discussion/concern about whether
-    // "Predict" was sufficient for labeling the control in Preferences.
-    // See https://github.com/phetsims/calculus-grapher/issues/285
+    // "Predict" was sufficient for labeling the control in Preferences. So there are separate StringProperties for
+    // each context. See https://github.com/phetsims/calculus-grapher/issues/285
     const labelText = new Text( CalculusGrapherStrings.predictPreferenceStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
