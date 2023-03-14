@@ -57,6 +57,8 @@ type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem
 
 export default class GraphTypeLabelNode extends Node {
 
+  private readonly disposeGraphTypeLabelNode: () => void;
+
   public constructor( graphType: GraphType, providedOptions?: GraphTypeLabelNodeOptions ) {
 
     const options = optionize<GraphTypeLabelNodeOptions, SelfOptions, NodeOptions>()( {
@@ -75,14 +77,18 @@ export default class GraphTypeLabelNode extends Node {
 
     super( options );
 
+    // To improve readability
+    const derivativeNotationProperty = options.derivativeNotationProperty;
+    const functionVariableProperty = options.functionVariableProperty;
+
     // get variable as a StringProperty
-    const variableStringProperty = getVariableStringProperty( options.functionVariableProperty );
+    const variableStringProperty = getVariableStringProperty( functionVariableProperty );
 
     // create and add content for the node, based on graphType, notation and variable
-    let labelNode = getLabelNode( graphType, options.derivativeNotationProperty.value, variableStringProperty, options.fontSizeOptions );
+    let labelNode = getLabelNode( graphType, derivativeNotationProperty.value, variableStringProperty, options.fontSizeOptions );
     this.addChild( labelNode );
 
-    options.derivativeNotationProperty.link( derivationNotation => {
+    const derivationNotationListener = ( derivationNotation: DerivativeNotation ) => {
 
       // remove and dispose previous labelNode
       labelNode.dispose();
@@ -90,7 +96,16 @@ export default class GraphTypeLabelNode extends Node {
       // create and add new label
       labelNode = getLabelNode( graphType, derivationNotation, variableStringProperty, options.fontSizeOptions );
       this.addChild( labelNode );
-    } );
+    };
+    derivativeNotationProperty.link( derivationNotationListener );
+
+    this.disposeGraphTypeLabelNode = () => {
+      variableStringProperty.dispose();
+      labelNode.dispose();
+      if ( derivativeNotationProperty.hasListener( derivationNotationListener ) ) {
+        derivativeNotationProperty.unlink( derivationNotationListener );
+      }
+    };
   }
 }
 
@@ -130,11 +145,18 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
     ( f, x ) => `${f}${HAIR_SPACE_STRING}${primeString}(${x})`
   );
 
-  return new RichText( labelStringProperty, {
+  const label = new RichText( labelStringProperty, {
     font: new PhetFont( fontSizeOptions.nominalFontSize ),
     maxWidth: 50
     // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
+
+  // Dispose of anything that's linked to a StringProperty or ProfileColorProperty.
+  label.disposeEmitter.addListener( () => {
+    labelStringProperty.dispose();
+  } );
+
+  return label;
 }
 
 /**
@@ -177,7 +199,16 @@ function getLeibnizDerivative( variableStringProperty: TReadOnlyProperty<string>
     [ CalculusGrapherSymbols.dStringProperty, variableStringProperty ],
     ( d, x ) => `${d}${x}`
   );
-  return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
+
+  const label = getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
+
+  // Dispose of anything that's linked to a StringProperty or ProfileColorProperty.
+  label.disposeEmitter.addListener( () => {
+    numeratorStringProperty.dispose();
+    denominatorStringProperty.dispose();
+  } );
+
+  return label;
 }
 
 /**
@@ -201,7 +232,15 @@ function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<s
     ( d, x ) => `${d}${x}${getSuperScript( 2, superscriptSize )}`
   );
 
-  return getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
+  const label = getFractionLabel( numeratorStringProperty, denominatorStringProperty, fontSizeOptions );
+
+  // Dispose of anything that's linked to a StringProperty or ProfileColorProperty.
+  label.disposeEmitter.addListener( () => {
+    numeratorStringProperty.dispose();
+    denominatorStringProperty.dispose();
+  } );
+
+  return label;
 }
 
 /**
@@ -285,7 +324,18 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
   integrandNode.left = upperBoundNode.right + 2;
   integrandNode.centerY = integralSymbolNode.centerY;
 
-  return new Node( { children: [ lowerBoundNode, upperBoundNode, integrandNode, integralSymbolNode ] } );
+  const node = new Node( { children: [ lowerBoundNode, upperBoundNode, integrandNode, integralSymbolNode ] } );
+
+  // Dispose of anything that's linked to a StringProperty or ProfileColorProperty.
+  node.disposeEmitter.addListener( () => {
+    integralSymbolNode.dispose();
+    lowerBoundNode.dispose();
+    upperBoundNode.dispose();
+    integrandStringProperty.dispose();
+    integrandNode.dispose();
+  } );
+
+  return node;
 }
 
 /**
@@ -294,28 +344,38 @@ function getIntegral( variableStringProperty: TReadOnlyProperty<string>, fontSiz
 function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
                            denominatorStringProperty: TReadOnlyProperty<string>,
                            fontSizeOptions: FontSizeOptions ): Node {
+
   const fractionFont = new PhetFont( fontSizeOptions.fractionFontSize );
-  return new VBox( {
-    children: [
 
-      // numerator
-      new RichText( numeratorStringProperty, {
-        font: fractionFont,
-        maxWidth: 50
-        // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
-      } ),
-
-      // horizontal line between numerator and denominator, resized automatically by VBox
-      new HSeparator( { stroke: 'black', lineWidth: 0.5 } ),
-
-      // denominator
-      new RichText( denominatorStringProperty, {
-        font: fractionFont,
-        maxWidth: 50
-        // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
-      } )
-    ]
+  const numerator = new RichText( numeratorStringProperty, {
+    font: fractionFont,
+    maxWidth: 50
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
   } );
+
+  const denominator = new RichText( denominatorStringProperty, {
+    font: fractionFont,
+    maxWidth: 50
+    // No PhET-iO instrumentation is desired. See https://github.com/phetsims/calculus-grapher/issues/213
+  } );
+
+  // horizontal line between numerator and denominator, resized automatically by VBox
+  const separator = new HSeparator( {
+    stroke: 'black',
+    lineWidth: 0.5
+  } );
+
+  const vBox = new VBox( {
+    children: [ numerator, separator, denominator ]
+  } );
+
+  // Dispose of anything that's linked to a StringProperty or ProfileColorProperty.
+  vBox.disposeEmitter.addListener( () => {
+    numerator.dispose();
+    denominator.dispose();
+  } );
+
+  return vBox;
 }
 
 /**
