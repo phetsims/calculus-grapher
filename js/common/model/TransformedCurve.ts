@@ -1,6 +1,5 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
-
 /**
  * TransformedCurve is a Curve subclass for a curve that the user interacts with and manipulates, which then
  * triggers a change in the CurvePoints. It is used for f(x) (the 'original' curve) and the 'Predict' curve.
@@ -24,7 +23,18 @@
  *     - SHIFT -> shiftToPosition
  *     - TILT -> tiltToPosition
  *
- *  TransformedCurve is created at the start and persists for the lifetime of the simulation.
+ * We should note that the TransformedCurve class is the basis of the original curve, and, therefore,
+ * its first, and second derivative will be evaluated. As a result, much effort was spent creating curve manipulations
+ * that yields unusually smooth curves for which their first and second derivatives are themselves smooth.
+ *
+ * Most curve manipulations make use of a weight function to "blend" in a curve segment into a previous curve.
+ * A weight function is a mathematical device used when performing an average to give
+ * some elements more "weight" or influence on the result than other elements in the same set.
+ * The result of the application of a weight function is a weighted sum or weighted average.
+ * A variety of weight functions ranging from gaussian kernel, super gaussian, mollifying functions
+ * are used to create curves without cusps and discontinuities.
+ *
+ * TransformedCurve is created at the start and persists for the lifetime of the simulation.
  *
  * @author Martin Veillette
  */
