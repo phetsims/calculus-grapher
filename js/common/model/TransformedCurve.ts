@@ -244,18 +244,6 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Shifts the curve to the specified drag position, in model coordinates.
-   */
-  public shiftToPosition( x: number, y: number ): void {
-
-    // Amount to shift the entire curve.
-    const deltaY = y - this.getClosestPointAt( x ).y;
-
-    // Shift each of the CurvePoints by deltaY.
-    this.points.forEach( point => { point.y += deltaY; } );
-  }
-
-  /**
    * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
    * We arbitrarily made the free form icon out of four segments.
    *
@@ -276,6 +264,18 @@ export default class TransformedCurve extends Curve {
     this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
     this.saveCurrentPoints();
     this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
+  }
+
+  /**
+   * Shifts the curve to the specified drag position, in model coordinates.
+   */
+  public shiftToPosition( x: number, y: number ): void {
+
+    // Amount to shift the entire curve.
+    const deltaY = y - this.getClosestPointAt( x ).y;
+
+    // Shift each of the CurvePoints by deltaY.
+    this.points.forEach( point => { point.y += deltaY; } );
   }
 
   /**
@@ -371,6 +371,32 @@ export default class TransformedCurve extends Curve {
       this.updatePointValue( point, P, peakY );
       this.updatePointType( point, P );
     } );
+  }
+
+  /**
+   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
+   */
+  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
+
+    const closestPoint = this.getClosestPointAt( peakX );
+
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peakY - closestPoint.lastSavedY;
+
+    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at typicalY value
+    const slope = TYPICAL_Y / ( width / 2 );
+
+    const peakFunction = ( deltaY: number, x: number ): number => {
+      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
+    };
+
+    // Update the y values and point types of the points
+    this.iterateFunctionOverPoints( peakFunction, deltaY );
+
+    // IterateFunctionOverPoints assumes the peakFunction is smooth, but we have a cusp at the peak of the triangle
+    closestPoint.pointType = 'cusp';
+    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
   }
 
   /**
@@ -622,33 +648,6 @@ export default class TransformedCurve extends Curve {
   private mollifierFunction( width: number ): MathFunction {
     assert && assert( width > 0, 'width must be positive' );
     return x => Math.abs( x ) < width / 2 ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
-  }
-
-  /**
-   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
-   */
-  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peakX );
-
-    // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peakY - closestPoint.lastSavedY;
-
-    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
-    // to this.curveManipulationWidth when the peak is at typicalY value
-    const slope = TYPICAL_Y / ( width / 2 );
-
-    const peakFunction = ( deltaY: number, x: number ): number => {
-      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
-    };
-
-    // Update the y values and point types of the points
-    this.iterateFunctionOverPoints( peakFunction, deltaY );
-
-    // IterateFunctionOverPoints assumes the peakFunction is smooth, but we have a cusp at the peak of the triangle
-    closestPoint.pointType = 'cusp';
-    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
-
   }
 
   /**
