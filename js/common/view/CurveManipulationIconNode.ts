@@ -8,6 +8,7 @@
 
 import calculusGrapher from '../../calculusGrapher.js';
 import { Node, TColor } from '../../../../scenery/js/imports.js';
+import Range from '../../../../dot/js/Range.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -21,7 +22,7 @@ const CHART_TRANSFORM_OPTIONS = {
   viewWidth: 50,
   viewHeight: 25,
   modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
-  modelYRange: CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE
+  modelYRange: new Range( 0, 1 )
 };
 
 const TRANSFORMED_CURVE_OPTIONS = {
