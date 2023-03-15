@@ -92,10 +92,7 @@ type SelfOptions = {
   // options to the bamboo ChartRectangle
   chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
 
-  // REVIEW: This naming is a bit confusing, and I first thought a GraphNode had a default curveNode
-  // REVIEW: in addition to something else that was provided. Not in place of. It's unclear that the default is
-  // REVIEW: a non-interactive curve, rather than a curve which also happens to be non-interactive.
-  // REVIEW: perhaps just `hasInteractiveCurveNode`?
+  //TODO https://github.com/phetsims/calculus-grapher/issues/291
   // Whether to create the default CurveNode, which is not interactive
   hasDefaultCurveNode?: boolean;
 
