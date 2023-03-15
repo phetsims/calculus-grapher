@@ -47,15 +47,14 @@ export default class SecondDerivativeCurve extends Curve {
   }
 
   /**
-   * // REVIEW: This makes it sound like we're grabbing the derivative of the originalCurve.
-   * // REVIEW: But we're actually grabbing the derivative of the originalCurve derivative.
-   * Updates the y-values of the SecondDerivative to represent the derivative of the originalCurve.
+   * Updates the y-values and pointTypes for the SecondDerivative
    *
    * To update the second derivative, we (1) assume that the points are smooth,
    * and evaluate the second derivative using the standard finite difference algorithm.
-   * For points that are not smooth, we correct for the wrong assumption, by assigning
-   * their second derivative to a smooth point directly next to it.
+   * (see central difference approximation of the second derivative in  https://en.wikipedia.org/wiki/Finite_difference )
    *
+   * For points that are not smooth, we correct for this wrong assumption, by assigning
+   * their second derivative to a smooth point directly next to it.
    */
   private updateSecondDerivative(): void {
 

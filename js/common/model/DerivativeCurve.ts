@@ -60,7 +60,7 @@ export default class DerivativeCurve extends Curve {
    * For these cases, the simple algorithm of averaging the slope of the secant lines from the left and right side of every point
    * is incorrect. Instead, for points at the edge of discontinuities, we use the value of the slope that is available.
    *
-   * The point type of the derivative is updated. The point type are "promoted", which means that 'cusp' and 'discontinuous'
+   * The point type of the derivative is updated. The point type is "promoted", which means that 'cusp' and 'discontinuous'
    * type in the original curve becomes discontinuity in the derivative, but 'smooth' original point remains 'smooth'.
    */
   private updateDerivative(): void {
