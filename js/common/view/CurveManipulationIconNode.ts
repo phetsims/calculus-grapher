@@ -51,7 +51,9 @@ export default class CurveManipulationIconNode extends Node {
 
     // To improve readability
     const xCenter = chartTransform.modelXRange.getCenter();
+    const yCenter = chartTransform.modelYRange.getCenter();
     const xLength = chartTransform.modelXRange.getLength();
+    const xMin = chartTransform.modelXRange.getMin();
     const xMax = chartTransform.modelXRange.getMax();
     const yMax = chartTransform.modelYRange.getMax();
     const yMin = chartTransform.modelYRange.getMin();
@@ -68,10 +70,11 @@ export default class CurveManipulationIconNode extends Node {
     else if ( mode === CurveManipulationMode.SINUSOID ) {
 
       // Ad hoc variables to create sine function
-      const y = 0.5 * yMax;
       const width = 0.25 * xLength;
+      const y = 0.5 * yMax;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
-      solidCurve.shiftToPosition( xCenter, y );
+      solidCurve.saveCurrentPoints();
+      solidCurve.shiftToPosition( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       solidCurve.freeformIconCurve( yMin, yMax );
@@ -80,7 +83,12 @@ export default class CurveManipulationIconNode extends Node {
 
       const y = 0.5 * yMax;
       solidCurve.positionManipulatedCurve( mode, xMax, y );
+      solidCurve.saveCurrentPoints();
+      solidCurve.shiftToPosition( xMin, yCenter );
+
       dashedCurve.positionManipulatedCurve( mode, xMax, -y );
+      dashedCurve.saveCurrentPoints();
+      dashedCurve.shiftToPosition( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
 
