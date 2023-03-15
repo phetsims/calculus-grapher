@@ -1,23 +1,33 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
+
 /**
  * TransformedCurve is a Curve subclass for a curve that the user interacts with and manipulates, which then
- * triggers a change in the CurvePoints. It's used for f(x) (the 'original' curve) and the 'Predict' curve.
+ * triggers a change in the CurvePoints. It is used for f(x) (the 'original' curve) and the 'Predict' curve.
  *
  * TransformedCurve is mainly responsible for:
  *
+ *   - Resetting all the points of the curve
+ *   - Saving the state of the curve
+ *   - Undoing the curve to its previous state
+ *   - Smoothing the curve
  *   - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
  *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
- *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher.
- *   - Saving the curve
- *   - Implementing smoothing, undoing, and other interactions.
- *   - Resetting all the points of the curve
+ *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher. The methods
+ *     associated with the various CurveManipulationModes are
+ *     - HILL -> createHillAt
+ *     - PEDESTAL -> createPedestalAt
+ *     - TRIANGLE -> createTriangleAt
+ *     - PARABOLA -> createParabolaAt
+ *     - SINUSOID -> createSinusoidAt
+ *     - FREEFORM -> drawFreeformToPosition
+ *     - SHIFT -> shiftToPosition
+ *     - TILT -> tiltToPosition
  *
  *  TransformedCurve is created at the start and persists for the lifetime of the simulation.
  *
  * @author Martin Veillette
  */
-
 import Vector2 from '../../../../dot/js/Vector2.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
@@ -28,7 +38,7 @@ import CurvePoint from './CurvePoint.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js';
+import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js'; // constants
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
