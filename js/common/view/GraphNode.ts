@@ -92,9 +92,8 @@ type SelfOptions = {
   // options to the bamboo ChartRectangle
   chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
 
-  //TODO https://github.com/phetsims/calculus-grapher/issues/291
-  // Whether to create the default CurveNode, which is not interactive
-  hasDefaultCurveNode?: boolean;
+  // Whether to create a CurveNode for the provided Curve.
+  createCurveNode?: boolean;
 
   // label that appears in the upper-left corner of the graph
   labelNode?: Node;
@@ -118,7 +117,7 @@ export default class GraphNode extends Node {
   // The model curve to be plotted
   protected readonly curve: Curve;
 
-  // Optional non-interactive Node that plots the curve
+  // Optional Node that plots the provided Curve, see SelfOptions.createCurveNode
   private readonly curveNode?: CurveNode;
 
   // Layer that contains the plots for any curves, optional tangent line and point (for Derivative screen),
@@ -139,7 +138,7 @@ export default class GraphNode extends Node {
     const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 
       // SelfOptions
-      hasDefaultCurveNode: true,
+      createCurveNode: true,
       chartRectangleOptions: {
         fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
@@ -179,8 +178,8 @@ export default class GraphNode extends Node {
 
     this.chartRectangle = new ChartRectangle( this.chartTransform, options.chartRectangleOptions );
 
-    // Create a non-interactive Node that plots the curve.
-    if ( options.hasDefaultCurveNode ) {
+    // Create CurveNode for the provided Curve.
+    if ( options.createCurveNode ) {
       this.curveNode = new CurveNode( curve, this.chartTransform, {
         stroke: graphType.strokeProperty,
         discontinuousPointsFill: options.chartRectangleOptions.fill!,

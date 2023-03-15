@@ -89,7 +89,7 @@ export default class OriginalGraphNode extends GraphNode {
 
       // GraphNodeOptions
       labelNode: labelNode,
-      hasDefaultCurveNode: false, // We'll be creating our own CurveNode for model.originalCurve.
+      createCurveNode: false, // We'll be creating our own Node for model.originalCurve.
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
