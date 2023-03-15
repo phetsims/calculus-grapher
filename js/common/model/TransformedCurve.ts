@@ -93,6 +93,19 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Sets the state of this CurvedPoint on this Curve to its last saved state.
+   * This method is invoked when the undo button is pressed, which successively undoes the last action.
+   */
+  public undo(): void {
+
+    // Revert to the saved pointState of each CurvePoint.
+    this.points.forEach( point => point.undo() );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
    * Smooths the curve. It is called when the user presses the 'smooth' button.
    * This method uses a weighted-average algorithm for 'smoothing' a curve, using a gaussian kernel
    * see https://en.wikipedia.org/wiki/Kernel_smoother
@@ -186,6 +199,51 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Sets the points for all modes that can be manipulated solely through a position argument.
+   */
+  public positionManipulatedCurve( mode: CurveManipulationMode, x: number, y: number ): void {
+
+    assert && assert( !mode.hasAdjustableWidth, `mode cannot have adjustable width: ${mode}` );
+
+    if ( mode === CurveManipulationMode.TILT ) {
+      this.tiltToPosition( x, y );
+    }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+      this.shiftToPosition( x, y );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+  }
+
+  /**
+   * Sets the points for all the modes that can be manipulated through their width.
+   */
+  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
+
+    assert && assert( mode.hasAdjustableWidth, `mode must have adjustable width: ${mode}` );
+
+    if ( mode === CurveManipulationMode.HILL ) {
+      this.createHillAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.PARABOLA ) {
+      this.createParabolaAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.PEDESTAL ) {
+      this.createPedestalAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.TRIANGLE ) {
+      this.createTriangleAt( width, x, y );
+    }
+    else if ( mode === CurveManipulationMode.SINUSOID ) {
+      this.createSinusoidAt( width, x, y );
+    }
+    else {
+      throw new Error( 'Unsupported Curve Manipulation Mode' );
+    }
+  }
+
+  /**
    * Shifts the curve to the specified drag position, in model coordinates.
    */
   public shiftToPosition( x: number, y: number ): void {
@@ -195,6 +253,60 @@ export default class TransformedCurve extends Curve {
 
     // Shift each of the CurvePoints by deltaY.
     this.points.forEach( point => { point.y += deltaY; } );
+  }
+
+  /**
+   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
+   * We arbitrarily made the free form icon out of four segments.
+   *
+   * @param yMin - the minimum y-value for the curve
+   * @param yMax - the maximum y-value for the curve
+   */
+  public freeformIconCurve( yMin: number, yMax: number ): void {
+
+    // Convenience variables
+    const xLength = this.xRange.getLength();
+    const xMin = this.xRange.getMin();
+    const width = xLength / 4;
+
+    this.createHillAt( width, xMin + xLength / 5, yMin );
+    this.saveCurrentPoints();
+    this.createTriangleAt( width, xMin + 2 * xLength / 5, yMax );
+    this.saveCurrentPoints();
+    this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
+    this.saveCurrentPoints();
+    this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
+  }
+
+  /**
+   * Tilts the curve to the specified drag position, in model coordinates.
+   * @param x - x-coordinate of the drag position
+   * @param y - y-coordinate of the drag position
+   */
+  private tiltToPosition( x: number, y: number ): void {
+
+    // Fulcrum point: chosen to be the leftmost point.
+    const pivotPoint = this.points[ 0 ];
+
+    const leverArm = x - pivotPoint.x;
+
+    // Exclude drags with zero leverArm
+    if ( leverArm !== 0 ) {
+
+      // Slope between drag position and pivotPoint
+      const targetSlope = ( y - pivotPoint.y ) / leverArm;
+
+      // Update points only if the targetSlope is less than MAX_TILT
+      if ( Math.abs( targetSlope ) < MAX_TILT ) {
+
+        const oldSlope = ( this.getClosestPointAt( x ).lastSavedY - pivotPoint.y ) / leverArm;
+
+        const incrementSlope = targetSlope - oldSlope;
+
+        // Shift each of the CurvePoints by a factor associated with the incrementSlope.
+        this.points.forEach( point => { point.y = point.lastSavedY + incrementSlope * ( point.x - pivotPoint.x );} );
+      }
+    }
   }
 
   /**
@@ -245,46 +357,6 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the state of this CurvedPoint on this Curve to its last saved state.
-   * This method is invoked when the undo button is pressed, which successively undoes the last action.
-   */
-  public undo(): void {
-
-    // Revert to the saved pointState of each CurvePoint.
-    this.points.forEach( point => point.undo() );
-
-    // Signal that this Curve has changed.
-    this.curveChangedEmitter.emit();
-  }
-
-  /**
-   * Sets the points for all the modes that can be manipulated through their width.
-   */
-  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
-
-    assert && assert( mode.hasAdjustableWidth, `mode must have adjustable width: ${mode}` );
-
-    if ( mode === CurveManipulationMode.HILL ) {
-      this.createHillAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.PARABOLA ) {
-      this.createParabolaAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.PEDESTAL ) {
-      this.createPedestalAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.TRIANGLE ) {
-      this.createTriangleAt( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.SINUSOID ) {
-      this.createSinusoidAt( width, x, y );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
-  }
-
-  /**
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    */
   private createHillAt( width: number, peakX: number, peakY: number ): void {
@@ -298,82 +370,6 @@ export default class TransformedCurve extends Curve {
 
       this.updatePointValue( point, P, peakY );
       this.updatePointType( point, P );
-    } );
-  }
-
-  /**
-   * Update the type of a point to smooth if the weight associated to the new function is very large,
-   * otherwise leave as is.
-   */
-  private updatePointType( point: CurvePoint, weight: number ): void {
-
-    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
-
-    // If the weight is very large, we have effectively replaced the previous values by the new function, which we know to be smooth.
-    point.pointType = ( weight > UPPER_WEIGHT ) ? 'smooth' : point.lastSavedType;
-  }
-
-  /**
-   * Update pointValue with appropriate weight, but if weight is very small leave as is.
-   * (see https://github.com/phetsims/calculus-grapher/issues/261)
-   */
-  private updatePointValue( point: CurvePoint, weight: number, peakY: number ): void {
-
-    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
-
-    // If the weight is very small, we are practically ignoring the new function. Let's explicitly replace it by the lastSavedY instead.
-    point.y = ( weight > LOWER_WEIGHT ) ? weight * peakY + ( 1 - weight ) * point.lastSavedY : point.lastSavedY;
-  }
-
-  /**
-   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
-   * We arbitrarily made the free form icon out of four segments.
-   *
-   * @param yMin - the minimum y-value for the curve
-   * @param yMax - the maximum y-value for the curve
-   */
-  public freeformIconCurve( yMin: number, yMax: number ): void {
-
-    // Convenience variables
-    const xLength = this.xRange.getLength();
-    const xMin = this.xRange.getMin();
-    const width = xLength / 4;
-
-    this.createHillAt( width, xMin + xLength / 5, yMin );
-    this.saveCurrentPoints();
-    this.createTriangleAt( width, xMin + 2 * xLength / 5, yMax );
-    this.saveCurrentPoints();
-    this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
-    this.saveCurrentPoints();
-    this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
-  }
-
-  /**
-   * Applies the peak function to the curve points and updates their point type.
-   * @param peakFunction - the function to be applied to the curve
-   * @param deltaY - the y offset of the drag
-   */
-  private iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
-
-    let wasPreviousPointModified: boolean | null = null;
-    this.points.forEach( ( point, index ) => {
-
-      // New Y value, subject to conditions below
-      const newY = peakFunction( deltaY, point.x );
-
-      // Is the point within the 'width' and the change "larger" than the previous y value.
-      const isModified = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
-
-      point.y = isModified ? newY : point.lastSavedY;
-
-      point.pointType = isModified ? 'smooth' : point.lastSavedType;
-
-      if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
-        point.pointType = 'cusp';
-        this.points[ index - 1 ].pointType = 'cusp';
-      }
-
-      wasPreviousPointModified = isModified;
     } );
   }
 
@@ -398,24 +394,6 @@ export default class TransformedCurve extends Curve {
 
     // Update the y values and point types of the points
     this.iterateFunctionOverPoints( peakFunction, deltaY );
-  }
-
-  /**
-   * Sets the points for all modes that can be manipulated solely through a position argument.
-   */
-  public positionManipulatedCurve( mode: CurveManipulationMode, x: number, y: number ): void {
-
-    assert && assert( !mode.hasAdjustableWidth, `mode cannot have adjustable width: ${mode}` );
-
-    if ( mode === CurveManipulationMode.TILT ) {
-      this.tiltToPosition( x, y );
-    }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
-      this.shiftToPosition( x, y );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
   }
 
   /**
@@ -636,7 +614,6 @@ export default class TransformedCurve extends Curve {
     }
   }
 
-
   /**
    * Returns a mollifier function of x, that is an infinitely differentiable function
    * Mollifier functions are used to smooth (a.k.a. mollify) other functions (see https://en.wikipedia.org/wiki/Mollifier)
@@ -645,37 +622,6 @@ export default class TransformedCurve extends Curve {
   private mollifierFunction( width: number ): MathFunction {
     assert && assert( width > 0, 'width must be positive' );
     return x => Math.abs( x ) < width / 2 ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
-  }
-
-  /**
-   * Tilts the curve to the specified drag position, in model coordinates.
-   * @param x - x-coordinate of the drag position
-   * @param y - y-coordinate of the drag position
-   */
-  private tiltToPosition( x: number, y: number ): void {
-
-    // Fulcrum point: chosen to be the leftmost point.
-    const pivotPoint = this.points[ 0 ];
-
-    const leverArm = x - pivotPoint.x;
-
-    // Exclude drags with zero leverArm
-    if ( leverArm !== 0 ) {
-
-      // Slope between drag position and pivotPoint
-      const targetSlope = ( y - pivotPoint.y ) / leverArm;
-
-      // Update points only if the targetSlope is less than MAX_TILT
-      if ( Math.abs( targetSlope ) < MAX_TILT ) {
-
-        const oldSlope = ( this.getClosestPointAt( x ).lastSavedY - pivotPoint.y ) / leverArm;
-
-        const incrementSlope = targetSlope - oldSlope;
-
-        // Shift each of the CurvePoints by a factor associated with the incrementSlope.
-        this.points.forEach( point => { point.y = point.lastSavedY + incrementSlope * ( point.x - pivotPoint.x );} );
-      }
-    }
   }
 
   /**
@@ -747,6 +693,58 @@ export default class TransformedCurve extends Curve {
     } );
   }
 
+  /**
+   * Update the type of a point to smooth if the weight associated to the new function is very large,
+   * otherwise leave as is.
+   */
+  private updatePointType( point: CurvePoint, weight: number ): void {
+
+    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
+
+    // If the weight is very large, we have effectively replaced the previous values by the new function, which we know to be smooth.
+    point.pointType = ( weight > UPPER_WEIGHT ) ? 'smooth' : point.lastSavedType;
+  }
+
+  /**
+   * Update pointValue with appropriate weight, but if weight is very small leave as is.
+   * (see https://github.com/phetsims/calculus-grapher/issues/261)
+   */
+  private updatePointValue( point: CurvePoint, weight: number, peakY: number ): void {
+
+    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
+
+    // If the weight is very small, we are practically ignoring the new function. Let's explicitly replace it by the lastSavedY instead.
+    point.y = ( weight > LOWER_WEIGHT ) ? weight * peakY + ( 1 - weight ) * point.lastSavedY : point.lastSavedY;
+  }
+
+  /**
+   * Applies the peak function to the curve points and updates their point type.
+   * @param peakFunction - the function to be applied to the curve
+   * @param deltaY - the y offset of the drag
+   */
+  private iterateFunctionOverPoints( peakFunction: ( deltaY: number, x: number ) => number, deltaY: number ): void {
+
+    let wasPreviousPointModified: boolean | null = null;
+    this.points.forEach( ( point, index ) => {
+
+      // New Y value, subject to conditions below
+      const newY = peakFunction( deltaY, point.x );
+
+      // Is the point within the 'width' and the change "larger" than the previous y value.
+      const isModified = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
+
+      point.y = isModified ? newY : point.lastSavedY;
+
+      point.pointType = isModified ? 'smooth' : point.lastSavedType;
+
+      if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
+        point.pointType = 'cusp';
+        this.points[ index - 1 ].pointType = 'cusp';
+      }
+
+      wasPreviousPointModified = isModified;
+    } );
+  }
 }
 
 calculusGrapher.register( 'TransformedCurve', TransformedCurve );
