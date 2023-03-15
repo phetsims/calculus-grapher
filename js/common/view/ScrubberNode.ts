@@ -14,7 +14,6 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import XDragHandleNode from './XDragHandleNode.js';
-import Multilink from '../../../../axon/js/Multilink.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 
 type SelfOptions = {
@@ -80,9 +79,8 @@ export default class ScrubberNode extends Node {
       this.line.x = chartTransform.modelToViewX( x );
     } );
 
-    // REVIEW: Why is this a `multilink` instead of a `boundsProperty.link`?
     // Keep the handle centered at the bottom of the line.
-    Multilink.multilink( [ line.boundsProperty ], () => {
+    line.boundsProperty.link( () => {
       handleNode.centerX = line.centerX;
       handleNode.centerY = line.bottom;
     } );
