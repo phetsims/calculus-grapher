@@ -36,6 +36,9 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
     const buttons = validModes.map( mode => new RectangularRadioButton( curveManipulationModeProperty, mode, {
       content: new AlignBox( new CurveManipulationIconNode( mode, curveManipulationStroke ), alignBoxOptions ),
       baseColor: CalculusGrapherColors.panelFillProperty,
+      buttonAppearanceStrategyOptions: {
+        selectedLineWidth: 2
+      },
       tandem: tandem.createTandem( `${mode.tandemPrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}` )
     } ) );
 
