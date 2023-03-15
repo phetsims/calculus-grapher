@@ -160,7 +160,7 @@ export default class CurveNode extends Node {
   }
 
   public reset(): void {
-    // GraphNode does not know what specific subclass of CurveNode it creates, so its necessary to have
+    // GraphNode does not know what specific subclass of CurveNode it creates, so it is necessary to have
     // a reset method in the base class, even though it does nothing.
   }
 
@@ -182,9 +182,9 @@ export default class CurveNode extends Node {
       const point = points[ i ];
       dataSet.push( point.getVector() );
 
-      //  in the model, a discontinuity is marked by tagging two adjacent points as discontinuous (the real discontinuity is in between the two)
+      //  In the model, a discontinuity is marked by tagging two adjacent points as discontinuous (the real discontinuity is in between the two)
       //  we need to insert a null value between two such adjacent points to break the continuous segments.
-      //  the actual points of the discontinuities are included such that the continuous line goes right up to the discontinuity points.
+      //  The actual points of the discontinuities are included such that the continuous line goes right up to the discontinuity points.
       const isNextPointWithinRange = i + 1 < points.length;
       if ( isNextPointWithinRange && point.isDiscontinuous && points[ i + 1 ].isDiscontinuous ) {
         dataSet.push( null );
@@ -195,20 +195,33 @@ export default class CurveNode extends Node {
 
   // Gets a dataset for discontinuous line plot (a set of vertical lines)
   private getDiscontinuousLinePlotDataSet(): LinePlotDataSet {
-    const dataSet = [];
+
+    // Context: In 'curve', discontinuities come into consecutive pairs. We want to include them
+    // as is in the dataSet, but separate pairs with one null value.
+    // Our resulting dataset should look like [ null, vec,vec, null, vec,vec, null, vec,vec, null, ...]
+    const dataSet: LinePlotDataSet = [];
+
     const points = this.curve.points;
+
+    // Convenience variable that tracks the state of the previous dataPoint in dataSet
     let previousDataPointWasNull = false;
     for ( let i = 0; i < points.length; i++ ) {
       const point = points[ i ];
+
+      // Add point to the dataSet if the point is discontinuous.
       if ( point.isDiscontinuous ) {
         dataSet.push( point.getVector() );
+
+        // The point added was not null
         previousDataPointWasNull = false;
       }
 
-      // REVIEW: More documentation for this `else if` would be helpful. The documentation in getContinuousLinePlotDataSet
-      // REVIEW: is so nice, and this lacks in comparison
+        // We want to add a null value to the dataSet if the point is not discontinuous.
+      // For performance reasons, we do not want to stack the dataSet with multiple adjacent null values
       else if ( !previousDataPointWasNull ) {
         dataSet.push( null );
+
+        // The point added was null
         previousDataPointWasNull = true;
       }
     }
