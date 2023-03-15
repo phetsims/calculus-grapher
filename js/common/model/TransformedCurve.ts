@@ -204,9 +204,8 @@ export default class TransformedCurve extends Curve {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
-    // REVIEW: I do not understand what the variable `mu` represents
-    // Super gaussian function centered at `mu`, with min amplitude of 0 and max of 1;
-    // use the square of a gaussian in order to have a very symmetric derivative at the edges
+    // Super gaussian function for centered at x-value `mu`, with min amplitude of 0 and max of 1;
+    // We use the square of a gaussian in order to have a very symmetric derivative at the edges of the pedestal
     const gaussianWeight = ( x: number, mu: number ) =>
       Math.exp( -1 * ( ( x - mu ) / EDGE_SLOPE_FACTOR ) ** 4 );
 
@@ -574,8 +573,7 @@ export default class TransformedCurve extends Curve {
       // Point associated with the last drag event
       const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
 
-      // REVIEW: should this be "lastPoint is in between closestPoint and nextToLastPoint"?
-      // Checks that lastPoint is in between closestPoint and lastPoint
+      // Checks that lastPoint is in between closestPoint and nextToLastPoint
       if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) < 0 ) {
 
         // Finds two control points that are approximately midway between our three points
