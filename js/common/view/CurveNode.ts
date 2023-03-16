@@ -86,7 +86,8 @@ export default class CurveNode extends Node {
 
       // SelfOptions
       plotBoundsMethod: 'accurate',
-      plotBounds: null
+      plotBounds: null,
+      phetioVisiblePropertyInstrumented: false // see https://github.com/phetsims/calculus-grapher/issues/225#issuecomment-1472231009
     }, providedOptions );
 
     assert && assert( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,
