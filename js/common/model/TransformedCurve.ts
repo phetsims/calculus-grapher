@@ -139,37 +139,50 @@ export default class TransformedCurve extends Curve {
 
     // Normalized gaussian kernel that will be used in the convolution of our curve
     const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+
+    // Weighted kernel: Note that gaussianFunction(x) = gaussianFunction(-x), which we will use later on.
     const gaussianFunction = ( x: number ) => normalizationFactor * Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 );
 
     // Loops through each Point of the curve and set the new y-value.
     this.points.forEach( point => {
 
-      // Flag that tracks the sum over all points of the weighted y-values
-      let weightedY = 0;
-      let totalWeight = 0;
+      // Main idea: For each point we want to average its y-value with points in the local "neighborhood".
+      // We will do so by summing points on the left and the right of this point with appropriate weights.
 
-      // We want to use the kernel over a number of standard deviations.
-      // Beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so it becomes irrelevant.
+      // Flags that tracks the sum over all points of the weighted y-values.
+      let totalWeight = 0;
+      let weightedY = 0;
+
+      // We start the sum with the point we want to average.
+      totalWeight += gaussianFunction( 0 );
+      weightedY += this.getClosestPointAt( point.x ).lastSavedY * gaussianFunction( 0 );
+
+      // We will sum the other points, ideally all of them, in practice, we use the kernel over a number of standard deviations.
+      // Beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so that points beyond
+      // three standard deviations do not make meaningful contributions to the average.
       const numberOfStandardDeviations = 3;
 
-      // Loops through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
-            dx < numberOfStandardDeviations * STANDARD_DEVIATION;
+      // Loops through each point on BOTH sides of the window, adding the y-value to our total in order
+      // to do a symmetric sum: https://github.com/phetsims/calculus-grapher/issues/293.
+      for ( let dx = this.deltaX; dx <= numberOfStandardDeviations * STANDARD_DEVIATION;
             dx += this.deltaX ) {
 
-        // Weight of the point
+        // Weight of a point at a distance dx from our point of interest
         const weight = gaussianFunction( dx );
 
-        totalWeight += weight;
+        // Add the weights (times two because we have points on the left and the right)
+        totalWeight += 2 * weight;
 
-        // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
-        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
+        // Add the points lastSavedY, which was the Point's y-value before the smooth() method was called.
+        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight +
+                     this.getClosestPointAt( point.x - dx ).lastSavedY * weight;
       }
 
-      // Set the Point's new y-value to the weighted average.
+      // Set the point's new y-value to be the weighted average of all the other points.
       point.y = weightedY / totalWeight;
 
-      // Set all points to smooth type;
+      // Since this is a smoothing operation, we are explicitly setting the point type to smooth (for all points), regardless
+      // of their previous point type.
       point.pointType = 'smooth';
     } );
 
