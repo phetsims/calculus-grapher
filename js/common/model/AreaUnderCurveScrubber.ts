@@ -39,6 +39,11 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
       // Close to zero, but not at zero, so that the scrubber is noticeable.
       // See https://github.com/phetsims/calculus-grapher/issues/207#issuecomment-1434759100
       x: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 50,
+
+      // Do not feature derivatives in Studio, because they are not relevant for area-under-curve,
+      // see https://github.com/phetsims/calculus-grapher/issues/225
+      yDerivativePropertyFeatured: false,
+      ySecondDerivativePropertyFeatured: false,
       tandem: tandem
     } );
 
