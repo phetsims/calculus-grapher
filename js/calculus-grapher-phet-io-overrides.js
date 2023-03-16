@@ -1,6 +1,9 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
+    "calculusGrapher.derivativeScreen.model.curves.derivative.pointsProperty": {
+      "phetioFeatured": true
+    },
     "calculusGrapher.derivativeScreen.model.curves.originalCurve.pointsProperty": {
       "phetioFeatured": true
     },
@@ -61,16 +64,10 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "calculusGrapher.derivativeScreen.model.tools.tangentScrubber.yOriginalProperty": {
       "phetioFeatured": true
     },
-    "calculusGrapher.derivativeScreen.view.checkboxGroup.visibleProperty": {
-      "phetioFeatured": true
-    },
     "calculusGrapher.derivativeScreen.view.controlPanel.curveManipulationControls.visibleProperty": {
       "phetioFeatured": true
     },
     "calculusGrapher.derivativeScreen.view.controlPanel.curveManipulationControls.widthControl.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "calculusGrapher.derivativeScreen.view.controlPanel.pushButtonGroup.visibleProperty": {
       "phetioFeatured": true
     },
     "calculusGrapher.derivativeScreen.view.controlPanel.visibleProperty": {
@@ -79,13 +76,28 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "calculusGrapher.derivativeScreen.view.graphsNode.derivativeGraphNode.curveLayerVisibleProperty": {
       "phetioFeatured": true
     },
-    "calculusGrapher.derivativeScreen.view.graphsNode.derivativeGraphNode.curveNode.visibleProperty": {
+    "calculusGrapher.derivativeScreen.view.graphsNode.derivativeGraphNode.yZoomButtonGroup.visibleProperty": {
       "phetioFeatured": true
     },
     "calculusGrapher.derivativeScreen.view.graphsNode.originalGraphNode.curveLayerVisibleProperty": {
       "phetioFeatured": true
     },
     "calculusGrapher.derivativeScreen.view.slopeOfTangentAccordionBox.featureVisibleProperty": {
+      "phetioFeatured": true
+    },
+    "calculusGrapher.general.view.navigationBar.preferencesButton.preferencesDialogCapsule.archetype.preferencesPanels.simulationPreferencesPanel.content.discontinuitiesControl.visibleProperty": {
+      "phetioFeatured": true
+    },
+    "calculusGrapher.general.view.navigationBar.preferencesButton.preferencesDialogCapsule.archetype.preferencesPanels.simulationPreferencesPanel.content.notationControl.visibleProperty": {
+      "phetioFeatured": true
+    },
+    "calculusGrapher.general.view.navigationBar.preferencesButton.preferencesDialogCapsule.archetype.preferencesPanels.simulationPreferencesPanel.content.predictControl.visibleProperty": {
+      "phetioFeatured": true
+    },
+    "calculusGrapher.general.view.navigationBar.preferencesButton.preferencesDialogCapsule.archetype.preferencesPanels.simulationPreferencesPanel.content.valuesControl.visibleProperty": {
+      "phetioFeatured": true
+    },
+    "calculusGrapher.general.view.navigationBar.preferencesButton.preferencesDialogCapsule.archetype.preferencesPanels.simulationPreferencesPanel.content.variableControl.visibleProperty": {
       "phetioFeatured": true
     },
     "calculusGrapher.global.model.preferences.connectDiscontinuitiesProperty": {
