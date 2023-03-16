@@ -25,11 +25,18 @@ The simulation includes a reference line checkbox, indicated by a vertical line.
 appear in the play space. The reference line spans all the graph and the x-position of the reference line is controlled
 by the user.
 
-The zoom control buttons are available on the left hand side of the derivative and integral graphs.
+Zoom control buttons are available on the left hand side of the derivative and integral graphs.
 It allows the user to upscale or downscale the y-axis.
 
 The simulation includes a grid Checkbox. When checked, each graph will contain independent internal gridlines. The
 gridlines will scale accordingly to the zoom level.
+
+Settings can be found in the simulation tab of the preference menu. The five settings are:
+- Variable: Picks label x or t for the horizontal variable.
+- Notation: Picks Lagrange (prime) or Leibniz (df/dx) notation for the derivation.
+- Discontinuities: Selects the discontinuities to be connected with a dashed line or unconnected.
+- Values: Shows numerical value on graph axes, reference line, slope of tangent, and area under curve.
+- Predict: Adds a mode where you can predict the function f(x)
 
 The simulation comprise four screens: Derivative, Integral, Advanced and Lab. We provide below a brief description of
 each screen.
