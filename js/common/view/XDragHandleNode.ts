@@ -43,6 +43,14 @@ export default class XDragHandleNode extends ShadedSphereNode {
       cursor: 'ew-resize'
     }, providedOptions );
 
+    // If we have instrumented the handle's visibleProperty, we also want to feature it in Studio.
+    // See https://github.com/phetsims/calculus-grapher/issues/281#event-8769439973
+    if ( options.phetioVisiblePropertyInstrumented ) {
+      options.visiblePropertyOptions = {
+        phetioFeatured: true
+      };
+    }
+
     // y coordinate position is fixed.
     options.y = chartTransform.modelToViewY( options.yModel );
 
