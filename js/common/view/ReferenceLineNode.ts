@@ -38,7 +38,10 @@ export default class ReferenceLineNode extends ScrubberNode {
 
       // This is a hack to keep referenceLineNode.visibleProperty from linking to referenceLine.visibleProperty in Studio.
       visibleProperty: new DerivedProperty( [ referenceLine.visibleProperty ], visible => visible ),
-      tandem: tandem
+      tandem: tandem,
+
+      // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
+      phetioHandleNodeVisiblePropertyInstrumented: false
     } );
 
     // Create and add a numerical label at the top of the vertical line

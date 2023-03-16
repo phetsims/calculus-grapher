@@ -25,6 +25,10 @@ type SelfOptions = {
   // The top and bottom y-coordinates of the vertical line, in GraphsNode view coordinate frame.
   lineTop?: number;
   lineBottom?: number;
+
+  // Whether to instrument handleNode.visibleProperty
+  // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
+  phetioHandleNodeVisiblePropertyInstrumented?: boolean;
 };
 
 export type ScrubberNodeOptions = SelfOptions &
@@ -50,7 +54,8 @@ export default class ScrubberNode extends Node {
       lineWidth: 1,
       lineDash: [ 6, 6 ],
       lineTop: 0,
-      lineBottom: 100
+      lineBottom: 100,
+      phetioHandleNodeVisiblePropertyInstrumented: true
     }, providedOptions );
 
     // vertical line
@@ -65,7 +70,8 @@ export default class ScrubberNode extends Node {
     const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: options.handleColor,
-      tandem: options.tandem.createTandem( 'handleNode' )
+      tandem: options.tandem.createTandem( 'handleNode' ),
+      phetioVisiblePropertyInstrumented: options.phetioHandleNodeVisiblePropertyInstrumented
     } );
 
     options.children = [ line, handleNode ];

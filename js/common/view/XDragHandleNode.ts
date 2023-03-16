@@ -26,7 +26,8 @@ type SelfOptions = {
   yModel?: number;
 };
 
-type XDragHandleNodeOptions = SelfOptions & PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem'>;
+type XDragHandleNodeOptions = SelfOptions &
+  PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem' | 'phetioVisiblePropertyInstrumented'>;
 
 export default class XDragHandleNode extends ShadedSphereNode {
 
@@ -39,8 +40,7 @@ export default class XDragHandleNode extends ShadedSphereNode {
       yModel: 0,
 
       // ShadedSphereNodeOptions
-      cursor: 'ew-resize',
-      phetioVisiblePropertyInstrumented: false
+      cursor: 'ew-resize'
     }, providedOptions );
 
     // y coordinate position is fixed.
