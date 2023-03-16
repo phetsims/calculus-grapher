@@ -7,7 +7,7 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Node, Path, TColor } from '../../../../scenery/js/imports.js';
+import { Color, Node, Path, TColor } from '../../../../scenery/js/imports.js';
 import Range from '../../../../dot/js/Range.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -134,7 +134,7 @@ export default class CurveManipulationIconNode extends Node {
       // the solidCurveNode renders.
       const pencilNode = new Path( pencilAltSolidShape, {
         scale: 0.05,
-        fill: 'black',
+        fill: Color.grayColor( 75 ),
         left: solidCurveNode.right,
         bottom: solidCurveNode.bottom
       } );
