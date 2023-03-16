@@ -273,7 +273,9 @@ export default class GraphNode extends Node {
       touchAreaXDilation: 6,
       touchAreaYDilation: 3,
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
-      phetioFeatured: true
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } ) : null;
 
     // labelNode in left-top corner of chartRectangle
