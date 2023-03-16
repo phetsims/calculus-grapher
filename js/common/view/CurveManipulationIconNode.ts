@@ -7,7 +7,7 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Node, TColor } from '../../../../scenery/js/imports.js';
+import { Node, Path, TColor } from '../../../../scenery/js/imports.js';
 import Range from '../../../../dot/js/Range.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -17,6 +17,7 @@ import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode from './CurveNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import pencilAltSolidShape from '../../../../sherpa/js/fontawesome-5/pencilAltSolidShape.js';
 
 const CHART_TRANSFORM_OPTIONS = {
   viewWidth: 50,
@@ -107,7 +108,7 @@ export default class CurveManipulationIconNode extends Node {
       tandem: Tandem.OPT_OUT // CurveNodes for icons are not instrumented
     } );
 
-    const children = [ chartRectangle, solidCurveNode ];
+    const children: Node[] = [ chartRectangle, solidCurveNode ];
 
     // Create the dashed curve node for these modes only.
     if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
@@ -121,6 +122,23 @@ export default class CurveManipulationIconNode extends Node {
         tandem: Tandem.OPT_OUT // CurveNodes for icons are not instrumented
       } );
       children.push( dashedCurveNode );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+
+      // Scale down in the x dimension, so that we have room to add pencil icon. This makes the stroke with a
+      // little inconsistent in x vs y dimensions, but looks OK for an icon. More importantly, we want the
+      // solidCurveNode part of this icon to match what is shown by CurveManipulationDisplayNode.
+      solidCurveNode.setScaleMagnitude( 0.5, 1 );
+
+      // Pencil to the right of solidCurveNode, with tip of the pencil at the righmost end of the curve
+      // the solidCurveNode renders.
+      const pencilNode = new Path( pencilAltSolidShape, {
+        scale: 0.05,
+        fill: 'black',
+        left: solidCurveNode.right,
+        bottom: solidCurveNode.bottom
+      } );
+      children.push( pencilNode );
     }
 
     super( {
