@@ -279,7 +279,7 @@ export default class TransformedCurve extends Curve {
 
     this.createHillAt( width, xMin + xLength / 5, yMin );
     this.saveCurrentPoints();
-    this.createTriangleAt( width, xMin + 2 * xLength / 5, yMax );
+    this.createTriangleAt( width, xMin + 2 * xLength / 5, 0.65 * yMax );
     this.saveCurrentPoints();
     this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
     this.saveCurrentPoints();
