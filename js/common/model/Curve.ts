@@ -163,6 +163,16 @@ export default class Curve extends PhetioObject {
     return this.points[ this.getClosestIndexAt( x ) ];
   }
 
+  /**
+   * Gets the index associated with this point.
+   */
+  public getIndex( point: CurvePoint ): number {
+
+    const normalizedValue = this.xRange.getNormalizedValue( point.x );
+
+    return Utils.roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
+  }
+
   public get deltaX(): number {
     return this.xRange.getLength() / ( this.numberOfPoints - 1 );
   }
