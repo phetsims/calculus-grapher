@@ -36,6 +36,8 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
     const buttons = validModes.map( mode => new RectangularRadioButton( curveManipulationModeProperty, mode, {
       content: new AlignBox( new CurveManipulationIconNode( mode, curveManipulationStroke ), alignBoxOptions ),
       baseColor: CalculusGrapherColors.panelFillProperty,
+      xMargin: 10,
+      yMargin: 7,
       buttonAppearanceStrategyOptions: {
         selectedLineWidth: 2
       },

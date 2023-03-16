@@ -7,7 +7,7 @@
  */
 
 import calculusGrapher from '../../calculusGrapher.js';
-import { Color, Node, Path, TColor } from '../../../../scenery/js/imports.js';
+import { AlignBox, AlignGroup, Color, Node, Path, TColor } from '../../../../scenery/js/imports.js';
 import Range from '../../../../dot/js/Range.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -21,7 +21,7 @@ import pencilAltSolidShape from '../../../../sherpa/js/fontawesome-5/pencilAltSo
 
 const CHART_TRANSFORM_OPTIONS = {
   viewWidth: 50,
-  viewHeight: 25,
+  viewHeight: 28,
   modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
   modelYRange: new Range( 0, 1 )
 };
@@ -32,7 +32,12 @@ const TRANSFORMED_CURVE_OPTIONS = {
   tandem: Tandem.OPT_OUT // curves for icons are not instrumented
 };
 
-export default class CurveManipulationIconNode extends Node {
+// To make all icons have the same effective size, for all screens.
+const ALIGN_BOX_OPTIONS = {
+  group: new AlignGroup()
+};
+
+export default class CurveManipulationIconNode extends AlignBox {
 
   public constructor( mode: CurveManipulationMode, stroke: TColor ) {
 
@@ -141,9 +146,11 @@ export default class CurveManipulationIconNode extends Node {
       children.push( pencilNode );
     }
 
-    super( {
+    const node = new Node( {
       children: children
     } );
+
+    super( node, ALIGN_BOX_OPTIONS );
   }
 }
 
