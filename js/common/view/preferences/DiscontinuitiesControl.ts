@@ -39,7 +39,10 @@ export default class DiscontinuitiesControl extends PreferencesControl {
       labelNode: labelText,
       controlNode: radioButtonGroup,
       labelSpacing: 20,
-      tandem: tandem
+      tandem: tandem,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     this.disposeDiscontinuitiesControl = () => {

@@ -50,8 +50,10 @@ export default class CalculusGrapherControlPanel extends Panel {
       fill: CalculusGrapherColors.panelFillProperty,
       cornerRadius: CalculusGrapherConstants.CORNER_RADIUS,
       xMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
-      yMargin: CalculusGrapherConstants.PANEL_Y_MARGIN
-
+      yMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     const predictRadioButtonGroup = new PredictRadioButtonGroup( predictSelectedProperty,

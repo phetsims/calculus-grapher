@@ -191,6 +191,7 @@ export default class GraphNode extends Node {
 
     this.curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveLayerVisibleProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'Controls whether the graph\'s curve layer is visible. The curve layer contains the plots ' +
                            'for any curves, optional tangent line and point, and optional area-under-curve plot and point. ' +
                            'The value of this Property can be toggled by pressing eyeToggleButton.'
@@ -271,7 +272,8 @@ export default class GraphNode extends Node {
       },
       touchAreaXDilation: 6,
       touchAreaYDilation: 3,
-      tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
+      tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
+      phetioFeatured: true
     } ) : null;
 
     // labelNode in left-top corner of chartRectangle

@@ -36,7 +36,10 @@ export default class CurveManipulationWidthControl extends VBox {
       children: [ curveDisplayNode, slider ],
       spacing: 10,
       excludeInvisibleChildrenFromBounds: false,
-      tandem: tandem
+      tandem: tandem,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
   }
 }

@@ -42,7 +42,10 @@ export default class CurveManipulationControls extends VBox {
     super( {
       children: [ widthControl, radioButtonGroup ],
       spacing: 15,
-      tandem: tandem
+      tandem: tandem,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
   }
 }

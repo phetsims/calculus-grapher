@@ -139,6 +139,7 @@ export default class CalculusGrapherModel implements TModel {
 
     this.predictSelectedProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'predictSelectedProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'Whether the Predict radio button is selected. This will have no affect unless the ' +
                            'Predict preference is enabled.'
     } );
@@ -147,12 +148,14 @@ export default class CalculusGrapherModel implements TModel {
       [ CalculusGrapherPreferences.predictPreferenceEnabledProperty, this.predictSelectedProperty ], {
         tandem: options.tandem.createTandem( 'predictEnabledProperty' ),
         phetioValueType: BooleanIO,
+        phetioFeatured: true,
         phetioDocumentation: 'Whether the Predict feature is enabled. ' +
                              'This is true only if the Predict preference is enabled, and the Predict radio button is selected.'
       } );
 
     this.gridVisibleProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'gridVisibleProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'Controls the visibility of the grid lines for all graphs.'
     } );
 
@@ -210,7 +213,8 @@ export default class CalculusGrapherModel implements TModel {
     // See https://github.com/phetsims/calculus-grapher/issues/198
     this.labeledLinesLinkableElement = new PhetioObject( {
       tandem: this.toolsTandem.createTandem( 'labeledLines' ),
-      phetioState: false
+      phetioState: false,
+      phetioFeatured: true
     } );
 
     // LabeledLine instances, will appear to be children of 'labeledLines' in the Studio tree.

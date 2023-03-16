@@ -40,7 +40,10 @@ export default class VariableControl extends PreferencesControl {
       labelNode: labelText,
       controlNode: radioButtonGroup,
       labelSpacing: 20,
-      tandem: tandem
+      tandem: tandem,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     this.disposeVariableControl = () => {

@@ -61,6 +61,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     // See https://github.com/phetsims/calculus-grapher/issues/239
     const featureVisibleProperty = new BooleanProperty( true, {
       tandem: providedOptions.tandem.createTandem( 'featureVisibleProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'Setting this to false will permanently hide this accordion box, ' +
                            'regardless of other simulation settings.'
     } );

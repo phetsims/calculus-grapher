@@ -103,6 +103,7 @@ export default class Curve extends PhetioObject {
       tandem: options.tandem.createTandem( 'pointsProperty' ),
       phetioValueType: ArrayIO( CurvePoint.CurvePointIO ),
       phetioReadOnly: options.pointsPropertyReadOnly,
+      phetioFeatured: true,
       phetioDocumentation: 'The discrete points that are used to approximate the curve.'
     } );
 

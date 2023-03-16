@@ -41,7 +41,10 @@ export default class NotationControl extends PreferencesControl {
       labelNode: labelText,
       controlNode: radioButtonGroup,
       labelSpacing: 20,
-      tandem: tandem
+      tandem: tandem,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     this.disposeNotationControl = () => {

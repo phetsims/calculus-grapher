@@ -75,12 +75,14 @@ export default class AncillaryTool extends PhetioObject {
     super( options );
 
     this.visibleProperty = new BooleanProperty( options.visible, {
-      tandem: options.tandem.createTandem( 'visibleProperty' )
+      tandem: options.tandem.createTandem( 'visibleProperty' ),
+      phetioFeatured: true
     } );
 
     this.xProperty = new NumberProperty( options.x, {
       range: CalculusGrapherConstants.CURVE_X_RANGE,
-      tandem: options.tandem.createTandem( 'xCoordinateProperty' )
+      tandem: options.tandem.createTandem( 'xCoordinateProperty' ),
+      phetioFeatured: true
     } );
 
     // The CurvePoint at xProperty for each curve.
@@ -160,6 +162,7 @@ function createCurvePointProperty( curve: Curve, xProperty: TReadOnlyProperty<nu
 function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, tandem: Tandem ): ReadOnlyProperty<number | null> {
   return new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, {
     tandem: tandem,
+    phetioFeatured: true,
     phetioValueType: NullableIO( NumberIO )
   } );
 }
