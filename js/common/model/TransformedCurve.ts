@@ -58,7 +58,6 @@ const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
 const UPPER_WEIGHT = 0.999; // a very large cutoff for weights
 const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contributions.
-const THRESHOLD_GAP = 0.1; // minimum gap between two points before tagging them discontinuous
 
 assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
 assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
@@ -811,15 +810,16 @@ export default class TransformedCurve extends Curve {
       // We need to identify the points where the transitions happen. Those points will be labeled cusps or discontinuities
       if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
 
-        // we always label discontinuities and cusps on an adjacent pair of points.
+        // We always label discontinuities and cusps on an adjacent pair of points.
         const rightPoint = point;
         const leftPoint = this.points[ index - 1 ];
 
-        // If the gap between the two points is large, label them as 'discontinuous', otherwise label them as 'cusp'.
-        const yDifference = Math.abs( rightPoint.y - leftPoint.y );
-        const isGapLarge = yDifference > THRESHOLD_GAP;
-        rightPoint.pointType = isGapLarge ? 'discontinuous' : 'cusp';
+        // If the right point (point inside the new function) used to be discontinuous, leave type as is, Otherwise label it as cusp.
+        rightPoint.pointType = rightPoint.lastSavedType === 'discontinuous' ? 'discontinuous' : 'cusp';
+
+        // The left point should have the same pointType as its adjacent pair point
         leftPoint.pointType = rightPoint.pointType;
+
       }
       wasPreviousPointModified = isModified;
 
