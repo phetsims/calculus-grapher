@@ -58,6 +58,7 @@ const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
 const UPPER_WEIGHT = 0.999; // a very large cutoff for weights
 const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contributions.
+const THRESHOLD_GAP = 0.1; // minimum gap between two points before tagging them discontinuous
 
 assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
 assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
@@ -139,37 +140,50 @@ export default class TransformedCurve extends Curve {
 
     // Normalized gaussian kernel that will be used in the convolution of our curve
     const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
+
+    // Weighted kernel: Note that gaussianFunction(x) = gaussianFunction(-x), which we will use later on.
     const gaussianFunction = ( x: number ) => normalizationFactor * Math.exp( -1 / 2 * ( x / STANDARD_DEVIATION ) ** 2 );
 
     // Loops through each Point of the curve and set the new y-value.
     this.points.forEach( point => {
 
-      // Flag that tracks the sum over all points of the weighted y-values
-      let weightedY = 0;
-      let totalWeight = 0;
+      // Main idea: For each point we want to average its y-value with points in the local "neighborhood".
+      // We will do so by summing points on the left and the right of this point with appropriate weights.
 
-      // We want to use the kernel over a number of standard deviations.
-      // Beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so it becomes irrelevant.
+      // Flags that tracks the sum over all points of the weighted y-values.
+      let totalWeight = 0;
+      let weightedY = 0;
+
+      // We start the sum with the point we want to average.
+      totalWeight += gaussianFunction( 0 );
+      weightedY += this.getClosestPointAt( point.x ).lastSavedY * gaussianFunction( 0 );
+
+      // We will sum the other points, ideally all of them, in practice, we use the kernel over a number of standard deviations.
+      // Beyond 3 standard deviations, the kernel has a very small weight, less than 1%, so that points beyond
+      // three standard deviations do not make meaningful contributions to the average.
       const numberOfStandardDeviations = 3;
 
-      // Loops through each point on BOTH sides of the window, adding the y-value to our total.
-      for ( let dx = -numberOfStandardDeviations * STANDARD_DEVIATION;
-            dx < numberOfStandardDeviations * STANDARD_DEVIATION;
+      // Loops through each point on BOTH sides of the window, adding the y-value to our total in order
+      // to do a symmetric sum: https://github.com/phetsims/calculus-grapher/issues/293.
+      for ( let dx = this.deltaX; dx <= numberOfStandardDeviations * STANDARD_DEVIATION;
             dx += this.deltaX ) {
 
-        // Weight of the point
+        // Weight of a point at a distance dx from our point of interest
         const weight = gaussianFunction( dx );
 
-        totalWeight += weight;
+        // Add the weights (times two because we have points on the left and the right)
+        totalWeight += 2 * weight;
 
-        // Add the Point's lastSavedY, which was the Point's y-value before the smooth() method was called.
-        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight;
+        // Add the points lastSavedY, which was the Point's y-value before the smooth() method was called.
+        weightedY += this.getClosestPointAt( point.x + dx ).lastSavedY * weight +
+                     this.getClosestPointAt( point.x - dx ).lastSavedY * weight;
       }
 
-      // Set the Point's new y-value to the weighted average.
+      // Set the point's new y-value to be the weighted average of all the other points.
       point.y = weightedY / totalWeight;
 
-      // Set all points to smooth type;
+      // Since this is a smoothing operation, we are explicitly setting the point type to smooth (for all points), regardless
+      // of their previous point type.
       point.pointType = 'smooth';
     } );
 
@@ -738,6 +752,11 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Applies the peak function to the curve points and updates their point type.
+   * The peak function is applied within a subdomain of the curve.
+   * This will result in a piecewise function iof the old  curve and new function.
+   * No attempt is made to blend the peak function. We update the point type of the edge points in the
+   * subdomains as discontinuous or cusps.
+   *
    * @param peakFunction - the function to be applied to the curve
    * @param deltaY - the y offset of the drag
    */
@@ -752,16 +771,28 @@ export default class TransformedCurve extends Curve {
       // Is the point within the 'width' and the change "larger" than the previous y value.
       const isModified = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
 
+      // Update the y value
       point.y = isModified ? newY : point.lastSavedY;
 
+      // Update the point Type - we assume the interior region of the peak function is smooth
+      // (this is not the case for TRIANGLE therefore we will need to correct it )
       point.pointType = isModified ? 'smooth' : point.lastSavedType;
 
+      // Context: The updated y values will result in a piecewise function of the new function and the old y-values.
+      // We need to identify the points where the transitions happen. Those points will be labeled cusps or discontinuities
       if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
-        point.pointType = 'cusp';
-        this.points[ index - 1 ].pointType = 'cusp';
-      }
 
+        const rightPoint = point;
+        const leftPoint = this.points[ index - 1 ];
+
+        // If the gap between the two points is large, label them as 'discontinuous', otherwise label them as 'cusp'.
+        const yDifference = Math.abs( rightPoint.y - leftPoint.y );
+        const isGapLarge = yDifference > THRESHOLD_GAP;
+        rightPoint.pointType = isGapLarge ? 'discontinuous' : 'cusp';
+        leftPoint.pointType = rightPoint.pointType;
+      }
       wasPreviousPointModified = isModified;
+
     } );
   }
 }
