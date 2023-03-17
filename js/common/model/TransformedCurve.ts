@@ -663,7 +663,12 @@ export default class TransformedCurve extends Curve {
       }
     }
 
-    // assign type to points
+    // Assign type to points
+
+    // Main idea: assign the smooth type to ALL points between penultimatePosition to position (
+    // and possibly antepenultimatePosition if it exists), then come back to it by reassigning the
+    // closestPoint (and the its point partner ahead of the drag) to be discontinuous.
+    //
     if ( penultimatePosition ) {
 
       const lastPoint = this.getClosestPointAt( penultimatePosition.x );
@@ -684,15 +689,18 @@ export default class TransformedCurve extends Curve {
 
         const nextToLastPointIndex = this.getIndex( nextToLastPoint );
 
-        min = Math.min( closestPointIndex, nextToLastPointIndex );
-        max = Math.max( closestPointIndex, nextToLastPointIndex );
+        min = Math.min( lastPointIndex, nextToLastPointIndex );
+        max = Math.max( lastPointIndex, nextToLastPointIndex );
 
         for ( let i = min; i <= max; i++ ) {
           this.points[ i ].pointType = 'smooth';
         }
       }
 
+      // Assign the current drag position to be discontinuous
       closestPoint.pointType = 'discontinuous';
+
+      // We need to figure out what is the direction of the drag, and assign the point "ahead" to be discontinuous
       if ( lastPointIndex > closestPointIndex ) {
         this.getClosestPointAt( closestPoint.x - this.deltaX ).pointType = 'discontinuous';
       }
