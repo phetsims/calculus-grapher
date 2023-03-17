@@ -58,7 +58,6 @@ const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
 const UPPER_WEIGHT = 0.999; // a very large cutoff for weights
 const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contributions.
-const THRESHOLD_GAP = 0.1; // minimum gap between two points before tagging them discontinuous
 
 assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
 assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
@@ -587,14 +586,6 @@ export default class TransformedCurve extends Curve {
       // We want to create a straight line between this point and the last drag event point
       const closestVector = closestPoint.getVector();
       this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
-
-      closestPoint.pointType = 'discontinuous';
-      if ( lastPoint.x > closestPoint.x ) {
-        this.getClosestPointAt( position.x - this.deltaX ).pointType = 'discontinuous';
-      }
-      else {
-        this.getClosestPointAt( position.x + this.deltaX ).pointType = 'discontinuous';
-      }
     }
     else {
 
@@ -667,9 +658,46 @@ export default class TransformedCurve extends Curve {
               functionWeight += mollifierFunction( dx ) * piecewiseFunction.evaluate( x + dx );
             }
             this.getClosestPointAt( x ).y = functionWeight / weight;
-            this.getClosestPointAt( x ).pointType = 'smooth';
           }
         }
+      }
+    }
+
+    // assign type to points
+    if ( penultimatePosition ) {
+
+      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+
+      const lastPointIndex = this.getIndex( lastPoint );
+      const closestPointIndex = this.getIndex( closestPoint );
+
+      let min = Math.min( closestPointIndex, lastPointIndex );
+      let max = Math.max( closestPointIndex, lastPointIndex );
+      for ( let i = min; i <= max; i++ ) {
+        this.points[ i ].pointType = 'smooth';
+      }
+
+      if ( antepenultimatePosition ) {
+
+        // Point associated with the last drag event
+        const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
+
+        const nextToLastPointIndex = this.getIndex( nextToLastPoint );
+
+        min = Math.min( closestPointIndex, nextToLastPointIndex );
+        max = Math.max( closestPointIndex, nextToLastPointIndex );
+
+        for ( let i = min; i <= max; i++ ) {
+          this.points[ i ].pointType = 'smooth';
+        }
+      }
+
+      closestPoint.pointType = 'discontinuous';
+      if ( lastPointIndex > closestPointIndex ) {
+        this.getClosestPointAt( closestPoint.x - this.deltaX ).pointType = 'discontinuous';
+      }
+      else if ( lastPointIndex < closestPointIndex ) {
+        this.getClosestPointAt( closestPoint.x + this.deltaX ).pointType = 'discontinuous';
       }
     }
   }
@@ -782,14 +810,16 @@ export default class TransformedCurve extends Curve {
       // We need to identify the points where the transitions happen. Those points will be labeled cusps or discontinuities
       if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
 
+        // We always label discontinuities and cusps on an adjacent pair of points.
         const rightPoint = point;
         const leftPoint = this.points[ index - 1 ];
 
-        // If the gap between the two points is large, label them as 'discontinuous', otherwise label them as 'cusp'.
-        const yDifference = Math.abs( rightPoint.y - leftPoint.y );
-        const isGapLarge = yDifference > THRESHOLD_GAP;
-        rightPoint.pointType = isGapLarge ? 'discontinuous' : 'cusp';
+        // If the right point (point inside the new function) used to be discontinuous, leave type as is, Otherwise label it as cusp.
+        rightPoint.pointType = rightPoint.lastSavedType === 'discontinuous' ? 'discontinuous' : 'cusp';
+
+        // The left point should have the same pointType as its adjacent pair point
         leftPoint.pointType = rightPoint.pointType;
+
       }
       wasPreviousPointModified = isModified;
 
