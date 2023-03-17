@@ -587,14 +587,6 @@ export default class TransformedCurve extends Curve {
       // We want to create a straight line between this point and the last drag event point
       const closestVector = closestPoint.getVector();
       this.interpolate( closestVector.x, closestVector.y, lastPoint.x, penultimatePosition.y );
-
-      closestPoint.pointType = 'discontinuous';
-      if ( lastPoint.x > closestPoint.x ) {
-        this.getClosestPointAt( position.x - this.deltaX ).pointType = 'discontinuous';
-      }
-      else {
-        this.getClosestPointAt( position.x + this.deltaX ).pointType = 'discontinuous';
-      }
     }
     else {
 
@@ -667,9 +659,46 @@ export default class TransformedCurve extends Curve {
               functionWeight += mollifierFunction( dx ) * piecewiseFunction.evaluate( x + dx );
             }
             this.getClosestPointAt( x ).y = functionWeight / weight;
-            this.getClosestPointAt( x ).pointType = 'smooth';
           }
         }
+      }
+    }
+
+    // assign type to points
+    if ( penultimatePosition ) {
+
+      const lastPoint = this.getClosestPointAt( penultimatePosition.x );
+
+      const lastPointIndex = this.getIndex( lastPoint );
+      const closestPointIndex = this.getIndex( closestPoint );
+
+      let min = Math.min( closestPointIndex, lastPointIndex );
+      let max = Math.max( closestPointIndex, lastPointIndex );
+      for ( let i = min; i <= max; i++ ) {
+        this.points[ i ].pointType = 'smooth';
+      }
+
+      if ( antepenultimatePosition ) {
+
+        // Point associated with the last drag event
+        const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
+
+        const nextToLastPointIndex = this.getIndex( nextToLastPoint );
+
+        min = Math.min( closestPointIndex, nextToLastPointIndex );
+        max = Math.max( closestPointIndex, nextToLastPointIndex );
+
+        for ( let i = min; i <= max; i++ ) {
+          this.points[ i ].pointType = 'smooth';
+        }
+      }
+
+      closestPoint.pointType = 'discontinuous';
+      if ( lastPointIndex > closestPointIndex ) {
+        this.getClosestPointAt( closestPoint.x - this.deltaX ).pointType = 'discontinuous';
+      }
+      else if ( lastPointIndex < closestPointIndex ) {
+        this.getClosestPointAt( closestPoint.x + this.deltaX ).pointType = 'discontinuous';
       }
     }
   }
