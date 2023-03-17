@@ -58,6 +58,7 @@ const TYPICAL_Y = CalculusGrapherConstants.TYPICAL_Y;
 const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
 const UPPER_WEIGHT = 0.999; // a very large cutoff for weights
 const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contributions.
+const THRESHOLD_GAP = 0.1; // minimum gap between two points before tagging them discontinuous
 
 assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
 assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
@@ -751,6 +752,11 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Applies the peak function to the curve points and updates their point type.
+   * The peak function is applied within a subdomain of the curve.
+   * This will result in a piecewise function iof the old  curve and new function.
+   * No attempt is made to blend the peak function. We update the point type of the edge points in the
+   * subdomains as discontinuous or cusps.
+   *
    * @param peakFunction - the function to be applied to the curve
    * @param deltaY - the y offset of the drag
    */
@@ -765,16 +771,28 @@ export default class TransformedCurve extends Curve {
       // Is the point within the 'width' and the change "larger" than the previous y value.
       const isModified = ( deltaY > 0 && newY > point.lastSavedY ) || ( deltaY < 0 && newY < point.lastSavedY );
 
+      // Update the y value
       point.y = isModified ? newY : point.lastSavedY;
 
+      // Update the point Type - we assume the interior region of the peak function is smooth
+      // (this is not the case for TRIANGLE therefore we will need to correct it )
       point.pointType = isModified ? 'smooth' : point.lastSavedType;
 
+      // Context: The updated y values will result in a piecewise function of the new function and the old y-values.
+      // We need to identify the points where the transitions happen. Those points will be labeled cusps or discontinuities
       if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
-        point.pointType = 'cusp';
-        this.points[ index - 1 ].pointType = 'cusp';
-      }
 
+        const rightPoint = point;
+        const leftPoint = this.points[ index - 1 ];
+
+        // If the gap between the two points is large, label them as 'discontinuous', otherwise label them as 'cusp'.
+        const yDifference = Math.abs( rightPoint.y - leftPoint.y );
+        const isGapLarge = yDifference > THRESHOLD_GAP;
+        rightPoint.pointType = isGapLarge ? 'discontinuous' : 'cusp';
+        leftPoint.pointType = rightPoint.pointType;
+      }
       wasPreviousPointModified = isModified;
+
     } );
   }
 }
