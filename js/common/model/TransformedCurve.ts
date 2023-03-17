@@ -782,6 +782,7 @@ export default class TransformedCurve extends Curve {
       // We need to identify the points where the transitions happen. Those points will be labeled cusps or discontinuities
       if ( wasPreviousPointModified !== null && wasPreviousPointModified !== isModified ) {
 
+        // we always label discontinuities and cusps on an adjacent pair of points.
         const rightPoint = point;
         const leftPoint = this.points[ index - 1 ];
 
