@@ -53,7 +53,8 @@ simLauncher.launch( () => {
 
   const sim = new Sim( CalculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, screens, {
     credits: credits,
-    preferencesModel: preferencesModel
+    preferencesModel: preferencesModel,
+    phetioDesigned: true
   } );
 
   sim.start();
