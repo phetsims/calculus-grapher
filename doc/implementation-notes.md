@@ -73,12 +73,14 @@ Curves are modeled by segmenting the curve into a large number of evenly spaced 
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
+`CurvePoint` keeps track of the x and y values of a point, as well as the point type. The point type is an enumeration that consists of thee types: 'smooth', 'cusp',, and 'discontinuous'. CurvePoint can save the previous state of a point into a stack that can be restored for undo operations.
+
 `TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a change in the CurvePoints and the Curve's integral, derivative, and second-derivative Curves.
 
 `TransformedCurve` is mainly responsible for:
 - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
     affected by the CurveManipulationMode and the 'width' of the curve-manipulation.
-- Implementing smoothing, and undoing
+- Implementing smoothing, and undoing the curve
 - Saving the curve
 - Resetting all the points of the curve
 
@@ -91,3 +93,13 @@ IntegralCurve's main responsibility is to observe when the 'base' Curve changes 
 Points of the Integral. Our implementation of the integral uses a trapezoidal Riemann sum to approximate integrals.
 See https://en.wikipedia.org/wiki/Trapezoidal_rule
 for background. Since the 'base' Curve exists at all Points, the Integral is also finite at all points.
+
+### Ancillary Tools
+
+AncillaryTool is the model base class associated with an x value on the graph. It keeps track of the following quantities associated with the x value:
+ - the integral of f(x)
+ - the original function f(x)
+ - the derivative of f(x)
+ - the second derivative of f(x)
+ALl of the above quantities are derived from their associated curve. For performance reason,  the quantities above are updated solely when its associated tool is visible.
+ Many tools such as the Area Under Curve tool, Tangent tool, Reference Line tool, as well as the PhET-IO tools, Labeled Points and Labeled Lines, extend the AncillaryTool class.
