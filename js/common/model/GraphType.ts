@@ -2,6 +2,11 @@
 
 /**
  * GraphType identifies the types of graphs available in this simulation.
+ * The class also has four static readonly properties that represent the four types of graphs available.
+ * These properties are named ORIGINAL, INTEGRAL, DERIVATIVE, and SECOND_DERIVATIVE.
+ * The class has two properties:
+ *  - strokeProperty - represents the color of the curve stroke for the graph.
+ * - tandemNamePrefix - represents the prefix used for tandems related to the graph of this type.
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
