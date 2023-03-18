@@ -1,7 +1,10 @@
 // Copyright 2022-2023, University of Colorado Boulder
 
 /**
- * Control HSlider that allows the user to manipulate the width of the curve mode
+ * CurveManipulationWidthSlider extends the HSlider class from the Sun library.
+ * The purpose of this class is to create a slider that allows the user to adjust
+ * the width of a curve in a graph. It creates a slider with major and minor ticks
+ * that snap to the closest tick when the user interacts with it.
  *
  * @author Martin Veillette
  */
