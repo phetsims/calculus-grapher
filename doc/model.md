@@ -4,6 +4,18 @@
 
 This document is a high-level description of the model used in PhET's _Calculus-Grapher_ simulation.
 
+The Calculus Grapher simulation is designed to help students visualize and understand concepts in calculus, specifically relating to graphs of functions, derivatives and integrals. Some of the main functionalities of the simulation include:
+
+Graphing functions: The simulation allows students to manipulate a function. These include the ability to drag points on the graph to see how the function changes as well as change the curve mode.
+
+Tangent Tool: Students can graph the derivative of a function, and see how the derivative changes as they modify the original function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that point. The tool displays the slope of the tangent line and allows users to drag the point along the curve to observe how the tangent line changes as the point moves.
+
+Area under Curve: The user can use the "Area Under Curve" tool to visualize the area under a curve. The user can drag a scrubber to specify the limits of integration. The simulation then calculates and displays the area under the selected portion of the curve, as well as the value of the definite integral that represents the area.
+
+Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus, and to gain a deeper understanding of the relationships between functions and their derivatives and integrals.
+
+###
+
 The simulation comprises a user-controlled function f(x) and, depending on the screen, the integral and or derivative of
 that function. To indicate to the user that the curve of f(x) is interactive, a large double-headed arrow is initially
 present at the start of the simulation. The function f(x) can be controlled by a control panel on the right-hand side
