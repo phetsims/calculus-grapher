@@ -1,4 +1,4 @@
-# Calculus-Grapher - Model Description
+# Calculus Grapher - Model Description
 
 @author Martin Veillette
 
