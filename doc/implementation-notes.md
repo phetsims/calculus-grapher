@@ -2,12 +2,16 @@
 
 @author Martin Veillette
 
-## General Considerations
+This document contains notes related to the implementation of Calculus Grapher. This is not an exhaustive description of the implementation. The intention is to provide a high-level overview, and to supplement the internal documentation (source code comments) and external documentation (design documents).
 
 The reader is encouraged to read the model document before proceeding:
 
 * [model.md](https://github.com/phetsims/calculus-grapher/blob/master/doc/model.md), a high-level description of the
   simulation model
+  
+## General Considerations
+
+This section describes how this sim addresses implementation considerations that are typically encountered in PhET sims.
 
 ### Model-View Transforms
 
@@ -18,7 +22,9 @@ Every graph in the simulation has a model-view transform, implemented using bamb
 Query parameters are used to enable sim-specific features. Sim-specific query parameters are documented in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/master/js/common/CalculusGrapherQueryParameters.ts). Running with `?log` will print the complete set of query parameters (common-code, PhET-iO, and sim-specific)
 to the browser console.
 
-### Hierarchy from Common Model
+## Common Framework for All Screens
+
+### Model Class Hierarchy
 
 The four-screen simulation is based almost solely from the common model trunk. Individual screens are typically customized by passing appropriate options fields to the common trunk. As a result, it is important for future maintainers to familiarize themselves with the common model of the simulation. Below we provide an overview of  all the common class model and their relationships.
 
