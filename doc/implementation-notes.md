@@ -11,7 +11,7 @@ The reader is encouraged to read the model document before proceeding:
 
 ### Model-View Transforms
 
-A model-view transform is used for each graph. The model has +x to the left, and +y up. The scaling changes based on the zoom level.
+Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x to the left, and +y up. The scaling changes based on the zoom level.
 
 ### Query Parameters
 
