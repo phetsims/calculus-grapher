@@ -23,7 +23,7 @@ Every graph in the simulation has a model-view transform, implemented using bamb
 Query parameters are used to enable sim-specific features. Sim-specific query parameters are documented in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/master/js/common/CalculusGrapherQueryParameters.ts). Running with `?log` will print the complete set of query parameters (common-code, PhET-iO, and sim-specific)
 to the browser console.
 
-**Memory Management**
+### Memory Management
 
 * **Dynamic allocation**: Most objects in this sim are allocated at startup, and exist for the lifetime of the
   simulation. The exceptions to that are:
