@@ -14,14 +14,14 @@ The reader is encouraged to read the model document before proceeding:
 
 This section describes how this sim addresses implementation considerations that are typically encountered in PhET sims.
 
-### Model-View Transforms
-
-Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x to the left, and +y up, while the view has +x to the left, and +y _down_. The scaling changes based on the zoom level.
-
 ### Query Parameters
 
 Query parameters are used to enable sim-specific features. Sim-specific query parameters are documented in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/master/js/common/CalculusGrapherQueryParameters.ts). Running with `?log` will print the complete set of query parameters (common-code, PhET-iO, and sim-specific)
 to the browser console.
+
+### Model-View Transforms
+
+Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x to the left, and +y up, while the view has +x to the left, and +y _down_. The scaling changes based on the zoom level.
 
 ### Memory Management
 
