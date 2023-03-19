@@ -35,11 +35,11 @@ to the browser console.
 
 ## Common Framework for All Screens
 
+The four-screen simulation is based almost solely on the code in calculus-grapher/common/model/. Individual screens are typically customized by passing appropriate options fields to the common implementation. As a result, it is important for future maintainers to familiarize themselves with the common model of the simulation. Below we provide an overview of the most important classes and their relationships.
+
 ### Model Class Hierarchy
 
-The four-screen simulation is based almost solely from the common model trunk. Individual screens are typically customized by passing appropriate options fields to the common trunk. As a result, it is important for future maintainers to familiarize themselves with the common model of the simulation. Below we provide an overview of  all the common class model and their relationships.
-
-CalculusGrapherModel - The main entry point of the model
+CalculusGrapherModel - the top-level model class
 
 GraphType - Types for identifying the types of graphs available, and sets of those graphs.
 GraphSet - GraphSet is an ordered set of GraphType
