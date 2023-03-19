@@ -10,6 +10,15 @@ The reader is encouraged to read the model document before proceeding:
 * [model.md](https://github.com/phetsims/calculus-grapher/blob/master/doc/model.md), a high-level description of the
   simulation model
   
+## Terminology
+
+* graph - TODO
+* plot - TODO
+* curve - TODO
+* original curve - TODO
+* original graph - TODO
+* predict curve - TODO
+  
 ## General Considerations
 
 This section describes how this sim addresses implementation considerations that are typically encountered in PhET sims.
