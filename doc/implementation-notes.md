@@ -1,42 +1,31 @@
 # Calculus-Grapher - Implementation Notes
 
 @author Martin Veillette
+<br>@author Chris Malley (PixelZoom, Inc.)
 
-## General Considerations
+This document contains notes related to the implementation of Calculus Grapher. This is not an exhaustive description of the implementation. The intention is to provide a high-level overview, and to supplement the internal documentation (source code comments) and external documentation (design documents).
 
 The reader is encouraged to read the model document before proceeding:
 
 * [model.md](https://github.com/phetsims/calculus-grapher/blob/master/doc/model.md), a high-level description of the
   simulation model
+  
+## General Considerations
+
+This section describes how this sim addresses implementation considerations that are typically encountered in PhET sims.
 
 ### Model-View Transforms
 
-A model-view transform is used for each graph. The model has +x to the left, and +y up. The scaling changes based on the zoom level.
+Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x to the left, and +y up, while the view has +x to the left, and +y _down_. The scaling changes based on the zoom level.
 
 ### Query Parameters
 
-There are a number of query parameters for internal use.
+Query parameters are used to enable sim-specific features. Sim-specific query parameters are documented in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/master/js/common/CalculusGrapherQueryParameters.ts). Running with `?log` will print the complete set of query parameters (common-code, PhET-iO, and sim-specific)
+to the browser console.
 
-- `numberOfPoints` sets the number of curves points. The default value is 1251.
-- `smoothingStandardDeviation` sets the width used in the smoothing function.
-- `maxTilt` sets the maximum tilting angle (in tilt mode) of curves relative to the horizontal. The default value is 45.
-- `edgeSlopeFactor` sets the width of the rounded corner in pedestal mode (continuous trapezoidal-shaped curve with
-  rounded corners). A larger value creates a wider edge.
-- `allPoints` shows all the curve points as circles in a scatter plot. The default value is false.
-- `cuspPoints` shows all the cusp points as circles in a scatter plot. The default value is false.
-- `labeledLinesVisible` is used to make all LabeledLine instances initially visible. The default value is false.
-- `labeledPointsVisible` is used to make all LabeledPoint instances initially visible. The default value is false.
+## Common Framework for All Screens
 
-There are a number of query parameters that are made public.
-- `valuesVisible` shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.. The default value is false.
-- `connectDiscontinuities` connects curve discontinuities with a dashed line (true) or leave a gap (false). The default value is true.
-- `derivativeNotation` is derivative notation to be used throughout the simulation. Valid values are 'lagrange' and 'leibniz'. The default value is 'lagrange'.
-- `functionVariable` represents the variable that would be used for the horizontal axis of the graph. Valid values are 'x' and 't'. The default value is 'x'.
-- `predict` shows features related to the predict curve are shown in the UI when set to true. The default value is false.
-- `hasShowOriginalCurveCheckbox` whether the 'Show f(x)' checkbox will be shown when in 'predict' mode.
-The default value is true. Note the visibility of the checkbox is contingent on the status of 'predict' being true.
-
-### Hierarchy from Common Model
+### Model Class Hierarchy
 
 The four-screen simulation is based almost solely from the common model trunk. Individual screens are typically customized by passing appropriate options fields to the common trunk. As a result, it is important for future maintainers to familiarize themselves with the common model of the simulation. Below we provide an overview of  all the common class model and their relationships.
 
