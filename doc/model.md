@@ -62,28 +62,26 @@ hand side of each graph.
 A finite difference method is used to determine the derivative. To illustrate non-differential points in f(x), open
 circles appear at the non-differential points for the derivative.
 
-The tangent checkbox below the control panel triggers the visibility three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) a tangent arrow on the original graph, and (3) an accordion box with  barometer of the value of the tangent. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
-
+The "Tangent" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) a tangent arrow on the original graph, and (3) the "Slope of Tangenet" accordion box with barometer of the value of the tangent. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
 
 ## _Integral_ Screen
 
 At the top of the _Integral_ screen, one finds the definite integral of f(x). Underneath this graph, user controlled
 function f(x) is displayed. The definite integral is calculated numerically through a trapezoidal Riemann sum.
 
-The area under curve checkbox below the control panel triggers the visibility three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) an area chart arrow on the original graph, and (3) an accordion box with  barometer of the value of the area under the curve. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
-
+The "Area Under Curve" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) an area plot on the original graph, and (3) the "Net Signed Area" accordion box with barometer of the value of the area under the curve. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
 
 ## _Advanced_ Screen
 
 The _Advanced_ screen includes two main features not found on the previous screens. A set of two rectangular buttons are
 added to the left of the graphs. It allows the user to toggle between the derivative and the integral graphs.
 
-A _smooth_ button is added to the control panel that smooths the original function f(x) by performing a local average of
-the function. The smooth button can be iterated multiple times to further smooth the function.
+A "Smooth" button is added to the control panel that smooths the original function f(x) by performing a local average of
+the function. The "Smooth" button can be pressed multiple times to further smooth the function.
 
-The choice of functions has been expanded to include triangular, parabolic, sinusoidal and free form
+The choice of functions has been expanded to include triangular, parabolic, sinusoidal and free-form
 functions.
 
 ## _Lab_ Screen
 
-The _Lab_ screen includes all the features from the _Advanced_ screen but adds a third graph on the screen.
+The _Lab_ screen includes all the features from the _Advanced_ screen, and adds a third graph on the screen.
