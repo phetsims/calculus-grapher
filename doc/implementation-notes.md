@@ -1,4 +1,4 @@
-# Calculus-Grapher - Implementation Notes
+# Calculus Grapher - Implementation Notes
 
 @author Martin Veillette
 <br>@author Chris Malley (PixelZoom, Inc.)
