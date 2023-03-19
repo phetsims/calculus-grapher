@@ -15,8 +15,6 @@ A model-view transform is used for each graph. The model has +x to the left, and
 
 ### Query Parameters
 
-### Query Parameters
-
 Query parameters are used to enable sim-specific features. Sim-specific query parameters are documented in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/master/js/common/CalculusGrapherQueryParameters.ts). Running with `?log` will print the complete set of query parameters (common-code, PhET-iO, and sim-specific)
 to the browser console.
 
