@@ -16,8 +16,8 @@ The reader is encouraged to read the model document before proceeding:
 * plot - TODO
 * curve - TODO
 * original curve - TODO
-* original graph - TODO
 * predict curve - TODO
+* original graph - TODO
   
 ## General Considerations
 
