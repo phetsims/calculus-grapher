@@ -23,24 +23,22 @@ present at the start of the simulation. The function f(x) can be controlled by a
 ## Common Controls
 
 A control panel, on the right hand side, houses the drawing tools and viewing options. The first control is a slider
-that controls the width of the curve. The default position is the third tick mark. Sliding to the right makes the curve
-wider and sliding to the left makes it narrower.
+that controls the width of the curve. Sliding to the right makes the curve wider and sliding to the left makes it narrower.
 
-A selection of vertical radio buttons allows the user to pick from a variety of functions. Once the user select a
+Radio buttons allows the user to pick from a variety of "curve manipulation" functions. Once the user selects a
 portion of the graph, the function will update itself with the appropriate function.
 
-An undo and zero buttons appear under the vertical radio buttons. The _Undo_ button, represented by a back arrow, erases
-the last change done to the function. The application of the _Zero_ button, represented by an eraser, sets the function
-f(x) to zero for all x values.
+Undo and Eraser buttons appear under the vertical radio buttons. The _Undo_ button, represented by a back arrow, erases
+the last change done to the function. The Eraser button resets the function f(x) to its initial state (which is typically y=0).
 
-The simulation includes a reference line checkbox, indicated by a vertical line. When checked, the reference line will
-appear in the play space. The reference line spans all the graph and the x-position of the reference line is controlled
+Below the control panel is a "Reference Line" checkbox, indicated by a vertical line. When checked, the Reference Line will
+appear on the graphs. The reference line spans all the graph and the x-position of the reference line is controlled
 by the user.
 
-Zoom control buttons are available on the left hand side of the derivative and integral graphs.
+Zoom buttons are available on the left hand side of the derivative and integral graphs.
 It allows the user to upscale or downscale the y-axis.
 
-The simulation includes a grid Checkbox. When checked, each graph will contain independent internal gridlines. The
+Also below the control panel is a Grid checkbox. When checked, each graph will contain independent internal gridlines. The
 gridlines will scale accordingly to the zoom level.
 
 Settings can be found in the _Simulation_ tab of the _Preference_ dialog. The five settings are:
