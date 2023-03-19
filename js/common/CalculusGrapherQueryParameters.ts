@@ -94,7 +94,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
   /**
    * The smooth algorithm for 'Calculus Grapher' uses a procedure described in https://en.wikipedia.org/wiki/Kernel_smoother.
-   * using a gaussian kernel. The value below is the standard deviation of the gaussian function kernel.
+   * using a Gaussian kernel. The value below is the standard deviation of the Gaussian function kernel.
    * The larger the standard deviation is, the smoother the function.
    */
   smoothingStandardDeviation: {
