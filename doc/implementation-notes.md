@@ -27,7 +27,11 @@ The reader is encouraged to read the model document before proceeding:
   function f(x). It is set to be invisible by default.
 * plot - In Calculus-Grapher, a plot is defined as a representation of a portion of a curve. The curve of a graph may be
   composed of several plots to represent separate elements of the curve, such as the discontinuous points, discontinuity
-  lines, continuous portion of the curve, etc. This is based on the PhET library BAMBOO.
+  lines, continuous portion of the curve, etc. This is based on the PhET library bamboo.
+* scrubber - a tool with a sphere-shaped handle, which can be dragged to place the tool at an arbitrary x location
+* Reference Line scrubber - the scrubber with a blue handle, which lets you place a vertical "reference line" at an arbitrary x location.
+* Labeled Line - a feature that is available only via PhET-iO, which allows you to place a vertical line at an arbitrary x location, and label that line
+* Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at an arbitary x location. and label that point
 
 ## General Considerations
 
