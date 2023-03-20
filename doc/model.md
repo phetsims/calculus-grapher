@@ -83,3 +83,34 @@ functions.
 ## _Lab_ Screen
 
 The _Lab_ screen includes all the features from the _Advanced_ screen, and adds a third graph on the screen.
+
+## Approximations, Limitations and Implementation Details
+
+We approximate curves by generating a set of discrete points with fixed x-coordinates. There are 1251 points per curve.
+Each point in a curve has a specific point type metadata, such as a smooth, cusp, or discontinuity. A function has a
+jump discontinuity if the left and right-hand limits of the function are not equal. In such cases, points on both sides
+of the jump are labeled as discontinuous.
+Similarly, points are labeled cusp points if the curve changes direction. We leverage the point type to determine which
+points should be linked to yield the appearance of a smooth curve and which points should not be linked but appear as
+circles (say to represent discontinuities). Curve manipulations are handled by a set of functions that update the curve
+points based on user input. The point type is assessed based on the type of curve mode that is being manipulated.
+
+Mathematically, the integral curve is calculated as a left Riemann sum based on the points in the f(x) curve. The point
+type metadata of the integral curve is based on the metadata of a point of the f(x) curve, but where cusp points are
+promoted to smooth and discontinuities are promoted to cusps.
+
+We compute the derivative curves, such as the first and second derivatives, using a finite difference method based on
+adjacent points. For example, the derivative of a function f(x) is approximated by computing the slope of a secant line
+between its adjacent points. Special care is given to points identified as cusp and discontinuities, where the secant
+line is calculated with the appropriately selected neighboring point. The point type metadata of the derivative is
+inherited from the curve f(x), except that cusp points are promoted to discontinuities for the derivatives.
+
+The second derivative is computed based on the second-order central formula of the function f(x). The point type
+metadata of the second derivative is inherited from the curve f(x), except that cusp points are promoted to
+discontinuities for the second derivative. The second derivative of discontinuous points is approximated as equal to its
+smooth neighboring point.
+
+The undo function is implemented by saving a stack of previous states of the curve. Each time the user performs an
+action that modifies the curve, such as smoothing or using a curve manipulation, the current state of the curve is saved
+at the end of the action and pushed onto the stack. When the user invokes the undo function, the most recent state is
+popped from the stack and used to restore the curve. We save up to 20 recent curve states.  
