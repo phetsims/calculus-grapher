@@ -135,7 +135,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       // solidCurveNode part of this icon to match what is shown by CurveManipulationDisplayNode.
       solidCurveNode.setScaleMagnitude( 0.5, 1 );
 
-      // Pencil to the right of solidCurveNode, with tip of the pencil at the righmost end of the curve
+      // Pencil to the right of solidCurveNode, with tip of the pencil at the rightmost end of the curve
       // the solidCurveNode renders.
       const pencilNode = new Path( pencilAltSolidShape, {
         scale: 0.05,
