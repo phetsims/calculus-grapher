@@ -57,7 +57,8 @@ export default class ReferenceLineNode extends ScrubberNode {
           } ),
         useRichText: true,
         textOptions: {
-          font: CalculusGrapherConstants.CONTROL_FONT
+          font: CalculusGrapherConstants.CONTROL_FONT,
+          maxWidth: 80 // see https://github.com/phetsims/calculus-grapher/issues/304
         },
         visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty,
         bottom: this.line.top - 5,
