@@ -77,7 +77,7 @@ export default class SecondDerivativeCurve extends Curve {
         const nextPoint = originalPoints[ index + 1 ];
 
         // Determine the second derivative using the naive assumption that all original points are smooth. We will handle exceptions later
-        this.points[ index ].y = ( point.getSlope( nextPoint ) - point.getSlope( previousPoint ) ) / ( 2 * this.deltaX );
+        this.points[ index ].y = ( point.getSlope( nextPoint ) - point.getSlope( previousPoint ) ) / this.deltaX;
       }
     }
 
