@@ -76,7 +76,7 @@ export default class CurveManipulationIconNode extends AlignBox {
     else if ( mode === CurveManipulationMode.SINUSOID ) {
 
       // Ad hoc variables to create sine function
-      const width = 0.25 * xLength;
+      const width = 0.08 * xLength;
       const y = 0.5 * yMax;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
       solidCurve.saveCurrentPoints();

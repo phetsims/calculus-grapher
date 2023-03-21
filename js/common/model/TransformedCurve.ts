@@ -480,7 +480,7 @@ export default class TransformedCurve extends Curve {
     const closestPoint = this.getClosestPointAt( x );
 
     // Wavelength associated with the sinusoidal function
-    const wavelength = width;
+    const wavelength = 2 * Math.PI * width / CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE.defaultValue;
 
     // Cosine function to apply to points. Cosine function passes through `position`
     const cosineFunction = ( x: number ) =>
