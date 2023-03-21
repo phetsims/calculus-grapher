@@ -53,8 +53,8 @@ const CalculusGrapherConstants = {
   GRAPH_X_MARGIN: 15,
   GRAPH_Y_MARGIN: 10,
 
-  // width of all graphs, regardless of how many we have
-  GRAPH_VIEW_WIDTH: 612,
+  // width of ChartRectangle for all GraphNode instances, in view coordinates
+  CHART_RECTANGLE_WIDTH: 612,
 
   // If we had a single GraphNode instance, this would be the height of its ChartRectangle, in view coordinates.
   SINGLE_CHART_RECTANGLE_HEIGHT: 490,

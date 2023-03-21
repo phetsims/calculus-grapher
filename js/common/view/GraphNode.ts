@@ -170,7 +170,7 @@ export default class GraphNode extends Node {
 
     // chart transform for the graph
     this.chartTransform = new ChartTransform( {
-      viewWidth: CalculusGrapherConstants.GRAPH_VIEW_WIDTH,
+      viewWidth: CalculusGrapherConstants.CHART_RECTANGLE_WIDTH,
       viewHeight: options.chartRectangleHeight,
       modelXRange: CalculusGrapherConstants.CURVE_X_RANGE,
       modelYRange: new Range( -DEFAULT_MAX_Y, DEFAULT_MAX_Y )
