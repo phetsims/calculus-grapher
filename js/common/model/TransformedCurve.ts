@@ -113,6 +113,23 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Erases the curve by setting all the points to zero and point type to smooth.
+   * Note that this method is called erase because it is invoked when the erase button is pressed.
+   * We never erase a curve or dispose of the curve points in this simulation.
+   */
+  public erase(): void {
+
+    // Set the point values to zero and smooth type.
+    this.points.forEach( point => {
+      point.y = 0;
+      point.pointType = 'smooth';
+    } );
+
+    // Signal that this Curve has changed.
+    this.curveChangedEmitter.emit();
+  }
+
+  /**
    * Sets the state of this CurvedPoint on this Curve to its last saved state.
    * This method is invoked when the undo button is pressed, which successively undoes the last action.
    */

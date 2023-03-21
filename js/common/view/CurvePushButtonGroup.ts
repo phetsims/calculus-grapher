@@ -37,7 +37,7 @@ export default class CurvePushButtonGroup extends VBox {
     // Create an eraser Button. Disabling this button when there's nothing to erase is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
     const eraserButton = new EraserButton( {
-      listener: () => interactiveCurveProperty.value.reset(),
+      listener: () => interactiveCurveProperty.value.erase(),
       iconWidth: 16,
       xMargin: 10,
       tandem: tandem.createTandem( 'eraserButton' )
