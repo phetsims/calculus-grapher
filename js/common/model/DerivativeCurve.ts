@@ -53,7 +53,7 @@ export default class DerivativeCurve extends Curve {
    * Updates the y-values and pointTypes of the DerivativeCurve to represent the derivative of the originalCurve.
    *
    * The derivative is approximated as the slope of the secant line between each adjacent Point.
-   * Our version considers both the slope of the secant lines from the left and right side of every point. See
+   * Our version considers both the slope of the secant lines from the left and right sides of every point. See
    * https://en.wikipedia.org/wiki/Numerical_differentiation
    *
    * Special consideration is given to points of originalCurve that are 'cusp' or 'discontinuous'
@@ -69,44 +69,46 @@ export default class DerivativeCurve extends Curve {
 
     const length = originalPoints.length;
 
-    let leftSlope: number | null;
-    let rightSlope: number | null;
+    // Slope to the left of a point. It may not exist if the point is at the beginning of our curve range
+    let backwardSlope: number | null;
+
+    // Slope to the right of a point. It may not exist if the point is at the end of the curve range
+    let forwardSlope: number | null;
 
     for ( let index = 0; index < length; index++ ) {
       const previousPoint = index > 0 ? originalPoints[ index - 1 ] : null;
       const point = originalPoints[ index ];
       const nextPoint = index < length - 1 ? originalPoints[ index + 1 ] : null;
 
-
       if ( previousPoint === null || point.isCusp && previousPoint.isCusp || ( point.isDiscontinuous && previousPoint.isDiscontinuous ) ) {
-        leftSlope = null;
+        backwardSlope = null;
       }
       else {
-        leftSlope = point.getSlope( previousPoint );
+        backwardSlope = point.getSlope( previousPoint );
       }
 
       if ( nextPoint === null || point.isCusp && nextPoint.isCusp || ( point.isDiscontinuous && nextPoint.isDiscontinuous ) ) {
-        rightSlope = null;
+        forwardSlope = null;
       }
       else {
-        rightSlope = point.getSlope( nextPoint );
+        forwardSlope = point.getSlope( nextPoint );
       }
 
-      if ( typeof leftSlope === 'number' && typeof rightSlope === 'number' ) {
+      if ( typeof backwardSlope === 'number' && typeof forwardSlope === 'number' ) {
 
-        // Best case scenario: the slopes on the left and right exists. We average them to get the symmetric difference quotient,
+        // Best case scenario: Both slopes exist. We average them to get the symmetric difference quotient,
         // which is a better numerical approximation of the derivative than the usual difference quotient
-        this.points[ index ].y = ( leftSlope + rightSlope ) / 2;
+        this.points[ index ].y = ( backwardSlope + forwardSlope ) / 2;
       }
-      else if ( typeof leftSlope === 'number' ) {
+      else if ( typeof backwardSlope === 'number' ) {
 
         // If only the slope of the left side exists, use that as the derivative.
-        this.points[ index ].y = leftSlope;
+        this.points[ index ].y = backwardSlope;
       }
-      else if ( typeof rightSlope === 'number' ) {
+      else if ( typeof forwardSlope === 'number' ) {
 
         // If only the slope of the right side exists, use that as the derivative.
-        this.points[ index ].y = rightSlope;
+        this.points[ index ].y = forwardSlope;
       }
 
       if ( point.isCusp ) {
