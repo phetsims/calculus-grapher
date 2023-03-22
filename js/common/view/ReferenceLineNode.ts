@@ -40,7 +40,8 @@ export default class ReferenceLineNode extends ScrubberNode {
       lineStroke: referenceLine.lineColorProperty,
       lineDash: [], // solid line
 
-      // When drag ends, snap to number of decimal places, see https://github.com/phetsims/calculus-grapher/issues/305
+      // When drag ends, snap to the number of decimal places that are displayed by numberDisplay.
+      // See https://github.com/phetsims/calculus-grapher/issues/305
       endDrag: () => {
         referenceLine.xProperty.value = Utils.roundToInterval( referenceLine.xProperty.value, Math.pow( 10, -X_DECIMAL_PLACES ) );
       },
