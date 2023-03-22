@@ -96,9 +96,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'graphsNode' )
     } );
 
-    // Put control panel in the negative space to the right of graphsNode, top-aligned with graphsNode.y.
+    // Put control panel in the negative space to the right of the ChartRectangles, top-aligned with graphsNode.y.
     rightVBox.boundsProperty.link( () => {
-      rightVBox.centerX = this.layoutBounds.right - ( this.layoutBounds.right - this.graphsNode.right ) / 2;
+      const chartRectangleRight = this.graphsNode.x + CalculusGrapherConstants.CHART_RECTANGLE_WIDTH;
+      rightVBox.centerX = this.layoutBounds.right - ( this.layoutBounds.right - chartRectangleRight ) / 2;
       rightVBox.top = this.graphsNode.y;
     } );
 
