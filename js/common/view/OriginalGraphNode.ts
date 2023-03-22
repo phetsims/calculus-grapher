@@ -113,7 +113,7 @@ export default class OriginalGraphNode extends GraphNode {
         lineWidth: 3 // see https://github.com/phetsims/calculus-grapher/issues/205
       },
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
+      plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
       visibleProperty: new DerivedProperty(
         [ predictEnabledProperty, this.showOriginalCurveProperty ],
@@ -135,7 +135,7 @@ export default class OriginalGraphNode extends GraphNode {
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-      plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
+      plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
       tandem: options.tandem.createTandem( 'predictCurveNode' )

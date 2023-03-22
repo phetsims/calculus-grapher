@@ -184,7 +184,7 @@ export default class GraphNode extends Node {
         stroke: graphType.strokeProperty,
         discontinuousPointsFill: options.chartRectangleOptions.fill!,
         plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
-        plotBounds: this.getChartBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
+        plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
         tandem: providedOptions.tandem.createTandem( 'curveNode' )
       } );
     }
@@ -334,7 +334,7 @@ export default class GraphNode extends Node {
     } );
   }
 
-  protected getChartBounds(): Bounds2 {
+  protected getChartRectangleBounds(): Bounds2 {
     return this.chartRectangle.getShape().bounds;
   }
 
