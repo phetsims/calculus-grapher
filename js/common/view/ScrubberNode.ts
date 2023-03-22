@@ -29,6 +29,9 @@ type SelfOptions = {
   // Whether to instrument handleNode.visibleProperty
   // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
   phetioHandleNodeVisiblePropertyInstrumented?: boolean;
+
+  // Called when a drag cycle ends
+  endDrag?: () => void;
 };
 
 export type ScrubberNodeOptions = SelfOptions &
@@ -55,7 +58,8 @@ export default class ScrubberNode extends Node {
       lineDash: [ 6, 6 ],
       lineTop: 0,
       lineBottom: 100,
-      phetioHandleNodeVisiblePropertyInstrumented: true
+      phetioHandleNodeVisiblePropertyInstrumented: true,
+      endDrag: _.noop
     }, providedOptions );
 
     // vertical line
@@ -70,6 +74,7 @@ export default class ScrubberNode extends Node {
     const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: options.handleColor,
+      endDrag: options.endDrag,
       tandem: options.tandem.createTandem( 'handleNode' ),
       phetioVisiblePropertyInstrumented: options.phetioHandleNodeVisiblePropertyInstrumented
     } );
