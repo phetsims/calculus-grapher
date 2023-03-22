@@ -184,8 +184,8 @@ export default class BarometerAccordionBox extends AccordionBox {
     const arrowNodeOptions = {
       fill: options.barColorProperty,
       stroke: null,
-      tailWidth: barLine.width,
-      headHeight: 0.8 * arrowHeight,
+      tailWidth: BAR_WIDTH,
+      headHeight: arrowHeight, // no tail, see https://github.com/phetsims/calculus-grapher/issues/300
       headWidth: 2 * BAR_WIDTH,
       centerX: barLine.centerX
     };
