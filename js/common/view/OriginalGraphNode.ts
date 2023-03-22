@@ -45,6 +45,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import CurveManipulationMode from '../model/CurveManipulationMode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -194,17 +195,22 @@ export default class OriginalGraphNode extends GraphNode {
       // Current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
 
-      // Update curve based on mode and width
-      interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
-        curveManipulationProperties.mode,
-        curveManipulationProperties.width,
-        modelPosition,
-        penultimatePosition,
-        antepenultimatePosition );
+      // Do not update curve if the points in freeform are too close from one another, to prevent noise in the derivative  https://github.com/phetsims/calculus-grapher/issues/297
+      if ( penultimatePosition === null || curveManipulationProperties.mode !== CurveManipulationMode.FREEFORM ||
+           Math.abs( modelPosition.x - penultimatePosition.x ) > 0.1 ) {
 
-      // Update (model) antepenultimatePosition and penultimatePosition
-      antepenultimatePosition = penultimatePosition;
-      penultimatePosition = modelPosition;
+        // Update curve based on mode and width
+        interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
+          curveManipulationProperties.mode,
+          curveManipulationProperties.width,
+          modelPosition,
+          penultimatePosition,
+          antepenultimatePosition );
+
+        // Update (model) antepenultimatePosition and penultimatePosition
+        antepenultimatePosition = penultimatePosition;
+        penultimatePosition = modelPosition;
+      }
     };
 
     // Instead of having a DragListener on each TransformedCurveNode, we have a single DragListener on the chartRectangle.
@@ -230,10 +236,10 @@ export default class OriginalGraphNode extends GraphNode {
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
-    // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
-    // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
-    // See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
-    // Do not instrument.
+// This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
+// and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
+// See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
+// Do not instrument.
     this.chartRectangle.setInputEnabledProperty( new DerivedProperty(
       [ this.originalCurveNode.inputEnabledProperty, predictEnabledProperty, this.curveLayerVisibleProperty ],
       ( originalCurveNodeInputEnabled, predictEnabled, curveLayerVisible ) =>
