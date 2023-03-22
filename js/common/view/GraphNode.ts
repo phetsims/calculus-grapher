@@ -336,10 +336,6 @@ export default class GraphNode extends Node {
     } );
   }
 
-  protected getChartRectangleBounds(): Bounds2 {
-    return this.chartRectangle.getShape().bounds;
-  }
-
   /**
    * Resets all
    */
@@ -369,6 +365,10 @@ export default class GraphNode extends Node {
    */
   public getEyeToggleButtonXOffset(): number {
     return this.eyeToggleButton.x - this.x;
+  }
+
+  protected getChartRectangleBounds(): Bounds2 {
+    return this.chartRectangle.getShape().bounds;
   }
 }
 
