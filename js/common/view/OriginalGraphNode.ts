@@ -195,7 +195,8 @@ export default class OriginalGraphNode extends GraphNode {
       // Current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
 
-      // Do not update curve if the points in freeform are too close from one another, to prevent noise in the derivative  https://github.com/phetsims/calculus-grapher/issues/297
+      // Do not update the curve model if the drag points in (freeform mode) are too close from one another,
+      // to prevent noise in the derivative  (see https://github.com/phetsims/calculus-grapher/issues/297 )
       if ( penultimatePosition === null || curveManipulationProperties.mode !== CurveManipulationMode.FREEFORM ||
            Math.abs( modelPosition.x - penultimatePosition.x ) > 0.1 ) {
 
