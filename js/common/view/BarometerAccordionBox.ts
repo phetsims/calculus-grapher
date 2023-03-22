@@ -28,7 +28,9 @@ import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CurvePoint from '../model/CurvePoint.js';
+import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 
+const BAR_WIDTH = 10;
 const TICK_MARK_EXTENT = 20;
 
 type SelfOptions = {
@@ -70,7 +72,7 @@ export default class BarometerAccordionBox extends AccordionBox {
 
       // SelfOptions
       chartTransformOptions: {
-        viewHeight: 175
+        viewHeight: 172
       },
       titleTextOptions: {
         font: CalculusGrapherConstants.ACCORDION_BOX_FONT
@@ -84,7 +86,8 @@ export default class BarometerAccordionBox extends AccordionBox {
       titleAlignX: 'left',
       cornerRadius: CalculusGrapherConstants.CORNER_RADIUS,
       contentXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
-      contentYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
+      contentYMargin: 3,
+      contentYSpacing: 0,
       buttonXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
       buttonYMargin: CalculusGrapherConstants.PANEL_Y_MARGIN,
       titleXMargin: CalculusGrapherConstants.PANEL_X_MARGIN,
@@ -110,7 +113,7 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
-    //---------quantitative mode with numerical values--------
+    // Quantitative mode, with numerical tick labels --------------------------------------
 
     const tickSpacing = Utils.toFixedNumber(
       options.chartTransformOptions.modelYRange!.getLength() / ( options.numberOfTicks - 1 ), 0 );
@@ -139,7 +142,7 @@ export default class BarometerAccordionBox extends AccordionBox {
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     } );
 
-    //---------qualitative mode with plus and minus symbols--------
+    // Qualitative mode, with plus and minus symbols ---------------------------------
 
     // Convenience variables for the position of zeros
     const zeroX = chartTransform.modelToViewX( 0 );
@@ -170,20 +173,43 @@ export default class BarometerAccordionBox extends AccordionBox {
       y2: chartTransform.modelToViewY( curvePointProperty.value.y ),
       left: axisLine.right,
       stroke: options.barColorProperty,
-      lineWidth: 10
+      lineWidth: BAR_WIDTH
     } );
 
-    // Adds axisLine and barometer (always visible), and qualitative and quantitative layers.
-    // barLine has to be last in z-order
+    const yRange = options.chartTransformOptions.modelYRange!;
+
+    // Arrows, used to indicate when the value exceeds the scale of the barometer.
+    const arrowHeight = 10;
+    const arrowYOffset = 2;
+    const arrowNodeOptions = {
+      fill: options.barColorProperty,
+      stroke: null,
+      tailWidth: barLine.width,
+      headHeight: 0.8 * arrowHeight,
+      headWidth: 2 * BAR_WIDTH,
+      centerX: barLine.centerX
+    };
+    const positiveScaleExceededIndicator = new ArrowNode( 0, 0, 0, -arrowHeight,
+      combineOptions<ArrowNodeOptions>( {
+        bottom: axisLine.top - arrowYOffset,
+        visibleProperty: new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.y > yRange.max )
+      }, arrowNodeOptions ) );
+    const negativeScaleExceededIndicator = new ArrowNode( 0, 0, 0, arrowHeight,
+      combineOptions<ArrowNodeOptions>( {
+        top: axisLine.bottom + arrowYOffset,
+        visibleProperty: new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.y < yRange.min )
+      }, arrowNodeOptions ) );
+
     const barometerNode = new Node( {
-      children: [ axisLine, quantitativeLayer, qualitativeLayer, barLine ]
+      children: [
+        axisLine, quantitativeLayer, qualitativeLayer,
+        barLine, positiveScaleExceededIndicator, negativeScaleExceededIndicator
+      ]
     } );
 
     super( barometerNode, options );
 
-    // Adds a listener to the value Property. The range of the
-    // barometer line is clamped to prevent excessively high lines.
-    const yRange = options.chartTransformOptions.modelYRange!;
+    // The height of the bar is clamped to prevent the bar from exceeding the scale of the barometer.
     curvePointProperty.link( curvePoint => {
       const clampedValue = Utils.clamp( curvePoint.y, yRange.min, yRange.max );
       barLine.y2 = chartTransform.modelToViewY( clampedValue );
@@ -195,7 +221,7 @@ function createLabelText( string: string, zeroX: number, yPosition: number ): No
   return new Text( string, {
     font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
     maxWidth: 50, // determined empirically
-    right: zeroX - ( TICK_MARK_EXTENT / 2 ) - 10,
+    right: zeroX - ( TICK_MARK_EXTENT / 2 ) - 5,
     centerY: yPosition
     // No PhET-iO instrumentation is desired.
   } );
