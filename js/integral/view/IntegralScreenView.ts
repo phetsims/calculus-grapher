@@ -47,9 +47,10 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( netSignedAreaAccordionBox );
 
     // Center netSignedAreaAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
+    netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
     this.graphsNode.boundsProperty.link( () => {
-      netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( this.graphsNode.left - this.layoutBounds.left ) / 2;
-      netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
+      const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
+      netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
     } );
 
     // Add 'Area Under Curve' checkbox to the top of the checkbox group.

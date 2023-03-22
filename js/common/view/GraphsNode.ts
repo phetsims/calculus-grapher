@@ -205,6 +205,14 @@ export default class GraphsNode extends Node {
   }
 
   /**
+   * Gets the offset of the EyeToggleButton from the left edge of the ChartRectangle. This is used for dynamic layout.
+   * It is the same for all GraphNodes, so use the first one.
+   */
+  public getEyeToggleButtonXOffset(): number {
+    return this.graphNodes[ 0 ].getEyeToggleButtonXOffset();
+  }
+
+  /**
    * Adds the tangent feature to this collection of graphs.
    */
   public addTangentView( tangentScrubber: TangentScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {

@@ -2,7 +2,7 @@
 
 /**
  * GraphNode is the view representation of a Graph, which includes a curve, a chart (grid and axes) and zoom buttons.
- * The origin (0,0) is the upper-left corner of the ChartRectangle, this.this.chartRectangle.leftTop.
+ * The origin (0,0) is the upper-left corner of the ChartRectangle, this.chartRectangle.leftTop.
  *
  * Primary responsibilities are:
  * - Create an associated CurveNode
@@ -130,6 +130,8 @@ export default class GraphNode extends Node {
   // Optional Property for zooming the y-axis
   private readonly yZoomLevelProperty?: NumberProperty;
 
+  private readonly eyeToggleButton: Node;
+
   public constructor( graphType: GraphType,
                       curve: Curve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
@@ -255,7 +257,7 @@ export default class GraphNode extends Node {
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
-    const eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty, {
+    this.eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty, {
       scale: 0.5,
       baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
@@ -288,8 +290,8 @@ export default class GraphNode extends Node {
       const rightNode = ticksParentVisible ? ticksParent : this.chartRectangle;
 
       // EyeToggleButton at bottom-left of chart rectangle
-      eyeToggleButton.right = rightNode.left - BUTTON_SPACING;
-      eyeToggleButton.bottom = this.chartRectangle.bottom;
+      this.eyeToggleButton.right = rightNode.left - BUTTON_SPACING;
+      this.eyeToggleButton.bottom = this.chartRectangle.bottom;
 
       // yZoomButtonGroup at left-center of chart rectangle
       if ( yZoomButtonGroup ) {
@@ -305,7 +307,7 @@ export default class GraphNode extends Node {
       ticksParent,
       labelNode,
       this.curveLayer,
-      eyeToggleButton
+      this.eyeToggleButton
     ];
     yZoomButtonGroup && children.push( yZoomButtonGroup );
     this.children = children;
@@ -360,6 +362,13 @@ export default class GraphNode extends Node {
     } );
     this.curveLayer.addChild( plottedPoint );
     return plottedPoint;
+  }
+
+  /**
+   * Gets the offset of the EyeToggleButton from the left edge of the ChartRectangle. This is used for dynamic layout.
+   */
+  public getEyeToggleButtonXOffset(): number {
+    return this.eyeToggleButton.x - this.x;
   }
 }
 
