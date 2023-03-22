@@ -25,6 +25,9 @@ import ScrubberNode from './ScrubberNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 
+// number of decimal places shown for the x value, dragging snaps to this interval
+const X_DECIMAL_PLACES = 1;
+
 export default class ReferenceLineNode extends ScrubberNode {
 
   public constructor( referenceLine: ReferenceLine,
@@ -48,7 +51,7 @@ export default class ReferenceLineNode extends ScrubberNode {
     const numberDisplay = new NumberDisplay( referenceLine.xProperty,
       CalculusGrapherConstants.CURVE_X_RANGE, {
         align: 'center',
-        decimalPlaces: 1,
+        decimalPlaces: X_DECIMAL_PLACES,
         valuePattern: new DerivedProperty(
           [ CalculusGrapherPreferences.functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
           ( functionVariable, xString, tString ) => {
