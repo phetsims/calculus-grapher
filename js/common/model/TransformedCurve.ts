@@ -9,6 +9,7 @@
  *   - Resetting all the points of the curve
  *   - Saving the state of the curve
  *   - Undoing the curve to its previous state
+ *   - Erasing the curve by setting points to y=0
  *   - Smoothing the curve
  *   - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
  *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
