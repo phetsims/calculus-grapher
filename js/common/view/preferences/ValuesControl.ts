@@ -42,7 +42,6 @@ export default class ValuesControl extends PreferencesControl {
       font: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_FONT,
       tandem: tandem.createTandem( 'descriptionText' )
     } );
-    console.log( `ValuesControl descriptionText.height = ${descriptionText.height}` );
 
     super( {
       labelNode: labelText,
