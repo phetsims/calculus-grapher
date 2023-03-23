@@ -166,21 +166,19 @@ export default class Curve extends PhetioObject {
   /**
    * Gets the index associated with this point.
    */
-  public getIndex( point: CurvePoint ): number {
-
+  protected getIndex( point: CurvePoint ): number {
     const normalizedValue = this.xRange.getNormalizedValue( point.x );
-
     return Utils.roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
   }
 
-  public get deltaX(): number {
+  protected get deltaX(): number {
     return this.xRange.getLength() / ( this.numberOfPoints - 1 );
   }
 
   /**
    * Gets the index of the array whose x-value is closest to the given x-value.
    */
-  public getClosestIndexAt( x: number ): number {
+  protected getClosestIndexAt( x: number ): number {
     assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
 
     const normalizedValue = this.xRange.getNormalizedValue( x );
