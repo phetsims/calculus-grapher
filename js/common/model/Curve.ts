@@ -70,6 +70,9 @@ export default class Curve extends PhetioObject {
   // Number of points (evenly-spaced along the x-axis) that will be used to approximate the curve
   public readonly numberOfPoints: number;
 
+  // Delta between x coordinate values
+  protected readonly deltaX: number;
+
   protected constructor( providedOptions: CurveOptions ) {
 
     const options = optionize<CurveOptions, SelfOptions, PhetioObjectOptions>()( {
@@ -85,9 +88,9 @@ export default class Curve extends PhetioObject {
 
     super( options );
 
-    // create a reference to these option fields
     this.xRange = options.xRange;
     this.numberOfPoints = options.numberOfPoints;
+    this.deltaX = this.xRange.getLength() / ( this.numberOfPoints - 1 );
 
     // Initial points, with equally-spaced x values, and y=0.
     // These CurvePoint instances are reused throughout the lifetime of the sim, and never disposed.
@@ -169,10 +172,6 @@ export default class Curve extends PhetioObject {
   protected getIndex( point: CurvePoint ): number {
     const normalizedValue = this.xRange.getNormalizedValue( point.x );
     return Utils.roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
-  }
-
-  protected get deltaX(): number {
-    return this.xRange.getLength() / ( this.numberOfPoints - 1 );
   }
 
   /**
