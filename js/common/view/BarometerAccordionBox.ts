@@ -11,7 +11,7 @@
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import { Color, Line, Node, RichText, RichTextOptions, Text } from '../../../../scenery/js/imports.js';
+import { Color, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
@@ -31,6 +31,7 @@ import CurvePoint from '../model/CurvePoint.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 
 const BAR_WIDTH = 10;
+const NUMBER_OF_TICKS = 5;
 const TICK_MARK_EXTENT = 20;
 
 type SelfOptions = {
@@ -40,12 +41,6 @@ type SelfOptions = {
 
   // bamboo ChartTransform
   chartTransformOptions?: ChartTransformOptions;
-
-  // options for the accordion box's title Text
-  titleTextOptions?: StrictOmit<RichTextOptions, 'tandem'>;
-
-  // number of ticks for the quantitative layer (visible when valuesVisible is set to true)
-  numberOfTicks?: number;
 };
 
 export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBoxOptions, 'titleNode'> &
@@ -74,10 +69,6 @@ export default class BarometerAccordionBox extends AccordionBox {
       chartTransformOptions: {
         viewHeight: 172
       },
-      titleTextOptions: {
-        font: CalculusGrapherConstants.ACCORDION_BOX_FONT
-      },
-      numberOfTicks: 5,
 
       // AccordionBoxOptions
       stroke: CalculusGrapherColors.panelStrokeProperty,
@@ -107,16 +98,21 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    options.titleNode = new RichText( labelStringProperty, combineOptions<RichTextOptions>( {
+    options.titleNode = new RichText( labelStringProperty, {
+      font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
+      maxWidth: 80,
+      maxHeight: 40,
       tandem: options.tandem.createTandem( 'titleText' )
-    }, options.titleTextOptions ) );
+    } );
+    console.log( `${labelStringProperty.value} width = ${options.titleNode.width}` );
+    console.log( `${labelStringProperty.value} height = ${options.titleNode.height}` );
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
     // Quantitative mode, with numerical tick labels --------------------------------------
 
     const tickSpacing = Utils.toFixedNumber(
-      options.chartTransformOptions.modelYRange!.getLength() / ( options.numberOfTicks - 1 ), 0 );
+      options.chartTransformOptions.modelYRange!.getLength() / ( NUMBER_OF_TICKS - 1 ), 0 );
 
     const majorTickMarkSet = new TickMarkSet( chartTransform, orientation, tickSpacing, {
       extent: TICK_MARK_EXTENT
@@ -129,7 +125,7 @@ export default class BarometerAccordionBox extends AccordionBox {
     } );
 
     const tickLabelSet = new TickLabelSet( chartTransform, orientation, tickSpacing, {
-      createLabel: ( value: number ) => new Text( value, {
+      createLabel: value => new Text( value, {
         font: CalculusGrapherConstants.ACCORDION_BOX_VALUE_FONT
         // No PhET-iO instrumentation is desired.
       } ),
@@ -167,7 +163,9 @@ export default class BarometerAccordionBox extends AccordionBox {
       visibleProperty: DerivedProperty.not( CalculusGrapherPreferences.valuesVisibleProperty )
     } );
 
-    // Creates a very wide line to represent a barometer
+    // Both modes --------------------------------------------------------
+
+    // The bar is a very wide line
     const barLine = new Line( {
       y1: zeroY,
       y2: chartTransform.modelToViewY( curvePointProperty.value.y ),

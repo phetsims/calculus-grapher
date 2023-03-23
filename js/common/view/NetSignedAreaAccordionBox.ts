@@ -39,9 +39,6 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       barColorProperty: barColorProperty,
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.NET_SIGNED_AREA_MODEL_RANGE
-      },
-      titleTextOptions: {
-        maxWidth: 80
       }
     }, providedOptions );
 
