@@ -104,8 +104,6 @@ export default class BarometerAccordionBox extends AccordionBox {
       maxHeight: 40,
       tandem: options.tandem.createTandem( 'titleText' )
     } );
-    console.log( `${labelStringProperty.value} width = ${options.titleNode.width}` );
-    console.log( `${labelStringProperty.value} height = ${options.titleNode.height}` );
 
     const axisLine = new AxisLine( chartTransform, orientation );
 
