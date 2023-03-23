@@ -15,6 +15,7 @@ import IntegralModel from '../model/IntegralModel.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import AreaUnderCurveCheckbox from '../../common/view/AreaUnderCurveCheckbox.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -47,11 +48,12 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( netSignedAreaAccordionBox );
 
     // Center netSignedAreaAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
-    netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
-    this.graphsNode.boundsProperty.link( () => {
-      const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
-      netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
-    } );
+    Multilink.multilink( [ this.graphsNode.boundsProperty, netSignedAreaAccordionBox.boundsProperty ],
+      () => {
+        const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
+        netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
+        netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
+      } );
 
     // Add 'Area Under Curve' checkbox to the top of the checkbox group.
     const areaUnderCurveCheckbox = new AreaUnderCurveCheckbox( model.areaUnderCurveScrubber.visibleProperty,

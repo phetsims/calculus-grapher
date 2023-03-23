@@ -15,6 +15,7 @@ import DerivativeModel from '../model/DerivativeModel.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TangentCheckbox from '../../common/view/TangentCheckbox.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -46,11 +47,12 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.screenViewRootNode.addChild( slopeOfTangentAccordionBox );
 
     // Center slopeOfTangentAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
-    slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
-    this.graphsNode.boundsProperty.link( () => {
-      const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
-      slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
-    } );
+    Multilink.multilink( [ this.graphsNode.boundsProperty, slopeOfTangentAccordionBox.boundsProperty ],
+      () => {
+        const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
+        slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
+        slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
+      } );
 
     // Add 'Tangent' checkbox to the top of the checkbox group.
     const tangentCheckbox = new TangentCheckbox( model.tangentScrubber.visibleProperty, model.predictEnabledProperty,
