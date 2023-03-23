@@ -51,9 +51,11 @@ export default class PredictControl extends PreferencesControl {
     } );
     const descriptionText = new RichText( descriptionStringProperty, {
       lineWrap: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_LINE_WRAP,
+      maxHeight: 50,
       font: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_FONT,
       tandem: tandem.createTandem( 'descriptionText' )
     } );
+    console.log( `PredictControl descriptionText.height = ${descriptionText.height}` );
 
     super( {
       labelNode: labelText,

@@ -108,8 +108,10 @@ class NotationRadioButtonLabel extends HBox {
     const text = new RichText( derivedNotationStringProperty, {
       font: PreferencesDialog.CONTENT_FONT,
       maxWidth: 150,
+      maxHeight: 25,
       tandem: radioButtonTandem.createTandem( 'text' )
     } );
+    console.log( `NotationControl text.height = ${text.height}` );
 
     // An example of the notation
     const exampleNode = new GraphTypeLabelNode( GraphType.DERIVATIVE, {

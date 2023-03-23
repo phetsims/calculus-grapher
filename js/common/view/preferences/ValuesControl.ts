@@ -38,9 +38,11 @@ export default class ValuesControl extends PreferencesControl {
 
     const descriptionText = new RichText( CalculusGrapherStrings.valuesPreferenceDescriptionStringProperty, {
       lineWrap: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_LINE_WRAP,
+      maxHeight: 50,
       font: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_FONT,
       tandem: tandem.createTandem( 'descriptionText' )
     } );
+    console.log( `ValuesControl descriptionText.height = ${descriptionText.height}` );
 
     super( {
       labelNode: labelText,
