@@ -121,9 +121,13 @@ for background. Since the 'base' Curve exists at all Points, the Integral is als
 ### Ancillary Tools
 
 AncillaryTool is the model base class associated with an x value on the graph. It keeps track of the following quantities associated with the x value:
- - the integral of f(x)
- - the original function f(x)
- - the derivative of f(x)
- - the second derivative of f(x)
-ALl of the above quantities are derived from their associated curve. For performance reason,  the quantities above are updated solely when its associated tool is visible.
- Many tools such as the Area Under Curve tool, Tangent tool, Reference Line tool, as well as the PhET-IO tools, Labeled Points and Labeled Lines, extend the AncillaryTool class.
+
+- the integral of f(x)
+- the original function f(x)
+- the derivative of f(x)
+- the second derivative of f(x)
+
+- All of the above quantities are derived from their associated curve. For performance reason, the quantities above are
+  updated solely when its associated tool is visible.
+  Many tools such as the Area Under Curve tool, Tangent tool, Reference Line tool, as well as the PhET-IO tools, Labeled
+  Points and Labeled Lines, extend the AncillaryTool class.
