@@ -237,10 +237,10 @@ export default class OriginalGraphNode extends GraphNode {
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
-// This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
-// and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
-// See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
-// Do not instrument.
+    // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
+    // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
+    // See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
+    // Do not instrument.
     this.chartRectangle.setInputEnabledProperty( new DerivedProperty(
       [ this.originalCurveNode.inputEnabledProperty, predictEnabledProperty, this.curveLayerVisibleProperty ],
       ( originalCurveNodeInputEnabled, predictEnabled, curveLayerVisible ) =>
