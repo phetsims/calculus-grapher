@@ -75,14 +75,12 @@ export default class GraphSetsAnimator {
    * @param newGraphNodes - the new children of graphSetNode
    * @param chartRectangleHeight - the height of one GraphNode's ChartRectangle
    * @param ySpacing - the vertical spacing between GraphNode instances
-   * @param [endCallback] - called when animation has completed
    */
   public changeGraphSets( graphSetNode: Node,
                           oldGraphNodes: GraphNode[] | null,
                           newGraphNodes: GraphNode[],
                           chartRectangleHeight: number,
-                          ySpacing: number,
-                          endCallback?: () => void ): void {
+                          ySpacing: number ): void {
 
     // Stop any animations that are in progress.
     this.fadeOutAnimation && this.fadeOutAnimation.stop();
@@ -111,9 +109,6 @@ export default class GraphSetsAnimator {
         newGraphNodes[ i ].y = yEndCoordinates[ i ];
         newGraphNodes[ i ].opacity = 1;
       }
-
-      // Call the callback that is typically done at the end of the animation sequence.
-      endCallback && endCallback();
     }
     else {
 
@@ -227,7 +222,6 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.fadeInAnimation = null;
         this.fadeInOpacityProperty.unlinkAll();
-        endCallback && endCallback();
       } );
 
       // ... and away we go.
