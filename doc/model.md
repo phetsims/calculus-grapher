@@ -35,8 +35,9 @@ A control panel, on the right-hand side, houses the drawing tools and viewing op
 that controls the width of the curve. Sliding to the right makes the curve wider and sliding to the left makes it
 narrower.
 
-Radio buttons allow the user to pick from a variety of "curve manipulation" functions. Once the user selects a
-portion of the graph, the function will update itself with the appropriate function.
+Radio buttons allow the user to pick from a variety of "curve manipulation mode" functions (See below for more details
+on each mode). Once the user selects a portion of the graph, the function will update itself with the appropriate
+function.
 
 Undo and Eraser buttons appear under the vertical radio buttons. The _Undo_ button, represented by a back arrow, erases
 the last change done to the function. The Eraser button resets the function f(x) to its initial state (which is
@@ -102,6 +103,22 @@ functions.
 ## _Lab_ Screen
 
 The _Lab_ screen includes all the features from the _Advanced_ screen, and adds a third graph on the screen.
+
+## Curve Manipulation Modes
+
+A user can manipulate the original function through a set of curve manipulation modes. There are eight curve
+manipulation modes in this simulation. The curve manipulation modes are:
+
+- HILL: A bell-shaped curve represented by a gaussian function. The width of the curve is related to the standard
+  deviation.
+- PEDESTAL: A continuous boxcar function. The width slider controls the width of its plateau.
+- TRIANGLE: A triangular function. The width slider controls the steepness of its slope.
+- PARABOLA: A portion of a parabola. The width slider controls the curvature of the parabola.
+- SINUSOID: A portion of a sinusoidal function. The width slider controls the wavelength of the sinusoidal function. The
+  slider default value matches a wavelength/period of 2π.
+- FREEFORM: Indicated by a pencil icon. It allows a user to draw a curve by clicking and dragging the mouse.
+- TILT: Indicated by a tilted line icon. It allows a user to tilt the entire curve with the fulcrum point at x=0
+- SHIFT: Indicated by a horizontal line icon. It allows a user to shift the entire curve by a constant amount.
 
 ## Approximations, Limitations and Implementation Details
 
