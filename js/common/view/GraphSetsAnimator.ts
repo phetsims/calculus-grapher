@@ -87,7 +87,7 @@ export default class GraphSetsAnimator {
     this.fadeInAnimation && this.fadeInAnimation.stop();
     this.translationAnimation && this.translationAnimation.stop();
 
-    // Compute positions for GraphNodes in the new set.
+    // Compute positions for GraphNodes in the new set. They are in top-to-bottom order.
     const x = newGraphNodes[ 0 ].x;
     const yEndCoordinates = [ 0 ];
     for ( let i = 1; i < newGraphNodes.length; i++ ) {
@@ -97,6 +97,8 @@ export default class GraphSetsAnimator {
     // Move immediately to the new state if:
     // there are no old GraphNodes, an animation was in progress, or we're restoring PhET-iO state.
     if ( !oldGraphNodes || this.activeAnimation || phet.joist.sim.isSettingPhetioStateProperty.value ) {
+
+      console.log( `NOT animating ${Date.now()}` );
 
       this.activeAnimation = null;
 
@@ -111,6 +113,7 @@ export default class GraphSetsAnimator {
       }
     }
     else {
+      console.log( `animating ${Date.now()}` );
 
       //------------------------------------------------------------------------------------------------------------
       // Fade out GraphNodes that are being added (in oldGraphNodes, but not in newGraphNodes).
