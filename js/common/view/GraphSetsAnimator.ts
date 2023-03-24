@@ -98,8 +98,6 @@ export default class GraphSetsAnimator {
     // there are no old GraphNodes, an animation was in progress, or we're restoring PhET-iO state.
     if ( !oldGraphNodes || this.activeAnimation || phet.joist.sim.isSettingPhetioStateProperty.value ) {
 
-      console.log( `NOT animating ${Date.now()}` );
-
       this.activeAnimation = null;
 
       // Add the new set of GraphNodes to the scene graph.
@@ -113,7 +111,6 @@ export default class GraphSetsAnimator {
       }
     }
     else {
-      console.log( `animating ${Date.now()}` );
 
       //------------------------------------------------------------------------------------------------------------
       // Fade out GraphNodes that are being added (in oldGraphNodes, but not in newGraphNodes).
