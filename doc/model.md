@@ -5,22 +5,29 @@
 This document is a high-level description of the model used in PhET's _Calculus-Grapher_ simulation.
 
 The Calculus Grapher simulation is designed to help students visualize and understand concepts in calculus, specifically
-relating to graphs of functions, derivatives and integrals. The main functionalities of the simulation include:
+relating to graphs of functions, derivatives, and integrals. The main functionalities of the simulation include:
 
 Graphing functions: The simulation allows students to manipulate a function. These include the ability to drag points on
 the graph to see how the function changes as well as change the curve mode.
 
-Tangent Tool: Students can graph the derivative of a function, and see how the derivative changes as they modify the original function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that point. The tool displays the slope of the tangent line and allows users to drag the point along the curve to observe how the tangent line changes as the point moves.
+Tangent Tool: Students can graph the derivative of a function and see how the derivative changes as they modify the
+original function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that
+point. The tool displays the slope of the tangent line and allows users to drag the point along the curve to observe how
+the tangent line changes as the point moves.
 
-Area under Curve: The user can use the "Area Under Curve" tool to visualize the area under a curve. The user can drag a scrubber to specify the limits of integration. The simulation then calculates and displays the area under the selected portion of the curve, as well as the value of the definite integral that represents the area.
+Area under Curve: The user can use the "Area Under Curve" tool to visualize the area under a curve. The user can drag a
+scrubber to specify the limits of integration. The simulation then calculates and displays the area under the selected
+portion of the curve and the value of the definite integral that represents the area.
 
-Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus, and to gain a deeper understanding of the relationships between functions and their derivatives and integrals.
+Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus,
+and to gain a deeper understanding of the relationships between functions and their derivatives and integrals.
 
 ###
 
 The simulation comprises a user-controlled function f(x) and, depending on the screen, the integral and or derivative of
-that function. To indicate to the user that the curve of f(x) is interactive, a large double-headed arrow is initially
-present at the start of the simulation. The function f(x) can be controlled by a control panel on the right-hand side
+that function. A large double-headed arrow is initially
+present at the start of the simulation to indicate to the user that the curve of f(x) is interactive, . The function f(
+x) can be controlled by a control panel on the right-hand side
 
 ## Common Controls
 
@@ -35,14 +42,16 @@ Undo and Eraser buttons appear under the vertical radio buttons. The _Undo_ butt
 the last change done to the function. The Eraser button resets the function f(x) to its initial state (which is
 typically y=0).
 
-Below the control panel is a "Reference Line" checkbox, indicated by a vertical line. When checked, the Reference Line will
-appear on the graphs. The reference line spans all the graph and the x-position of the reference line is controlled
+Below the control panel is a "Reference Line" checkbox, indicated by a vertical line. When checked, the Reference Line
+will
+appear on the graphs. The reference line spans all the graphs and the x-position of the reference line is controlled
 by the user.
 
-Zoom buttons are available on the left hand side of the derivative and integral graphs.
+Zoom buttons are available on the left-hand side of the derivative and integral graphs.
 It allows the user to upscale or downscale the y-axis.
 
-Also below the control panel is a Grid checkbox. When checked, each graph will contain independent internal gridlines. The
+Also, below the control panel is a Grid checkbox. When checked, each graph will contain independent internal gridlines.
+The
 gridlines will scale accordingly to the zoom level.
 
 Settings can be found in the _Simulation_ tab of the _Preference_ dialog. The five settings are:
@@ -52,7 +61,7 @@ Settings can be found in the _Simulation_ tab of the _Preference_ dialog. The fi
 - Values: Shows numerical value on graph axes, reference line, slope of tangent, and area under curve.
 - Predict: Adds a mode where you can predict the function f(x)
 
-The simulation comprise four screens: Derivative, Integral, Advanced and Lab. We provide below a brief description of
+The simulation comprises four screens: Derivative, Integral, Advanced and Lab. Below, we provide a brief description of
 each screen.
 
 ## _Derivative_ Screen
@@ -74,7 +83,10 @@ change the x-position of the tangent arrow.
 At the top of the _Integral_ screen, one finds the definite integral of f(x). Underneath this graph, user controlled
 function f(x) is displayed. The definite integral is calculated numerically through a trapezoidal Riemann sum.
 
-The "Area Under Curve" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) an area plot on the original graph, and (3) the "Net Signed Area" accordion box with barometer of the value of the area under the curve. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
+The "Area Under Curve" checkbox below the control panel triggers the visibility of three components: (1) a
+user-controlled scrubber at the bottom of the graphs, (2) an area plot on the original graph, and (3) the "Net Signed
+Area" accordion box with a barometer indicating the value of the area under the curve. The user can move the horizontal
+position of scrubber to change the x-position of the tangent arrow.
 
 ## _Advanced_ Screen
 
