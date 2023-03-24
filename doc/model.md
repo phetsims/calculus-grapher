@@ -22,12 +22,10 @@ portion of the curve and the value of the definite integral that represents the 
 Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus,
 and to gain a deeper understanding of the relationships between functions and their derivatives and integrals.
 
-###
-
 The simulation comprises a user-controlled function f(x) and, depending on the screen, the integral and or derivative of
 that function. A large double-headed arrow is initially
-present at the start of the simulation to indicate to the user that the curve of f(x) is interactive, . The function f(
-x) can be controlled by a control panel on the right-hand side
+present at the start of the simulation to indicate to the user that the curve of f(x) is interactive. The function f(x)
+can be controlled by a control panel on the right-hand side.
 
 ## Common Controls
 
