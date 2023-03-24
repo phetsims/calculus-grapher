@@ -47,6 +47,10 @@ import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 
+// Minimum x distance between drag points when drawing in FREE_FORM mode.
+// See https://github.com/phetsims/calculus-grapher/issues/297
+const FREE_FORM_MIN_DX = 0.1;
+
 type SelfOptions = EmptySelfOptions;
 
 type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'chartRectangleHeight' | 'tandem'>;
@@ -183,6 +187,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Variables to keep track of old model positions associated with the dragListener.
     // Set them to null as no drag event has occurred yet.
+    // These are relevant only for CurveManipulationMode.FREE_FORM.
     let penultimatePosition: Vector2 | null = null;
     let antepenultimatePosition: Vector2 | null = null;
 
@@ -195,22 +200,31 @@ export default class OriginalGraphNode extends GraphNode {
       // Current modelPosition
       const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
 
-      // Do not update the curve model if the drag points in (freeform mode) are too close from one another,
-      // to prevent noise in the derivative  (see https://github.com/phetsims/calculus-grapher/issues/297 )
-      if ( penultimatePosition === null || curveManipulationProperties.mode !== CurveManipulationMode.FREEFORM ||
-           Math.abs( modelPosition.x - penultimatePosition.x ) > 0.1 ) {
+      if ( curveManipulationProperties.mode === CurveManipulationMode.FREEFORM ) {
 
-        // Update curve based on mode and width
+        // Do not update the curve model if the drag points in (freeform mode) are too close from one another,
+        // to prevent noise in the derivative  (see https://github.com/phetsims/calculus-grapher/issues/297 )
+        if ( penultimatePosition === null || Math.abs( modelPosition.x - penultimatePosition.x ) > FREE_FORM_MIN_DX ) {
+
+          interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
+            curveManipulationProperties.mode,
+            curveManipulationProperties.width,
+            modelPosition,
+            penultimatePosition,
+            antepenultimatePosition );
+
+          // Update (model) antepenultimatePosition and penultimatePosition
+          antepenultimatePosition = penultimatePosition;
+          penultimatePosition = modelPosition;
+        }
+      }
+      else {
+
+        // For any mode other than FREE_FORM...
         interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
           curveManipulationProperties.mode,
           curveManipulationProperties.width,
-          modelPosition,
-          penultimatePosition,
-          antepenultimatePosition );
-
-        // Update (model) antepenultimatePosition and penultimatePosition
-        antepenultimatePosition = penultimatePosition;
-        penultimatePosition = modelPosition;
+          modelPosition );
       }
     };
 
