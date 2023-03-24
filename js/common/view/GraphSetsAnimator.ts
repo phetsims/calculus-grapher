@@ -42,24 +42,15 @@ export default class GraphSetsAnimator {
   public constructor( tandem: Tandem ) {
 
     this.fadeOutOpacityProperty = new NumberProperty( 1, {
-      isValidValue: opacity => ( opacity >= 0 && opacity <= 1 ),
-      tandem: tandem.createTandem( 'fadeOutOpacityProperty' ),
-      phetioState: true,
-      phetioDocumentation: 'Opacity used to faded out graphs that are not part of a new set.'
+      isValidValue: opacity => ( opacity >= 0 && opacity <= 1 )
     } );
 
     this.fadeInOpacityProperty = new NumberProperty( 0, {
-      isValidValue: opacity => ( opacity >= 0 && opacity <= 1 ),
-      tandem: tandem.createTandem( 'fadeInOpacityProperty' ),
-      phetioState: true,
-      phetioDocumentation: 'Opacity used to faded in graphs that are part of a new set.'
+      isValidValue: opacity => ( opacity >= 0 && opacity <= 1 )
     } );
 
     this.percentDistanceProperty = new NumberProperty( 0, {
-      isValidValue: opacity => ( opacity >= 0 && opacity <= 1 ),
-      tandem: tandem.createTandem( 'percentDistanceProperty' ),
-      phetioState: true,
-      phetioDocumentation: 'Percent distance between start and end position, used to animate the positions of graphs in a set.'
+      isValidValue: opacity => ( opacity >= 0 && opacity <= 1 )
     } );
 
     this.fadeOutAnimation = null;
