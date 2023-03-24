@@ -92,7 +92,7 @@ export default class AncillaryTool extends PhetioObject {
 
     this.xProperty = new NumberProperty( options.x, {
       range: CalculusGrapherConstants.CURVE_X_RANGE,
-      tandem: options.tandem.createTandem( 'xCoordinateProperty' ),
+      tandem: options.tandem.createTandem( 'xProperty' ),
       phetioFeatured: true
     } );
 
