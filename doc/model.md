@@ -4,9 +4,11 @@
 
 This document is a high-level description of the model used in PhET's _Calculus-Grapher_ simulation.
 
-The Calculus Grapher simulation is designed to help students visualize and understand concepts in calculus, specifically relating to graphs of functions, derivatives and integrals. Some of the main functionalities of the simulation include:
+The Calculus Grapher simulation is designed to help students visualize and understand concepts in calculus, specifically
+relating to graphs of functions, derivatives and integrals. The main functionalities of the simulation include:
 
-Graphing functions: The simulation allows students to manipulate a function. These include the ability to drag points on the graph to see how the function changes as well as change the curve mode.
+Graphing functions: The simulation allows students to manipulate a function. These include the ability to drag points on
+the graph to see how the function changes as well as change the curve mode.
 
 Tangent Tool: Students can graph the derivative of a function, and see how the derivative changes as they modify the original function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that point. The tool displays the slope of the tangent line and allows users to drag the point along the curve to observe how the tangent line changes as the point moves.
 
@@ -22,14 +24,16 @@ present at the start of the simulation. The function f(x) can be controlled by a
 
 ## Common Controls
 
-A control panel, on the right hand side, houses the drawing tools and viewing options. The first control is a slider
-that controls the width of the curve. Sliding to the right makes the curve wider and sliding to the left makes it narrower.
+A control panel, on the right-hand side, houses the drawing tools and viewing options. The first control is a slider
+that controls the width of the curve. Sliding to the right makes the curve wider and sliding to the left makes it
+narrower.
 
-Radio buttons allows the user to pick from a variety of "curve manipulation" functions. Once the user selects a
+Radio buttons allow the user to pick from a variety of "curve manipulation" functions. Once the user selects a
 portion of the graph, the function will update itself with the appropriate function.
 
 Undo and Eraser buttons appear under the vertical radio buttons. The _Undo_ button, represented by a back arrow, erases
-the last change done to the function. The Eraser button resets the function f(x) to its initial state (which is typically y=0).
+the last change done to the function. The Eraser button resets the function f(x) to its initial state (which is
+typically y=0).
 
 Below the control panel is a "Reference Line" checkbox, indicated by a vertical line. When checked, the Reference Line will
 appear on the graphs. The reference line spans all the graph and the x-position of the reference line is controlled
@@ -54,13 +58,16 @@ each screen.
 ## _Derivative_ Screen
 
 At the top of the _Derivative_ screen, one finds the function f(x). Underneath the function f(x), a graph of the
-derivative is rendered. The visibility of the curve on each graph is controlled via an eye toggle button, on the left
-hand side of each graph.
+derivative is rendered. The visibility of the curve on each graph is controlled via an eye toggle button, on the
+left-hand side of each graph.
 
 A finite difference method is used to determine the derivative. To illustrate non-differential points in f(x), open
 circles appear at the non-differential points for the derivative.
 
-The "Tangent" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled scrubber at the bottom of the graphs, (2) a tangent arrow on the original graph, and (3) the "Slope of Tangenet" accordion box with barometer of the value of the tangent. The user can move the horizontal position of scrubber to change the x-position of the tangent arrow.
+The "Tangent" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled
+scrubber at the bottom of the graphs, (2) a tangent arrow on the original graph, and (3) the "Slope of Tangent"
+accordion box with a barometer of the value of the tangent. The user can move the horizontal position of scrubber to
+change the x-position of the tangent arrow.
 
 ## _Integral_ Screen
 
