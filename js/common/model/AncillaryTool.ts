@@ -163,10 +163,11 @@ export default class AncillaryTool extends PhetioObject {
 
 /**
  * As the xProperty for a curve changes, provide the corresponding CurvePoint.
+ * Note that curve.pointsProperty may also be changed via PhET-iO, see https://github.com/phetsims/calculus-grapher/issues/307.
  * Return type is ReadOnlyProperty so that we can call notifyListenersStatic.
  */
 function createCurvePointProperty( curve: Curve, xProperty: TReadOnlyProperty<number> ): ReadOnlyProperty<CurvePoint> {
-  return new DerivedProperty( [ xProperty ], x => curve.getClosestPointAt( x ) );
+  return new DerivedProperty( [ curve.pointsProperty, xProperty ], ( points, x ) => curve.getClosestPointAt( x ) );
 }
 
 /**

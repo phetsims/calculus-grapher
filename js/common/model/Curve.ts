@@ -57,7 +57,7 @@ export default class Curve extends PhetioObject {
   // The collection of points that describe the curve. This is an array of CurvePoint instances that are typically
   // mutated in place, so that we have acceptable performance. If Curve was instantiated with pointsPropertyReadOnly:false,
   // then it is possible to set pointsProperty via PhET-iO.
-  private readonly pointsProperty: Property<CurvePoint[]>;
+  public readonly pointsProperty: Property<CurvePoint[]>;
 
   // Using an observable Property for the y-value was considered, but it was deemed to be
   // invasive to the performance of the simulation as observers had to listen to the yProperty
