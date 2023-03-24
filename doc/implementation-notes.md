@@ -108,15 +108,18 @@ enough for derivative and integral computations and are considered to cover 'eve
 - Saving the curve
 - Resetting all the points of the curve
 
-DerivativeCurve and SecondDerivativeCurve's main responsibility is to observe when the 'base' Curve changes and differentiates it and update the Points of the first and second derivative. Derivatives are computed by considering the slope of the secant lines from both sides of every point.
+DerivativeCurve and SecondDerivativeCurve's main responsibility is to observe when the originalCurve changes and
+differentiates it and update the Points of the first and second derivative. Derivatives are computed by considering the
+slope of the secant lines from both sides of every point.
 
-`IntegralCurve` is a Curve subtype for the curve that represents the integral of the TransformedCurve. The TransformedCurve
-is referenced as the 'base' Curve of the IntegralCurve.
+`IntegralCurve` is a Curve subtype for the curve that represents the integral of the TransformedCurve. The
+TransformedCurve
+is referenced as the originalCurve of the IntegralCurve.
 
-IntegralCurve's main responsibility is to observe when the 'base' Curve changes and integrate it and update the
+IntegralCurve's main responsibility is to observe when the originalCurve changes and integrate it and update the
 Points of the Integral. Our implementation of the integral uses a trapezoidal Riemann sum to approximate integrals.
 See https://en.wikipedia.org/wiki/Trapezoidal_rule
-for background. Since the 'base' Curve exists at all Points, the Integral is also finite at all points.
+for background. Since the originalCurve exists at all Points, the Integral is also finite at all points.
 
 ### Ancillary Tools
 
