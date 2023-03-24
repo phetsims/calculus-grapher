@@ -686,32 +686,40 @@ export default class TransformedCurve extends Curve {
     // Main idea: assign the smooth type to ALL points between penultimatePosition to position (
     // and possibly antepenultimatePosition if it exists), then come back to it by reassigning the
     // closestPoint (and its point partner ahead of the drag) to be discontinuous.
-    //
+
+    // does penultimatePosition exist?
     if ( penultimatePosition ) {
 
+      // Point associated with the last drag event
       const lastPoint = this.getClosestPointAt( penultimatePosition.x );
 
+      // Find the index of the closestPoint and the lastPoint
       const lastPointIndex = this.getIndex( lastPoint );
       const closestPointIndex = this.getIndex( closestPoint );
 
+      // Assign the points between the lastPoint and the closestPoint to be smooth
       let min = Math.min( closestPointIndex, lastPointIndex );
       let max = Math.max( closestPointIndex, lastPointIndex );
       for ( let i = min; i <= max; i++ ) {
         this.points[ i ].pointType = 'smooth';
       }
 
+      // Does antepenultimatePosition exist?
       if ( antepenultimatePosition ) {
 
-        // Point associated with the last drag event
         const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
 
+        // Find the index of the nextToLastPoint
         const nextToLastPointIndex = this.getIndex( nextToLastPoint );
 
+        // Assign the points between the nextToLastPoint and the lastPoint to be smooth
         min = Math.min( lastPointIndex, nextToLastPointIndex );
         max = Math.max( lastPointIndex, nextToLastPointIndex );
 
         for ( let i = min; i <= max; i++ ) {
           const point = this.points[ i ];
+
+          // We don't want to assign the very last point as it may be discontinuous if the drag has turned
           if ( point !== nextToLastPoint ) {
             this.points[ i ].pointType = 'smooth';
           }
@@ -729,14 +737,23 @@ export default class TransformedCurve extends Curve {
         this.getClosestPointAt( closestPoint.x + this.deltaX ).pointType = 'discontinuous';
       }
 
-      // We need to consider the case where the drag has turned
+
+      // We need to consider the case where the drag has turned, which can occur only if antepenultimatePosition exists
+      // and the lastPoint is between the closestPoint and the nextToLastPoint
+
       if ( antepenultimatePosition ) {
+
         // Point associated with the last drag event
         const nextToLastPoint = this.getClosestPointAt( antepenultimatePosition.x );
-        if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) > 0 ) {
-          lastPoint.pointType = 'discontinuous';
-          if ( lastPointIndex > closestPointIndex ) {
 
+        // is the lastPoint between the closestPoint and the nextToLastPoint?
+        if ( ( closestPoint.x - lastPoint.x ) * ( nextToLastPoint.x - lastPoint.x ) > 0 ) {
+
+          // We have to assign the lastPoint to be discontinuous since the drag has turned at this point.
+          lastPoint.pointType = 'discontinuous';
+
+          // We need to figure out what was the direction of the drag, and assign the point that was "ahead" to be discontinuous
+          if ( lastPointIndex > closestPointIndex ) {
             this.getClosestPointAt( lastPoint.x - this.deltaX ).pointType = 'discontinuous';
           }
           else if ( lastPointIndex < closestPointIndex ) {
