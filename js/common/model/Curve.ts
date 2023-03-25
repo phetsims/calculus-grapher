@@ -38,6 +38,16 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
 const NUMBER_OF_POINTS = CalculusGrapherQueryParameters.numberOfPoints;
 
+// phetioDocumentation for pointsProperty, which varies depending on phetioReadOnly
+const DOC_READ_ONLY_TRUE =
+  'The discrete points that are used to approximate the curve.<br><br>' +
+  'Note that the value of pointsProperty is very large, and it is not intended to' +
+  ' be human-readable. So for performance reasons, the "Current Value" shown in Studio' +
+  ' is not kept up to date.';
+const DOC_READ_ONLY_FALSE =
+  DOC_READ_ONLY_TRUE +
+  ' Press the "Get Value" button in Studio if you need to get the current value.';
+
 type SelfOptions = {
 
   // Range of the x-axis
@@ -107,7 +117,7 @@ export default class Curve extends PhetioObject {
       phetioValueType: ArrayIO( CurvePoint.CurvePointIO ),
       phetioReadOnly: options.pointsPropertyReadOnly,
       phetioFeatured: true,
-      phetioDocumentation: 'The discrete points that are used to approximate the curve.'
+      phetioDocumentation: options.pointsPropertyReadOnly ? DOC_READ_ONLY_TRUE : DOC_READ_ONLY_FALSE
     } );
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
@@ -116,36 +126,18 @@ export default class Curve extends PhetioObject {
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
-    // This section of code is specific to PhET-iO, and has a slight performance penalty that we do not want to impose
-    // on the PhET brand. See https://github.com/phetsims/calculus-grapher/issues/90 and https://github.com/phetsims/calculus-grapher/issues/278
-    if ( Tandem.PHET_IO_ENABLED ) {
-
-      // Use this to short-circuit reentrant behavior where curveChangedEmitter and pointsProperty listeners (below)
-      // call each other.
-      let notifyListeners = true;
-
-      // For interactive and derived Curves, we mutate CurvePoints. The value of pointsProperty therefore does not change
-      // unless set via PhET-iO for a Curve instantiated with pointsPropertyReadOnly:false. So when the sim is changing
-      // the curve (either by the user manipulating a curve, or the sim deriving a curve), this is needed to notify
-      // Studio that pointsProperty has effectively changed.
-      this.curveChangedEmitter.addListener( () => {
-        if ( notifyListeners ) {
-          this.pointsProperty.notifyListenersStatic();
-        }
-      } );
-
-      // For Curve instances created with pointsPropertyReadOnly:false, pointsProperty may be set via PhET-iO. If that
-      // happens, notify listeners. Guard against pointsProperty's listener and curveChangedEmitter calling each other.
-      if ( !options.pointsPropertyReadOnly ) {
-        this.pointsProperty.lazyLink( ( newPoints, oldPoints ) => {
-          if ( newPoints !== oldPoints ) {
-            notifyListeners = false;
-            this.curveChangedEmitter.emit();
-            notifyListeners = true;
-          }
-        } );
-      }
-    }
+    // To make the sim acceptably responsive, the value of pointsProperty (an array of CurvePoint) typically does not
+    // change. Instead, the CurvePoints are mutated in place, and curveChangedEmitter.emit is called when the mutation
+    // is completed. An exception to this occurs in PhET-iO brand. pointsProperty's value will change when using the
+    // 'Set Value' control in Studio, or when state is restored by PhetioEngine. And in that case, we need to explicitly
+    // call curveChangedEmitter.emit. See:
+    // https://github.com/phetsims/calculus-grapher/issues/90
+    // https://github.com/phetsims/calculus-grapher/issues/278
+    // https://github.com/phetsims/calculus-grapher/issues/309
+    this.pointsProperty.lazyLink( () => {
+      assert && assert( Tandem.PHET_IO_ENABLED, 'pointsProperty may change only in PhET-iO brand' );
+      this.curveChangedEmitter.emit();
+    } );
   }
 
   /**
