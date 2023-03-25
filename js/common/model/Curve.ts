@@ -41,9 +41,8 @@ const NUMBER_OF_POINTS = CalculusGrapherQueryParameters.numberOfPoints;
 // phetioDocumentation for pointsProperty, which varies depending on phetioReadOnly
 const DOC_READ_ONLY_TRUE =
   'The discrete points that are used to approximate the curve.<br><br>' +
-  'Note that the value of pointsProperty is very large, and it is not intended to' +
-  ' be human-readable. So for performance reasons, the "Current Value" shown in Studio' +
-  ' is not kept up to date.';
+  'Note that the value of pointsProperty is very large, and it is not intended to be human-readable.' +
+  ' To improve performance of the simulation, the "Current Value" shown in Studio is not kept up to date.';
 const DOC_READ_ONLY_FALSE =
   DOC_READ_ONLY_TRUE +
   ' Press the "Get Value" button in Studio if you need to get the current value.';
