@@ -16,13 +16,13 @@
  *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher. The methods
  *     associated with the various CurveManipulationModes are
  *     - HILL -> hill
- *     - PEDESTAL -> pedestal
  *     - TRIANGLE -> triangle
+ *     - PEDESTAL -> pedestal
  *     - PARABOLA -> parabola
  *     - SINUSOID -> sinusoid
  *     - FREEFORM -> freeform
- *     - SHIFT -> shift
  *     - TILT -> tilt
+ *     - SHIFT -> shift
  *
  * We should note that the TransformedCurve class is the basis of the original curve, and, therefore,
  * its first, and second derivative will be evaluated. As a result, much effort was spent creating curve manipulations
