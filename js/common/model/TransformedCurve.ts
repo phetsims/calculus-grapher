@@ -685,7 +685,7 @@ export default class TransformedCurve extends Curve {
 
           // We don't want to assign the very last point as it may be discontinuous if the drag has turned
           if ( point !== nextToLastPoint ) {
-            this.points[ i ].pointType = 'smooth';
+            point.pointType = 'smooth';
           }
         }
       }
