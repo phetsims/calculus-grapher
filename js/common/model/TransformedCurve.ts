@@ -261,52 +261,50 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the SHIFT CurveManipulationMode.
-   * Shifts the curve to the specified drag position, in model coordinates.
+   * Implements the HILL CurveManipulationMode.
+   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
-   * @param x - x-coordinate of the drag position
-   * @param y - y-coordinate of the drag position
    */
-  public shift( x: number, y: number ): void {
+  public hill( width: number, peakX: number, peakY: number ): void {
 
-    // Amount to shift the entire curve.
-    const deltaY = y - this.getClosestPointAt( x ).y;
+    const closestPoint = this.getClosestPointAt( peakX );
 
-    // Shift each of the CurvePoints by deltaY.
-    this.points.forEach( point => { point.y += deltaY; } );
+    this.points.forEach( point => {
+
+      // Determine the weight associated with the peak
+      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
+
+      this.updatePointValue( point, P, peakY );
+      this.updatePointType( point, P );
+    } );
   }
 
   /**
-   * Implements the TILT CurveManipulationMode.
-   * Tilts the curve to the specified drag position, in model coordinates.
+   * Implements the TRIANGLE CurveManipulationMode.
+   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
-   * @param x - x-coordinate of the drag position
-   * @param y - y-coordinate of the drag position
    */
-  public tilt( x: number, y: number ): void {
+  public triangle( width: number, peakX: number, peakY: number ): void {
 
-    // Fulcrum point: chosen to be the leftmost point.
-    const pivotPoint = this.points[ 0 ];
+    const closestPoint = this.getClosestPointAt( peakX );
 
-    const leverArm = x - pivotPoint.x;
+    // Amount to shift the CurvePoint closest to the passed-in peak.
+    const deltaY = peakY - closestPoint.lastSavedY;
 
-    // Exclude drags with zero leverArm
-    if ( leverArm !== 0 ) {
+    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
+    // to this.curveManipulationWidth when the peak is at typicalY value
+    const slope = TYPICAL_Y / ( width / 2 );
 
-      // Slope between drag position and pivotPoint
-      const targetSlope = ( y - pivotPoint.y ) / leverArm;
+    const peakFunction = ( deltaY: number, x: number ): number => {
+      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
+    };
 
-      // Update points only if the targetSlope is less than MAX_TILT
-      if ( Math.abs( targetSlope ) < MAX_TILT ) {
+    // Update the y values and point types of the points
+    this.iterateFunctionOverPoints( peakFunction, deltaY );
 
-        const oldSlope = ( this.getClosestPointAt( x ).lastSavedY - pivotPoint.y ) / leverArm;
-
-        const incrementSlope = targetSlope - oldSlope;
-
-        // Shift each of the CurvePoints by a factor associated with the incrementSlope.
-        this.points.forEach( point => { point.y = point.lastSavedY + incrementSlope * ( point.x - pivotPoint.x );} );
-      }
-    }
+    // IterateFunctionOverPoints assumes the peakFunction is smooth, but we have a cusp at the peak of the triangle
+    closestPoint.pointType = 'cusp';
+    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
   }
 
   /**
@@ -355,53 +353,6 @@ export default class TransformedCurve extends Curve {
       this.updatePointValue( point, P, peakY );
       this.updatePointType( point, P );
     } );
-  }
-
-  /**
-   * Implements the HILL CurveManipulationMode.
-   * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
-   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
-   */
-  public hill( width: number, peakX: number, peakY: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peakX );
-
-    this.points.forEach( point => {
-
-      // Determine the weight associated with the peak
-      const P = Math.exp( -Math.pow( ( point.x - closestPoint.x ) / ( width / ( 2 * Math.sqrt( 2 ) ) ), 2 ) );
-
-      this.updatePointValue( point, P, peakY );
-      this.updatePointType( point, P );
-    } );
-  }
-
-  /**
-   * Implements the TRIANGLE CurveManipulationMode.
-   * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
-   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
-   */
-  public triangle( width: number, peakX: number, peakY: number ): void {
-
-    const closestPoint = this.getClosestPointAt( peakX );
-
-    // Amount to shift the CurvePoint closest to the passed-in peak.
-    const deltaY = peakY - closestPoint.lastSavedY;
-
-    // Set the slope coefficient such that the base of the triangle at y=0 has a 'width' equal
-    // to this.curveManipulationWidth when the peak is at typicalY value
-    const slope = TYPICAL_Y / ( width / 2 );
-
-    const peakFunction = ( deltaY: number, x: number ): number => {
-      return peakY - Math.sign( deltaY ) * slope * Math.abs( x - closestPoint.x );
-    };
-
-    // Update the y values and point types of the points
-    this.iterateFunctionOverPoints( peakFunction, deltaY );
-
-    // IterateFunctionOverPoints assumes the peakFunction is smooth, but we have a cusp at the peak of the triangle
-    closestPoint.pointType = 'cusp';
-    this.getClosestPointAt( peakX + this.deltaX ).pointType = 'cusp';
   }
 
   /**
@@ -718,6 +669,55 @@ export default class TransformedCurve extends Curve {
         }
       }
     }
+  }
+
+  /**
+   * Implements the TILT CurveManipulationMode.
+   * Tilts the curve to the specified drag position, in model coordinates.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
+   * @param x - x-coordinate of the drag position
+   * @param y - y-coordinate of the drag position
+   */
+  public tilt( x: number, y: number ): void {
+
+    // Fulcrum point: chosen to be the leftmost point.
+    const pivotPoint = this.points[ 0 ];
+
+    const leverArm = x - pivotPoint.x;
+
+    // Exclude drags with zero leverArm
+    if ( leverArm !== 0 ) {
+
+      // Slope between drag position and pivotPoint
+      const targetSlope = ( y - pivotPoint.y ) / leverArm;
+
+      // Update points only if the targetSlope is less than MAX_TILT
+      if ( Math.abs( targetSlope ) < MAX_TILT ) {
+
+        const oldSlope = ( this.getClosestPointAt( x ).lastSavedY - pivotPoint.y ) / leverArm;
+
+        const incrementSlope = targetSlope - oldSlope;
+
+        // Shift each of the CurvePoints by a factor associated with the incrementSlope.
+        this.points.forEach( point => { point.y = point.lastSavedY + incrementSlope * ( point.x - pivotPoint.x );} );
+      }
+    }
+  }
+
+  /**
+   * Implements the SHIFT CurveManipulationMode.
+   * Shifts the curve to the specified drag position, in model coordinates.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
+   * @param x - x-coordinate of the drag position
+   * @param y - y-coordinate of the drag position
+   */
+  public shift( x: number, y: number ): void {
+
+    // Amount to shift the entire curve.
+    const deltaY = y - this.getClosestPointAt( x ).y;
+
+    // Shift each of the CurvePoints by deltaY.
+    this.points.forEach( point => { point.y += deltaY; } );
   }
 
   /**
