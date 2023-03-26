@@ -172,7 +172,6 @@ export default class CurveManipulationIconNode extends AlignBox {
    */
   public static freeformIconCurve( curve: TransformedCurve, yMin: number, yMax: number ): void {
 
-    // Convenience variables
     const xLength = curve.xRange.getLength();
     const xMin = curve.xRange.getMin();
     const width = xLength / 4;
