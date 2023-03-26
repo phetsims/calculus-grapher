@@ -215,14 +215,14 @@ export default class TransformedCurve extends Curve {
    * @param mode
    * @param width
    * @param position - position of cursor in model coordinates
-   * @param penultimatePosition - last position of cursor in model coordinates, relevant only for CurveManipulationMode.FREE_FORM
-   * @param antepenultimatePosition - before last position in model coordinates, relevant only for CurveManipulationMode.FREE_FORM
+   * @param [penultimatePosition] - last position of cursor in model coordinates, relevant only for CurveManipulationMode.FREEFORM
+   * @param [antepenultimatePosition] - before last position in model coordinates, relevant only for CurveManipulationMode.FREEFORM
    */
   public manipulateCurve( mode: CurveManipulationMode,
                           width: number,
                           position: Vector2,
-                          penultimatePosition: Vector2 | null = null,
-                          antepenultimatePosition: Vector2 | null = null ): void {
+                          penultimatePosition?: Vector2 | null,
+                          antepenultimatePosition?: Vector2 | null ): void {
 
     this.wasManipulatedProperty.value = true;
 
@@ -241,7 +241,8 @@ export default class TransformedCurve extends Curve {
       this.shiftToPosition( position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
-      this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
+      assert && assert( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
+      this.drawFreeformToPosition( position, penultimatePosition!, antepenultimatePosition! );
     }
     else {
       throw new Error( `unsupported mode: ${mode}` );
