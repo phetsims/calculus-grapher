@@ -254,7 +254,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Sets the points for all the modes that can be manipulated through their width.
-   * If you call this, you are responsible for calling this.curveChangedEmitter.emit().
+   * If you call this method, you are responsible for calling this.curveChangedEmitter.emit().
    */
   public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
 
@@ -282,7 +282,9 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Shifts the curve to the specified drag position, in model coordinates.
-   * If you call this, you are responsible for calling this.curveChangedEmitter.emit().
+   * If you call this method, you are responsible for calling this.curveChangedEmitter.emit().
+   * @param x - x-coordinate of the drag position
+   * @param y - y-coordinate of the drag position
    */
   public shiftToPosition( x: number, y: number ): void {
 
@@ -295,7 +297,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Tilts the curve to the specified drag position, in model coordinates.
-   * If you call this, you are responsible for calling this.curveChangedEmitter.emit().
+   * If you call this method, you are responsible for calling this.curveChangedEmitter.emit().
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
@@ -368,7 +370,6 @@ export default class TransformedCurve extends Curve {
 
       this.updatePointValue( point, P, peakY );
       this.updatePointType( point, P );
-
     } );
   }
 
@@ -729,7 +730,8 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the y-value of points between position1 and position2 using a linear interpolation
+   * Sets the y-value of points between position1 and position2 using a linear interpolation.
+   * This method is used for FREEFORM mode.
    */
   private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
 
@@ -757,6 +759,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Are the y-values zero (or nearly zero) for the points between xMin and xMax.
+   * This method is used for SINUSOID mode.
    */
   private isRegionZero( xMin: number, xMax: number ): boolean {
     assert && assert( xMin <= xMax, 'xMin must be less than xMax' );
@@ -795,6 +798,7 @@ export default class TransformedCurve extends Curve {
    * This will result in a piecewise function iof the old  curve and new function.
    * No attempt is made to blend the peak function. We update the point type of the edge points in the
    * subdomains as discontinuous or cusps.
+   * This method is used for TRIANGLE and PARABOLA modes.
    *
    * @param peakFunction - the function to be applied to the curve
    * @param deltaY - the y offset of the drag
