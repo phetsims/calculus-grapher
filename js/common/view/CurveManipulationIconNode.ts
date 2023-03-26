@@ -52,8 +52,8 @@ export default class CurveManipulationIconNode extends AlignBox {
     // Create model for a solid curve.
     const solidCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
 
-    // Create model for a dashed curve.
-    const dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
+    // Optional model for a dashed curve, relevant only for some modes.
+    let dashedCurve;
 
     // To improve readability
     const xCenter = chartTransform.modelXRange.getCenter();
@@ -92,6 +92,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       solidCurve.saveCurrentPoints();
       solidCurve.shiftToPosition( xMin, yCenter );
 
+      dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
       dashedCurve.tiltToPosition( xMax, -y );
       dashedCurve.saveCurrentPoints();
       dashedCurve.shiftToPosition( xMin, yCenter );
@@ -100,6 +101,7 @@ export default class CurveManipulationIconNode extends AlignBox {
 
       const yOffset = 0.25 * yMax;
       solidCurve.shiftToPosition( xMax, yMax - yOffset );
+      dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
       dashedCurve.shiftToPosition( xMax, yMin + yOffset );
     }
     else {
@@ -115,8 +117,8 @@ export default class CurveManipulationIconNode extends AlignBox {
 
     const children: Node[] = [ chartRectangle, solidCurveNode ];
 
-    // Create the dashed curve node for these modes only.
-    if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
+    // Create the Node for the dashed curve.
+    if ( dashedCurve ) {
       const dashedCurveNode = new CurveNode( dashedCurve, chartTransform, {
         stroke: stroke,
         discontinuousPointsFill: CalculusGrapherColors.panelFillProperty,
@@ -128,7 +130,8 @@ export default class CurveManipulationIconNode extends AlignBox {
       } );
       children.push( dashedCurveNode );
     }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
+
+    if ( mode === CurveManipulationMode.FREEFORM ) {
 
       // Scale down in the x dimension, so that we have room to add pencil icon. This makes the stroke with a
       // little inconsistent in x vs y dimensions, but looks OK for an icon. More importantly, we want the
