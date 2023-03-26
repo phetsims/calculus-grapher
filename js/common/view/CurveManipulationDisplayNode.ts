@@ -18,6 +18,7 @@ import CurveManipulationProperties from '../model/CurveManipulationProperties.js
 import Tandem from '../../../../tandem/js/Tandem.js';
 import { Node, TColor } from '../../../../scenery/js/imports.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
 export default class CurveManipulationDisplayNode extends Node {
 
@@ -80,7 +81,7 @@ export default class CurveManipulationDisplayNode extends Node {
           curve.shiftToPosition( xCenter, yMax );
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
-          curve.freeformIconCurve( yMin, yMax );
+          CurveManipulationIconNode.freeformIconCurve( curve, yMin, yMax );
         }
         else if ( mode === CurveManipulationMode.TILT ) {
           curve.tiltToPosition( xMax, yMax );

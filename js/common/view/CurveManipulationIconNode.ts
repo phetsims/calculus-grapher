@@ -83,7 +83,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       solidCurve.shiftToPosition( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
-      solidCurve.freeformIconCurve( yMin, yMax );
+      CurveManipulationIconNode.freeformIconCurve( solidCurve, yMin, yMax );
     }
     else if ( mode === CurveManipulationMode.TILT ) {
 
@@ -151,6 +151,30 @@ export default class CurveManipulationIconNode extends AlignBox {
     } );
 
     super( node, ALIGN_BOX_OPTIONS );
+  }
+
+  /**
+   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
+   * We arbitrarily made the free form icon out of four segments.
+   *
+   * @param curve
+   * @param yMin - the minimum y-value for the curve
+   * @param yMax - the maximum y-value for the curve
+   */
+  public static freeformIconCurve( curve: TransformedCurve, yMin: number, yMax: number ): void {
+
+    // Convenience variables
+    const xLength = curve.xRange.getLength();
+    const xMin = curve.xRange.getMin();
+    const width = xLength / 4;
+
+    curve.widthManipulatedCurve( CurveManipulationMode.HILL, width, xMin + xLength / 5, yMin );
+    curve.saveCurrentPoints();
+    curve.widthManipulatedCurve( CurveManipulationMode.TRIANGLE, width, xMin + 2 * xLength / 5, 0.65 * yMax );
+    curve.saveCurrentPoints();
+    curve.widthManipulatedCurve( CurveManipulationMode.PARABOLA, width, xMin + 3 * xLength / 5, yMin );
+    curve.saveCurrentPoints();
+    curve.widthManipulatedCurve( CurveManipulationMode.PEDESTAL, width, xMin + 4 * xLength / 5, yMax );
   }
 }
 

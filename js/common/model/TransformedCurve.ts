@@ -279,29 +279,6 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
-   * We arbitrarily made the free form icon out of four segments.
-   *
-   * @param yMin - the minimum y-value for the curve
-   * @param yMax - the maximum y-value for the curve
-   */
-  public freeformIconCurve( yMin: number, yMax: number ): void {
-
-    // Convenience variables
-    const xLength = this.xRange.getLength();
-    const xMin = this.xRange.getMin();
-    const width = xLength / 4;
-
-    this.createHillAt( width, xMin + xLength / 5, yMin );
-    this.saveCurrentPoints();
-    this.createTriangleAt( width, xMin + 2 * xLength / 5, 0.65 * yMax );
-    this.saveCurrentPoints();
-    this.createParabolaAt( width, xMin + 3 * xLength / 5, yMin );
-    this.saveCurrentPoints();
-    this.createPedestalAt( width, xMin + 4 * xLength / 5, yMax );
-  }
-
-  /**
    * Shifts the curve to the specified drag position, in model coordinates.
    */
   public shiftToPosition( x: number, y: number ): void {
