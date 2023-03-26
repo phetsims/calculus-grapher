@@ -234,11 +234,11 @@ export default class TransformedCurve extends Curve {
     ) {
       this.widthManipulatedCurve( mode, width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
-      this.shiftToPosition( position.x, position.y );
-    }
     else if ( mode === CurveManipulationMode.TILT ) {
       this.tiltToPosition( position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+      this.shiftToPosition( position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );

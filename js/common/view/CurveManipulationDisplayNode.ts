@@ -82,11 +82,11 @@ export default class CurveManipulationDisplayNode extends Node {
         else if ( mode === CurveManipulationMode.FREEFORM ) {
           curve.freeformIconCurve( yMin, yMax );
         }
-        else if ( mode === CurveManipulationMode.SHIFT ) {
-          curve.shiftToPosition( xMax, yMax );
-        }
         else if ( mode === CurveManipulationMode.TILT ) {
           curve.tiltToPosition( xMax, yMax );
+        }
+        else if ( mode === CurveManipulationMode.SHIFT ) {
+          curve.shiftToPosition( xMax, yMax );
         }
         else {
           throw new Error( `unsupported mode: ${mode}` );

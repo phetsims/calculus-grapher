@@ -85,12 +85,6 @@ export default class CurveManipulationIconNode extends AlignBox {
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       solidCurve.freeformIconCurve( yMin, yMax );
     }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
-
-      const yOffset = 0.25 * yMax;
-      solidCurve.shiftToPosition( xMax, yMax - yOffset );
-      dashedCurve.shiftToPosition( xMax, yMin + yOffset );
-    }
     else if ( mode === CurveManipulationMode.TILT ) {
 
       const y = 0.5 * yMax;
@@ -101,6 +95,12 @@ export default class CurveManipulationIconNode extends AlignBox {
       dashedCurve.tiltToPosition( xMax, -y );
       dashedCurve.saveCurrentPoints();
       dashedCurve.shiftToPosition( xMin, yCenter );
+    }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+
+      const yOffset = 0.25 * yMax;
+      solidCurve.shiftToPosition( xMax, yMax - yOffset );
+      dashedCurve.shiftToPosition( xMax, yMin + yOffset );
     }
     else {
       throw new Error( `unsupported mode: ${mode}` );
