@@ -102,18 +102,6 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Saves the current state (y-value and pointType) of the Points for the next undo() call.
-   *
-   * This method is invoked when the user starts manipulating the TransformedCurve. When the undo button is pressed,
-   * the CurvePoints of the TransformedCurve will be set to their last saved state.
-   */
-  public save(): void {
-
-    // Save the current state of each CurvePoint.
-    this.points.forEach( point => point.save() );
-  }
-
-  /**
    * Erases the curve by setting all the points to zero and point type to smooth.
    * Note that this method is called erase because it is invoked when the erase button is pressed.
    * We never erase a curve or dispose of the curve points in this simulation.
@@ -128,6 +116,18 @@ export default class TransformedCurve extends Curve {
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
+  }
+
+  /**
+   * Saves the current state (y-value and pointType) of the Points for the next undo() call.
+   *
+   * This method is invoked when the user starts manipulating the TransformedCurve. When the undo button is pressed,
+   * the CurvePoints of the TransformedCurve will be set to their last saved state.
+   */
+  public save(): void {
+
+    // Save the current state of each CurvePoint.
+    this.points.forEach( point => point.save() );
   }
 
   /**
