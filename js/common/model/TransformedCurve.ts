@@ -107,7 +107,7 @@ export default class TransformedCurve extends Curve {
    * This method is invoked when the user starts manipulating the TransformedCurve. When the undo button is pressed,
    * the CurvePoints of the TransformedCurve will be set to their last saved state.
    */
-  public saveCurrentPoints(): void {
+  public save(): void {
 
     // Save the current state of each CurvePoint.
     this.points.forEach( point => point.save() );
@@ -153,7 +153,7 @@ export default class TransformedCurve extends Curve {
     // Saves the current values of our Points for the next undo() call.
     // Note that the current y-values are the same as the previous y-values
     // for all Points in the TransformedCurve.
-    this.saveCurrentPoints();
+    this.save();
 
     // Normalized Gaussian kernel that will be used in the convolution of our curve
     const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );

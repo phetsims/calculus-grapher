@@ -79,7 +79,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       const width = 0.08 * xLength;
       const y = 0.5 * yMax;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
-      solidCurve.saveCurrentPoints();
+      solidCurve.save();
       solidCurve.shiftToPosition( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
@@ -89,12 +89,12 @@ export default class CurveManipulationIconNode extends AlignBox {
 
       const y = 0.5 * yMax;
       solidCurve.tiltToPosition( xMax, y );
-      solidCurve.saveCurrentPoints();
+      solidCurve.save();
       solidCurve.shiftToPosition( xMin, yCenter );
 
       dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
       dashedCurve.tiltToPosition( xMax, -y );
-      dashedCurve.saveCurrentPoints();
+      dashedCurve.save();
       dashedCurve.shiftToPosition( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
@@ -172,7 +172,7 @@ export default class CurveManipulationIconNode extends AlignBox {
 
     curve.reset();
     curve.widthManipulatedCurve( CurveManipulationMode.TRIANGLE, width, xMin + 2 * xLength / 5, 0.65 * yMax );
-    curve.saveCurrentPoints();
+    curve.save();
     curve.widthManipulatedCurve( CurveManipulationMode.PEDESTAL, width, xMin + 4 * xLength / 5, yMax );
   }
 }
