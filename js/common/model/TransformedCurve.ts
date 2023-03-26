@@ -15,14 +15,14 @@
  *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
  *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher. The methods
  *     associated with the various CurveManipulationModes are
- *     - HILL -> createHillAt
- *     - PEDESTAL -> createPedestalAt
- *     - TRIANGLE -> createTriangleAt
- *     - PARABOLA -> createParabolaAt
- *     - SINUSOID -> createSinusoidAt
- *     - FREEFORM -> drawFreeformToPosition
- *     - SHIFT -> shiftToPosition
- *     - TILT -> tiltToPosition
+ *     - HILL -> hill
+ *     - PEDESTAL -> pedestal
+ *     - TRIANGLE -> triangle
+ *     - PARABOLA -> parabola
+ *     - SINUSOID -> sinusoid
+ *     - FREEFORM -> freeform
+ *     - SHIFT -> shift
+ *     - TILT -> tilt
  *
  * We should note that the TransformedCurve class is the basis of the original curve, and, therefore,
  * its first, and second derivative will be evaluated. As a result, much effort was spent creating curve manipulations
@@ -233,14 +233,14 @@ export default class TransformedCurve extends Curve {
       this.widthManipulatedCurve( mode, width, position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.TILT ) {
-      this.tiltToPosition( position.x, position.y );
+      this.tilt( position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
-      this.shiftToPosition( position.x, position.y );
+      this.shift( position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       assert && assert( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
-      this.drawFreeformToPosition( position, penultimatePosition!, antepenultimatePosition! );
+      this.freeform( position, penultimatePosition!, antepenultimatePosition! );
     }
     else {
       throw new Error( `unsupported mode: ${mode}` );
@@ -262,19 +262,19 @@ export default class TransformedCurve extends Curve {
     assert && assert( mode.hasAdjustableWidth, `mode must have adjustable width: ${mode}` );
 
     if ( mode === CurveManipulationMode.HILL ) {
-      this.createHillAt( width, x, y );
+      this.hill( width, x, y );
     }
     else if ( mode === CurveManipulationMode.PARABOLA ) {
-      this.createParabolaAt( width, x, y );
+      this.parabola( width, x, y );
     }
     else if ( mode === CurveManipulationMode.PEDESTAL ) {
-      this.createPedestalAt( width, x, y );
+      this.pedestal( width, x, y );
     }
     else if ( mode === CurveManipulationMode.TRIANGLE ) {
-      this.createTriangleAt( width, x, y );
+      this.triangle( width, x, y );
     }
     else if ( mode === CurveManipulationMode.SINUSOID ) {
-      this.createSinusoidAt( width, x, y );
+      this.sinusoid( width, x, y );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );
@@ -288,7 +288,7 @@ export default class TransformedCurve extends Curve {
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
-  public shiftToPosition( x: number, y: number ): void {
+  public shift( x: number, y: number ): void {
 
     // Amount to shift the entire curve.
     const deltaY = y - this.getClosestPointAt( x ).y;
@@ -304,7 +304,7 @@ export default class TransformedCurve extends Curve {
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
-  public tiltToPosition( x: number, y: number ): void {
+  public tilt( x: number, y: number ): void {
 
     // Fulcrum point: chosen to be the leftmost point.
     const pivotPoint = this.points[ 0 ];
@@ -335,7 +335,7 @@ export default class TransformedCurve extends Curve {
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
-  private createPedestalAt( width: number, peakX: number, peakY: number ): void {
+  public pedestal( width: number, peakX: number, peakY: number ): void {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
@@ -383,7 +383,7 @@ export default class TransformedCurve extends Curve {
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
-  private createHillAt( width: number, peakX: number, peakY: number ): void {
+  public hill( width: number, peakX: number, peakY: number ): void {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
@@ -402,7 +402,7 @@ export default class TransformedCurve extends Curve {
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
-  private createTriangleAt( width: number, peakX: number, peakY: number ): void {
+  public triangle( width: number, peakX: number, peakY: number ): void {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
@@ -430,7 +430,7 @@ export default class TransformedCurve extends Curve {
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
-  private createParabolaAt( width: number, peakX: number, peakY: number ): void {
+  public parabola( width: number, peakX: number, peakY: number ): void {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
@@ -455,7 +455,7 @@ export default class TransformedCurve extends Curve {
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
-  private createSinusoidAt( width: number, x: number, y: number ): void {
+  public sinusoid( width: number, x: number, y: number ): void {
 
     const closestPoint = this.getClosestPointAt( x );
 
@@ -567,9 +567,7 @@ export default class TransformedCurve extends Curve {
    * @param penultimatePosition - in model coordinates
    * @param antepenultimatePosition - in model coordinates
    */
-  private drawFreeformToPosition( position: Vector2,
-                                  penultimatePosition: Vector2 | null,
-                                  antepenultimatePosition: Vector2 | null ): void {
+  public freeform( position: Vector2, penultimatePosition: Vector2 | null, antepenultimatePosition: Vector2 | null ): void {
 
     // Closest point associated with the position
     const closestPoint = this.getClosestPointAt( position.x );
@@ -590,7 +588,7 @@ export default class TransformedCurve extends Curve {
       // There is no position associated with the last drag event.
       // Let's create a hill with a narrow width at the closestPoint.
       // See https://github.com/phetsims/calculus-grapher/issues/218
-      this.createHillAt( WEE_WIDTH, closestPoint.x, closestPoint.y );
+      this.hill( WEE_WIDTH, closestPoint.x, closestPoint.y );
     }
 
     if ( penultimatePosition && antepenultimatePosition ) {

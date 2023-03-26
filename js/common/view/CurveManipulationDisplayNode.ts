@@ -77,17 +77,17 @@ export default class CurveManipulationDisplayNode extends Node {
           curve.widthManipulatedCurve( mode, width, xCenter, yMax );
         }
         else if ( mode === CurveManipulationMode.SINUSOID ) {
-          curve.widthManipulatedCurve( mode, width, xCenter, yMax / 2 );
-          curve.shiftToPosition( xCenter, yMax );
+          curve.sinusoid( width, xCenter, yMax / 2 );
+          curve.shift( xCenter, yMax );
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
           CurveManipulationIconNode.freeformIconCurve( curve, yMin, yMax );
         }
         else if ( mode === CurveManipulationMode.TILT ) {
-          curve.tiltToPosition( xMax, yMax );
+          curve.tilt( xMax, yMax );
         }
         else if ( mode === CurveManipulationMode.SHIFT ) {
-          curve.shiftToPosition( xMax, yMax );
+          curve.shift( xMax, yMax );
         }
         else {
           throw new Error( `unsupported mode: ${mode}` );

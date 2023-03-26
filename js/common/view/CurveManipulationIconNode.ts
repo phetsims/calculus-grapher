@@ -78,9 +78,9 @@ export default class CurveManipulationIconNode extends AlignBox {
       // Ad hoc variables to create sine function
       const width = 0.08 * xLength;
       const y = 0.5 * yMax;
-      solidCurve.widthManipulatedCurve( mode, width, xCenter, y );
+      solidCurve.sinusoid( width, xCenter, y );
       solidCurve.save();
-      solidCurve.shiftToPosition( xMin, yCenter );
+      solidCurve.shift( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       CurveManipulationIconNode.freeformIconCurve( solidCurve, yMin, yMax );
@@ -88,21 +88,21 @@ export default class CurveManipulationIconNode extends AlignBox {
     else if ( mode === CurveManipulationMode.TILT ) {
 
       const y = 0.5 * yMax;
-      solidCurve.tiltToPosition( xMax, y );
+      solidCurve.tilt( xMax, y );
       solidCurve.save();
-      solidCurve.shiftToPosition( xMin, yCenter );
+      solidCurve.shift( xMin, yCenter );
 
       dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
-      dashedCurve.tiltToPosition( xMax, -y );
+      dashedCurve.tilt( xMax, -y );
       dashedCurve.save();
-      dashedCurve.shiftToPosition( xMin, yCenter );
+      dashedCurve.shift( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
 
       const yOffset = 0.25 * yMax;
-      solidCurve.shiftToPosition( xMax, yMax - yOffset );
+      solidCurve.shift( xMax, yMax - yOffset );
       dashedCurve = new TransformedCurve( TRANSFORMED_CURVE_OPTIONS );
-      dashedCurve.shiftToPosition( xMax, yMin + yOffset );
+      dashedCurve.shift( xMax, yMin + yOffset );
     }
     else {
       throw new Error( `unsupported mode: ${mode}` );
@@ -171,9 +171,9 @@ export default class CurveManipulationIconNode extends AlignBox {
     const width = xLength / 4;
 
     curve.reset();
-    curve.widthManipulatedCurve( CurveManipulationMode.TRIANGLE, width, xMin + 2 * xLength / 5, 0.65 * yMax );
+    curve.triangle( width, xMin + 2 * xLength / 5, 0.65 * yMax );
     curve.save();
-    curve.widthManipulatedCurve( CurveManipulationMode.PEDESTAL, width, xMin + 4 * xLength / 5, yMax );
+    curve.pedestal( width, xMin + 4 * xLength / 5, yMax );
   }
 }
 
