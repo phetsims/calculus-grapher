@@ -65,10 +65,10 @@ export default class CurveManipulationIconNode extends AlignBox {
     const yMin = chartTransform.modelYRange.getMin();
 
     // Create the icon for the mode.
-    if ( mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.PARABOLA ||
+    if ( mode === CurveManipulationMode.HILL ||
+         mode === CurveManipulationMode.TRIANGLE ||
          mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.HILL ) {
+         mode === CurveManipulationMode.PARABOLA ) {
 
       const width = 0.5 * xLength;
       solidCurve.widthManipulatedCurve( mode, width, xCenter, yMax );
@@ -85,6 +85,12 @@ export default class CurveManipulationIconNode extends AlignBox {
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       solidCurve.freeformIconCurve( yMin, yMax );
     }
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+
+      const yOffset = 0.25 * yMax;
+      solidCurve.shiftToPosition( xMax, yMax - yOffset );
+      dashedCurve.shiftToPosition( xMax, yMin + yOffset );
+    }
     else if ( mode === CurveManipulationMode.TILT ) {
 
       const y = 0.5 * yMax;
@@ -96,14 +102,8 @@ export default class CurveManipulationIconNode extends AlignBox {
       dashedCurve.saveCurrentPoints();
       dashedCurve.shiftToPosition( xMin, yCenter );
     }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
-
-      const yOffset = 0.25 * yMax;
-      solidCurve.shiftToPosition( xMax, yMax - yOffset );
-      dashedCurve.shiftToPosition( xMax, yMin + yOffset );
-    }
     else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
+      throw new Error( `unsupported mode: ${mode}` );
     }
 
     // Create the solid curve node.

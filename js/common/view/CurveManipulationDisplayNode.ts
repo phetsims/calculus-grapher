@@ -69,27 +69,27 @@ export default class CurveManipulationDisplayNode extends Node {
 
         curve.reset();
 
-        if ( mode === CurveManipulationMode.SHIFT ) {
-          curve.shiftToPosition( xMax, yMax );
-        }
-        else if ( mode === CurveManipulationMode.TILT ) {
-          curve.tiltToPosition( xMax, yMax );
-        }
-        else if ( mode === CurveManipulationMode.TRIANGLE ||
-                  mode === CurveManipulationMode.PARABOLA ||
-                  mode === CurveManipulationMode.PEDESTAL ||
-                  mode === CurveManipulationMode.HILL ) {
+        if ( mode === CurveManipulationMode.HILL ||
+             mode === CurveManipulationMode.TRIANGLE ||
+             mode === CurveManipulationMode.PEDESTAL ||
+             mode === CurveManipulationMode.PARABOLA ) {
           curve.widthManipulatedCurve( mode, width, xCenter, yMax );
-        }
-        else if ( mode === CurveManipulationMode.FREEFORM ) {
-          curve.freeformIconCurve( yMin, yMax );
         }
         else if ( mode === CurveManipulationMode.SINUSOID ) {
           curve.widthManipulatedCurve( mode, width, xCenter, yMax / 2 );
           curve.shiftToPosition( xCenter, yMax );
         }
+        else if ( mode === CurveManipulationMode.FREEFORM ) {
+          curve.freeformIconCurve( yMin, yMax );
+        }
+        else if ( mode === CurveManipulationMode.SHIFT ) {
+          curve.shiftToPosition( xMax, yMax );
+        }
+        else if ( mode === CurveManipulationMode.TILT ) {
+          curve.tiltToPosition( xMax, yMax );
+        }
         else {
-          throw new Error( 'Unsupported Curve Manipulation Mode' );
+          throw new Error( `unsupported mode: ${mode}` );
         }
 
         curve.curveChangedEmitter.emit();

@@ -244,7 +244,7 @@ export default class TransformedCurve extends Curve {
       this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
     }
     else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
+      throw new Error( `unsupported mode: ${mode}` );
     }
 
     // Signal that this Curve has changed.
