@@ -543,11 +543,10 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Allows the user to drag Points in the Curve to any desired position to create customs but smooth shapes.
+   * Allows the user to drag Points in the Curve to any desired position to create custom but smooth shapes.
    * This method will update the curve with the new position value. It attempts to create a smooth curve
-   * between position and antepenultimatePosition.
-   * The main goal of the drawToForm method is to create a curve segment that is smooth enough that it can be
-   * twice differentiable without generating discontinuities.
+   * between position and antepenultimatePosition. The main goal of the drawToForm method is to create a
+   * curve segment that is smooth enough that it can be twice differentiable without generating discontinuities.
    *
    * @param position - in model coordinates
    * @param penultimatePosition - in model coordinates
