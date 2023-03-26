@@ -32,7 +32,7 @@
  * A weight function is a mathematical device used when performing an average to give
  * some elements more "weight" or influence on the result than other elements in the same set.
  * The result of the application of a weight function is a weighted sum or weighted average.
- * A variety of weight functions ranging from gaussian kernel, super gaussian, mollifying functions
+ * A variety of weight functions ranging from Gaussian kernel, super Gaussian, mollifying functions
  * are used to create curves without cusps and discontinuities.
  *
  * TransformedCurve is created at the start and persists for the lifetime of the simulation.
@@ -145,7 +145,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Smooths the curve. It is called when the user presses the 'smooth' button.
-   * This method uses a weighted-average algorithm for 'smoothing' a curve, using a gaussian kernel
+   * This method uses a weighted-average algorithm for 'smoothing' a curve, using a Gaussian kernel
    * see https://en.wikipedia.org/wiki/Kernel_smoother
    */
   public smooth(): void {
@@ -155,7 +155,7 @@ export default class TransformedCurve extends Curve {
     // for all Points in the TransformedCurve.
     this.saveCurrentPoints();
 
-    // Normalized gaussian kernel that will be used in the convolution of our curve
+    // Normalized Gaussian kernel that will be used in the convolution of our curve
     const normalizationFactor = 1 / ( STANDARD_DEVIATION * Math.sqrt( 2 * Math.PI ) );
 
     // Weighted kernel: Note that gaussianFunction(x) = gaussianFunction(-x), which we will use later on.
@@ -253,6 +253,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Sets the points for all the modes that can be manipulated through their width.
+   * If you call this, you are responsible for calling this.curveChangedEmitter.emit().
    */
   public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
 
@@ -280,6 +281,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Shifts the curve to the specified drag position, in model coordinates.
+   * If you call this, you are responsible for calling this.curveChangedEmitter.emit().
    */
   public shiftToPosition( x: number, y: number ): void {
 
@@ -292,6 +294,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Tilts the curve to the specified drag position, in model coordinates.
+   * If you call this, you are responsible for calling this.curveChangedEmitter.emit().
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
@@ -328,8 +331,8 @@ export default class TransformedCurve extends Curve {
 
     const closestPoint = this.getClosestPointAt( peakX );
 
-    // Super gaussian function for centered at x-value `mu`, with min amplitude of 0 and max of 1;
-    // We use the square of a gaussian in order to have a very symmetric derivative at the edges of the pedestal
+    // Super Gaussian function for centered at x-value `mu`, with min amplitude of 0 and max of 1;
+    // We use the square of a Gaussian in order to have a very symmetric derivative at the edges of the pedestal
     const gaussianWeight = ( x: number, mu: number ) =>
       Math.exp( -1 * ( ( x - mu ) / EDGE_SLOPE_FACTOR ) ** 4 );
 
