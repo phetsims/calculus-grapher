@@ -220,7 +220,7 @@ export default class OriginalGraphNode extends GraphNode {
       }
       else {
 
-        // For any mode other than FREE_FORM...
+        // For any mode other than FREEFORM...
         interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
           curveManipulationProperties.mode,
           curveManipulationProperties.width,
