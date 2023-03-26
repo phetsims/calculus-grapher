@@ -701,7 +701,6 @@ export default class TransformedCurve extends Curve {
         this.getClosestPointAt( closestPoint.x + this.deltaX ).pointType = 'discontinuous';
       }
 
-
       // We need to consider the case where the drag has turned, which can occur only if antepenultimatePosition exists
       // and the lastPoint is between the closestPoint and the nextToLastPoint
 
@@ -759,13 +758,10 @@ export default class TransformedCurve extends Curve {
    * Are the y-values zero (or nearly zero) for the points between xMin and xMax.
    */
   private isRegionZero( xMin: number, xMax: number ): boolean {
-
     assert && assert( xMin <= xMax, 'xMin must be less than xMax' );
 
     return this.points.every( point => {
-
       const isOutsideBounds = point.x < xMin || point.x > xMax;
-
       return isOutsideBounds || Math.abs( point.lastSavedY ) < 1e-3;
     } );
   }
@@ -775,7 +771,6 @@ export default class TransformedCurve extends Curve {
    * otherwise leave as is.
    */
   private updatePointType( point: CurvePoint, weight: number ): void {
-
     assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
 
     // If the weight is very large, we have effectively replaced the previous values by the new function, which we know to be smooth.
@@ -787,7 +782,6 @@ export default class TransformedCurve extends Curve {
    * (see https://github.com/phetsims/calculus-grapher/issues/261)
    */
   private updatePointValue( point: CurvePoint, weight: number, peakY: number ): void {
-
     assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
 
     // If the weight is very small, we are practically ignoring the new function. Let's explicitly replace it by the lastSavedY instead.
