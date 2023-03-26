@@ -868,7 +868,6 @@ export default class TransformedCurve extends Curve {
 
       }
       wasPreviousPointModified = isModified;
-
     } );
   }
 }
