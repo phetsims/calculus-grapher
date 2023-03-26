@@ -210,7 +210,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Modifies the points based on the curveManipulationMode and selected width.
-   * Responsible for signalling that this Curve has changed.
+   * Sets wasManipulatedProperty and notifies listeners that the Curve has changed.
    *
    * @param mode
    * @param width
