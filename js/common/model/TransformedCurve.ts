@@ -224,8 +224,6 @@ export default class TransformedCurve extends Curve {
                           penultimatePosition?: Vector2 | null,
                           antepenultimatePosition?: Vector2 | null ): void {
 
-    this.wasManipulatedProperty.value = true;
-
     if ( mode === CurveManipulationMode.HILL ||
          mode === CurveManipulationMode.PARABOLA ||
          mode === CurveManipulationMode.PEDESTAL ||
@@ -248,7 +246,10 @@ export default class TransformedCurve extends Curve {
       throw new Error( `unsupported mode: ${mode}` );
     }
 
-    // Signal that this Curve has changed.
+    // Note that the curve has been manipulated.
+    this.wasManipulatedProperty.value = true;
+
+    // Notify that the curve has changed.
     this.curveChangedEmitter.emit();
   }
 
