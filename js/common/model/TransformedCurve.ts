@@ -224,23 +224,30 @@ export default class TransformedCurve extends Curve {
                           penultimatePosition?: Vector2 | null,
                           antepenultimatePosition?: Vector2 | null ): void {
 
-    if ( mode === CurveManipulationMode.HILL ||
-         mode === CurveManipulationMode.PARABOLA ||
-         mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.SINUSOID
-    ) {
-      this.widthManipulatedCurve( mode, width, position.x, position.y );
+    if ( mode === CurveManipulationMode.HILL ) {
+      this.hill( width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.TRIANGLE ) {
+      this.triangle( width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.PEDESTAL ) {
+      this.pedestal( width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.PARABOLA ) {
+      this.parabola( width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.SINUSOID ) {
+      this.sinusoid( width, position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.FREEFORM ) {
+      assert && assert( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
+      this.freeform( position, penultimatePosition!, antepenultimatePosition! );
     }
     else if ( mode === CurveManipulationMode.TILT ) {
       this.tilt( position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
       this.shift( position.x, position.y );
-    }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
-      assert && assert( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
-      this.freeform( position, penultimatePosition!, antepenultimatePosition! );
     }
     else {
       throw new Error( `unsupported mode: ${mode}` );
@@ -251,34 +258,6 @@ export default class TransformedCurve extends Curve {
 
     // Notify that the curve has changed.
     this.curveChangedEmitter.emit();
-  }
-
-  /**
-   * Sets the points for all the modes that can be manipulated through their width.
-   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
-   */
-  public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
-
-    assert && assert( mode.hasAdjustableWidth, `mode must have adjustable width: ${mode}` );
-
-    if ( mode === CurveManipulationMode.HILL ) {
-      this.hill( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.PARABOLA ) {
-      this.parabola( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.PEDESTAL ) {
-      this.pedestal( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.TRIANGLE ) {
-      this.triangle( width, x, y );
-    }
-    else if ( mode === CurveManipulationMode.SINUSOID ) {
-      this.sinusoid( width, x, y );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
   }
 
   /**

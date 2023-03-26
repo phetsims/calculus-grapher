@@ -70,11 +70,17 @@ export default class CurveManipulationDisplayNode extends Node {
 
         curve.reset();
 
-        if ( mode === CurveManipulationMode.HILL ||
-             mode === CurveManipulationMode.TRIANGLE ||
-             mode === CurveManipulationMode.PEDESTAL ||
-             mode === CurveManipulationMode.PARABOLA ) {
-          curve.widthManipulatedCurve( mode, width, xCenter, yMax );
+        if ( mode === CurveManipulationMode.HILL ) {
+          curve.hill( width, xCenter, yMax );
+        }
+        else if ( mode === CurveManipulationMode.TRIANGLE ) {
+          curve.triangle( width, xCenter, yMax );
+        }
+        else if ( mode === CurveManipulationMode.PEDESTAL ) {
+          curve.pedestal( width, xCenter, yMax );
+        }
+        else if ( mode === CurveManipulationMode.PARABOLA ) {
+          curve.parabola( width, xCenter, yMax );
         }
         else if ( mode === CurveManipulationMode.SINUSOID ) {
           curve.sinusoid( width, xCenter, yMax / 2 );

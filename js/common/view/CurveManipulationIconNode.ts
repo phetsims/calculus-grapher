@@ -64,21 +64,28 @@ export default class CurveManipulationIconNode extends AlignBox {
     const yMax = chartTransform.modelYRange.getMax();
     const yMin = chartTransform.modelYRange.getMin();
 
-    // Create the icon for the mode.
-    if ( mode === CurveManipulationMode.HILL ||
-         mode === CurveManipulationMode.TRIANGLE ||
-         mode === CurveManipulationMode.PEDESTAL ||
-         mode === CurveManipulationMode.PARABOLA ) {
+    // For all width-related modes except SINUSOID
+    const width = 0.5 * xLength;
 
-      const width = 0.5 * xLength;
-      solidCurve.widthManipulatedCurve( mode, width, xCenter, yMax );
+    // Create the icon for the mode.
+    if ( mode === CurveManipulationMode.HILL ) {
+      solidCurve.hill( width, xCenter, yMax );
+    }
+    else if ( mode === CurveManipulationMode.TRIANGLE ) {
+      solidCurve.triangle( width, xCenter, yMax );
+    }
+    else if ( mode === CurveManipulationMode.PEDESTAL ) {
+      solidCurve.pedestal( width, xCenter, yMax );
+    }
+    else if ( mode === CurveManipulationMode.PARABOLA ) {
+      solidCurve.parabola( width, xCenter, yMax );
     }
     else if ( mode === CurveManipulationMode.SINUSOID ) {
 
       // Ad hoc variables to create sine function
-      const width = 0.08 * xLength;
+      const sinusoidWidth = 0.08 * xLength;
       const y = 0.5 * yMax;
-      solidCurve.sinusoid( width, xCenter, y );
+      solidCurve.sinusoid( sinusoidWidth, xCenter, y );
       solidCurve.save();
       solidCurve.shift( xMin, yCenter );
     }
