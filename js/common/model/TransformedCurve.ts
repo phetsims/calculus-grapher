@@ -255,7 +255,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Sets the points for all the modes that can be manipulated through their width.
-   * If you call this method, you are responsible for calling this.curveChangedEmitter.emit().
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
   public widthManipulatedCurve( mode: CurveManipulationMode, width: number, x: number, y: number ): void {
 
@@ -282,8 +282,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the SHIFT CurveManipulationMode.
    * Shifts the curve to the specified drag position, in model coordinates.
-   * If you call this method, you are responsible for calling this.curveChangedEmitter.emit().
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
@@ -297,8 +298,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the TILT CurveManipulationMode.
    * Tilts the curve to the specified drag position, in model coordinates.
-   * If you call this method, you are responsible for calling this.curveChangedEmitter.emit().
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
@@ -329,7 +331,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the PEDESTAL CurveManipulationMode.
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
   private createPedestalAt( width: number, peakX: number, peakY: number ): void {
 
@@ -375,7 +379,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the HILL CurveManipulationMode.
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
   private createHillAt( width: number, peakX: number, peakY: number ): void {
 
@@ -392,7 +398,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the TRIANGLE CurveManipulationMode.
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
   private createTriangleAt( width: number, peakX: number, peakY: number ): void {
 
@@ -418,7 +426,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the PARABOLA CurveManipulationMode.
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
   private createParabolaAt( width: number, peakX: number, peakY: number ): void {
 
@@ -441,7 +451,9 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the SINUSOID CurveManipulationMode.
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    */
   private createSinusoidAt( width: number, x: number, y: number ): void {
 
@@ -544,10 +556,12 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
+   * Implements the FREEFORM CurveManipulationMode.
    * Allows the user to drag Points in the Curve to any desired position to create custom but smooth shapes.
    * This method will update the curve with the new position value. It attempts to create a smooth curve
    * between position and antepenultimatePosition. The main goal of the drawToForm method is to create a
    * curve segment that is smooth enough that it can be twice differentiable without generating discontinuities.
+   * If you call this method, you are responsible for setting wasManipulatedProperty calling curveChangedEmitter.emit().
    *
    * @param position - in model coordinates
    * @param penultimatePosition - in model coordinates
