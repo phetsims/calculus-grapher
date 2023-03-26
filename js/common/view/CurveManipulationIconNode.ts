@@ -88,19 +88,19 @@ export default class CurveManipulationIconNode extends AlignBox {
     else if ( mode === CurveManipulationMode.TILT ) {
 
       const y = 0.5 * yMax;
-      solidCurve.positionManipulatedCurve( mode, xMax, y );
+      solidCurve.tiltToPosition( xMax, y );
       solidCurve.saveCurrentPoints();
       solidCurve.shiftToPosition( xMin, yCenter );
 
-      dashedCurve.positionManipulatedCurve( mode, xMax, -y );
+      dashedCurve.tiltToPosition( xMax, -y );
       dashedCurve.saveCurrentPoints();
       dashedCurve.shiftToPosition( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.SHIFT ) {
 
       const yOffset = 0.25 * yMax;
-      solidCurve.positionManipulatedCurve( mode, xMax, yMax - yOffset );
-      dashedCurve.positionManipulatedCurve( mode, xMax, yMin + yOffset );
+      solidCurve.shiftToPosition( xMax, yMax - yOffset );
+      dashedCurve.shiftToPosition( xMax, yMin + yOffset );
     }
     else {
       throw new Error( 'Unsupported Curve Manipulation Mode' );

@@ -234,9 +234,11 @@ export default class TransformedCurve extends Curve {
     ) {
       this.widthManipulatedCurve( mode, width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.TILT ||
-              mode === CurveManipulationMode.SHIFT ) {
-      this.positionManipulatedCurve( mode, position.x, position.y );
+    else if ( mode === CurveManipulationMode.SHIFT ) {
+      this.shiftToPosition( position.x, position.y );
+    }
+    else if ( mode === CurveManipulationMode.TILT ) {
+      this.tiltToPosition( position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
       this.drawFreeformToPosition( position, penultimatePosition, antepenultimatePosition );
@@ -247,24 +249,6 @@ export default class TransformedCurve extends Curve {
 
     // Signal that this Curve has changed.
     this.curveChangedEmitter.emit();
-  }
-
-  /**
-   * Sets the points for all modes that can be manipulated solely through a position argument.
-   */
-  public positionManipulatedCurve( mode: CurveManipulationMode, x: number, y: number ): void {
-
-    assert && assert( !mode.hasAdjustableWidth, `mode cannot have adjustable width: ${mode}` );
-
-    if ( mode === CurveManipulationMode.TILT ) {
-      this.tiltToPosition( x, y );
-    }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
-      this.shiftToPosition( x, y );
-    }
-    else {
-      throw new Error( 'Unsupported Curve Manipulation Mode' );
-    }
   }
 
   /**
@@ -334,7 +318,7 @@ export default class TransformedCurve extends Curve {
    * @param x - x-coordinate of the drag position
    * @param y - y-coordinate of the drag position
    */
-  private tiltToPosition( x: number, y: number ): void {
+  public tiltToPosition( x: number, y: number ): void {
 
     // Fulcrum point: chosen to be the leftmost point.
     const pivotPoint = this.points[ 0 ];

@@ -69,8 +69,11 @@ export default class CurveManipulationDisplayNode extends Node {
 
         curve.reset();
 
-        if ( mode === CurveManipulationMode.TILT || mode === CurveManipulationMode.SHIFT ) {
-          curve.positionManipulatedCurve( mode, xMax, yMax );
+        if ( mode === CurveManipulationMode.SHIFT ) {
+          curve.shiftToPosition( xMax, yMax );
+        }
+        else if ( mode === CurveManipulationMode.TILT ) {
+          curve.tiltToPosition( xMax, yMax );
         }
         else if ( mode === CurveManipulationMode.TRIANGLE ||
                   mode === CurveManipulationMode.PARABOLA ||
