@@ -154,7 +154,7 @@ export default class CurveManipulationIconNode extends AlignBox {
   }
 
   /**
-   * Sets the y-values of the curve to a shape that can be used to represent a freeform icon curve.
+   * Sets the y-values of a curve to a shape that is used in the FREEFORM mode icon and display.
    * The shape of this curve was chosen such that a pencil icon could be placed at the rightmost point.
    * @param curve
    * @param yMin - the minimum y-value for the curve
@@ -167,6 +167,7 @@ export default class CurveManipulationIconNode extends AlignBox {
     const xMin = curve.xRange.getMin();
     const width = xLength / 4;
 
+    curve.reset();
     curve.widthManipulatedCurve( CurveManipulationMode.TRIANGLE, width, xMin + 2 * xLength / 5, 0.65 * yMax );
     curve.saveCurrentPoints();
     curve.widthManipulatedCurve( CurveManipulationMode.PEDESTAL, width, xMin + 4 * xLength / 5, yMax );
