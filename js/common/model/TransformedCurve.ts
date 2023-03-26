@@ -640,7 +640,7 @@ export default class TransformedCurve extends Curve {
           const signedDeltaX = isAscending ? deltaX : -deltaX;
 
           // A function of x used that will be used to mollify the piecewise function
-          const mollifierFunction = this.mollifierFunction( distance );
+          const mollifierFunction = createMollifierFunction( distance );
 
           // Iterate over the intermediate x-values that need to be mollified.
           for ( let i = 0; i < numberSteps; i++ ) {
@@ -746,16 +746,6 @@ export default class TransformedCurve extends Curve {
         }
       }
     }
-  }
-
-  /**
-   * Returns a mollifier function of x, that is an infinitely differentiable function
-   * Mollifier functions are used to smooth (a.k.a. mollify) other functions (see https://en.wikipedia.org/wiki/Mollifier)
-   * @param width - the width for which the mollifying function does not return a zero value
-   */
-  private mollifierFunction( width: number ): MathFunction {
-    assert && assert( width > 0, 'width must be positive' );
-    return x => Math.abs( x ) < width / 2 ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
   }
 
   /**
@@ -870,6 +860,16 @@ export default class TransformedCurve extends Curve {
       wasPreviousPointModified = isModified;
     } );
   }
+}
+
+/**
+ * Returns a mollifier function of x, that is an infinitely differentiable function
+ * Mollifier functions are used to smooth (a.k.a. mollify) other functions (see https://en.wikipedia.org/wiki/Mollifier)
+ * @param width - the width for which the mollifying function does not return a zero value
+ */
+function createMollifierFunction( width: number ): MathFunction {
+  assert && assert( width > 0, 'width must be positive' );
+  return x => ( Math.abs( x ) < width / 2 ) ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
 }
 
 calculusGrapher.register( 'TransformedCurve', TransformedCurve );
