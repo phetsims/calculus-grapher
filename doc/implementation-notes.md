@@ -30,8 +30,10 @@ The reader is encouraged to read the model document before proceeding:
   lines, continuous portion of the curve, etc. This is based on the PhET library bamboo.
 * scrubber - a tool with a sphere-shaped handle, which can be dragged to place the tool at an arbitrary x location
 * Reference Line scrubber - the scrubber with a blue handle, which lets you place a vertical "reference line" at an arbitrary x location.
-* Labeled Line - a feature that is available only via PhET-iO, which allows you to place a vertical line at an arbitrary x location, and label that line
-* Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at an arbitary x location. and label that point
+* Labeled Line - a feature that is available only via PhET-iO, which allows you to place a vertical line at an arbitrary
+  x location, and label that line
+* Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at
+  an arbitrary x location. and label that point
 
 ## General Considerations
 
@@ -97,9 +99,12 @@ Curves are modeled by segmenting the curve into a large number of evenly spaced 
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
-`CurvePoint` keeps track of the x and y values of a point, as well as the point type. The point type is an enumeration that consists of thee types: 'smooth', 'cusp',, and 'discontinuous'. CurvePoint can save the previous state of a point into a stack that can be restored for undo operations.
+`CurvePoint` keeps track of the x and y values of a point, as well as the point type. The point type is an enumeration
+that consists of the types: 'smooth', 'cusp',, and 'discontinuous'. CurvePoint can save the previous state of a point
+into a stack that can be restored for undo operations.
 
-`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a change in the CurvePoints and the Curve's integral, derivative, and second-derivative Curves.
+`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a
+change in the CurvePoints and the Curve's integral, derivative, and second-derivative Curves.
 
 `TransformedCurve` is mainly responsible for:
 - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
