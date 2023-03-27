@@ -1,6 +1,7 @@
 # Calculus Grapher - Model Description
 
 @author Martin Veillette
+<br>@author Chris Malley (PixelZoom, Inc.)
 
 This document is a high-level description of the model used in PhET's _Calculus-Grapher_ simulation.
 
