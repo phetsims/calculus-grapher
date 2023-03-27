@@ -17,11 +17,11 @@ point. The tool displays the slope of the tangent line and allows users to drag 
 the tangent line changes as the point moves.
 
 Area under Curve: The user can use the "Area Under Curve" tool to visualize the area under a curve. The user can drag a
-scrubber to specify the limits of integration. The simulation then calculates and displays the area under the selected
+scrubber to specify the upper bound of integration. The simulation then calculates and displays the area under the selected
 portion of the curve and the value of the definite integral that represents the area.
 
 Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus,
-and to gain a deeper understanding of the relationships between functions and their derivatives and integrals.
+and to gain a deeper understanding of the graphical relationships between functions and their derivatives and integrals.
 
 The simulation comprises a user-controlled function f(x) and, depending on the screen, the integral and or derivative of
 that function. A large double-headed arrow is initially
@@ -86,7 +86,7 @@ function f(x) is displayed. The definite integral is calculated numerically thro
 The "Area Under Curve" checkbox below the control panel triggers the visibility of three components: (1) a
 user-controlled scrubber at the bottom of the graphs, (2) an area plot on the original graph, and (3) the "Net Signed
 Area" accordion box with a barometer indicating the value of the area under the curve. The user can move the horizontal
-position of scrubber to change the x-position of the tangent arrow.
+position of scrubber to change the upper bound of the area under the curve.
 
 ## _Advanced_ Screen
 
