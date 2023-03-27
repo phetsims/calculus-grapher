@@ -93,7 +93,7 @@ export default class CurveManipulationDisplayNode extends Node {
           curve.tilt( xMax, yMax );
         }
         else if ( mode === CurveManipulationMode.SHIFT ) {
-          curve.shift( xMax, yMax );
+          curve.shift( xMax, yMin );
         }
         else {
           throw new Error( `unsupported mode: ${mode}` );
