@@ -5,10 +5,15 @@
  * simulation. CurveNode is implemented to work for all Curve subclasses, so no CurveNode subclasses are needed.
  *
  * Primary responsibilities are:
- *  - Create a LinePlot from the curve points
- *  - Create a dataSet of curve points that can be consumed by LinePlot
- *  - Update itself when curveChangeEmitter sends a signal
- *  - Create a scatterPlot representing cusp points
+ *  - Create a LinePlot to represent the continuous segments of the curve.
+ *  - Create a LinePlot to represent the discontinuous vertical dashed lines.
+ *  - Create a ScatterPlot from the curve points to represent the discontinuous points.
+ *  - Create optional ScatterPlots representing cusp points and all points for debug purposes.
+ *  - Create various dataSets from the curve points that can be consumed by LinePlot and ScatterPlot.
+ *  - Update itself when curveChangeEmitter sends a signal.
+ *
+ *  For performance reasons, the bounds method used by bamboo is exposed as an option. If the options.plotBoundsMethod is
+ *  set to none, then the options.plotBounds must be provided.
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation. Thus,
  * CurveNodes persist for the lifetime of the simulation and links are left as-is. See Curve.js for more background.
@@ -32,7 +37,7 @@ import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import DiscontinuousPointsPlot from './DiscontinuousPointsPlot.js';
+import DiscontinuousPointsPlot from './DiscontinuousPointsPlot.js'; // dateset types associated with LinePlot and ScatterPlot
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
