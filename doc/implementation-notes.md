@@ -151,4 +151,5 @@ elements to this simulation:
 
 - `GraphSetIO`: Handles the PhET-iO instrumentation for the GraphSet, which is the set of GraphTypes that are available
   in the simulation.
-- `CurvePointIO`: Handles the serialization of the `CurvePoint`.
+- `CurvePointIO`: Handles the serialization of the `CurvePoint`. The stack feature, which preserves the previous states
+  of CurvePoint for the undo button, has been purposefully not serialized. 
