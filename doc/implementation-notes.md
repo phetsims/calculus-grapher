@@ -143,3 +143,12 @@ AncillaryTool is the model base class associated with an x value on the graph. I
   updated solely when its associated tool is visible.
   Many tools such as the Area Under Curve tool, Tangent tool, Reference Line tool, as well as the PhET-IO tools, Labeled
   Points and Labeled Lines, extend the AncillaryTool class.
+
+## PhET-iO
+
+For the most part, the PhET-iO instrumentation follows a standard pattern. There are two specific types of PhET-iO
+elements to this simulation:
+
+- `GraphSetIO`: Handles the PhET-iO instrumentation for the GraphSet, which is the set of GraphTypes that are available
+  in the simulation.
+- `CurvePointIO`: Handles the serialization of the `CurvePoint`.
