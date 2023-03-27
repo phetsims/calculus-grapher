@@ -104,7 +104,7 @@ the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
 
 `CurvePoint` keeps track of the x and y values of a point, as well as the point type. The point type is an enumeration
-that consists of the types: 'smooth', 'cusp',, and 'discontinuous'. CurvePoint can save the previous state of a point
+that consists of the types: 'smooth', 'cusp', and 'discontinuous'. CurvePoint can save the previous state of a point
 into a stack that can be restored for undo operations.
 
 `TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a
