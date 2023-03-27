@@ -14,7 +14,7 @@ The reader is encouraged to read the model document before proceeding:
 
 ## Terminology
 
-* Graph - It consists of a coordinate plane with horizontal and vertical axes, with tick marks with optional grid lines
+* Graph - It consists of a coordinate plane with horizontal and vertical axes, with tick marks with optional grid lines.
   and tick labels. A graph includes one or multiple curves which shows how a function behaves as its input (x) changes.
 * Original Graph - It refers to the graph that contains the f(x) function. It is the only graph whose curve(s) can be
   user manipulated. The original graph includes the original curve and, optionally, the predict curve.
@@ -34,7 +34,7 @@ The reader is encouraged to read the model document before proceeding:
 * Labeled Line - a feature that is available only via PhET-iO, which allows you to place a vertical line at an arbitrary
   x location, and label that line
 * Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at
-  an arbitrary x location. and label that point
+  an arbitrary x location. and label that point.
 
 ## General Considerations
 
