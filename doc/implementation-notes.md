@@ -102,13 +102,15 @@ functionality that is common to all types of curves, which are 'integral', 'orig
 Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
 enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
+An AXON/emitter on the Curve can emit to signal that its CurvePoints have changed in any form.
 
 `CurvePoint` keeps track of the x and y values of a point, as well as the point type. The point type is an enumeration
 that consists of the types: 'smooth', 'cusp', and 'discontinuous'. CurvePoint can save the previous state of a point
 into a stack that can be restored for undo operations.
 
-`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates, which then triggers a
-change in the CurvePoints and the Curve's integral, derivative, and second-derivative Curves.
+`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates.
+For originalCurve, the CurvePoints are updated when a user manipulates the CurvePoints through a method
+on `TransformedCurve`.
 
 `TransformedCurve` is mainly responsible for:
 - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
@@ -117,18 +119,16 @@ change in the CurvePoints and the Curve's integral, derivative, and second-deriv
 - Saving the curve
 - Resetting all the points of the curve
 
-DerivativeCurve and SecondDerivativeCurve's main responsibility is to observe when the originalCurve changes and
-differentiates it and update the Points of the first and second derivative. Derivatives are computed by considering the
-slope of the secant lines from both sides of every point.
+`DerivativeCurve` and `SecondDerivativeCurve` are `Curve` subtypes whose main responsibilities are to observe when the
+originalCurve changes by listening to the AXON/emitter on the originalCurve and
+differentiates it and update the `CurvePoint`s of the first and second derivative. The derivatives are computed by
+considering the slope of the secant lines from both sides of every point.
 
-`IntegralCurve` is a Curve subtype for the curve that represents the integral of the TransformedCurve. The
-TransformedCurve
-is referenced as the originalCurve of the IntegralCurve.
-
-IntegralCurve's main responsibility is to observe when the originalCurve changes and integrate it and update the
-Points of the Integral. Our implementation of the integral uses a trapezoidal Riemann sum to approximate integrals.
-See https://en.wikipedia.org/wiki/Trapezoidal_rule
-for background. Since the originalCurve exists at all Points, the Integral is also finite at all points.
+`IntegralCurve` is a `Curve` subtype for the curve that represents the integral of the `TransformedCurve`. The
+TransformedCurve is referenced as the originalCurve of the IntegralCurve. IntegralCurve's main responsibility is to
+observe when the originalCurve changes and integrate it and update the
+`CurvePoint`s of the Integral. The implementation of the integral uses a trapezoidal Riemann sum to approximate
+integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
 
 ### Ancillary Tools
 
