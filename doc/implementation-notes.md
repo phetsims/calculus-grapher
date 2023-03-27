@@ -56,7 +56,10 @@ Every graph in the simulation has a model-view transform, implemented using bamb
 * **Dynamic allocation**: Most objects in this sim are allocated at startup, and exist for the lifetime of the
   simulation. The exceptions to that are:
   * Vector2 instances created by bamboo when rendering data sets (see calls to `setDataSet`)
-  * UI subcomponents of the "Simulation" tab in the Preferences dialog. These components are found in calculus-grapher/common/view/preferences/
+  * LabelNodes in `GraphTypeLabelNode`, which are created dynamically based on the type of graph and customized based on
+    choices of variables and notations.
+  * UI subcomponents of the "Simulation" tab in the Preferences dialog. These components are found in
+    calculus-grapher/common/view/preferences/
 
 * **Listeners**: Unless explicitly noted in the code, all uses of `link`, `addListener`, etc. do _not_ need a corresponding
   `unlink`, `removeListener`, etc.  Classes remove listeners by implementing or overriding `dispose`.  Factory functions remove listeners via `disposeEmitter.addListener`.
