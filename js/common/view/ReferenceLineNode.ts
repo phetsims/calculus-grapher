@@ -49,6 +49,7 @@ export default class ReferenceLineNode extends ScrubberNode {
       phetioHandleNodeVisiblePropertyInstrumented: false
     } );
 
+    // See https://github.com/phetsims/calculus-grapher/issues/305
     const xDisplayProperty = new DerivedProperty( [ referenceLine.xProperty ],
       x => Utils.roundToInterval( x, Math.pow( 10, -X_DECIMAL_PLACES ) ), {
         tandem: tandem.createTandem( 'xDisplayProperty' ),
@@ -75,6 +76,7 @@ export default class ReferenceLineNode extends ScrubberNode {
         bottom: this.line.top - 5,
         centerX: 0,
         pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
+        // No PhET-iO instrumentation, see https://github.com/phetsims/calculus-grapher/issues/305
       } );
     this.addChild( numberDisplay );
 
