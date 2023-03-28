@@ -24,7 +24,6 @@ import ReferenceLine from '../model/ReferenceLine.js';
 import ScrubberNode from './ScrubberNode.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import Utils from '../../../../dot/js/Utils.js';
 
 // number of decimal places shown for the x value, dragging snaps to this interval
 const X_DECIMAL_PLACES = 1;
@@ -39,12 +38,6 @@ export default class ReferenceLineNode extends ScrubberNode {
       handleColor: referenceLine.handleColorProperty,
       lineStroke: referenceLine.lineColorProperty,
       lineDash: [], // solid line
-
-      // When drag ends, snap to the number of decimal places that are displayed by numberDisplay.
-      // See https://github.com/phetsims/calculus-grapher/issues/305
-      endDrag: () => {
-        referenceLine.xProperty.value = Utils.roundToInterval( referenceLine.xProperty.value, Math.pow( 10, -X_DECIMAL_PLACES ) );
-      },
 
       // This is a hack to keep referenceLineNode.visibleProperty from linking to referenceLine.visibleProperty in Studio.
       visibleProperty: new DerivedProperty( [ referenceLine.visibleProperty ], visible => visible ),

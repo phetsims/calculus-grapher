@@ -24,9 +24,6 @@ type SelfOptions = {
 
   // y-coordinate of the handle, in model coordinate frame
   yModel?: number;
-
-  // Called when a drag cycle ends
-  endDrag?: () => void;
 };
 
 type XDragHandleNodeOptions = SelfOptions &
@@ -41,7 +38,6 @@ export default class XDragHandleNode extends ShadedSphereNode {
       // SelfOptions
       radius: CalculusGrapherConstants.SCRUBBER_RADIUS,
       yModel: 0,
-      endDrag: _.noop,
 
       // ShadedSphereNodeOptions
       cursor: 'ew-resize'
@@ -70,7 +66,6 @@ export default class XDragHandleNode extends ShadedSphereNode {
         const xModel = chartTransform.viewToModelX( listener.modelPoint.x );
         xProperty.value = chartTransform.modelXRange.constrainValue( xModel );
       },
-      end: () => options.endDrag(),
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
