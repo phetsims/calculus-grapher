@@ -133,10 +133,12 @@ export default class Curve extends PhetioObject {
     // https://github.com/phetsims/calculus-grapher/issues/90
     // https://github.com/phetsims/calculus-grapher/issues/278
     // https://github.com/phetsims/calculus-grapher/issues/309
-    this.pointsProperty.lazyLink( () => {
-      assert && assert( Tandem.PHET_IO_ENABLED, 'pointsProperty may change only in PhET-iO brand' );
-      this.curveChangedEmitter.emit();
-    } );
+    if ( Tandem.PHET_IO_ENABLED && this.pointsProperty.isPhetioInstrumented() && !this.pointsProperty.phetioReadOnly ) {
+      this.pointsProperty.lazyLink( () => {
+        phet.log && phet.log( `pointsProperty changed: ${this.phetioID}` );
+        this.curveChangedEmitter.emit();
+      } );
+    }
   }
 
   /**
