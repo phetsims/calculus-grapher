@@ -18,10 +18,10 @@ The reader is encouraged to read the model document before proceeding:
   and tick labels. A graph includes one or multiple curves which shows how a function behaves as its input (x) changes.
 * Original Graph - It refers to the graph that contains the f(x) function. It is the only graph whose curve(s) can be
   user manipulated. The original graph includes the original curve and, optionally, the predict curve.
-* Curve - A curve is a complete parametrization of the shape of a mathematical function on a graph. All model curve are
+* Curve - A curve is a complete parametrization of the shape of a mathematical function on a graph. All model curves are
   composed of closely-spaced curve points. In calculus-grapher, a model curve is a complete representation of a
   mathematical function.
-* Original curve - It refers to the curve on the original graph that represent the f(x) function. It can be manipulated
+* Original curve - It refers to the curve on the original graph that represents the f(x) function. It can be manipulated
   by the user.
 * Predict Curve - It is a curve that is generated based on a user's input. It allows the user to attempt to predict the
   function f(x). It is set to be invisible by default.
@@ -66,7 +66,10 @@ Every graph in the simulation has a model-view transform, implemented using bamb
 
 ## Common Framework for All Screens
 
-The four-screen simulation is based almost solely on the code in calculus-grapher/common/model/. Individual screens are typically customized by passing appropriate options fields to the common implementation. As a result, it is important for future maintainers to familiarize themselves with the common model of the simulation. Below we provide an overview of the most important classes and their relationships.
+The four-screen simulation is based almost solely on the code in calculus-grapher/common/model/. Individual screens are
+typically customized by passing appropriate options fields to the common implementation. As a result, it is important
+for future maintainers to familiarize themselves with the common model of the simulation. Below, we provide an overview
+of the most important classes and their relationships.
 
 ### Model Class Hierarchy
 
@@ -113,9 +116,10 @@ For originalCurve, the CurvePoints are updated when a user manipulates the Curve
 on `TransformedCurve`.
 
 `TransformedCurve` is mainly responsible for:
+
 - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
-    affected by the CurveManipulationMode and the 'width' of the curve-manipulation.
-- Implementing smoothing, and undoing the curve
+  affected by the CurveManipulationMode and the 'width' of the curve-manipulation.
+- Implementing smoothing and undoing the curve
 - Saving the curve
 - Resetting all the points of the curve
 
