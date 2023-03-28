@@ -125,7 +125,8 @@ We approximate curves by generating a set of discrete points with fixed x-coordi
 Each point in a curve has a specific point type metadata, such as a smooth, cusp, or discontinuity. A function has a
 jump discontinuity if the left and right-hand limits of the function are not equal. In such cases, points on both sides
 of the jump are labeled as discontinuous.
-Similarly, points are labeled cusp points if the curve changes direction. We leverage the point type to determine which
+Similarly, points are labeled cusp points if the curve slope changes suddenly. We leverage the point type to determine
+which
 points should be linked to yield the appearance of a smooth curve and which points should not be linked but appear as
 circles (say to represent discontinuities). Curve manipulations are handled by a set of functions that update the curve
 points based on user input. The point type is assessed based on the type of curve mode that is being manipulated.
