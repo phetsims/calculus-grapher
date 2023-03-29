@@ -187,7 +187,7 @@ export default class GraphSetsAnimator {
       const graphNodesToAdd = newGraphNodes.filter( graphNode => !oldGraphNodes.includes( graphNode ) );
 
       this.fadeInOpacityProperty.unlinkAll();
-      this.fadeInOpacityProperty.lazyLink( opacity => {
+      this.fadeInOpacityProperty.link( opacity => {
         graphNodesToAdd.forEach( graphNode => graphNode.setOpacity( opacity ) );
       } );
 
