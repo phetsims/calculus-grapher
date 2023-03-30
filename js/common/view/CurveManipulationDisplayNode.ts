@@ -29,6 +29,10 @@ export default class CurveManipulationDisplayNode extends Node {
     const curve = new TransformedCurve( {
       numberOfPoints: 300,
       xRange: CalculusGrapherConstants.CURVE_X_RANGE,
+
+      // The curve for CurveManipulationDisplayNode is not instrumented. If you decide to instrument in the future,
+      // be aware that instrumenting has performance implications, and it's not sufficient to simply add a tandem here.
+      // Proceed with caution!
       tandem: Tandem.OPT_OUT
     } );
 
