@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.0.0-rc.1 Thu Mar 30 2023 11:01:29 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# calculus-grapher 1.0.0-rc.1 Thu Mar 30 2023 13:27:21 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "HEAD"
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "f8179ab8c70ddd1f5ef3facf40702027cd48ee7c",
+    "sha": "bc73aa51c5caf8bedc49afaa3c7e19feb4d44ab7",
     "branch": "1.0"
   },
   "chipper": {
@@ -49,7 +49,7 @@
     "branch": "HEAD"
   },
   "phet-io-sim-specific": {
-    "sha": "e4189f9ebfa8e22ebdd4d748c04fd98d6be59197",
+    "sha": "e8440245583dc78025a09c748fd173e9767e05a9",
     "branch": "calculus-grapher-1.0"
   },
   "phet-io-wrappers": {
