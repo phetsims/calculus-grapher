@@ -50,6 +50,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js'; // constants
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -89,6 +90,21 @@ export default class TransformedCurve extends Curve {
       tandem: options.tandem.createTandem( 'wasManipulatedProperty' ),
       phetioReadOnly: true,
       phetioDocumentation: 'Has the curve been manipulated by the student?'
+    } );
+
+    // To make the sim acceptably responsive, the value of pointsProperty (an array of CurvePoint) typically does not
+    // change. Instead, the CurvePoints are mutated in place, and curveChangedEmitter.emit is called when the mutation
+    // is completed. An exception to this occurs in PhET-iO brand for originalCurve.pointsProperty and
+    // predictCurve.pointsProperty. The value will change when using the 'Set Value' control in Studio, or the value
+    // is set via the 'setValue' PhET-iO API call. And in that case, we need to explicitly call curveChangedEmitter.emit.
+    // See:
+    // https://github.com/phetsims/calculus-grapher/issues/90
+    // https://github.com/phetsims/calculus-grapher/issues/278
+    // https://github.com/phetsims/calculus-grapher/issues/309
+    // https://github.com/phetsims/calculus-grapher/issues/327
+    this.pointsProperty.lazyLink( () => {
+      assert && assert( Tandem.PHET_IO_ENABLED, 'pointsProperty may only be set in the PhET-iO version.' );
+      this.curveChangedEmitter.emit();
     } );
   }
 

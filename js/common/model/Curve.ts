@@ -30,9 +30,8 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CurvePoint from './CurvePoint.js';
 import Range from '../../../../dot/js/Range.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import Property from '../../../../axon/js/Property.js';
+import Property, { PropertyOptions } from '../../../../axon/js/Property.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 // Constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -102,7 +101,6 @@ export default class Curve extends PhetioObject {
     this.deltaX = this.xRange.getLength() / ( this.numberOfPoints - 1 );
 
     // Initial points, with equally-spaced x values, and y=0.
-    // These CurvePoint instances are reused throughout the lifetime of the sim, and never disposed.
     const initialPoints: CurvePoint[] = [];
     for ( let i = 0; i < this.numberOfPoints; i++ ) {
       const xNormalized = i / ( this.numberOfPoints - 1 ); // in the range [0,1]
@@ -110,35 +108,40 @@ export default class Curve extends PhetioObject {
       initialPoints.push( new CurvePoint( x, 0 ) );
     }
 
-    this.pointsProperty = new Property( initialPoints, {
-      isValidValue: points => isValidPoints( initialPoints, points ),
+    const pointPropertyOptions: PropertyOptions<CurvePoint[]> = {
       tandem: options.tandem.createTandem( 'pointsProperty' ),
       phetioValueType: ArrayIO( CurvePoint.CurvePointIO ),
       phetioReadOnly: options.pointsPropertyReadOnly,
+
+      // Excluding derived curves from state is a big performance improvement.
+      // See https://github.com/phetsims/calculus-grapher/issues/327#issuecomment-1490428949
+      phetioState: !options.pointsPropertyReadOnly,
       phetioFeatured: true,
       phetioDocumentation: options.pointsPropertyReadOnly ? DOC_READ_ONLY_TRUE : DOC_READ_ONLY_FALSE
-    } );
+    };
+    if ( options.pointsPropertyReadOnly ) {
+
+      // The array of CurvePoints is not expected to change for derived Curves, because CurvePoints are mutated in place.
+      // So there is only 1 valid value, the initialPoints.
+      pointPropertyOptions.validValues = [ initialPoints ];
+    }
+    else {
+
+      // The array of CurvePoints may change via PhET-iO, so verify that the new array is valid.
+      pointPropertyOptions.isValidValue = points => isValidPoints( initialPoints, points );
+    }
+
+    this.pointsProperty = new Property( initialPoints, pointPropertyOptions );
+
+    // For debugging https://github.com/phetsims/calculus-grapher/issues/327, so we can see which curves
+    // have their pointsProperty set when running the State Wrapper.
+    phet.log && this.pointsProperty.lazyLink( () => phet.log( `${this.pointsProperty.phetioID} changed` ) );
 
     // Emits when the Curve has changed in any form. Instead of listening to a yProperty
     // of every CurvePoint, which was deemed invasive to the performance of the sim, we
     // use an Emitter that emits once after all CurvePoints are set upon manipulation.
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
-
-    // To make the sim acceptably responsive, the value of pointsProperty (an array of CurvePoint) typically does not
-    // change. Instead, the CurvePoints are mutated in place, and curveChangedEmitter.emit is called when the mutation
-    // is completed. An exception to this occurs in PhET-iO brand. pointsProperty's value will change when using the
-    // 'Set Value' control in Studio, or when state is restored by PhetioEngine. And in that case, we need to explicitly
-    // call curveChangedEmitter.emit. See:
-    // https://github.com/phetsims/calculus-grapher/issues/90
-    // https://github.com/phetsims/calculus-grapher/issues/278
-    // https://github.com/phetsims/calculus-grapher/issues/309
-    if ( Tandem.PHET_IO_ENABLED && this.pointsProperty.isPhetioInstrumented() && !this.pointsProperty.phetioReadOnly ) {
-      this.pointsProperty.lazyLink( () => {
-        phet.log && phet.log( `pointsProperty changed: ${this.phetioID}` );
-        this.curveChangedEmitter.emit();
-      } );
-    }
   }
 
   /**
