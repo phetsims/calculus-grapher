@@ -29,7 +29,10 @@ const CHART_TRANSFORM_OPTIONS = {
 const TRANSFORMED_CURVE_OPTIONS = {
   numberOfPoints: 70,
   xRange: CalculusGrapherConstants.CURVE_X_RANGE,
-  tandem: Tandem.OPT_OUT // curves for icons are not instrumented
+
+  // Curves for icons are not instrumented. If you decide to instrument in the future, be aware that instrumenting
+  // has performance implications, and it's not sufficient to simply add a tandem here. Proceed with caution!
+  tandem: Tandem.OPT_OUT
 };
 
 // To make all icons have the same effective size, for all screens.
