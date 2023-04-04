@@ -1,12 +1,12 @@
 {
-  "comment": "# calculus-grapher 1.0.0-rc.1 Thu Mar 30 2023 13:27:21 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# calculus-grapher 1.0.0-rc.1 Tue Apr 04 2023 09:29:43 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "HEAD"
   },
   "axon": {
-    "sha": "c954b7cf3cf0ac9d8b27911e1e3a85f709511547",
-    "branch": "HEAD"
+    "sha": "d32f61ce72b42cc86083b997d592136038c09ad0",
+    "branch": "calculus-grapher-1.0"
   },
   "bamboo": {
     "sha": "1eb2461c0c5a02e7f998b2a6a86563924a48436f",
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "bc73aa51c5caf8bedc49afaa3c7e19feb4d44ab7",
+    "sha": "3c54323ed5e7a78a2383074e119bed0299416cd0",
     "branch": "1.0"
   },
   "chipper": {
@@ -50,7 +50,7 @@
   },
   "phet-io-sim-specific": {
     "sha": "e8440245583dc78025a09c748fd173e9767e05a9",
-    "branch": "calculus-grapher-1.0"
+    "branch": "HEAD"
   },
   "phet-io-wrappers": {
     "sha": "91c730aa306d6c441b8f20e06ce921f39357f874",
