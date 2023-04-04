@@ -76,25 +76,30 @@ export default class CurveManipulationDisplayNode extends Node {
 
         if ( mode === CurveManipulationMode.HILL ) {
           curve.hill( width, xCenter, yMax );
+          curve.shift( 0, -yMax / 2 );
         }
         else if ( mode === CurveManipulationMode.TRIANGLE ) {
           curve.triangle( width, xCenter, yMax );
+          curve.shift( 0, -yMax / 2 );
         }
         else if ( mode === CurveManipulationMode.PEDESTAL ) {
           curve.pedestal( width, xCenter, yMax );
+          curve.shift( 0, -yMax / 2 );
         }
         else if ( mode === CurveManipulationMode.PARABOLA ) {
           curve.parabola( width, xCenter, yMax );
+          curve.shift( 0, -yMax / 2 );
         }
         else if ( mode === CurveManipulationMode.SINUSOID ) {
-          curve.sinusoid( width, xCenter, yMax / 2 );
-          curve.shift( xCenter, yMax );
+          curve.sinusoid( width, xCenter, -yMax );
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
-          CurveManipulationIconNode.freeformIconCurve( curve, yMin, yMax );
+          CurveManipulationIconNode.freeformIconCurve( curve, yMin, 2 * yMax );
+          curve.shift( 0, -yMax );
         }
         else if ( mode === CurveManipulationMode.TILT ) {
-          curve.tilt( xMax, yMax );
+          curve.tilt( xMax, 2 * yMax );
+          curve.shift( 0, -yMax );
         }
         else if ( mode === CurveManipulationMode.SHIFT ) {
           curve.shift( xMax, yMin );
