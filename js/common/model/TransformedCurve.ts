@@ -124,6 +124,9 @@ export default class TransformedCurve extends Curve {
    */
   public erase(): void {
 
+    // Make erase undoable, see https://github.com/phetsims/calculus-grapher/issues/331
+    this.save();
+
     // Set the point values to zero and smooth type.
     this.points.forEach( point => {
       point.y = 0;
