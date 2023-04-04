@@ -77,8 +77,8 @@ const CalculusGrapherConstants = {
     0.5 * CURVE_X_LENGTH,
     0.20 * CURVE_X_LENGTH ),
 
-  // model height associated with curveManipulationDisplay (in the same unit as x-Range)
-  CURVE_MANIPULATION_Y_RANGE: new Range( -0.25, TYPICAL_Y + 0.25 ),
+  // model height associated with curveManipulationDisplay
+  CURVE_MANIPULATION_Y_RANGE: new Range( -2, 2 ),
 
   // maximum of undo actions (See https://github.com/phetsims/calculus-grapher/issues/64)
   MAX_UNDO: 20,
