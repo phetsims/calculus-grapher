@@ -86,10 +86,10 @@ export default class CurveManipulationIconNode extends AlignBox {
     else if ( mode === CurveManipulationMode.SINUSOID ) {
 
       // Ad hoc variables to create sine function
-      const sinusoidWidth = 0.08 * xLength;
+      const sinusoidWidth =
+        CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE.defaultValue * xLength / ( 2 * Math.PI );
       const y = 0.5 * yMax;
-      solidCurve.sinusoid( sinusoidWidth, xCenter, y );
-      solidCurve.save();
+      solidCurve.sinusoid( sinusoidWidth, xLength / 4, y );
       solidCurve.shift( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
