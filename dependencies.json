@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.0.0-rc.1 Wed Apr 12 2023 13:45:30 GMT-0400 (Eastern Daylight Time)",
+  "comment": "# calculus-grapher 1.0.0-rc.2 Wed Apr 12 2023 16:55:08 GMT-0400 (Eastern Daylight Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "HEAD"
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "d0d44fdf24c68657e2f55f9df76645fb93ba9ca1",
+    "sha": "6c56af3c86ffd8ebd921241006dfec16a3feecae",
     "branch": "1.0"
   },
   "chipper": {
@@ -30,7 +30,7 @@
   },
   "joist": {
     "sha": "03b4e43b634a047ef5a0d31792f4acef5518a3b4",
-    "branch": "calculus-grapher-1.0"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "1aeb2c03719b4445ad031ba112a419195fd072c9",
