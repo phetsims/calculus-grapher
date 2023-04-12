@@ -1,12 +1,12 @@
 {
-  "comment": "# calculus-grapher 1.0.0-rc.1 Tue Apr 04 2023 09:29:43 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# calculus-grapher 1.0.0-rc.1 Wed Apr 12 2023 13:45:30 GMT-0400 (Eastern Daylight Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "HEAD"
   },
   "axon": {
     "sha": "d32f61ce72b42cc86083b997d592136038c09ad0",
-    "branch": "calculus-grapher-1.0"
+    "branch": "HEAD"
   },
   "bamboo": {
     "sha": "1eb2461c0c5a02e7f998b2a6a86563924a48436f",
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "3c54323ed5e7a78a2383074e119bed0299416cd0",
+    "sha": "d0d44fdf24c68657e2f55f9df76645fb93ba9ca1",
     "branch": "1.0"
   },
   "chipper": {
@@ -29,8 +29,8 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "994b74079bd91e46ebf226898b6be70153a9f9be",
-    "branch": "HEAD"
+    "sha": "03b4e43b634a047ef5a0d31792f4acef5518a3b4",
+    "branch": "calculus-grapher-1.0"
   },
   "kite": {
     "sha": "1aeb2c03719b4445ad031ba112a419195fd072c9",
