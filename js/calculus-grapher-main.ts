@@ -19,7 +19,6 @@ import CalculusGrapherSimulationPreferencesNode from './common/view/preferences/
 import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import CalculusGrapherPreferences from './common/model/CalculusGrapherPreferences.js';
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/202 fill in credits
 const credits: CreditsData = {
   leadDesign: 'Amanda McGarry',
   softwareDevelopment: 'Martin Veillette, Chris Malley (PixelZoom, Inc.), Brandon Li',
