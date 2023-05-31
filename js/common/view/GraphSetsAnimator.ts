@@ -16,6 +16,7 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 
 const STEPPER = null; // step method must be called by the client
 const OPACITY_DURATION = 0.5; // duration of opacity animation, in seconds
@@ -87,7 +88,7 @@ export default class GraphSetsAnimator {
 
     // Move immediately to the new state if:
     // there are no old GraphNodes, an animation was in progress, or we're restoring PhET-iO state.
-    if ( !oldGraphNodes || this.activeAnimation || phet.joist.sim.isSettingPhetioStateProperty.value ) {
+    if ( !oldGraphNodes || this.activeAnimation || isSettingPhetioStateProperty.value ) {
 
       this.activeAnimation = null;
 
