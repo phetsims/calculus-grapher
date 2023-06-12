@@ -23,8 +23,6 @@ import PredictControl from './PredictControl.js';
 
 export default class CalculusGrapherSimulationPreferencesNode extends VBox {
 
-  private readonly disposeCalculusGrapherPreferencesNode: () => void;
-
   public constructor( tandem: Tandem ) {
 
     // Controls in the order that they appear in the Simulation tab, from top-to-bottom.
@@ -58,15 +56,6 @@ export default class CalculusGrapherSimulationPreferencesNode extends VBox {
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );
-
-    this.disposeCalculusGrapherPreferencesNode = (): void => {
-      controls.forEach( control => control.dispose() );
-    };
-  }
-
-  public override dispose(): void {
-    this.disposeCalculusGrapherPreferencesNode();
-    super.dispose();
   }
 }
 
