@@ -51,7 +51,7 @@ export default class LabeledLinesNode extends Node {
 
     // Link to model.tools.labeledLines
     this.addLinkedElement( labeledLinesLinkableElement, {
-      tandem: options.tandem.createTandem( 'labeledLines' )
+      tandemName: 'labeledLines'
     } );
   }
 }

@@ -160,7 +160,7 @@ export default class CurveNode extends Node {
     const strokeProperty = options.stroke;
     if ( strokeProperty instanceof ProfileColorProperty ) {
       this.addLinkedElement( strokeProperty, {
-        tandem: options.tandem.createTandem( 'stroke' )
+        tandemName: 'stroke'
       } );
     }
   }

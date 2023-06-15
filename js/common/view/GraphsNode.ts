@@ -164,9 +164,7 @@ export default class GraphsNode extends Node {
 
     this.mutate( options );
 
-    this.addLinkedElement( model.graphSetProperty, {
-      tandem: options.tandem.createTandem( model.graphSetProperty.tandem.name )
-    } );
+    this.addLinkedElement( model.graphSetProperty );
   }
 
   public reset(): void {
@@ -285,9 +283,7 @@ export default class GraphsNode extends Node {
                            graphNode: GraphNode, curvePointProperty: TReadOnlyProperty<CurvePoint>,
                            fill: TColor, tandemName: string ): void {
     const plottedPoint = graphNode.addPlottedPoint( curvePointProperty, fill, visibleProperty, tandemName );
-    plottedPoint.addLinkedElement( ancillaryTool, {
-      tandem: plottedPoint.tandem.createTandem( ancillaryTool.tandem.name )
-    } );
+    plottedPoint.addLinkedElement( ancillaryTool );
   }
 }
 

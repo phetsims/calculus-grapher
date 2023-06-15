@@ -90,9 +90,7 @@ export default class TangentArrowNode extends ArrowNode {
       [ tangentScrubber.xProperty, tangentScrubber.originalCurvePointProperty, tangentScrubber.derivativeCurvePointProperty ],
       () => updateArrow() );
 
-    this.addLinkedElement( tangentScrubber, {
-      tandem: options.tandem.createTandem( tangentScrubber.tandem.name )
-    } );
+    this.addLinkedElement( tangentScrubber );
   }
 }
 

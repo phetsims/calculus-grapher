@@ -43,7 +43,7 @@ export default class LabeledPointsNode extends Node {
 
     // Link to model.tools.labeledPoints
     this.addLinkedElement( linkableElement, {
-      tandem: tandem.createTandem( 'labeledPoints' )
+      tandemName: 'labeledPoints'
     } );
   }
 }

@@ -94,9 +94,7 @@ export default class LabeledPointNode extends Node {
 
     super( options );
 
-    this.addLinkedElement( labeledPoint, {
-      tandem: options.tandem.createTandem( labeledPoint.tandem.name )
-    } );
+    this.addLinkedElement( labeledPoint );
   }
 }
 calculusGrapher.register( 'LabeledPointNode', LabeledPointNode );

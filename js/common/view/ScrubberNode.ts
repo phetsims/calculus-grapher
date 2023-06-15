@@ -91,9 +91,7 @@ export default class ScrubberNode extends Node {
       handleNode.centerY = line.bottom;
     } );
 
-    this.addLinkedElement( scrubber, {
-      tandem: options.tandem.createTandem( scrubber.tandem.name )
-    } );
+    this.addLinkedElement( scrubber );
   }
 
   /**

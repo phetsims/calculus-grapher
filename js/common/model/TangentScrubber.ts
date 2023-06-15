@@ -36,12 +36,12 @@ export default class TangentScrubber extends AncillaryTool {
     this.colorProperty = CalculusGrapherColors.derivativeCurveStrokeProperty;
 
     this.addLinkedElement( this.colorProperty, {
-      tandem: tandem.createTandem( 'colorProperty' ),
+      tandemName: 'colorProperty',
       phetioDocumentation: 'Color for the tangent scrubber handle, vertical line, and the bar in the "Slope of Tangent" accordion box.'
     } );
 
     this.addLinkedElement( this.yDerivativeProperty, {
-      tandem: tandem.createTandem( 'slopeProperty' ),
+      tandemName: 'slopeProperty',
       phetioDocumentation: 'The slope of the tangent line, with is the same as yDerivativeProperty.'
     } );
   }

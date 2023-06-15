@@ -93,9 +93,7 @@ export default class AreaUnderCurvePlot extends Node {
       visible && updateDataSets();
     } );
 
-    this.addLinkedElement( areaUnderCurveScrubber, {
-      tandem: options.tandem.createTandem( areaUnderCurveScrubber.tandem.name )
-    } );
+    this.addLinkedElement( areaUnderCurveScrubber );
   }
 }
 
