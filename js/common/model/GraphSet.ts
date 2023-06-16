@@ -19,7 +19,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type GraphSetOptions = SelfOptions & PickOptional<PhetioObject, 'phetioDocumentation' | 'tandem'>;
+type GraphSetOptions = SelfOptions & PickOptional<PhetioObjectOptions, 'phetioDocumentation' | 'tandem'>;
 
 export default class GraphSet extends PhetioObject {
 
