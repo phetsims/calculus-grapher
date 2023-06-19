@@ -112,7 +112,7 @@ export default class AncillaryTool extends PhetioObject {
       options.tandem.createTandem( 'yOriginalProperty' ), options.yOriginalPropertyFeatured );
     this.yDerivativeProperty = createYProperty( this.derivativeCurvePointProperty,
       options.tandem.createTandem( 'yDerivativeProperty' ), options.yDerivativePropertyFeatured,
-      'The slope of the tangent line, with is the same as yDerivativeProperty.' );
+      'The slope of the tangent line, which is the same as yDerivativeProperty.' );
     this.ySecondDerivativeProperty = createYProperty( this.secondDerivativeCurvePointProperty,
       options.tandem.createTandem( 'ySecondDerivativeProperty' ), options.ySecondDerivativePropertyFeatured );
 
