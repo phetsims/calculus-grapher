@@ -15,7 +15,7 @@
 import DerivedProperty, { DerivedPropertyOptions } from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
@@ -23,11 +23,11 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import Property from '../../../../axon/js/Property.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CurvePoint from './CurvePoint.js';
 import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 
 type SelfOptions = {
   x: number; // Initial value of xProperty
@@ -104,17 +104,25 @@ export default class AncillaryTool extends PhetioObject {
 
     // Create PhET-iO-only Properties for each of the above CurvePointProperty instances, where y is mapped to null
     // when there is a discontinuity. These are not used anywhere in the code - they exist solely so that the PhET-iO
-    // client can inspect them. They are not garbage collected because they are registered with the PhET-iO tandem registry.
-    this.yIntegralProperty = createYProperty( this.integralCurvePointProperty,
-      options.tandem.createTandem( 'yIntegralProperty' ), options.yIntegralPropertyFeatured,
-      'The area under the curve, which is the same as yIntegralProperty.' );
-    this.yOriginalProperty = createYProperty( this.originalCurvePointProperty,
-      options.tandem.createTandem( 'yOriginalProperty' ), options.yOriginalPropertyFeatured );
-    this.yDerivativeProperty = createYProperty( this.derivativeCurvePointProperty,
-      options.tandem.createTandem( 'yDerivativeProperty' ), options.yDerivativePropertyFeatured,
-      'The slope of the tangent line, which is the same as yDerivativeProperty.' );
-    this.ySecondDerivativeProperty = createYProperty( this.secondDerivativeCurvePointProperty,
-      options.tandem.createTandem( 'ySecondDerivativeProperty' ), options.ySecondDerivativePropertyFeatured );
+    // client can inspect them.
+    this.yIntegralProperty = createYProperty( this.integralCurvePointProperty, {
+      tandem: options.tandem.createTandem( 'yIntegralProperty' ),
+      phetioFeatured: options.yIntegralPropertyFeatured,
+      phetioDocumentation: 'yIntegralProperty is the area under the curve.'
+    } );
+    this.yOriginalProperty = createYProperty( this.originalCurvePointProperty, {
+      tandem: options.tandem.createTandem( 'yOriginalProperty' ),
+      phetioFeatured: options.yOriginalPropertyFeatured
+    } );
+    this.yDerivativeProperty = createYProperty( this.derivativeCurvePointProperty, {
+      tandem: options.tandem.createTandem( 'yDerivativeProperty' ),
+      phetioFeatured: options.yDerivativePropertyFeatured,
+      phetioDocumentation: 'yDerivativeProperty is the slope of the tangent line.'
+    } );
+    this.ySecondDerivativeProperty = createYProperty( this.secondDerivativeCurvePointProperty, {
+      tandem: options.tandem.createTandem( 'ySecondDerivativeProperty' ),
+      phetioFeatured: options.ySecondDerivativePropertyFeatured
+    } );
 
     // When a curve changes, force listeners of CurvePointProperty instances to be notified, which will cause them
     // to re-inspect the CurvePoint values. We need to do this because CurvePoint instances are mutated as a curve is
@@ -175,18 +183,18 @@ function createCurvePointProperty( curve: Curve, xProperty: TReadOnlyProperty<nu
 /**
  * As a CurvePoint changes, provide the corresponding y value, mapping discontinuities to null.
  * This null representation is used only for presentation in PhET-iO/Studio.
- * The return type is ReadOnlyProperty because we may want to link to these in subclasses.
+ * The return type is ReadOnlyProperty <number | null> because we may want to link to these in subclasses.
  */
-function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, tandem: Tandem, phetioFeatured: boolean, phetioDocumentation?: string ):
+type CreateYPropertyOptions = PickRequired<DerivedPropertyOptions<number | null>, 'tandem' | 'phetioFeatured'> &
+  PickOptional<DerivedPropertyOptions<number | null>, 'phetioDocumentation'>;
+
+function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, providedOptions: CreateYPropertyOptions ):
   ReadOnlyProperty<number | null> {
-  const options: DerivedPropertyOptions<number | null> = {
-    tandem: tandem,
-    phetioFeatured: phetioFeatured,
+
+  const options = combineOptions<DerivedPropertyOptions<number | null>>( {
     phetioValueType: NullableIO( NumberIO )
-  };
-  if ( phetioDocumentation ) {
-    options.phetioDocumentation = phetioDocumentation;
-  }
+  }, providedOptions );
+
   return new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, options );
 }
 
