@@ -22,7 +22,7 @@ const integralCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, '
   default: '#00853E'
 }, {
   tandem: tandem.createTandem( 'integralCurveStrokeProperty' ),
-  phetioDocumentation: 'Color for the scrubber handle, vertical line, and accumulation line.'
+  phetioDocumentation: 'Color for the integral curve and the "Area Under Curve" scrubber.'
 } );
 
 const CalculusGrapherColors = {
@@ -94,7 +94,7 @@ const CalculusGrapherColors = {
     default: Color.RED
   }, {
     tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' ),
-    phetioDocumentation: 'Color for the tangent scrubber handle, vertical line, and the bar in the "Slope of Tangent" accordion box.'
+    phetioDocumentation: 'Color for the derivative curve, the "Tangent" scrubber, and the bar in the "Slope of Tangent" accordion box.'
   } ),
 
   // Stroke for the second derivative curve
@@ -109,7 +109,7 @@ const CalculusGrapherColors = {
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.positiveAlpha ), {
       tandem: tandem.createTandem( 'integralPositiveFillProperty' ),
       phetioValueType: Color.ColorIO,
-      phetioDocumentation: 'Color for positive area in the area plot, and in the "Net Signed Area" accordion box.'
+      phetioDocumentation: 'Color for positive area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
     } ),
 
   // Fill for the integral curve (when area is negative)
@@ -117,7 +117,7 @@ const CalculusGrapherColors = {
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.negativeAlpha ), {
       tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
       phetioValueType: Color.ColorIO,
-      phetioDocumentation: 'Color for negative area in the area plot, and in the "Net Signed Area" accordion box.'
+      phetioDocumentation: 'Color for negative area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
     } ),
 
   // fill for the cueing arrows on the original graph
