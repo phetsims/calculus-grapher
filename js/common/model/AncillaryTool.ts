@@ -12,7 +12,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedProperty, { DerivedPropertyOptions } from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
@@ -106,11 +106,13 @@ export default class AncillaryTool extends PhetioObject {
     // when there is a discontinuity. These are not used anywhere in the code - they exist solely so that the PhET-iO
     // client can inspect them. They are not garbage collected because they are registered with the PhET-iO tandem registry.
     this.yIntegralProperty = createYProperty( this.integralCurvePointProperty,
-      options.tandem.createTandem( 'yIntegralProperty' ), options.yIntegralPropertyFeatured );
+      options.tandem.createTandem( 'yIntegralProperty' ), options.yIntegralPropertyFeatured,
+      'The area under the curve, which is the same as yIntegralProperty.' );
     this.yOriginalProperty = createYProperty( this.originalCurvePointProperty,
       options.tandem.createTandem( 'yOriginalProperty' ), options.yOriginalPropertyFeatured );
     this.yDerivativeProperty = createYProperty( this.derivativeCurvePointProperty,
-      options.tandem.createTandem( 'yDerivativeProperty' ), options.yDerivativePropertyFeatured );
+      options.tandem.createTandem( 'yDerivativeProperty' ), options.yDerivativePropertyFeatured,
+      'The slope of the tangent line, with is the same as yDerivativeProperty.' );
     this.ySecondDerivativeProperty = createYProperty( this.secondDerivativeCurvePointProperty,
       options.tandem.createTandem( 'ySecondDerivativeProperty' ), options.ySecondDerivativePropertyFeatured );
 
@@ -175,13 +177,17 @@ function createCurvePointProperty( curve: Curve, xProperty: TReadOnlyProperty<nu
  * This null representation is used only for presentation in PhET-iO/Studio.
  * The return type is ReadOnlyProperty because we may want to link to these in subclasses.
  */
-function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, tandem: Tandem, phetioFeatured: boolean ):
+function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, tandem: Tandem, phetioFeatured: boolean, phetioDocumentation?: string ):
   ReadOnlyProperty<number | null> {
-  return new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, {
+  const options: DerivedPropertyOptions<number | null> = {
     tandem: tandem,
     phetioFeatured: phetioFeatured,
     phetioValueType: NullableIO( NumberIO )
-  } );
+  };
+  if ( phetioDocumentation ) {
+    options.phetioDocumentation = phetioDocumentation;
+  }
+  return new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, options );
 }
 
 calculusGrapher.register( 'AncillaryTool', AncillaryTool );

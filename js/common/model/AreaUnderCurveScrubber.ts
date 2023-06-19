@@ -52,23 +52,19 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
     this.negativeFillProperty = CalculusGrapherColors.integralNegativeFillProperty;
 
     this.addLinkedElement( this.colorProperty, {
-      tandemName: 'colorProperty',
-      phetioDocumentation: 'Color for the scrubber handle, vertical line, and accumulation line.'
+      tandemName: 'colorProperty'
     } );
 
     this.addLinkedElement( this.positiveFillProperty, {
-      tandemName: 'positiveFillProperty',
-      phetioDocumentation: 'Color for positive area in the area plot, and in the "Net Signed Area" accordion box.'
+      tandemName: 'positiveFillProperty'
     } );
 
     this.addLinkedElement( this.negativeFillProperty, {
-      tandemName: 'negativeFillProperty',
-      phetioDocumentation: 'Color for negative area in the area plot, and in the "Net Signed Area" accordion box.'
+      tandemName: 'negativeFillProperty'
     } );
 
     this.addLinkedElement( this.yIntegralProperty, {
-      tandemName: 'areaUnderCurveProperty',
-      phetioDocumentation: 'The area under the curve, which is the same as yIntegralProperty.'
+      tandemName: 'areaUnderCurveProperty'
     } );
   }
 }

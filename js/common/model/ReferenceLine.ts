@@ -37,13 +37,11 @@ export default class ReferenceLine extends AncillaryTool {
     this.lineColorProperty = CalculusGrapherColors.referenceLineStrokeProperty;
 
     this.addLinkedElement( this.handleColorProperty, {
-      tandemName: 'handleColorProperty',
-      phetioDocumentation: 'Color of the handle for moving the reference line'
+      tandemName: 'handleColorProperty'
     } );
 
     this.addLinkedElement( this.lineColorProperty, {
-      tandemName: 'lineColorProperty',
-      phetioDocumentation: 'Color of the vertical reference line'
+      tandemName: 'lineColorProperty'
     } );
   }
 }
