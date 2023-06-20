@@ -15,12 +15,12 @@ import LabeledPointNode from './LabeledPointNode.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import LinkableElement from '../../../../tandem/js/LinkableElement.js';
+import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 
 export default class LabeledPointsNode extends Node {
 
   public constructor( labeledPoints: LabeledPoint[],
-                      linkableElement: LinkableElement,
+                      linkableElement: PhetioObject,
                       chartTransform: ChartTransform,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       curveLayerVisibleProperty: TReadOnlyProperty<boolean>,

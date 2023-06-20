@@ -13,10 +13,10 @@ import calculusGrapher from '../../calculusGrapher.js';
 import LabeledLine from '../model/LabeledLine.js';
 import LabeledLineNode, { LabeledLineNodeOptions } from './LabeledLineNode.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import LinkableElement from '../../../../tandem/js/LinkableElement.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 
 type SelfOptions = {
   labeledLineOptions?: LabeledLineNodeOptions; // propagated to LabeledLineNode
@@ -28,7 +28,7 @@ export default class LabeledLinesNode extends Node {
 
   public readonly labeledLineNodes: LabeledLineNode[];
 
-  public constructor( labeledLines: LabeledLine[], labeledLinesLinkableElement: LinkableElement,
+  public constructor( labeledLines: LabeledLine[], labeledLinesLinkableElement: PhetioObject,
                       chartTransform: ChartTransform, providedOptions: LabeledLinesNodeOptions ) {
 
     const options = optionize<LabeledLinesNodeOptions, StrictOmit<SelfOptions, 'labeledLineOptions'>, NodeOptions>()( {

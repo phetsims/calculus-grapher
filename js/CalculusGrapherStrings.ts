@@ -5,46 +5,46 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import LinkableProperty from '../../axon/js/LinkableProperty.js';
+import type LocalizedStringProperty from '../../chipper/js/LocalizedStringProperty.js';
 import calculusGrapher from './calculusGrapher.js';
 
 type StringsType = {
   'calculus-grapher': {
-    'titleStringProperty': LinkableProperty<string>;
+    'titleStringProperty': LocalizedStringProperty;
   };
   'screen': {
-    'derivativeStringProperty': LinkableProperty<string>;
-    'integralStringProperty': LinkableProperty<string>;
-    'advancedStringProperty': LinkableProperty<string>;
-    'labStringProperty': LinkableProperty<string>;
+    'derivativeStringProperty': LocalizedStringProperty;
+    'integralStringProperty': LocalizedStringProperty;
+    'advancedStringProperty': LocalizedStringProperty;
+    'labStringProperty': LocalizedStringProperty;
   };
-  'smoothStringProperty': LinkableProperty<string>;
+  'smoothStringProperty': LocalizedStringProperty;
   'symbol': {
-    'dStringProperty': LinkableProperty<string>;
-    'fStringProperty': LinkableProperty<string>;
-    'xStringProperty': LinkableProperty<string>;
-    'tStringProperty': LinkableProperty<string>;
+    'dStringProperty': LocalizedStringProperty;
+    'fStringProperty': LocalizedStringProperty;
+    'xStringProperty': LocalizedStringProperty;
+    'tStringProperty': LocalizedStringProperty;
   };
-  'discontinuitiesStringProperty': LinkableProperty<string>;
-  'valuesStringProperty': LinkableProperty<string>;
-  'notationStringProperty': LinkableProperty<string>;
-  'lagrangeStringProperty': LinkableProperty<string>;
-  'leibnizStringProperty': LinkableProperty<string>;
-  'variableStringProperty': LinkableProperty<string>;
+  'discontinuitiesStringProperty': LocalizedStringProperty;
+  'valuesStringProperty': LocalizedStringProperty;
+  'notationStringProperty': LocalizedStringProperty;
+  'lagrangeStringProperty': LocalizedStringProperty;
+  'leibnizStringProperty': LocalizedStringProperty;
+  'variableStringProperty': LocalizedStringProperty;
   'checkbox': {
-    'areaUnderCurveStringProperty': LinkableProperty<string>;
-    'tangentStringProperty': LinkableProperty<string>;
+    'areaUnderCurveStringProperty': LocalizedStringProperty;
+    'tangentStringProperty': LocalizedStringProperty;
   };
   'barometer': {
-    'netSignedAreaStringProperty': LinkableProperty<string>;
-    'slopeOfTangentStringProperty': LinkableProperty<string>;
+    'netSignedAreaStringProperty': LocalizedStringProperty;
+    'slopeOfTangentStringProperty': LocalizedStringProperty;
   };
-  'predictStringProperty': LinkableProperty<string>;
-  'showStringProperty': LinkableProperty<string>;
-  'predictPreferenceStringProperty': LinkableProperty<string>;
-  'valuesPreferenceDescriptionStringProperty': LinkableProperty<string>;
-  'predictPreferenceDescriptionStringProperty': LinkableProperty<string>;
-  'referenceLineStringProperty': LinkableProperty<string>;
+  'predictStringProperty': LocalizedStringProperty;
+  'showStringProperty': LocalizedStringProperty;
+  'predictPreferenceStringProperty': LocalizedStringProperty;
+  'valuesPreferenceDescriptionStringProperty': LocalizedStringProperty;
+  'predictPreferenceDescriptionStringProperty': LocalizedStringProperty;
+  'referenceLineStringProperty': LocalizedStringProperty;
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
