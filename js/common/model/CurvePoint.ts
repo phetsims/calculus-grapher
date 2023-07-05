@@ -22,6 +22,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import StringUnionIO from '../../../../tandem/js/types/StringUnionIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import Disposable from '../../../../axon/js/Disposable.js';
 
 const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
 export type PointType = ( typeof PointTypeValues )[number];
@@ -152,7 +153,7 @@ export default class CurvePoint {
   }
 
   public dispose(): void {
-    assert && assert( false, 'CurvePoint cannot be disposed (exists for the lifetime of the sim)' );
+    Disposable.assertNotDisposable();
   }
 
   /**
