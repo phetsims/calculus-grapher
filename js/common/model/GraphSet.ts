@@ -62,7 +62,7 @@ export default class GraphSet extends PhetioObject {
   /**
    * GraphSetIO handles PhET-iO serialization of GraphSet.
    * It implements 'Reference type serialization', as described in the Serialization section of
-   * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
+   * https://github.com/phetsims/phet-io/blob/main/doc/phet-io-instrumentation-technical-guide.md#serialization
    */
   public static readonly GraphSetIO = new IOType( 'GraphSetIO', {
     valueType: GraphSet,

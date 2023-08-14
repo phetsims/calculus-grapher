@@ -15,7 +15,7 @@
  *
  * For the 'Calculus Grapher' sim, the same Curves instances are used throughout the lifetime of the simulation, so no
  * dispose method is necessary. An overview for the class hierarchy of Curves is given in
- * https://github.com/phetsims/calculus-grapher/blob/master/doc/implementation-notes.md
+ * https://github.com/phetsims/calculus-grapher/blob/main/doc/implementation-notes.md
  *
  * @author Brandon Li
  * @author Martin Veillette

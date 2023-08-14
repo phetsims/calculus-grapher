@@ -9,7 +9,7 @@ source code comments) and external documentation (design documents).
 
 The reader is encouraged to read the model document before proceeding:
 
-* [model.md](https://github.com/phetsims/calculus-grapher/blob/master/doc/model.md), a high-level description of the
+* [model.md](https://github.com/phetsims/calculus-grapher/blob/main/doc/model.md), a high-level description of the
   simulation model
 
 ## Terminology
@@ -43,7 +43,7 @@ This section describes how this sim addresses implementation considerations that
 ### Query Parameters
 
 Query parameters are used to enable sim-specific features. Sim-specific query parameters are documented
-in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/master/js/common/CalculusGrapherQueryParameters.ts).
+in [CalculusGrapherQueryParameters.ts](https://github.com/phetsims/calculus-grapher/blob/main/js/common/CalculusGrapherQueryParameters.ts).
 Running with `?log` will print the complete set of query parameters (common-code, PhET-iO, and sim-specific)
 to the browser console.
 
