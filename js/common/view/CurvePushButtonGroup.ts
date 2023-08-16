@@ -13,7 +13,7 @@ import { HBox, VBox } from '../../../../scenery/js/imports.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
-import UndoButton from '../../../../scenery-phet/js/buttons/UndoButton.js';
+import ReturnButton from '../../../../scenery-phet/js/buttons/ReturnButton.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -27,7 +27,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Create an undo Button. Disabling this button when there's nothing to undo is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
-    const undoButton = new UndoButton( {
+    const undoButton = new ReturnButton( {
       listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
       iconOptions: { height: 13 },
