@@ -49,7 +49,8 @@ to the browser console.
 
 ### Model-View Transforms
 
-Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x to the left, and +y up, while the view has +x to the left, and +y _down_. The scaling changes based on the zoom level.
+Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x
+to the left, and +y up, while the view has +x to the left, and +y _down_. The scaling changes based on the zoom level.
 
 ### Memory Management
 
@@ -61,8 +62,10 @@ Every graph in the simulation has a model-view transform, implemented using bamb
   * UI subcomponents of the "Simulation" tab in the Preferences dialog. These components are found in
     calculus-grapher/common/view/preferences/
 
-* **Listeners**: Unless explicitly noted in the code, all uses of `link`, `addListener`, etc. do _not_ need a corresponding
-  `unlink`, `removeListener`, etc.  Classes remove listeners by implementing or overriding `dispose`.  Factory functions remove listeners via `disposeEmitter.addListener`.
+* **Listeners**: Unless explicitly noted in the code, all uses of `link`, `addListener`, etc. do _not_ need a
+  corresponding
+  `unlink`, `removeListener`, etc. Classes remove listeners by implementing or overriding `dispose`. Factory functions
+  remove listeners via `disposeEmitter.addListener`.
 
 ## Common Framework for All Screens
 
@@ -78,29 +81,33 @@ CalculusGrapherModel - the top-level model class
 GraphType - Types for identifying the types of graphs available, and sets of those graphs.
 GraphSet - GraphSet is an ordered set of GraphType
 
-CurveManipulationMode - Enumeration of the possible 'modes' of manipulating OriginalCurve, such as Parabola, Triangle, etc.
+CurveManipulationMode - Enumeration of the possible 'modes' of manipulating OriginalCurve, such as Parabola, Triangle,
+etc.
 CurveManipulationProperties - Track the Curve Width and the Curve Mode
 CurvePoint - A point tracking the x, y and pointType of a curve. CurvePoint are never disposed but merely mutated.
 Curve - A collection of CurvePoints. Intended to be sub-classed
+
 - TransformedCurve - A Curve that can be manipulated by user transformation. Extends Curve.
 - IntegralCurve - The integral of a Curve. Extends Curve.
 - DerivativeCurve - The first derivative of a Curve. Extends Curve.
 - SecondDerivativeCurve - The second derivative of a Curve. Extends Curve.
 
 AncillaryTool - A model base class associated with an x value on the graph. Intended to be sub-classed
-- AreaUnderCurveScrubber - Model for the scrubber 'AreaUnderCurve'.  Extends AncillaryTool.
+
+- AreaUnderCurveScrubber - Model for the scrubber 'AreaUnderCurve'. Extends AncillaryTool.
 - TangentScrubber - Model for the scrubber 'Tangent'- Extends AncillaryTool.
 - ReferenceLine - Model for a vertical Line. Extends AncillaryTool
 - LabeledAncillaryTool - A model base class for a labelled ancillary tool. Extends AncillaryTool
-   -LabeledLine - A model for a labeled vertical line. Extends LabeledAncillaryTool
-   -LabeledPoint - A model for a labeled point.  Extends LabeledAncillaryTool
+  -LabeledLine - A model for a labeled vertical line. Extends LabeledAncillaryTool
+  -LabeledPoint - A model for a labeled point. Extends LabeledAncillaryTool
 
 CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferences dialog.
 
 ### Curve Hierarchy
 
 `Curve` is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides
-functionality that is common to all types of curves, which are 'integral', 'original', 'derivative' and 'secondDerivative' curves, and is intended to be sub-classed for type-specific features.
+functionality that is common to all types of curves, which are 'integral', 'original', 'derivative' and '
+secondDerivative' curves, and is intended to be sub-classed for type-specific features.
 
 Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out
 the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
@@ -136,7 +143,8 @@ integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
 
 ### Ancillary Tools
 
-AncillaryTool is the model base class associated with an x value on the graph. It keeps track of the following quantities associated with the x value:
+AncillaryTool is the model base class associated with an x value on the graph. It keeps track of the following
+quantities associated with the x value:
 
 - the integral of f(x)
 - the original function f(x)

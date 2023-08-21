@@ -17,7 +17,8 @@ point. The tool displays the slope of the tangent line and allows users to drag 
 the tangent line changes as the point moves.
 
 Area under Curve: The user can use the "Area Under Curve" tool to visualize the area under a curve. The user can drag a
-scrubber to specify the upper bound of integration. The simulation then calculates and displays the area under the selected
+scrubber to specify the upper bound of integration. The simulation then calculates and displays the area under the
+selected
 portion of the curve and the value of the definite integral that represents the area.
 
 Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus,
@@ -55,6 +56,7 @@ The
 gridlines will scale accordingly to the zoom level.
 
 Settings can be found in the _Simulation_ tab of the _Preference_ dialog. The five settings are:
+
 - Variable: Picks label x or t for the horizontal variable.
 - Notation: Picks Lagrange (prime) or Leibniz (df/dx) notation for the derivation.
 - Discontinuities: Selects the discontinuities to be connected with a dashed line or unconnected.
