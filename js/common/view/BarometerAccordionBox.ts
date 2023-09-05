@@ -98,7 +98,6 @@ export default class BarometerAccordionBox extends AccordionBox {
 
     const chartTransform = new ChartTransform( options.chartTransformOptions );
 
-    // eslint-disable-next-line tandem-name-should-match
     options.titleNode = new RichText( labelStringProperty, {
       font: CalculusGrapherConstants.ACCORDION_BOX_FONT,
       maxWidth: 80,
