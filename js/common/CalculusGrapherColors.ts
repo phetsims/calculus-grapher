@@ -14,7 +14,7 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js';
 
-const tandem = Tandem.GLOBAL_VIEW.createTandem( 'colorProfile' );
+const tandem = Tandem.COLORS;
 
 const SCREEN_BACKGROUND_COLOR = 'rgb( 243, 252, 254 )';
 
