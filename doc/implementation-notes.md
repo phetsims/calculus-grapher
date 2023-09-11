@@ -78,14 +78,13 @@ of the most important classes and their relationships.
 
 CalculusGrapherModel - the top-level model class
 
-GraphType - Types for identifying the types of graphs available, and sets of those graphs.
-GraphSet - GraphSet is an ordered set of GraphType
+GraphType - Types for identifying the types of graphs available, and sets of those graphs. GraphSet - GraphSet is an
+ordered set of GraphType
 
 CurveManipulationMode - Enumeration of the possible 'modes' of manipulating OriginalCurve, such as Parabola, Triangle,
-etc.
-CurveManipulationProperties - Track the Curve Width and the Curve Mode
-CurvePoint - A point tracking the x, y and pointType of a curve. CurvePoint are never disposed but merely mutated.
-Curve - A collection of CurvePoints. Intended to be sub-classed
+etc. CurveManipulationProperties - Track the Curve Width and the Curve Mode CurvePoint - A point tracking the x, y and
+pointType of a curve. CurvePoint are never disposed but merely mutated. Curve - A collection of CurvePoints. Intended to
+be sub-classed
 
 - TransformedCurve - A Curve that can be manipulated by user transformation. Extends Curve.
 - IntegralCurve - The integral of a Curve. Extends Curve.
@@ -98,8 +97,8 @@ AncillaryTool - A model base class associated with an x value on the graph. Inte
 - TangentScrubber - Model for the scrubber 'Tangent'- Extends AncillaryTool.
 - ReferenceLine - Model for a vertical Line. Extends AncillaryTool
 - LabeledAncillaryTool - A model base class for a labelled ancillary tool. Extends AncillaryTool
-  -LabeledLine - A model for a labeled vertical line. Extends LabeledAncillaryTool
-  -LabeledPoint - A model for a labeled point. Extends LabeledAncillaryTool
+  - LabeledLine - A model for a labeled vertical line. Extends LabeledAncillaryTool
+  - LabeledPoint - A model for a labeled point. Extends LabeledAncillaryTool
 
 CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferences dialog.
 
@@ -109,18 +108,17 @@ CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferen
 functionality that is common to all types of curves, which are 'integral', 'original', 'derivative' and '
 secondDerivative' curves, and is intended to be sub-classed for type-specific features.
 
-Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out
-the y-values of the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close
-enough for derivative and integral computations and are considered to cover 'every' x-value within its domain.
-An AXON/emitter on the Curve can emit to signal that its CurvePoints have changed in any form.
+Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out the y-values of
+the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close enough for derivative and
+integral computations and are considered to cover 'every' x-value within its domain. An AXON/emitter on the Curve can
+emit to signal that its CurvePoints have changed in any form.
 
 `CurvePoint` keeps track of the x and y values of a point, as well as the point type. The point type is an enumeration
 that consists of the types: 'smooth', 'cusp', and 'discontinuous'. CurvePoint can save the previous state of a point
 into a stack that can be restored for undo operations.
 
-`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates.
-For originalCurve, the CurvePoints are updated when a user manipulates the CurvePoints through a method
-on `TransformedCurve`.
+`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates. For originalCurve, the
+CurvePoints are updated when a user manipulates the CurvePoints through a method on `TransformedCurve`.
 
 `TransformedCurve` is mainly responsible for:
 
@@ -131,9 +129,9 @@ on `TransformedCurve`.
 - Resetting all the points of the curve
 
 `DerivativeCurve` and `SecondDerivativeCurve` are `Curve` subtypes whose main responsibilities are to observe when the
-originalCurve changes by listening to the AXON/emitter on the originalCurve and
-differentiates it and update the `CurvePoint`s of the first and second derivative. The derivatives are computed by
-considering the slope of the secant lines from both sides of every point.
+originalCurve changes by listening to the AXON/emitter on the originalCurve and differentiates it and update
+the `CurvePoint`s of the first and second derivative. The derivatives are computed by considering the slope of the
+secant lines from both sides of every point.
 
 `IntegralCurve` is a `Curve` subtype for the curve that represents the integral of the `TransformedCurve`. The
 TransformedCurve is referenced as the originalCurve of the IntegralCurve. IntegralCurve's main responsibility is to
@@ -152,9 +150,8 @@ quantities associated with the x value:
 - the second derivative of f(x)
 
 - All of the above quantities are derived from their associated curve. For performance reason, the quantities above are
-  updated solely when its associated tool is visible.
-  Many tools such as the Area Under Curve tool, Tangent tool, Reference Line tool, as well as the PhET-IO tools, Labeled
-  Points and Labeled Lines, extend the AncillaryTool class.
+  updated solely when its associated tool is visible. Many tools such as the Area Under Curve tool, Tangent tool,
+  Reference Line tool, as well as the PhET-IO tools, Labeled Points and Labeled Lines, extend the AncillaryTool class.
 
 ## PhET-iO
 
