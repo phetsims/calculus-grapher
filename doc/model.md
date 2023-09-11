@@ -18,15 +18,14 @@ the tangent line changes as the point moves.
 
 Area under Curve: The user can use the "Area Under Curve" tool to visualize the area under a curve. The user can drag a
 scrubber to specify the upper bound of integration. The simulation then calculates and displays the area under the
-selected
-portion of the curve and the value of the definite integral that represents the area.
+selected portion of the curve and the value of the definite integral that represents the area.
 
 Overall, the Calculus Grapher simulation is a powerful tool for students to explore and visualize concepts in calculus,
 and to gain a deeper understanding of the graphical relationships between functions and their derivatives and integrals.
 
 The simulation comprises a user-controlled function f(x) and, depending on the screen, the integral and or derivative of
-that function. A large double-headed arrow is initially
-present at the start of the simulation to indicate to the user that the curve of f(x) is interactive. The function f(x)
+that function. A large double-headed arrow is initially present at the start of the simulation to indicate to the user
+that the curve of f(x) is interactive. The function f(x)
 can be controlled by a control panel on the right-hand side.
 
 ## Common Controls
@@ -44,16 +43,14 @@ the last change done to the function. The Eraser button resets the function f(x)
 typically y=0).
 
 Below the control panel is a "Reference Line" checkbox, indicated by a vertical line. When checked, the Reference Line
-will
-appear on the graphs. The reference line spans all the graphs and the x-position of the reference line is controlled
-by the user.
+will appear on the graphs. The reference line spans all the graphs and the x-position of the reference line is
+controlled by the user.
 
-Zoom buttons are available on the left-hand side of the derivative and integral graphs.
-It allows the user to upscale or downscale the y-axis.
+Zoom buttons are available on the left-hand side of the derivative and integral graphs. It allows the user to upscale or
+downscale the y-axis.
 
 Also, below the control panel is a Grid checkbox. When checked, each graph will contain independent internal gridlines.
-The
-gridlines will scale accordingly to the zoom level.
+The gridlines will scale accordingly to the zoom level.
 
 Settings can be found in the _Simulation_ tab of the _Preference_ dialog. The five settings are:
 
@@ -98,8 +95,7 @@ added to the left of the graphs. It allows the user to toggle between the deriva
 A "Smooth" button is added to the control panel that smooths the original function f(x) by performing a local average of
 the function. The "Smooth" button can be pressed multiple times to further smooth the function.
 
-The choice of functions has been expanded to include triangular, parabolic, sinusoidal and free-form
-functions.
+The choice of functions has been expanded to include triangular, parabolic, sinusoidal and free-form functions.
 
 ## _Lab_ Screen
 
@@ -126,12 +122,11 @@ manipulation modes in this simulation. The curve manipulation modes are:
 We approximate curves by generating a set of discrete points with fixed x-coordinates. There are 1251 points per curve.
 Each point in a curve has a specific point type metadata, such as a smooth, cusp, or discontinuity. A function has a
 jump discontinuity if the left and right-hand limits of the function are not equal. In such cases, points on both sides
-of the jump are labeled as discontinuous.
-Similarly, points are labeled cusp points if the curve slope changes suddenly. We leverage the point type to determine
-which
-points should be linked to yield the appearance of a smooth curve and which points should not be linked but appear as
-circles (say to represent discontinuities). Curve manipulations are handled by a set of functions that update the curve
-points based on user input. The point type is assessed based on the type of curve mode that is being manipulated.
+of the jump are labeled as discontinuous. Similarly, points are labeled cusp points if the curve slope changes suddenly.
+We leverage the point type to determine which points should be linked to yield the appearance of a smooth curve and
+which points should not be linked but appear as circles (say to represent discontinuities). Curve manipulations are
+handled by a set of functions that update the curve points based on user input. The point type is assessed based on the
+type of curve mode that is being manipulated.
 
 Mathematically, the integral curve is calculated as a left Riemann sum based on the points in the f(x) curve. The point
 type metadata of the integral curve is based on the metadata of a point of the f(x) curve, but where cusp points are
