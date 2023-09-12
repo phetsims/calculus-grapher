@@ -17,7 +17,6 @@ import AdvancedScreen from './advanced/AdvancedScreen.js';
 import { CreditsData } from '../../joist/js/CreditsNode.js';
 import CalculusGrapherSimulationPreferencesNode from './common/view/preferences/CalculusGrapherSimulationPreferencesNode.js';
 import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
-import CalculusGrapherPreferences from './common/model/CalculusGrapherPreferences.js';
 
 const credits: CreditsData = {
   leadDesign: 'Amanda McGarry',
@@ -39,13 +38,7 @@ simLauncher.launch( () => {
   const preferencesModel = new PreferencesModel( {
     simulationOptions: {
       customPreferences: [ {
-        createContent: tandem => new CalculusGrapherSimulationPreferencesNode( tandem.createTandem( 'content' ) ),
-        modelLinkables: [
-          { property: CalculusGrapherPreferences.valuesVisibleProperty },
-          { property: CalculusGrapherPreferences.connectDiscontinuitiesProperty },
-          { property: CalculusGrapherPreferences.derivativeNotationProperty },
-          { property: CalculusGrapherPreferences.functionVariableProperty }
-        ]
+        createContent: tandem => new CalculusGrapherSimulationPreferencesNode( tandem.createTandem( 'content' ) )
       } ]
     }
   } );
