@@ -49,7 +49,7 @@ to the browser console.
 
 ### Model-View Transforms
 
-Every graph in the simulation has a model-view transform, implemented using bamboo's ChartTransform.js. The model has +x
+Every graph in the simulation has a model-view transform, implemented using bamboo's `ChartTransform`. The model has +x
 to the left, and +y up, while the view has +x to the left, and +y _down_. The scaling changes based on the zoom level.
 
 ### Memory Management
