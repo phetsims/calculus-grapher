@@ -156,7 +156,7 @@ quantities associated with the x value:
 ## PhET-iO
 
 For the most part, the PhET-iO instrumentation follows a standard pattern. There are two specific types of PhET-iO
-elements to this simulation:
+Elements to this simulation:
 
 - `GraphSetIO`: Handles the PhET-iO instrumentation for the GraphSet, which is the set of GraphTypes that are available
   in the simulation.
