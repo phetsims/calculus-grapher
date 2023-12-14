@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "bf1c4f372793985b7b9a0f18a261a8be4912d7ab",
+    "sha": "7a81c1e5dc04883f3e2bb9540cb99d0eb0dd169c",
     "branch": "1.0"
   },
   "chipper": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
-    "sha": "02fa8d89768f7977a0e2b3d15ad65e859c8355d4",
+    "sha": "5d65d863acbc50c1ad19ca3435f7773468991bbc",
     "branch": "HEAD"
   },
   "phetcommon": {
@@ -61,7 +61,7 @@
     "branch": "HEAD"
   },
   "phetmarks": {
-    "sha": "c6c4e824e4bf13d0e467069c49381461787db16f",
+    "sha": "a3e02fb617ed4ad11bd5225bf9ca21a56f068458",
     "branch": "HEAD"
   },
   "query-string-machine": {
@@ -93,7 +93,7 @@
     "branch": "HEAD"
   },
   "tandem": {
-    "sha": "5abf64dcd29f45bf0ca8bf2910bdf33546305efa",
+    "sha": "f644b21787f7480eea442693832574b14498571f",
     "branch": "HEAD"
   },
   "twixt": {
