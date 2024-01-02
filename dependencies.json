@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "ee64650a2ac7795e532b88c5cb2549bf316d7abb",
+    "sha": "52239e7c65faef5b01616de414e5fa66b01a0420",
     "branch": "1.0"
   },
   "chipper": {
@@ -49,7 +49,7 @@
     "branch": "HEAD"
   },
   "phet-io-sim-specific": {
-    "sha": "202c77bb1cf23b34f6c2cefba6fcfa8eac75922f",
+    "sha": "7d736172920c51b7c2836ae6d72842fe1fdf3c9d",
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
