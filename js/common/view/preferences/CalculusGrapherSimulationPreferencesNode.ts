@@ -45,7 +45,7 @@ export default class CalculusGrapherSimulationPreferencesNode extends VBox {
         tandem.createTandem( 'valuesControl' ) ),
 
       // Predict
-      new PredictControl( CalculusGrapherPreferences.predictPreferenceEnabledProperty,
+      new PredictControl( CalculusGrapherPreferences.predictFeatureEnabledProperty,
         tandem.createTandem( 'predictControl' ) )
     ];
 

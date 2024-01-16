@@ -145,7 +145,7 @@ export default class CalculusGrapherModel implements TModel {
     } );
 
     this.predictEnabledProperty = DerivedProperty.and(
-      [ CalculusGrapherPreferences.predictPreferenceEnabledProperty, this.predictSelectedProperty ], {
+      [ CalculusGrapherPreferences.predictFeatureEnabledProperty, this.predictSelectedProperty ], {
         tandem: options.tandem.createTandem( 'predictEnabledProperty' ),
         phetioValueType: BooleanIO,
         phetioFeatured: true,

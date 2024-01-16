@@ -52,9 +52,9 @@ const CalculusGrapherPreferences = {
   } ),
 
   // Property for the 'Predict' preference.
-  // Note that this Preference is named predictPreferenceEnabledProperty to distinguish it from
+  // Note that this Preference is named predictFeatureEnabledProperty to distinguish it from
   // CalculusGraphModel.predictEnabledProperty.
-  predictPreferenceEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
+  predictFeatureEnabledProperty: new BooleanProperty( CalculusGrapherQueryParameters.predict, {
     tandem: Tandem.PREFERENCES.createTandem( 'predictFeatureEnabledProperty' ),
     phetioFeatured: true,
     phetioDocumentation: 'Preference used to show/hide the Predict feature in the user interface'
