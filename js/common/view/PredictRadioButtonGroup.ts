@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * PredictRadioButtonGroup is the radio button group for choosing either the original or predict curve.
