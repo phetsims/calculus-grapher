@@ -9,7 +9,6 @@
 
 import { AlignGroup, Text } from '../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
@@ -34,7 +33,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
       {
         value: false,
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
-        tandemName: `originalCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: 'originalCurveRadioButton'
       },
       {
         value: true,
@@ -46,7 +45,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
           } );
           return new LabelColorIcon( text, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty );
         },
-        tandemName: `predictCurve${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: 'predictCurveRadioButton'
       }
     ];
 

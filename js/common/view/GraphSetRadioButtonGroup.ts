@@ -12,7 +12,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
 import GraphType from '../model/GraphType.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import { AlignGroup } from '../../../../scenery/js/imports.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
@@ -47,7 +46,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
     return {
       createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
       value: graphSet,
-      tandemName: `${graphType.tandemNamePrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+      tandemName: `${graphType.tandemNamePrefix}RadioButton`
     };
   }
 }

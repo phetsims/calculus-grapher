@@ -12,7 +12,6 @@ import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../s
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
-import AquaRadioButton from '../../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
@@ -71,13 +70,13 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         value: 'lagrange',
         createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.lagrangeStringProperty,
           new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
-        tandemName: `lagrange${AquaRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: 'lagrangeRadioButton'
       },
       {
         value: 'leibniz',
         createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.leibnizStringProperty,
           new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
-        tandemName: `leibniz${AquaRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: 'leibnizRadioButton'
       }
     ];
 

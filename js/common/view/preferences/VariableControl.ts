@@ -12,7 +12,6 @@ import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../s
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
-import AquaRadioButton from '../../../../../sun/js/AquaRadioButton.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -69,12 +68,12 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
       {
         value: 'x',
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.xStringProperty, radioButtonTandem ),
-        tandemName: `x${AquaRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: 'xRadioButton'
       },
       {
         value: 't',
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.tStringProperty, radioButtonTandem ),
-        tandemName: `t${AquaRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: 'tRadioButton'
       }
     ];
 

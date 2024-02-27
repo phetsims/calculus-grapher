@@ -41,7 +41,7 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
       buttonAppearanceStrategyOptions: {
         selectedLineWidth: 2
       },
-      tandem: tandem.createTandem( `${mode.tandemPrefix}${RectangularRadioButton.TANDEM_NAME_SUFFIX}` )
+      tandem: tandem.createTandem( `${mode.tandemPrefix}RadioButton` )
     } ) );
 
     super( {

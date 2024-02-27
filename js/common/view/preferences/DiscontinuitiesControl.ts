@@ -10,7 +10,6 @@
 import Property from '../../../../../axon/js/Property.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
 import { Circle, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
-import RectangularRadioButton from '../../../../../sun/js/buttons/RectangularRadioButton.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherColors from '../../CalculusGrapherColors.js';
@@ -68,7 +67,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
       return {
         value: value,
         createNode: () => new DiscontinuitiesRadioButtonLabel( value ),
-        tandemName: `${value}${RectangularRadioButton.TANDEM_NAME_SUFFIX}`
+        tandemName: `${value}RadioButton`
       };
     } );
 
