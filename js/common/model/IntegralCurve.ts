@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2024, University of Colorado Boulder
 
 /**
  * IntegralCurve is a Curve subclass for the curve that represents the integral of originalCurve.

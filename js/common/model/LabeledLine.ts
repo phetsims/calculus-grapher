@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * LabeledLine is the model element for a labeled line tool. This is tool consists of a vertical line with a label

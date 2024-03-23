@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * CurveManipulationWidthControl is display the width as a curve, with a slider to control the width for

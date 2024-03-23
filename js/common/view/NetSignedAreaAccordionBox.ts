@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * NetSignedAreaAccordionBox is the accordion box titled 'Net Signed Area'.

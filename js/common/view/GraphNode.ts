@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2024, University of Colorado Boulder
 
 /**
  * GraphNode is the view representation of a Graph, which includes a curve, a chart (grid and axes) and zoom buttons.

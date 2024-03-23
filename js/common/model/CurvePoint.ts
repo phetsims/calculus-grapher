@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2024, University of Colorado Boulder
 
 /**
  * CurvePoint is a single mutable point of a Curve at a given x-value.

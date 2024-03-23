@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * ValuesControl is the control in the Preferences dialog for setting whether numerical values are displayed

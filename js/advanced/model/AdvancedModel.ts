@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * AdvancedModel is the top-level model for the 'Advanced' screen. This class adds no additional functionality,

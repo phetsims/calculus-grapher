@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * LabModel is the top-level model for the 'Lab' screen. This class adds no additional functionality, but is

@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * SecondDerivative is a Curve subclass for a curve that represents the second derivative of a Curve.
