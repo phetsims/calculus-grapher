@@ -17,11 +17,11 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "22398d3016727bf7e47daabdf24e36327a2c81de",
+    "sha": "c8fa0547c8ffa52473235bdaa5a3d207459624d6",
     "branch": "1.0"
   },
   "chipper": {
-    "sha": "42658fd1992253ec321b0b3015b84b8d24170357",
+    "sha": "44db2ca2f38c665d98fc03546e92c3468442a4ed",
     "branch": "HEAD"
   },
   "dot": {
