@@ -5,7 +5,7 @@
     "branch": "HEAD"
   },
   "axon": {
-    "sha": "a4aaf7525b3c3a0d4049be8a1fb3b20424e164ca",
+    "sha": "5586ff2328f59d3d675d32155ac258fed35cd26c",
     "branch": "HEAD"
   },
   "bamboo": {
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "7584b5854b917b4120ed17805b71b4ff38c34b01",
+    "sha": "762a06929d493df7f49f37c7e582086e349f95a7",
     "branch": "1.0"
   },
   "chipper": {
