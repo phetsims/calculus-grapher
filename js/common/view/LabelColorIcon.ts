@@ -32,6 +32,7 @@ export class LabelColorIcon extends VBox {
     super( {
       children: [ alignBox, colorLine ],
       spacing: 7,
+      sizable: false,
       align: 'center'
     } );
   }
