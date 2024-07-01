@@ -134,6 +134,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
    * Reset all
    */
   public reset(): void {
+    this.interruptSubtreeInput();
     this.model.reset();
     this.graphsNode.reset();
   }
