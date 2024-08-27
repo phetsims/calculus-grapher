@@ -25,6 +25,7 @@ const HAIR_SPACE_STRING = '\u200A';
 const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;
 
 // Possible prime symbols that can appear after the 'f' in 'f(x)'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const PrimeStringValues = [ '', CalculusGrapherSymbols.prime, CalculusGrapherSymbols.doublePrime ] as const;
 type PrimeString = ( typeof PrimeStringValues )[number];
 
