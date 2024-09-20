@@ -56,6 +56,11 @@
               "ts-nocheck": true
             }
           ]
+        },
+        "parserOptions": {
+          "project": [
+            "../calculus-grapher/tsconfig.json"
+          ]
         }
       }
     ]
