@@ -6,17 +6,17 @@
  * @author Brandon Li
  */
 
+import { CreditsData } from '../../joist/js/CreditsNode.js';
+import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
+import AdvancedScreen from './advanced/AdvancedScreen.js';
 import CalculusGrapherStrings from './CalculusGrapherStrings.js';
+import CalculusGrapherSimulationPreferencesNode from './common/view/preferences/CalculusGrapherSimulationPreferencesNode.js';
 import DerivativeScreen from './derivative/DerivativeScreen.js';
 import IntegralScreen from './integral/IntegralScreen.js';
 import LabScreen from './lab/LabScreen.js';
-import AdvancedScreen from './advanced/AdvancedScreen.js';
-import { CreditsData } from '../../joist/js/CreditsNode.js';
-import CalculusGrapherSimulationPreferencesNode from './common/view/preferences/CalculusGrapherSimulationPreferencesNode.js';
-import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 
 const credits: CreditsData = {
   leadDesign: 'Amanda McGarry',
