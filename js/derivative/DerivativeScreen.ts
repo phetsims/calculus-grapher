@@ -9,15 +9,15 @@
  */
 
 import Screen from '../../../joist/js/Screen.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
+import GraphSet from '../common/model/GraphSet.js';
+import GraphType from '../common/model/GraphType.js';
+import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import DerivativeModel from './model/DerivativeModel.js';
 import DerivativeScreenView from './view/DerivativeScreenView.js';
-import GraphType from '../common/model/GraphType.js';
-import Tandem from '../../../tandem/js/Tandem.js';
-import GraphSet from '../common/model/GraphSet.js';
-import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 

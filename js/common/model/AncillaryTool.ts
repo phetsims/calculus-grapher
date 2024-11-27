@@ -12,10 +12,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty, { DerivedPropertyOptions } from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
@@ -23,11 +27,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
-import Property from '../../../../axon/js/Property.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CurvePoint from './CurvePoint.js';
-import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 
 type SelfOptions = {
   x: number; // Initial value of xProperty

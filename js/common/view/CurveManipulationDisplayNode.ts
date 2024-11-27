@@ -6,19 +6,19 @@
  * @author Martin Veillette
  */
 
-import CurveNode from './CurveNode.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import TransformedCurve from '../model/TransformedCurve.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Node, TColor } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
+import CurveNode from './CurveNode.js';
 
 export default class CurveManipulationDisplayNode extends Node {
 

@@ -8,10 +8,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
-import calculusGrapher from '../calculusGrapher.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
+import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js';
 
 const tandem = Tandem.COLORS;

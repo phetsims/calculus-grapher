@@ -7,19 +7,19 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { HBox, RichText, Text } from '../../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
-import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
-import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
-import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
-import GraphType from '../../model/GraphType.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
-import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
+import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
+import { HBox, RichText, Text } from '../../../../../scenery/js/imports.js';
+import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
+import GraphType from '../../model/GraphType.js';
+import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 
 export default class NotationControl extends PreferencesControl {
 

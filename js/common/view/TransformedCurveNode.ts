@@ -14,15 +14,15 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import TransformedCurve from '../model/TransformedCurve.js';
-import CurveNode, { CurveNodeOptions } from './CurveNode.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CueingArrowsNode from './CueingArrowsNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import TransformedCurve from '../model/TransformedCurve.js';
+import CueingArrowsNode from './CueingArrowsNode.js';
+import CurveNode, { CurveNodeOptions } from './CurveNode.js';
 
 type SelfOptions = {
 

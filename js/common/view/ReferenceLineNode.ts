@@ -11,21 +11,21 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Multilink from '../../../../axon/js/Multilink.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import Utils from '../../../../dot/js/Utils.js';
+import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import NumberIO from '../../../../tandem/js/types/NumberIO.js';
+import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import ReferenceLine from '../model/ReferenceLine.js';
 import ScrubberNode from './ScrubberNode.js';
-import Multilink from '../../../../axon/js/Multilink.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import Utils from '../../../../dot/js/Utils.js';
-import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 
 // number of decimal places shown for the x value, dragging snaps to this interval
 const X_DECIMAL_PLACES = 1;

@@ -8,15 +8,15 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import calculusGrapher from '../../calculusGrapher.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TangentScrubber from '../model/TangentScrubber.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
 
 type SelfOptions = EmptySelfOptions;
 

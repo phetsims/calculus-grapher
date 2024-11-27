@@ -7,18 +7,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
+import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
 import { RichText, Text } from '../../../../../scenery/js/imports.js';
+import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
-import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
-import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
-import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 
 export default class PredictControl extends PreferencesControl {
 

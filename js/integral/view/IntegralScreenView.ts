@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
-import IntegralModel from '../model/IntegralModel.js';
-import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import AreaUnderCurveCheckbox from '../../common/view/AreaUnderCurveCheckbox.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import AreaUnderCurveCheckbox from '../../common/view/AreaUnderCurveCheckbox.js';
+import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
+import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
+import IntegralModel from '../model/IntegralModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -8,11 +8,11 @@
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import { NodeTranslationOptions, VBox, VBoxOptions } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 const ARROW_LENGTH = 50;
 const ARROW_NODE_OPTIONS = {

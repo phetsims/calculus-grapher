@@ -11,9 +11,9 @@
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
-import calculusGrapher from '../calculusGrapher.js';
 import { PathBoundsMethod, Text } from '../../../scenery/js/imports.js';
 import { CheckboxOptions } from '../../../sun/js/Checkbox.js';
+import calculusGrapher from '../calculusGrapher.js';
 
 const CONTROL_FONT = new PhetFont( 16 ); // for text on checkboxes, radio buttons, push buttons, etc.
 

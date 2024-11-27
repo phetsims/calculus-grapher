@@ -7,13 +7,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import AncillaryTool from './AncillaryTool.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Curve from './Curve.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import { ProfileColorProperty } from '../../../../scenery/js/imports.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import AncillaryTool from './AncillaryTool.js';
+import Curve from './Curve.js';
 
 export default class TangentScrubber extends AncillaryTool {
 

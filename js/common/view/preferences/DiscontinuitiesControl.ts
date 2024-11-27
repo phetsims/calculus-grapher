@@ -8,16 +8,16 @@
  */
 
 import Property from '../../../../../axon/js/Property.js';
+import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
 import { Circle, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherColors from '../../CalculusGrapherColors.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
-import { ConnectDiscontinuities, ConnectDiscontinuitiesValues } from '../../CalculusGrapherQueryParameters.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherColors from '../../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
-import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
+import { ConnectDiscontinuities, ConnectDiscontinuitiesValues } from '../../CalculusGrapherQueryParameters.js';
 
 export default class DiscontinuitiesControl extends PreferencesControl {
 

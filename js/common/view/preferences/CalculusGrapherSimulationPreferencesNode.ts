@@ -12,14 +12,14 @@
  */
 
 import { VBox } from '../../../../../scenery/js/imports.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 import DiscontinuitiesControl from './DiscontinuitiesControl.js';
-import ValuesControl from './ValuesControl.js';
 import NotationControl from './NotationControl.js';
-import VariableControl from './VariableControl.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
 import PredictControl from './PredictControl.js';
+import ValuesControl from './ValuesControl.js';
+import VariableControl from './VariableControl.js';
 
 export default class CalculusGrapherSimulationPreferencesNode extends VBox {
 

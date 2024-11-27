@@ -10,13 +10,13 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationIconNode from './CurveManipulationIconNode.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { AlignBox, AlignGroup, GridBox, TColor } from '../../../../scenery/js/imports.js';
+import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
 export default class CurveManipulationModeRadioButtonGroup extends GridBox {
 

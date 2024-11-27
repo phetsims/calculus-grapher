@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Color, VBox } from '../../../../scenery/js/imports.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
-import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { Color, VBox } from '../../../../scenery/js/imports.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import CurveManipulationDisplayNode from './CurveManipulationDisplayNode.js';
+import CurveManipulationWidthSlider from './CurveManipulationWidthSlider.js';
 
 export default class CurveManipulationWidthControl extends VBox {
 

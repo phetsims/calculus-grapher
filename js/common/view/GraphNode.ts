@@ -19,38 +19,38 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import AxisArrowNode, { AxisArrowNodeOptions } from '../../../../bamboo/js/AxisArrowNode.js';
 import ChartRectangle, { ChartRectangleOptions } from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import GridLineSet from '../../../../bamboo/js/GridLineSet.js';
 import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
+import Utils from '../../../../dot/js/Utils.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import EyeToggleButton from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
+import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import { Node, NodeOptions, TColor, Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import CurveNode from './CurveNode.js';
-import Curve from '../model/Curve.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
-import EyeToggleButton from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import PlottedPoint from './PlottedPoint.js';
-import GraphType from '../model/GraphType.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import Curve from '../model/Curve.js';
 import CurvePoint from '../model/CurvePoint.js';
+import GraphType from '../model/GraphType.js';
+import CurveNode from './CurveNode.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import PlottedPoint from './PlottedPoint.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;

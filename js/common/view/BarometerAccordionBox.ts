@@ -8,27 +8,27 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import { Color, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import AxisLine from '../../../../bamboo/js/AxisLine.js';
-import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
+import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
+import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Utils from '../../../../dot/js/Utils.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
+import { Color, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
+import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import CurvePoint from '../model/CurvePoint.js';
-import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
 
 const BAR_WIDTH = 10;
 const NUMBER_OF_TICKS = 5;

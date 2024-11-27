@@ -7,18 +7,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Property from '../../../../axon/js/Property.js';
 import { AlignGroup, Text } from '../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import { LabelColorIcon } from './LabelColorIcon.js';
-import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import GraphType from '../model/GraphType.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import GraphType from '../model/GraphType.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import { LabelColorIcon } from './LabelColorIcon.js';
 
 export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 

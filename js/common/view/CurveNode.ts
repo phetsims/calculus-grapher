@@ -22,21 +22,21 @@
  * @author Martin Veillette
  */
 
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import { Color, Node, NodeOptions, PathBoundsMethod, ProfileColorProperty, TColor, TPaint } from '../../../../scenery/js/imports.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import Curve from '../model/Curve.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import LinePlot, { LinePlotOptions } from '../../../../bamboo/js/LinePlot.js';
 import ScatterPlot from '../../../../bamboo/js/ScatterPlot.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import { Color, Node, NodeOptions, PathBoundsMethod, ProfileColorProperty, TColor, TPaint } from '../../../../scenery/js/imports.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import Curve from '../model/Curve.js';
 import DiscontinuousPointsPlot from './DiscontinuousPointsPlot.js'; // dateset types associated with LinePlot and ScatterPlot
 
 // dateset types associated with LinePlot and ScatterPlot

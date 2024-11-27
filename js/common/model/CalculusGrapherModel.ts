@@ -8,30 +8,30 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import DerivativeCurve from './DerivativeCurve.js';
-import SecondDerivativeCurve from './SecondDerivativeCurve.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import TModel from '../../../../joist/js/TModel.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import IntegralCurve from './IntegralCurve.js';
-import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
-import TransformedCurve from './TransformedCurve.js';
-import TModel from '../../../../joist/js/TModel.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import GraphSet from './GraphSet.js';
 import GraphType from './GraphType.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import ReferenceLine from './ReferenceLine.js';
+import IntegralCurve from './IntegralCurve.js';
 import LabeledLine from './LabeledLine.js';
 import LabeledPoint from './LabeledPoint.js';
-import GraphSet from './GraphSet.js';
-import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import ReferenceLine from './ReferenceLine.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
+import TransformedCurve from './TransformedCurve.js';
 
 type SelfOptions = {
 

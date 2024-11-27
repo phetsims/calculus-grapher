@@ -11,22 +11,22 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import GraphType from '../model/GraphType.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import { HBox, Text } from '../../../../scenery/js/imports.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
-import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import { combineOptions } from '../../../../phet-core/js/optionize.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import GraphType from '../model/GraphType.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
 const POINTER_AREA_DILATION = 6;
 

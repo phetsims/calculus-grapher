@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { Node } from '../../../../scenery/js/imports.js';
+import PhetioObject from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import LabeledPoint from '../model/LabeledPoint.js';
 import LabeledPointNode from './LabeledPointNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 
 export default class LabeledPointsNode extends Node {
 

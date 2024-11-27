@@ -7,16 +7,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
-import GraphType from '../model/GraphType.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import { AlignGroup } from '../../../../scenery/js/imports.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import GraphSet from '../model/GraphSet.js';
+import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import GraphSet from '../model/GraphSet.js';
 
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 

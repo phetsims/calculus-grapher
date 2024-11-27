@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import { Color, Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
-import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
+import { Color, Line, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import LabeledLine from '../model/LabeledLine.js';
-import Multilink from '../../../../axon/js/Multilink.js';
-import optionize from '../../../../phet-core/js/optionize.js';
 
 type SelfOptions = {
 

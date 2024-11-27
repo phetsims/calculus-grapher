@@ -8,17 +8,17 @@
  */
 
 import Screen from '../../../joist/js/Screen.js';
+import { AlignGroup } from '../../../scenery/js/imports.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
+import GraphSet from '../common/model/GraphSet.js';
+import GraphType from '../common/model/GraphType.js';
+import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
+import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
-import GraphType from '../common/model/GraphType.js';
-import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
-import { AlignGroup } from '../../../scenery/js/imports.js';
-import Tandem from '../../../tandem/js/Tandem.js';
-import GraphSet from '../common/model/GraphSet.js';
-import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 

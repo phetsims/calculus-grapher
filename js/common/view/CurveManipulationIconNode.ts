@@ -6,18 +6,18 @@
  * @author Martin Veillette
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import { AlignBox, AlignGroup, Color, Node, Path, TColor } from '../../../../scenery/js/imports.js';
+import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Range from '../../../../dot/js/Range.js';
+import { AlignBox, AlignGroup, Color, Node, Path, TColor } from '../../../../scenery/js/imports.js';
+import pencilAltSolidShape from '../../../../sherpa/js/fontawesome-5/pencilAltSolidShape.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import TransformedCurve from '../model/TransformedCurve.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import CurveNode from './CurveNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import pencilAltSolidShape from '../../../../sherpa/js/fontawesome-5/pencilAltSolidShape.js';
 
 const CHART_TRANSFORM_OPTIONS = {
   viewWidth: 50,

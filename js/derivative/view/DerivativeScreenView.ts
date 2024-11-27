@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Multilink from '../../../../axon/js/Multilink.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
-import DerivativeModel from '../model/DerivativeModel.js';
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TangentCheckbox from '../../common/view/TangentCheckbox.js';
-import Multilink from '../../../../axon/js/Multilink.js';
+import DerivativeModel from '../model/DerivativeModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

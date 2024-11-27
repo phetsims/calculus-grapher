@@ -8,12 +8,12 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import calculusGrapher from '../../calculusGrapher.js';
 import AreaUnderCurveScrubber from '../../common/model/AreaUnderCurveScrubber.js';
+import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
+import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -16,13 +16,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Disposable from '../../../../axon/js/Disposable.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import StringUnionIO from '../../../../tandem/js/types/StringUnionIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Disposable from '../../../../axon/js/Disposable.js';
 
 const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
 export type PointType = ( typeof PointTypeValues )[number];

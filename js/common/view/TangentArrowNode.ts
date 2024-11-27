@@ -7,13 +7,13 @@
  *  @author Martin Veillette
  */
 
+import Multilink from '../../../../axon/js/Multilink.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import TangentScrubber from '../model/TangentScrubber.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import Multilink from '../../../../axon/js/Multilink.js';
+import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import TangentScrubber from '../model/TangentScrubber.js';
 
 type SelfOptions = {
 

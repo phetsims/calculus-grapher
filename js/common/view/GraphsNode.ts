@@ -9,31 +9,31 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-import GraphNode from './GraphNode.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import OriginalGraphNode from './OriginalGraphNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import ReferenceLineNode from './ReferenceLineNode.js';
-import TangentScrubber from '../model/TangentScrubber.js';
-import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
-import AncillaryTool from '../model/AncillaryTool.js';
-import GraphType from '../model/GraphType.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import LabeledLinesNode from './LabeledLinesNode.js';
-import GraphSet from '../model/GraphSet.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import GraphSetsAnimator from './GraphSetsAnimator.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import { Node, NodeOptions, TColor } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import AncillaryTool from '../model/AncillaryTool.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
+import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CurvePoint from '../model/CurvePoint.js';
+import GraphSet from '../model/GraphSet.js';
+import GraphType from '../model/GraphType.js';
+import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
+import GraphNode from './GraphNode.js';
+import GraphSetsAnimator from './GraphSetsAnimator.js';
+import LabeledLinesNode from './LabeledLinesNode.js';
+import OriginalGraphNode from './OriginalGraphNode.js';
+import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
 

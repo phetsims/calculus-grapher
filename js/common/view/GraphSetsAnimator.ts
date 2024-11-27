@@ -9,14 +9,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import GraphNode from './GraphNode.js';
-import { Node } from '../../../../scenery/js/imports.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import GraphNode from './GraphNode.js';
 
 const STEPPER = null; // step method must be called by the client
 const OPACITY_DURATION = 0.5; // duration of opacity animation, in seconds

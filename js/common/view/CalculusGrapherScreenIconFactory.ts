@@ -16,13 +16,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import GraphType from '../model/GraphType.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
-import { Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
 import { Shape } from '../../../../kite/js/imports.js';
+import { Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import GraphType from '../model/GraphType.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
 const CURVE_WIDTH = 50; // width of the curves for the Derivative, Integral, and Lab screen icons
 const CURVE_HEIGHT = 10; // height of the curves for the Derivative, Integral, and Lab screen icons

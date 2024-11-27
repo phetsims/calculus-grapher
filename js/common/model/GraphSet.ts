@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import GraphType from './GraphType.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
-import IOType from '../../../../tandem/js/types/IOType.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import IOType from '../../../../tandem/js/types/IOType.js';
+import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import GraphType from './GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
 

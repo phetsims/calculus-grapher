@@ -7,13 +7,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Text } from '../../../../scenery/js/imports.js';
 import Property from '../../../../axon/js/Property.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import Curve from './Curve.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 type SelfOptions = {
   label: string;

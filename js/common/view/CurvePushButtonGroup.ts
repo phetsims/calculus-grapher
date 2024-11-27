@@ -8,17 +8,17 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import { HBox, VBox } from '../../../../scenery/js/imports.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import ReturnButton from '../../../../scenery-phet/js/buttons/ReturnButton.js';
-import TransformedCurve from '../model/TransformedCurve.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import { HBox, VBox } from '../../../../scenery/js/imports.js';
+import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import TransformedCurve from '../model/TransformedCurve.js';
 
 export default class CurvePushButtonGroup extends VBox {
 

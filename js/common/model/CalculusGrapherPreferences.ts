@@ -8,11 +8,11 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters, { ConnectDiscontinuities, ConnectDiscontinuitiesValues, DerivativeNotation, DerivativeNotationValues, FunctionVariable, FunctionVariableValues } from '../CalculusGrapherQueryParameters.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
 
 const connectDiscontinuities: ConnectDiscontinuities = CalculusGrapherQueryParameters.connectDiscontinuities === 'noLine' ? 'noLine' : 'dashedLine';
 export const derivationNotation: DerivativeNotation = CalculusGrapherQueryParameters.derivativeNotation === 'lagrange' ? 'lagrange' : 'leibniz';

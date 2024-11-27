@@ -8,15 +8,15 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import LabeledLine from '../model/LabeledLine.js';
 import LabeledLineNode, { LabeledLineNodeOptions } from './LabeledLineNode.js';
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 
 type SelfOptions = {
   labeledLineOptions?: LabeledLineNodeOptions; // propagated to LabeledLineNode

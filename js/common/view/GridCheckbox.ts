@@ -7,12 +7,12 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
+import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
-import { combineOptions } from '../../../../phet-core/js/optionize.js';
 
 export default class GridCheckbox extends Checkbox {
 

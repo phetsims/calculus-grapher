@@ -8,8 +8,8 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../calculusGrapher.js';
 import logGlobal from '../../../phet-core/js/logGlobal.js';
+import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherConstants from './CalculusGrapherConstants.js';
 
 export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ];

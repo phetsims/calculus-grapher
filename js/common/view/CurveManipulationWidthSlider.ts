@@ -9,13 +9,13 @@
  * @author Martin Veillette
  */
 
+import Property from '../../../../axon/js/Property.js';
+import Dimension2 from '../../../../dot/js/Dimension2.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import HSlider, { HSliderOptions } from '../../../../sun/js/HSlider.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Dimension2 from '../../../../dot/js/Dimension2.js';
-import Property from '../../../../axon/js/Property.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;

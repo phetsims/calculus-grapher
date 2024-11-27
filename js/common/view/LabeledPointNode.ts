@@ -8,20 +8,20 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import PlottedPoint from './PlottedPoint.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
-import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
+import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import LabeledPoint from '../model/LabeledPoint.js';
+import PlottedPoint from './PlottedPoint.js';
 
 type SelfOptions = EmptySelfOptions;
 

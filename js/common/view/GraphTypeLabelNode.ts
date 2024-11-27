@@ -7,19 +7,19 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { HSeparator, Node, NodeOptions, RichText, VBox } from '../../../../scenery/js/imports.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
-import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import GraphType from '../model/GraphType.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import GraphType from '../model/GraphType.js';
 
 const HAIR_SPACE_STRING = '\u200A';
 const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;

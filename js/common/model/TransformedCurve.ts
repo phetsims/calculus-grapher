@@ -1,5 +1,8 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js'; // constants
 /**
  * TransformedCurve is a Curve subclass for a curve that the user interacts with and manipulates, which then
  * triggers a change in the CurvePoints. It is used for f(x) (the 'original' curve) and the 'Predict' curve.
@@ -40,17 +43,14 @@
  * @author Martin Veillette
  */
 import Vector2 from '../../../../dot/js/Vector2.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve, { CurveOptions } from './Curve.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import Property from '../../../../axon/js/Property.js';
-import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js'; // constants
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;

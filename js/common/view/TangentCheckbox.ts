@@ -17,8 +17,8 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import TangentScrubberNode from './TangentScrubberNode.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
+import TangentScrubberNode from './TangentScrubberNode.js';
 
 export default class TangentCheckbox extends Checkbox {
 

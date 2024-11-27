@@ -7,15 +7,15 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import { VBox } from '../../../../scenery/js/imports.js';
-import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CurveManipulationWidthControl from './CurveManipulationWidthControl.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { VBox } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
+import CurveManipulationWidthControl from './CurveManipulationWidthControl.js';
 
 export default class CurveManipulationControls extends VBox {
 

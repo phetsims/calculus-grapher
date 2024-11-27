@@ -14,12 +14,12 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
 import Property from '../../../../axon/js/Property.js';
 import { VBox } from '../../../../scenery/js/imports.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import ReferenceLineCheckbox from './ReferenceLineCheckbox.js';
+import calculusGrapher from '../../calculusGrapher.js';
 import GridCheckbox from './GridCheckbox.js';
+import ReferenceLineCheckbox from './ReferenceLineCheckbox.js';
 
 export default class CalculusGrapherCheckboxGroup extends VBox {
 

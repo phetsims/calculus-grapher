@@ -9,20 +9,20 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Node, VBox } from '../../../../scenery/js/imports.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import PredictRadioButtonGroup from './PredictRadioButtonGroup.js';
-import TransformedCurve from '../model/TransformedCurve.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import Property from '../../../../axon/js/Property.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = {
   hasSmoothButton?: boolean; // should the 'Smooth' button be included in CurvePushButtonGroup?

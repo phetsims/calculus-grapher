@@ -7,14 +7,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Line, Node, NodeOptions, TColor, VBox } from '../../../../scenery/js/imports.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import XDragHandleNode from './XDragHandleNode.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { Line, Node, NodeOptions, TColor, VBox } from '../../../../scenery/js/imports.js';
+import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import XDragHandleNode from './XDragHandleNode.js';
 
 type SelfOptions = {
   handleColor?: TColor; // color of the scrubber's handle

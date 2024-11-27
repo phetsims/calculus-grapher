@@ -20,32 +20,32 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
-import TransformedCurveNode from './TransformedCurveNode.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import GraphNode, { GraphNodeOptions } from './GraphNode.js';
-import { DragListener, HBox, PressedDragListener, Rectangle, Text } from '../../../../scenery/js/imports.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import GraphTypeLabelNode from './GraphTypeLabelNode.js';
-import TangentScrubber from '../model/TangentScrubber.js';
-import TangentArrowNode from './TangentArrowNode.js';
-import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
-import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
-import GraphType from '../model/GraphType.js';
-import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
-import LabeledPointsNode from './LabeledPointsNode.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { DragListener, HBox, PressedDragListener, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
+import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import GraphType from '../model/GraphType.js';
+import TangentScrubber from '../model/TangentScrubber.js';
+import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
+import GraphNode, { GraphNodeOptions } from './GraphNode.js';
+import GraphTypeLabelNode from './GraphTypeLabelNode.js';
+import LabeledPointsNode from './LabeledPointsNode.js';
+import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
+import TangentArrowNode from './TangentArrowNode.js';
+import TransformedCurveNode from './TransformedCurveNode.js';
 
 // Minimum x distance between drag points when drawing in FREEFORM mode.
 // See https://github.com/phetsims/calculus-grapher/issues/297

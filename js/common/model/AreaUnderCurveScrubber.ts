@@ -7,14 +7,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import AncillaryTool from './AncillaryTool.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import Curve from './Curve.js';
+import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
+import { Color, ProfileColorProperty } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import { Color, ProfileColorProperty } from '../../../../scenery/js/imports.js';
-import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import AncillaryTool from './AncillaryTool.js';
+import Curve from './Curve.js';
 
 export default class AreaUnderCurveScrubber extends AncillaryTool {
 

@@ -8,14 +8,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Curve from './Curve.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
-import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { Color, ColorProperty } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
+import Curve from './Curve.js';
+import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
 
 type SelfOptions = EmptySelfOptions;
 

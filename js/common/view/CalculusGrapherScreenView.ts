@@ -9,18 +9,18 @@
  */
 
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
-import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import GraphsNode from './GraphsNode.js';
-import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
-import { Node, VBox } from '../../../../scenery/js/imports.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
+import { Node, VBox } from '../../../../scenery/js/imports.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
+import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
+import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
+import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
+import GraphsNode from './GraphsNode.js';
 
 type SelfOptions = {
 

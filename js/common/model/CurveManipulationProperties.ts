@@ -10,14 +10,14 @@
  * @author Martin Veillette
  */
 
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationMode from './CurveManipulationMode.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CurveManipulationMode from './CurveManipulationMode.js';
 
 // Constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;

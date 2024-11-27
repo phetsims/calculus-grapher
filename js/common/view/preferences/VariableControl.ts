@@ -7,18 +7,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { RichText, Text } from '../../../../../scenery/js/imports.js';
-import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
-import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
-import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
-import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
-import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
+import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
+import { RichText, Text } from '../../../../../scenery/js/imports.js';
+import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
+import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 
 export default class VariableControl extends PreferencesControl {
 
