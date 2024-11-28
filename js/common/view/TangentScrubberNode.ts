@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * TangentScrubberNode is a subclass of ScrubberNode that sets the appropriate colors for the scrubber.

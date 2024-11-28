@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2024, University of Colorado Boulder
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';

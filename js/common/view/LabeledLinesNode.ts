@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * LabeledLinesNode is the set of LabeledLineNode instances. Those instances are not instrumented for PhET-iO,
