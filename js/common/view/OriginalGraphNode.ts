@@ -106,7 +106,8 @@ export default class OriginalGraphNode extends GraphNode {
     this.showOriginalCurveProperty = new BooleanProperty( false, {
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
       phetioDocumentation: 'Controls whether the original curve is visible while the Predict radio button is selected.' +
-                           'The value of this Property can be changed by toggling showOriginalCurveCheckbox.'
+                           'The value of this Property can be changed by toggling showOriginalCurveCheckbox.',
+      phetioFeatured: true
     } );
 
     // Interactive f(x) 'original' curve
