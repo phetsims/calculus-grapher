@@ -37,6 +37,7 @@ export default class ReferenceLineCheckbox extends Checkbox {
 
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );
   }
