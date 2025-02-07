@@ -32,7 +32,12 @@ import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import { Color, Node, NodeOptions, PathBoundsMethod, ProfileColorProperty, TColor, TPaint } from '../../../../scenery/js/imports.js';
+import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+import { PathBoundsMethod } from '../../../../scenery/js/nodes/Path.js';
+import Color from '../../../../scenery/js/util/Color.js';
+import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProperty.js';
+import TColor from '../../../../scenery/js/util/TColor.js';
+import TPaint from '../../../../scenery/js/util/TPaint.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';

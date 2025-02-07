@@ -17,8 +17,12 @@
  */
 
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
-import { Shape } from '../../../../kite/js/imports.js';
-import { Circle, Line, Node, Path, VBox } from '../../../../scenery/js/imports.js';
+import Shape from '../../../../kite/js/Shape.js';
+import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Line from '../../../../scenery/js/nodes/Line.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphType from '../model/GraphType.js';

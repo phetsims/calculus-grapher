@@ -15,7 +15,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import { VBox } from '../../../../scenery/js/imports.js';
+import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import GridCheckbox from './GridCheckbox.js';

@@ -10,7 +10,10 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import { AlignBox, AlignGroup, GridBox, TColor } from '../../../../scenery/js/imports.js';
+import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
+import AlignBox from '../../../../scenery/js/layout/nodes/AlignBox.js';
+import GridBox from '../../../../scenery/js/layout/nodes/GridBox.js';
+import TColor from '../../../../scenery/js/util/TColor.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';

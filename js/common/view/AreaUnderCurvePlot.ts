@@ -11,7 +11,7 @@ import AreaPlot from '../../../../bamboo/js/AreaPlot.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { Node, NodeOptions } from '../../../../scenery/js/imports.js';
+import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import Curve from '../model/Curve.js';

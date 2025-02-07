@@ -11,7 +11,8 @@
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
-import { PathBoundsMethod, Text } from '../../../scenery/js/imports.js';
+import { PathBoundsMethod } from '../../../scenery/js/nodes/Path.js';
+import Text from '../../../scenery/js/nodes/Text.js';
 import { CheckboxOptions } from '../../../sun/js/Checkbox.js';
 import calculusGrapher from '../calculusGrapher.js';
 

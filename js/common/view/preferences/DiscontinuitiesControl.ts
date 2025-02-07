@@ -10,7 +10,10 @@
 import Property from '../../../../../axon/js/Property.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 import { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import { Circle, Line, LineOptions, Node, Text } from '../../../../../scenery/js/imports.js';
+import Circle from '../../../../../scenery/js/nodes/Circle.js';
+import Line, { LineOptions } from '../../../../../scenery/js/nodes/Line.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
+import Text from '../../../../../scenery/js/nodes/Text.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';

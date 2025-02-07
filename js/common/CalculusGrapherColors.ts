@@ -9,7 +9,8 @@
  */
 
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
-import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
+import Color from '../../../scenery/js/util/Color.js';
+import ProfileColorProperty from '../../../scenery/js/util/ProfileColorProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js';

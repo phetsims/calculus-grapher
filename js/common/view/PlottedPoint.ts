@@ -13,7 +13,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
-import { Circle, CircleOptions } from '../../../../scenery/js/imports.js';
+import Circle, { CircleOptions } from '../../../../scenery/js/nodes/Circle.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurvePoint from '../model/CurvePoint.js';
 

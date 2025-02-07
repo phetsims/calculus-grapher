@@ -15,7 +15,10 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
-import { Circle, CircleOptions, Node, PathOptions, TPaint } from '../../../../scenery/js/imports.js';
+import Circle, { CircleOptions } from '../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import { PathOptions } from '../../../../scenery/js/nodes/Path.js';
+import TPaint from '../../../../scenery/js/util/TPaint.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 // These are specific to Calculus Grapher, and not appropriate if migrated to bamboo.
