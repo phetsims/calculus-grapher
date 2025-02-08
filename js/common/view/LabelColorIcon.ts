@@ -1,4 +1,4 @@
-// Copyright 2022-2024, University of Colorado Boulder
+// Copyright 2022-2025, University of Colorado Boulder
 
 /**
  * LabelColorIcon is an icon that consists of a label with a horizontal-colored line below it.

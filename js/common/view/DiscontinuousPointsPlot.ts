@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2025, University of Colorado Boulder
 
 //TODO https://github.com/phetsims/bamboo/issues/63 replace with ScatterPlot when it works correctly with fill and stroke
 /**

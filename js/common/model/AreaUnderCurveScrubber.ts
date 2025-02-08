@@ -1,4 +1,4 @@
-// Copyright 2023-2024, University of Colorado Boulder
+// Copyright 2023-2025, University of Colorado Boulder
 
 /**
  * AreaUnderCurveScrubber is the model element for the area-under-curve scrubber. It can be moved horizontally,

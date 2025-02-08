@@ -1,4 +1,4 @@
-// Copyright 2022-2024, University of Colorado Boulder
+// Copyright 2022-2025, University of Colorado Boulder
 
 /**
  * GraphTypeLabelNode is the view representation for graph labels in 'Calculus Grapher'

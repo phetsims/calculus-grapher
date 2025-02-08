@@ -1,4 +1,4 @@
-// Copyright 2023-2024, University of Colorado Boulder
+// Copyright 2023-2025, University of Colorado Boulder
 
 /**
  * ScrubberNode is the base class for the view of scrubbers. It includes a shaded sphere 'handle' for dragging the

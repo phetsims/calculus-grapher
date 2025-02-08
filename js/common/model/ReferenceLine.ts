@@ -1,4 +1,4 @@
-// Copyright 2023-2024, University of Colorado Boulder
+// Copyright 2023-2025, University of Colorado Boulder
 
 /**
  * ReferenceLine is the model element for the reference line. This is vertical line that you can slide horizontally,
