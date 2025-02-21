@@ -10,7 +10,7 @@
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
-import PreferencesDialog from '../../../../../joist/js/preferences/PreferencesDialog.js';
+import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import HBox from '../../../../../scenery/js/layout/nodes/HBox.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
@@ -107,7 +107,7 @@ class NotationRadioButtonLabel extends HBox {
 
     // Name of the notation
     const text = new RichText( derivedNotationStringProperty, {
-      font: PreferencesDialog.CONTENT_FONT,
+      font: PreferencesDialogConstants.CONTENT_FONT,
       maxWidth: 150,
       maxHeight: 25,
       tandem: radioButtonTandem.createTandem( 'text' )
