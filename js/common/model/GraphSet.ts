@@ -9,6 +9,7 @@
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import IntentionalAny from '../../../../phet-core/js/types/IntentionalAny.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -64,7 +65,7 @@ export default class GraphSet extends PhetioObject {
    * It implements 'Reference type serialization', as described in the Serialization section of
    * https://github.com/phetsims/phet-io/blob/main/doc/phet-io-instrumentation-technical-guide.md#serialization
    */
-  public static readonly GraphSetIO = new IOType( 'GraphSetIO', {
+  public static readonly GraphSetIO = new IOType<IntentionalAny, IntentionalAny>( 'GraphSetIO', {
     valueType: GraphSet,
     supertype: ReferenceIO( IOType.ObjectIO ),
     documentation: 'An ordered set of graphs, to be displayed together in the user interface'
