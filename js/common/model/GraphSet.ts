@@ -1,4 +1,4 @@
-// Copyright 2023-2024, University of Colorado Boulder
+// Copyright 2023-2025, University of Colorado Boulder
 
 /**
  * GraphSet is an ordered set of GraphType. We need a serializable type for this so that we can maintain references
