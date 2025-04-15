@@ -1,8 +1,5 @@
 // Copyright 2020-2024, University of Colorado Boulder
 
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import Property from '../../../../axon/js/Property.js';
-import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js'; // constants
 /**
  * TransformedCurve is a Curve subclass for a curve that the user interacts with and manipulates, which then
  * triggers a change in the CurvePoints. It is used for f(x) (the 'original' curve) and the 'Predict' curve.
@@ -42,6 +39,10 @@ import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewis
  *
  * @author Martin Veillette
  */
+
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
