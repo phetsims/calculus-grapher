@@ -1,4 +1,4 @@
-// Copyright 2020-2024, University of Colorado Boulder
+// Copyright 2020-2025, University of Colorado Boulder
 
 /**
  * TransformedCurve is a Curve subclass for a curve that the user interacts with and manipulates, which then
