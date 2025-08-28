@@ -8,7 +8,7 @@
  */
 
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
 import PreferencesDialogConstants from '../../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';

@@ -8,7 +8,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import ReturnButton from '../../../../scenery-phet/js/buttons/ReturnButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';

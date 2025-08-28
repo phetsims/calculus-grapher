@@ -13,7 +13,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
