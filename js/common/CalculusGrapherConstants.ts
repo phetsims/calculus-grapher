@@ -31,6 +31,10 @@ const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 
 export default class CalculusGrapherConstants {
 
+  private constructor() {
+    // Not intended for instantiation.
+  }
+
   // margins
   public static readonly SCREEN_VIEW_X_MARGIN = 25;
   public static readonly SCREEN_VIEW_Y_MARGIN = 10;

@@ -21,6 +21,10 @@ const SCREEN_BACKGROUND_COLOR = 'rgb( 243, 252, 254 )';
 
 export default class CalculusGrapherColors {
 
+  private constructor() {
+    // Not intended for instantiation.
+  }
+
   // Background color used for all screens
   public static readonly screenBackgroundColorProperty = new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
     default: SCREEN_BACKGROUND_COLOR

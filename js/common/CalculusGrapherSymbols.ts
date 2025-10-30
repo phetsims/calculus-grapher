@@ -16,6 +16,10 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 
 export default class CalculusGrapherSymbols {
 
+  private constructor() {
+    // Not intended for instantiation.
+  }
+
   // No PhET-iO instrumentation is desired, because the associated string Properties are already instrumented.
   // Showing the additional markup that is created around those strings provides no additional value.
   // See https://github.com/phetsims/calculus-grapher/issues/213
