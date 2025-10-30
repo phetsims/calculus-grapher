@@ -45,8 +45,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   // The checkbox group that appears below the control panel
   protected readonly checkboxGroup: CalculusGrapherCheckboxGroup;
 
-  // Instead of adding children directly to the ScreenView, add them to this parent Node, so that keyboard traversal
-  // can be supported by setting pdomOrder on this Node.  See https://github.com/phetsims/calculus-grapher/issues/123
+  // Instead of adding children directly to the ScreenView, add them to this parent Node.
   protected readonly screenViewRootNode: Node;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
@@ -129,7 +128,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
       children: children
     } );
     this.addChild( this.screenViewRootNode );
-
   }
 
   /**
