@@ -20,6 +20,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 export default class CurveManipulationModeRadioButtonGroup extends GridBox {
 
@@ -28,7 +29,7 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
                       tandem: Tandem ) {
 
     const validModes = curveManipulationModeProperty.validValues!;
-    assert && assert( validModes );
+    affirm( validModes );
 
     // So that all icons have the same effective size
     const alignBoxOptions = {

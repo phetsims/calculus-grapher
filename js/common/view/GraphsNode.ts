@@ -35,6 +35,7 @@ import LabeledLinesNode from './LabeledLinesNode.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
 
@@ -125,8 +126,7 @@ export default class GraphsNode extends Node {
     // To display a different set of graphs, get the GraphsNode, handle their layout, and adjust the position
     // of the reference line and labeled lines.
     model.graphSetProperty.link( ( newGraphSet, oldGraphSet ) => {
-      assert && assert( oldGraphSet === null || newGraphSet.length === oldGraphSet.length,
-        'graph sets must have the same length' );
+      affirm( oldGraphSet === null || newGraphSet.length === oldGraphSet.length, 'graph sets must have the same length' );
 
       // Interrupt any interactions that are in-progress.
       this.interruptSubtreeInput();
@@ -182,7 +182,7 @@ export default class GraphsNode extends Node {
   private getGraphNodes( graphSet: GraphSet ): GraphNode[] {
     return graphSet.graphTypes.map( graphType => {
       const graphNode = _.find( this.graphNodes, graphNode => graphNode.graphType === graphType )!;
-      assert && assert( graphNode, `expected a GraphNode for graphType=${graphType}` );
+      affirm( graphNode, `expected a GraphNode for graphType=${graphType}` );
       return graphNode;
     } );
   }
@@ -217,7 +217,7 @@ export default class GraphsNode extends Node {
   public addTangentView( tangentScrubber: TangentScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
     const derivativeGraphNode = this.derivativeGraphNode!;
-    assert && assert( derivativeGraphNode );
+    affirm( derivativeGraphNode );
 
     // Determines whether the tangent scrubber, tangent line, and associated points are visible on the graphs.
     const tangentVisibleProperty = new DerivedProperty(
@@ -250,7 +250,7 @@ export default class GraphsNode extends Node {
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
     const integralGraphNode = this.integralGraphNode!;
-    assert && assert( integralGraphNode );
+    affirm( integralGraphNode );
 
     // Determines whether the area-under-curve scrubber, plot, and associated points are visible on the graphs.
     const areaUnderCurveVisibleProperty = new DerivedProperty(

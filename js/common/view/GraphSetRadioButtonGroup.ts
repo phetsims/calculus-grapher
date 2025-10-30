@@ -17,6 +17,7 @@ import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 
@@ -42,7 +43,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
    * Creates an item for this radio button group.
    */
   public static createItem( graphSet: GraphSet, graphType: GraphType, labelAlignGroup: AlignGroup ): GraphSetRadioButtonGroupItem {
-    assert && assert( graphSet.includes( graphType ) );
+    affirm( graphSet.includes( graphType ) );
     return {
       createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
       value: graphSet,

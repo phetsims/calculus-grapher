@@ -14,6 +14,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import Curve from './Curve.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
   label: string;
@@ -47,8 +48,8 @@ export default class LabeledAncillaryTool extends AncillaryTool {
    * This is used to generate labels for tools.
    */
   public static intToUppercaseLetter( integer: number ): string {
-    assert && assert( Number.isInteger( integer ), `must be an integer: ${integer}` );
-    assert && assert( integer >= 0 && integer <= 25, `integer must range from 0 to 25: ${integer}` );
+    affirm( Number.isInteger( integer ), `must be an integer: ${integer}` );
+    affirm( integer >= 0 && integer <= 25, `integer must range from 0 to 25: ${integer}` );
     return String.fromCharCode( integer + 'A'.charCodeAt( 0 ) );
   }
 

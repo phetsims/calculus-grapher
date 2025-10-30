@@ -20,6 +20,7 @@ import CurveManipulationProperties from '../model/CurveManipulationProperties.js
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 import CurveNode from './CurveNode.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 export default class CurveManipulationDisplayNode extends Node {
 
@@ -67,7 +68,7 @@ export default class CurveManipulationDisplayNode extends Node {
     const xMax = chartTransform.modelXRange.getMax();
     const yMax = chartTransform.modelYRange.getMax() - verticalMargin;
     const yMin = chartTransform.modelYRange.getMin() + verticalMargin;
-    assert && assert( yMax > yMin, 'yMax value should be greater than yMin' );
+    affirm( yMax > yMin, 'yMax value should be greater than yMin' );
 
     Multilink.multilink(
       [ curveManipulationProperties.modeProperty, curveManipulationProperties.widthProperty ],

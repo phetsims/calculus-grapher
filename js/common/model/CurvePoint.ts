@@ -23,6 +23,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import StringUnionIO from '../../../../tandem/js/types/StringUnionIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
 export type PointType = ( typeof PointTypeValues )[number];
@@ -71,7 +72,7 @@ export default class CurvePoint {
   private readonly vector: Vector2;
 
   public constructor( x: number, y = 0, pointType: PointType = 'smooth' ) {
-    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
+    affirm( Number.isFinite( x ), `invalid x: ${x}` );
 
     this.x = x;
     this.y = y;
@@ -171,11 +172,11 @@ export default class CurvePoint {
 
   // Gets the slope between this point and targetPoint.
   public getSlope( targetPoint: CurvePoint ): number {
-    assert && assert( targetPoint !== this, 'you need two different points' );
+    affirm( targetPoint !== this, 'you need two different points' );
 
     const slope = ( this.y - targetPoint.y ) / ( this.x - targetPoint.x );
 
-    assert && assert( Number.isFinite( slope ), 'non finite slope' );
+    affirm( Number.isFinite( slope ), 'non finite slope' );
     return slope;
   }
 

@@ -52,6 +52,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import Curve, { CurveOptions } from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -62,9 +63,9 @@ const WEE_WIDTH = CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 40;
 const UPPER_WEIGHT = 0.999; // a very large cutoff for weights
 const LOWER_WEIGHT = 1e-8; // a very small number that cutoff small weight contributions.
 
-assert && assert( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
-assert && assert( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
-assert && assert( LOWER_WEIGHT < UPPER_WEIGHT, 'LOWER_WEIGHT must be < UPPER_WEIGHT' );
+affirm( UPPER_WEIGHT < 1 && UPPER_WEIGHT >= 0, `UPPER_WEIGHT must range from 0 to 1, inclusive: ${UPPER_WEIGHT}` );
+affirm( LOWER_WEIGHT < 1 && LOWER_WEIGHT >= 0, `LOWER_WEIGHT must range from 0 to 1, inclusive: ${LOWER_WEIGHT}` );
+affirm( LOWER_WEIGHT < UPPER_WEIGHT, 'LOWER_WEIGHT must be < UPPER_WEIGHT' );
 
 type MathFunction = ( x: number ) => number;
 
@@ -104,7 +105,7 @@ export default class TransformedCurve extends Curve {
     // https://github.com/phetsims/calculus-grapher/issues/309
     // https://github.com/phetsims/calculus-grapher/issues/327
     this.pointsProperty.lazyLink( () => {
-      assert && assert( Tandem.PHET_IO_ENABLED, 'pointsProperty may only be set in the PhET-iO version.' );
+      affirm( Tandem.PHET_IO_ENABLED, 'pointsProperty may only be set in the PhET-iO version.' );
       this.curveChangedEmitter.emit();
     } );
   }
@@ -260,8 +261,8 @@ export default class TransformedCurve extends Curve {
       this.sinusoid( width, position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
-      assert && assert( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
-      this.freeform( position, penultimatePosition!, antepenultimatePosition! );
+      affirm( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
+      this.freeform( position, penultimatePosition, antepenultimatePosition );
     }
     else if ( mode === CurveManipulationMode.TILT ) {
       this.tilt( position.x, position.y );
@@ -345,7 +346,7 @@ export default class TransformedCurve extends Curve {
     // must therefore take into account the width of the edges.
     const plateauWidth = width - 2 * EDGE_SLOPE_FACTOR;
 
-    assert && assert( plateauWidth > 0, 'plateau width must be positive' );
+    affirm( plateauWidth > 0, 'plateau width must be positive' );
 
     this.points.forEach( point => {
 
@@ -773,7 +774,7 @@ export default class TransformedCurve extends Curve {
    * This method is used for SINUSOID mode.
    */
   private isRegionZero( xMin: number, xMax: number ): boolean {
-    assert && assert( xMin <= xMax, 'xMin must be less than xMax' );
+    affirm( xMin <= xMax, 'xMin must be less than xMax' );
 
     return this.points.every( point => {
       const isOutsideBounds = point.x < xMin || point.x > xMax;
@@ -786,7 +787,7 @@ export default class TransformedCurve extends Curve {
    * otherwise leave as is.
    */
   private updatePointType( point: CurvePoint, weight: number ): void {
-    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
+    affirm( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
 
     // If the weight is very large, we have effectively replaced the previous values by the new function, which we know to be smooth.
     point.pointType = ( weight > UPPER_WEIGHT ) ? 'smooth' : point.lastSavedType;
@@ -797,7 +798,7 @@ export default class TransformedCurve extends Curve {
    * (see https://github.com/phetsims/calculus-grapher/issues/261)
    */
   private updatePointValue( point: CurvePoint, weight: number, peakY: number ): void {
-    assert && assert( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
+    affirm( weight >= 0 && weight <= 1, `weight must range between 0 and 1: ${weight}` );
 
     // If the weight is very small, we are practically ignoring the new function. Let's explicitly replace it by the lastSavedY instead.
     point.y = ( weight > LOWER_WEIGHT ) ? weight * peakY + ( 1 - weight ) * point.lastSavedY : point.lastSavedY;
@@ -858,7 +859,7 @@ export default class TransformedCurve extends Curve {
  * @param width - the width for which the mollifying function does not return a zero value
  */
 function createMollifierFunction( width: number ): MathFunction {
-  assert && assert( width > 0, 'width must be positive' );
+  affirm( width > 0, 'width must be positive' );
   return x => ( Math.abs( x ) < width / 2 ) ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
 }
 

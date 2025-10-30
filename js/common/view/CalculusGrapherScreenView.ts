@@ -22,6 +22,7 @@ import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import GraphsNode from './GraphsNode.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
 
@@ -58,8 +59,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
       graphSetRadioButtonGroupItems: []
     }, providedOptions );
 
-    assert && assert( ( model.graphSets.length === 1 && options.graphSetRadioButtonGroupItems.length === 0 ) ||
-                      ( model.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
+    affirm( ( model.graphSets.length === 1 && options.graphSetRadioButtonGroupItems.length === 0 ) ||
+            ( model.graphSets.length === options.graphSetRadioButtonGroupItems.length ),
       'If > 1 graphSets, then there must be a radio button for each graphSet' );
 
     super( options );

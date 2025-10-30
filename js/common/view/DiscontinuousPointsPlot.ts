@@ -20,6 +20,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import { PathOptions } from '../../../../scenery/js/nodes/Path.js';
 import TPaint from '../../../../scenery/js/util/TPaint.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // These are specific to Calculus Grapher, and not appropriate if migrated to bamboo.
 const RADIUS = 2.5;
@@ -96,7 +97,7 @@ export default class DiscontinuousPointsPlot extends Node {
     for ( let i = 0; i < numberOfPoints; i++ ) {
 
       const modelPoint = this.dataSet[ i ];
-      assert && assert( modelPoint.isFinite(), 'dataSet must contain finite points' );
+      affirm( modelPoint.isFinite(), 'dataSet must contain finite points' );
 
       const viewPoint = this.chartTransform.modelToViewPosition( modelPoint );
 

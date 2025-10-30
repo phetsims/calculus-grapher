@@ -33,6 +33,7 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import CurvePoint from './CurvePoint.js';
 import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
 import { clamp } from '../../../../dot/js/util/clamp.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // Constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -158,8 +159,7 @@ export default class Curve extends PhetioObject {
    * Gets the CurvePoint whose x-value is closest to the given x-value.
    */
   public getClosestPointAt( x: number ): CurvePoint {
-    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
-
+    affirm( Number.isFinite( x ), `invalid x: ${x}` );
     return this.points[ this.getClosestIndexAt( x ) ];
   }
 
@@ -175,7 +175,7 @@ export default class Curve extends PhetioObject {
    * Gets the index of the array whose x-value is closest to the given x-value.
    */
   protected getClosestIndexAt( x: number ): number {
-    assert && assert( Number.isFinite( x ), `invalid x: ${x}` );
+    affirm( Number.isFinite( x ), `invalid x: ${x}` );
 
     const normalizedValue = this.xRange.getNormalizedValue( x );
 

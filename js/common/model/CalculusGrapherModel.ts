@@ -32,6 +32,7 @@ import LabeledPoint from './LabeledPoint.js';
 import ReferenceLine from './ReferenceLine.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 import TransformedCurve from './TransformedCurve.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
 
@@ -118,10 +119,10 @@ export default class CalculusGrapherModel implements TModel {
       hasAreaUnderCurveScrubber: false
     }, providedOptions );
 
-    assert && assert( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
-    assert && assert( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
+    affirm( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
+    affirm( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
       'all elements of graphSets must have the same length, a current limitation of this sim' );
-    assert && assert( options.graphSets.includes( options.graphSet ) );
+    affirm( options.graphSets.includes( options.graphSet ) );
 
     this.graphSets = options.graphSets;
 

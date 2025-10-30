@@ -54,6 +54,7 @@ import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import PlottedPoint from './PlottedPoint.js';
 import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import { numberOfDecimalPlaces } from '../../../../dot/js/util/numberOfDecimalPlaces.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -79,9 +80,9 @@ const Y_ZOOM_INFO: ZoomInfo[] = [
   { max: 1, tickSpacing: 0.5 },
   { max: 0.5, tickSpacing: 0.25 }
 ];
-assert && assert( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoomInfo.max ),
+affirm( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoomInfo.max ),
   'tickSpacing must be <= max' );
-assert && assert( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
+affirm( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
   ( index === 0 || Y_ZOOM_INFO[ index - 1 ].max > zoomInfo.max ) ), 'must be sorted by descending max' );
 
 const DEFAULT_ZOOM_LEVEL = 3; // default value for yZoomLevelProperty

@@ -42,7 +42,8 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import Curve from '../model/Curve.js';
-import DiscontinuousPointsPlot from './DiscontinuousPointsPlot.js'; // dateset types associated with LinePlot and ScatterPlot
+import DiscontinuousPointsPlot from './DiscontinuousPointsPlot.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js'; // dateset types associated with LinePlot and ScatterPlot
 
 // dateset types associated with LinePlot and ScatterPlot
 type LinePlotDataSet = ( Vector2 | null )[];
@@ -100,7 +101,7 @@ export default class CurveNode extends Node {
       phetioVisiblePropertyInstrumented: false // see https://github.com/phetsims/calculus-grapher/issues/225#issuecomment-1472231009
     }, providedOptions );
 
-    assert && assert( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,
+    affirm( options.plotBoundsMethod !== 'none' || options.plotBounds !== null,
       'plotBounds must be provided when plotBoundsMethod is none' );
 
     super( options );

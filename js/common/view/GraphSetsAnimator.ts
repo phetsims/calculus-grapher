@@ -17,6 +17,7 @@ import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import GraphNode from './GraphNode.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const STEPPER = null; // step method must be called by the client
 const OPACITY_DURATION = 0.5; // duration of opacity animation, in seconds
@@ -135,8 +136,8 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.fadeOutAnimation = null;
         this.fadeOutOpacityProperty.unlinkAll();
-        assert && assert( this.translationAnimation );
-        this.translationAnimation!.start();
+        affirm( this.translationAnimation );
+        this.translationAnimation.start();
       } );
 
       //------------------------------------------------------------------------------------------------------------
@@ -145,7 +146,7 @@ export default class GraphSetsAnimator {
       //------------------------------------------------------------------------------------------------------------
 
       const yStartCoordinates = newGraphNodes.map( graphNode => graphNode.y );
-      assert && assert( yStartCoordinates.length === yEndCoordinates.length );
+      affirm( yStartCoordinates.length === yEndCoordinates.length );
 
       this.percentDistanceProperty.unlinkAll();
       this.percentDistanceProperty.lazyLink( percentDistance => {
@@ -177,8 +178,8 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.translationAnimation = null;
         this.percentDistanceProperty.unlinkAll();
-        assert && assert( this.fadeInAnimation );
-        this.fadeInAnimation!.start();
+        affirm( this.fadeInAnimation );
+        this.fadeInAnimation.start();
       } );
 
       //------------------------------------------------------------------------------------------------------------
@@ -209,8 +210,8 @@ export default class GraphSetsAnimator {
       } );
 
       this.fadeInAnimation.finishEmitter.addListener( () => {
-        assert && assert( _.every( newGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ) );
-        assert && assert( _.every( newGraphNodes, graphNode => ( graphNode.opacity === 1 ) ) );
+        affirm( _.every( newGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ) );
+        affirm( _.every( newGraphNodes, graphNode => ( graphNode.opacity === 1 ) ) );
         this.activeAnimation = null;
         this.fadeInAnimation = null;
         this.fadeInOpacityProperty.unlinkAll();

@@ -23,6 +23,7 @@ import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryPar
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import GraphType from '../model/GraphType.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const HAIR_SPACE_STRING = '\u200A';
 const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;
@@ -222,7 +223,7 @@ function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<s
                                      fontSizeOptions: FontSizeOptions ): Node {
 
   const superscriptSize = fontSizeOptions.superscriptSize!;
-  assert && assert( superscriptSize !== undefined );
+  affirm( superscriptSize !== undefined );
 
   // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
   const numeratorStringProperty = new DerivedProperty(

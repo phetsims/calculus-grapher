@@ -17,6 +17,7 @@ import IOType from '../../../../tandem/js/types/IOType.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import GraphType from './GraphType.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -28,7 +29,7 @@ export default class GraphSet extends PhetioObject {
   public readonly graphTypes: GraphType[];
 
   public constructor( graphTypes: GraphType[], providedOptions?: GraphSetOptions ) {
-    assert && assert( graphTypes.length === _.uniq( graphTypes ).length, 'elements in the set must be unique' );
+    affirm( graphTypes.length === _.uniq( graphTypes ).length, 'elements in the set must be unique' );
 
     super( optionize<GraphSetOptions, SelfOptions, PhetioObjectOptions>()( {
 

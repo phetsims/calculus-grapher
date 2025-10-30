@@ -16,6 +16,7 @@
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 export default class IntegralCurve extends Curve {
 
@@ -61,14 +62,14 @@ export default class IntegralCurve extends Curve {
       const point = this.originalCurve.points[ index ];
       const previousPoint = this.originalCurve.points[ index - 1 ];
 
-      assert && assert( point.isFinite && previousPoint.isFinite );
+      affirm( point.isFinite && previousPoint.isFinite );
 
       // Takes the integral from the minimum of curve the x-domain to the x-value of the current point using a
       // trapezoidal Riemann sum approximation. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
       const trapezoidalArea = 0.5 * ( point.y + previousPoint.y ) * ( point.x - previousPoint.x );
 
       // Sanity check that verifies that the area is well-defined at the current Point.
-      assert && assert( Number.isFinite( trapezoidalArea ) && point.isFinite, 'non-finite trapezoidal area' );
+      affirm( Number.isFinite( trapezoidalArea ) && point.isFinite, 'non-finite trapezoidal area' );
 
       // Let's add the trapezoidalArea to the previous y-value to get the y-value of the current Point.
       this.points[ index ].y = this.points[ index - 1 ].y + trapezoidalArea;

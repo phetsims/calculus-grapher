@@ -18,6 +18,7 @@ import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // Constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
@@ -44,7 +45,7 @@ export default class CurveManipulationProperties {
     // Initial mode of the simulation
     const initialMode = CurveManipulationMode.HILL;
 
-    assert && assert( curveManipulationModeChoices.includes( initialMode ),
+    affirm( curveManipulationModeChoices.includes( initialMode ),
       `curveManipulationModeChoices must include initial value: ${initialMode}` );
 
     this.modeProperty = new EnumerationProperty( initialMode, {

@@ -16,10 +16,11 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import HSlider, { HSliderOptions } from '../../../../sun/js/HSlider.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
-assert && assert( NUMBER_OF_TICKS % 2 === 1, 'must have an odd number of ticks for there to be a center tick' );
+affirm( NUMBER_OF_TICKS % 2 === 1, 'must have an odd number of ticks for there to be a center tick' );
 
 type SelfOptions = EmptySelfOptions;
 
