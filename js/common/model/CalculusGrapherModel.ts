@@ -122,7 +122,7 @@ export default class CalculusGrapherModel implements TModel {
     affirm( options.graphSets.length > 0, 'there must be at least one valid graphSet' );
     affirm( _.every( options.graphSets, graphSet => graphSet.length === options.graphSets[ 0 ].length ),
       'all elements of graphSets must have the same length, a current limitation of this sim' );
-    affirm( options.graphSets.includes( options.graphSet ) );
+    affirm( options.graphSets.includes( options.graphSet ), 'graphSet must be a member of graphSets' );
 
     this.graphSets = options.graphSets;
 

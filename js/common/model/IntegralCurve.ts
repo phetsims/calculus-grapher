@@ -62,7 +62,7 @@ export default class IntegralCurve extends Curve {
       const point = this.originalCurve.points[ index ];
       const previousPoint = this.originalCurve.points[ index - 1 ];
 
-      affirm( point.isFinite && previousPoint.isFinite );
+      affirm( point.isFinite && previousPoint.isFinite, 'non-finite point or previousPoint' );
 
       // Takes the integral from the minimum of curve the x-domain to the x-value of the current point using a
       // trapezoidal Riemann sum approximation. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.

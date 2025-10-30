@@ -80,8 +80,7 @@ const Y_ZOOM_INFO: ZoomInfo[] = [
   { max: 1, tickSpacing: 0.5 },
   { max: 0.5, tickSpacing: 0.25 }
 ];
-affirm( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoomInfo.max ),
-  'tickSpacing must be <= max' );
+affirm( _.every( Y_ZOOM_INFO, zoomInfo => zoomInfo.tickSpacing <= zoomInfo.max ), 'tickSpacing must be <= max' );
 affirm( _.every( Y_ZOOM_INFO, ( zoomInfo, index, Y_ZOOM_INFO ) =>
   ( index === 0 || Y_ZOOM_INFO[ index - 1 ].max > zoomInfo.max ) ), 'must be sorted by descending max' );
 

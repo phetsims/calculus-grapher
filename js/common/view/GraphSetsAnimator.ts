@@ -136,7 +136,7 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.fadeOutAnimation = null;
         this.fadeOutOpacityProperty.unlinkAll();
-        affirm( this.translationAnimation );
+        affirm( this.translationAnimation, 'translationAnimation should not be null' );
         this.translationAnimation.start();
       } );
 
@@ -146,7 +146,7 @@ export default class GraphSetsAnimator {
       //------------------------------------------------------------------------------------------------------------
 
       const yStartCoordinates = newGraphNodes.map( graphNode => graphNode.y );
-      affirm( yStartCoordinates.length === yEndCoordinates.length );
+      affirm( yStartCoordinates.length === yEndCoordinates.length, 'yStartCoordinates and yEndCoordinates must have the same length.' );
 
       this.percentDistanceProperty.unlinkAll();
       this.percentDistanceProperty.lazyLink( percentDistance => {
@@ -178,7 +178,7 @@ export default class GraphSetsAnimator {
         this.activeAnimation = null;
         this.translationAnimation = null;
         this.percentDistanceProperty.unlinkAll();
-        affirm( this.fadeInAnimation );
+        affirm( this.fadeInAnimation, 'fadeInAnimation should not be null' );
         this.fadeInAnimation.start();
       } );
 
@@ -210,8 +210,8 @@ export default class GraphSetsAnimator {
       } );
 
       this.fadeInAnimation.finishEmitter.addListener( () => {
-        affirm( _.every( newGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ) );
-        affirm( _.every( newGraphNodes, graphNode => ( graphNode.opacity === 1 ) ) );
+        affirm( _.every( newGraphNodes, graphNode => graphSetNode.hasChild( graphNode ) ), 'Every newGraphNodes should be in graphSetNode.' );
+        affirm( _.every( newGraphNodes, graphNode => ( graphNode.opacity === 1 ) ), 'Every newGraphNodes should be opaque.' );
         this.activeAnimation = null;
         this.fadeInAnimation = null;
         this.fadeInOpacityProperty.unlinkAll();

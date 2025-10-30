@@ -261,7 +261,8 @@ export default class TransformedCurve extends Curve {
       this.sinusoid( width, position.x, position.y );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
-      affirm( penultimatePosition !== undefined && antepenultimatePosition !== undefined );
+      affirm( penultimatePosition !== undefined && antepenultimatePosition !== undefined,
+        'penultimatePosition and antepenultimatePosition must be defined for CurveManipulationMode.FREEFORM' );
       this.freeform( position, penultimatePosition, antepenultimatePosition );
     }
     else if ( mode === CurveManipulationMode.TILT ) {

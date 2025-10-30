@@ -43,7 +43,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
    * Creates an item for this radio button group.
    */
   public static createItem( graphSet: GraphSet, graphType: GraphType, labelAlignGroup: AlignGroup ): GraphSetRadioButtonGroupItem {
-    affirm( graphSet.includes( graphType ) );
+    affirm( graphSet.includes( graphType ), 'graphSet should include graphType' );
     return {
       createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
       value: graphSet,

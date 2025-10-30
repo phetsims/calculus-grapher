@@ -223,7 +223,7 @@ function getLeibnizSecondDerivative( variableStringProperty: TReadOnlyProperty<s
                                      fontSizeOptions: FontSizeOptions ): Node {
 
   const superscriptSize = fontSizeOptions.superscriptSize!;
-  affirm( superscriptSize !== undefined );
+  affirm( superscriptSize !== undefined, 'superscriptSize must be defined.' );
 
   // string for d^2 f , we need a hairspace to prevent the superscript to overlap with d
   const numeratorStringProperty = new DerivedProperty(

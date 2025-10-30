@@ -29,7 +29,7 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
                       tandem: Tandem ) {
 
     const validModes = curveManipulationModeProperty.validValues!;
-    affirm( validModes );
+    affirm( validModes, 'validModes should be defined' );
 
     // So that all icons have the same effective size
     const alignBoxOptions = {

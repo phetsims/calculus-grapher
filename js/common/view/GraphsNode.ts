@@ -217,7 +217,7 @@ export default class GraphsNode extends Node {
   public addTangentView( tangentScrubber: TangentScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
     const derivativeGraphNode = this.derivativeGraphNode!;
-    affirm( derivativeGraphNode );
+    affirm( derivativeGraphNode, 'derivativeGraphNode must be defined.' );
 
     // Determines whether the tangent scrubber, tangent line, and associated points are visible on the graphs.
     const tangentVisibleProperty = new DerivedProperty(
@@ -250,7 +250,7 @@ export default class GraphsNode extends Node {
   public addAreaUnderCurveView( areaUnderCurveScrubber: AreaUnderCurveScrubber, predictEnabledProperty: TReadOnlyProperty<boolean> ): void {
 
     const integralGraphNode = this.integralGraphNode!;
-    affirm( integralGraphNode );
+    affirm( integralGraphNode, 'integralGraphNode must be defined.' );
 
     // Determines whether the area-under-curve scrubber, plot, and associated points are visible on the graphs.
     const areaUnderCurveVisibleProperty = new DerivedProperty(
