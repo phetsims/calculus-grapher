@@ -29,7 +29,7 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
-import DragListener, { PressedDragListener } from '../../../../scenery/js/listeners/DragListener.js';
+import { PressedDragListener } from '../../../../scenery/js/listeners/DragListener.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
@@ -49,6 +49,7 @@ import LabeledPointsNode from './LabeledPointsNode.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import TangentArrowNode from './TangentArrowNode.js';
 import TransformedCurveNode from './TransformedCurveNode.js';
+import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 
 // Minimum x distance between drag points when drawing in FREEFORM mode.
 // See https://github.com/phetsims/calculus-grapher/issues/297
@@ -237,7 +238,7 @@ export default class OriginalGraphNode extends GraphNode {
     // the user to modify a curve by doing a 'pointer down' anywhere in the chartRectangle.
     // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/74.
     this.chartRectangle.cursor = 'pointer';
-    this.chartRectangle.addInputListener( new DragListener( {
+    this.chartRectangle.addInputListener( new SoundDragListener( {
       dragBoundsProperty: new Property( new Bounds2( 0, 0, this.chartTransform.viewWidth, this.chartTransform.viewHeight ) ),
       applyOffset: false,
       start: ( event, listener ) => {

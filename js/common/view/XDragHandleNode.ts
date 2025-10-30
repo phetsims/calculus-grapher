@@ -13,11 +13,11 @@ import Shape from '../../../../kite/js/Shape.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import DragListener from '../../../../scenery/js/listeners/DragListener.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 
 type SelfOptions = {
 
@@ -63,7 +63,7 @@ export default class XDragHandleNode extends ShadedSphereNode {
     super( options.radius, options );
 
     // As the handle is dragged, change xProperty.
-    this.addInputListener( new DragListener( {
+    this.addInputListener( new SoundDragListener( {
       drag: ( event, listener ) => {
         const xModel = chartTransform.viewToModelX( listener.modelPoint.x );
         xProperty.value = chartTransform.modelXRange.constrainValue( xModel );
