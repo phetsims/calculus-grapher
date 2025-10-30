@@ -18,6 +18,7 @@ import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import DerivativeModel from './model/DerivativeModel.js';
 import DerivativeScreenView from './view/DerivativeScreenView.js';
+import DerivativeKeyboardHelpContent from './view/DerivativeKeyboardHelpContent.js';
 
 export default class DerivativeScreen extends Screen<DerivativeModel, DerivativeScreenView> {
 
@@ -40,6 +41,7 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
       name: CalculusGrapherStrings.screen.derivativeStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createDerivativeScreenIcon(),
+      createKeyboardHelpNode: () => new DerivativeKeyboardHelpContent(),
       tandem: tandem
     } );
   }

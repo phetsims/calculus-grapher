@@ -18,6 +18,7 @@ import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import IntegralModel from './model/IntegralModel.js';
 import IntegralScreenView from './view/IntegralScreenView.js';
+import IntegralKeyboardHelpContent from './view/IntegralKeyboardHelpContent.js';
 
 export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 
@@ -40,6 +41,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
       name: CalculusGrapherStrings.screen.integralStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createIntegralScreenIcon(),
+      createKeyboardHelpNode: () => new IntegralKeyboardHelpContent(),
       tandem: tandem
     } );
   }

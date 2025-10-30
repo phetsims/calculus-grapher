@@ -20,6 +20,7 @@ import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScre
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import AdvancedModel from './model/AdvancedModel.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
+import AdvancedKeyboardHelpContent from './view/AdvancedKeyboardHelpContent.js';
 
 export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreenView> {
 
@@ -60,6 +61,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       name: CalculusGrapherStrings.screen.advancedStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
+      createKeyboardHelpNode: () => new AdvancedKeyboardHelpContent(),
       tandem: tandem
     } );
   }

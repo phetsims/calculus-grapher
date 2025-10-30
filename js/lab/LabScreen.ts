@@ -19,6 +19,7 @@ import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScre
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import LabModel from './model/LabModel.js';
 import LabScreenView from './view/LabScreenView.js';
+import LabKeyboardHelpContent from './view/LabKeyboardHelpContent.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
@@ -58,6 +59,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
       name: CalculusGrapherStrings.screen.labStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createLabScreenIcon(),
+      createKeyboardHelpNode: () => new LabKeyboardHelpContent(),
       tandem: tandem
     } );
   }
