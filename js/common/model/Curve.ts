@@ -24,7 +24,6 @@
 import Emitter from '../../../../axon/js/Emitter.js';
 import Property, { PropertyOptions } from '../../../../axon/js/Property.js';
 import Range from '../../../../dot/js/Range.js';
-import Utils from '../../../../dot/js/Utils.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
@@ -32,6 +31,8 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurvePoint from './CurvePoint.js';
+import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
+import { clamp } from '../../../../dot/js/util/clamp.js';
 
 // Constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -167,7 +168,7 @@ export default class Curve extends PhetioObject {
    */
   protected getIndex( point: CurvePoint ): number {
     const normalizedValue = this.xRange.getNormalizedValue( point.x );
-    return Utils.roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
+    return roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
   }
 
   /**
@@ -178,10 +179,10 @@ export default class Curve extends PhetioObject {
 
     const normalizedValue = this.xRange.getNormalizedValue( x );
 
-    const index = Utils.roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
+    const index = roundSymmetric( normalizedValue * ( this.numberOfPoints - 1 ) );
 
     // Clamp the index to a point inside our range.
-    return Utils.clamp( index, 0, this.points.length - 1 );
+    return clamp( index, 0, this.points.length - 1 );
   }
 }
 

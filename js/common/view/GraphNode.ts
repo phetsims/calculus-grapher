@@ -31,7 +31,6 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
-import Utils from '../../../../dot/js/Utils.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
@@ -53,6 +52,8 @@ import GraphType from '../model/GraphType.js';
 import CurveNode from './CurveNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import PlottedPoint from './PlottedPoint.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
+import { numberOfDecimalPlaces } from '../../../../dot/js/util/numberOfDecimalPlaces.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -242,7 +243,7 @@ export default class GraphNode extends Node {
     } );
     const xTickLabelSet = new TickLabelSet( this.chartTransform, Orientation.HORIZONTAL, MAJOR_GRID_LINE_SPACING, {
       skipCoordinates: xSkipCoordinates,
-      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), {
+      createLabel: ( value: number ) => new Text( toFixed( value, 0 ), {
         font: CalculusGrapherConstants.TICK_LABEL_FONT
         // No PhET-iO instrumentation is desired.
       } )
@@ -380,13 +381,13 @@ export default class GraphNode extends Node {
 function createYTickLabelSet( spacing: number, chartTransform: ChartTransform ): TickLabelSet {
 
   // No more than three decimal places
-  const decimalPlaces = Math.min( 3, Utils.numberOfDecimalPlaces( spacing ) );
+  const decimalPlaces = Math.min( 3, numberOfDecimalPlaces( spacing ) );
 
   return new TickLabelSet( chartTransform, Orientation.VERTICAL, spacing, {
 
     // Display zero without decimal places.
     createLabel: ( value: number ) => {
-      const valueString = ( value === 0 ) ? '0' : Utils.toFixed( value, decimalPlaces );
+      const valueString = ( value === 0 ) ? '0' : toFixed( value, decimalPlaces );
       return new Text( valueString, {
         font: CalculusGrapherConstants.TICK_LABEL_FONT
         // No PhET-iO instrumentation is desired.

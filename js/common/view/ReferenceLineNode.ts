@@ -14,7 +14,6 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import Utils from '../../../../dot/js/Utils.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -26,6 +25,7 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import ReferenceLine from '../model/ReferenceLine.js';
 import ScrubberNode from './ScrubberNode.js';
+import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 
 // number of decimal places shown for the x value, dragging snaps to this interval
 const X_DECIMAL_PLACES = 1;
@@ -51,7 +51,7 @@ export default class ReferenceLineNode extends ScrubberNode {
 
     // See https://github.com/phetsims/calculus-grapher/issues/305
     const xDisplayProperty = new DerivedProperty( [ referenceLine.xProperty ],
-      x => Utils.roundToInterval( x, Math.pow( 10, -X_DECIMAL_PLACES ) ), {
+      x => roundToInterval( x, Math.pow( 10, -X_DECIMAL_PLACES ) ), {
         tandem: tandem.createTandem( 'xDisplayProperty' ),
         phetioValueType: NumberIO
       } );
