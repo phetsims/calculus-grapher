@@ -19,131 +19,128 @@ const tandem = Tandem.COLORS;
 
 const SCREEN_BACKGROUND_COLOR = 'rgb( 243, 252, 254 )';
 
-const integralCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
-  default: '#00853E'
-}, {
-  tandem: tandem.createTandem( 'integralCurveStrokeProperty' ),
-  phetioDocumentation: 'Color for the integral curve and the "Area Under Curve" scrubber.'
-} );
-
-const CalculusGrapherColors = {
+export default class CalculusGrapherColors {
 
   // Background color used for all screens
-  screenBackgroundColorProperty: new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
+  public static readonly screenBackgroundColorProperty = new ProfileColorProperty( calculusGrapher, 'screenBackgroundColor', {
     default: SCREEN_BACKGROUND_COLOR
-  } ),
+  } );
 
   // Stroke for Panel-like Containers
-  panelStrokeProperty: new ProfileColorProperty( calculusGrapher, 'panelStroke', {
+  public static readonly panelStrokeProperty = new ProfileColorProperty( calculusGrapher, 'panelStroke', {
     default: Color.grayColor( 190 )
-  } ),
+  } );
 
   // Fill for Panel-like Containers
-  panelFillProperty: new ProfileColorProperty( calculusGrapher, 'panelFill', {
+  public static readonly panelFillProperty = new ProfileColorProperty( calculusGrapher, 'panelFill', {
     default: 'white'
-  } ),
+  } );
 
   // Fill for the background of the original Graph
-  originalChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundFill', {
+  public static readonly originalChartBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundFill', {
     default: 'white'
-  } ),
+  } );
 
   // Stroke for the background of Original Graph
-  originalChartBackgroundStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundStroke', {
+  public static readonly originalChartBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundStroke', {
     default: 'black'
-  } ),
+  } );
 
   // Fill for the background of all Graphs (besides Original)
-  defaultChartBackgroundFillProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
+  public static readonly defaultChartBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
     default: SCREEN_BACKGROUND_COLOR
-  } ),
+  } );
 
   // Stroke for the background of all Graphs (besides Original)
-  defaultChartBackgroundStrokeProperty: new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundStroke', {
+  public static readonly defaultChartBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundStroke', {
     default: 'rgba( 0, 0, 0, 0.4 )'
-  } ),
+  } );
 
   // Stroke for the major gridlines of graph
-  majorGridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'majorGridlinesStroke', {
+  public static readonly majorGridlinesStrokeProperty = new ProfileColorProperty( calculusGrapher, 'majorGridlinesStroke', {
     default: Color.grayColor( 192 )
-  } ),
+  } );
 
   // Stroke for the minor gridlines of graph
-  minorGridlinesStrokeProperty: new ProfileColorProperty( calculusGrapher, 'minorGridlinesStroke', {
+  public static readonly minorGridlinesStrokeProperty = new ProfileColorProperty( calculusGrapher, 'minorGridlinesStroke', {
     default: Color.grayColor( 230 )
-  } ),
+  } );
 
   // Stroke for the original curve
-  originalCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
+  public static readonly originalCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
     default: Color.BLUE
   }, {
     tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
-  } ),
+  } );
 
   // Stroke for the predict curve
-  predictCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'predictCurveStroke', {
+  public static readonly predictCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'predictCurveStroke', {
     default: '#ff00cf'
   }, {
     tandem: tandem.createTandem( 'predictCurveStrokeProperty' )
-  } ),
+  } );
 
   // Stroke for integral curve
-  integralCurveStrokeProperty: integralCurveStrokeProperty,
+  public static readonly integralCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'integralCurveStroke', {
+    default: '#00853E'
+  }, {
+    tandem: tandem.createTandem( 'integralCurveStrokeProperty' ),
+    phetioDocumentation: 'Color for the integral curve and the "Area Under Curve" scrubber.'
+  } );
 
   // Stroke for derivative curve
-  derivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'derivativeCurveStroke', {
+  public static readonly derivativeCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'derivativeCurveStroke', {
     default: Color.RED
   }, {
     tandem: tandem.createTandem( 'derivativeCurveStrokeProperty' ),
     phetioDocumentation: 'Color for the derivative curve, the "Tangent" scrubber, and the bar in the "Slope of Tangent" accordion box.'
-  } ),
+  } );
 
   // Stroke for the second derivative curve
-  secondDerivativeCurveStrokeProperty: new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
+  public static readonly secondDerivativeCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'secondDerivativeCurveStroke', {
     default: 'rgb( 102, 45, 145 )'
   }, {
     tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
-  } ),
+  } );
 
   // Fill for integral curve (when area is positive)
-  integralPositiveFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
+  public static readonly integralPositiveFillProperty = new DerivedProperty( [ CalculusGrapherColors.integralCurveStrokeProperty ],
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.positiveAlpha ), {
       tandem: tandem.createTandem( 'integralPositiveFillProperty' ),
       phetioValueType: Color.ColorIO,
       phetioDocumentation: 'Color for positive area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
-    } ),
+    } );
 
   // Fill for the integral curve (when area is negative)
-  integralNegativeFillProperty: new DerivedProperty( [ integralCurveStrokeProperty ],
+  public static readonly integralNegativeFillProperty = new DerivedProperty( [ CalculusGrapherColors.integralCurveStrokeProperty ],
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.negativeAlpha ), {
       tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
       phetioValueType: Color.ColorIO,
       phetioDocumentation: 'Color for negative area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
-    } ),
+    } );
 
   // fill for the cueing arrows on the original graph
-  cueingArrowsFillProperty: new ProfileColorProperty( calculusGrapher, 'cueingArrowsFill', {
+  public static readonly cueingArrowsFillProperty = new ProfileColorProperty( calculusGrapher, 'cueingArrowsFill', {
     default: Color.ORANGE
-  } ),
+  } );
 
   // the vertical reference line
-  referenceLineStrokeProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineStroke', {
+  public static readonly referenceLineStrokeProperty = new ProfileColorProperty( calculusGrapher, 'referenceLineStroke', {
     default: 'black'
   }, {
     tandem: tandem.createTandem( 'referenceLineStrokeProperty' ),
     phetioDocumentation: 'Color of the vertical reference line',
     phetioValueType: Color.ColorIO
-  } ),
+  } );
 
   // the handle (shaded sphere) for moving the reference line
-  referenceLineHandleColorProperty: new ProfileColorProperty( calculusGrapher, 'referenceLineHandleColor', {
+  public static readonly referenceLineHandleColorProperty = new ProfileColorProperty( calculusGrapher, 'referenceLineHandleColor', {
     default: 'blue'
   }, {
     tandem: tandem.createTandem( 'referenceLineHandleColorProperty' ),
     phetioDocumentation: 'Color of the handle for moving the reference line',
     phetioValueType: Color.ColorIO
-  } )
-};
+  } );
+}
 
 calculusGrapher.register( 'CalculusGrapherColors', CalculusGrapherColors );
-export default CalculusGrapherColors;
