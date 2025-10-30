@@ -18,6 +18,7 @@ import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
+import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 
 type SelfOptions = {
 
@@ -31,7 +32,7 @@ type SelfOptions = {
 type XDragHandleNodeOptions = SelfOptions &
   PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem' | 'phetioVisiblePropertyInstrumented'>;
 
-export default class XDragHandleNode extends ShadedSphereNode {
+export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphereNode ) {
 
   public constructor( xProperty: Property<number>, chartTransform: ChartTransform, providedOptions: XDragHandleNodeOptions ) {
 
