@@ -10,15 +10,17 @@
 import Property from '../../../../axon/js/Property.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Shape from '../../../../kite/js/Shape.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import { optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
+import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
+import SoundKeyboardDragListener from '../../../../scenery-phet/js/SoundKeyboardDragListener.js';
+import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 
 type SelfOptions = {
 
@@ -36,15 +38,16 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
 
   public constructor( xProperty: Property<number>, chartTransform: ChartTransform, providedOptions: XDragHandleNodeOptions ) {
 
-    const options = optionize<XDragHandleNodeOptions, SelfOptions, ShadedSphereNodeOptions>()( {
+    const options = optionize4<XDragHandleNodeOptions, SelfOptions, ShadedSphereNodeOptions>()(
+      {}, AccessibleDraggableOptions, {
 
-      // SelfOptions
-      radius: CalculusGrapherConstants.SCRUBBER_RADIUS,
-      yModel: 0,
+        // SelfOptions
+        radius: CalculusGrapherConstants.SCRUBBER_RADIUS,
+        yModel: 0,
 
-      // ShadedSphereNodeOptions
-      cursor: 'ew-resize'
-    }, providedOptions );
+        // ShadedSphereNodeOptions
+        cursor: 'ew-resize'
+      }, providedOptions );
 
     // If we have instrumented the handle's visibleProperty, we also want to feature it in Studio.
     // See https://github.com/phetsims/calculus-grapher/issues/281#event-8769439973
@@ -70,6 +73,19 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
         xProperty.value = chartTransform.modelXRange.constrainValue( xModel );
       },
       tandem: options.tandem.createTandem( 'dragListener' )
+    } ) );
+
+    // We need a separate drag listener for keyboard input because (1) listener.modelPoint is always (0,0) for
+    // keyboard input, and (2) using listener.modelDelta for pointer input causes the cursor to become displaced
+    // from the Node when dragging past the range of the chart.
+    this.addInputListener( new SoundKeyboardDragListener( {
+      dragSpeed: 300, // in view coordinates per second
+      shiftDragSpeed: 75,
+      drag: ( event, listener ) => {
+        const dxModel = chartTransform.viewToModelX( listener.modelDelta.x );
+        xProperty.value = chartTransform.modelXRange.constrainValue( xProperty.value + dxModel );
+      },
+      tandem: options.tandem.createTandem( 'keyboardDragListener' )
     } ) );
 
     // As xProperty changes, translate this Node.
