@@ -49,7 +49,7 @@ type StringsType = {
   'predictPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'referenceLineStringProperty': LocalizedStringProperty;
   'a11y': {
-    'advancedScreen': {
+    'derivativeScreen': {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
       'screenSummary': {
         'playAreaStringProperty': LocalizedStringProperty;
@@ -67,7 +67,7 @@ type StringsType = {
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
-    'derivativeScreen': {
+    'advancedScreen': {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
       'screenSummary': {
         'playAreaStringProperty': LocalizedStringProperty;
@@ -89,6 +89,9 @@ type StringsType = {
       'accessibleNameStringProperty': LocalizedStringProperty;
     };
     'undoButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+    };
+    'eyeToggleButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
     }
   }

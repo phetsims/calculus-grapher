@@ -55,6 +55,7 @@ import PlottedPoint from './PlottedPoint.js';
 import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import { numberOfDecimalPlaces } from '../../../../dot/js/util/numberOfDecimalPlaces.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -266,6 +267,7 @@ export default class GraphNode extends Node {
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
+      accessibleName: CalculusGrapherStrings.a11y.eyeToggleButton.accessibleNameStringProperty,
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 
