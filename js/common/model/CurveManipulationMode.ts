@@ -49,7 +49,7 @@ export default class CurveManipulationMode extends EnumerationValue {
 
   public static readonly SINUSOID = new CurveManipulationMode( 'sinusoid',
     CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty,
-    CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly FREEFORM = new CurveManipulationMode( 'freeform',
     CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty,
