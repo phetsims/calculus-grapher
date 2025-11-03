@@ -105,7 +105,7 @@ type SelfOptions = {
 
 export type GraphNodeOptions = SelfOptions &
   PickOptional<NodeOptions, 'inputEnabledProperty'> &
-  PickRequired<NodeOptions, 'tandem'>;
+  PickRequired<NodeOptions, 'tandem' | 'accessibleHeading' | 'accessibleParagraph'>;
 
 export default class GraphNode extends Node {
 

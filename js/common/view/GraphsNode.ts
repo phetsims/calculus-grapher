@@ -36,6 +36,7 @@ import OriginalGraphNode from './OriginalGraphNode.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
 
@@ -95,6 +96,8 @@ export default class GraphsNode extends Node {
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
       this.integralGraphNode = new GraphNode( GraphType.INTEGRAL, model.integralCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
+        accessibleHeading: CalculusGrapherStrings.a11y.integralGraph.accessibleHeadingStringProperty,
+        accessibleParagraph: CalculusGrapherStrings.a11y.integralGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
       this.graphNodes.push( this.integralGraphNode );
@@ -103,6 +106,8 @@ export default class GraphsNode extends Node {
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
       this.derivativeGraphNode = new GraphNode( GraphType.DERIVATIVE, model.derivativeCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
+        accessibleHeading: CalculusGrapherStrings.a11y.derivativeGraph.accessibleHeadingStringProperty,
+        accessibleParagraph: CalculusGrapherStrings.a11y.derivativeGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
       this.graphNodes.push( this.derivativeGraphNode );
@@ -111,6 +116,8 @@ export default class GraphsNode extends Node {
     if ( GraphSet.includes( model.graphSets, GraphType.SECOND_DERIVATIVE ) ) {
       this.secondDerivativeGraphNode = new GraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
+        accessibleHeading: CalculusGrapherStrings.a11y.secondDerivativeGraph.accessibleHeadingStringProperty,
+        accessibleParagraph: CalculusGrapherStrings.a11y.secondDerivativeGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );
       this.graphNodes.push( this.secondDerivativeGraphNode );

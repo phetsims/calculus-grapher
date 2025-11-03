@@ -71,7 +71,7 @@ export default class OriginalGraphNode extends GraphNode {
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly showOriginalCurveProperty: Property<boolean>;
 
-  public constructor( model: CalculusGrapherModel, providedOptions: GraphNodeOptions ) {
+  public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
     // Destructuring fields from the model into local constants, to improve readability.
     const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
@@ -102,7 +102,9 @@ export default class OriginalGraphNode extends GraphNode {
       chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
-      }
+      },
+      accessibleHeading: CalculusGrapherStrings.a11y.originalGraph.accessibleHeadingStringProperty,
+      accessibleParagraph: CalculusGrapherStrings.a11y.originalGraph.accessibleParagraphStringProperty
     }, providedOptions );
 
     super( graphType, originalCurve, model.gridVisibleProperty, options );

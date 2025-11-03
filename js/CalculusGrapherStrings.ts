@@ -208,6 +208,22 @@ type StringsType = {
     };
     'netSignedAreaAccordionBox': {
       'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'originalGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'integralGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'derivativeGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'secondDerivativeGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
     }
   }
 };
