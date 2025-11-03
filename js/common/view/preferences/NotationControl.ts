@@ -22,6 +22,9 @@ import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
 import GraphType from '../../model/GraphType.js';
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
+import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
+import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
 export default class NotationControl extends PreferencesControl {
 
@@ -67,18 +70,37 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
 
   public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
 
+    // Localized variable that appears in the accessibleName, either 'x' or 't'.
+    const variableStringProperty = new DerivedProperty( [
+        CalculusGrapherPreferences.functionVariableProperty,
+        CalculusGrapherStrings.symbol.xStringProperty,
+        CalculusGrapherStrings.symbol.tStringProperty ],
+      ( functionVariable, xString, tString ) => ( functionVariable === 'x' ) ? xString : tString );
+
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
         value: 'lagrange',
         createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.lagrangeStringProperty,
           new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
-        tandemName: 'lagrangeRadioButton'
+        tandemName: 'lagrangeRadioButton',
+        options: {
+          accessibleName: new PatternStringProperty( CalculusGrapherStrings.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleNameStringProperty, {
+            variable: variableStringProperty
+          } ),
+          accessibleHelpText: CalculusGrapherStrings.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
+        }
       },
       {
         value: 'leibniz',
         createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.leibnizStringProperty,
           new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
-        tandemName: 'leibnizRadioButton'
+        tandemName: 'leibnizRadioButton',
+        options: {
+          accessibleName: new PatternStringProperty( CalculusGrapherStrings.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleNameStringProperty, {
+            variable: variableStringProperty
+          } ),
+          accessibleHelpText: CalculusGrapherStrings.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty
+        }
       }
     ];
 
@@ -88,6 +110,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
       radioButtonOptions: {
         phetioVisiblePropertyInstrumented: false
       },
+      accessibleHelpText: CalculusGrapherStrings.a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

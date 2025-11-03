@@ -69,12 +69,18 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
       {
         value: 'x',
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.xStringProperty, radioButtonTandem ),
-        tandemName: 'xRadioButton'
+        tandemName: 'xRadioButton',
+        options: {
+          accessibleName: CalculusGrapherStrings.symbol.xStringProperty
+        }
       },
       {
         value: 't',
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.tStringProperty, radioButtonTandem ),
-        tandemName: 'tRadioButton'
+        tandemName: 'tRadioButton',
+        options: {
+          accessibleName: CalculusGrapherStrings.symbol.tStringProperty
+        }
       }
     ];
 

@@ -20,6 +20,7 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 
 export default class PredictControl extends PreferencesControl {
 
@@ -39,8 +40,18 @@ export default class PredictControl extends PreferencesControl {
       tandem: tandem.createTandem( 'labelText' )
     } );
 
+    // Localized variable that appears in the accessibleHelpText, either 'x' or 't'.
+    const variableStringProperty = new DerivedProperty( [
+        CalculusGrapherPreferences.functionVariableProperty,
+        CalculusGrapherStrings.symbol.xStringProperty,
+        CalculusGrapherStrings.symbol.tStringProperty ],
+      ( functionVariable, xString, tString ) => ( functionVariable === 'x' ) ? xString : tString );
+
     const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
+        accessibleHelpText: new PatternStringProperty( CalculusGrapherStrings.a11y.predictToggleSwitch.accessibleHelpTextStringProperty, {
+          variable: variableStringProperty
+        } ),
         tandem: tandem.createTandem( 'toggleSwitch' ),
         phetioVisiblePropertyInstrumented: false
       } ) );

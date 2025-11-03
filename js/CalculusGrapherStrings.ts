@@ -93,6 +93,31 @@ type StringsType = {
     };
     'eyeToggleButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
+    };
+    'notationRadioButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'lagrangeRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'leibnizRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
+    'discontinuitiesRadioButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'noLineRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'dashedLineRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
+    'predictToggleSwitch': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     }
   }
 };
