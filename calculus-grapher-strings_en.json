@@ -186,12 +186,12 @@
     "yZoomButtonGroup": {
       "zoomInButton": {
         "accessibleHelpText": {
-          "value": "TODO.yZoomButtonGroup.zoomInButton.accessibleHelpText"
+          "value": "TODO.zoomInButton.accessibleHelpText"
         }
       },
       "zoomOutButton": {
         "accessibleHelpText": {
-          "value": "TODO.yZoomButtonGroup.zoomOutButton.accessibleHelpText"
+          "value": "TODO.zoomOutButton.accessibleHelpText"
         }
       }
     },
