@@ -280,6 +280,8 @@ export default class GraphNode extends Node {
       },
       touchAreaXDilation: 6,
       touchAreaYDilation: 3,
+      accessibleHelpTextZoomIn: CalculusGrapherStrings.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
+      accessibleHelpTextZoomOut: CalculusGrapherStrings.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
       visiblePropertyOptions: {
         phetioFeatured: true

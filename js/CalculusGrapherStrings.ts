@@ -100,6 +100,14 @@ type StringsType = {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
+    'yZoomButtonGroup': {
+      'zoomInButton': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'zoomOutButton': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
     'tangentCheckbox': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
