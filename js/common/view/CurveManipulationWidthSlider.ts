@@ -44,6 +44,7 @@ export default class CurveManipulationWidthSlider extends HSlider {
       minorTickLength: 15,
       minorTickLineWidth: 0.5,
       thumbSize: new Dimension2( 15, 30 ),
+      keyboardStep: 0.5,
 
       // snap to ticks
       constrainValue: ( value: number ) => findClosestTick( tickValues, value ),
