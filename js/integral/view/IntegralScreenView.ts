@@ -65,6 +65,17 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.resetIntegralScreenView = () => {
       netSignedAreaAccordionBox.reset();
     };
+
+    // Play Area focus order
+    this.pdomPlayAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+      this.screenViewRootNode
+    ];
+
+    // Control Area focus order
+    this.pdomControlAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+    ];
   }
 
   public override reset(): void {

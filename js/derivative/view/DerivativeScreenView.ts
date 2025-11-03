@@ -64,6 +64,17 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.resetDerivativeScreenView = () => {
       slopeOfTangentAccordionBox.reset();
     };
+
+    // Play Area focus order
+    this.pdomPlayAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+      this.screenViewRootNode
+    ];
+
+    // Control Area focus order
+    this.pdomControlAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+    ];
   }
 
   public override reset(): void {

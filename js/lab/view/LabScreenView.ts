@@ -30,6 +30,17 @@ export default class LabScreenView extends CalculusGrapherScreenView {
     }, providedOptions );
 
     super( model, options );
+
+    // Play Area focus order
+    this.pdomPlayAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+      this.screenViewRootNode
+    ];
+
+    // Control Area focus order
+    this.pdomControlAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+    ];
   }
 }
 
