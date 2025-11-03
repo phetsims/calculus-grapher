@@ -268,6 +268,7 @@ export default class GraphNode extends Node {
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
       accessibleName: CalculusGrapherStrings.a11y.eyeToggleButton.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherStrings.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 

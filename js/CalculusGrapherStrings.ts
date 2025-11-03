@@ -87,12 +87,27 @@ type StringsType = {
     };
     'gridCheckbox': {
       'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'eraserButton': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'undoButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'eyeToggleButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'tangentCheckbox': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'referenceLineCheckbox': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'areaUnderCurveCheckbox': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'notationRadioButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;

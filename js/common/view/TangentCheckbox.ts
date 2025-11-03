@@ -43,6 +43,7 @@ export default class TangentCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
+        accessibleHelpText: CalculusGrapherStrings.a11y.tangentCheckbox.accessibleHelpTextStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );
