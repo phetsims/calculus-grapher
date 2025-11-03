@@ -162,6 +162,14 @@
         "value": "TODO.gridCheckbox.accessibleHelpText"
       }
     },
+    "smoothButton": {
+      "accessibleName": {
+        "value": "Smooth"
+      },
+      "accessibleHelpText": {
+        "value": "TODO.smoothButton.accessibleHelpText"
+      }
+    },
     "eraserButton": {
       "accessibleHelpText": {
         "value": "TODO.eraserButton.accessibleHelpText"
@@ -201,6 +209,9 @@
       }
     },
     "referenceLineCheckbox": {
+      "accessibleName": {
+        "value": "Reference Line"
+      },
       "accessibleHelpText": {
         "value": "TODO.referenceLineCheckbox.accessibleHelpText"
       }

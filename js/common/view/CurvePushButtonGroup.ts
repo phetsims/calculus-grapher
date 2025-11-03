@@ -69,6 +69,8 @@ export default class CurvePushButtonGroup extends VBox {
         layoutOptions: {
           stretch: true
         },
+        accessibleName: CalculusGrapherStrings.a11y.smoothButton.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherStrings.a11y.smoothButton.accessibleHelpTextStringProperty,
         tandem: tandem.createTandem( 'smoothButton' )
       } );
       children.push( smoothButton );
