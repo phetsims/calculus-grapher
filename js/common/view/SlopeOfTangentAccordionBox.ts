@@ -35,7 +35,8 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
         derivativeCurveStroke => derivativeCurveStroke.withAlpha( 0.6 ) ),
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE
-      }
+      },
+      accessibleParagraph: CalculusGrapherStrings.a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty
     }, providedOptions );
 
     super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,

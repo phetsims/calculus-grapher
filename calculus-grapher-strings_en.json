@@ -379,6 +379,16 @@
           "value": "TODO.secondDerivativeRadioButton.accessibleHelpText"
         }
       }
+    },
+    "slopeOfTangentAccordionBox": {
+      "accessibleParagraph": {
+        "value": "TODO.slopeOfTangentAccordionBox.accessibleParagraph"
+      }
+    },
+    "netSignedAreaAccordionBox": {
+      "accessibleParagraph": {
+        "value": "TODO.netSignedAreaAccordionBox.accessibleParagraph"
+      }
     }
   }
 }

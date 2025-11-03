@@ -202,6 +202,12 @@ type StringsType = {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
+    };
+    'slopeOfTangentAccordionBox': {
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'netSignedAreaAccordionBox': {
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
     }
   }
 };
