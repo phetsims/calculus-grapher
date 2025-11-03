@@ -21,6 +21,8 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 
 export default class CurveManipulationModeRadioButtonGroup extends GridBox {
 
@@ -53,7 +55,16 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
       autoColumns: 2,
       xSpacing: 4,
       ySpacing: 4,
-      tandem: tandem
+      tandem: tandem,
+
+      // For alt input and core description, make this GridBox behave like a RectangularRadioButtonGroup.
+      tagName: 'div',
+      ariaRole: 'radiogroup',
+      accessibleNameBehavior: ParallelDOM.HEADING_ACCESSIBLE_NAME_BEHAVIOR,
+      accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT,
+      groupFocusHighlight: true,
+      accessibleName: CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.accessibleHelpTextStringProperty
     } );
   }
 }
