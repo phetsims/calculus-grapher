@@ -181,6 +181,22 @@ type StringsType = {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
+    };
+    'graphSetRadioButtonGroup': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'integralRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'derivativeRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'secondDerivativeRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
     }
   }
 };

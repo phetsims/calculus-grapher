@@ -18,6 +18,7 @@ import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 
@@ -35,6 +36,8 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
         yMargin: 10,
         phetioVisiblePropertyInstrumented: false
       },
+      accessibleName: CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }
@@ -47,7 +50,11 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
     return {
       createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
       value: graphSet,
-      tandemName: `${graphType.tandemNamePrefix}RadioButton`
+      tandemName: `${graphType.tandemNamePrefix}RadioButton`,
+      options: {
+        accessibleName: graphType.radioButtonAccessibleNameProperty,
+        accessibleHelpText: graphType.radioButtonAccessibleHelpTextProperty
+      }
     };
   }
 }
