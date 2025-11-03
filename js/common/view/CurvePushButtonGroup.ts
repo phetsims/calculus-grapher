@@ -32,6 +32,7 @@ export default class CurvePushButtonGroup extends VBox {
       listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
       iconOptions: { height: 13 },
+      accessibleName: CalculusGrapherStrings.a11y.undoButton.accessibleNameStringProperty,
       tandem: tandem.createTandem( 'undoButton' )
     } );
 

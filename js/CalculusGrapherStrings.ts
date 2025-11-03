@@ -84,6 +84,12 @@ type StringsType = {
         'currentDetailsStringProperty': LocalizedStringProperty;
         'interactionHintStringProperty': LocalizedStringProperty;
       }
+    };
+    'gridCheckbox': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+    };
+    'undoButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
     }
   }
 };

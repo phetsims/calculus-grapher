@@ -153,6 +153,16 @@
           "value": "TODO-interactionHint"
         }
       }
+    },
+    "gridCheckbox": {
+      "accessibleName": {
+        "value": "Grid"
+      }
+    },
+    "undoButton": {
+      "accessibleName": {
+        "value": "Undo"
+      }
     }
   }
 }

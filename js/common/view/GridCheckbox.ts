@@ -13,6 +13,7 @@ import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 export default class GridCheckbox extends Checkbox {
 
@@ -20,6 +21,7 @@ export default class GridCheckbox extends Checkbox {
 
     super( scrubberVisibleProperty, new GridIcon(), combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        accessibleName: CalculusGrapherStrings.a11y.gridCheckbox.accessibleNameStringProperty,
         tandem: tandem
       } ) );
   }
