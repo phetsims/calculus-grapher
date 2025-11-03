@@ -19,8 +19,9 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
-import SoundKeyboardDragListener from '../../../../scenery-phet/js/SoundKeyboardDragListener.js';
-import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 
 type SelfOptions = {
 
@@ -66,26 +67,29 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
 
     super( options.radius, options );
 
-    // As the handle is dragged, change xProperty.
-    this.addInputListener( new SoundDragListener( {
-      drag: ( event, listener ) => {
-        const xModel = chartTransform.viewToModelX( listener.modelPoint.x );
-        xProperty.value = chartTransform.modelXRange.constrainValue( xModel );
-      },
-      tandem: options.tandem.createTandem( 'dragListener' )
-    } ) );
+    // Initial position in view coordinates.
+    const positionView = new Vector2( chartTransform.modelToViewX( xProperty.value ), this.y );
 
-    // We need a separate drag listener for keyboard input because (1) listener.modelPoint is always (0,0) for
-    // keyboard input, and (2) using listener.modelDelta for pointer input causes the cursor to become displaced
-    // from the Node when dragging past the range of the chart.
-    this.addInputListener( new SoundKeyboardDragListener( {
-      dragSpeed: 300, // in view coordinates per second
-      shiftDragSpeed: 75,
+    // Drag bounds in view coordinates.
+    const dragBoundsView = new Bounds2(
+      chartTransform.modelToViewX( chartTransform.modelXRange.min ),
+      chartTransform.modelToViewY( chartTransform.modelYRange.min ),
+      chartTransform.modelToViewX( chartTransform.modelXRange.max ),
+      chartTransform.modelToViewY( chartTransform.modelYRange.max )
+    );
+
+    // As the handle is dragged, change xProperty.
+    this.addInputListener( new SoundRichDragListener( {
+      positionProperty: new Property( positionView ),
+      dragBoundsProperty: new Property( dragBoundsView ),
       drag: ( event, listener ) => {
-        const dxModel = chartTransform.viewToModelX( listener.modelDelta.x );
-        xProperty.value = chartTransform.modelXRange.constrainValue( xProperty.value + dxModel );
+        xProperty.value = chartTransform.viewToModelX( listener.modelPoint.x );
       },
-      tandem: options.tandem.createTandem( 'keyboardDragListener' )
+      keyboardDragListenerOptions: {
+        dragSpeed: 300, // in view coordinates per second
+        shiftDragSpeed: 75
+      },
+      tandem: options.tandem
     } ) );
 
     // As xProperty changes, translate this Node.
