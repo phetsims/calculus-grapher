@@ -62,6 +62,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
       createKeyboardHelpNode: () => new AdvancedKeyboardHelpContent(),
+      screenButtonsHelpText: CalculusGrapherStrings.a11y.advancedScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

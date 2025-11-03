@@ -16,6 +16,7 @@ import AreaUnderCurveCheckbox from '../../common/view/AreaUnderCurveCheckbox.js'
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
 import IntegralModel from '../model/IntegralModel.js';
+import IntegralScreenSummaryContent from './IntegralScreenSummaryContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -32,7 +33,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
         hasSmoothButton: false
-      }
+      },
+      screenSummaryContent: new IntegralScreenSummaryContent()
     }, providedOptions );
 
     super( model, options );

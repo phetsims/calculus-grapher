@@ -33,7 +33,8 @@ type SelfOptions = {
   controlPanelOptions?: Partial<CalculusGrapherControlPanelOptions>;
 };
 
-export type CalculusGrapherScreenViewOptions = SelfOptions & PickRequired<ScreenViewOptions, 'tandem'>;
+export type CalculusGrapherScreenViewOptions = SelfOptions &
+  PickRequired<ScreenViewOptions, 'tandem' | 'screenSummaryContent'>;
 
 export default class CalculusGrapherScreenView extends ScreenView {
 

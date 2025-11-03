@@ -42,6 +42,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createIntegralScreenIcon(),
       createKeyboardHelpNode: () => new IntegralKeyboardHelpContent(),
+      screenButtonsHelpText: CalculusGrapherStrings.a11y.integralScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

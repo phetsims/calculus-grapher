@@ -7,11 +7,12 @@
  * @author Brandon Li
  */
 
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import AdvancedModel from '../model/AdvancedModel.js';
+import AdvancedScreenSummaryContent from './AdvancedScreenSummaryContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -21,7 +22,14 @@ type AdvancedScreenViewOptions = SelfOptions &
 export default class AdvancedScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: AdvancedModel, providedOptions: AdvancedScreenViewOptions ) {
-    super( model, providedOptions );
+
+    const options = optionize<AdvancedScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
+
+      // CalculusGrapherScreenViewOptions
+      screenSummaryContent: new AdvancedScreenSummaryContent()
+    }, providedOptions );
+
+    super( model, options );
   }
 }
 

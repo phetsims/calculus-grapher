@@ -48,6 +48,44 @@ type StringsType = {
   'valuesPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'predictPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'referenceLineStringProperty': LocalizedStringProperty;
+  'a11y': {
+    'advancedScreen': {
+      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+      'screenSummary': {
+        'playAreaStringProperty': LocalizedStringProperty;
+        'controlAreaStringProperty': LocalizedStringProperty;
+        'currentDetailsStringProperty': LocalizedStringProperty;
+        'interactionHintStringProperty': LocalizedStringProperty;
+      }
+    };
+    'integralScreen': {
+      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+      'screenSummary': {
+        'playAreaStringProperty': LocalizedStringProperty;
+        'controlAreaStringProperty': LocalizedStringProperty;
+        'currentDetailsStringProperty': LocalizedStringProperty;
+        'interactionHintStringProperty': LocalizedStringProperty;
+      }
+    };
+    'derivativeScreen': {
+      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+      'screenSummary': {
+        'playAreaStringProperty': LocalizedStringProperty;
+        'controlAreaStringProperty': LocalizedStringProperty;
+        'currentDetailsStringProperty': LocalizedStringProperty;
+        'interactionHintStringProperty': LocalizedStringProperty;
+      }
+    };
+    'labScreen': {
+      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+      'screenSummary': {
+        'playAreaStringProperty': LocalizedStringProperty;
+        'controlAreaStringProperty': LocalizedStringProperty;
+        'currentDetailsStringProperty': LocalizedStringProperty;
+        'interactionHintStringProperty': LocalizedStringProperty;
+      }
+    }
+  }
 };
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;

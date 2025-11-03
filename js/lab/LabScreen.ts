@@ -60,6 +60,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createLabScreenIcon(),
       createKeyboardHelpNode: () => new LabKeyboardHelpContent(),
+      screenButtonsHelpText: CalculusGrapherStrings.a11y.labScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

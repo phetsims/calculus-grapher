@@ -76,5 +76,83 @@
   },
   "referenceLine": {
     "value": "Reference<br>Line"
+  },
+  "a11y": {
+    "advancedScreen": {
+      "screenButtonsHelpText": {
+        "value": "TODO-screenButtonsHelpText"
+      },
+      "screenSummary": {
+        "playArea": {
+          "value": "TODO-playArea"
+        },
+        "controlArea": {
+          "value": "TODO-controlArea"
+        },
+        "currentDetails": {
+          "value": "TODO-currentDetails"
+        },
+        "interactionHint": {
+          "value": "TODO-interactionHint"
+        }
+      }
+    },
+    "integralScreen": {
+      "screenButtonsHelpText": {
+        "value": "TODO-screenButtonsHelpText"
+      },
+      "screenSummary": {
+        "playArea": {
+          "value": "TODO-playArea"
+        },
+        "controlArea": {
+          "value": "TODO-controlArea"
+        },
+        "currentDetails": {
+          "value": "TODO-currentDetails"
+        },
+        "interactionHint": {
+          "value": "TODO-interactionHint"
+        }
+      }
+    },
+    "derivativeScreen": {
+      "screenButtonsHelpText": {
+        "value": "TODO-screenButtonsHelpText"
+      },
+      "screenSummary": {
+        "playArea": {
+          "value": "TODO-playArea"
+        },
+        "controlArea": {
+          "value": "TODO-controlArea"
+        },
+        "currentDetails": {
+          "value": "TODO-currentDetails"
+        },
+        "interactionHint": {
+          "value": "TODO-interactionHint"
+        }
+      }
+    },
+    "labScreen": {
+      "screenButtonsHelpText": {
+        "value": "TODO-screenButtonsHelpText"
+      },
+      "screenSummary": {
+        "playArea": {
+          "value": "TODO-playArea"
+        },
+        "controlArea": {
+          "value": "TODO-controlArea"
+        },
+        "currentDetails": {
+          "value": "TODO-currentDetails"
+        },
+        "interactionHint": {
+          "value": "TODO-interactionHint"
+        }
+      }
+    }
   }
 }

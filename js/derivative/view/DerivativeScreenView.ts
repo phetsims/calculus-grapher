@@ -16,6 +16,7 @@ import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../
 import SlopeOfTangentAccordionBox from '../../common/view/SlopeOfTangentAccordionBox.js';
 import TangentCheckbox from '../../common/view/TangentCheckbox.js';
 import DerivativeModel from '../model/DerivativeModel.js';
+import DerivativeScreenSummaryContent from './DerivativeScreenSummaryContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -32,7 +33,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
         hasSmoothButton: false
-      }
+      },
+      screenSummaryContent: new DerivativeScreenSummaryContent()
     }, providedOptions );
 
     super( model, options );
