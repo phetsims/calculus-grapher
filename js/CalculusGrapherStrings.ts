@@ -141,6 +141,10 @@ type StringsType = {
     };
     'predictToggleSwitch': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'curveManipulationWidthSlider': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     }
   }
 };

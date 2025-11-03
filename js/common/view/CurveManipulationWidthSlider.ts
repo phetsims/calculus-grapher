@@ -17,6 +17,7 @@ import HSlider, { HSliderOptions } from '../../../../sun/js/HSlider.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
@@ -45,8 +46,10 @@ export default class CurveManipulationWidthSlider extends HSlider {
       thumbSize: new Dimension2( 15, 30 ),
 
       // snap to ticks
-      constrainValue: ( value: number ) => findClosestTick( tickValues, value )
+      constrainValue: ( value: number ) => findClosestTick( tickValues, value ),
 
+      accessibleName: CalculusGrapherStrings.a11y.curveManipulationWidthSlider.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherStrings.a11y.curveManipulationWidthSlider.accessibleHelpTextStringProperty
     }, providedOptions );
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
