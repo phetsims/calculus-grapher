@@ -1,4 +1,4 @@
-// Copyright 2020-2024, University of Colorado Boulder
+// Copyright 2020-2025, University of Colorado Boulder
 
 /**
  * CurveManipulationMode is an enumeration of the possible 'modes' for manipulating curves.

@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2025, University of Colorado Boulder
 
 /**
  * AdvancedScreenView is the top-level view for the 'Advanced' screen. This class adds no additional functionality,
