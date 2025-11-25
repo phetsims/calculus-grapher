@@ -27,7 +27,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import { ChartRectangleOptions } from '../../../../bamboo/js/ChartRectangle.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
+import AccessibleInteractiveOptions from '../../../../scenery-phet/js/accessibility/AccessibleInteractiveOptions.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -93,7 +93,9 @@ export default class OriginalGraphNode extends GraphNode {
       // GraphNodeOptions
       labelNode: labelNode,
       createCurveNode: false, // We'll be creating our own Node for model.originalCurve.
-      chartRectangleOptions: combineOptions<ChartRectangleOptions>( {}, AccessibleDraggableOptions, {
+
+      // In addition to fill and stroke, make the chartRectangle interactive for accessibility.
+      chartRectangleOptions: combineOptions<ChartRectangleOptions>( {}, AccessibleInteractiveOptions, {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       } ),
