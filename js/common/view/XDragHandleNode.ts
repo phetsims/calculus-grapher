@@ -1,27 +1,27 @@
 // Copyright 2023-2025, University of Colorado Boulder
 
 /**
- * XDragHandleNode is a spherical drag handle for controlling the x coordinate of something's position.
- * It's used by ReferenceLineNode and ScrubberNode for adjusting the x coordinate of those ancillary tools.
+ * XDragHandleNode is a spherical drag handle for controlling the x-coordinate of something's position.
+ * It's used by ReferenceLineNode and ScrubberNode for adjusting the x-coordinate of those ancillary tools.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Property from '../../../../axon/js/Property.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import { optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
+import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
+import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 
 type SelfOptions = {
 
@@ -58,7 +58,7 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
       };
     }
 
-    // y coordinate position is fixed.
+    // y-coordinate position is fixed.
     options.y = chartTransform.modelToViewY( options.yModel );
 
     // Dilate the pointer areas a bit. See https://github.com/phetsims/calculus-grapher/issues/230

@@ -11,6 +11,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -18,6 +19,7 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from '../model/AncillaryTool.js';
@@ -35,8 +37,6 @@ import LabeledLinesNode from './LabeledLinesNode.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
 
@@ -195,14 +195,14 @@ export default class GraphsNode extends Node {
   }
 
   /**
-   * Gets the y coordinate of the top of the top-most ChartRectangle.
+   * Gets the y-coordinate for the top of the top-most ChartRectangle.
    */
   private getChartRectanglesTop(): number {
     return this.graphSetNode.y;
   }
 
   /**
-   * Gets the y coordinate of the bottom of the bottom-most ChartRectangle.
+   * Gets the y-coordinate for the bottom of the bottom-most ChartRectangle.
    */
   private getChartRectanglesBottom(): number {
     const numberOfGraphNodes = this.graphSetNode.getChildrenCount();

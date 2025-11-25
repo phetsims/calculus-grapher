@@ -24,6 +24,9 @@
 import Emitter from '../../../../axon/js/Emitter.js';
 import Property, { PropertyOptions } from '../../../../axon/js/Property.js';
 import Range from '../../../../dot/js/Range.js';
+import { clamp } from '../../../../dot/js/util/clamp.js';
+import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
@@ -31,9 +34,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurvePoint from './CurvePoint.js';
-import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
-import { clamp } from '../../../../dot/js/util/clamp.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // Constants
 const CURVE_X_RANGE = CalculusGrapherConstants.CURVE_X_RANGE;
@@ -80,7 +80,7 @@ export default class Curve extends PhetioObject {
   // Number of points (evenly-spaced along the x-axis) that will be used to approximate the curve
   public readonly numberOfPoints: number;
 
-  // Delta between x coordinate values
+  // Delta between x-coordinate values
   protected readonly deltaX: number;
 
   protected constructor( providedOptions: CurveOptions ) {
@@ -194,7 +194,7 @@ function isValidPoints( initialPoints: CurvePoint[], points: CurvePoint[] ): boo
   // The number of points must be the same.
   let isValid = ( initialPoints.length === points.length );
 
-  // All x coordinates must be the same.
+  // All x-coordinates must be the same.
   for ( let i = 0; i < initialPoints.length && isValid; i++ ) {
     isValid = ( initialPoints[ i ].x === points[ i ].x );
   }

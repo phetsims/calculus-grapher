@@ -18,12 +18,12 @@
 
 import Disposable from '../../../../axon/js/Disposable.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import StringUnionIO from '../../../../tandem/js/types/StringUnionIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
 export type PointType = ( typeof PointTypeValues )[number];
@@ -45,7 +45,7 @@ export type CurvePointStateObject = {
 
 export default class CurvePoint {
 
-  // The x coordinate is fixed.
+  // The x-coordinate is fixed.
   public readonly x: number;
 
   // Using an observable Property for the y-value was considered, but it was deemed to be

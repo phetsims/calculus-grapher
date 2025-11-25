@@ -98,7 +98,7 @@ export default class ScrubberNode extends Node {
   }
 
   /**
-   * Sets the top and bottom y coordinates of the line, in GraphsNode view coordinate frame.
+   * Sets the top and bottom y-coordinates of the line, in GraphsNode view coordinate frame.
    */
   public setLineTopAndBottom( yTop: number, yBottom: number ): void {
     this.line.setY1( yTop );

@@ -9,12 +9,12 @@
 
 import Property from '../../../../axon/js/Property.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import Curve from './Curve.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
   label: string;
@@ -54,7 +54,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
   }
 
   /**
-   * Creates a specified number of tool instances, with evenly-spaced x coordinates, and alphabetically-ordered labels.
+   * Creates a specified number of tool instances, with evenly-spaced x-coordinates, and alphabetically-ordered labels.
    * @param numberOfTools
    * @param createTool - x is the tool's initial x coordinate, label is the string used to label the tool
    */

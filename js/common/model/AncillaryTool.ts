@@ -50,7 +50,7 @@ export default class AncillaryTool extends PhetioObject {
   // Instead, it may be AXON/derived from this property.
   public readonly visibleProperty: Property<boolean>;
 
-  // The x coordinate of the tool
+  // The x-coordinate of the tool
   public readonly xProperty: NumberProperty;
 
   // CurvePoints for each curve at the location of xProperty.
