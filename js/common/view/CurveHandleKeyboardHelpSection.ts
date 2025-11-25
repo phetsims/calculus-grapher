@@ -35,7 +35,7 @@ export default class CurveHandleKeyboardHelpSection extends KeyboardHelpSection 
       KeyboardHelpSectionRow.fromHotkeyData( HOTKEY_DATA )
     ];
 
-    // 'Curves' title
+    // 'Curve Handle' title
     super( curveHandleStringProperty, rows, {
       textMaxWidth: 300,
       isDisposable: false
