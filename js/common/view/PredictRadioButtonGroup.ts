@@ -36,8 +36,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
         tandemName: 'originalCurveRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.a11y.originalCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherStrings.a11y.originalCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherStrings.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherStrings.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -52,8 +52,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         },
         tandemName: 'predictCurveRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.a11y.predictCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherStrings.a11y.predictCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherStrings.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherStrings.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -68,6 +68,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         yMargin: 10,
         phetioVisiblePropertyInstrumented: false
       },
+      accessibleName: CalculusGrapherStrings.a11y.predictRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherStrings.a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }
