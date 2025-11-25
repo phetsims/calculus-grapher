@@ -1,18 +1,17 @@
 // Copyright 2025, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/346 Address duplication across screens.
 /**
- * AdvancedKeyboardHelpContent is the content for the keyboard-help dialog in the 'Advanced' screen.
+ * CalculusGrapherKeyboardHelpContent is the content for the keyboard-help dialog in all screens.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
-import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import MoveDraggableItemsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/MoveDraggableItemsKeyboardHelpSection.js';
+import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
-export default class AdvancedKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
+export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
   public constructor() {
 
@@ -34,4 +33,4 @@ export default class AdvancedKeyboardHelpContent extends TwoColumnKeyboardHelpCo
   }
 }
 
-calculusGrapher.register( 'AdvancedKeyboardHelpContent', AdvancedKeyboardHelpContent );
+calculusGrapher.register( 'CalculusGrapherKeyboardHelpContent', CalculusGrapherKeyboardHelpContent );

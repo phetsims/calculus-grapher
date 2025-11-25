@@ -15,10 +15,10 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
+import CalculusGrapherKeyboardHelpContent from '../common/view/CalculusGrapherKeyboardHelpContent.js';
 import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import IntegralModel from './model/IntegralModel.js';
 import IntegralScreenView from './view/IntegralScreenView.js';
-import IntegralKeyboardHelpContent from './view/IntegralKeyboardHelpContent.js';
 
 export default class IntegralScreen extends Screen<IntegralModel, IntegralScreenView> {
 
@@ -41,7 +41,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
       name: CalculusGrapherStrings.screen.integralStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createIntegralScreenIcon(),
-      createKeyboardHelpNode: () => new IntegralKeyboardHelpContent(),
+      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
       screenButtonsHelpText: CalculusGrapherStrings.a11y.integralScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );

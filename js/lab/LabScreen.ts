@@ -15,10 +15,10 @@ import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
+import CalculusGrapherKeyboardHelpContent from '../common/view/CalculusGrapherKeyboardHelpContent.js';
 import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import LabModel from './model/LabModel.js';
-import LabKeyboardHelpContent from './view/LabKeyboardHelpContent.js';
 import LabScreenView from './view/LabScreenView.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
@@ -63,7 +63,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
       name: CalculusGrapherStrings.screen.labStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createLabScreenIcon(),
-      createKeyboardHelpNode: () => new LabKeyboardHelpContent(),
+      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
       screenButtonsHelpText: CalculusGrapherStrings.a11y.labScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
