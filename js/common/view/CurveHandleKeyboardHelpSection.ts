@@ -31,7 +31,7 @@ export default class CurveHandleKeyboardHelpSection extends KeyboardHelpSection 
 
     const rows = [
 
-      // Toggle mode
+      // Toggle edit mode
       KeyboardHelpSectionRow.fromHotkeyData( HOTKEY_DATA )
     ];
 
