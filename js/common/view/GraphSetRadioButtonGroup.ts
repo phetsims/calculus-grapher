@@ -8,17 +8,18 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 
@@ -45,15 +46,19 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
   /**
    * Creates an item for this radio button group.
    */
-  public static createItem( graphSet: GraphSet, graphType: GraphType, labelAlignGroup: AlignGroup ): GraphSetRadioButtonGroupItem {
+  public static createItem( graphSet: GraphSet,
+                            graphType: GraphType,
+                            labelAlignGroup: AlignGroup,
+                            accessibleNameProperty: TReadOnlyProperty<string>,
+                            accessibleHelpTextProperty: TReadOnlyProperty<string> ): GraphSetRadioButtonGroupItem {
     affirm( graphSet.includes( graphType ), 'graphSet should include graphType' );
     return {
       createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
       value: graphSet,
       tandemName: `${graphType.tandemNamePrefix}RadioButton`,
       options: {
-        accessibleName: graphType.radioButtonAccessibleNameProperty,
-        accessibleHelpText: graphType.radioButtonAccessibleHelpTextProperty
+        accessibleName: accessibleNameProperty,
+        accessibleHelpText: accessibleHelpTextProperty
       }
     };
   }

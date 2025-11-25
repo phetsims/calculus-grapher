@@ -18,8 +18,8 @@ import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import LabModel from './model/LabModel.js';
-import LabScreenView from './view/LabScreenView.js';
 import LabKeyboardHelpContent from './view/LabKeyboardHelpContent.js';
+import LabScreenView from './view/LabScreenView.js';
 
 export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
@@ -41,8 +41,12 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     const labelAlignGroup = new AlignGroup(); // to give radio-button labels the same effective size
     const graphSetRadioButtonGroupItems = [
-      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup ),
-      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.SECOND_DERIVATIVE, labelAlignGroup )
+      GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
+        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleNameStringProperty,
+        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleHelpTextStringProperty ),
+      GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.SECOND_DERIVATIVE, labelAlignGroup,
+        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleNameStringProperty,
+        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleHelpTextStringProperty )
     ];
 
     const createModel = () => new LabModel( {

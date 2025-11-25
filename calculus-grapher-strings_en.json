@@ -356,16 +356,26 @@
         "value": "TODO.graphSetRadioButtonGroup.accessibleHelpText"
       },
       "integralRadioButton": {
-        "accessibleName": {
-          "value": "TODO.integralRadioButton.accessibleName"
+        "advanced": {
+          "accessibleName": {
+            "value": "Integral and Original Graph Set"
+          },
+          "accessibleHelpText": {
+            "value": "TODO.integralRadioButton.accessibleHelpText"
+          }
         },
-        "accessibleHelpText": {
-          "value": "TODO.integralRadioButton.accessibleHelpText"
+        "lab": {
+          "accessibleName": {
+            "value": "Integral, Original, and Derivative Graph Set"
+          },
+          "accessibleHelpText": {
+            "value": "TODO.integralRadioButton.accessibleHelpText"
+          }
         }
       },
       "derivativeRadioButton": {
         "accessibleName": {
-          "value": "TODO.derivativeRadioButton.accessibleName"
+          "value": "Original and Derivative Graph Set"
         },
         "accessibleHelpText": {
           "value": "TODO.derivativeRadioButton.accessibleHelpText"
@@ -373,7 +383,7 @@
       },
       "secondDerivativeRadioButton": {
         "accessibleName": {
-          "value": "TODO.secondDerivativeRadioButton.accessibleName"
+          "value": "Original, Derivative, and Second Derivative Graph Set"
         },
         "accessibleHelpText": {
           "value": "TODO.secondDerivativeRadioButton.accessibleHelpText"
