@@ -10,6 +10,7 @@ import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboar
 import MoveDraggableItemsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/MoveDraggableItemsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CurveHandleKeyboardHelpSection from './CurveHandleKeyboardHelpSection.js';
 
 export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
@@ -17,11 +18,18 @@ export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboar
 
     // Sections in the left column.
     const leftSections = [
+
+      // Curve Handle
+      new CurveHandleKeyboardHelpSection(),
+
+      // Move Draggable Items
       new MoveDraggableItemsKeyboardHelpSection()
     ];
 
     // Sections in the right column.
     const rightSections = [
+
+      // Basic Actions
       new BasicActionsKeyboardHelpSection( {
         withCheckboxContent: true
       } )
