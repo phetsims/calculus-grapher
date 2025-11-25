@@ -139,7 +139,7 @@ export default class CalculusGrapherColors {
 
   // the handle (shaded sphere) for moving the reference line
   public static readonly referenceLineHandleColorProperty = new ProfileColorProperty( calculusGrapher, 'referenceLineHandleColor', {
-    default: 'blue'
+    default: 'black'
   }, {
     tandem: tandem.createTandem( 'referenceLineHandleColorProperty' ),
     phetioDocumentation: 'Color of the handle for moving the reference line',
