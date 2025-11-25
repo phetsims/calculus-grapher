@@ -421,6 +421,22 @@
       "accessibleParagraph": {
         "value": "TODO.secondDerivativeGraph.accessibleParagraph"
       }
+    },
+    "originalCurveRadioButton": {
+      "accessibleName": {
+        "value": "Original Curve"
+      },
+      "accessibleHelpText": {
+        "value": "TODO.originalCurveRadioButton.accessibleHelpText"
+      }
+    },
+    "predictCurveRadioButton": {
+      "accessibleName": {
+        "value": "Predict Curve"
+      },
+      "accessibleHelpText": {
+        "value": "TODO.predictCurveRadioButton.accessibleHelpText"
+      }
     }
   }
 }

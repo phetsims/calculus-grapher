@@ -34,7 +34,11 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
       {
         value: false,
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
-        tandemName: 'originalCurveRadioButton'
+        tandemName: 'originalCurveRadioButton',
+        options: {
+          accessibleName: CalculusGrapherStrings.a11y.originalCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherStrings.a11y.originalCurveRadioButton.accessibleHelpTextStringProperty
+        }
       },
       {
         value: true,
@@ -46,7 +50,11 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
           } );
           return new LabelColorIcon( text, alignGroup, CalculusGrapherColors.predictCurveStrokeProperty );
         },
-        tandemName: 'predictCurveRadioButton'
+        tandemName: 'predictCurveRadioButton',
+        options: {
+          accessibleName: CalculusGrapherStrings.a11y.predictCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherStrings.a11y.predictCurveRadioButton.accessibleHelpTextStringProperty
+        }
       }
     ];
 
