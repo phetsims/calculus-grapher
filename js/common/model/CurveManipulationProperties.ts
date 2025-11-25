@@ -12,13 +12,13 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // Constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
@@ -63,20 +63,6 @@ export default class CurveManipulationProperties {
                            'If a width slider is not shown for the selected manipulation mode, ' +
                            'then width is irrelevant for that mode.'
     } );
-  }
-
-  /**
-   * Gets the current CurveManipulationMode.
-   */
-  public get mode(): CurveManipulationMode {
-    return this.modeProperty.value;
-  }
-
-  /**
-   * Gets the current curve-manipulation width.
-   */
-  public get width(): number {
-    return this.widthProperty.value;
   }
 
   public reset(): void {
