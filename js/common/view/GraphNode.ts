@@ -31,6 +31,9 @@ import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
+import { numberOfDecimalPlaces } from '../../../../dot/js/util/numberOfDecimalPlaces.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
@@ -43,6 +46,7 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -52,10 +56,6 @@ import GraphType from '../model/GraphType.js';
 import CurveNode from './CurveNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import PlottedPoint from './PlottedPoint.js';
-import { toFixed } from '../../../../dot/js/util/toFixed.js';
-import { numberOfDecimalPlaces } from '../../../../dot/js/util/numberOfDecimalPlaces.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -375,6 +375,9 @@ export default class GraphNode extends Node {
     return this.eyeToggleButton.x - this.x;
   }
 
+  /**
+   * Gets the bounds of the ChartRectangle. This addresses https://github.com/phetsims/calculus-grapher/issues/259.
+   */
   protected getChartRectangleBounds(): Bounds2 {
     return this.chartRectangle.getShape().bounds;
   }
