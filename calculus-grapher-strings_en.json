@@ -235,7 +235,7 @@
       },
       "leibnizRadioButton": {
         "accessibleName": {
-          "value": "Leibniz, df divided by d{{variable}}"
+          "value": "Leibniz, d f, divided by d {{variable}}"
         },
         "accessibleHelpText": {
           "value": "TODO.leibnizRadioButton.accessibleHelpText"
