@@ -24,12 +24,9 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
-import { PressedDragListener } from '../../../../scenery/js/listeners/DragListener.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
@@ -39,21 +36,16 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
+import CurveDragListener from './CurveDragListener.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import TangentArrowNode from './TangentArrowNode.js';
 import TransformedCurveNode from './TransformedCurveNode.js';
-import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
-
-// Minimum x distance between drag points when drawing in FREEFORM mode.
-// See https://github.com/phetsims/calculus-grapher/issues/297
-const FREEFORM_MIN_DX = 0.1;
 
 type SelfOptions = EmptySelfOptions;
 
@@ -192,71 +184,11 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
-    // Variables to keep track of old model positions associated with the dragListener.
-    // Set them to null as no drag event has occurred yet.
-    // These are relevant only for CurveManipulationMode.FREEFORM.
-    let penultimatePosition: Vector2 | null = null;
-    let antepenultimatePosition: Vector2 | null = null;
-
-    // Update whichever curve is currently interactive.
-    const updateCurve = ( listener: PressedDragListener ): void => {
-
-      // This listener 'field' is actually an ES5 getter that allocates a Vector2, so call it only once.
-      const modelPoint = listener.modelPoint;
-
-      // Current modelPosition
-      const modelPosition = this.chartTransform.viewToModelPosition( modelPoint );
-
-      if ( curveManipulationProperties.mode === CurveManipulationMode.FREEFORM ) {
-
-        // Do not update the curve model if the drag points in (FREEFORM mode) are too close from one another,
-        // to prevent noise in the derivative  (see https://github.com/phetsims/calculus-grapher/issues/297 )
-        if ( penultimatePosition === null || Math.abs( modelPosition.x - penultimatePosition.x ) > FREEFORM_MIN_DX ) {
-
-          interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
-            curveManipulationProperties.mode,
-            curveManipulationProperties.width,
-            modelPosition,
-            penultimatePosition,
-            antepenultimatePosition );
-
-          // Update (model) antepenultimatePosition and penultimatePosition
-          antepenultimatePosition = penultimatePosition;
-          penultimatePosition = modelPosition;
-        }
-      }
-      else {
-
-        // For any mode other than FREEFORM...
-        interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
-          curveManipulationProperties.mode,
-          curveManipulationProperties.width,
-          modelPosition );
-      }
-    };
-
-    // Instead of having a DragListener on each TransformedCurveNode, we have a single DragListener on the chartRectangle.
-    // This saves us the costly operation of creating pointer areas that match the Shapes of the curves.  And it allows
-    // the user to modify a curve by doing a 'pointer down' anywhere in the chartRectangle.
-    // See https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/74.
+    // A single DragListener on the entire chartRectangle. Press anywhere in the chartRectangle to modify the curve.
     this.chartRectangle.cursor = 'pointer';
-    this.chartRectangle.addInputListener( new SoundDragListener( {
-      dragBoundsProperty: new Property( new Bounds2( 0, 0, this.chartTransform.viewWidth, this.chartTransform.viewHeight ) ),
-      applyOffset: false,
-      start: ( event, listener ) => {
-
-        // Save the current values of the CurvePoints for the next undo() call.
-        // This must be called once at the start of dragging (and not on each micro drag-position change).
-        interactiveCurveNodeProperty.value.transformedCurve.save();
-
-        // Set the previous last positions to null, since it is a new drag.
-        antepenultimatePosition = null;
-        penultimatePosition = null;
-        updateCurve( listener );
-      },
-      drag: ( event, listener ) => updateCurve( listener ),
-      tandem: options.tandem.createTandem( 'dragListener' )
-    } ) );
+    this.chartRectangle.addInputListener( new CurveDragListener( interactiveCurveNodeProperty, this.chartTransform,
+      curveManipulationProperties.modeProperty, curveManipulationProperties.widthProperty,
+      options.tandem.createTandem( 'dragListener' ) ) );
 
     // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
     // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
