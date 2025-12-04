@@ -12,6 +12,7 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import { combineOptions } from '../../../../phet-core/js/optionize.js';
@@ -25,6 +26,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherDescription from '../CalculusGrapherDescription.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
@@ -55,6 +57,18 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
         touchAreaYDilation: POINTER_AREA_DILATION,
         mouseAreaXDilation: POINTER_AREA_DILATION,
         mouseAreaYDilation: POINTER_AREA_DILATION,
+        accessibleName: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleNameStringProperty, {
+          variable: CalculusGrapherDescription.variableStringProperty
+        } ),
+        accessibleHelpText: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty, {
+          variable: CalculusGrapherDescription.variableStringProperty
+        } ),
+        accessibleContextResponseChecked: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty, {
+          variable: CalculusGrapherDescription.variableStringProperty
+        } ),
+        accessibleContextResponseUnchecked: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty, {
+          variable: CalculusGrapherDescription.variableStringProperty
+        } ),
         tandem: tandem,
 
         // because 'showOriginalCurveCheckbox.visibleProperty' is the tandem name for BackgroundNode's visibleProperty

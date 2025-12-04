@@ -72,7 +72,7 @@
     "value": "Shows values on graph axes, reference line, \"Slope of Tangent\", and \"Net Signed Area\"."
   },
   "predictPreferenceDescription": {
-    "value": "Adds a mode that allows you to predict f({{variable}})."
+    "value": "Adds a mode that allows you to predict f of {{variable}}."
   },
   "referenceLine": {
     "value": "Reference<br>Line"
@@ -454,6 +454,20 @@
         "accessibleHelpText": {
           "value": "TODO.predictCurveRadioButton.accessibleHelpText"
         }
+      }
+    },
+    "showOriginalCurveCheckbox": {
+      "accessibleName": {
+        "value": "Show f of {{variable}}"
+      },
+      "accessibleHelpText": {
+        "value": "Show or hide f of {{variable}} concurrent with prediction curve."
+      },
+      "accessibleContextResponseChecked": {
+        "value": "f of {{variable}} shown with prediction"
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "f of {{variable}} hidden"
       }
     }
   }
