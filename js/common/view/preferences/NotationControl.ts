@@ -19,8 +19,8 @@ import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
-import CalculusGrapherDescription from '../../CalculusGrapherDescription.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
+import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 import GraphType from '../../model/GraphType.js';
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 
@@ -76,7 +76,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         tandemName: 'lagrangeRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleName.createProperty( {
-            variable: CalculusGrapherDescription.variableStringProperty
+            functionVariable: CalculusGrapherPreferences.functionVariableProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
         }
@@ -88,7 +88,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         tandemName: 'leibnizRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleName.createProperty( {
-            variable: CalculusGrapherDescription.variableStringProperty
+            functionVariable: CalculusGrapherPreferences.functionVariableProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty
         }

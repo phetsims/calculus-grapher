@@ -19,7 +19,6 @@ import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
-import CalculusGrapherDescription from '../../CalculusGrapherDescription.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
 export default class PredictControl extends PreferencesControl {
@@ -43,7 +42,7 @@ export default class PredictControl extends PreferencesControl {
     const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
         accessibleHelpText: CalculusGrapherFluent.a11y.predictToggleSwitch.accessibleHelpText.createProperty( {
-          variable: CalculusGrapherDescription.variableStringProperty
+          functionVariable: CalculusGrapherPreferences.functionVariableProperty
         } ),
         tandem: tandem.createTandem( 'toggleSwitch' ),
         phetioVisiblePropertyInstrumented: false

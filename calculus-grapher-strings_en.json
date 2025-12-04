@@ -227,7 +227,7 @@
       },
       "lagrangeRadioButton": {
         "accessibleName": {
-          "value": "Lagrange, f of {$variable}"
+          "value": "{ $functionVariable ->\n  [x] Lagrange, f of x\n  *[t] Lagrange, f of t\n}"
         },
         "accessibleHelpText": {
           "value": "TODO.lagrangeRadioButton.accessibleHelpText"
@@ -235,7 +235,7 @@
       },
       "leibnizRadioButton": {
         "accessibleName": {
-          "value": "Leibniz, d f over d {$variable}"
+          "value": "{ $functionVariable ->\n  [x] Leibniz, d f over d x\n  *[t] Leibniz, d f over d t\n}"
         },
         "accessibleHelpText": {
           "value": "TODO.leibnizRadioButton.accessibleHelpText"
@@ -265,7 +265,7 @@
     },
     "predictToggleSwitch": {
       "accessibleHelpText": {
-        "value": "Adds a mode that allows you to predict f of {$variable}."
+        "value": "{ $functionVariable ->\n  [x] Adds a mode that allows you to predict f of x.\n  *[t] Adds a mode that allows you to predict f of t.\n}"
       }
     },
     "curveManipulationWidthSlider": {
@@ -458,16 +458,16 @@
     },
     "showOriginalCurveCheckbox": {
       "accessibleName": {
-        "value": "Show f of {$variable}"
+        "value": "{ $functionVariable ->\n  [x] Show f of x\n  *[t] Show f of t\n}"
       },
       "accessibleHelpText": {
-        "value": "Show or hide f of {$variable} concurrent with prediction curve."
+        "value": "{ $functionVariable ->\n  [x] Show or hide f of x concurrent with prediction curve.\n  *[t] Show or hide f of t concurrent with prediction curve.\n}"
       },
       "accessibleContextResponseChecked": {
-        "value": "f of {$variable} shown with prediction"
+        "value": "{ $functionVariable ->\n  [x] f of x shown with prediction\n  *[t] f of t shown with prediction\n}"
       },
       "accessibleContextResponseUnchecked": {
-        "value": "f of {$variable} hidden"
+        "value": "{ $functionVariable ->\n  [x] f of x hidden\n  *[t] f of t hidden\n}"
       }
     }
   }
