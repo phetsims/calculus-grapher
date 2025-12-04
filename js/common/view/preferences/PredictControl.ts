@@ -42,7 +42,7 @@ export default class PredictControl extends PreferencesControl {
 
     const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
-        accessibleHelpText: new PatternStringProperty( CalculusGrapherFluent.a11y.predictToggleSwitch.accessibleHelpTextStringProperty, {
+        accessibleHelpText: CalculusGrapherFluent.a11y.predictToggleSwitch.accessibleHelpText.createProperty( {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
         tandem: tandem.createTandem( 'toggleSwitch' ),

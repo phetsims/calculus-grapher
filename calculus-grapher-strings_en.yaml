@@ -84,10 +84,10 @@ a11y:
   notationRadioButtonGroup:
     accessibleHelpText: TODO.notationRadioButtonGroup.accessibleHelpText
     lagrangeRadioButton:
-      accessibleName:     Lagrange, f of {{variable}}
+      accessibleName: Lagrange, f of {$variable}
       accessibleHelpText: TODO.lagrangeRadioButton.accessibleHelpText
     leibnizRadioButton:
-      accessibleName:     Leibniz, d f over d {{variable}}
+      accessibleName: Leibniz, d f over d {$variable}
       accessibleHelpText: TODO.leibnizRadioButton.accessibleHelpText
   discontinuitiesRadioButtonGroup:
     accessibleHelpText: TODO.discontinuitiesRadioButtonGroup.accessibleHelpText
@@ -98,7 +98,7 @@ a11y:
       accessibleName:     Dashed Line
       accessibleHelpText: TODO.dashedLineRadioButton.accessibleHelpText
   predictToggleSwitch:
-    accessibleHelpText: Adds a mode that allows you to predict f of {{variable}}.
+    accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
   curveManipulationWidthSlider:
     accessibleName:     Curve Width
     accessibleHelpText: TODO.curveWidthSlider.accessibleHelpText
@@ -171,7 +171,7 @@ a11y:
       accessibleName:     Predict Curve
       accessibleHelpText: TODO.predictCurveRadioButton.accessibleHelpText
   showOriginalCurveCheckbox:
-    accessibleName:                     Show f of {{variable}}
-    accessibleHelpText:                 Show or hide f of {{variable}} concurrent with prediction curve.
-    accessibleContextResponseChecked:   f of {{variable}} shown with prediction
-    accessibleContextResponseUnchecked: f of {{variable}} hidden
+    accessibleName:                     Show f of {$variable}
+    accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
+    accessibleContextResponseChecked:   f of {$variable} shown with prediction
+    accessibleContextResponseUnchecked: f of {$variable} hidden

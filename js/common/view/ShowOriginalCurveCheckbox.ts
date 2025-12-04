@@ -12,7 +12,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import { combineOptions } from '../../../../phet-core/js/optionize.js';
@@ -57,16 +56,16 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
         touchAreaYDilation: POINTER_AREA_DILATION,
         mouseAreaXDilation: POINTER_AREA_DILATION,
         mouseAreaYDilation: POINTER_AREA_DILATION,
-        accessibleName: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleNameStringProperty, {
+        accessibleName: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleName.createProperty( {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
-        accessibleHelpText: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty, {
+        accessibleHelpText: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleHelpText.createProperty( {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
-        accessibleContextResponseChecked: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty, {
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseChecked.createProperty( {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
-        accessibleContextResponseUnchecked: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty, {
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseUnchecked.createProperty( {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
         tandem: tandem,

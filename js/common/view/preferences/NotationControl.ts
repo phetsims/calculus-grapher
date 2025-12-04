@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 import StringUnionProperty from '../../../../../axon/js/StringUnionProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import PreferencesControl from '../../../../../joist/js/preferences/PreferencesControl.js';
@@ -76,7 +75,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
           new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: 'lagrangeRadioButton',
         options: {
-          accessibleName: new PatternStringProperty( CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleNameStringProperty, {
+          accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherDescription.variableStringProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
@@ -88,7 +87,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
           new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: 'leibnizRadioButton',
         options: {
-          accessibleName: new PatternStringProperty( CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleNameStringProperty, {
+          accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherDescription.variableStringProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty

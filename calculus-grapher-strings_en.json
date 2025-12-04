@@ -227,7 +227,7 @@
       },
       "lagrangeRadioButton": {
         "accessibleName": {
-          "value": "Lagrange, f of {{variable}}"
+          "value": "Lagrange, f of {$variable}"
         },
         "accessibleHelpText": {
           "value": "TODO.lagrangeRadioButton.accessibleHelpText"
@@ -235,7 +235,7 @@
       },
       "leibnizRadioButton": {
         "accessibleName": {
-          "value": "Leibniz, d f over d {{variable}}"
+          "value": "Leibniz, d f over d {$variable}"
         },
         "accessibleHelpText": {
           "value": "TODO.leibnizRadioButton.accessibleHelpText"
@@ -265,7 +265,7 @@
     },
     "predictToggleSwitch": {
       "accessibleHelpText": {
-        "value": "Adds a mode that allows you to predict f of {{variable}}."
+        "value": "Adds a mode that allows you to predict f of {$variable}."
       }
     },
     "curveManipulationWidthSlider": {
@@ -458,16 +458,16 @@
     },
     "showOriginalCurveCheckbox": {
       "accessibleName": {
-        "value": "Show f of {{variable}}"
+        "value": "Show f of {$variable}"
       },
       "accessibleHelpText": {
-        "value": "Show or hide f of {{variable}} concurrent with prediction curve."
+        "value": "Show or hide f of {$variable} concurrent with prediction curve."
       },
       "accessibleContextResponseChecked": {
-        "value": "f of {{variable}} shown with prediction"
+        "value": "f of {$variable} shown with prediction"
       },
       "accessibleContextResponseUnchecked": {
-        "value": "f of {{variable}} hidden"
+        "value": "f of {$variable} hidden"
       }
     }
   }
