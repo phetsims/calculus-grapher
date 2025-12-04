@@ -11,7 +11,7 @@
 import Screen from '../../../joist/js/Screen.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
-import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
@@ -38,11 +38,11 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
     } );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.derivativeStringProperty,
+      name: CalculusGrapherFluent.screen.derivativeStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createDerivativeScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
-      screenButtonsHelpText: CalculusGrapherStrings.a11y.derivativeScreen.screenButtonsHelpTextStringProperty,
+      screenButtonsHelpText: CalculusGrapherFluent.a11y.derivativeScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

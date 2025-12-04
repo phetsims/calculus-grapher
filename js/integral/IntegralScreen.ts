@@ -11,7 +11,7 @@
 import Screen from '../../../joist/js/Screen.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
-import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
@@ -38,11 +38,11 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
     } );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.integralStringProperty,
+      name: CalculusGrapherFluent.screen.integralStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createIntegralScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
-      screenButtonsHelpText: CalculusGrapherStrings.a11y.integralScreen.screenButtonsHelpTextStringProperty,
+      screenButtonsHelpText: CalculusGrapherFluent.a11y.integralScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

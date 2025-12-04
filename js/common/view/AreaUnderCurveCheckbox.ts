@@ -16,7 +16,7 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
@@ -28,7 +28,7 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
 
     const icon = AreaUnderCurveScrubberNode.createIcon();
 
-    const text = new RichText( CalculusGrapherStrings.checkbox.areaUnderCurveStringProperty, {
+    const text = new RichText( CalculusGrapherFluent.checkbox.areaUnderCurveStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_WIDTH,
       maxHeight: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_HEIGHT,
@@ -43,7 +43,7 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
-        accessibleHelpText: CalculusGrapherStrings.a11y.areaUnderCurveCheckbox.accessibleHelpTextStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleHelpTextStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

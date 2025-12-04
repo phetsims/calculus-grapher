@@ -10,6 +10,8 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
 import AlignBox from '../../../../scenery/js/layout/nodes/AlignBox.js';
 import GridBox from '../../../../scenery/js/layout/nodes/GridBox.js';
@@ -17,12 +19,10 @@ import TColor from '../../../../scenery/js/util/TColor.js';
 import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
-import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 
 export default class CurveManipulationModeRadioButtonGroup extends GridBox {
 
@@ -65,8 +65,8 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
       accessibleNameBehavior: ParallelDOM.HEADING_ACCESSIBLE_NAME_BEHAVIOR,
       accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT,
       groupFocusHighlight: true,
-      accessibleName: CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherStrings.a11y.curveManipulationModeRadioButtonGroup.accessibleHelpTextStringProperty
+      accessibleName: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleHelpTextStringProperty
     } );
   }
 }

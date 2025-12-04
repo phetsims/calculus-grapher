@@ -13,7 +13,7 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
@@ -24,7 +24,7 @@ export default class ReferenceLineCheckbox extends Checkbox {
 
     const icon = ReferenceLineNode.createIcon();
 
-    const text = new RichText( CalculusGrapherStrings.referenceLineStringProperty, {
+    const text = new RichText( CalculusGrapherFluent.referenceLineStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_WIDTH,
       maxHeight: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_HEIGHT,
@@ -38,8 +38,8 @@ export default class ReferenceLineCheckbox extends Checkbox {
 
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
-        accessibleName: CalculusGrapherStrings.a11y.referenceLineCheckbox.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherStrings.a11y.referenceLineCheckbox.accessibleHelpTextStringProperty,
+        accessibleName: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleHelpTextStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

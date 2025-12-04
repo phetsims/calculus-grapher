@@ -33,7 +33,7 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
@@ -76,7 +76,7 @@ export default class OriginalGraphNode extends GraphNode {
     const labelNodeTandem = providedOptions.tandem.createTandem( 'labelNode' );
     const labelNode = new HBox( {
       children: [
-        new Text( CalculusGrapherStrings.predictStringProperty, {
+        new Text( CalculusGrapherFluent.predictStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
           visibleProperty: model.predictEnabledProperty, // show/hide 'Predict'
@@ -99,8 +99,8 @@ export default class OriginalGraphNode extends GraphNode {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       } ),
-      accessibleHeading: CalculusGrapherStrings.a11y.originalGraph.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherStrings.a11y.originalGraph.accessibleParagraphStringProperty
+      accessibleHeading: CalculusGrapherFluent.a11y.originalGraph.accessibleHeadingStringProperty,
+      accessibleParagraph: CalculusGrapherFluent.a11y.originalGraph.accessibleParagraphStringProperty
     }, providedOptions );
 
     super( graphType, originalCurve, model.gridVisibleProperty, options );

@@ -1,0 +1,177 @@
+calculus-grapher.title:       Calculus Grapher
+screen.derivative:            Derivative
+screen.integral:              Integral
+screen.advanced:              Advanced
+screen.lab:                   Lab
+smooth:                       Smooth
+symbol.d:                     d
+symbol.f:                     f
+symbol.x:                     x
+symbol.t:                     t
+discontinuities:              Discontinuities
+values:                       Values
+notation:                     Notation
+lagrange:                     'Lagrange:'
+leibniz:                      'Leibniz:'
+variable:                     Variable
+checkbox.areaUnderCurve:      Area Under<br>Curve
+checkbox.tangent:             Tangent
+barometer.netSignedArea:      Net Signed<br>Area
+barometer.slopeOfTangent:     Slope of<br>Tangent
+predict:                      Predict
+show:                         Show
+predictPreference:            Predict
+valuesPreferenceDescription:  >-
+                              Shows values on graph axes, reference line, "Slope of Tangent", and "Net
+                              Signed Area".
+predictPreferenceDescription: Adds a mode that allows you to predict f of {{variable}}.
+referenceLine:                Reference<br>Line
+a11y:
+  derivativeScreen:
+    screenButtonsHelpText: TODO.derivativeScreen.screenButtonsHelpText
+    screenSummary:
+      playArea:        TODO.derivativeScreen.screenSummary.playArea
+      controlArea:     TODO.derivativeScreen.screenSummary.controlArea
+      currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
+      interactionHint: TODO.derivativeScreen.screenSummary.interactionHint
+  integralScreen:
+    screenButtonsHelpText: TODO.integralScreen.screenButtonsHelpText
+    screenSummary:
+      playArea:        TODO.integralScreen.screenSummary.playArea
+      controlArea:     TODO.integralScreen.screenSummary.controlArea
+      currentDetails:  TODO.integralScreen.screenSummary.currentDetails
+      interactionHint: TODO.integralScreen.screenSummary.interactionHint
+  advancedScreen:
+    screenButtonsHelpText: TODO.screenButtonsHelpText
+    screenSummary:
+      playArea:        TODO.playArea
+      controlArea:     TODO.controlArea
+      currentDetails:  TODO.currentDetails
+      interactionHint: TODO.interactionHint
+  labScreen:
+    screenButtonsHelpText: TODO.labScreen.screenButtonsHelpText
+    screenSummary:
+      playArea:        TODO.labScreen.screenSummary.playArea
+      controlArea:     TODO.labScreen.screenSummary.controlArea
+      currentDetails:  TODO.labScreen.screenSummary.currentDetails
+      interactionHint: TODO.labScreen.screenSummary.interactionHint
+  gridCheckbox:
+    accessibleName:     Grid
+    accessibleHelpText: TODO.gridCheckbox.accessibleHelpText
+  smoothButton:
+    accessibleName:     Smooth
+    accessibleHelpText: TODO.smoothButton.accessibleHelpText
+  eraserButton:
+    accessibleHelpText: TODO.eraserButton.accessibleHelpText
+  undoButton:
+    accessibleName:     Undo
+    accessibleHelpText: TODO.undoButton.accessibleHelpText
+  eyeToggleButton:
+    accessibleName:     TODO.eyeToggleButton.accessibleName
+    accessibleHelpText: TODO.eyeToggleButton.accessibleHelpText
+  yZoomButtonGroup:
+    zoomInButton:
+      accessibleHelpText: TODO.zoomInButton.accessibleHelpText
+    zoomOutButton:
+      accessibleHelpText: TODO.zoomOutButton.accessibleHelpText
+  tangentCheckbox:
+    accessibleHelpText: TODO.tangentCheckbox.accessibleHelpText
+  referenceLineCheckbox:
+    accessibleName:     Reference Line
+    accessibleHelpText: TODO.referenceLineCheckbox.accessibleHelpText
+  areaUnderCurveCheckbox:
+    accessibleHelpText: TODO.areaUnderCurveCheckbox.accessibleHelpText
+  notationRadioButtonGroup:
+    accessibleHelpText: TODO.notationRadioButtonGroup.accessibleHelpText
+    lagrangeRadioButton:
+      accessibleName:     Lagrange, f of {{variable}}
+      accessibleHelpText: TODO.lagrangeRadioButton.accessibleHelpText
+    leibnizRadioButton:
+      accessibleName:     Leibniz, d f over d {{variable}}
+      accessibleHelpText: TODO.leibnizRadioButton.accessibleHelpText
+  discontinuitiesRadioButtonGroup:
+    accessibleHelpText: TODO.discontinuitiesRadioButtonGroup.accessibleHelpText
+    noLineRadioButton:
+      accessibleName:     No Line
+      accessibleHelpText: TODO.noLineRadioButton.accessibleHelpText
+    dashedLineRadioButton:
+      accessibleName:     Dashed Line
+      accessibleHelpText: TODO.dashedLineRadioButton.accessibleHelpText
+  predictToggleSwitch:
+    accessibleHelpText: Adds a mode that allows you to predict f of {{variable}}.
+  curveManipulationWidthSlider:
+    accessibleName:     Curve Width
+    accessibleHelpText: TODO.curveWidthSlider.accessibleHelpText
+  curveManipulationModeRadioButtonGroup:
+    accessibleName:     Curve Manipulation Mode
+    accessibleHelpText: TODO.curveManipulationModeRadioButtonGroup.accessibleHelpText
+    hillRadioButton:
+      accessibleName:     Hill
+      accessibleHelpText: TODO.hillRadioButton.accessibleHelpText
+    triangleRadioButton:
+      accessibleName:     Triangle
+      accessibleHelpText: TODO.triangleRadioButton.accessibleHelpText
+    pedestalRadioButton:
+      accessibleName:     Pedestal
+      accessibleHelpText: TODO.pedestalRadioButton.accessibleHelpText
+    parabolaRadioButton:
+      accessibleName:     Parabola
+      accessibleHelpText: TODO.parabolaRadioButton.accessibleHelpText
+    sinusoidRadioButton:
+      accessibleName:     Sinusoid
+      accessibleHelpText: TODO.sinusoidRadioButton.accessibleHelpText
+    freeformRadioButton:
+      accessibleName:     Freeform
+      accessibleHelpText: TODO.freeformRadioButton.accessibleHelpText
+    tiltRadioButton:
+      accessibleName:     Tilt
+      accessibleHelpText: TODO.tiltRadioButton.accessibleHelpText
+    shiftRadioButton:
+      accessibleName:     Shift
+      accessibleHelpText: TODO.shiftRadioButton.accessibleHelpText
+  graphSetRadioButtonGroup:
+    accessibleName:     Graph Set
+    accessibleHelpText: TODO.graphSetRadioButtonGroup.accessibleHelpText
+    integralRadioButton:
+      advanced:
+        accessibleName:     Integral and Original Graph Set
+        accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
+      lab:
+        accessibleName:     Integral, Original, and Derivative Graph Set
+        accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
+    derivativeRadioButton:
+      accessibleName:     Original and Derivative Graph Set
+      accessibleHelpText: TODO.derivativeRadioButton.accessibleHelpText
+    secondDerivativeRadioButton:
+      accessibleName:     Original, Derivative, and Second Derivative Graph Set
+      accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
+  slopeOfTangentAccordionBox:
+    accessibleParagraph: TODO.slopeOfTangentAccordionBox.accessibleParagraph
+  netSignedAreaAccordionBox:
+    accessibleParagraph: TODO.netSignedAreaAccordionBox.accessibleParagraph
+  originalGraph:
+    accessibleHeading:   Original Graph
+    accessibleParagraph: TODO.originalGraph.accessibleParagraph
+  integralGraph:
+    accessibleHeading:   Integral Graph
+    accessibleParagraph: TODO.integralGraph.accessibleParagraph
+  derivativeGraph:
+    accessibleHeading:   Derivative Graph
+    accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
+  secondDerivativeGraph:
+    accessibleHeading:   Second Derivative Graph
+    accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
+  predictRadioButtonGroup:
+    accessibleName:     Predict
+    accessibleHelpText: TODO.predictRadioButtonGroup.accessibleHelpText
+    originalCurveRadioButton:
+      accessibleName:     Original Curve
+      accessibleHelpText: TODO.originalCurveRadioButton.accessibleHelpText
+    predictCurveRadioButton:
+      accessibleName:     Predict Curve
+      accessibleHelpText: TODO.predictCurveRadioButton.accessibleHelpText
+  showOriginalCurveCheckbox:
+    accessibleName:                     Show f of {{variable}}
+    accessibleHelpText:                 Show or hide f of {{variable}} concurrent with prediction curve.
+    accessibleContextResponseChecked:   f of {{variable}} shown with prediction
+    accessibleContextResponseUnchecked: f of {{variable}} hidden

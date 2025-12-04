@@ -13,7 +13,7 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -36,14 +36,14 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
         tandemName: 'originalCurveRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherStrings.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
         value: true,
         createNode: tandem => {
-          const text = new Text( CalculusGrapherStrings.predictStringProperty, {
+          const text = new Text( CalculusGrapherFluent.predictStringProperty, {
             font: CalculusGrapherConstants.CONTROL_FONT,
             maxWidth: 50,
             tandem: tandem.createTandem( 'text' )
@@ -52,8 +52,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         },
         tandemName: 'predictCurveRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherStrings.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -68,8 +68,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         yMargin: 10,
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleName: CalculusGrapherStrings.a11y.predictRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherStrings.a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }

@@ -17,7 +17,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import { ConnectDiscontinuities } from '../../CalculusGrapherQueryParameters.js';
@@ -28,7 +28,7 @@ export default class DiscontinuitiesControl extends PreferencesControl {
 
   public constructor( connectDiscontinuitiesProperty: Property<ConnectDiscontinuities>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.discontinuitiesStringProperty, {
+    const labelText = new Text( CalculusGrapherFluent.discontinuitiesStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
@@ -72,8 +72,8 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         createNode: () => new DiscontinuitiesRadioButtonLabel( 'noLine' ),
         tandemName: 'noLineRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherStrings.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -81,8 +81,8 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         createNode: () => new DiscontinuitiesRadioButtonLabel( 'dashedLine' ),
         tandemName: 'dashedLineRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherStrings.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -98,7 +98,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         },
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleHelpText: CalculusGrapherStrings.a11y.discontinuitiesRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

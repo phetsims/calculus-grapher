@@ -46,7 +46,7 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -267,8 +267,8 @@ export default class GraphNode extends Node {
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
-      accessibleName: CalculusGrapherStrings.a11y.eyeToggleButton.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherStrings.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 
@@ -280,8 +280,8 @@ export default class GraphNode extends Node {
       },
       touchAreaXDilation: 6,
       touchAreaYDilation: 3,
-      accessibleHelpTextZoomIn: CalculusGrapherStrings.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-      accessibleHelpTextZoomOut: CalculusGrapherStrings.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
+      accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
+      accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
       visiblePropertyOptions: {
         phetioFeatured: true

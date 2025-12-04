@@ -17,7 +17,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherDescription from '../../CalculusGrapherDescription.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
@@ -34,7 +34,7 @@ export default class PredictControl extends PreferencesControl {
     // No one questioned labeling the radio button with "Predict". But there was discussion/concern about whether
     // "Predict" was sufficient for labeling the control in Preferences. So there are separate StringProperties for
     // each context. See https://github.com/phetsims/calculus-grapher/issues/285
-    const labelText = new Text( CalculusGrapherStrings.predictPreferenceStringProperty, {
+    const labelText = new Text( CalculusGrapherFluent.predictPreferenceStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
@@ -42,14 +42,14 @@ export default class PredictControl extends PreferencesControl {
 
     const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
-        accessibleHelpText: new PatternStringProperty( CalculusGrapherStrings.a11y.predictToggleSwitch.accessibleHelpTextStringProperty, {
+        accessibleHelpText: new PatternStringProperty( CalculusGrapherFluent.a11y.predictToggleSwitch.accessibleHelpTextStringProperty, {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
         tandem: tandem.createTandem( 'toggleSwitch' ),
         phetioVisiblePropertyInstrumented: false
       } ) );
 
-    const descriptionStringProperty = new PatternStringProperty( CalculusGrapherStrings.predictPreferenceDescriptionStringProperty, {
+    const descriptionStringProperty = new PatternStringProperty( CalculusGrapherFluent.predictPreferenceDescriptionStringProperty, {
       variable: CalculusGrapherPreferences.functionVariableProperty
     }, {
       tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )

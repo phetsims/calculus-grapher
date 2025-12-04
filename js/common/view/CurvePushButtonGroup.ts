@@ -17,7 +17,7 @@ import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
@@ -32,8 +32,8 @@ export default class CurvePushButtonGroup extends VBox {
       listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
       iconOptions: { height: 13 },
-      accessibleName: CalculusGrapherStrings.a11y.undoButton.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherStrings.a11y.undoButton.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.undoButton.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,
       tandem: tandem.createTandem( 'undoButton' )
     } );
 
@@ -43,7 +43,7 @@ export default class CurvePushButtonGroup extends VBox {
       listener: () => interactiveCurveProperty.value.erase(),
       iconWidth: 16,
       xMargin: 10,
-      accessibleHelpText: CalculusGrapherStrings.a11y.eraserButton.accessibleHelpTextStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
       tandem: tandem.createTandem( 'eraserButton' )
     } );
 
@@ -58,7 +58,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Create a Smooth button, with width matching the HBox.
     if ( hasSmoothButton ) {
-      const smoothButton = new TextPushButton( CalculusGrapherStrings.smoothStringProperty, {
+      const smoothButton = new TextPushButton( CalculusGrapherFluent.smoothStringProperty, {
         listener: () => interactiveCurveProperty.value.smooth(),
         textNodeOptions: {
           font: CalculusGrapherConstants.CONTROL_FONT,
@@ -69,8 +69,8 @@ export default class CurvePushButtonGroup extends VBox {
         layoutOptions: {
           stretch: true
         },
-        accessibleName: CalculusGrapherStrings.a11y.smoothButton.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherStrings.a11y.smoothButton.accessibleHelpTextStringProperty,
+        accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
         tandem: tandem.createTandem( 'smoothButton' )
       } );
       children.push( smoothButton );

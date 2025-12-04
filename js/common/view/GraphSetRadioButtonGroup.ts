@@ -14,7 +14,7 @@ import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js'
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
@@ -37,8 +37,8 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
         yMargin: 10,
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleName: CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }

@@ -8,17 +8,17 @@
 
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
 export default class DerivativeScreenSummaryContent extends ScreenSummaryContent {
 
   public constructor() {
 
     super( {
-      playAreaContent: CalculusGrapherStrings.a11y.derivativeScreen.screenSummary.playAreaStringProperty,
-      controlAreaContent: CalculusGrapherStrings.a11y.derivativeScreen.screenSummary.controlAreaStringProperty,
-      currentDetailsContent: CalculusGrapherStrings.a11y.derivativeScreen.screenSummary.currentDetailsStringProperty,
-      interactionHintContent: CalculusGrapherStrings.a11y.derivativeScreen.screenSummary.interactionHintStringProperty
+      playAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.playAreaStringProperty,
+      controlAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.controlAreaStringProperty,
+      currentDetailsContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetailsStringProperty,
+      interactionHintContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.interactionHintStringProperty
     } );
   }
 }

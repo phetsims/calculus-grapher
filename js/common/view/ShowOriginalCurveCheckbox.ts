@@ -23,7 +23,7 @@ import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherDescription from '../CalculusGrapherDescription.js';
@@ -41,7 +41,7 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
 
     const checkboxContent = new HBox( {
       children: [
-        new Text( CalculusGrapherStrings.showStringProperty, {
+        new Text( CalculusGrapherFluent.showStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
           tandem: tandem.createTandem( 'showText' )
@@ -57,16 +57,16 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
         touchAreaYDilation: POINTER_AREA_DILATION,
         mouseAreaXDilation: POINTER_AREA_DILATION,
         mouseAreaYDilation: POINTER_AREA_DILATION,
-        accessibleName: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleNameStringProperty, {
+        accessibleName: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleNameStringProperty, {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
-        accessibleHelpText: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty, {
+        accessibleHelpText: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty, {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
-        accessibleContextResponseChecked: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty, {
+        accessibleContextResponseChecked: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty, {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
-        accessibleContextResponseUnchecked: new PatternStringProperty( CalculusGrapherStrings.a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty, {
+        accessibleContextResponseUnchecked: new PatternStringProperty( CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty, {
           variable: CalculusGrapherDescription.variableStringProperty
         } ),
         tandem: tandem,

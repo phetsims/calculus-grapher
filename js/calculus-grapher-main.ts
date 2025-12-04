@@ -12,7 +12,7 @@ import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import AdvancedScreen from './advanced/AdvancedScreen.js';
-import CalculusGrapherStrings from './CalculusGrapherStrings.js';
+import CalculusGrapherFluent from './CalculusGrapherFluent.js';
 import CalculusGrapherSimulationPreferencesNode from './common/view/preferences/CalculusGrapherSimulationPreferencesNode.js';
 import DerivativeScreen from './derivative/DerivativeScreen.js';
 import IntegralScreen from './integral/IntegralScreen.js';
@@ -43,7 +43,7 @@ simLauncher.launch( () => {
     }
   } );
 
-  const sim = new Sim( CalculusGrapherStrings[ 'calculus-grapher' ].titleStringProperty, screens, {
+  const sim = new Sim( CalculusGrapherFluent[ 'calculus-grapher' ].titleStringProperty, screens, {
     credits: credits,
     preferencesModel: preferencesModel,
     phetioDesigned: true

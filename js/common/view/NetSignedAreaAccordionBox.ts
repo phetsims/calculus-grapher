@@ -13,7 +13,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
@@ -40,10 +40,10 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.NET_SIGNED_AREA_MODEL_RANGE
       },
-      accessibleParagraph: CalculusGrapherStrings.a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty
+      accessibleParagraph: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty
     }, providedOptions );
 
-    super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherStrings.barometer.netSignedAreaStringProperty,
+    super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherFluent.barometer.netSignedAreaStringProperty,
       areaUnderCurveScrubber.visibleProperty, predictEnabledProperty, options );
   }
 }

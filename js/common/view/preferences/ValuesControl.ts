@@ -16,7 +16,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 
 export default class ValuesControl extends PreferencesControl {
@@ -25,7 +25,7 @@ export default class ValuesControl extends PreferencesControl {
 
   public constructor( valuesVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.valuesStringProperty, {
+    const labelText = new Text( CalculusGrapherFluent.valuesStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
@@ -37,7 +37,7 @@ export default class ValuesControl extends PreferencesControl {
         phetioVisiblePropertyInstrumented: false
       } ) );
 
-    const descriptionText = new RichText( CalculusGrapherStrings.valuesPreferenceDescriptionStringProperty, {
+    const descriptionText = new RichText( CalculusGrapherFluent.valuesPreferenceDescriptionStringProperty, {
       lineWrap: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_LINE_WRAP,
       maxHeight: 50,
       font: CalculusGrapherConstants.PREFERENCES_DESCRIPTION_FONT,

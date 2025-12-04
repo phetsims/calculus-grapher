@@ -8,7 +8,7 @@
 
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import calculusGrapher from '../calculusGrapher.js';
-import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from './model/CalculusGrapherPreferences.js';
 
 export default class CalculusGrapherDescription {
@@ -20,8 +20,8 @@ export default class CalculusGrapherDescription {
   // Localized variable that describes the x-axis, either 'x' or 't'. Set based on the 'Variable' preference.
   public static readonly variableStringProperty = new DerivedProperty( [
       CalculusGrapherPreferences.functionVariableProperty,
-      CalculusGrapherStrings.symbol.xStringProperty,
-      CalculusGrapherStrings.symbol.tStringProperty ],
+      CalculusGrapherFluent.symbol.xStringProperty,
+      CalculusGrapherFluent.symbol.tStringProperty ],
     ( functionVariable, xString, tString ) => ( functionVariable === 'x' ) ? xString : tString );
 }
 

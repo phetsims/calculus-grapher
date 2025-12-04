@@ -16,7 +16,7 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
@@ -28,7 +28,7 @@ export default class TangentCheckbox extends Checkbox {
 
     const icon = TangentScrubberNode.createIcon();
 
-    const text = new RichText( CalculusGrapherStrings.checkbox.tangentStringProperty, {
+    const text = new RichText( CalculusGrapherFluent.checkbox.tangentStringProperty, {
       font: CalculusGrapherConstants.CONTROL_FONT,
       maxWidth: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_WIDTH,
       maxHeight: CalculusGrapherCheckboxGroup.RICH_TEXT_MAX_HEIGHT,
@@ -43,7 +43,7 @@ export default class TangentCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
-        accessibleHelpText: CalculusGrapherStrings.a11y.tangentCheckbox.accessibleHelpTextStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleHelpTextStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

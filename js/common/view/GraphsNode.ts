@@ -19,7 +19,7 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from '../model/AncillaryTool.js';
@@ -96,8 +96,8 @@ export default class GraphsNode extends Node {
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
       this.integralGraphNode = new GraphNode( GraphType.INTEGRAL, model.integralCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
-        accessibleHeading: CalculusGrapherStrings.a11y.integralGraph.accessibleHeadingStringProperty,
-        accessibleParagraph: CalculusGrapherStrings.a11y.integralGraph.accessibleParagraphStringProperty,
+        accessibleHeading: CalculusGrapherFluent.a11y.integralGraph.accessibleHeadingStringProperty,
+        accessibleParagraph: CalculusGrapherFluent.a11y.integralGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
       this.graphNodes.push( this.integralGraphNode );
@@ -106,8 +106,8 @@ export default class GraphsNode extends Node {
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
       this.derivativeGraphNode = new GraphNode( GraphType.DERIVATIVE, model.derivativeCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
-        accessibleHeading: CalculusGrapherStrings.a11y.derivativeGraph.accessibleHeadingStringProperty,
-        accessibleParagraph: CalculusGrapherStrings.a11y.derivativeGraph.accessibleParagraphStringProperty,
+        accessibleHeading: CalculusGrapherFluent.a11y.derivativeGraph.accessibleHeadingStringProperty,
+        accessibleParagraph: CalculusGrapherFluent.a11y.derivativeGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
       this.graphNodes.push( this.derivativeGraphNode );
@@ -116,8 +116,8 @@ export default class GraphsNode extends Node {
     if ( GraphSet.includes( model.graphSets, GraphType.SECOND_DERIVATIVE ) ) {
       this.secondDerivativeGraphNode = new GraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
-        accessibleHeading: CalculusGrapherStrings.a11y.secondDerivativeGraph.accessibleHeadingStringProperty,
-        accessibleParagraph: CalculusGrapherStrings.a11y.secondDerivativeGraph.accessibleParagraphStringProperty,
+        accessibleHeading: CalculusGrapherFluent.a11y.secondDerivativeGraph.accessibleHeadingStringProperty,
+        accessibleParagraph: CalculusGrapherFluent.a11y.secondDerivativeGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );
       this.graphNodes.push( this.secondDerivativeGraphNode );

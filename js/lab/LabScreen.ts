@@ -11,7 +11,7 @@ import Screen from '../../../joist/js/Screen.js';
 import AlignGroup from '../../../scenery/js/layout/constraints/AlignGroup.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
-import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
@@ -42,11 +42,11 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     const labelAlignGroup = new AlignGroup(); // to give radio-button labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleNameStringProperty,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleHelpTextStringProperty ),
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleHelpTextStringProperty ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.SECOND_DERIVATIVE, labelAlignGroup,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleHelpTextStringProperty )
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleHelpTextStringProperty )
     ];
 
     const createModel = () => new LabModel( {
@@ -60,11 +60,11 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     } );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.labStringProperty,
+      name: CalculusGrapherFluent.screen.labStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createLabScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
-      screenButtonsHelpText: CalculusGrapherStrings.a11y.labScreen.screenButtonsHelpTextStringProperty,
+      screenButtonsHelpText: CalculusGrapherFluent.a11y.labScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

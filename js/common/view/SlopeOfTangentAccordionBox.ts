@@ -13,7 +13,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
@@ -36,10 +36,10 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE
       },
-      accessibleParagraph: CalculusGrapherStrings.a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty
+      accessibleParagraph: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty
     }, providedOptions );
 
-    super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherStrings.barometer.slopeOfTangentStringProperty,
+    super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherFluent.barometer.slopeOfTangentStringProperty,
       tangentScrubber.visibleProperty, predictEnabledProperty, options );
   }
 }

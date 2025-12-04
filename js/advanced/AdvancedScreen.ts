@@ -12,7 +12,7 @@ import Screen from '../../../joist/js/Screen.js';
 import AlignGroup from '../../../scenery/js/layout/constraints/AlignGroup.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
-import CalculusGrapherStrings from '../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
@@ -43,11 +43,11 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     const labelAlignGroup = new AlignGroup(); // to give radio-button labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleNameStringProperty,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleHelpTextStringProperty ),
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleHelpTextStringProperty ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.DERIVATIVE, labelAlignGroup,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherStrings.a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleHelpTextStringProperty )
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleHelpTextStringProperty )
     ];
 
     const createModel = () => new AdvancedModel( {
@@ -62,11 +62,11 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     } );
 
     super( createModel, createView, {
-      name: CalculusGrapherStrings.screen.advancedStringProperty,
+      name: CalculusGrapherFluent.screen.advancedStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
-      screenButtonsHelpText: CalculusGrapherStrings.a11y.advancedScreen.screenButtonsHelpTextStringProperty,
+      screenButtonsHelpText: CalculusGrapherFluent.a11y.advancedScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

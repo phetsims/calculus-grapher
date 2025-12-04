@@ -16,7 +16,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -27,7 +27,7 @@ export default class VariableControl extends PreferencesControl {
 
   public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.variableStringProperty, {
+    const labelText = new Text( CalculusGrapherFluent.variableStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
@@ -71,7 +71,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.xStringProperty, radioButtonTandem ),
         tandemName: 'xRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.symbol.xStringProperty
+          accessibleName: CalculusGrapherFluent.symbol.xStringProperty
         }
       },
       {
@@ -79,7 +79,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.tStringProperty, radioButtonTandem ),
         tandemName: 'tRadioButton',
         options: {
-          accessibleName: CalculusGrapherStrings.symbol.tStringProperty
+          accessibleName: CalculusGrapherFluent.symbol.tStringProperty
         }
       }
     ];

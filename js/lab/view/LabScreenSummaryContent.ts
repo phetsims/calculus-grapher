@@ -8,17 +8,17 @@
 
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
 export default class LabScreenSummaryContent extends ScreenSummaryContent {
 
   public constructor() {
 
     super( {
-      playAreaContent: CalculusGrapherStrings.a11y.labScreen.screenSummary.playAreaStringProperty,
-      controlAreaContent: CalculusGrapherStrings.a11y.labScreen.screenSummary.controlAreaStringProperty,
-      currentDetailsContent: CalculusGrapherStrings.a11y.labScreen.screenSummary.currentDetailsStringProperty,
-      interactionHintContent: CalculusGrapherStrings.a11y.labScreen.screenSummary.interactionHintStringProperty
+      playAreaContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.playAreaStringProperty,
+      controlAreaContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.controlAreaStringProperty,
+      currentDetailsContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.currentDetailsStringProperty,
+      interactionHintContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.interactionHintStringProperty
     } );
   }
 }

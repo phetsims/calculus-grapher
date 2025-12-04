@@ -11,13 +11,13 @@
 
 import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import HSlider, { HSliderOptions } from '../../../../sun/js/HSlider.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import CalculusGrapherStrings from '../../CalculusGrapherStrings.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
@@ -49,8 +49,8 @@ export default class CurveManipulationWidthSlider extends HSlider {
       // snap to ticks
       constrainValue: ( value: number ) => findClosestTick( tickValues, value ),
 
-      accessibleName: CalculusGrapherStrings.a11y.curveManipulationWidthSlider.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherStrings.a11y.curveManipulationWidthSlider.accessibleHelpTextStringProperty
+      accessibleName: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleHelpTextStringProperty
     }, providedOptions );
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );

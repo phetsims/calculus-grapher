@@ -18,7 +18,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
-import CalculusGrapherStrings from '../../../CalculusGrapherStrings.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherDescription from '../../CalculusGrapherDescription.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
@@ -31,7 +31,7 @@ export default class NotationControl extends PreferencesControl {
 
   public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
 
-    const labelText = new Text( CalculusGrapherStrings.notationStringProperty, {
+    const labelText = new Text( CalculusGrapherFluent.notationStringProperty, {
       font: CalculusGrapherConstants.PREFERENCES_LABEL_FONT,
       maxWidth: CalculusGrapherConstants.PREFERENCES_LABEL_MAX_WIDTH,
       tandem: tandem.createTandem( 'labelText' )
@@ -72,26 +72,26 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
     const items: AquaRadioButtonGroupItem<DerivativeNotation>[] = [
       {
         value: 'lagrange',
-        createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.lagrangeStringProperty,
+        createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherFluent.lagrangeStringProperty,
           new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: 'lagrangeRadioButton',
         options: {
-          accessibleName: new PatternStringProperty( CalculusGrapherStrings.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleNameStringProperty, {
+          accessibleName: new PatternStringProperty( CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleNameStringProperty, {
             variable: CalculusGrapherDescription.variableStringProperty
           } ),
-          accessibleHelpText: CalculusGrapherStrings.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
         value: 'leibniz',
-        createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherStrings.leibnizStringProperty,
+        createNode: radioButtonTandem => new NotationRadioButtonLabel( CalculusGrapherFluent.leibnizStringProperty,
           new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: 'leibnizRadioButton',
         options: {
-          accessibleName: new PatternStringProperty( CalculusGrapherStrings.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleNameStringProperty, {
+          accessibleName: new PatternStringProperty( CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleNameStringProperty, {
             variable: CalculusGrapherDescription.variableStringProperty
           } ),
-          accessibleHelpText: CalculusGrapherStrings.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -102,7 +102,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
       radioButtonOptions: {
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleHelpText: CalculusGrapherStrings.a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );
