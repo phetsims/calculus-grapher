@@ -80,7 +80,7 @@
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
-        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore its derivative graph in real time.\n  *[t] Flexibly manipulate f of t and explore its derivative graph in real time.\n}"
+        "value": "Flexibly manipulate f of {$variable} and explore its derivative graph in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -99,7 +99,7 @@
     },
     "integralScreen": {
       "screenButtonsHelpText": {
-        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore its integral graph in real time.\n  *[t] Flexibly manipulate f of t and explore its integral graph in real time.\n}"
+        "value": "Flexibly manipulate f of {$variable} and explore its integral graph in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -118,7 +118,7 @@
     },
     "advancedScreen": {
       "screenButtonsHelpText": {
-        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore both its derivative and integral graphs with or without discontinuities.\n  *[t] Flexibly manipulate f of t and explore both its derivative and integral graphs with or without discontinuities.\n}"
+        "value": "Flexibly manipulate f of {$variable} and explore both its derivative and integral graphs with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -137,7 +137,7 @@
     },
     "labScreen": {
       "screenButtonsHelpText": {
-        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore its first and second derivative graphs, and its integral graph with or without discontinuities\n  *[t] Flexibly manipulate f of t and explore its first and second derivative graphs, and its integral graph with or without discontinuities\n}"
+        "value": "Flexibly manipulate f of {$variable} and explore its first and second derivative graphs, and its integral graph with or without discontinuities"
       },
       "screenSummary": {
         "playArea": {
@@ -227,7 +227,7 @@
       },
       "lagrangeRadioButton": {
         "accessibleName": {
-          "value": "{ $functionVariable ->\n  [x] Lagrange, f of x\n  *[t] Lagrange, f of t\n}"
+          "value": "Lagrange, f of {$variable}"
         },
         "accessibleHelpText": {
           "value": "TODO.lagrangeRadioButton.accessibleHelpText"
@@ -235,7 +235,7 @@
       },
       "leibnizRadioButton": {
         "accessibleName": {
-          "value": "{ $functionVariable ->\n  [x] Leibniz, d f over d x\n  *[t] Leibniz, d f over d t\n}"
+          "value": "Leibniz, d f over d {$variable}"
         },
         "accessibleHelpText": {
           "value": "TODO.leibnizRadioButton.accessibleHelpText"
@@ -265,7 +265,7 @@
     },
     "predictToggleSwitch": {
       "accessibleHelpText": {
-        "value": "{ $functionVariable ->\n  [x] Adds a mode that allows you to predict f of x.\n  *[t] Adds a mode that allows you to predict f of t.\n}"
+        "value": "Adds a mode that allows you to predict f of {$variable}."
       }
     },
     "curveManipulationWidthSlider": {
@@ -441,10 +441,10 @@
       },
       "originalCurveRadioButton": {
         "accessibleName": {
-          "value": "{ $functionVariable ->\n  [x] f of x\n  *[t] f of t\n}"
+          "value": "f of {$variable}"
         },
         "accessibleHelpText": {
-          "value": "{ $functionVariable ->\n  [x] Manipulate f of x in graph area.\n  *[t] Manipulate f of t in graph area.\n}"
+          "value": "Manipulate f of {$variable} in graph area."
         }
       },
       "predictCurveRadioButton": {
@@ -458,16 +458,16 @@
     },
     "showOriginalCurveCheckbox": {
       "accessibleName": {
-        "value": "{ $functionVariable ->\n  [x] Show f of x\n  *[t] Show f of t\n}"
+        "value": "Show f of {$variable}"
       },
       "accessibleHelpText": {
-        "value": "{ $functionVariable ->\n  [x] Show or hide f of x concurrent with prediction curve.\n  *[t] Show or hide f of t concurrent with prediction curve.\n}"
+        "value": "Show or hide f of {$variable} concurrent with prediction curve."
       },
       "accessibleContextResponseChecked": {
-        "value": "{ $functionVariable ->\n  [x] f of x shown with prediction\n  *[t] f of t shown with prediction\n}"
+        "value": "f of {$variable} shown with prediction"
       },
       "accessibleContextResponseUnchecked": {
-        "value": "{ $functionVariable ->\n  [x] f of x hidden\n  *[t] f of t hidden\n}"
+        "value": "f of {$variable} hidden"
       }
     }
   }

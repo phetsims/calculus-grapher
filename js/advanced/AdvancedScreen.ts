@@ -68,7 +68,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
       screenButtonsHelpText: CalculusGrapherFluent.a11y.advancedScreen.screenButtonsHelpText.createProperty( {
-        functionVariable: CalculusGrapherPreferences.functionVariableProperty
+        variable: CalculusGrapherPreferences.functionVariableProperty
       } ),
       tandem: tandem
     } );

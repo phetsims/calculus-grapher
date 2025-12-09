@@ -28,40 +28,28 @@ predictPreferenceDescription: Adds a mode that allows you to predict f of {{vari
 referenceLine:                Reference<br>Line
 a11y:
   derivativeScreen:
-    screenButtonsHelpText:
-      select_functionVariable:
-        x: Flexibly manipulate f of x and explore its derivative graph in real time.
-        t: Flexibly manipulate f of t and explore its derivative graph in real time.
+    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its derivative graph in real time.
     screenSummary:
       playArea:        TODO.derivativeScreen.screenSummary.playArea
       controlArea:     TODO.derivativeScreen.screenSummary.controlArea
       currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
       interactionHint: TODO.derivativeScreen.screenSummary.interactionHint
   integralScreen:
-    screenButtonsHelpText:
-      select_functionVariable:
-        x: Flexibly manipulate f of x and explore its integral graph in real time.
-        t: Flexibly manipulate f of t and explore its integral graph in real time.
+    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its integral graph in real time.
     screenSummary:
       playArea:        TODO.integralScreen.screenSummary.playArea
       controlArea:     TODO.integralScreen.screenSummary.controlArea
       currentDetails:  TODO.integralScreen.screenSummary.currentDetails
       interactionHint: TODO.integralScreen.screenSummary.interactionHint
   advancedScreen:
-    screenButtonsHelpText:
-      select_functionVariable:
-        x: Flexibly manipulate f of x and explore both its derivative and integral graphs with or without discontinuities.
-        t: Flexibly manipulate f of t and explore both its derivative and integral graphs with or without discontinuities.
+    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore both its derivative and integral graphs with or without discontinuities.
     screenSummary:
       playArea:        TODO.playArea
       controlArea:     TODO.controlArea
       currentDetails:  TODO.currentDetails
       interactionHint: TODO.interactionHint
   labScreen:
-    screenButtonsHelpText:
-      select_functionVariable:
-        x: Flexibly manipulate f of x and explore its first and second derivative graphs, and its integral graph with or without discontinuities
-        t: Flexibly manipulate f of t and explore its first and second derivative graphs, and its integral graph with or without discontinuities
+    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its first and second derivative graphs, and its integral graph with or without discontinuities
     screenSummary:
       playArea:        TODO.labScreen.screenSummary.playArea
       controlArea:     TODO.labScreen.screenSummary.controlArea
@@ -96,16 +84,10 @@ a11y:
   notationRadioButtonGroup:
     accessibleHelpText: TODO.notationRadioButtonGroup.accessibleHelpText
     lagrangeRadioButton:
-      accessibleName:
-        select_functionVariable:
-          x: Lagrange, f of x
-          t: Lagrange, f of t
+      accessibleName: Lagrange, f of {$variable}
       accessibleHelpText: TODO.lagrangeRadioButton.accessibleHelpText
     leibnizRadioButton:
-      accessibleName:
-        select_functionVariable:
-          x: Leibniz, d f over d x
-          t: Leibniz, d f over d t
+      accessibleName: Leibniz, d f over d {$variable}
       accessibleHelpText: TODO.leibnizRadioButton.accessibleHelpText
   discontinuitiesRadioButtonGroup:
     accessibleHelpText: TODO.discontinuitiesRadioButtonGroup.accessibleHelpText
@@ -116,10 +98,7 @@ a11y:
       accessibleName:     Dashed Line
       accessibleHelpText: TODO.dashedLineRadioButton.accessibleHelpText
   predictToggleSwitch:
-    accessibleHelpText:
-      select_functionVariable:
-        x: Adds a mode that allows you to predict f of x.
-        t: Adds a mode that allows you to predict f of t.
+    accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
   curveManipulationWidthSlider:
     accessibleName:     Curve Width
     accessibleHelpText: TODO.curveWidthSlider.accessibleHelpText
@@ -186,31 +165,13 @@ a11y:
     accessibleName:     Predict
     accessibleHelpText: TODO.predictRadioButtonGroup.accessibleHelpText
     originalCurveRadioButton:
-      accessibleName:
-        select_functionVariable:
-          x: f of x
-          t: f of t
-      accessibleHelpText:
-        select_functionVariable:
-          x: Manipulate f of x in graph area.
-          t: Manipulate f of t in graph area.
+      accessibleName: f of {$variable}
+      accessibleHelpText: Manipulate f of {$variable} in graph area.
     predictCurveRadioButton:
       accessibleName:     Predict
       accessibleHelpText: Manipulate prediction curve in graph area.
   showOriginalCurveCheckbox:
-    accessibleName:
-      select_functionVariable:
-        x: Show f of x
-        t: Show f of t
-    accessibleHelpText:
-      select_functionVariable:
-        x: Show or hide f of x concurrent with prediction curve.
-        t: Show or hide f of t concurrent with prediction curve.
-    accessibleContextResponseChecked:
-      select_functionVariable:
-        x: f of x shown with prediction
-        t: f of t shown with prediction
-    accessibleContextResponseUnchecked:
-      select_functionVariable:
-        x: f of x hidden
-        t: f of t hidden
+    accessibleName:                     Show f of {$variable}
+    accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
+    accessibleContextResponseChecked:   f of {$variable} shown with prediction
+    accessibleContextResponseUnchecked: f of {$variable} hidden

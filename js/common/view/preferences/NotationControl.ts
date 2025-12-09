@@ -76,7 +76,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         tandemName: 'lagrangeRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleName.createProperty( {
-            functionVariable: CalculusGrapherPreferences.functionVariableProperty
+            variable: CalculusGrapherPreferences.functionVariableProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
         }
@@ -88,7 +88,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         tandemName: 'leibnizRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleName.createProperty( {
-            functionVariable: CalculusGrapherPreferences.functionVariableProperty
+            variable: CalculusGrapherPreferences.functionVariableProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty
         }

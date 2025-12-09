@@ -37,10 +37,10 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         tandemName: 'originalCurveRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleName.createProperty( {
-            functionVariable: CalculusGrapherPreferences.functionVariableProperty
+            variable: CalculusGrapherPreferences.functionVariableProperty
           } ),
           accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpText.createProperty( {
-            functionVariable: CalculusGrapherPreferences.functionVariableProperty
+            variable: CalculusGrapherPreferences.functionVariableProperty
           } )
         }
       },

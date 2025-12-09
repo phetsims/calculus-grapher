@@ -44,7 +44,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
       homeScreenIcon: CalculusGrapherScreenIconFactory.createIntegralScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
       screenButtonsHelpText: CalculusGrapherFluent.a11y.integralScreen.screenButtonsHelpText.createProperty( {
-        functionVariable: CalculusGrapherPreferences.functionVariableProperty
+        variable: CalculusGrapherPreferences.functionVariableProperty
       } ),
       tandem: tandem
     } );

@@ -66,7 +66,7 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
       homeScreenIcon: CalculusGrapherScreenIconFactory.createLabScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
       screenButtonsHelpText: CalculusGrapherFluent.a11y.labScreen.screenButtonsHelpText.createProperty( {
-        functionVariable: CalculusGrapherPreferences.functionVariableProperty
+        variable: CalculusGrapherPreferences.functionVariableProperty
       } ),
       tandem: tandem
     } );
