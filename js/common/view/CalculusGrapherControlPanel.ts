@@ -14,7 +14,6 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
@@ -32,8 +31,6 @@ type SelfOptions = {
 export type CalculusGrapherControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
 
 export default class CalculusGrapherControlPanel extends Panel {
-
-  private contentNode: Node; // the Node contained inside this Panel
 
   public constructor( curveManipulationProperties: CurveManipulationProperties,
                       predictSelectedProperty: Property<boolean>,
@@ -79,8 +76,6 @@ export default class CalculusGrapherControlPanel extends Panel {
     } );
 
     super( contentNode, options );
-
-    this.contentNode = contentNode;
   }
 }
 calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );
