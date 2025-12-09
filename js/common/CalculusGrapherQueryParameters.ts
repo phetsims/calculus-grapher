@@ -13,7 +13,7 @@ import { QueryStringMachine } from '../../../query-string-machine/js/QueryString
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherConstants from './CalculusGrapherConstants.js';
 
-export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ];
+export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ] as const;
 export type ConnectDiscontinuities = ( typeof ConnectDiscontinuitiesValues )[ number ];
 
 export const DerivativeNotationValues = [ 'lagrange', 'leibniz' ] as const;
