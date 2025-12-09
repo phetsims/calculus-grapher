@@ -8,6 +8,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
@@ -36,8 +37,12 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
         tandemName: 'originalCurveRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleName.createProperty( {
+            functionVariable: CalculusGrapherPreferences.functionVariableProperty
+          } ),
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpText.createProperty( {
+            functionVariable: CalculusGrapherPreferences.functionVariableProperty
+          } )
         }
       },
       {
@@ -70,6 +75,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
       },
       accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT,
       tandem: tandem
     } );
   }

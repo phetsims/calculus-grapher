@@ -186,11 +186,17 @@ a11y:
     accessibleName:     Predict
     accessibleHelpText: TODO.predictRadioButtonGroup.accessibleHelpText
     originalCurveRadioButton:
-      accessibleName:     Original Curve
-      accessibleHelpText: TODO.originalCurveRadioButton.accessibleHelpText
+      accessibleName:
+        select_functionVariable:
+          x: f of x
+          t: f of t
+      accessibleHelpText:
+        select_functionVariable:
+          x: Manipulate f of x in graph area.
+          t: Manipulate f of t in graph area.
     predictCurveRadioButton:
-      accessibleName:     Predict Curve
-      accessibleHelpText: TODO.predictCurveRadioButton.accessibleHelpText
+      accessibleName:     Predict
+      accessibleHelpText: Manipulate prediction curve in graph area.
   showOriginalCurveCheckbox:
     accessibleName:
       select_functionVariable:

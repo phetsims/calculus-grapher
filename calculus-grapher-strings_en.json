@@ -441,18 +441,18 @@
       },
       "originalCurveRadioButton": {
         "accessibleName": {
-          "value": "Original Curve"
+          "value": "{ $functionVariable ->\n  [x] f of x\n  *[t] f of t\n}"
         },
         "accessibleHelpText": {
-          "value": "TODO.originalCurveRadioButton.accessibleHelpText"
+          "value": "{ $functionVariable ->\n  [x] Manipulate f of x in graph area.\n  *[t] Manipulate f of t in graph area.\n}"
         }
       },
       "predictCurveRadioButton": {
         "accessibleName": {
-          "value": "Predict Curve"
+          "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "TODO.predictCurveRadioButton.accessibleHelpText"
+          "value": "Manipulate prediction curve in graph area."
         }
       }
     },
