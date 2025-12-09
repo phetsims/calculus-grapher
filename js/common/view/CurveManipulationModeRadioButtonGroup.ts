@@ -11,12 +11,8 @@
 
 import Property from '../../../../axon/js/Property.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
-import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
-import AlignBox from '../../../../scenery/js/layout/nodes/AlignBox.js';
-import GridBox from '../../../../scenery/js/layout/nodes/GridBox.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
-import RectangularRadioButton from '../../../../sun/js/buttons/RectangularRadioButton.js';
+import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
@@ -24,7 +20,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
-export default class CurveManipulationModeRadioButtonGroup extends GridBox {
+export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
 
   public constructor( curveManipulationModeProperty: Property<CurveManipulationMode>,
                       curveManipulationStroke: TColor,
@@ -33,41 +29,44 @@ export default class CurveManipulationModeRadioButtonGroup extends GridBox {
     const validModes = curveManipulationModeProperty.validValues!;
     affirm( validModes, 'validModes should be defined' );
 
-    // So that all icons have the same effective size
-    const alignBoxOptions = {
-      group: new AlignGroup()
-    };
+    const items: RectangularRadioButtonGroupItem<CurveManipulationMode>[] = validModes.map( mode => {
+      return {
+        value: mode,
+        createNode: () => new CurveManipulationIconNode( mode, curveManipulationStroke ),
+        tandemName: `${mode.tandemPrefix}RadioButton`,
+        options: {
+          accessibleName: mode.radioButtonAccessibleNameProperty,
+          accessibleHelpText: mode.radioButtonAccessibleHelpTextProperty
+        }
+      };
+    } );
 
-    // Create a radio button for each mode
-    const buttons = validModes.map( mode => new RectangularRadioButton( curveManipulationModeProperty, mode, {
-      content: new AlignBox( new CurveManipulationIconNode( mode, curveManipulationStroke ), alignBoxOptions ),
-      baseColor: CalculusGrapherColors.panelFillProperty,
-      xMargin: 10,
-      yMargin: 7,
-      buttonAppearanceStrategyOptions: {
-        selectedLineWidth: 2
+    const options: RectangularRadioButtonGroupOptions = {
+      isDisposable: false,
+      radioButtonOptions: {
+        baseColor: CalculusGrapherColors.panelFillProperty,
+        xMargin: 9,
+        yMargin: 6,
+        buttonAppearanceStrategyOptions: {
+          selectedLineWidth: 2
+        }
       },
-      accessibleName: mode.radioButtonAccessibleNameProperty,
-      accessibleHelpText: mode.radioButtonAccessibleHelpTextProperty,
-      tandem: tandem.createTandem( `${mode.tandemPrefix}RadioButton` )
-    } ) );
-
-    super( {
-      children: buttons,
-      autoColumns: 2,
-      xSpacing: 4,
-      ySpacing: 4,
+      accessibleName: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem,
 
-      // For alt input and core description, make this GridBox behave like a RectangularRadioButtonGroup.
-      tagName: 'div',
-      ariaRole: 'radiogroup',
-      accessibleNameBehavior: ParallelDOM.HEADING_ACCESSIBLE_NAME_BEHAVIOR,
-      accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT,
-      groupFocusHighlight: true,
-      accessibleName: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleHelpTextStringProperty
-    } );
+      // These options are a bit of a hack to implement a 2x2 grid.
+      // Values were set empirically to make the vertical and horizontal spacing look the same.
+      // See https://github.com/phetsims/calculus-grapher/issues/351.
+      orientation: 'horizontal',
+      preferredWidth: 148,
+      widthSizable: false,
+      wrap: true,
+      spacing: 0,
+      lineSpacing: 4
+    };
+
+    super( curveManipulationModeProperty, items, options );
   }
 }
 

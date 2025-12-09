@@ -52,7 +52,8 @@ export default class CurveManipulationProperties {
       validValues: curveManipulationModeChoices,
       tandem: options.tandem.createTandem( 'modeProperty' ),
       phetioDocumentation: 'Determines how the curve will be modified (manipulated) when the student interacts with it. ' +
-                           'Applies to the interactive (original and predict) curves only.'
+                           'Applies to the interactive (original and predict) curves only.',
+      phetioFeatured: true
     } );
 
     this.widthProperty = new NumberProperty( CURVE_MANIPULATION_WIDTH_RANGE.defaultValue, {
