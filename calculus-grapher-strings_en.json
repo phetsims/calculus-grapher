@@ -80,7 +80,7 @@
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
-        "value": "TODO.derivativeScreen.screenButtonsHelpText"
+        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore its derivative graph in real time.\n  *[t] Flexibly manipulate f of t and explore its derivative graph in real time.\n}"
       },
       "screenSummary": {
         "playArea": {
@@ -99,7 +99,7 @@
     },
     "integralScreen": {
       "screenButtonsHelpText": {
-        "value": "TODO.integralScreen.screenButtonsHelpText"
+        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore its integral graph in real time.\n  *[t] Flexibly manipulate f of t and explore its integral graph in real time.\n}"
       },
       "screenSummary": {
         "playArea": {
@@ -118,7 +118,7 @@
     },
     "advancedScreen": {
       "screenButtonsHelpText": {
-        "value": "TODO.screenButtonsHelpText"
+        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore both its derivative and integral graphs with or without discontinuities.\n  *[t] Flexibly manipulate f of t and explore both its derivative and integral graphs with or without discontinuities.\n}"
       },
       "screenSummary": {
         "playArea": {
@@ -137,7 +137,7 @@
     },
     "labScreen": {
       "screenButtonsHelpText": {
-        "value": "TODO.labScreen.screenButtonsHelpText"
+        "value": "{ $functionVariable ->\n  [x] Flexibly manipulate f of x and explore its first and second derivative graphs, and its integral graph with or without discontinuities\n  *[t] Flexibly manipulate f of t and explore its first and second derivative graphs, and its integral graph with or without discontinuities\n}"
       },
       "screenSummary": {
         "playArea": {
