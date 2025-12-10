@@ -106,12 +106,12 @@ function createIntegralShape(): Shape {
   return shape;
 }
 
-const CalculusGrapherScreenIconFactory = {
+export default class CalculusGrapherScreenIconFactory {
 
   /**
    * Creates the ScreenIcon for the 'Derivative' screen.
    */
-  createDerivativeScreenIcon(): ScreenIcon {
+  public static createDerivativeScreenIcon(): ScreenIcon {
 
     // Derivative math expression, the form of which changes based on 'Variable' and 'Notation' preferences
     const expressionNode = new GraphTypeLabelNode( GraphType.DERIVATIVE );
@@ -131,12 +131,12 @@ const CalculusGrapherScreenIconFactory = {
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
-  },
+  }
 
   /**
    * Creates the ScreenIcon for the 'Integral' screen.
    */
-  createIntegralScreenIcon(): ScreenIcon {
+  public static createIntegralScreenIcon(): ScreenIcon {
 
     // Integral math expression, the form of which changes based on 'Variable' and 'Notation' preferences.
     const expressionNode = new GraphTypeLabelNode( GraphType.INTEGRAL );
@@ -156,12 +156,12 @@ const CalculusGrapherScreenIconFactory = {
     return new ScreenIcon( iconNode, {
       fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
-  },
+  }
 
   /**
    * Creates the ScreenIcon for the 'Advanced' screen.
    */
-  createAdvancedScreenIcon(): ScreenIcon {
+  public static createAdvancedScreenIcon(): ScreenIcon {
 
     const triangleWidth = 80;
     const triangleHeight = 15;
@@ -216,12 +216,12 @@ const CalculusGrapherScreenIconFactory = {
       fill: CalculusGrapherColors.screenBackgroundColorProperty,
       maxIconWidthProportion: 1
     } );
-  },
+  }
 
   /**
    * Creates the ScreenIcon for the 'Lab' screen.
    */
-  createLabScreenIcon(): ScreenIcon {
+  public static createLabScreenIcon(): ScreenIcon {
 
     // 3 curves, as in the Lab screen
     const integralCurveNode = new Path( createIntegralShape(), {
@@ -248,7 +248,6 @@ const CalculusGrapherScreenIconFactory = {
       fill: CalculusGrapherColors.screenBackgroundColorProperty
     } );
   }
-};
+}
 
 calculusGrapher.register( 'CalculusGrapherScreenIconFactory', CalculusGrapherScreenIconFactory );
-export default CalculusGrapherScreenIconFactory;
