@@ -134,7 +134,9 @@ export default class GraphNode extends Node {
   // Optional Property for zooming the y-axis
   private readonly yZoomLevelProperty?: NumberProperty;
 
-  private readonly eyeToggleButton: Node;
+  // For setting pdomOrder in subclasses.
+  protected readonly yZoomButtonGroup: Node | null;
+  protected readonly eyeToggleButton: Node;
 
   public constructor( graphType: GraphType,
                       curve: Curve,
@@ -273,7 +275,7 @@ export default class GraphNode extends Node {
     } );
 
     // Create yZoomButtonGroup if we have a yZoomLevelProperty.
-    const yZoomButtonGroup = this.yZoomLevelProperty ? new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
+    this.yZoomButtonGroup = this.yZoomLevelProperty ? new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
       orientation: 'vertical',
       buttonOptions: {
         stroke: 'black'
@@ -302,9 +304,9 @@ export default class GraphNode extends Node {
       this.eyeToggleButton.bottom = this.chartRectangle.bottom;
 
       // yZoomButtonGroup at left-center of chart rectangle
-      if ( yZoomButtonGroup ) {
-        yZoomButtonGroup.right = rightNode.left - BUTTON_SPACING;
-        yZoomButtonGroup.centerY = this.chartRectangle.centerY;
+      if ( this.yZoomButtonGroup ) {
+        this.yZoomButtonGroup.right = rightNode.left - BUTTON_SPACING;
+        this.yZoomButtonGroup.centerY = this.chartRectangle.centerY;
       }
     } );
 
@@ -317,7 +319,7 @@ export default class GraphNode extends Node {
       this.curveLayer,
       this.eyeToggleButton
     ];
-    yZoomButtonGroup && children.push( yZoomButtonGroup );
+    this.yZoomButtonGroup && children.push( this.yZoomButtonGroup );
     this.children = children;
 
     // If we have a yZoomLevelProperty, respond to changes.
@@ -342,6 +344,12 @@ export default class GraphNode extends Node {
       // Hide the y-axis minor grid lines if they get too close together.
       yMinorGridLines.visible = ( Math.abs( this.chartTransform.modelToViewDeltaY( MINOR_GRID_LINE_SPACING ) ) > 5 );
     } );
+
+    // Default focus order.
+    const pdomOrder: Node[] = [];
+    this.yZoomButtonGroup && pdomOrder.push( this.yZoomButtonGroup );
+    pdomOrder.push( this.eyeToggleButton );
+    this.pdomOrder = pdomOrder;
   }
 
   /**

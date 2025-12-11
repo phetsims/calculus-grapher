@@ -25,6 +25,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import { ChartRectangleOptions } from '../../../../bamboo/js/ChartRectangle.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import AccessibleInteractiveOptions from '../../../../scenery-phet/js/accessibility/AccessibleInteractiveOptions.js';
@@ -203,6 +204,13 @@ export default class OriginalGraphNode extends GraphNode {
       ( originalCurveNodeInputEnabled, predictEnabled, curveLayerVisible ) =>
         ( originalCurveNodeInputEnabled || predictEnabled ) && curveLayerVisible
     ) );
+
+    // Focus order
+    affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
+    this.pdomOrder = [
+      this.chartRectangle,
+      this.eyeToggleButton
+    ];
   }
 
   public override reset(): void {
