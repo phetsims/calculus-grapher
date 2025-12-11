@@ -249,6 +249,9 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
+    };
+    'headings': {
+      'graphAreasStringProperty': LocalizedStringProperty;
     }
   }
 };

@@ -9,6 +9,7 @@
  */
 
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -22,7 +23,6 @@ import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import CalculusGrapherControlPanel, { CalculusGrapherControlPanelOptions } from './CalculusGrapherControlPanel.js';
 import GraphSetRadioButtonGroup, { GraphSetRadioButtonGroupItem } from './GraphSetRadioButtonGroup.js';
 import GraphsNode from './GraphsNode.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
 
@@ -48,6 +48,11 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
   // Instead of adding children directly to the ScreenView, add them to this parent Node.
   protected readonly screenViewRootNode: Node;
+
+  // For setting pdomOrder in subclasses
+  protected readonly resetAllButton: Node;
+  protected readonly rightVBox: Node;
+  protected readonly graphSetRadioButtonGroup?: Node;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
 
@@ -115,6 +120,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       const graphSetRadioButtonGroup = new GraphSetRadioButtonGroup( model.graphSetProperty,
         options.graphSetRadioButtonGroupItems, options.tandem.createTandem( 'graphSetRadioButtonGroup' ) );
       children.push( graphSetRadioButtonGroup );
+      this.graphSetRadioButtonGroup = graphSetRadioButtonGroup;
 
       // Center graphSetRadioButtonGroup in the negative space to the left of graphNode. We're only adjusting centerX
       // dynamically so that GraphSetsAnimation doesn't cause tiny shifts in y.
@@ -124,6 +130,9 @@ export default class CalculusGrapherScreenView extends ScreenView {
         graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
       } );
     }
+
+    this.rightVBox = rightVBox;
+    this.resetAllButton = resetAllButton;
 
     this.screenViewRootNode = new Node( {
       children: children

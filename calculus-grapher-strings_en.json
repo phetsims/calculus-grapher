@@ -472,6 +472,11 @@
       "accessibleContextResponseUnchecked": {
         "value": "f of {$variable} hidden"
       }
+    },
+    "headings": {
+      "graphAreas": {
+        "value": "Graph Areas"
+      }
     }
   }
 }

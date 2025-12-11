@@ -7,6 +7,7 @@
  * @author Brandon Li
  */
 
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -32,14 +33,16 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
     super( model, options );
 
     // Play Area focus order
+    affirm( this.graphSetRadioButtonGroup, 'This screen is expected to have a graphSetRadioButtonGroup.' );
     this.pdomPlayAreaNode.pdomOrder = [
-      //TODO https://github.com/phetsims/calculus-grapher/issues/340
-      this.screenViewRootNode
+      // this.graphSetRadioButtonGroup,
+      this.graphsNode,
+      this.rightVBox
     ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [
-      //TODO https://github.com/phetsims/calculus-grapher/issues/340
+      this.resetAllButton
     ];
   }
 }

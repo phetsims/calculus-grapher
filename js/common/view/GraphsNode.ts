@@ -76,6 +76,7 @@ export default class GraphsNode extends Node {
     const options = optionize<GraphsNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
+      accessibleHeading: CalculusGrapherFluent.a11y.headings.graphAreasStringProperty,
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 

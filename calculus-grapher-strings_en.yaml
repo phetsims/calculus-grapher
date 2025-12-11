@@ -176,3 +176,5 @@ a11y:
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
     accessibleContextResponseChecked:   f of {$variable} shown with prediction
     accessibleContextResponseUnchecked: f of {$variable} hidden
+  headings:
+    graphAreas: Graph Areas
