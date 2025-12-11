@@ -472,11 +472,6 @@
       "accessibleContextResponseUnchecked": {
         "value": "f of {$variable} hidden"
       }
-    },
-    "headings": {
-      "graphAreaControlsHeading": {
-        "value": "Graph Area Controls"
-      }
     }
   }
 }
