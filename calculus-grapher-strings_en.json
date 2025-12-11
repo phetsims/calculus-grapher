@@ -156,10 +156,10 @@
     },
     "gridCheckbox": {
       "accessibleName": {
-        "value": "Grid"
+        "value": "Coordinate Grid Lines"
       },
       "accessibleHelpText": {
-        "value": "TODO.gridCheckbox.accessibleHelpText"
+        "value": "Show or hide grid lines on all graphs."
       }
     },
     "smoothButton": {
@@ -171,8 +171,11 @@
       }
     },
     "eraserButton": {
+      "accessibleName": {
+        "value": "Erase Curve Manipulations"
+      },
       "accessibleHelpText": {
-        "value": "TODO.eraserButton.accessibleHelpText"
+        "value": "Reset curve to y equals zero but maintain curve manipulation settings."
       }
     },
     "undoButton": {
@@ -180,7 +183,7 @@
         "value": "Undo"
       },
       "accessibleHelpText": {
-        "value": "TODO.undoButton.accessibleHelpText"
+        "value": "Undo most recent curve manipulation."
       }
     },
     "eyeToggleButton": {
@@ -205,7 +208,7 @@
     },
     "tangentCheckbox": {
       "accessibleHelpText": {
-        "value": "TODO.tangentCheckbox.accessibleHelpText"
+        "value": "Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points."
       }
     },
     "referenceLineCheckbox": {
@@ -213,7 +216,7 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "TODO.referenceLineCheckbox.accessibleHelpText"
+        "value": "Add or remove movable vertical line connecting all graphs at same {$variable} value."
       }
     },
     "areaUnderCurveCheckbox": {
@@ -270,15 +273,15 @@
     },
     "curveManipulationWidthSlider": {
       "accessibleName": {
-        "value": "Curve Width"
+        "value": "Shape Width"
       },
       "accessibleHelpText": {
-        "value": "TODO.curveWidthSlider.accessibleHelpText"
+        "value": "Adjust width of curve manipulation shape."
       }
     },
     "curveManipulationModeRadioButtonGroup": {
       "accessibleName": {
-        "value": "Curve Manipulation Mode"
+        "value": "Curve Manipulation Shapes"
       },
       "accessibleHelpText": {
         "value": "TODO.curveManipulationModeRadioButtonGroup.accessibleHelpText"
@@ -288,7 +291,7 @@
           "value": "Hill"
         },
         "accessibleHelpText": {
-          "value": "TODO.hillRadioButton.accessibleHelpText"
+          "value": "Add smooth hill to curve."
         }
       },
       "triangleRadioButton": {
@@ -304,7 +307,7 @@
           "value": "Pedestal"
         },
         "accessibleHelpText": {
-          "value": "TODO.pedestalRadioButton.accessibleHelpText"
+          "value": "Add pedestal with smooth corners to curve."
         }
       },
       "parabolaRadioButton": {
@@ -336,7 +339,7 @@
           "value": "Tilt"
         },
         "accessibleHelpText": {
-          "value": "TODO.tiltRadioButton.accessibleHelpText"
+          "value": "Tilt curve diagonally while pinned at left edge of horizontal axis."
         }
       },
       "shiftRadioButton": {
@@ -344,7 +347,7 @@
           "value": "Shift"
         },
         "accessibleHelpText": {
-          "value": "TODO.shiftRadioButton.accessibleHelpText"
+          "value": "Shift entire curve up or down."
         }
       }
     },
@@ -402,7 +405,7 @@
     },
     "originalGraph": {
       "accessibleHeading": {
-        "value": "Original Graph"
+        "value": "Primary Graph Area"
       },
       "accessibleParagraph": {
         "value": "TODO.originalGraph.accessibleParagraph"
@@ -410,7 +413,7 @@
     },
     "integralGraph": {
       "accessibleHeading": {
-        "value": "Integral Graph"
+        "value": "Integral Graph Area"
       },
       "accessibleParagraph": {
         "value": "TODO.integralGraph.accessibleParagraph"
@@ -418,7 +421,7 @@
     },
     "derivativeGraph": {
       "accessibleHeading": {
-        "value": "Derivative Graph"
+        "value": "Derivative Graph Area"
       },
       "accessibleParagraph": {
         "value": "TODO.derivativeGraph.accessibleParagraph"
@@ -426,7 +429,7 @@
     },
     "secondDerivativeGraph": {
       "accessibleHeading": {
-        "value": "Second Derivative Graph"
+        "value": "Second Derivative Graph Area"
       },
       "accessibleParagraph": {
         "value": "TODO.secondDerivativeGraph.accessibleParagraph"
@@ -434,25 +437,25 @@
     },
     "predictRadioButtonGroup": {
       "accessibleName": {
-        "value": "Predict"
+        "value": "TODO.predictRadioButtonGroup.accessibleName"
       },
       "accessibleHelpText": {
         "value": "TODO.predictRadioButtonGroup.accessibleHelpText"
       },
       "originalCurveRadioButton": {
         "accessibleName": {
-          "value": "f of {$variable}"
+          "value": "Primary Curve Mode"
         },
         "accessibleHelpText": {
-          "value": "Manipulate f of {$variable} in graph area."
+          "value": "Manipulate primary curve in primary graph area."
         }
       },
       "predictCurveRadioButton": {
         "accessibleName": {
-          "value": "Predict"
+          "value": "Predict Curve Mode"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve in graph area."
+          "value": "Manipulate prediction curve in primary graph area."
         }
       }
     },
@@ -468,6 +471,11 @@
       },
       "accessibleContextResponseUnchecked": {
         "value": "f of {$variable} hidden"
+      }
+    },
+    "headings": {
+      "graphAreaControlsHeading": {
+        "value": "Graph Area Controls"
       }
     }
   }

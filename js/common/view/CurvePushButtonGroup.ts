@@ -43,6 +43,7 @@ export default class CurvePushButtonGroup extends VBox {
       listener: () => interactiveCurveProperty.value.erase(),
       iconWidth: 16,
       xMargin: 10,
+      accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
       tandem: tandem.createTandem( 'eraserButton' )
     } );

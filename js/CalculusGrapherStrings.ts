@@ -94,6 +94,7 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'eraserButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'undoButton': {
@@ -248,6 +249,9 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
+    };
+    'headings': {
+      'graphAreaControlsHeadingStringProperty': LocalizedStringProperty;
     }
   }
 };

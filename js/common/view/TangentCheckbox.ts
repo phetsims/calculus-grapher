@@ -18,6 +18,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 
@@ -43,7 +44,9 @@ export default class TangentCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
-        accessibleHelpText: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleHelpTextStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleHelpText.createProperty( {
+          variable: CalculusGrapherPreferences.functionVariableProperty
+        } ),
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

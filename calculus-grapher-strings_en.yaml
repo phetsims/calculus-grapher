@@ -56,16 +56,17 @@ a11y:
       currentDetails:  TODO.labScreen.screenSummary.currentDetails
       interactionHint: TODO.labScreen.screenSummary.interactionHint
   gridCheckbox:
-    accessibleName:     Grid
-    accessibleHelpText: TODO.gridCheckbox.accessibleHelpText
+    accessibleName:     Coordinate Grid Lines
+    accessibleHelpText: Show or hide grid lines on all graphs.
   smoothButton:
     accessibleName:     Smooth
     accessibleHelpText: TODO.smoothButton.accessibleHelpText
   eraserButton:
-    accessibleHelpText: TODO.eraserButton.accessibleHelpText
+    accessibleName:     Erase Curve Manipulations
+    accessibleHelpText: Reset curve to y equals zero but maintain curve manipulation settings.
   undoButton:
     accessibleName:     Undo
-    accessibleHelpText: TODO.undoButton.accessibleHelpText
+    accessibleHelpText: Undo most recent curve manipulation.
   eyeToggleButton:
     accessibleName:     TODO.eyeToggleButton.accessibleName
     accessibleHelpText: TODO.eyeToggleButton.accessibleHelpText
@@ -75,10 +76,10 @@ a11y:
     zoomOutButton:
       accessibleHelpText: TODO.zoomOutButton.accessibleHelpText
   tangentCheckbox:
-    accessibleHelpText: TODO.tangentCheckbox.accessibleHelpText
+    accessibleHelpText: Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points.
   referenceLineCheckbox:
     accessibleName:     Reference Line
-    accessibleHelpText: TODO.referenceLineCheckbox.accessibleHelpText
+    accessibleHelpText: Add or remove movable vertical line connecting all graphs at same {$variable} value.
   areaUnderCurveCheckbox:
     accessibleHelpText: TODO.areaUnderCurveCheckbox.accessibleHelpText
   notationRadioButtonGroup:
@@ -100,20 +101,20 @@ a11y:
   predictToggleSwitch:
     accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
   curveManipulationWidthSlider:
-    accessibleName:     Curve Width
-    accessibleHelpText: TODO.curveWidthSlider.accessibleHelpText
+    accessibleName:     Shape Width
+    accessibleHelpText: Adjust width of curve manipulation shape.
   curveManipulationModeRadioButtonGroup:
-    accessibleName:     Curve Manipulation Mode
+    accessibleName: Curve Manipulation Shapes
     accessibleHelpText: TODO.curveManipulationModeRadioButtonGroup.accessibleHelpText
     hillRadioButton:
       accessibleName:     Hill
-      accessibleHelpText: TODO.hillRadioButton.accessibleHelpText
+      accessibleHelpText: Add smooth hill to curve.
     triangleRadioButton:
       accessibleName:     Triangle
       accessibleHelpText: TODO.triangleRadioButton.accessibleHelpText
     pedestalRadioButton:
       accessibleName:     Pedestal
-      accessibleHelpText: TODO.pedestalRadioButton.accessibleHelpText
+      accessibleHelpText: Add pedestal with smooth corners to curve.
     parabolaRadioButton:
       accessibleName:     Parabola
       accessibleHelpText: TODO.parabolaRadioButton.accessibleHelpText
@@ -125,10 +126,10 @@ a11y:
       accessibleHelpText: TODO.freeformRadioButton.accessibleHelpText
     tiltRadioButton:
       accessibleName:     Tilt
-      accessibleHelpText: TODO.tiltRadioButton.accessibleHelpText
+      accessibleHelpText: Tilt curve diagonally while pinned at left edge of horizontal axis.
     shiftRadioButton:
       accessibleName:     Shift
-      accessibleHelpText: TODO.shiftRadioButton.accessibleHelpText
+      accessibleHelpText: Shift entire curve up or down.
   graphSetRadioButtonGroup:
     accessibleName:     Graph Set
     accessibleHelpText: TODO.graphSetRadioButtonGroup.accessibleHelpText
@@ -150,26 +151,26 @@ a11y:
   netSignedAreaAccordionBox:
     accessibleParagraph: TODO.netSignedAreaAccordionBox.accessibleParagraph
   originalGraph:
-    accessibleHeading:   Original Graph
+    accessibleHeading: Primary Graph Area
     accessibleParagraph: TODO.originalGraph.accessibleParagraph
   integralGraph:
-    accessibleHeading:   Integral Graph
+    accessibleHeading: Integral Graph Area
     accessibleParagraph: TODO.integralGraph.accessibleParagraph
   derivativeGraph:
-    accessibleHeading:   Derivative Graph
+    accessibleHeading: Derivative Graph Area
     accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
   secondDerivativeGraph:
-    accessibleHeading:   Second Derivative Graph
+    accessibleHeading: Second Derivative Graph Area
     accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
   predictRadioButtonGroup:
-    accessibleName:     Predict
+    accessibleName: TODO.predictRadioButtonGroup.accessibleName
     accessibleHelpText: TODO.predictRadioButtonGroup.accessibleHelpText
     originalCurveRadioButton:
-      accessibleName: f of {$variable}
-      accessibleHelpText: Manipulate f of {$variable} in graph area.
+      accessibleName:     Primary Curve Mode
+      accessibleHelpText: Manipulate primary curve in primary graph area.
     predictCurveRadioButton:
-      accessibleName:     Predict
-      accessibleHelpText: Manipulate prediction curve in graph area.
+      accessibleName:     Predict Curve Mode
+      accessibleHelpText: Manipulate prediction curve in primary graph area.
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
