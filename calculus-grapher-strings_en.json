@@ -188,21 +188,21 @@
     },
     "eyeToggleButton": {
       "accessibleName": {
-        "value": "TODO.eyeToggleButton.accessibleName"
+        "value": "Curve Visibility"
       },
       "accessibleHelpText": {
-        "value": "TODO.eyeToggleButton.accessibleHelpText"
+        "value": "Show or hide curve for this graph area."
       }
     },
     "yZoomButtonGroup": {
       "zoomInButton": {
         "accessibleHelpText": {
-          "value": "TODO.zoomInButton.accessibleHelpText"
+          "value": "Zoom y Axis"
         }
       },
       "zoomOutButton": {
         "accessibleHelpText": {
-          "value": "TODO.zoomOutButton.accessibleHelpText"
+          "value": "Zoom y axis in or out for this graph area."
         }
       }
     },
@@ -369,7 +369,7 @@
         },
         "lab": {
           "accessibleName": {
-            "value": "Integral, Original, and Derivative Graph Set"
+            "value": "Integral, Original, and First Derivative Graph Set"
           },
           "accessibleHelpText": {
             "value": "TODO.integralRadioButton.accessibleHelpText"
@@ -378,7 +378,7 @@
       },
       "derivativeRadioButton": {
         "accessibleName": {
-          "value": "Original and Derivative Graph Set"
+          "value": "Original and First Derivative Graph Set"
         },
         "accessibleHelpText": {
           "value": "TODO.derivativeRadioButton.accessibleHelpText"
@@ -386,7 +386,7 @@
       },
       "secondDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Original, Derivative, and Second Derivative Graph Set"
+          "value": "Original, First Derivative, and Second Derivative Graph Set"
         },
         "accessibleHelpText": {
           "value": "TODO.secondDerivativeRadioButton.accessibleHelpText"
@@ -421,7 +421,7 @@
     },
     "derivativeGraph": {
       "accessibleHeading": {
-        "value": "Derivative Graph Area"
+        "value": "First Derivative Graph Area"
       },
       "accessibleParagraph": {
         "value": "TODO.derivativeGraph.accessibleParagraph"

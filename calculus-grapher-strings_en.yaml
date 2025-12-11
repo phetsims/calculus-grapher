@@ -68,13 +68,13 @@ a11y:
     accessibleName:     Undo
     accessibleHelpText: Undo most recent curve manipulation.
   eyeToggleButton:
-    accessibleName:     TODO.eyeToggleButton.accessibleName
-    accessibleHelpText: TODO.eyeToggleButton.accessibleHelpText
+    accessibleName:     Curve Visibility
+    accessibleHelpText: Show or hide curve for this graph area.
   yZoomButtonGroup:
     zoomInButton:
-      accessibleHelpText: TODO.zoomInButton.accessibleHelpText
+      accessibleHelpText: Zoom y Axis
     zoomOutButton:
-      accessibleHelpText: TODO.zoomOutButton.accessibleHelpText
+      accessibleHelpText: Zoom y axis in or out for this graph area.
   tangentCheckbox:
     accessibleHelpText: Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points.
   referenceLineCheckbox:
@@ -138,13 +138,13 @@ a11y:
         accessibleName:     Integral and Original Graph Set
         accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
       lab:
-        accessibleName:     Integral, Original, and Derivative Graph Set
+        accessibleName: Integral, Original, and First Derivative Graph Set
         accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
     derivativeRadioButton:
-      accessibleName:     Original and Derivative Graph Set
+      accessibleName: Original and First Derivative Graph Set
       accessibleHelpText: TODO.derivativeRadioButton.accessibleHelpText
     secondDerivativeRadioButton:
-      accessibleName:     Original, Derivative, and Second Derivative Graph Set
+      accessibleName: Original, First Derivative, and Second Derivative Graph Set
       accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
   slopeOfTangentAccordionBox:
     accessibleParagraph: TODO.slopeOfTangentAccordionBox.accessibleParagraph
@@ -157,7 +157,7 @@ a11y:
     accessibleHeading: Integral Graph Area
     accessibleParagraph: TODO.integralGraph.accessibleParagraph
   derivativeGraph:
-    accessibleHeading: Derivative Graph Area
+    accessibleHeading: First Derivative Graph Area
     accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
   secondDerivativeGraph:
     accessibleHeading: Second Derivative Graph Area
