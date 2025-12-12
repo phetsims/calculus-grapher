@@ -12,6 +12,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
@@ -40,6 +41,7 @@ export default class CurveManipulationControls extends VBox {
       curveManipulationStrokeProperty, tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
+      accessibleHeading: CalculusGrapherFluent.a11y.headings.curveManipulationControlsStringProperty,
       children: [ widthControl, radioButtonGroup ],
       spacing: 15,
       tandem: tandem,

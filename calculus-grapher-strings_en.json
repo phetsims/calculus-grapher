@@ -482,6 +482,9 @@
     "headings": {
       "graphAreas": {
         "value": "Graph Areas"
+      },
+      "curveManipulationControls": {
+        "value": "Curve Manipulation Controls"
       }
     }
   }

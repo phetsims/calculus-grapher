@@ -150,6 +150,7 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleHelpText', 'a11y.sh
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
+addToMapIfDefined( 'a11y_headings_curveManipulationControls', 'a11y.headings.curveManipulationControlsStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -404,7 +405,8 @@ const CalculusGrapherFluent = {
       accessibleContextResponseUnchecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' ), [{"name":"variable"}] )
     },
     headings: {
-      graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) )
+      graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),
+      curveManipulationControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationControlsStringProperty' ) )
     }
   }
 };

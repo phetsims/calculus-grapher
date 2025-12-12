@@ -180,3 +180,4 @@ a11y:
     accessibleContextResponseUnchecked: f of {$variable} hidden
   headings:
     graphAreas: Graph Areas
+    curveManipulationControls: Curve Manipulation Controls

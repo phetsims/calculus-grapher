@@ -254,6 +254,7 @@ type StringsType = {
     };
     'headings': {
       'graphAreasStringProperty': LocalizedStringProperty;
+      'curveManipulationControlsStringProperty': LocalizedStringProperty;
     }
   }
 };
