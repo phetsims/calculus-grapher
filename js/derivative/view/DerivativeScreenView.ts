@@ -71,7 +71,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.pdomPlayAreaNode.pdomOrder = [
       this.graphsNode,
       this.rightVBox,
-      this.graphsNode.scrubberNodesParent
+      this.graphsNode.scrubberNodesParent,
+      slopeOfTangentAccordionBox
     ];
 
     // Control Area focus order
