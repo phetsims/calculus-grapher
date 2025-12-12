@@ -209,6 +209,7 @@ export default class OriginalGraphNode extends GraphNode {
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
       this.chartRectangle,
+      showOriginalCurveCheckbox,
       this.eyeToggleButton
     ];
   }
