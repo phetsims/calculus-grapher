@@ -71,7 +71,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     affirm( !this.graphSetRadioButtonGroup, 'This screen is not expected to have a graphSetRadioButtonGroup.' );
     this.pdomPlayAreaNode.pdomOrder = [
       this.graphsNode,
-      this.rightVBox
+      this.rightVBox,
+      this.graphsNode.scrubberNodesParent
     ];
 
     // Control Area focus order

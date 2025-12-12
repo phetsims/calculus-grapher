@@ -67,7 +67,8 @@ export default class GraphsNode extends Node {
   private readonly referenceLineNode: ReferenceLineNode;
 
   // Vertical lines that pass through all graphs and follow the x position of a scrubber
-  private readonly scrubberNodesParent: Node;
+  // Public for setting pdomOrder at ScreenView level.
+  public readonly scrubberNodesParent: Node;
 
   private readonly graphSetsAnimator: GraphSetsAnimator;
 
@@ -166,10 +167,12 @@ export default class GraphsNode extends Node {
         tandem: options.tandem.createTandem( 'labeledLinesNode' )
       } );
 
-    // Parent for optional scrubbers, to maintain rendering order.
-    this.scrubberNodesParent = new Node();
+    // Parent for scrubbers, to maintain rendering order.
+    this.scrubberNodesParent = new Node( {
+      children: [ this.referenceLineNode ]
+    } );
 
-    options.children = [ this.graphSetNode, this.scrubberNodesParent, labeledLinesNode, this.referenceLineNode ];
+    options.children = [ this.graphSetNode, this.scrubberNodesParent, labeledLinesNode ];
 
     this.mutate( options );
 
@@ -242,6 +245,7 @@ export default class GraphsNode extends Node {
       tandem: this.tandem.createTandem( 'tangentScrubberNode' )
     } );
     this.scrubberNodesParent.addChild( tangentScrubberNode );
+    tangentScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
     this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
@@ -275,6 +279,7 @@ export default class GraphsNode extends Node {
       tandem: this.tandem.createTandem( 'areaUnderCurveScrubberNode' )
     } );
     this.scrubberNodesParent.addChild( areaUnderCurveScrubberNode );
+    areaUnderCurveScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 
     // Add a plot of the area under the curve on the original graph.
     this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
