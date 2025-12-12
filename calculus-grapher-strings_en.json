@@ -196,11 +196,17 @@
     },
     "yZoomButtonGroup": {
       "zoomInButton": {
+        "accessibleName": {
+          "value": "Zoom In y Axis"
+        },
         "accessibleHelpText": {
           "value": "Zoom y Axis in for this graph area."
         }
       },
       "zoomOutButton": {
+        "accessibleName": {
+          "value": "Zoom Out y Axis"
+        },
         "accessibleHelpText": {
           "value": "Zoom y Axis out for this graph area."
         }

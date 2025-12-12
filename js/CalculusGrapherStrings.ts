@@ -107,9 +107,11 @@ type StringsType = {
     };
     'yZoomButtonGroup': {
       'zoomInButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
       'zoomOutButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
     };

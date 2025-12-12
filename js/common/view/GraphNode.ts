@@ -282,6 +282,8 @@ export default class GraphNode extends Node {
       },
       touchAreaXDilation: 6,
       touchAreaYDilation: 3,
+      accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty,
+      accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty,
       accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
       accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
