@@ -72,9 +72,9 @@ a11y:
     accessibleHelpText: Show or hide curve for this graph area.
   yZoomButtonGroup:
     zoomInButton:
-      accessibleHelpText: Zoom y Axis
+      accessibleHelpText: Zoom y Axis in for this graph area.
     zoomOutButton:
-      accessibleHelpText: Zoom y axis in or out for this graph area.
+      accessibleHelpText: Zoom y Axis out for this graph area.
   tangentCheckbox:
     accessibleHelpText: Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points.
   referenceLineCheckbox:
