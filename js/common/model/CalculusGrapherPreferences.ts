@@ -20,7 +20,9 @@ export default class CalculusGrapherPreferences {
     // Not intended for instantiation.
   }
   
-  // Property for the 'Variable' preference
+  // Property for the 'Variable' preference. DO NOT use this directly for the visual interface or interactive descriptions.
+  // The value is an enumeration that is not localizable. Use CalculusGrapherSymbols.visualVariableSymbolProperty or
+  // CalculusGrapherSymbols.accessibleVariableSymbolProperty instead.
   public static readonly functionVariableProperty = new StringUnionProperty( CalculusGrapherQueryParameters.functionVariable as FunctionVariable, {
     validValues: FunctionVariableValues,
     tandem: Tandem.PREFERENCES.createTandem( 'functionVariableProperty' ),
