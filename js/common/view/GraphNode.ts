@@ -316,7 +316,8 @@ export default class GraphNode extends Node {
 
     // Label below the right end of the horizontal axis.
     const xAxisLabelNode = new RichText( CalculusGrapherSymbols.visualVariableSymbolProperty, {
-      font: CalculusGrapherConstants.GRAPH_LABEL_FONT
+      font: CalculusGrapherConstants.GRAPH_LABEL_FONT,
+      maxWidth: 100
     } );
     xAxisLabelNode.boundsProperty.link( () => {
       xAxisLabelNode.rightTop = this.chartRectangle.rightCenter.addXY( -CalculusGrapherConstants.GRAPH_X_MARGIN, 10 );
