@@ -9,6 +9,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
@@ -19,11 +20,10 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import { DerivativeNotation, FunctionVariable } from '../CalculusGrapherQueryParameters.js';
+import { DerivativeNotation } from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import GraphType from '../model/GraphType.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const HAIR_SPACE_STRING = '\u200A';
 const NOMINAL_FONT_SIZE = CalculusGrapherConstants.GRAPH_LABEL_FONT.numericSize;
@@ -51,9 +51,6 @@ type SelfOptions = {
   // dynamic notation to use for the label (Lagrange or Leibniz)
   derivativeNotationProperty?: TReadOnlyProperty<DerivativeNotation>;
 
-  // dynamic function variable to use in the label (x or t)
-  functionVariableProperty?: TReadOnlyProperty<FunctionVariable>;
-
   // font sizes for the various parts of a label
   fontSizeOptions?: FontSizeOptions;
 };
@@ -70,7 +67,6 @@ export default class GraphTypeLabelNode extends Node {
 
       // SelfOptions
       derivativeNotationProperty: CalculusGrapherPreferences.derivativeNotationProperty,
-      functionVariableProperty: CalculusGrapherPreferences.functionVariableProperty,
       fontSizeOptions: {
         nominalFontSize: NOMINAL_FONT_SIZE,
         integralSymbolFontSize: 1.5 * NOMINAL_FONT_SIZE,
@@ -84,10 +80,8 @@ export default class GraphTypeLabelNode extends Node {
 
     // To improve readability
     const derivativeNotationProperty = options.derivativeNotationProperty;
-    const functionVariableProperty = options.functionVariableProperty;
 
-    // get variable as a StringProperty
-    const variableStringProperty = getVariableStringProperty( functionVariableProperty );
+    const variableStringProperty = CalculusGrapherSymbols.visualVariableSymbolProperty;
 
     // create and add content for the node, based on graphType, notation and variable
     let labelNode = getLabelNode( graphType, derivativeNotationProperty.value, variableStringProperty, options.fontSizeOptions );
@@ -381,16 +375,6 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
   } );
 
   return vBox;
-}
-
-/**
- * Get the function variable as a StringProperty (rather than StringEnumeration).
- */
-function getVariableStringProperty( functionVariableProperty: TReadOnlyProperty<FunctionVariable> ): TReadOnlyProperty<string> {
-  return new DerivedProperty(
-    [ functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
-    ( functionVariable, xString, tString ) => ( functionVariable === 'x' ) ? xString : tString
-  );
 }
 
 calculusGrapher.register( 'GraphTypeLabelNode', GraphTypeLabelNode );

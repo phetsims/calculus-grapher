@@ -14,6 +14,7 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -25,7 +26,6 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import ReferenceLine from '../model/ReferenceLine.js';
 import ScrubberNode from './ScrubberNode.js';
-import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 
 // number of decimal places shown for the x value, dragging snaps to this interval
 const X_DECIMAL_PLACES = 1;
@@ -61,12 +61,7 @@ export default class ReferenceLineNode extends ScrubberNode {
       CalculusGrapherConstants.CURVE_X_RANGE, {
         align: 'center',
         decimalPlaces: X_DECIMAL_PLACES,
-        valuePattern: new DerivedProperty(
-          [ CalculusGrapherPreferences.functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
-          ( functionVariable, xString, tString ) => {
-            const variableString = ( functionVariable === 'x' ) ? xString : tString;
-            return `${variableString} = {{value}}`;
-          } ),
+        valuePattern: new DerivedProperty( [ CalculusGrapherSymbols.visualVariableSymbolProperty ], variable => `${variable} = {{value}}` ),
         useRichText: true,
         textOptions: {
           font: CalculusGrapherConstants.CONTROL_FONT,

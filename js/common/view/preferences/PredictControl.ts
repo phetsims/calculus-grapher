@@ -19,7 +19,7 @@ import Tandem from '../../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
-import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
+import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 
 export default class PredictControl extends PreferencesControl {
 
@@ -42,14 +42,14 @@ export default class PredictControl extends PreferencesControl {
     const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
         accessibleHelpText: CalculusGrapherFluent.a11y.predictToggleSwitch.accessibleHelpText.createProperty( {
-          variable: CalculusGrapherPreferences.functionVariableProperty
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
         tandem: tandem.createTandem( 'toggleSwitch' ),
         phetioVisiblePropertyInstrumented: false
       } ) );
 
     const descriptionStringProperty = new PatternStringProperty( CalculusGrapherFluent.predictPreferenceDescriptionStringProperty, {
-      variable: CalculusGrapherPreferences.functionVariableProperty
+      variable: CalculusGrapherSymbols.visualVariableSymbolProperty
     }, {
       tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
     } );

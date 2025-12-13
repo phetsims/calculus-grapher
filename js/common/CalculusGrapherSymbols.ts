@@ -10,9 +10,11 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import MathSymbolFont from '../../../scenery-phet/js/MathSymbolFont.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
+import CalculusGrapherPreferences from './model/CalculusGrapherPreferences.js';
 
 export default class CalculusGrapherSymbols {
 
@@ -31,6 +33,16 @@ export default class CalculusGrapherSymbols {
   public static readonly integral = MathSymbolFont.getRichTextMarkup( '\u222B', 'normal' );
   public static readonly prime = MathSymbolFont.getRichTextMarkup( '\'' );
   public static readonly doublePrime = MathSymbolFont.getRichTextMarkup( '"' );
+
+  // Symbol for the variable (the horizontal axis), appears in the visual interface, contains RichText markup.
+  public static readonly visualVariableSymbolProperty = new DerivedProperty(
+    [ CalculusGrapherPreferences.functionVariableProperty, CalculusGrapherSymbols.xStringProperty, CalculusGrapherSymbols.tStringProperty ],
+    ( functionVariable, xString, tString ) => functionVariable === 'x' ? xString : tString );
+
+  // Symbol for the variable (the horizontal axis), appears in interactive descriptions, in plaintext format.
+  public static readonly accessibleVariableSymbolProperty = new DerivedProperty(
+    [ CalculusGrapherPreferences.functionVariableProperty, CalculusGrapherFluent.symbol.xStringProperty, CalculusGrapherFluent.symbol.tStringProperty ],
+    ( functionVariable, xString, tString ) => functionVariable === 'x' ? xString : tString );
 }
 
 calculusGrapher.register( 'CalculusGrapherSymbols', CalculusGrapherSymbols );
