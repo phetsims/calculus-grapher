@@ -43,12 +43,14 @@ import EyeToggleButton from '../../../../scenery-phet/js/buttons/EyeToggleButton
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import Curve from '../model/Curve.js';
 import CurvePoint from '../model/CurvePoint.js';
@@ -99,7 +101,7 @@ type SelfOptions = {
   // Whether to create a CurveNode for the provided Curve.
   createCurveNode?: boolean;
 
-  // label that appears in the upper-left corner of the graph
+  // Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the y-axis.
   labelNode?: Node;
 };
 
@@ -155,12 +157,6 @@ export default class GraphNode extends Node {
       // NodeOptions
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
-
-    // If labelNode was not provided, create the default.
-    const labelNode = options.labelNode || new GraphTypeLabelNode( graphType, {
-      pickable: false,
-      tandem: options.tandem.createTandem( 'labelNode' )
-    } );
 
     super( options );
 
@@ -292,11 +288,6 @@ export default class GraphNode extends Node {
       }
     } ) : null;
 
-    // labelNode in left-top corner of chartRectangle
-    labelNode.boundsProperty.link( () => {
-      labelNode.leftTop = this.chartRectangle.leftTop.addXY( CalculusGrapherConstants.GRAPH_X_MARGIN, CalculusGrapherConstants.GRAPH_Y_MARGIN );
-    } );
-
     // Adjust button positions when the visibility of ticks changes.
     ticksParent.visibleProperty.link( ticksParentVisible => {
       const rightNode = ticksParentVisible ? ticksParent : this.chartRectangle;
@@ -312,11 +303,31 @@ export default class GraphNode extends Node {
       }
     } );
 
+    // If labelNode was not provided, create the default.
+    const labelNode = options.labelNode || new GraphTypeLabelNode( graphType, {
+      pickable: false,
+      tandem: options.tandem.createTandem( 'labelNode' )
+    } );
+
+    // labelNode in left-top corner of chartRectangle
+    labelNode.boundsProperty.link( () => {
+      labelNode.leftTop = this.chartRectangle.leftTop.addXY( CalculusGrapherConstants.GRAPH_X_MARGIN, CalculusGrapherConstants.GRAPH_Y_MARGIN );
+    } );
+
+    // Label below the right end of the horizontal axis.
+    const xAxisLabelNode = new RichText( CalculusGrapherSymbols.visualVariableSymbolProperty, {
+      font: CalculusGrapherConstants.GRAPH_LABEL_FONT
+    } );
+    xAxisLabelNode.boundsProperty.link( () => {
+      xAxisLabelNode.rightTop = this.chartRectangle.rightCenter.addXY( -CalculusGrapherConstants.GRAPH_X_MARGIN, 10 );
+    } );
+
     const children = [
       this.chartRectangle,
       gridNode,
       axesParent,
       ticksParent,
+      xAxisLabelNode,
       labelNode,
       this.curveLayer,
       this.eyeToggleButton
