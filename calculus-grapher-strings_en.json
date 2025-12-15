@@ -488,6 +488,9 @@
       },
       "toolControls": {
         "value": "Tool Controls"
+      },
+      "tools": {
+        "value": "Tools"
       }
     }
   }

@@ -152,6 +152,7 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnch
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationControls', 'a11y.headings.curveManipulationControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
+addToMapIfDefined( 'a11y_headings_tools', 'a11y.headings.toolsStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -408,7 +409,8 @@ const CalculusGrapherFluent = {
     headings: {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),
       curveManipulationControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationControlsStringProperty' ) ),
-      toolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_toolControls', _.get( CalculusGrapherStrings, 'a11y.headings.toolControlsStringProperty' ) )
+      toolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_toolControls', _.get( CalculusGrapherStrings, 'a11y.headings.toolControlsStringProperty' ) ),
+      toolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_tools', _.get( CalculusGrapherStrings, 'a11y.headings.toolsStringProperty' ) )
     }
   }
 };
