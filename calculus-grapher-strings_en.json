@@ -485,6 +485,9 @@
       },
       "curveManipulationControls": {
         "value": "Curve Manipulation Controls"
+      },
+      "toolControls": {
+        "value": "Tool Controls"
       }
     }
   }

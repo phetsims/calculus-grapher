@@ -255,6 +255,7 @@ type StringsType = {
     'headings': {
       'graphAreasStringProperty': LocalizedStringProperty;
       'curveManipulationControlsStringProperty': LocalizedStringProperty;
+      'toolControlsStringProperty': LocalizedStringProperty;
     }
   }
 };
