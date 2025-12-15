@@ -7,6 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
@@ -32,6 +33,10 @@ type SelfOptions = {
   // Whether to instrument handleNode.visibleProperty
   // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
   phetioHandleNodeVisiblePropertyInstrumented?: boolean;
+
+  // Description for handleNode.
+  handleAccessibleNameProperty: TReadOnlyProperty<string>;
+  handleAccessibleHelpTextProperty: TReadOnlyProperty<string>;
 };
 
 export type ScrubberNodeOptions = SelfOptions &
@@ -73,6 +78,8 @@ export default class ScrubberNode extends Node {
     const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
       yModel: chartTransform.modelYRange.min,
       mainColor: options.handleColor,
+      accessibleName: options.handleAccessibleNameProperty,
+      accessibleHelpText: options.handleAccessibleHelpTextProperty,
       tandem: options.tandem.createTandem( 'handleNode' ),
       phetioVisiblePropertyInstrumented: options.phetioHandleNodeVisiblePropertyInstrumented
     } );

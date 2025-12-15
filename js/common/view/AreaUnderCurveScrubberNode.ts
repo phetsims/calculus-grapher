@@ -14,6 +14,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
@@ -33,7 +34,9 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
       // ScrubberNodeOptions
       handleColor: areaUnderCurveScrubber.colorProperty,
-      lineStroke: areaUnderCurveScrubber.colorProperty
+      lineStroke: areaUnderCurveScrubber.colorProperty,
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty
     }, providedOptions );
 
     super( areaUnderCurveScrubber, chartTransform, options );

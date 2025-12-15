@@ -149,6 +149,12 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleName', 'a11y.showOr
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleHelpText', 'a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
+addToMapIfDefined( 'a11y_tangentScrubber_accessibleName', 'a11y.tangentScrubber.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_tangentScrubber_accessibleHelpText', 'a11y.tangentScrubber.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleName', 'a11y.referenceLineScrubber.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleHelpText', 'a11y.referenceLineScrubber.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleName', 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleHelpText', 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationControls', 'a11y.headings.curveManipulationControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
@@ -405,6 +411,18 @@ const CalculusGrapherFluent = {
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
       accessibleContextResponseChecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' ), [{"name":"variable"}] ),
       accessibleContextResponseUnchecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' ), [{"name":"variable"}] )
+    },
+    tangentScrubber: {
+      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleNameStringProperty' ) ),
+      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
+    },
+    referenceLineScrubber: {
+      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleNameStringProperty' ) ),
+      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
+    },
+    areaUnderCurveScrubber: {
+      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' ) ),
+      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' ) )
     },
     headings: {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),

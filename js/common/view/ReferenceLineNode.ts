@@ -20,6 +20,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -46,7 +47,12 @@ export default class ReferenceLineNode extends ScrubberNode {
       tandem: tandem,
 
       // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
-      phetioHandleNodeVisiblePropertyInstrumented: false
+      phetioHandleNodeVisiblePropertyInstrumented: false,
+
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleHelpText.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } )
     } );
 
     // See https://github.com/phetsims/calculus-grapher/issues/305

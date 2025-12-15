@@ -33,7 +33,7 @@ type SelfOptions = {
 };
 
 type XDragHandleNodeOptions = SelfOptions &
-  PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem' | 'phetioVisiblePropertyInstrumented'>;
+  PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem' | 'phetioVisiblePropertyInstrumented' | 'accessibleName' | 'accessibleHelpText'>;
 
 export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphereNode ) {
 

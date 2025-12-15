@@ -479,6 +479,30 @@
         "value": "f of {$variable} hidden"
       }
     },
+    "tangentScrubber": {
+      "accessibleName": {
+        "value": "Tangent Scrubber"
+      },
+      "accessibleHelpText": {
+        "value": "Move tangent line along curve with scrubber to explore relationship between f of {$variable} and other graph areas with {$variable} values aligned."
+      }
+    },
+    "referenceLineScrubber": {
+      "accessibleName": {
+        "value": "Reference Line Scrubber"
+      },
+      "accessibleHelpText": {
+        "value": "Move reference line to align {$variable} values on all graphs and explore corresponding y values.."
+      }
+    },
+    "areaUnderCurveScrubber": {
+      "accessibleName": {
+        "value": "Area Under Curve Scrubber"
+      },
+      "accessibleHelpText": {
+        "value": "TODO.areaUnderCurveScrubber.accessibleHelpText"
+      }
+    },
     "headings": {
       "graphAreas": {
         "value": "Graph Areas"

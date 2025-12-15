@@ -11,7 +11,9 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
@@ -30,7 +32,11 @@ export default class TangentScrubberNode extends ScrubberNode {
 
       // ScrubberNodeOptions
       handleColor: tangentScrubber.colorProperty,
-      lineStroke: tangentScrubber.colorProperty
+      lineStroke: tangentScrubber.colorProperty,
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.tangentScrubber.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.tangentScrubber.accessibleHelpText.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } )
     }, providedOptions );
 
     super( tangentScrubber, chartTransform, options );

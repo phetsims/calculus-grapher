@@ -178,6 +178,15 @@ a11y:
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
     accessibleContextResponseChecked:   f of {$variable} shown with prediction
     accessibleContextResponseUnchecked: f of {$variable} hidden
+  tangentScrubber:
+    accessibleName: Tangent Scrubber
+    accessibleHelpText: Move tangent line along curve with scrubber to explore relationship between f of {$variable} and other graph areas with {$variable} values aligned.
+  referenceLineScrubber:
+    accessibleName: Reference Line Scrubber
+    accessibleHelpText: Move reference line to align {$variable} values on all graphs and explore corresponding y values..
+  areaUnderCurveScrubber:
+    accessibleName: Area Under Curve Scrubber
+    accessibleHelpText: TODO.areaUnderCurveScrubber.accessibleHelpText
   headings:
     graphAreas: Graph Areas
     curveManipulationControls: Curve Manipulation Controls
