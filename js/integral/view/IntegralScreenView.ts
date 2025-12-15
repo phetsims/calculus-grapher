@@ -72,7 +72,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.pdomPlayAreaNode.pdomOrder = [
       this.graphsNode,
       this.rightVBox,
-      this.graphsNode.scrubberNodesParent
+      this.graphsNode.scrubberNodesParent,
+      netSignedAreaAccordionBox
     ];
 
     // Control Area focus order
