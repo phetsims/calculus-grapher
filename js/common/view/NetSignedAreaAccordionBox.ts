@@ -40,6 +40,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.NET_SIGNED_AREA_MODEL_RANGE
       },
+      accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty,
       accessibleParagraph: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty
     }, providedOptions );
 

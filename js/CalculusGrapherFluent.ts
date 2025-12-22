@@ -146,7 +146,9 @@ addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_derivativeRadioButton_accessib
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_derivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_secondDerivativeRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_secondDerivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleHelpTextCollapsed', 'a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph', 'a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty' );
+addToMapIfDefined( 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' );
 addToMapIfDefined( 'a11y_netSignedAreaAccordionBox_accessibleParagraph', 'a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty' );
 addToMapIfDefined( 'a11y_originalGraph_accessibleHeading', 'a11y.originalGraph.accessibleHeadingStringProperty' );
 addToMapIfDefined( 'a11y_originalGraph_accessibleParagraph', 'a11y.originalGraph.accessibleParagraphStringProperty' );
@@ -412,9 +414,11 @@ const CalculusGrapherFluent = {
       }
     },
     slopeOfTangentAccordionBox: {
+      accessibleHelpTextCollapsedStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleHelpTextCollapsed', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty' ) ),
       accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty' ) )
     },
     netSignedAreaAccordionBox: {
+      accessibleHelpTextCollapsedStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' ) ),
       accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty' ) )
     },
     originalGraph: {

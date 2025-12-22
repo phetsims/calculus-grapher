@@ -168,8 +168,10 @@ a11y:
       accessibleName:     Original, First Derivative, and Second Derivative Graph Set
       accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
   slopeOfTangentAccordionBox:
+    accessibleHelpTextCollapsed: TODO.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed
     accessibleParagraph: TODO.slopeOfTangentAccordionBox.accessibleParagraph
   netSignedAreaAccordionBox:
+    accessibleHelpTextCollapsed: TODO.netSignedAreaAccordionBox.accessibleHelpTextCollapsed
     accessibleParagraph: TODO.netSignedAreaAccordionBox.accessibleParagraph
   originalGraph:
     accessibleHeading:   Primary Graph Area

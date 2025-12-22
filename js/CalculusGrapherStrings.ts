@@ -235,9 +235,11 @@ type StringsType = {
       }
     };
     'slopeOfTangentAccordionBox': {
+      'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'netSignedAreaAccordionBox': {
+      'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'originalGraph': {
