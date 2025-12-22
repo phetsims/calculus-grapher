@@ -1,7 +1,7 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveHandleKeyboardHelpSection is the keyboard-help section that describes how to interact with curves.
+ * CurveCursorKeyboardHelpSection is the keyboard-help section that describes how to interact with curves.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -13,8 +13,8 @@ import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
 import calculusGrapher from '../../calculusGrapher.js';
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/346 i18n
-const curveHandleStringProperty = new Property( 'Curve Handle' );
-const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between moving the point<br>or manipulating the curve' );
+const curveHandleStringProperty = new Property( 'Curve Cursor' );
+const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between moving the cursor<br>and manipulating the curve.' );
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/346 HOTKEY_DATA should live in keyboard drag listener
 const HOTKEY_DATA = new HotkeyData( {
@@ -23,7 +23,7 @@ const HOTKEY_DATA = new HotkeyData( {
   keyboardHelpDialogLabelStringProperty: keyboardHelpDialogLabelStringProperty
 } );
 
-export default class CurveHandleKeyboardHelpSection extends KeyboardHelpSection {
+export default class CurveCursorKeyboardHelpSection extends KeyboardHelpSection {
 
   public constructor() {
 
@@ -41,4 +41,4 @@ export default class CurveHandleKeyboardHelpSection extends KeyboardHelpSection 
   }
 }
 
-calculusGrapher.register( 'CurveHandleKeyboardHelpSection', CurveHandleKeyboardHelpSection );
+calculusGrapher.register( 'CurveCursorKeyboardHelpSection', CurveCursorKeyboardHelpSection );
