@@ -107,7 +107,7 @@ a11y:
     accessibleHelpText: Adjust width of curve manipulation shape.
   curveManipulationModeRadioButtonGroup:
     accessibleName: Curve Manipulation Shapes
-    accessibleHelpText: TODO.curveManipulationModeRadioButtonGroup.accessibleHelpText
+    accessibleHelpText: Choose shape to be added to curve in primary graph area.
     hillRadioButton:
       accessibleName:     Hill
       accessibleHelpText: Add smooth hill to curve.
@@ -165,13 +165,13 @@ a11y:
     accessibleHeading: Second Derivative Graph Area
     accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
   predictRadioButtonGroup:
-    accessibleName: TODO.predictRadioButtonGroup.accessibleName
-    accessibleHelpText: TODO.predictRadioButtonGroup.accessibleHelpText
+    accessibleName: Curve to Manipulate
+    accessibleHelpText: Choose curve to manipulate in primary graph area.
     originalCurveRadioButton:
-      accessibleName:     f of {$variable} Mode
+      accessibleName:     f of {$variable}
       accessibleHelpText: Manipulate f of {$variable} in primary graph area.
     predictCurveRadioButton:
-      accessibleName:     Predict Curve Mode
+      accessibleName:     Predict Curve
       accessibleHelpText: Manipulate prediction curve in primary graph area.
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}

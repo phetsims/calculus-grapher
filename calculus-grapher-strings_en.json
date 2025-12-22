@@ -290,7 +290,7 @@
         "value": "Curve Manipulation Shapes"
       },
       "accessibleHelpText": {
-        "value": "TODO.curveManipulationModeRadioButtonGroup.accessibleHelpText"
+        "value": "Choose shape to be added to curve in primary graph area."
       },
       "hillRadioButton": {
         "accessibleName": {
@@ -443,14 +443,14 @@
     },
     "predictRadioButtonGroup": {
       "accessibleName": {
-        "value": "TODO.predictRadioButtonGroup.accessibleName"
+        "value": "Curve to Manipulate"
       },
       "accessibleHelpText": {
-        "value": "TODO.predictRadioButtonGroup.accessibleHelpText"
+        "value": "Choose curve to manipulate in primary graph area."
       },
       "originalCurveRadioButton": {
         "accessibleName": {
-          "value": "f of {$variable} Mode"
+          "value": "f of {$variable}"
         },
         "accessibleHelpText": {
           "value": "Manipulate f of {$variable} in primary graph area."
@@ -458,7 +458,7 @@
       },
       "predictCurveRadioButton": {
         "accessibleName": {
-          "value": "Predict Curve Mode"
+          "value": "Predict Curve"
         },
         "accessibleHelpText": {
           "value": "Manipulate prediction curve in primary graph area."
