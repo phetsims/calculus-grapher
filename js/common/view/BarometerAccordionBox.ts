@@ -15,6 +15,8 @@ import AxisLine from '../../../../bamboo/js/AxisLine.js';
 import ChartTransform, { ChartTransformOptions } from '../../../../bamboo/js/ChartTransform.js';
 import TickLabelSet from '../../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../../bamboo/js/TickMarkSet.js';
+import { clamp } from '../../../../dot/js/util/clamp.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -32,8 +34,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import CurvePoint from '../model/CurvePoint.js';
-import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
-import { clamp } from '../../../../dot/js/util/clamp.js';
 
 const BAR_WIDTH = 10;
 const NUMBER_OF_TICKS = 5;
@@ -46,6 +46,9 @@ type SelfOptions = {
 
   // bamboo ChartTransform
   chartTransformOptions?: ChartTransformOptions;
+
+  // Accessible description of the barometer.
+  barNodeAccessibleParagraphStringProperty: TReadOnlyProperty<string>;
 };
 
 export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBoxOptions, 'titleNode'> &
@@ -202,6 +205,7 @@ export default class BarometerAccordionBox extends AccordionBox {
       }, arrowNodeOptions ) );
 
     const barometerNode = new Node( {
+      accessibleParagraph: options.barNodeAccessibleParagraphStringProperty,
       children: [
         axisLine, quantitativeLayer, qualitativeLayer,
         barLine, positiveScaleExceededIndicator, negativeScaleExceededIndicator

@@ -41,7 +41,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
         modelYRange: CalculusGrapherConstants.NET_SIGNED_AREA_MODEL_RANGE
       },
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty
+      barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty
     }, providedOptions );
 
     super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherFluent.barometer.netSignedAreaStringProperty,
