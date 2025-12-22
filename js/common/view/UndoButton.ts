@@ -22,6 +22,7 @@ export default class UndoButton extends ReturnButton {
       iconOptions: { height: 13 },
       accessibleName: CalculusGrapherFluent.a11y.undoButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,
+      accessibleContextResponse: CalculusGrapherFluent.a11y.undoButton.accessibleContextResponseStringProperty,
       tandem: tandem
     } );
   }

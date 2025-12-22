@@ -32,6 +32,7 @@ export default class SmoothButton extends TextPushButton {
       },
       accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
+      accessibleContextResponse: CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponseStringProperty,
       tandem: tandem
     } );
   }

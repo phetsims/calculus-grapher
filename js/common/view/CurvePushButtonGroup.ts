@@ -36,6 +36,7 @@ export default class CurvePushButtonGroup extends VBox {
       xMargin: 10,
       accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
+      accessibleContextResponse: CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponseStringProperty,
       tandem: tandem.createTandem( 'eraserButton' )
     } );
 
