@@ -56,8 +56,10 @@ a11y:
       currentDetails:  TODO.labScreen.screenSummary.currentDetails
       interactionHint: TODO.labScreen.screenSummary.interactionHint
   gridCheckbox:
-    accessibleName:     Coordinate Grid Lines
-    accessibleHelpText: Show or hide grid lines on all graphs.
+    accessibleName:                     Coordinate Grid Lines
+    accessibleHelpText:                 Show or hide grid lines on all graphs.
+    accessibleContextResponseChecked:   shown
+    accessibleContextResponseUnchecked: hidden
   smoothButton:
     accessibleName:     Smooth
     accessibleHelpText: TODO.smoothButton.accessibleHelpText
@@ -68,24 +70,30 @@ a11y:
     accessibleName:     Undo
     accessibleHelpText: Undo most recent curve manipulation.
   eyeToggleButton:
-    accessibleName:     Curve Visibility
-    accessibleHelpText: Show or hide curve for this graph area.
+    accessibleName:               Curve Visibility
+    accessibleHelpText:           Show or hide curve for this graph area.
     accessibleContextResponseOff: TODO.eyeToggleButton.accessibleContextResponseOff
-    accessibleContextResponseOn: TODO.eyeToggleButton.accessibleContextResponseOn
+    accessibleContextResponseOn:  TODO.eyeToggleButton.accessibleContextResponseOn
   yZoomButtonGroup:
     zoomInButton:
-      accessibleName: Zoom In y Axis
+      accessibleName:     Zoom In y Axis
       accessibleHelpText: Zoom y Axis in for this graph area.
     zoomOutButton:
-      accessibleName: Zoom Out y Axis
+      accessibleName:     Zoom Out y Axis
       accessibleHelpText: Zoom y Axis out for this graph area.
   tangentCheckbox:
-    accessibleHelpText: Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points.
+    accessibleHelpText:                 Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points.
+    accessibleContextResponseChecked:   added
+    accessibleContextResponseUnchecked: removed
   referenceLineCheckbox:
-    accessibleName:     Reference Line
-    accessibleHelpText: Add or remove movable vertical line connecting all graphs at same {$variable} value.
+    accessibleName:                     Reference Line
+    accessibleHelpText:                 Add or remove movable vertical line connecting all graphs at same {$variable} value.
+    accessibleContextResponseChecked:   added
+    accessibleContextResponseUnchecked: removed
   areaUnderCurveCheckbox:
-    accessibleHelpText: TODO.areaUnderCurveCheckbox.accessibleHelpText
+    accessibleHelpText:                 TODO.areaUnderCurveCheckbox.accessibleHelpText
+    accessibleContextResponseChecked:   added
+    accessibleContextResponseUnchecked: removed
   variableRadioButtonGroup:
     accessibleHelpText: TODO.variableRadioButtonGroup.accessibleHelpText
     xRadioButton:
@@ -95,10 +103,10 @@ a11y:
   notationRadioButtonGroup:
     accessibleHelpText: TODO.notationRadioButtonGroup.accessibleHelpText
     lagrangeRadioButton:
-      accessibleName: Lagrange, f of {$variable}
+      accessibleName:     Lagrange, f of {$variable}
       accessibleHelpText: TODO.lagrangeRadioButton.accessibleHelpText
     leibnizRadioButton:
-      accessibleName: Leibniz, d f over d {$variable}
+      accessibleName:     Leibniz, d f over d {$variable}
       accessibleHelpText: TODO.leibnizRadioButton.accessibleHelpText
   discontinuitiesRadioButtonGroup:
     accessibleHelpText: TODO.discontinuitiesRadioButtonGroup.accessibleHelpText
@@ -114,7 +122,7 @@ a11y:
     accessibleName:     Shape Width
     accessibleHelpText: Adjust width of curve manipulation shape.
   curveManipulationModeRadioButtonGroup:
-    accessibleName: Curve Manipulation Shapes
+    accessibleName:     Curve Manipulation Shapes
     accessibleHelpText: Choose shape to be added to curve in primary graph area.
     hillRadioButton:
       accessibleName:     Hill
@@ -148,32 +156,32 @@ a11y:
         accessibleName:     Integral and Original Graph Set
         accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
       lab:
-        accessibleName: Integral, Original, and First Derivative Graph Set
+        accessibleName:     Integral, Original, and First Derivative Graph Set
         accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
     derivativeRadioButton:
-      accessibleName: Original and First Derivative Graph Set
+      accessibleName:     Original and First Derivative Graph Set
       accessibleHelpText: TODO.derivativeRadioButton.accessibleHelpText
     secondDerivativeRadioButton:
-      accessibleName: Original, First Derivative, and Second Derivative Graph Set
+      accessibleName:     Original, First Derivative, and Second Derivative Graph Set
       accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
   slopeOfTangentAccordionBox:
     accessibleParagraph: TODO.slopeOfTangentAccordionBox.accessibleParagraph
   netSignedAreaAccordionBox:
     accessibleParagraph: TODO.netSignedAreaAccordionBox.accessibleParagraph
   originalGraph:
-    accessibleHeading: Primary Graph Area
+    accessibleHeading:   Primary Graph Area
     accessibleParagraph: TODO.originalGraph.accessibleParagraph
   integralGraph:
-    accessibleHeading: Integral Graph Area
+    accessibleHeading:   Integral Graph Area
     accessibleParagraph: TODO.integralGraph.accessibleParagraph
   derivativeGraph:
-    accessibleHeading: First Derivative Graph Area
+    accessibleHeading:   First Derivative Graph Area
     accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
   secondDerivativeGraph:
-    accessibleHeading: Second Derivative Graph Area
+    accessibleHeading:   Second Derivative Graph Area
     accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
   predictRadioButtonGroup:
-    accessibleName: Curve to Manipulate
+    accessibleName:     Curve to Manipulate
     accessibleHelpText: Choose curve to manipulate in primary graph area.
     originalCurveRadioButton:
       accessibleName:     f of {$variable}
@@ -187,16 +195,16 @@ a11y:
     accessibleContextResponseChecked:   f of {$variable} shown with prediction
     accessibleContextResponseUnchecked: f of {$variable} hidden
   tangentScrubber:
-    accessibleName: Tangent Scrubber
+    accessibleName:     Tangent Scrubber
     accessibleHelpText: Move tangent line along curve with scrubber to explore relationship between f of {$variable} and other graph areas with {$variable} values aligned.
   referenceLineScrubber:
-    accessibleName: Reference Line Scrubber
+    accessibleName:     Reference Line Scrubber
     accessibleHelpText: Move reference line to align {$variable} values on all graphs and explore corresponding y values..
   areaUnderCurveScrubber:
-    accessibleName: Area Under Curve Scrubber
+    accessibleName:     Area Under Curve Scrubber
     accessibleHelpText: TODO.areaUnderCurveScrubber.accessibleHelpText
   headings:
-    graphAreas: Graph Areas
+    graphAreas:                Graph Areas
     curveManipulationControls: Curve Manipulation Controls
-    toolControls: Tool Controls
-    curveExplorationTools: Curve Exploration Tools
+    toolControls:              Tool Controls
+    curveExplorationTools:     Curve Exploration Tools

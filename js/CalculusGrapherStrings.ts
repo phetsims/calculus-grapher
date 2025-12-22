@@ -88,6 +88,8 @@ type StringsType = {
     'gridCheckbox': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'smoothButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -119,13 +121,19 @@ type StringsType = {
     };
     'tangentCheckbox': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'referenceLineCheckbox': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'areaUnderCurveCheckbox': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'variableRadioButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;

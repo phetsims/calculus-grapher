@@ -44,6 +44,8 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
         accessibleHelpText: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleHelpTextStringProperty,
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

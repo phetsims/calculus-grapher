@@ -23,6 +23,8 @@ export default class GridCheckbox extends Checkbox {
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         accessibleName: CalculusGrapherFluent.a11y.gridCheckbox.accessibleNameStringProperty,
         accessibleHelpText: CalculusGrapherFluent.a11y.gridCheckbox.accessibleHelpTextStringProperty,
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.gridCheckbox.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.gridCheckbox.accessibleContextResponseUncheckedStringProperty,
         tandem: tandem
       } ) );
   }

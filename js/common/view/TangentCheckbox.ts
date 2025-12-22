@@ -47,6 +47,8 @@ export default class TangentCheckbox extends Checkbox {
         accessibleHelpText: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleHelpText.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

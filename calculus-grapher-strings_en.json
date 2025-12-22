@@ -160,6 +160,12 @@
       },
       "accessibleHelpText": {
         "value": "Show or hide grid lines on all graphs."
+      },
+      "accessibleContextResponseChecked": {
+        "value": "shown"
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "hidden"
       }
     },
     "smoothButton": {
@@ -221,6 +227,12 @@
     "tangentCheckbox": {
       "accessibleHelpText": {
         "value": "Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points."
+      },
+      "accessibleContextResponseChecked": {
+        "value": "added"
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "removed"
       }
     },
     "referenceLineCheckbox": {
@@ -229,11 +241,23 @@
       },
       "accessibleHelpText": {
         "value": "Add or remove movable vertical line connecting all graphs at same {$variable} value."
+      },
+      "accessibleContextResponseChecked": {
+        "value": "added"
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "removed"
       }
     },
     "areaUnderCurveCheckbox": {
       "accessibleHelpText": {
         "value": "TODO.areaUnderCurveCheckbox.accessibleHelpText"
+      },
+      "accessibleContextResponseChecked": {
+        "value": "added"
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "removed"
       }
     },
     "variableRadioButtonGroup": {

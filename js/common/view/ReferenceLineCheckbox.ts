@@ -43,6 +43,8 @@ export default class ReferenceLineCheckbox extends Checkbox {
         accessibleHelpText: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleHelpText.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );
