@@ -86,6 +86,12 @@ a11y:
     accessibleHelpText: Add or remove movable vertical line connecting all graphs at same {$variable} value.
   areaUnderCurveCheckbox:
     accessibleHelpText: TODO.areaUnderCurveCheckbox.accessibleHelpText
+  variableRadioButtonGroup:
+    accessibleHelpText: TODO.variableRadioButtonGroup.accessibleHelpText
+    xRadioButton:
+      accessibleHelpText: TODO.xRadioButton.accessibleHelpText
+    tRadioButton:
+      accessibleHelpText: TODO.tRadioButton.accessibleHelpText
   notationRadioButtonGroup:
     accessibleHelpText: TODO.notationRadioButtonGroup.accessibleHelpText
     lagrangeRadioButton:

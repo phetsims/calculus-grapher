@@ -71,7 +71,8 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.xStringProperty, radioButtonTandem ),
         tandemName: 'xRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.symbol.xStringProperty
+          accessibleName: CalculusGrapherFluent.symbol.xStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.xRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -79,7 +80,8 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.tStringProperty, radioButtonTandem ),
         tandemName: 'tRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.symbol.tStringProperty
+          accessibleName: CalculusGrapherFluent.symbol.tStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.tRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -90,6 +92,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
       radioButtonOptions: {
         phetioVisiblePropertyInstrumented: false
       },
+      accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

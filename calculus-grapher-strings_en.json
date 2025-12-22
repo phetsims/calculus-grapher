@@ -236,6 +236,21 @@
         "value": "TODO.areaUnderCurveCheckbox.accessibleHelpText"
       }
     },
+    "variableRadioButtonGroup": {
+      "accessibleHelpText": {
+        "value": "TODO.variableRadioButtonGroup.accessibleHelpText"
+      },
+      "xRadioButton": {
+        "accessibleHelpText": {
+          "value": "TODO.xRadioButton.accessibleHelpText"
+        }
+      },
+      "tRadioButton": {
+        "accessibleHelpText": {
+          "value": "TODO.tRadioButton.accessibleHelpText"
+        }
+      }
+    },
     "notationRadioButtonGroup": {
       "accessibleHelpText": {
         "value": "TODO.notationRadioButtonGroup.accessibleHelpText"

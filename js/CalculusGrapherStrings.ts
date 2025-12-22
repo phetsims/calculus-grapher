@@ -127,6 +127,15 @@ type StringsType = {
     'areaUnderCurveCheckbox': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
+    'variableRadioButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'xRadioButton': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'tRadioButton': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
     'notationRadioButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'lagrangeRadioButton': {
