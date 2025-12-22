@@ -534,8 +534,8 @@
       "toolControls": {
         "value": "Tool Controls"
       },
-      "tools": {
-        "value": "Tools"
+      "curveExplorationTools": {
+        "value": "Curve Exploration Tools"
       }
     }
   }

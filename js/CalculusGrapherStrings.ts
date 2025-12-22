@@ -279,7 +279,7 @@ type StringsType = {
       'graphAreasStringProperty': LocalizedStringProperty;
       'curveManipulationControlsStringProperty': LocalizedStringProperty;
       'toolControlsStringProperty': LocalizedStringProperty;
-      'toolsStringProperty': LocalizedStringProperty;
+      'curveExplorationToolsStringProperty': LocalizedStringProperty;
     }
   }
 };
