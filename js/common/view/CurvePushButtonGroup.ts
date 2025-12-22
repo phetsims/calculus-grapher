@@ -1,8 +1,8 @@
 // Copyright 2022-2025, University of Colorado Boulder
 
 /**
- * CurvePushButtonGroup allow the user to manipulate the curve pressing buttons that
- * smooth, erase and undo the original curve
+ * CurvePushButtonGroup allow the user to manipulate the curve by pressing buttons that
+ * smooth, undo, and erase the original curve
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
@@ -10,16 +10,14 @@
 
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
-import ReturnButton from '../../../../scenery-phet/js/buttons/ReturnButton.js';
-import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
-import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
+import SmoothButton from './SmoothButton.js';
+import UndoButton from './UndoButton.js';
 
 export default class CurvePushButtonGroup extends VBox {
 
@@ -28,14 +26,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Create an undo Button. Disabling this button when there's nothing to undo is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
-    const undoButton = new ReturnButton( {
-      listener: () => interactiveCurveProperty.value.undo(),
-      yMargin: 6,
-      iconOptions: { height: 13 },
-      accessibleName: CalculusGrapherFluent.a11y.undoButton.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,
-      tandem: tandem.createTandem( 'undoButton' )
-    } );
+    const undoButton = new UndoButton( interactiveCurveProperty, tandem.createTandem( 'undoButton' ) );
 
     // Create an eraser Button. Disabling this button when there's nothing to erase is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
@@ -57,23 +48,9 @@ export default class CurvePushButtonGroup extends VBox {
 
     const children = [];
 
-    // Create a Smooth button, with width matching the HBox.
+    // Optionally, create a Smooth button.
     if ( hasSmoothButton ) {
-      const smoothButton = new TextPushButton( CalculusGrapherFluent.smoothStringProperty, {
-        listener: () => interactiveCurveProperty.value.smooth(),
-        textNodeOptions: {
-          font: CalculusGrapherConstants.CONTROL_FONT,
-          fontWeight: 'bold',
-          maxWidth: 55
-        },
-        baseColor: PhetColorScheme.BUTTON_YELLOW,
-        layoutOptions: {
-          stretch: true
-        },
-        accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
-        tandem: tandem.createTandem( 'smoothButton' )
-      } );
+      const smoothButton = new SmoothButton( interactiveCurveProperty, tandem.createTandem( 'smoothButton' ) );
       children.push( smoothButton );
     }
 
