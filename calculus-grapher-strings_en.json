@@ -450,10 +450,10 @@
       },
       "originalCurveRadioButton": {
         "accessibleName": {
-          "value": "Primary Curve Mode"
+          "value": "f of {$variable} Mode"
         },
         "accessibleHelpText": {
-          "value": "Manipulate primary curve in primary graph area."
+          "value": "Manipulate f of {$variable} in primary graph area."
         }
       },
       "predictCurveRadioButton": {

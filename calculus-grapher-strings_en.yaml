@@ -168,8 +168,8 @@ a11y:
     accessibleName: TODO.predictRadioButtonGroup.accessibleName
     accessibleHelpText: TODO.predictRadioButtonGroup.accessibleHelpText
     originalCurveRadioButton:
-      accessibleName:     Primary Curve Mode
-      accessibleHelpText: Manipulate primary curve in primary graph area.
+      accessibleName:     f of {$variable} Mode
+      accessibleHelpText: Manipulate f of {$variable} in primary graph area.
     predictCurveRadioButton:
       accessibleName:     Predict Curve Mode
       accessibleHelpText: Manipulate prediction curve in primary graph area.
