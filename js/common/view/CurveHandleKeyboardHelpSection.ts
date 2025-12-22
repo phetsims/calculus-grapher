@@ -14,15 +14,13 @@ import calculusGrapher from '../../calculusGrapher.js';
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/346 i18n
 const curveHandleStringProperty = new Property( 'Curve Handle' );
-const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle edit mode' );
-const keyboardHelpDialogPDOMLabelStringProperty = new Property( 'Toggle between moving the point or editing the curve with Space or Enter' );
+const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between moving the point<br>or manipulating the curve' );
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/346 HOTKEY_DATA should live in keyboard drag listener
 const HOTKEY_DATA = new HotkeyData( {
   keys: [ 'space', 'enter' ],
   repoName: calculusGrapher.name,
-  keyboardHelpDialogLabelStringProperty: keyboardHelpDialogLabelStringProperty,
-  keyboardHelpDialogPDOMLabelStringProperty: keyboardHelpDialogPDOMLabelStringProperty
+  keyboardHelpDialogLabelStringProperty: keyboardHelpDialogLabelStringProperty
 } );
 
 export default class CurveHandleKeyboardHelpSection extends KeyboardHelpSection {
