@@ -70,6 +70,8 @@ a11y:
   eyeToggleButton:
     accessibleName:     Curve Visibility
     accessibleHelpText: Show or hide curve for this graph area.
+    accessibleContextResponseOff: TODO.eyeToggleButton.accessibleContextResponseOff
+    accessibleContextResponseOn: TODO.eyeToggleButton.accessibleContextResponseOn
   yZoomButtonGroup:
     zoomInButton:
       accessibleName: Zoom In y Axis

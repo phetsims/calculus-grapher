@@ -104,6 +104,8 @@ type StringsType = {
     'eyeToggleButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
     };
     'yZoomButtonGroup': {
       'zoomInButton': {

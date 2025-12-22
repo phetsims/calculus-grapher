@@ -192,6 +192,12 @@
       },
       "accessibleHelpText": {
         "value": "Show or hide curve for this graph area."
+      },
+      "accessibleContextResponseOff": {
+        "value": "TODO.eyeToggleButton.accessibleContextResponseOff"
+      },
+      "accessibleContextResponseOn": {
+        "value": "TODO.eyeToggleButton.accessibleContextResponseOn"
       }
     },
     "yZoomButtonGroup": {
