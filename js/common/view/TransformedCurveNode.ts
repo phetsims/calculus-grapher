@@ -48,7 +48,6 @@ export default class TransformedCurveNode extends CurveNode {
     this.transformedCurve = transformedCurve;
 
     // Creates cueing arrows at the middle of the curve, centered at y=0.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Should we get rid of these?
     const cueingArrowsNodeTandem = options.tandem.createTandem( 'cueingArrowsNode' );
     const cueingArrowsNode = new CueingArrowsNode( {
       center: chartTransform.modelToViewXY( CalculusGrapherConstants.CURVE_X_RANGE.getCenter(), 0 ),
@@ -57,7 +56,9 @@ export default class TransformedCurveNode extends CurveNode {
       // Do not instrument, see https://github.com/phetsims/calculus-grapher/issues/240#issuecomment-1452498549.
       visibleProperty: new DerivedProperty(
         [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty, this.inputEnabledProperty ],
-        ( wasManipulated, isInteractive, inputEnabled ) => !wasManipulated && isInteractive && inputEnabled ),
+        //TODO https://github.com/phetsims/calculus-grapher/issues/125 Should we get rid of cueingArrowsNode?
+        // ( wasManipulated, isInteractive, inputEnabled ) => !wasManipulated && isInteractive && inputEnabled ),
+        () => false ),
       tandem: cueingArrowsNodeTandem,
       phetioDocumentation: 'Cueing arrows on curve, visible prior to curve being interacted with.'
     } );
