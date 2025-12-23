@@ -48,6 +48,7 @@ export default class TransformedCurveNode extends CurveNode {
     this.transformedCurve = transformedCurve;
 
     // Creates cueing arrows at the middle of the curve, centered at y=0.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Should we get rid of these?
     const cueingArrowsNodeTandem = options.tandem.createTandem( 'cueingArrowsNode' );
     const cueingArrowsNode = new CueingArrowsNode( {
       center: chartTransform.modelToViewXY( CalculusGrapherConstants.CURVE_X_RANGE.getCenter(), 0 ),
