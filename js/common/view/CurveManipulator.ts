@@ -50,6 +50,7 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
         predictSelected ? predictCurveStroke : originalCurveStroke );
 
     const options = combineOptions<ShadedSphereNodeOptions>( {}, AccessibleDraggableOptions, {
+      isDisposable: false,
       mainColor: mainColorProperty,
       cursor: 'pointer',
       tandem: tandem

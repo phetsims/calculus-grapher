@@ -14,7 +14,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/346 i18n
 const curveHandleStringProperty = new Property( 'Curve Manipulator' );
-const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between positioning manipulator<br>and modifying curve.' );
+const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between<br>positioning manipulator<br>and modifying curve.' );
 
 //TODO https://github.com/phetsims/calculus-grapher/issues/346 HOTKEY_DATA should live in keyboard drag listener
 const HOTKEY_DATA = new HotkeyData( {
@@ -35,8 +35,8 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
 
     // 'Curve Handle' title
     super( curveHandleStringProperty, rows, {
-      textMaxWidth: 300,
-      isDisposable: false
+      isDisposable: false,
+      textMaxWidth: 300
     } );
   }
 }
