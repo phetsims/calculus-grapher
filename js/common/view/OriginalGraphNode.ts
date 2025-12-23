@@ -139,7 +139,6 @@ export default class OriginalGraphNode extends GraphNode {
       // See https://github.com/phetsims/calculus-grapher/issues/240
       phetioInputEnabledPropertyInstrumented: true
     } );
-    this.curveLayer.addChild( this.originalCurveNode );
 
     // Interactive 'Predict' curve
     this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
@@ -151,7 +150,6 @@ export default class OriginalGraphNode extends GraphNode {
       visibleProperty: predictEnabledProperty,
       tandem: options.tandem.createTandem( 'predictCurveNode' )
     } );
-    this.curveLayer.addChild( this.predictCurveNode );
 
     // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
     // See https://github.com/phetsims/calculus-grapher/issues/204
@@ -166,18 +164,14 @@ export default class OriginalGraphNode extends GraphNode {
       ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
         predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );
-    this.addChild( highlightRectangle );
-    highlightRectangle.moveToBack();
 
     // Curve manipulation cursor
     this.curveCursorNode = new CurveCursorNode( originalCurve, predictCurve, model.predictSelectedProperty,
       this.chartTransform, options.tandem.createTandem( 'curveCursorNode' ) );
-    this.addChild( this.curveCursorNode );
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
       model.predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
-    this.addChild( showOriginalCurveCheckbox );
     showOriginalCurveCheckbox.boundsProperty.link( () => {
       showOriginalCurveCheckbox.right =
         this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
@@ -189,7 +183,15 @@ export default class OriginalGraphNode extends GraphNode {
       this.chartTransform, model.predictEnabledProperty, this.curveLayerVisibleProperty,
       options.tandem.createTandem( 'labeledPointsNode' )
     );
+
+    // Rendering order - see superclass GraphNode for additional children.
+    this.curveLayer.addChild( this.originalCurveNode );
+    this.curveLayer.addChild( this.predictCurveNode );
+    this.addChild( highlightRectangle );
+    highlightRectangle.moveToBack();
+    this.addChild( this.curveCursorNode );
     this.addChild( labeledPointsNode );
+    this.addChild( showOriginalCurveCheckbox );
 
     // Which of the CurveNode instances is currently interactive
     const interactiveCurveNodeProperty = new DerivedProperty( [ model.predictEnabledProperty ],
