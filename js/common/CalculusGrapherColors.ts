@@ -107,7 +107,7 @@ export default class CalculusGrapherColors {
     tandem: tandem.createTandem( 'secondDerivativeCurveStrokeProperty' )
   } );
 
-  // Fill for integral curve (when area is positive)
+  // Fill for the integral curve (when the area is positive)
   public static readonly integralPositiveFillProperty = new DerivedProperty( [ CalculusGrapherColors.integralCurveStrokeProperty ],
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.positiveAlpha ), {
       tandem: tandem.createTandem( 'integralPositiveFillProperty' ),
@@ -115,7 +115,7 @@ export default class CalculusGrapherColors {
       phetioDocumentation: 'Color for positive area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
     } );
 
-  // Fill for the integral curve (when area is negative)
+  // Fill for the integral curve (when the area is negative)
   public static readonly integralNegativeFillProperty = new DerivedProperty( [ CalculusGrapherColors.integralCurveStrokeProperty ],
     integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.negativeAlpha ), {
       tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
