@@ -1,7 +1,7 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveCursorKeyboardHelpSection is the keyboard-help section that describes how to interact with curves.
+ * CurveManipulatorKeyboardHelpSection is the keyboard-help section that describes how to interact with curves.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -23,7 +23,7 @@ const HOTKEY_DATA = new HotkeyData( {
   keyboardHelpDialogLabelStringProperty: keyboardHelpDialogLabelStringProperty
 } );
 
-export default class CurveCursorKeyboardHelpSection extends KeyboardHelpSection {
+export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSection {
 
   public constructor() {
 
@@ -41,4 +41,4 @@ export default class CurveCursorKeyboardHelpSection extends KeyboardHelpSection 
   }
 }
 
-calculusGrapher.register( 'CurveCursorKeyboardHelpSection', CurveCursorKeyboardHelpSection );
+calculusGrapher.register( 'CurveManipulatorKeyboardHelpSection', CurveManipulatorKeyboardHelpSection );
