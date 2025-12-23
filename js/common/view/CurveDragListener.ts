@@ -1,5 +1,6 @@
 // Copyright 2025, University of Colorado Boulder
 
+//TODO https://github.com/phetsims/calculus-grapher/issues/125 Rename to CurveCursorDragListener.
 /**
  * CurveDragListener is the drag listener for manipulating a transformable curve by dragging the curve cursor.
  *

@@ -3,11 +3,6 @@
 /**
  * CurveCursorNode is the cursor used to indicate the point on the curve that the user is currently manipulating.
  *
- * For pointer input, positionProperty is updated by CurveDragListener when the user changes the curve by
- * clicking and dragging anywhere on the graph.
- *
- * For keyboard input, TODO https://github.com/phetsims/calculus-grapher/issues/125
- *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
