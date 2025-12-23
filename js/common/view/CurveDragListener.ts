@@ -35,6 +35,7 @@ export default class CurveDragListener extends SoundDragListener {
                       chartTransform: ChartTransform,
                       curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
                       curveManipulationWidthProperty: TReadOnlyProperty<number>,
+                      cursorPositionProperty: Property<Vector2>,
                       tandem: Tandem ) {
 
     // Variables to keep track of old model positions associated with the dragListener.
@@ -44,20 +45,22 @@ export default class CurveDragListener extends SoundDragListener {
     let antepenultimatePosition: Vector2 | null = null;
 
     // Update whichever curve is currently interactive.
-    const updateCurve = ( listener: PressedDragListener ): void => {
+    const update = ( listener: PressedDragListener ): void => {
 
       // This listener 'field' is actually an ES5 getter that allocates a Vector2, so call it only once.
-      const modelPoint = listener.modelPoint;
+      // This point is actually in view coordinates because we are not providing a transform to the listener.
+      const viewPoint = listener.modelPoint;
 
       // Current modelPosition
-      const modelPosition = chartTransform.viewToModelPosition( modelPoint );
+      const modelPosition = chartTransform.viewToModelPosition( viewPoint );
 
       if ( curveManipulationModeProperty.value === CurveManipulationMode.FREEFORM ) {
 
-        // Do not update the curve model if the drag points in (FREEFORM mode) are too close from one another,
+        // Do not update the curve model if the drag points in (FREEFORM mode) are too close to each another,
         // to prevent noise in the derivative (see https://github.com/phetsims/calculus-grapher/issues/297 )
         if ( penultimatePosition === null || Math.abs( modelPosition.x - penultimatePosition.x ) > FREEFORM_MIN_DX ) {
 
+          // Update the curve.
           interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
             curveManipulationModeProperty.value,
             curveManipulationWidthProperty.value,
@@ -68,15 +71,21 @@ export default class CurveDragListener extends SoundDragListener {
           // Update (model) antepenultimatePosition and penultimatePosition
           antepenultimatePosition = penultimatePosition;
           penultimatePosition = modelPosition;
+
+          // Move the curve cursor to the new position.
+          cursorPositionProperty.value = modelPosition;
         }
       }
-      else {
+      else { // For any mode other than FREEFORM...
 
-        // For any mode other than FREEFORM...
+        // Update the curve.
         interactiveCurveNodeProperty.value.transformedCurve.manipulateCurve(
           curveManipulationModeProperty.value,
           curveManipulationWidthProperty.value,
           modelPosition );
+
+        // Move the curve cursor to the new position.
+        cursorPositionProperty.value = modelPosition;
       }
     };
 
@@ -92,9 +101,9 @@ export default class CurveDragListener extends SoundDragListener {
         // Set the previous last positions to null, since it is a new drag.
         antepenultimatePosition = null;
         penultimatePosition = null;
-        updateCurve( listener );
+        update( listener );
       },
-      drag: ( event, listener ) => updateCurve( listener ),
+      drag: ( event, listener ) => update( listener ),
       tandem: tandem
     } );
   }

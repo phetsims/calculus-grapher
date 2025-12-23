@@ -24,11 +24,9 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import { ChartRectangleOptions } from '../../../../bamboo/js/ChartRectangle.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import AccessibleInteractiveOptions from '../../../../scenery-phet/js/accessibility/AccessibleInteractiveOptions.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -42,6 +40,7 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
+import CurveCursorNode from './CurveCursorNode.js';
 import CurveDragListener from './CurveDragListener.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
@@ -65,6 +64,9 @@ export default class OriginalGraphNode extends GraphNode {
   // Indicates if the original curve is visible while in 'Predict' mode.
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly showOriginalCurveProperty: Property<boolean>;
+
+  // Cursor that indicates the position of the curve manipulation point.
+  private readonly curveCursorNode: CurveCursorNode;
 
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
@@ -96,10 +98,10 @@ export default class OriginalGraphNode extends GraphNode {
       createCurveNode: false, // We'll be creating our own Node for model.originalCurve.
 
       // In addition to fill and stroke, make the chartRectangle interactive for accessibility.
-      chartRectangleOptions: combineOptions<ChartRectangleOptions>( {}, AccessibleInteractiveOptions, {
+      chartRectangleOptions: {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
-      } ),
+      },
       accessibleHeading: CalculusGrapherFluent.a11y.originalGraph.accessibleHeadingStringProperty,
       accessibleParagraph: CalculusGrapherFluent.a11y.originalGraph.accessibleParagraphStringProperty
     }, providedOptions );
@@ -167,6 +169,11 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
 
+    // Curve manipulation cursor
+    this.curveCursorNode = new CurveCursorNode( originalCurve, predictCurve, model.predictSelectedProperty,
+      this.chartTransform, options.tandem.createTandem( 'curveCursorNode' ) );
+    this.addChild( this.curveCursorNode );
+
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
       model.predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
@@ -191,9 +198,14 @@ export default class OriginalGraphNode extends GraphNode {
 
     // A single DragListener on the entire chartRectangle. Press anywhere in the chartRectangle to modify the curve.
     this.chartRectangle.cursor = 'pointer';
-    this.chartRectangle.addInputListener( new CurveDragListener( interactiveCurveNodeProperty, this.chartTransform,
-      curveManipulationProperties.modeProperty, curveManipulationProperties.widthProperty,
-      options.tandem.createTandem( 'dragListener' ) ) );
+    this.chartRectangle.addInputListener( new CurveDragListener(
+      interactiveCurveNodeProperty,
+      this.chartTransform,
+      curveManipulationProperties.modeProperty,
+      curveManipulationProperties.widthProperty,
+      this.curveCursorNode.positionProperty,
+      options.tandem.createTandem( 'dragListener' )
+    ) );
 
     // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
     // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
@@ -208,7 +220,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Focus order
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
-      this.chartRectangle,
+      this.curveCursorNode,
       showOriginalCurveCheckbox,
       this.eyeToggleButton
     ];
@@ -218,6 +230,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.originalCurveNode.reset();
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
+    this.curveCursorNode.reset();
     super.reset();
   }
 
