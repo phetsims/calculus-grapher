@@ -1,7 +1,7 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveCursorNode is the cursor used to indicate the point on the curve that the user is currently manipulating.
+ * CurveManipulator is a draggable point used to manipulate the curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -28,7 +28,7 @@ const DEFAULT_POSITION = new Vector2(
   CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE.getCenter()
 );
 
-export default class CurveCursorNode extends InteractiveHighlighting( ShadedSphereNode ) {
+export default class CurveManipulator extends InteractiveHighlighting( ShadedSphereNode ) {
 
   // Position of the cursor, in model coordinates.
   public readonly positionProperty: Property<Vector2>;
@@ -62,7 +62,6 @@ export default class CurveCursorNode extends InteractiveHighlighting( ShadedSphe
     } );
 
     this.positionProperty.link( position => {
-      phet.log && phet.log( `CurveCursor position = ${position}` );
       this.center = chartTransform.modelToViewPosition( position );
     } );
 
@@ -83,4 +82,4 @@ export default class CurveCursorNode extends InteractiveHighlighting( ShadedSphe
   }
 }
 
-calculusGrapher.register( 'CurveCursorNode', CurveCursorNode );
+calculusGrapher.register( 'CurveManipulator', CurveManipulator );

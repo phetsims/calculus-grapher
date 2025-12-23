@@ -41,8 +41,8 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
-import CurveCursorNode from './CurveCursorNode.js';
 import CurveDragListener from './CurveDragListener.js';
+import CurveManipulator from './CurveManipulator.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
@@ -66,8 +66,8 @@ export default class OriginalGraphNode extends GraphNode {
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly showOriginalCurveProperty: Property<boolean>;
 
-  // Cursor that indicates the position of the curve manipulation point.
-  private readonly curveCursorNode: CurveCursorNode;
+  // Draggable that is used to manipulate the curve.
+  private readonly curveManipulator: CurveManipulator;
 
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
@@ -166,9 +166,9 @@ export default class OriginalGraphNode extends GraphNode {
         predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );
 
-    // Curve manipulation cursor
-    this.curveCursorNode = new CurveCursorNode( originalCurve, predictCurve, model.predictSelectedProperty,
-      this.chartTransform, options.tandem.createTandem( 'curveCursorNode' ) );
+    // Curve manipulator
+    this.curveManipulator = new CurveManipulator( originalCurve, predictCurve, model.predictSelectedProperty,
+      this.chartTransform, options.tandem.createTandem( 'curveManipulator' ) );
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
@@ -190,7 +190,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveLayer.addChild( this.predictCurveNode );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
-    this.addChild( this.curveCursorNode );
+    this.addChild( this.curveManipulator );
     this.addChild( labeledPointsNode );
     this.addChild( showOriginalCurveCheckbox );
 
@@ -199,20 +199,20 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveCursorNode responsible for adding CurveDragListener.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveCursorNode.
-    // Pointer DragListener to drag the curve cursor.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveManipulator responsible for adding CurveDragListener.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveManipulator.
+    // Pointer and keyboard support for moving curveManipulator and manipulating the curve.
     const curveDragListener = new CurveDragListener(
       interactiveCurveNodeProperty,
       this.chartTransform,
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
-      this.curveCursorNode.positionProperty,
+      this.curveManipulator.positionProperty,
       options.tandem // CurveDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
-    this.curveCursorNode.addInputListener( curveDragListener );
+    this.curveManipulator.addInputListener( curveDragListener );
 
-    // Press anywhere in the chartRectangle to move the curveCursorNode and begin dragging the curve.
+    // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.cursor = 'pointer';
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 createForwardingListener has no PhET-iO support.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => curveDragListener.dragListener.press( event ) ) );
@@ -230,7 +230,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Focus order
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
-      this.curveCursorNode,
+      this.curveManipulator,
       showOriginalCurveCheckbox,
       this.eyeToggleButton
     ];
@@ -240,7 +240,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.originalCurveNode.reset();
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
-    this.curveCursorNode.reset();
+    this.curveManipulator.reset();
     super.reset();
   }
 
