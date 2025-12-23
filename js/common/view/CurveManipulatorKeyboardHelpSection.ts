@@ -16,7 +16,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 const curveHandleStringProperty = new Property( 'Curve Manipulator' );
 const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between<br>positioning manipulator<br>and modifying curve.' );
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/346 HOTKEY_DATA should live in keyboard drag listener
+//TODO https://github.com/phetsims/calculus-grapher/issues/346 HOTKEY_DATA should live in keyboard listener
 const HOTKEY_DATA = new HotkeyData( {
   keys: [ 'space', 'enter' ],
   repoName: calculusGrapher.name,
