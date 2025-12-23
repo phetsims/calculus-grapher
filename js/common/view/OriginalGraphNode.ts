@@ -23,10 +23,13 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import StringProperty from '../../../../axon/js/StringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import KeyboardCueNode from '../../../../scenery-phet/js/accessibility/nodes/KeyboardCueNode.js';
+import TextKeyNode from '../../../../scenery-phet/js/keyboard/TextKeyNode.js';
 import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
@@ -170,6 +173,21 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveManipulator = new CurveManipulator( originalCurve, predictCurve, model.predictSelectedProperty,
       this.chartTransform, options.tandem.createTandem( 'curveManipulator' ) );
 
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Hide after curveManipulator has been moved with keyboard.
+    const cueIsVisibleProperty = new DerivedProperty( [ this.curveManipulator.focusedProperty ], focused => focused );
+
+    // Cue for toggling curve manipulator between modes.
+    const curveManipulatorCueNode = new KeyboardCueNode( {
+      createKeyNode: TextKeyNode.space,
+      //TODO https://github.com/phetsims/calculus-grapher/issues/125 i18n
+      stringProperty: new StringProperty( 'to toggle mode' ),
+      visibleProperty: cueIsVisibleProperty
+    } );
+    this.curveManipulator.boundsProperty.link( bounds => {
+      curveManipulatorCueNode.centerX = bounds.centerX;
+      curveManipulatorCueNode.top = bounds.bottom + 10;
+    } );
+
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
       model.predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
@@ -191,6 +209,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
     this.addChild( this.curveManipulator );
+    this.addChild( curveManipulatorCueNode );
     this.addChild( labeledPointsNode );
     this.addChild( showOriginalCurveCheckbox );
 
