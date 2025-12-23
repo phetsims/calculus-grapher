@@ -18,6 +18,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -85,6 +86,9 @@ export default class CurveDragListener extends SoundDragListener {
     };
 
     super( {
+
+      // Position in view coordinates because we have not provided the transform option.
+      positionProperty: new Vector2Property( chartTransform.modelToViewPosition( cursorPositionProperty.value ) ),
 
       // Drag bounds are in view coordinates because we have not provided the transform option.
       dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
