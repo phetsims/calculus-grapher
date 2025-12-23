@@ -78,7 +78,10 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
 
     const focusHighlightPath = new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) );
     this.setFocusHighlight( focusHighlightPath );
-    this.setInteractiveHighlight( new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) ) );
+
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Do we need a separate interactive highlight?
+    const interactiveHighlightPath = new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) );
+    this.setInteractiveHighlight( interactiveHighlightPath );
 
     this.positionProperty = new Vector2Property( DEFAULT_POSITION, {
       tandem: tandem.createTandem( 'positionProperty' ),
