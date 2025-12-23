@@ -199,6 +199,8 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveCursorNode responsible for adding CurveDragListener.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveCursorNode.
     // Pointer DragListener to drag the curve cursor.
     const curveDragListener = new CurveDragListener(
       interactiveCurveNodeProperty,
@@ -206,13 +208,14 @@ export default class OriginalGraphNode extends GraphNode {
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       this.curveCursorNode.positionProperty,
-      options.tandem.createTandem( 'dragListener' )
+      options.tandem // CurveDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
     this.curveCursorNode.addInputListener( curveDragListener );
 
     // Press anywhere in the chartRectangle to move the curveCursorNode and begin dragging the curve.
     this.chartRectangle.cursor = 'pointer';
-    this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => curveDragListener.press( event ) ) );
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 createForwardingListener has no PhET-iO support.
+    this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => curveDragListener.dragListener.press( event ) ) );
 
     // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
     // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.

@@ -1,12 +1,7 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveDragListener is the drag listener for manipulating a transformable curve.
- *
- * Instead of having a DragListener on each TransformedCurveNode, we have a single DragListener on the chartRectangle.
- * This saves us the costly operation of creating pointer areas that match the Shapes of the curves.  And it allows
- * the user to modify a curve by doing a 'pointer down' anywhere in the chartRectangle.
- * ee https://github.com/phetsims/calculus-grapher/issues/210 and https://github.com/phetsims/calculus-grapher/issues/74.
+ * CurveDragListener is the drag listener for manipulating a transformable curve by dragging the curve cursor.
  *
  * @author Martin Veillette
  * @author Brandon Li
@@ -19,7 +14,7 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
-import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
+import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
@@ -29,7 +24,7 @@ import TransformedCurveNode from './TransformedCurveNode.js';
 // See https://github.com/phetsims/calculus-grapher/issues/297
 const FREEFORM_MIN_DX = 0.1;
 
-export default class CurveDragListener extends SoundDragListener {
+export default class CurveDragListener extends SoundRichDragListener {
 
   public constructor( interactiveCurveNodeProperty: TReadOnlyProperty<TransformedCurveNode>,
                       chartTransform: ChartTransform,
@@ -93,8 +88,14 @@ export default class CurveDragListener extends SoundDragListener {
       // Drag bounds are in view coordinates because we have not provided the transform option.
       dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
 
-      // No offset because wherever we click in the graph is where the manipulation starts.
-      applyOffset: false,
+      dragListenerOptions: {
+        applyOffset: false // Because wherever we press in the graph is where the manipulation starts.
+      },
+
+      keyboardDragListenerOptions: {
+        dragSpeed: 200,
+        shiftDragSpeed: 30
+      },
 
       start: ( event, listener ) => {
 
