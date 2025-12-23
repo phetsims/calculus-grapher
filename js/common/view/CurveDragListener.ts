@@ -85,8 +85,13 @@ export default class CurveDragListener extends SoundDragListener {
     };
 
     super( {
+
+      // Drag bounds are in view coordinates because we have not provided the transform option.
       dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
+
+      // No offset because wherever we click in the graph is where the manipulation starts.
       applyOffset: false,
+
       start: ( event, listener ) => {
 
         // Save the current values of the CurvePoints for the next undo() call.
@@ -97,11 +102,11 @@ export default class CurveDragListener extends SoundDragListener {
         antepenultimatePosition = null;
         penultimatePosition = null;
 
-        // listener.modelPoint is in view coordinates because we have not provided transform option.
+        // listener.modelPoint is in view coordinates because we have not provided the transform option.
         update( listener.modelPoint );
       },
 
-      // listener.modelPoint is in view coordinates because we have not provided transform option.
+      // listener.modelPoint is in view coordinates because we have not provided the transform option.
       drag: ( event, listener ) => update( listener.modelPoint ),
       tandem: tandem
     } );
