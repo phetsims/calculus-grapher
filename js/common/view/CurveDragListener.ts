@@ -19,7 +19,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
-import { PressedDragListener } from '../../../../scenery/js/listeners/DragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
@@ -45,11 +44,7 @@ export default class CurveDragListener extends SoundDragListener {
     let antepenultimatePosition: Vector2 | null = null;
 
     // Update whichever curve is currently interactive.
-    const update = ( listener: PressedDragListener ): void => {
-
-      // This listener 'field' is actually an ES5 getter that allocates a Vector2, so call it only once.
-      // This point is actually in view coordinates because we are not providing a transform to the listener.
-      const viewPoint = listener.modelPoint;
+    const update = ( viewPoint: Vector2 ): void => {
 
       // Current modelPosition
       const modelPosition = chartTransform.viewToModelPosition( viewPoint );
@@ -101,9 +96,13 @@ export default class CurveDragListener extends SoundDragListener {
         // Set the previous last positions to null, since it is a new drag.
         antepenultimatePosition = null;
         penultimatePosition = null;
-        update( listener );
+
+        // listener.modelPoint is in view coordinates because we have not provided transform option.
+        update( listener.modelPoint );
       },
-      drag: ( event, listener ) => update( listener ),
+
+      // listener.modelPoint is in view coordinates because we have not provided transform option.
+      drag: ( event, listener ) => update( listener.modelPoint ),
       tandem: tandem
     } );
   }
