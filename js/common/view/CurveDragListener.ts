@@ -2,6 +2,7 @@
 
 /**
  * CurveDragListener is the drag listener for manipulating a transformable curve by dragging the CurveManipulator.
+ * It supports both pointer and keyboard dragging, with sound feedback.
  *
  * @author Martin Veillette
  * @author Brandon Li
