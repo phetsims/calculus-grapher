@@ -109,6 +109,7 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
     } );
 
     // Change the focus highlight lineDash to indicate whether the manipulator is changing the curve.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Do we also need to modify the interactive highlight? The mode is not relevant for pointer.
     this.isChangingCurveProperty.link( isChangingCurve => focusHighlightPath.setDashed( !isChangingCurve ) );
 
     // Toggle between positioning the manipulator and modifying the curve.
