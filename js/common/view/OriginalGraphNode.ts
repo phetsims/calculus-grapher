@@ -203,11 +203,11 @@ export default class OriginalGraphNode extends GraphNode {
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveManipulator.
     // Pointer and keyboard support for moving curveManipulator and manipulating the curve.
     const curveDragListener = new CurveDragListener(
+      this.curveManipulator,
       interactiveCurveNodeProperty,
       this.chartTransform,
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
-      this.curveManipulator.positionProperty,
       options.tandem // CurveDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
     this.curveManipulator.addInputListener( curveDragListener );
