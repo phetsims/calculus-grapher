@@ -76,9 +76,9 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
 
     super( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, options );
 
-    const focusHighlightPath = new HighlightPath( Shape.bounds( this.bounds.dilate( 8 ) ) );
+    const focusHighlightPath = new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) );
     this.setFocusHighlight( focusHighlightPath );
-    this.setInteractiveHighlight( new HighlightPath( Shape.bounds( this.bounds.dilate( 8 ) ) ) );
+    this.setInteractiveHighlight( new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) ) );
 
     this.positionProperty = new Vector2Property( DEFAULT_POSITION, {
       tandem: tandem.createTandem( 'positionProperty' ),
