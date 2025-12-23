@@ -56,6 +56,7 @@ export default class CurveCursorNode extends InteractiveHighlighting( ShadedSphe
 
     const options = combineOptions<ShadedSphereNodeOptions>( {}, AccessibleDraggableOptions, {
       mainColor: mainColorProperty,
+      cursor: 'pointer',
       tandem: tandem
     } );
 

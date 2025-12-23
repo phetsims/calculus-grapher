@@ -27,6 +27,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -198,16 +199,20 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
-    // A single DragListener on the entire chartRectangle. Press anywhere in the chartRectangle to modify the curve.
-    this.chartRectangle.cursor = 'pointer';
-    this.chartRectangle.addInputListener( new CurveDragListener(
+    // Pointer DragListener to drag the curve cursor.
+    const curveDragListener = new CurveDragListener(
       interactiveCurveNodeProperty,
       this.chartTransform,
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       this.curveCursorNode.positionProperty,
       options.tandem.createTandem( 'dragListener' )
-    ) );
+    );
+    this.curveCursorNode.addInputListener( curveDragListener );
+
+    // Press anywhere in the chartRectangle to move the curveCursorNode and begin dragging the curve.
+    this.chartRectangle.cursor = 'pointer';
+    this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => curveDragListener.press( event ) ) );
 
     // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
     // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
