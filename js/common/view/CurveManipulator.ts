@@ -68,12 +68,8 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
     // When switching between curves, update the y-coordinate of the cursor so that it is on a curve.
     predictSelectedProperty.lazyLink( predictSelected => {
       const x = this.positionProperty.value.x;
-      if ( predictSelected ) {
-        this.positionProperty.value = predictCurve.getClosestPointAt( x ).getVector();
-      }
-      else {
-        this.positionProperty.value = originalCurve.getClosestPointAt( x ).getVector();
-      }
+      const selectedCurve = predictSelected ? predictCurve : originalCurve;
+      this.positionProperty.value = selectedCurve.getClosestPointAt( x ).getVector();
     } );
   }
 
