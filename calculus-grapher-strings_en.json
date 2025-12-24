@@ -77,6 +77,17 @@
   "referenceLine": {
     "value": "Reference<br>Line"
   },
+  "curveManipulator": {
+    "keyboardHelpHeading": {
+      "value": "Curve Manipulator"
+    },
+    "keyboardHelpLabel": {
+      "value": "Toggle between positioning manipulator and modifying curve."
+    },
+    "keyboardCue": {
+      "value": "to toggle mode"
+    }
+  },
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
@@ -561,6 +572,14 @@
       },
       "accessibleHelpText": {
         "value": "TODO.areaUnderCurveScrubber.accessibleHelpText"
+      }
+    },
+    "curveManipulator": {
+      "accessibleName": {
+        "value": "Curve Manipulator"
+      },
+      "accessibleHelpText": {
+        "value": "TODO.curveManipulator.accessibleHelpText"
       }
     },
     "headings": {

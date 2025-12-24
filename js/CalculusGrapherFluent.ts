@@ -5,11 +5,11 @@
 /* eslint-disable */
 /* @formatter:off */
 
-import type { FluentVariable } from '../../chipper/js/browser/FluentPattern.js';
-import FluentPattern from '../../chipper/js/browser/FluentPattern.js';
+import FluentLibrary from '../../chipper/js/browser-and-node/FluentLibrary.js';
 import FluentConstant from '../../chipper/js/browser/FluentConstant.js';
 import FluentContainer from '../../chipper/js/browser/FluentContainer.js';
-import FluentLibrary from '../../chipper/js/browser-and-node/FluentLibrary.js';
+import type {FluentVariable} from '../../chipper/js/browser/FluentPattern.js';
+import FluentPattern from '../../chipper/js/browser/FluentPattern.js';
 import calculusGrapher from './calculusGrapher.js';
 import CalculusGrapherStrings from './CalculusGrapherStrings.js';
 
@@ -51,6 +51,9 @@ addToMapIfDefined( 'show', 'showStringProperty' );
 addToMapIfDefined( 'predictPreference', 'predictPreferenceStringProperty' );
 addToMapIfDefined( 'valuesPreferenceDescription', 'valuesPreferenceDescriptionStringProperty' );
 addToMapIfDefined( 'referenceLine', 'referenceLineStringProperty' );
+addToMapIfDefined( 'curveManipulator_keyboardHelpHeading', 'curveManipulator.keyboardHelpHeadingStringProperty' );
+addToMapIfDefined( 'curveManipulator_keyboardHelpLabel', 'curveManipulator.keyboardHelpLabelStringProperty' );
+addToMapIfDefined( 'curveManipulator_keyboardCue', 'curveManipulator.keyboardCueStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenButtonsHelpText', 'a11y.derivativeScreen.screenButtonsHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_playArea', 'a11y.derivativeScreen.screenSummary.playAreaStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_controlArea', 'a11y.derivativeScreen.screenSummary.controlAreaStringProperty' );
@@ -174,6 +177,8 @@ addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleName', 'a11y.referenceL
 addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleHelpText', 'a11y.referenceLineScrubber.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleName', 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleHelpText', 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_accessibleName', 'a11y.curveManipulator.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_accessibleHelpText', 'a11y.curveManipulator.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationControls', 'a11y.headings.curveManipulationControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
@@ -227,6 +232,11 @@ const CalculusGrapherFluent = {
   valuesPreferenceDescriptionStringProperty: _.get( CalculusGrapherStrings, 'valuesPreferenceDescriptionStringProperty' ),
   predictPreferenceDescriptionStringProperty: _.get( CalculusGrapherStrings, 'predictPreferenceDescriptionStringProperty' ),
   referenceLineStringProperty: _.get( CalculusGrapherStrings, 'referenceLineStringProperty' ),
+  curveManipulator: {
+    keyboardHelpHeadingStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardHelpHeadingStringProperty' ),
+    keyboardHelpLabelStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardHelpLabelStringProperty' ),
+    keyboardCueStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardCueStringProperty' )
+  },
   a11y: {
     derivativeScreen: {
       screenButtonsHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenButtonsHelpTextStringProperty' ), [{"name":"variable"}] ),
@@ -466,6 +476,10 @@ const CalculusGrapherFluent = {
     areaUnderCurveScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' ) )
+    },
+    curveManipulator: {
+      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleNameStringProperty' ) ),
+      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleHelpTextStringProperty' ) )
     },
     headings: {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),

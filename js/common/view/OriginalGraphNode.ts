@@ -23,7 +23,6 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -176,10 +175,8 @@ export default class OriginalGraphNode extends GraphNode {
     // Cue for toggling curve manipulator between modes.
     const curveManipulatorCueNode = new KeyboardCueNode( {
       createKeyNode: TextKeyNode.space,
-      //TODO https://github.com/phetsims/calculus-grapher/issues/125 i18n
-      stringProperty: new StringProperty( 'to toggle mode' ),
-      visibleProperty: DerivedProperty.and(
-        [ this.curveManipulator.focusedProperty, this.curveManipulator.isKeyboardCueEnabledProperty ] )
+      stringProperty: CalculusGrapherFluent.curveManipulator.keyboardCueStringProperty,
+      visibleProperty: DerivedProperty.and( [ this.curveManipulator.focusedProperty, this.curveManipulator.isKeyboardCueEnabledProperty ] )
     } );
     this.curveManipulator.boundsProperty.link( bounds => {
       curveManipulatorCueNode.centerX = bounds.centerX;

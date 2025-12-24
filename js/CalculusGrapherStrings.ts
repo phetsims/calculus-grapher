@@ -48,6 +48,11 @@ type StringsType = {
   'valuesPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'predictPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'referenceLineStringProperty': LocalizedStringProperty;
+  'curveManipulator': {
+    'keyboardHelpHeadingStringProperty': LocalizedStringProperty;
+    'keyboardHelpLabelStringProperty': LocalizedStringProperty;
+    'keyboardCueStringProperty': LocalizedStringProperty;
+  };
   'a11y': {
     'derivativeScreen': {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
@@ -285,6 +290,10 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'areaUnderCurveScrubber': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'curveManipulator': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };

@@ -26,6 +26,10 @@ valuesPreferenceDescription:  >-
                               Signed Area".
 predictPreferenceDescription: Adds a mode that allows you to predict f of {{variable}}.
 referenceLine:                Reference<br>Line
+curveManipulator:
+  keyboardHelpHeading: Curve Manipulator
+  keyboardHelpLabel:   Toggle between positioning manipulator and modifying curve
+  keyboardCue:         to toggle mode
 a11y:
   derivativeScreen:
     screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its derivative graph in real time.
@@ -65,12 +69,12 @@ a11y:
     accessibleHelpText:        TODO.smoothButton.accessibleHelpText
     accessibleContextResponse: TODO.smoothButton.accessibleContextResponse
   eraserButton:
-    accessibleName:     Erase Curve Manipulations
-    accessibleHelpText: Reset curve to y equals zero but maintain curve manipulation settings.
+    accessibleName:            Erase Curve Manipulations
+    accessibleHelpText:        Reset curve to y equals zero but maintain curve manipulation settings.
     accessibleContextResponse: TODO.eraserButton.accessibleContextResponse
   undoButton:
-    accessibleName:     Undo
-    accessibleHelpText: Undo most recent curve manipulation.
+    accessibleName:            Undo
+    accessibleHelpText:        Undo most recent curve manipulation.
     accessibleContextResponse: TODO.undoButton.accessibleContextResponse
   eyeToggleButton:
     accessibleName:               Curve Visibility
@@ -169,10 +173,10 @@ a11y:
       accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: TODO.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed
-    accessibleParagraph: TODO.slopeOfTangentAccordionBox.accessibleParagraph
+    accessibleParagraph:         TODO.slopeOfTangentAccordionBox.accessibleParagraph
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: TODO.netSignedAreaAccordionBox.accessibleHelpTextCollapsed
-    accessibleParagraph: TODO.netSignedAreaAccordionBox.accessibleParagraph
+    accessibleParagraph:         TODO.netSignedAreaAccordionBox.accessibleParagraph
   originalGraph:
     accessibleHeading:   Primary Graph Area
     accessibleParagraph: TODO.originalGraph.accessibleParagraph
@@ -208,6 +212,9 @@ a11y:
   areaUnderCurveScrubber:
     accessibleName:     Area Under Curve Scrubber
     accessibleHelpText: TODO.areaUnderCurveScrubber.accessibleHelpText
+  curveManipulator:
+    accessibleName:     Curve Manipulator
+    accessibleHelpText: TODO.curveManipulator.accessibleHelpText
   headings:
     graphAreas:                Graph Areas
     curveManipulationControls: Curve Manipulation Controls

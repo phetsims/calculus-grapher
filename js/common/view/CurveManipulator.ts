@@ -24,6 +24,7 @@ import KeyboardListener from '../../../../scenery/js/listeners/KeyboardListener.
 import sharedSoundPlayers from '../../../../tambo/js/sharedSoundPlayers.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -33,9 +34,6 @@ const DEFAULT_POSITION = new Vector2(
   CalculusGrapherConstants.CURVE_X_RANGE.getCenter(),
   CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE.getCenter()
 );
-
-//TODO https://github.com/phetsims/calculus-grapher/issues/125 i18n
-const keyboardHelpDialogLabelStringProperty = new Property( 'Toggle between<br>positioning manipulator<br>and modifying curve.' );
 
 export default class CurveManipulator extends InteractiveHighlighting( ShadedSphereNode ) {
 
@@ -51,7 +49,7 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
   public static readonly HOTKEY_DATA = new HotkeyData( {
     keys: [ 'space', 'enter' ],
     repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: keyboardHelpDialogLabelStringProperty
+    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
   public constructor(
@@ -74,6 +72,8 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
       isDisposable: false,
       mainColor: mainColorProperty,
       cursor: 'pointer',
+      accessibleName: CalculusGrapherFluent.a11y.curveManipulator.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
 

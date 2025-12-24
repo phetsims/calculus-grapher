@@ -6,14 +6,11 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulator from './CurveManipulator.js';
-
-//TODO https://github.com/phetsims/calculus-grapher/issues/346 i18n
-const curveHandleStringProperty = new Property( 'Curve Manipulator' );
 
 export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSection {
 
@@ -26,7 +23,7 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
     ];
 
     // 'Curve Handle' title
-    super( curveHandleStringProperty, rows, {
+    super( CalculusGrapherFluent.curveManipulator.keyboardHelpHeadingStringProperty, rows, {
       isDisposable: false,
       textMaxWidth: 300
     } );
