@@ -164,6 +164,14 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
     type: 'number',
     isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
     defaultValue: 0.55
+  },
+
+  // Enables the arrows that cue the user to drag the curve.
+  cueingArrowsEnabled: {
+    type: 'boolean',
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Should we get rid of cueing arrows?
+    // defaultValue: true
+    defaultValue: false
   }
 } );
 

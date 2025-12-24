@@ -19,6 +19,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
@@ -56,9 +57,8 @@ export default class TransformedCurveNode extends CurveNode {
       // Do not instrument, see https://github.com/phetsims/calculus-grapher/issues/240#issuecomment-1452498549.
       visibleProperty: new DerivedProperty(
         [ transformedCurve.wasManipulatedProperty, options.isInteractiveProperty, this.inputEnabledProperty ],
-        //TODO https://github.com/phetsims/calculus-grapher/issues/125 Should we get rid of cueingArrowsNode?
-        // ( wasManipulated, isInteractive, inputEnabled ) => !wasManipulated && isInteractive && inputEnabled ),
-        () => false ),
+        ( wasManipulated, isInteractive, inputEnabled ) =>
+          CalculusGrapherQueryParameters.cueingArrowsEnabled && !wasManipulated && isInteractive && inputEnabled ),
       tandem: cueingArrowsNodeTandem,
       phetioDocumentation: 'Cueing arrows on curve, visible prior to curve being interacted with.'
     } );
