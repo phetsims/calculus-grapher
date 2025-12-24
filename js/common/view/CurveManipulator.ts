@@ -91,6 +91,7 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
       phetioFeatured: true
     } );
 
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Which mode should be the default?
     this.isChangingCurveProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'isChangingCurveProperty' ),
       phetioReadOnly: true
