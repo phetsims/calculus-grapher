@@ -1,5 +1,6 @@
 // Copyright 2025, University of Colorado Boulder
 
+//TODO https://github.com/phetsims/calculus-grapher/issues/125 Should CurveManipulator be separated into CurveManipulator (model) and CurveManipulatorNode (view)?
 /**
  * CurveManipulator is a draggable point used to manipulate the curve.
  *
