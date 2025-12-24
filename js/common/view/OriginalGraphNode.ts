@@ -173,15 +173,13 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveManipulator = new CurveManipulator( originalCurve, predictCurve, model.predictSelectedProperty,
       this.chartTransform, options.tandem.createTandem( 'curveManipulator' ) );
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Hide after curveManipulator has been moved with keyboard.
-    const cueIsVisibleProperty = new DerivedProperty( [ this.curveManipulator.focusedProperty ], focused => focused );
-
     // Cue for toggling curve manipulator between modes.
     const curveManipulatorCueNode = new KeyboardCueNode( {
       createKeyNode: TextKeyNode.space,
       //TODO https://github.com/phetsims/calculus-grapher/issues/125 i18n
       stringProperty: new StringProperty( 'to toggle mode' ),
-      visibleProperty: cueIsVisibleProperty
+      visibleProperty: DerivedProperty.and(
+        [ this.curveManipulator.focusedProperty, this.curveManipulator.isKeyboardCueEnabledProperty ] )
     } );
     this.curveManipulator.boundsProperty.link( bounds => {
       curveManipulatorCueNode.centerX = bounds.centerX;

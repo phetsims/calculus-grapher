@@ -45,6 +45,10 @@ export default class CurveDragListener extends SoundRichDragListener {
     // Update whichever curve is currently interactive.
     const update = ( isEventFromPDOM: boolean, viewPoint: Vector2 ): void => {
 
+      if ( isEventFromPDOM ) {
+        curveManipulator.isKeyboardCueEnabledProperty.value = false;
+      }
+
       // Current modelPosition
       const modelPosition = chartTransform.viewToModelPosition( viewPoint );
 

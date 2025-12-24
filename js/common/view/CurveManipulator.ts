@@ -43,7 +43,10 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
   public readonly positionProperty: Property<Vector2>;
 
   // Whether the manipulator is changing the curve while it is being dragged.
-  public readonly isChangingCurveProperty;
+  public readonly isChangingCurveProperty: Property<boolean>;
+
+  // Whether the associated KeyboardCueNode is visible when the manipulator gets focus.
+  public readonly isKeyboardCueEnabledProperty: Property<boolean>;
 
   public static readonly HOTKEY_DATA = new HotkeyData( {
     keys: [ 'space', 'enter' ],
@@ -93,6 +96,11 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
       phetioReadOnly: true
     } );
 
+    this.isKeyboardCueEnabledProperty = new BooleanProperty( true, {
+      tandem: tandem.createTandem( 'isKeyboardCueEnabledProperty' ),
+      phetioReadOnly: true
+    } );
+
     this.positionProperty.link( position => {
       this.center = chartTransform.modelToViewPosition( position );
     } );
@@ -136,6 +144,7 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
   public reset(): void {
     this.positionProperty.reset();
     this.isChangingCurveProperty.reset();
+    this.isKeyboardCueEnabledProperty.reset();
   }
 }
 
