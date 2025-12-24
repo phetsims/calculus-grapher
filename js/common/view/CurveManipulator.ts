@@ -130,7 +130,6 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
       tandem: tandem.createTandem( 'keyboardListener' ),
       keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulator.HOTKEY_DATA ] ),
       fire: ( event, keysPressed ) => {
-        phet.log && phet.log( `CurveManipulator keysPressed=${keysPressed}` );
         if ( this.isChangingCurveProperty.value ) {
           this.isChangingCurveProperty.value = false;
           sharedSoundPlayers.get( 'checkboxUnchecked' ).play();
