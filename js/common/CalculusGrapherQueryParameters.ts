@@ -169,7 +169,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   // Enables the arrows that cue the user to drag the curve.
   cueingArrowsEnabled: {
     type: 'boolean',
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Should we get rid of cueing arrows?
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Does curve manipulator make cueing arrows unnecessary?
     // defaultValue: true
     defaultValue: false
   }
