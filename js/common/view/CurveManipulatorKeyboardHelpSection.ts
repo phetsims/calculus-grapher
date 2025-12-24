@@ -19,7 +19,13 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
     const rows = [
 
       // Toggle edit mode
-      KeyboardHelpSectionRow.fromHotkeyData( CurveManipulator.HOTKEY_DATA )
+      KeyboardHelpSectionRow.fromHotkeyData( CurveManipulator.HOTKEY_DATA, {
+        labelWithIconOptions: {
+          labelOptions: {
+            lineWrap: 200
+          }
+        }
+      } )
     ];
 
     // 'Curve Handle' title
