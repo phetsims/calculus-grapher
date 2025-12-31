@@ -1,7 +1,7 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveDragListener is the drag listener for manipulating a transformable curve by dragging the CurveManipulator.
+ * CurveDragListener is the drag listener for manipulating a transformable curve by dragging the CurveManipulatorNode.
  * It supports both pointer and keyboard dragging, with sound feedback.
  *
  * @author Martin Veillette
@@ -19,7 +19,7 @@ import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragList
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import CurveManipulator from './CurveManipulator.js';
+import CurveManipulatorNode from './CurveManipulatorNode.js';
 import TransformedCurveNode from './TransformedCurveNode.js';
 
 // Minimum x distance between drag points when drawing in FREEFORM mode.
@@ -29,7 +29,7 @@ const FREEFORM_MIN_DX = 0.1;
 export default class CurveDragListener extends SoundRichDragListener {
 
   public constructor(
-    curveManipulator: CurveManipulator,
+    curveManipulator: CurveManipulatorNode,
     interactiveCurveNodeProperty: TReadOnlyProperty<TransformedCurveNode>,
     chartTransform: ChartTransform,
     curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,

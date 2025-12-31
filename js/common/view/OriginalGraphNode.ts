@@ -44,7 +44,7 @@ import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
 import CurveDragListener from './CurveDragListener.js';
-import CurveManipulator from './CurveManipulator.js';
+import CurveManipulatorNode from './CurveManipulatorNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
@@ -69,7 +69,7 @@ export default class OriginalGraphNode extends GraphNode {
   private readonly showOriginalCurveProperty: Property<boolean>;
 
   // Draggable that is used to manipulate the curve.
-  private readonly curveManipulator: CurveManipulator;
+  private readonly curveManipulatorNode: CurveManipulatorNode;
 
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
@@ -169,16 +169,16 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Curve manipulator
-    this.curveManipulator = new CurveManipulator( originalCurve, predictCurve, model.predictSelectedProperty,
-      this.chartTransform, options.tandem.createTandem( 'curveManipulator' ) );
+    this.curveManipulatorNode = new CurveManipulatorNode( originalCurve, predictCurve, model.predictSelectedProperty,
+      this.chartTransform, options.tandem.createTandem( 'curveManipulatorNode' ) );
 
     // Cue for toggling curve manipulator between modes.
     const curveManipulatorCueNode = new KeyboardCueNode( {
       createKeyNode: TextKeyNode.space,
       stringProperty: CalculusGrapherFluent.curveManipulator.keyboardCueStringProperty,
-      visibleProperty: DerivedProperty.and( [ this.curveManipulator.focusedProperty, this.curveManipulator.isKeyboardCueEnabledProperty ] )
+      visibleProperty: DerivedProperty.and( [ this.curveManipulatorNode.focusedProperty, this.curveManipulatorNode.isKeyboardCueEnabledProperty ] )
     } );
-    this.curveManipulator.boundsProperty.link( bounds => {
+    this.curveManipulatorNode.boundsProperty.link( bounds => {
       curveManipulatorCueNode.centerX = bounds.centerX;
       curveManipulatorCueNode.top = bounds.bottom + 10;
     } );
@@ -203,7 +203,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveLayer.addChild( this.predictCurveNode );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
-    this.addChild( this.curveManipulator );
+    this.addChild( this.curveManipulatorNode );
     this.addChild( curveManipulatorCueNode );
     this.addChild( labeledPointsNode );
     this.addChild( showOriginalCurveCheckbox );
@@ -213,18 +213,18 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveManipulator responsible for adding CurveDragListener.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveManipulatorNode responsible for adding CurveDragListener.
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveManipulator.
     // Pointer and keyboard support for moving curveManipulator and manipulating the curve.
     const curveDragListener = new CurveDragListener(
-      this.curveManipulator,
+      this.curveManipulatorNode,
       interactiveCurveNodeProperty,
       this.chartTransform,
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       options.tandem // CurveDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
-    this.curveManipulator.addInputListener( curveDragListener );
+    this.curveManipulatorNode.addInputListener( curveDragListener );
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.cursor = 'pointer';
@@ -244,7 +244,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Focus order
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
-      this.curveManipulator,
+      this.curveManipulatorNode,
       showOriginalCurveCheckbox,
       this.eyeToggleButton
     ];
@@ -254,7 +254,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.originalCurveNode.reset();
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
-    this.curveManipulator.reset();
+    this.curveManipulatorNode.reset();
     super.reset();
   }
 

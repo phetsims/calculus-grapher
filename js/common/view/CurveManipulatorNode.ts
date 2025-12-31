@@ -1,8 +1,8 @@
 // Copyright 2025, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/125 Should CurveManipulator be separated into CurveManipulator (model) and CurveManipulatorNode (view)?
+//TODO https://github.com/phetsims/calculus-grapher/issues/125 Should CurveManipulatorNode be separated into CurveManipulatorNode (model) and CurveManipulatorNode (view)?
 /**
- * CurveManipulator is a draggable point used to manipulate the curve.
+ * CurveManipulatorNode is a draggable point used to manipulate the curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -36,7 +36,7 @@ const DEFAULT_POSITION = new Vector2(
   CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE.getCenter()
 );
 
-export default class CurveManipulator extends InteractiveHighlighting( ShadedSphereNode ) {
+export default class CurveManipulatorNode extends InteractiveHighlighting( ShadedSphereNode ) {
 
   // Position of the cursor, in model coordinates.
   public readonly positionProperty: Property<Vector2>;
@@ -128,7 +128,7 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
     // Toggle between positioning the manipulator and modifying the curve.
     this.addInputListener( new KeyboardListener( {
       tandem: tandem.createTandem( 'keyboardListener' ),
-      keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulator.HOTKEY_DATA ] ),
+      keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulatorNode.HOTKEY_DATA ] ),
       fire: ( event, keysPressed ) => {
         if ( this.isChangingCurveProperty.value ) {
           this.isChangingCurveProperty.value = false;
@@ -149,4 +149,4 @@ export default class CurveManipulator extends InteractiveHighlighting( ShadedSph
   }
 }
 
-calculusGrapher.register( 'CurveManipulator', CurveManipulator );
+calculusGrapher.register( 'CurveManipulatorNode', CurveManipulatorNode );

@@ -10,7 +10,7 @@ import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/Keybo
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CurveManipulator from './CurveManipulator.js';
+import CurveManipulatorNode from './CurveManipulatorNode.js';
 
 export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSection {
 
@@ -19,7 +19,7 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
     const rows = [
 
       // Toggle edit mode
-      KeyboardHelpSectionRow.fromHotkeyData( CurveManipulator.HOTKEY_DATA, {
+      KeyboardHelpSectionRow.fromHotkeyData( CurveManipulatorNode.HOTKEY_DATA, {
         labelWithIconOptions: {
           labelOptions: {
             lineWrap: 200
