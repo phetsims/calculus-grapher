@@ -293,7 +293,7 @@ type StringsType = {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
-    'curveManipulator': {
+    'curveManipulatorNode': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };

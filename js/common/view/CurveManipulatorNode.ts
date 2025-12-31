@@ -73,8 +73,8 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
       isDisposable: false,
       mainColor: mainColorProperty,
       cursor: 'pointer',
-      accessibleName: CalculusGrapherFluent.a11y.curveManipulator.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
 

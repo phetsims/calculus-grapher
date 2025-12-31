@@ -212,9 +212,9 @@ a11y:
   areaUnderCurveScrubber:
     accessibleName:     Area Under Curve Scrubber
     accessibleHelpText: TODO.areaUnderCurveScrubber.accessibleHelpText
-  curveManipulator:
+  curveManipulatorNode:
     accessibleName:     Curve Manipulator
-    accessibleHelpText: TODO.curveManipulator.accessibleHelpText
+    accessibleHelpText: TODO.curveManipulatorNode.accessibleHelpText
   headings:
     graphAreas:                Graph Areas
     curveManipulationControls: Curve Manipulation Controls

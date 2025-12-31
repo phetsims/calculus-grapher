@@ -574,12 +574,12 @@
         "value": "TODO.areaUnderCurveScrubber.accessibleHelpText"
       }
     },
-    "curveManipulator": {
+    "curveManipulatorNode": {
       "accessibleName": {
         "value": "Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "TODO.curveManipulator.accessibleHelpText"
+        "value": "TODO.curveManipulatorNode.accessibleHelpText"
       }
     },
     "headings": {
