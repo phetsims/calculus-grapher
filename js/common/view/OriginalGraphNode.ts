@@ -43,7 +43,7 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
-import CurveDragListener from './CurveDragListener.js';
+import CurveManipulatorDragListener from './CurveManipulatorDragListener.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
@@ -213,16 +213,16 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
     );
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveManipulatorNode responsible for adding CurveDragListener.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveManipulatorNode responsible for adding CurveManipulatorDragListener.
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveManipulator.
     // Pointer and keyboard support for moving curveManipulator and manipulating the curve.
-    const curveDragListener = new CurveDragListener(
+    const curveDragListener = new CurveManipulatorDragListener(
       this.curveManipulatorNode,
       interactiveCurveNodeProperty,
       this.chartTransform,
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
-      options.tandem // CurveDragListener will create tandem.dragListener and tandem.keyboardDragListener.
+      options.tandem // CurveManipulatorDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
     this.curveManipulatorNode.addInputListener( curveDragListener );
 

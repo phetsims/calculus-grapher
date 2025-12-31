@@ -1,7 +1,7 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveDragListener is the drag listener for manipulating a transformable curve by dragging the CurveManipulatorNode.
+ * CurveManipulatorDragListener is the drag listener for manipulating a transformable curve by dragging the CurveManipulatorNode.
  * It supports both pointer and keyboard dragging, with sound feedback.
  *
  * @author Martin Veillette
@@ -26,10 +26,10 @@ import TransformedCurveNode from './TransformedCurveNode.js';
 // See https://github.com/phetsims/calculus-grapher/issues/297
 const FREEFORM_MIN_DX = 0.1;
 
-export default class CurveDragListener extends SoundRichDragListener {
+export default class CurveManipulatorDragListener extends SoundRichDragListener {
 
   public constructor(
-    curveManipulator: CurveManipulatorNode,
+    curveManipulatorNode: CurveManipulatorNode,
     interactiveCurveNodeProperty: TReadOnlyProperty<TransformedCurveNode>,
     chartTransform: ChartTransform,
     curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
@@ -46,13 +46,13 @@ export default class CurveDragListener extends SoundRichDragListener {
     const update = ( isEventFromPDOM: boolean, viewPoint: Vector2 ): void => {
 
       if ( isEventFromPDOM ) {
-        curveManipulator.isKeyboardCueEnabledProperty.value = false;
+        curveManipulatorNode.isKeyboardCueEnabledProperty.value = false;
       }
 
       // Current modelPosition
       const modelPosition = chartTransform.viewToModelPosition( viewPoint );
 
-      if ( !isEventFromPDOM || curveManipulator.isChangingCurveProperty.value ) {
+      if ( !isEventFromPDOM || curveManipulatorNode.isChangingCurveProperty.value ) {
         if ( curveManipulationModeProperty.value === CurveManipulationMode.FREEFORM ) {
 
           // Do not update the curve model if the drag points in (FREEFORM mode) are too close to each another,
@@ -72,7 +72,7 @@ export default class CurveDragListener extends SoundRichDragListener {
             penultimatePosition = modelPosition;
 
             // Move the curve cursor to the new position.
-            curveManipulator.positionProperty.value = modelPosition;
+            curveManipulatorNode.positionProperty.value = modelPosition;
           }
         }
         else { // For any mode other than FREEFORM...
@@ -84,20 +84,20 @@ export default class CurveDragListener extends SoundRichDragListener {
             modelPosition );
 
           // Move the curve cursor to the new position.
-          curveManipulator.positionProperty.value = modelPosition;
+          curveManipulatorNode.positionProperty.value = modelPosition;
         }
       }
       else {
 
         // Move the curve cursor to the new position without modifying the curve.
-        curveManipulator.positionProperty.value = modelPosition;
+        curveManipulatorNode.positionProperty.value = modelPosition;
       }
     };
 
     super( {
 
       // Position in view coordinates because we have not provided the transform option.
-      positionProperty: new Vector2Property( chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) ),
+      positionProperty: new Vector2Property( chartTransform.modelToViewPosition( curveManipulatorNode.positionProperty.value ) ),
 
       // Drag bounds are in view coordinates because we have not provided the transform option.
       dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
@@ -131,12 +131,12 @@ export default class CurveDragListener extends SoundRichDragListener {
     } );
 
     // When isChangingCurveProperty becomes true, immediately update the curve.
-    curveManipulator.isChangingCurveProperty.link( isChangingCurve => {
+    curveManipulatorNode.isChangingCurveProperty.link( isChangingCurve => {
       if ( isChangingCurve ) {
-        update( true, chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) );
+        update( true, chartTransform.modelToViewPosition( curveManipulatorNode.positionProperty.value ) );
       }
     } );
   }
 }
 
-calculusGrapher.register( 'CurveDragListener', CurveDragListener );
+calculusGrapher.register( 'CurveManipulatorDragListener', CurveManipulatorDragListener );

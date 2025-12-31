@@ -1,6 +1,5 @@
 // Copyright 2025, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/125 Should CurveManipulatorNode be separated into CurveManipulatorNode (model) and CurveManipulatorNode (view)?
 /**
  * CurveManipulatorNode is a draggable point used to manipulate the curve.
  *
@@ -20,15 +19,13 @@ import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibilit
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
-import KeyboardListener from '../../../../scenery/js/listeners/KeyboardListener.js';
-import sharedSoundPlayers from '../../../../tambo/js/sharedSoundPlayers.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
+import CurveManipulatorKeyboardListener from './CurveManipulatorKeyboardListener.js';
 
 // The default position is at the center of the graph.
 const DEFAULT_POSITION = new Vector2(
@@ -46,12 +43,6 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
   // Whether the associated KeyboardCueNode is visible when the manipulator gets focus.
   public readonly isKeyboardCueEnabledProperty: Property<boolean>;
-
-  public static readonly HOTKEY_DATA = new HotkeyData( {
-    keys: [ 'space', 'enter' ],
-    repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
-  } );
 
   public constructor(
     originalCurve: TransformedCurve,
@@ -126,20 +117,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
     this.isChangingCurveProperty.link( isChangingCurve => focusHighlightPath.setDashed( !isChangingCurve ) );
 
     // Toggle between positioning the manipulator and modifying the curve.
-    this.addInputListener( new KeyboardListener( {
-      tandem: tandem.createTandem( 'keyboardListener' ),
-      keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulatorNode.HOTKEY_DATA ] ),
-      fire: ( event, keysPressed ) => {
-        if ( this.isChangingCurveProperty.value ) {
-          this.isChangingCurveProperty.value = false;
-          sharedSoundPlayers.get( 'checkboxUnchecked' ).play();
-        }
-        else {
-          this.isChangingCurveProperty.value = true;
-          sharedSoundPlayers.get( 'checkboxChecked' ).play();
-        }
-      }
-    } ) );
+    this.addInputListener( new CurveManipulatorKeyboardListener( this.isChangingCurveProperty, tandem.createTandem( 'keyboardListener' ) ) );
   }
 
   public reset(): void {
