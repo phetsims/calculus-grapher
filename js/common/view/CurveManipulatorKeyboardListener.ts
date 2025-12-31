@@ -1,8 +1,8 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * CurveManipulatorKeyboardListener switches the curve manipulator between modes, which determines whether
- * moving the manipulator changes the curve or not.
+ * CurveManipulatorKeyboardListener toggle keyboard manipulation of the curve on and off.
+ * When keyboard manipulation is on, moving the manipulator also changes the curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -24,17 +24,17 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
     keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
-  public constructor( isChangingCurveProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( keyboardCurveManipulationEnabledProperty: Property<boolean>, tandem: Tandem ) {
     super( {
       tandem: tandem,
       keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulatorKeyboardListener.HOTKEY_DATA ] ),
       fire: ( event, keysPressed ) => {
-        if ( isChangingCurveProperty.value ) {
-          isChangingCurveProperty.value = false;
+        if ( keyboardCurveManipulationEnabledProperty.value ) {
+          keyboardCurveManipulationEnabledProperty.value = false;
           sharedSoundPlayers.get( 'checkboxUnchecked' ).play();
         }
         else {
-          isChangingCurveProperty.value = true;
+          keyboardCurveManipulationEnabledProperty.value = true;
           sharedSoundPlayers.get( 'checkboxChecked' ).play();
         }
       }

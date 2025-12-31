@@ -13,6 +13,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import TModel from '../../../../joist/js/TModel.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -23,6 +24,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
+import CurveManipulator from './CurveManipulator.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import GraphSet from './GraphSet.js';
 import GraphType from './GraphType.js';
@@ -32,7 +34,6 @@ import LabeledPoint from './LabeledPoint.js';
 import ReferenceLine from './ReferenceLine.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 import TransformedCurve from './TransformedCurve.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
 
@@ -96,6 +97,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
 
   // Model elements for the various tools
+  public readonly curveManipulator: CurveManipulator;
   public readonly referenceLine: ReferenceLine;
   public readonly labeledPoints: LabeledPoint[];
   public readonly labeledLines: LabeledLine[];
@@ -190,6 +192,9 @@ export default class CalculusGrapherModel implements TModel {
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
 
+    this.curveManipulator = new CurveManipulator( this.originalCurve, this.predictCurve, this.predictSelectedProperty,
+      this.toolsTandem.createTandem( 'curveManipulator' ) );
+
     this.referenceLine = new ReferenceLine(
       this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
       this.toolsTandem.createTandem( 'referenceLine' )
@@ -241,6 +246,7 @@ export default class CalculusGrapherModel implements TModel {
     this.gridVisibleProperty.reset();
 
     // Reset tools
+    this.curveManipulator.reset();
     this.referenceLine.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.labeledLines, because they are configured only via PhET-iO.

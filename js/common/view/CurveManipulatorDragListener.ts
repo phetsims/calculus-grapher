@@ -19,7 +19,7 @@ import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragList
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import CurveManipulatorNode from './CurveManipulatorNode.js';
+import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurveNode from './TransformedCurveNode.js';
 
 // Minimum x distance between drag points when drawing in FREEFORM mode.
@@ -29,7 +29,7 @@ const FREEFORM_MIN_DX = 0.1;
 export default class CurveManipulatorDragListener extends SoundRichDragListener {
 
   public constructor(
-    curveManipulatorNode: CurveManipulatorNode,
+    curveManipulator: CurveManipulator,
     interactiveCurveNodeProperty: TReadOnlyProperty<TransformedCurveNode>,
     chartTransform: ChartTransform,
     curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
@@ -45,14 +45,16 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
     // Update whichever curve is currently interactive.
     const update = ( isEventFromPDOM: boolean, viewPoint: Vector2 ): void => {
 
+      // When the manipulator is first moved with the keyboard, disable the keyboard cue so
+      // that we do not see it until Reset All is pressed.
       if ( isEventFromPDOM ) {
-        curveManipulatorNode.isKeyboardCueEnabledProperty.value = false;
+        curveManipulator.keyboardCueEnabledProperty.value = false;
       }
 
       // Current modelPosition
       const modelPosition = chartTransform.viewToModelPosition( viewPoint );
 
-      if ( !isEventFromPDOM || curveManipulatorNode.isChangingCurveProperty.value ) {
+      if ( !isEventFromPDOM || curveManipulator.keyboardCurveManipulationEnabledProperty.value ) {
         if ( curveManipulationModeProperty.value === CurveManipulationMode.FREEFORM ) {
 
           // Do not update the curve model if the drag points in (FREEFORM mode) are too close to each another,
@@ -72,7 +74,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
             penultimatePosition = modelPosition;
 
             // Move the curve cursor to the new position.
-            curveManipulatorNode.positionProperty.value = modelPosition;
+            curveManipulator.positionProperty.value = modelPosition;
           }
         }
         else { // For any mode other than FREEFORM...
@@ -84,20 +86,20 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
             modelPosition );
 
           // Move the curve cursor to the new position.
-          curveManipulatorNode.positionProperty.value = modelPosition;
+          curveManipulator.positionProperty.value = modelPosition;
         }
       }
       else {
 
         // Move the curve cursor to the new position without modifying the curve.
-        curveManipulatorNode.positionProperty.value = modelPosition;
+        curveManipulator.positionProperty.value = modelPosition;
       }
     };
 
     super( {
 
       // Position in view coordinates because we have not provided the transform option.
-      positionProperty: new Vector2Property( chartTransform.modelToViewPosition( curveManipulatorNode.positionProperty.value ) ),
+      positionProperty: new Vector2Property( chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) ),
 
       // Drag bounds are in view coordinates because we have not provided the transform option.
       dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
@@ -130,10 +132,11 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       tandem: tandem
     } );
 
-    // When isChangingCurveProperty becomes true, immediately update the curve.
-    curveManipulatorNode.isChangingCurveProperty.link( isChangingCurve => {
-      if ( isChangingCurve ) {
-        update( true, chartTransform.modelToViewPosition( curveManipulatorNode.positionProperty.value ) );
+    // When keyboard manipulation of the curve becomes enabled, immediately update the curve at the
+    // manipulator's current position.
+    curveManipulator.keyboardCurveManipulationEnabledProperty.link( keyboardCurveManipulationEnabled => {
+      if ( keyboardCurveManipulationEnabled ) {
+        update( true, chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) );
       }
     } );
   }

@@ -169,14 +169,14 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Curve manipulator
-    this.curveManipulatorNode = new CurveManipulatorNode( originalCurve, predictCurve, model.predictSelectedProperty,
+    this.curveManipulatorNode = new CurveManipulatorNode( model.curveManipulator, model.predictSelectedProperty,
       this.chartTransform, options.tandem.createTandem( 'curveManipulatorNode' ) );
 
     // Cue for toggling curve manipulator between modes.
     const curveManipulatorCueNode = new KeyboardCueNode( {
       createKeyNode: TextKeyNode.space,
       stringProperty: CalculusGrapherFluent.curveManipulator.keyboardCueStringProperty,
-      visibleProperty: DerivedProperty.and( [ this.curveManipulatorNode.focusedProperty, this.curveManipulatorNode.isKeyboardCueEnabledProperty ] )
+      visibleProperty: DerivedProperty.and( [ this.curveManipulatorNode.focusedProperty, model.curveManipulator.keyboardCueEnabledProperty ] )
     } );
     this.curveManipulatorNode.boundsProperty.link( bounds => {
       curveManipulatorCueNode.centerX = bounds.centerX;
@@ -217,7 +217,7 @@ export default class OriginalGraphNode extends GraphNode {
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveManipulator.
     // Pointer and keyboard support for moving curveManipulator and manipulating the curve.
     const curveDragListener = new CurveManipulatorDragListener(
-      this.curveManipulatorNode,
+      model.curveManipulator,
       interactiveCurveNodeProperty,
       this.chartTransform,
       curveManipulationProperties.modeProperty,
@@ -228,7 +228,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.cursor = 'pointer';
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 createForwardingListener has no PhET-iO support.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/125 createForwardingListener has no PhET-iO support, so instrument inputEnabledProperty.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => curveDragListener.dragListener.press( event ) ) );
 
     // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
@@ -254,7 +254,6 @@ export default class OriginalGraphNode extends GraphNode {
     this.originalCurveNode.reset();
     this.predictCurveNode.reset();
     this.showOriginalCurveProperty.reset();
-    this.curveManipulatorNode.reset();
     super.reset();
   }
 
