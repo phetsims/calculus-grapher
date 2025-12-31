@@ -51,6 +51,8 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
     super( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, options );
 
+    this.addLinkedElement( curveManipulator );
+
     // Move to the position of the curve manipulator.
     curveManipulator.positionProperty.link( position => {
       this.center = chartTransform.modelToViewPosition( position );
