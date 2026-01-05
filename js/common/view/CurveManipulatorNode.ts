@@ -53,16 +53,11 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
     this.addLinkedElement( curveManipulator );
 
-    // Move to the position of the curve manipulator.
-    curveManipulator.positionProperty.link( position => {
-      this.center = chartTransform.modelToViewPosition( position );
-    } );
-
-    const focusHighlightPath = new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) );
+    const focusHighlightPath = new HighlightPath( Shape.bounds( this.localBounds.dilated( 5 ) ) );
     this.setFocusHighlight( focusHighlightPath );
 
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 Do we need a separate interactive highlight?
-    const interactiveHighlightPath = new HighlightPath( Shape.bounds( this.bounds.dilated( 5 ) ) );
+    const interactiveHighlightPath = new HighlightPath( Shape.bounds( this.localBounds.dilated( 5 ) ) );
     this.setInteractiveHighlight( interactiveHighlightPath );
 
     // Change the focus highlight lineDash to indicate whether moving the manipulator with the keyboard will also change the curve.
@@ -81,6 +76,11 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
     // Toggle between positioning the manipulator and modifying the curve.
     this.addInputListener( new CurveManipulatorKeyboardListener( curveManipulator.keyboardCurveManipulationEnabledProperty,
       tandem.createTandem( 'keyboardListener' ) ) );
+
+    // Move to the position of the curve manipulator.
+    curveManipulator.positionProperty.link( position => {
+      this.center = chartTransform.modelToViewPosition( position );
+    } );
   }
 }
 
