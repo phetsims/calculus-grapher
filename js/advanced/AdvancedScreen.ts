@@ -14,7 +14,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
-import CalculusGrapherSymbols from '../common/CalculusGrapherSymbols.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherKeyboardHelpContent from '../common/view/CalculusGrapherKeyboardHelpContent.js';
@@ -67,9 +66,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
-      screenButtonsHelpText: CalculusGrapherFluent.a11y.advancedScreen.screenButtonsHelpText.createProperty( {
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-      } ),
+      screenButtonsHelpText: CalculusGrapherFluent.a11y.advancedScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

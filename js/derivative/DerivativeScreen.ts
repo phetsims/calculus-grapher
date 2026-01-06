@@ -13,7 +13,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
-import CalculusGrapherSymbols from '../common/CalculusGrapherSymbols.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
 import CalculusGrapherKeyboardHelpContent from '../common/view/CalculusGrapherKeyboardHelpContent.js';
@@ -43,9 +42,7 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createDerivativeScreenIcon(),
       createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
-      screenButtonsHelpText: CalculusGrapherFluent.a11y.derivativeScreen.screenButtonsHelpText.createProperty( {
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-      } ),
+      screenButtonsHelpText: CalculusGrapherFluent.a11y.derivativeScreen.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );
   }

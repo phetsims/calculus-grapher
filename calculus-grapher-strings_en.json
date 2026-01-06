@@ -91,7 +91,7 @@
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate f of {$variable} and explore its derivative graph in real time."
+        "value": "Flexibly manipulate the graph of a function and explore its first derivative curve in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -110,7 +110,7 @@
     },
     "integralScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate f of {$variable} and explore its integral graph in real time."
+        "value": "Flexibly manipulate the graph of a function and explore its integral curve in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -129,7 +129,7 @@
     },
     "advancedScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate f of {$variable} and explore both its derivative and integral graphs with or without discontinuities."
+        "value": "Flexibly manipulate the graph of a function and explore its first derivative and integral curves, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -148,7 +148,7 @@
     },
     "labScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate f of {$variable} and explore its first and second derivative graphs, and its integral graph with or without discontinuities"
+        "value": "Flexibly manipulate the graph of a function and explore its first derivative, second derivative, and integral curves, with or without discontinuities"
       },
       "screenSummary": {
         "playArea": {
@@ -173,10 +173,10 @@
         "value": "Show or hide grid lines on all graphs."
       },
       "accessibleContextResponseChecked": {
-        "value": "shown"
+        "value": "Grid lines shown."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "hidden"
+        "value": "Grid lines hidden."
       }
     },
     "smoothButton": {
@@ -220,10 +220,10 @@
         "value": "Show or hide curve for this graph area."
       },
       "accessibleContextResponseOff": {
-        "value": "TODO.eyeToggleButton.accessibleContextResponseOff"
+        "value": "Curve shown."
       },
       "accessibleContextResponseOn": {
-        "value": "TODO.eyeToggleButton.accessibleContextResponseOn"
+        "value": "Curve hidden."
       }
     },
     "yZoomButtonGroup": {
@@ -432,7 +432,7 @@
       "integralRadioButton": {
         "advanced": {
           "accessibleName": {
-            "value": "Integral and Original Graph Set"
+            "value": "Primary and Integral Graph Set"
           },
           "accessibleHelpText": {
             "value": "TODO.integralRadioButton.accessibleHelpText"
@@ -440,7 +440,7 @@
         },
         "lab": {
           "accessibleName": {
-            "value": "Integral, Original, and First Derivative Graph Set"
+            "value": "Primary, Integral, and First Derivative Graph Set"
           },
           "accessibleHelpText": {
             "value": "TODO.integralRadioButton.accessibleHelpText"
@@ -449,7 +449,7 @@
       },
       "derivativeRadioButton": {
         "accessibleName": {
-          "value": "Original and First Derivative Graph Set"
+          "value": "Primary and First Derivative Graph Set"
         },
         "accessibleHelpText": {
           "value": "TODO.derivativeRadioButton.accessibleHelpText"
@@ -457,7 +457,7 @@
       },
       "secondDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Original, First Derivative, and Second Derivative Graph Set"
+          "value": "Primary, First Derivative, and Second Derivative Graph Set"
         },
         "accessibleHelpText": {
           "value": "TODO.secondDerivativeRadioButton.accessibleHelpText"
@@ -529,7 +529,7 @@
       },
       "predictCurveRadioButton": {
         "accessibleName": {
-          "value": "Predict Curve"
+          "value": "Predict"
         },
         "accessibleHelpText": {
           "value": "Manipulate prediction curve in primary graph area."
@@ -544,10 +544,10 @@
         "value": "Show or hide f of {$variable} concurrent with prediction curve."
       },
       "accessibleContextResponseChecked": {
-        "value": "f of {$variable} shown with prediction"
+        "value": "f of {$variable} shown."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "f of {$variable} hidden"
+        "value": "f of {$variable} hidden."
       }
     },
     "tangentScrubber": {

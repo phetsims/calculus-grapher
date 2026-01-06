@@ -62,8 +62,8 @@ a11y:
   gridCheckbox:
     accessibleName:                     Coordinate Grid Lines
     accessibleHelpText:                 Show or hide grid lines on all graphs.
-    accessibleContextResponseChecked:   shown
-    accessibleContextResponseUnchecked: hidden
+    accessibleContextResponseChecked:   Grid lines shown.
+    accessibleContextResponseUnchecked: Grid lines hidden.
   smoothButton:
     accessibleName:            Smooth
     accessibleHelpText:        TODO.smoothButton.accessibleHelpText
@@ -79,8 +79,8 @@ a11y:
   eyeToggleButton:
     accessibleName:               Curve Visibility
     accessibleHelpText:           Show or hide curve for this graph area.
-    accessibleContextResponseOff: TODO.eyeToggleButton.accessibleContextResponseOff
-    accessibleContextResponseOn:  TODO.eyeToggleButton.accessibleContextResponseOn
+    accessibleContextResponseOff: Curve shown.
+    accessibleContextResponseOn:  Curve hidden.
   yZoomButtonGroup:
     zoomInButton:
       accessibleName:     Zoom In y Axis
@@ -201,8 +201,8 @@ a11y:
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
-    accessibleContextResponseChecked:   f of {$variable} shown
-    accessibleContextResponseUnchecked: f of {$variable} hidden
+    accessibleContextResponseChecked:   f of {$variable} shown.
+    accessibleContextResponseUnchecked: f of {$variable} hidden.
   tangentScrubber:
     accessibleName:     Tangent Scrubber
     accessibleHelpText: Move tangent line along curve with scrubber to explore relationship between f of {$variable} and other graph areas with {$variable} values aligned.
