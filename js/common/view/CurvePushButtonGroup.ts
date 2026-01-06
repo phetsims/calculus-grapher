@@ -8,6 +8,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
@@ -15,6 +16,7 @@ import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import SmoothButton from './SmoothButton.js';
 import UndoButton from './UndoButton.js';
@@ -30,6 +32,10 @@ export default class CurvePushButtonGroup extends VBox {
     // See https://github.com/phetsims/calculus-grapher/issues/219
     const undoButton = new UndoButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'undoButton' ) );
 
+    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponsePrimaryCurve.createProperty( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    } );
+
     // Create an eraser Button. Disabling this button when there's nothing to erase is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
     const eraserButton = new EraserButton( {
@@ -38,7 +44,12 @@ export default class CurvePushButtonGroup extends VBox {
       xMargin: 10,
       accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
-      accessibleContextResponse: CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponseStringProperty,
+      accessibleContextResponse: new DerivedStringProperty( [
+        predictSelectedProperty,
+        CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponsePredictCurveStringProperty,
+        accessibleContextResponsePrimaryCurveStringProperty
+      ], ( predictSelected, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
+        predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem.createTandem( 'eraserButton' )
     } );
 

@@ -104,7 +104,8 @@ type StringsType = {
     'eraserButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseStringProperty': LocalizedStringProperty;
+      'accessibleContextResponsePrimaryCurveStringProperty': LocalizedStringProperty;
+      'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
     };
     'undoButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;

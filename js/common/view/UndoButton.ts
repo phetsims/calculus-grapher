@@ -36,8 +36,7 @@ export default class UndoButton extends ReturnButton {
           CalculusGrapherFluent.a11y.undoButton.accessibleContextResponsePredictCurveStringProperty,
           accessibleContextResponsePrimaryCurveStringProperty
         ], ( predictSelected, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
-          predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve
-      ),
+          predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem
     } );
   }

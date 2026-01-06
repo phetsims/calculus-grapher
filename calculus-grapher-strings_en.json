@@ -197,8 +197,11 @@
       "accessibleHelpText": {
         "value": "Reset curve to y equals zero but maintain curve manipulation settings."
       },
-      "accessibleContextResponse": {
-        "value": "TODO.eraserButton.accessibleContextResponse"
+      "accessibleContextResponsePrimaryCurve": {
+        "value": "f of {$variable} reset."
+      },
+      "accessibleContextResponsePredictCurve": {
+        "value": "Prediction curve reset."
       }
     },
     "undoButton": {

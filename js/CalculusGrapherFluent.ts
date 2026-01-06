@@ -83,7 +83,8 @@ addToMapIfDefined( 'a11y_smoothButton_accessibleHelpText', 'a11y.smoothButton.ac
 addToMapIfDefined( 'a11y_smoothButton_accessibleContextResponse', 'a11y.smoothButton.accessibleContextResponseStringProperty' );
 addToMapIfDefined( 'a11y_eraserButton_accessibleName', 'a11y.eraserButton.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_eraserButton_accessibleHelpText', 'a11y.eraserButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_eraserButton_accessibleContextResponse', 'a11y.eraserButton.accessibleContextResponseStringProperty' );
+addToMapIfDefined( 'a11y_eraserButton_accessibleContextResponsePrimaryCurve', 'a11y.eraserButton.accessibleContextResponsePrimaryCurveStringProperty' );
+addToMapIfDefined( 'a11y_eraserButton_accessibleContextResponsePredictCurve', 'a11y.eraserButton.accessibleContextResponsePredictCurveStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleName', 'a11y.undoButton.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleHelpText', 'a11y.undoButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleContextResponsePrimaryCurve', 'a11y.undoButton.accessibleContextResponsePrimaryCurveStringProperty' );
@@ -289,7 +290,8 @@ const CalculusGrapherFluent = {
     eraserButton: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eraserButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.eraserButton.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eraserButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eraserButton.accessibleHelpTextStringProperty' ) ),
-      accessibleContextResponseStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eraserButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.eraserButton.accessibleContextResponseStringProperty' ) )
+      accessibleContextResponsePrimaryCurve: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_eraserButton_accessibleContextResponsePrimaryCurve', _.get( CalculusGrapherStrings, 'a11y.eraserButton.accessibleContextResponsePrimaryCurveStringProperty' ), [{"name":"variable"}] ),
+      accessibleContextResponsePredictCurveStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eraserButton_accessibleContextResponsePredictCurve', _.get( CalculusGrapherStrings, 'a11y.eraserButton.accessibleContextResponsePredictCurveStringProperty' ) )
     },
     undoButton: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_undoButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.undoButton.accessibleNameStringProperty' ) ),

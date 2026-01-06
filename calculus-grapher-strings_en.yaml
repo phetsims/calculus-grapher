@@ -71,7 +71,8 @@ a11y:
   eraserButton:
     accessibleName:            Erase Curve Manipulations
     accessibleHelpText:        Reset curve to y equals zero but maintain curve manipulation settings.
-    accessibleContextResponse: TODO.eraserButton.accessibleContextResponse
+    accessibleContextResponsePrimaryCurve: f of {$variable} reset.
+    accessibleContextResponsePredictCurve: Prediction curve reset.
   undoButton:
     accessibleName:            Undo
     accessibleHelpText:        Undo most recent curve manipulation.
