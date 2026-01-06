@@ -160,16 +160,16 @@ a11y:
     accessibleHelpText: TODO.graphSetRadioButtonGroup.accessibleHelpText
     integralRadioButton:
       advanced:
-        accessibleName:     Integral and Original Graph Set
+        accessibleName:     Primary and Integral Graph Set
         accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
       lab:
-        accessibleName:     Integral, Original, and First Derivative Graph Set
+        accessibleName:     Primary, Integral, and First Derivative Graph Set
         accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
     derivativeRadioButton:
-      accessibleName:     Original and First Derivative Graph Set
+      accessibleName:     Primary and First Derivative Graph Set
       accessibleHelpText: TODO.derivativeRadioButton.accessibleHelpText
     secondDerivativeRadioButton:
-      accessibleName:     Original, First Derivative, and Second Derivative Graph Set
+      accessibleName:     Primary, First Derivative, and Second Derivative Graph Set
       accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: TODO.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed
@@ -196,12 +196,12 @@ a11y:
       accessibleName:     f of {$variable}
       accessibleHelpText: Manipulate f of {$variable} in primary graph area.
     predictCurveRadioButton:
-      accessibleName:     Predict Curve
+      accessibleName:     Predict
       accessibleHelpText: Manipulate prediction curve in primary graph area.
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
-    accessibleContextResponseChecked:   f of {$variable} shown with prediction
+    accessibleContextResponseChecked:   f of {$variable} shown
     accessibleContextResponseUnchecked: f of {$variable} hidden
   tangentScrubber:
     accessibleName:     Tangent Scrubber
