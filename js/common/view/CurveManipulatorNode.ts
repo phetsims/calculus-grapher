@@ -63,7 +63,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
     // Change the focus highlight lineDash to indicate whether moving the manipulator with the keyboard will also change the curve.
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 Do we also need to modify the interactive highlight? The mode is not relevant for pointer.
     curveManipulator.keyboardCurveManipulationEnabledProperty.link(
-      keyboardCurveManipulationEnabled => focusHighlightPath.setDashed( !keyboardCurveManipulationEnabled ) );
+      keyboardCurveManipulationEnabled => focusHighlightPath.setDashed( keyboardCurveManipulationEnabled ) );
 
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 Is this desired behavior?
     // Whenever the manipulator gets focus, disable keyboard manipulation of the curve.
