@@ -64,8 +64,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       predictEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, options.hasSmoothButton,
-      options.tandem.createTandem( 'pushButtonGroup' ) );
+    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, predictSelectedProperty,
+      options.hasSmoothButton, options.tandem.createTandem( 'pushButtonGroup' ) );
 
     // assemble all the scenery nodes
     const contentNode = new VBox( {

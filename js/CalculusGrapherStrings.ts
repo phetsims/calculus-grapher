@@ -109,7 +109,8 @@ type StringsType = {
     'undoButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseStringProperty': LocalizedStringProperty;
+      'accessibleContextResponsePrimaryCurveStringProperty': LocalizedStringProperty;
+      'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
     };
     'eyeToggleButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;

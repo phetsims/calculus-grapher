@@ -75,7 +75,8 @@ a11y:
   undoButton:
     accessibleName:            Undo
     accessibleHelpText:        Undo most recent curve manipulation.
-    accessibleContextResponse: TODO.undoButton.accessibleContextResponse
+    accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable}.
+    accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve.
   eyeToggleButton:
     accessibleName:               Curve Visibility
     accessibleHelpText:           Show or hide curve for this graph area.

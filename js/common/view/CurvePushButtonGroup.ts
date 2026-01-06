@@ -22,11 +22,13 @@ import UndoButton from './UndoButton.js';
 export default class CurvePushButtonGroup extends VBox {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      hasSmoothButton: boolean, tandem: Tandem ) {
+                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      hasSmoothButton: boolean,
+                      tandem: Tandem ) {
 
     // Create an undo Button. Disabling this button when there's nothing to undo is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
-    const undoButton = new UndoButton( interactiveCurveProperty, tandem.createTandem( 'undoButton' ) );
+    const undoButton = new UndoButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'undoButton' ) );
 
     // Create an eraser Button. Disabling this button when there's nothing to erase is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219

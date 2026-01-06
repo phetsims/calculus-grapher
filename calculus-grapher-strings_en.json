@@ -208,8 +208,11 @@
       "accessibleHelpText": {
         "value": "Undo most recent curve manipulation."
       },
-      "accessibleContextResponse": {
-        "value": "TODO.undoButton.accessibleContextResponse"
+      "accessibleContextResponsePrimaryCurve": {
+        "value": "Last manipulation removed from f of {$variable}."
+      },
+      "accessibleContextResponsePredictCurve": {
+        "value": "Last manipulation removed from prediction curve."
       }
     },
     "eyeToggleButton": {
