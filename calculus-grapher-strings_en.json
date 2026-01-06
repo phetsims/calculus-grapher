@@ -255,10 +255,10 @@
         "value": "Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points."
       },
       "accessibleContextResponseChecked": {
-        "value": "added"
+        "value": "Tangent added."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "removed"
+        "value": "Tangent removed."
       }
     },
     "referenceLineCheckbox": {
@@ -269,10 +269,10 @@
         "value": "Add or remove movable vertical line connecting all graphs at same {$variable} value."
       },
       "accessibleContextResponseChecked": {
-        "value": "added"
+        "value": "Reference Line added."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "removed"
+        "value": "Reference Line removed."
       }
     },
     "areaUnderCurveCheckbox": {
@@ -280,10 +280,10 @@
         "value": "TODO.areaUnderCurveCheckbox.accessibleHelpText"
       },
       "accessibleContextResponseChecked": {
-        "value": "added"
+        "value": "Area Under Curve added."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "removed"
+        "value": "Area Under Curve removed."
       }
     },
     "variableRadioButtonGroup": {
