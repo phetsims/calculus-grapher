@@ -15,7 +15,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 
@@ -40,9 +39,7 @@ export default class ReferenceLineCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         accessibleName: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleHelpText.createProperty( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-        } ),
+        accessibleHelpText: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleHelpTextStringProperty,
         accessibleContextResponseChecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseCheckedStringProperty,
         accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,

@@ -91,12 +91,12 @@ a11y:
       accessibleName:     Zoom Out y Axis
       accessibleHelpText: Zoom y Axis out for this graph area.
   tangentCheckbox:
-    accessibleHelpText:                 Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points.
+    accessibleHelpText:                 TODO.tangentCheckbox.accessibleHelpText
     accessibleContextResponseChecked:   Tangent added.
     accessibleContextResponseUnchecked: Tangent removed.
   referenceLineCheckbox:
     accessibleName:                     Reference Line
-    accessibleHelpText:                 Add or remove movable vertical line connecting all graphs at same {$variable} value.
+    accessibleHelpText:                 TODO.referenceLineCheckbox.accessibleHelpText
     accessibleContextResponseChecked:   Reference Line added.
     accessibleContextResponseUnchecked: Reference Line removed.
   areaUnderCurveCheckbox:

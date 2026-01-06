@@ -252,7 +252,7 @@
     },
     "tangentCheckbox": {
       "accessibleHelpText": {
-        "value": "Add or remove line tangent to f of {$variable}. Move tangent along curve with knob to explore steepness at different points."
+        "value": "TODO.tangentCheckbox.accessibleHelpText"
       },
       "accessibleContextResponseChecked": {
         "value": "Tangent added."
@@ -266,7 +266,7 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "Add or remove movable vertical line connecting all graphs at same {$variable} value."
+        "value": "TODO.referenceLineCheckbox.accessibleHelpText"
       },
       "accessibleContextResponseChecked": {
         "value": "Reference Line added."
