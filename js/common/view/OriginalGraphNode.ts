@@ -170,7 +170,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Curve manipulator
     this.curveManipulatorNode = new CurveManipulatorNode( model.curveManipulator, model.predictSelectedProperty,
-      this.chartTransform, options.tandem.createTandem( 'curveManipulatorNode' ) );
+      this.chartTransform, this.curveLayerVisibleProperty, options.tandem.createTandem( 'curveManipulatorNode' ) );
 
     // Cue for toggling curve manipulator between modes.
     const curveManipulatorCueNode = new KeyboardCueNode( {

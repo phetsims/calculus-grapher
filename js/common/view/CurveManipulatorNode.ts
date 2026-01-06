@@ -29,6 +29,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
     curveManipulator: CurveManipulator,
     predictSelectedProperty: TReadOnlyProperty<boolean>,
     chartTransform: ChartTransform,
+    visibleProperty: TReadOnlyProperty<boolean>,
     tandem: Tandem ) {
 
     // Color matches the curve that is being manipulated.
@@ -42,6 +43,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
     const options = combineOptions<ShadedSphereNodeOptions>( {}, AccessibleDraggableOptions, {
       isDisposable: false,
+      visibleProperty: visibleProperty,
       mainColor: mainColorProperty,
       cursor: 'pointer',
       accessibleName: CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleNameStringProperty,
