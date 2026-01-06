@@ -32,28 +32,28 @@ curveManipulator:
   keyboardCue:         to toggle mode
 a11y:
   derivativeScreen:
-    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its derivative graph in real time.
+    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its first derivative curve in real time.
     screenSummary:
       playArea:        TODO.derivativeScreen.screenSummary.playArea
       controlArea:     TODO.derivativeScreen.screenSummary.controlArea
       currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
       interactionHint: TODO.derivativeScreen.screenSummary.interactionHint
   integralScreen:
-    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its integral graph in real time.
+    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its integral curve in real time.
     screenSummary:
       playArea:        TODO.integralScreen.screenSummary.playArea
       controlArea:     TODO.integralScreen.screenSummary.controlArea
       currentDetails:  TODO.integralScreen.screenSummary.currentDetails
       interactionHint: TODO.integralScreen.screenSummary.interactionHint
   advancedScreen:
-    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore both its derivative and integral graphs with or without discontinuities.
+    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its first derivative and integral curves, with or without discontinuities.
     screenSummary:
       playArea:        TODO.playArea
       controlArea:     TODO.controlArea
       currentDetails:  TODO.currentDetails
       interactionHint: TODO.interactionHint
   labScreen:
-    screenButtonsHelpText: Flexibly manipulate f of {$variable} and explore its first and second derivative graphs, and its integral graph with or without discontinuities
+    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its first derivative, second derivative, and integral curves, with or without discontinuities
     screenSummary:
       playArea:        TODO.labScreen.screenSummary.playArea
       controlArea:     TODO.labScreen.screenSummary.controlArea
