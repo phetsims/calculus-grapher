@@ -1,4 +1,4 @@
-// Copyright 2025, University of Colorado Boulder
+// Copyright 2022-2026, University of Colorado Boulder
 
 /**
  * CurveEraserButton is the push button that allows the user to erase all manipulations that were made to

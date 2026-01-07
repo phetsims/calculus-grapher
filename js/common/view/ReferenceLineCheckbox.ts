@@ -1,4 +1,4 @@
-// Copyright 2023-2025, University of Colorado Boulder
+// Copyright 2023-2026, University of Colorado Boulder
 
 /**
  * ReferenceLineCheckbox is the checkbox labeled 'Reference Line', for making the reference line scrubber visible.
