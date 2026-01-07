@@ -53,7 +53,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       visiblePropertyOptions: {
         phetioFeatured: true
       },
-      accessibleHeading: CalculusGrapherFluent.a11y.headings.curveManipulationControlsStringProperty
+      accessibleHeading: CalculusGrapherFluent.a11y.headings.curveManipulationSettingsAndControlsStringProperty
     }, providedOptions );
 
     const predictRadioButtonGroup = new PredictRadioButtonGroup( predictSelectedProperty,

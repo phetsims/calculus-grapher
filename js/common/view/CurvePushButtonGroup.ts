@@ -13,6 +13,7 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveEraserButton from './CurveEraserButton.js';
 import SmoothButton from './SmoothButton.js';
@@ -51,6 +52,8 @@ export default class CurvePushButtonGroup extends VBox {
     children.push( hBox );
 
     super( {
+      accessibleHeading: CalculusGrapherFluent.a11y.headings.buttonGroupStringProperty,
+      accessibleHelpText: 'help text',
       children: children,
       spacing: 8,
       tandem: tandem

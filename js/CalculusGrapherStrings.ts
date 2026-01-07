@@ -301,9 +301,10 @@ type StringsType = {
     };
     'headings': {
       'graphAreasStringProperty': LocalizedStringProperty;
-      'curveManipulationControlsStringProperty': LocalizedStringProperty;
+      'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
       'toolControlsStringProperty': LocalizedStringProperty;
       'curveExplorationToolsStringProperty': LocalizedStringProperty;
+      'buttonGroupStringProperty': LocalizedStringProperty;
     }
   }
 };

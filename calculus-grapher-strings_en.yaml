@@ -69,13 +69,13 @@ a11y:
     accessibleHelpText:        TODO.smoothButton.accessibleHelpText
     accessibleContextResponse: TODO.smoothButton.accessibleContextResponse
   eraserButton:
-    accessibleName:            Erase Curve Manipulations
-    accessibleHelpText:        Reset curve to y equals zero but maintain curve manipulation settings.
+    accessibleName:                        Erase Curve Manipulations
+    accessibleHelpText:                    Reset curve to y equals zero but maintain curve manipulation settings.
     accessibleContextResponsePrimaryCurve: f of {$variable} reset.
     accessibleContextResponsePredictCurve: Prediction curve reset.
   undoButton:
-    accessibleName:            Undo
-    accessibleHelpText:        Undo most recent curve manipulation.
+    accessibleName:                        Undo
+    accessibleHelpText:                    Undo most recent curve manipulation.
     accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable}.
     accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve.
   eyeToggleButton:
@@ -131,7 +131,7 @@ a11y:
     accessibleName:     Shape Width
     accessibleHelpText: Adjust width of curve manipulation shape.
   curveManipulationModeRadioButtonGroup:
-    accessibleName:     Curve Manipulation Shapes
+    accessibleName:     Shapes
     accessibleHelpText: Choose shape to be added to curve in primary graph area.
     hillRadioButton:
       accessibleName:     Hill
@@ -217,8 +217,11 @@ a11y:
   curveManipulatorNode:
     accessibleName:     Curve Manipulator
     accessibleHelpText: TODO.curveManipulatorNode.accessibleHelpText
+  pushButtonGroup:
+    accessibleHelpText: Actions applied to manipulated curve.
   headings:
-    graphAreas:                Graph Areas
-    curveManipulationControls: Curve Manipulation Controls
-    toolControls:              Tool Controls
-    curveExplorationTools:     Curve Exploration Tools
+    graphAreas:                           Graph Areas
+    curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
+    toolControls:                         Tool Controls
+    curveExplorationTools:                Curve Exploration Tools
+    actionsButtonGroup:                   Actions Button Group

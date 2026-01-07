@@ -5,11 +5,11 @@
 /* eslint-disable */
 /* @formatter:off */
 
-import type { FluentVariable } from '../../chipper/js/browser/FluentPattern.js';
-import FluentPattern from '../../chipper/js/browser/FluentPattern.js';
+import FluentLibrary from '../../chipper/js/browser-and-node/FluentLibrary.js';
 import FluentConstant from '../../chipper/js/browser/FluentConstant.js';
 import FluentContainer from '../../chipper/js/browser/FluentContainer.js';
-import FluentLibrary from '../../chipper/js/browser-and-node/FluentLibrary.js';
+import type {FluentVariable} from '../../chipper/js/browser/FluentPattern.js';
+import FluentPattern from '../../chipper/js/browser/FluentPattern.js';
 import calculusGrapher from './calculusGrapher.js';
 import CalculusGrapherStrings from './CalculusGrapherStrings.js';
 
@@ -182,9 +182,10 @@ addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleHelpText', 'a11y.areaU
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleName', 'a11y.curveManipulatorNode.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleHelpText', 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
-addToMapIfDefined( 'a11y_headings_curveManipulationControls', 'a11y.headings.curveManipulationControlsStringProperty' );
+addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveExplorationTools', 'a11y.headings.curveExplorationToolsStringProperty' );
+addToMapIfDefined( 'a11y_headings_buttonGroup', 'a11y.headings.buttonGroupStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -487,9 +488,10 @@ const CalculusGrapherFluent = {
     },
     headings: {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),
-      curveManipulationControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationControlsStringProperty' ) ),
+      curveManipulationSettingsAndControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationSettingsAndControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' ) ),
       toolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_toolControls', _.get( CalculusGrapherStrings, 'a11y.headings.toolControlsStringProperty' ) ),
-      curveExplorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveExplorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.curveExplorationToolsStringProperty' ) )
+      curveExplorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveExplorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.curveExplorationToolsStringProperty' ) ),
+      buttonGroupStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_buttonGroup', _.get( CalculusGrapherStrings, 'a11y.headings.buttonGroupStringProperty' ) )
     }
   }
 };
