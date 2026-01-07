@@ -186,7 +186,7 @@ addToMapIfDefined( 'a11y_pushButtonGroup_accessibleHelpText', 'a11y.pushButtonGr
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
-addToMapIfDefined( 'a11y_headings_curveExplorationTools', 'a11y.headings.curveExplorationToolsStringProperty' );
+addToMapIfDefined( 'a11y_headings_explorationTools', 'a11y.headings.explorationToolsStringProperty' );
 addToMapIfDefined( 'a11y_headings_actionsButtonGroup', 'a11y.headings.actionsButtonGroupStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
@@ -496,7 +496,7 @@ const CalculusGrapherFluent = {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),
       curveManipulationSettingsAndControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationSettingsAndControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' ) ),
       toolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_toolControls', _.get( CalculusGrapherStrings, 'a11y.headings.toolControlsStringProperty' ) ),
-      curveExplorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveExplorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.curveExplorationToolsStringProperty' ) ),
+      explorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_explorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.explorationToolsStringProperty' ) ),
       actionsButtonGroupStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_actionsButtonGroup', _.get( CalculusGrapherStrings, 'a11y.headings.actionsButtonGroupStringProperty' ) )
     }
   }

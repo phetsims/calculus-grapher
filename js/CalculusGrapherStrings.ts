@@ -307,7 +307,7 @@ type StringsType = {
       'graphAreasStringProperty': LocalizedStringProperty;
       'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
       'toolControlsStringProperty': LocalizedStringProperty;
-      'curveExplorationToolsStringProperty': LocalizedStringProperty;
+      'explorationToolsStringProperty': LocalizedStringProperty;
       'actionsButtonGroupStringProperty': LocalizedStringProperty;
     }
   }

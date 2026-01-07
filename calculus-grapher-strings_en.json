@@ -606,8 +606,8 @@
       "toolControls": {
         "value": "Tool Controls"
       },
-      "curveExplorationTools": {
-        "value": "Curve Exploration Tools"
+      "explorationTools": {
+        "value": "Exploration Tools"
       },
       "actionsButtonGroup": {
         "value": "Actions Button Group"

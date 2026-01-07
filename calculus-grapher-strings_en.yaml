@@ -224,5 +224,5 @@ a11y:
     graphAreas:                           Graph Areas
     curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
     toolControls:                         Tool Controls
-    curveExplorationTools:                Curve Exploration Tools
+    explorationTools:                     Exploration Tools
     actionsButtonGroup:                   Actions Button Group
