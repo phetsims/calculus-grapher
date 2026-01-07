@@ -55,7 +55,7 @@ type SelfOptions = {
   fontSizeOptions?: FontSizeOptions;
 };
 
-type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem' | 'pickable'>;
+type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem' | 'phetioDocumentation' | 'pickable'>;
 
 export default class GraphTypeLabelNode extends Node {
 

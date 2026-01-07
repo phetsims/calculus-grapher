@@ -101,7 +101,7 @@ type SelfOptions = {
   // Whether to create a CurveNode for the provided Curve.
   createCurveNode?: boolean;
 
-  // Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the y-axis.
+  // Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the vertical axis.
   labelNode?: Node;
 };
 
@@ -305,24 +305,26 @@ export default class GraphNode extends Node {
       }
     } );
 
-    // If labelNode was not provided, create the default.
+    // Vertical (y-axis) label that also serves as the graph name.
     const labelNode = options.labelNode || new GraphTypeLabelNode( graphType, {
       pickable: false,
-      tandem: options.tandem.createTandem( 'labelNode' )
+      tandem: options.tandem.createTandem( 'labelNode' ),
+      phetioDocumentation: 'Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the vertical axis.'
     } );
-
-    // labelNode in left-top corner of chartRectangle
     labelNode.boundsProperty.link( () => {
       labelNode.leftTop = this.chartRectangle.leftTop.addXY( CalculusGrapherConstants.GRAPH_X_MARGIN, CalculusGrapherConstants.GRAPH_Y_MARGIN );
     } );
 
-    // Label below the right end of the horizontal axis.
-    const xAxisLabelNode = new RichText( CalculusGrapherSymbols.visualVariableSymbolProperty, {
+    // Horizonal (x-axis or t-axis) label.
+    const horizontalAxisText = new RichText( CalculusGrapherSymbols.visualVariableSymbolProperty, {
       font: CalculusGrapherConstants.GRAPH_LABEL_FONT,
-      maxWidth: 100
+      maxWidth: 100,
+      tandem: options.tandem.createTandem( 'horizontalAxisText' ),
+      phetioDocumentation: 'Label that appears on the horizontal axis.',
+      phetioVisiblePropertyInstrumented: true
     } );
-    xAxisLabelNode.boundsProperty.link( () => {
-      xAxisLabelNode.rightTop = this.chartRectangle.rightCenter.addXY( -CalculusGrapherConstants.GRAPH_X_MARGIN, 10 );
+    horizontalAxisText.boundsProperty.link( () => {
+      horizontalAxisText.rightTop = this.chartRectangle.rightCenter.addXY( -CalculusGrapherConstants.GRAPH_X_MARGIN, 10 );
     } );
 
     const children = [
@@ -330,7 +332,7 @@ export default class GraphNode extends Node {
       gridNode,
       axesParent,
       ticksParent,
-      xAxisLabelNode,
+      horizontalAxisText,
       labelNode,
       this.curveLayer,
       this.eyeToggleButton

@@ -86,7 +86,8 @@ export default class OriginalGraphNode extends GraphNode {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
           visibleProperty: model.predictEnabledProperty, // show/hide 'Predict'
-          tandem: labelNodeTandem.createTandem( 'predictText' )
+          tandem: labelNodeTandem.createTandem( 'predictText' ),
+          phetioDocumentation: 'Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the vertical axis.'
         } ),
         new GraphTypeLabelNode( graphType )
       ],
