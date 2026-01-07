@@ -590,7 +590,7 @@
     },
     "pushButtonGroup": {
       "accessibleHelpText": {
-        "value": "Actions applied to manipulated curve."
+        "value": "Actions applied to curve in primary graph area."
       }
     },
     "headings": {

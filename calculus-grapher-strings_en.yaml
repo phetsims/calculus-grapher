@@ -218,7 +218,7 @@ a11y:
     accessibleName:     Curve Manipulator
     accessibleHelpText: TODO.curveManipulatorNode.accessibleHelpText
   pushButtonGroup:
-    accessibleHelpText: Actions applied to manipulated curve.
+    accessibleHelpText: Actions applied to curve in primary graph area.
   headings:
     graphAreas:                           Graph Areas
     curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
