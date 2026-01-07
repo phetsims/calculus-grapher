@@ -181,11 +181,12 @@ addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleName', 'a11y.areaUnder
 addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleHelpText', 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleName', 'a11y.curveManipulatorNode.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleHelpText', 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_pushButtonGroup_accessibleHelpText', 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveExplorationTools', 'a11y.headings.curveExplorationToolsStringProperty' );
-addToMapIfDefined( 'a11y_headings_buttonGroup', 'a11y.headings.buttonGroupStringProperty' );
+addToMapIfDefined( 'a11y_headings_actionsButtonGroup', 'a11y.headings.actionsButtonGroupStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -486,12 +487,15 @@ const CalculusGrapherFluent = {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' ) )
     },
+    pushButtonGroup: {
+      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_pushButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' ) )
+    },
     headings: {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),
       curveManipulationSettingsAndControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationSettingsAndControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' ) ),
       toolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_toolControls', _.get( CalculusGrapherStrings, 'a11y.headings.toolControlsStringProperty' ) ),
       curveExplorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveExplorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.curveExplorationToolsStringProperty' ) ),
-      buttonGroupStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_buttonGroup', _.get( CalculusGrapherStrings, 'a11y.headings.buttonGroupStringProperty' ) )
+      actionsButtonGroupStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_actionsButtonGroup', _.get( CalculusGrapherStrings, 'a11y.headings.actionsButtonGroupStringProperty' ) )
     }
   }
 };

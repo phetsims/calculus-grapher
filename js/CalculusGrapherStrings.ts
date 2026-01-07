@@ -299,12 +299,15 @@ type StringsType = {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
+    'pushButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
     'headings': {
       'graphAreasStringProperty': LocalizedStringProperty;
       'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
       'toolControlsStringProperty': LocalizedStringProperty;
       'curveExplorationToolsStringProperty': LocalizedStringProperty;
-      'buttonGroupStringProperty': LocalizedStringProperty;
+      'actionsButtonGroupStringProperty': LocalizedStringProperty;
     }
   }
 };

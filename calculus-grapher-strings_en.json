@@ -588,6 +588,11 @@
         "value": "TODO.curveManipulatorNode.accessibleHelpText"
       }
     },
+    "pushButtonGroup": {
+      "accessibleHelpText": {
+        "value": "Actions applied to manipulated curve."
+      }
+    },
     "headings": {
       "graphAreas": {
         "value": "Graph Areas"
@@ -601,8 +606,8 @@
       "curveExplorationTools": {
         "value": "Curve Exploration Tools"
       },
-      "buttonGroup": {
-        "value": "Button Group"
+      "actionsButtonGroup": {
+        "value": "Actions Button Group"
       }
     }
   }

@@ -52,8 +52,8 @@ export default class CurvePushButtonGroup extends VBox {
     children.push( hBox );
 
     super( {
-      accessibleHeading: CalculusGrapherFluent.a11y.headings.buttonGroupStringProperty,
-      accessibleHelpText: 'help text',
+      accessibleHeading: CalculusGrapherFluent.a11y.headings.actionsButtonGroupStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.pushButtonGroup.accessibleHelpTextStringProperty,
       children: children,
       spacing: 8,
       tandem: tandem
