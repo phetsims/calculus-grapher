@@ -43,6 +43,7 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
+        accessibleName: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleNameStringProperty,
         accessibleHelpText: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleHelpTextStringProperty,
         accessibleContextResponseChecked: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleContextResponseCheckedStringProperty,
         accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleContextResponseUncheckedStringProperty,

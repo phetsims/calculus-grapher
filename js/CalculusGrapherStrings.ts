@@ -141,6 +141,7 @@ type StringsType = {
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'areaUnderCurveCheckbox': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;

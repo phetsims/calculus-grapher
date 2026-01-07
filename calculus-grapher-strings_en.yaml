@@ -100,6 +100,7 @@ a11y:
     accessibleContextResponseChecked:   Reference Line tool shown.
     accessibleContextResponseUnchecked: Reference Line tool hidden.
   areaUnderCurveCheckbox:
+    accessibleName:                     Area Under Curve
     accessibleHelpText:                 Show or hide Area Under Curve tool.
     accessibleContextResponseChecked:   Area Under Curve tool shown.
     accessibleContextResponseUnchecked: Area Under Curve tool hidden.

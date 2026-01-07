@@ -276,6 +276,9 @@
       }
     },
     "areaUnderCurveCheckbox": {
+      "accessibleName": {
+        "value": "Area Under Curve"
+      },
       "accessibleHelpText": {
         "value": "Show or hide Area Under Curve tool."
       },
