@@ -40,7 +40,7 @@ export default class CalculusGrapherConstants {
   public static readonly SCREEN_VIEW_Y_MARGIN = 10;
   public static readonly PANEL_X_MARGIN = 8;
   public static readonly PANEL_Y_MARGIN = 6;
-  public static readonly GRAPH_X_MARGIN = 15;
+  public static readonly GRAPH_X_MARGIN = 12;
   public static readonly GRAPH_Y_MARGIN = 10;
 
   // width of ChartRectangle for all GraphNode instances, in view coordinates
