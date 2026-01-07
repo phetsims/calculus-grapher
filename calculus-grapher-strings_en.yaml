@@ -91,18 +91,18 @@ a11y:
       accessibleName:     Zoom Out y Axis
       accessibleHelpText: Zoom y Axis out for this graph area.
   tangentCheckbox:
-    accessibleHelpText:                 TODO.tangentCheckbox.accessibleHelpText
-    accessibleContextResponseChecked:   Tangent added.
-    accessibleContextResponseUnchecked: Tangent removed.
+    accessibleHelpText:                 Show or hide Tangent tool.
+    accessibleContextResponseChecked:   Tangent tool shown.
+    accessibleContextResponseUnchecked: Tangent tool hidden.
   referenceLineCheckbox:
     accessibleName:                     Reference Line
-    accessibleHelpText:                 TODO.referenceLineCheckbox.accessibleHelpText
-    accessibleContextResponseChecked:   Reference Line added.
-    accessibleContextResponseUnchecked: Reference Line removed.
+    accessibleHelpText:                 Show or hide Reference Line tool.
+    accessibleContextResponseChecked:   Reference Line tool shown.
+    accessibleContextResponseUnchecked: Reference Line tool hidden.
   areaUnderCurveCheckbox:
-    accessibleHelpText:                 TODO.areaUnderCurveCheckbox.accessibleHelpText
-    accessibleContextResponseChecked:   Area Under Curve added.
-    accessibleContextResponseUnchecked: Area Under Curve removed.
+    accessibleHelpText:                 Show or hide Area Under Curve tool.
+    accessibleContextResponseChecked:   Area Under Curve tool shown.
+    accessibleContextResponseUnchecked: Area Under Curve tool hidden.
   variableRadioButtonGroup:
     accessibleHelpText: TODO.variableRadioButtonGroup.accessibleHelpText
     xRadioButton:

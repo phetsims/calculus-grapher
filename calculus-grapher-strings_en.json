@@ -252,13 +252,13 @@
     },
     "tangentCheckbox": {
       "accessibleHelpText": {
-        "value": "TODO.tangentCheckbox.accessibleHelpText"
+        "value": "Show or hide Tangent tool."
       },
       "accessibleContextResponseChecked": {
-        "value": "Tangent added."
+        "value": "Tangent tool shown."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Tangent removed."
+        "value": "Tangent tool hidden."
       }
     },
     "referenceLineCheckbox": {
@@ -266,24 +266,24 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "TODO.referenceLineCheckbox.accessibleHelpText"
+        "value": "Show or hide Reference Line tool."
       },
       "accessibleContextResponseChecked": {
-        "value": "Reference Line added."
+        "value": "Reference Line tool shown."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Reference Line removed."
+        "value": "Reference Line tool hidden."
       }
     },
     "areaUnderCurveCheckbox": {
       "accessibleHelpText": {
-        "value": "TODO.areaUnderCurveCheckbox.accessibleHelpText"
+        "value": "Show or hide Area Under Curve tool."
       },
       "accessibleContextResponseChecked": {
-        "value": "Area Under Curve added."
+        "value": "Area Under Curve tool shown."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Area Under Curve removed."
+        "value": "Area Under Curve tool hidden."
       }
     },
     "variableRadioButtonGroup": {
