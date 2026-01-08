@@ -9,6 +9,7 @@
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
@@ -27,6 +28,8 @@ type AreaUnderCurveScrubberNodeOptions = SelfOptions &
 
 export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
+  private readonly areaUnderCurveScrubber: AreaUnderCurveScrubber;
+
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       chartTransform: ChartTransform,
                       providedOptions: AreaUnderCurveScrubberNodeOptions ) {
@@ -43,6 +46,8 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
     }, providedOptions );
 
     super( areaUnderCurveScrubber, chartTransform, options );
+
+    this.areaUnderCurveScrubber = areaUnderCurveScrubber;
 
     // Horizontal 'accumulation line' that extends from x=0 to the drag handle's position
     const accumulationLine = new Line( 0, 0, this.handleNode.centerX, 0, {
@@ -61,7 +66,11 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
   }
 
   public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( 'AreaUnderCurveScrubberNode object response' );
+    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleObjectResponse.format( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+      value: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, 2 ),
+      netSignedArea: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, 2 )
+    } ) );
   }
 
   /**
