@@ -159,7 +159,7 @@ a11y:
       accessibleName:     Shift
       accessibleHelpText: Shift entire curve up or down.
   graphSetRadioButtonGroup:
-    accessibleName:     Graph Set
+    accessibleName: Graph Set TODO
     accessibleHelpText: TODO.graphSetRadioButtonGroup.accessibleHelpText
     integralRadioButton:
       advanced:
