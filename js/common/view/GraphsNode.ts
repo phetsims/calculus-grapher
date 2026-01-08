@@ -1,4 +1,4 @@
-// Copyright 2022-2025, University of Colorado Boulder
+// Copyright 2022-2026, University of Colorado Boulder
 
 /**
  * GraphsNode is responsible for all graphs, animation between 'graph sets', the reference line, scrubbers,
