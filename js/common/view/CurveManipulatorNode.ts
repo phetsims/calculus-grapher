@@ -97,8 +97,8 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
   public doAccessibleObjectResponse(): void {
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleObjectResponse.format( {
-      x: toFixedNumber( this.curveManipulator.positionProperty.value.x, 2 ),
-      y: toFixedNumber( this.curveManipulator.positionProperty.value.y, 2 )
+      x: toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      y: toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
     } ) );
   }
 }

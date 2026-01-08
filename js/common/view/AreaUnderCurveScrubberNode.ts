@@ -17,6 +17,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
@@ -68,8 +69,8 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
   public override doAccessibleObjectResponse(): void {
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      value: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, 2 ),
-      netSignedArea: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, 2 )
+      value: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      netSignedArea: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
     } ) );
   }
 

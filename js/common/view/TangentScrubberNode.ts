@@ -14,6 +14,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
@@ -50,8 +51,8 @@ export default class TangentScrubberNode extends ScrubberNode {
   public override doAccessibleObjectResponse(): void {
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentScrubber.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      value: toFixedNumber( this.tangentScrubber.xProperty.value, 2 ),
-      slope: toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, 2 )
+      value: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      slope: toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
     } ) );
   }
 

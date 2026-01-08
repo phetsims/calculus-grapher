@@ -112,6 +112,12 @@ export default class CalculusGrapherConstants {
 
   // radius of scrubber handles
   public static readonly SCRUBBER_RADIUS = 9;
+
+  // decimals places for values in interactive descriptions
+  public static readonly X_DESCRIPTION_DECIMALS = 2;
+  public static readonly Y_DESCRIPTION_DECIMALS = 2;
+  public static readonly SLOPE_DESCRIPTION_DECIMALS = 2;
+  public static readonly AREA_DESCRIPTION_DECIMALS = 2;
 }
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );
