@@ -159,21 +159,21 @@ a11y:
       accessibleName:     Shift
       accessibleHelpText: Shift entire curve up or down.
   graphSetRadioButtonGroup:
-    accessibleName: Graph Set
-    accessibleHelpText: TODO.graphSetRadioButtonGroup.accessibleHelpText
+    accessibleName:     Visible Graph Areas
+    accessibleHelpText: Choose graph areas that are visible.
     integralRadioButton:
       advanced:
-        accessibleName:     Primary and Integral Graph Set
-        accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
+        accessibleName:     Integral and Primary
+        accessibleHelpText: Show Integral Graph Area and the Primary Graph Area.
       lab:
-        accessibleName:     Primary, Integral, and First Derivative Graph Set
-        accessibleHelpText: TODO.integralRadioButton.accessibleHelpText
+        accessibleName:     Integral, Primary, and First Derivative
+        accessibleHelpText: Show Integral Graph Area, Primary Graph Area, and First Derivative Graph Area.
     derivativeRadioButton:
-      accessibleName:     Primary and First Derivative Graph Set
-      accessibleHelpText: TODO.derivativeRadioButton.accessibleHelpText
+      accessibleName:     Primary and First Derivative
+      accessibleHelpText: Show Primary Graph Area and First Derivative Graph Area.
     secondDerivativeRadioButton:
-      accessibleName:     Primary, First Derivative, and Second Derivative Graph Set
-      accessibleHelpText: TODO.secondDerivativeRadioButton.accessibleHelpText
+      accessibleName:     Primary, First Derivative, and Second Derivative
+      accessibleHelpText: Show Primary Graph Area, First Derivative Graph Area, and Second Derivative Graph Area.
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: TODO.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed
     accessibleParagraph:         TODO.slopeOfTangentAccordionBox.accessibleParagraph

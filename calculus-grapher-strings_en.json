@@ -433,43 +433,43 @@
     },
     "graphSetRadioButtonGroup": {
       "accessibleName": {
-        "value": "Graph Set"
+        "value": "Visible Graph Areas"
       },
       "accessibleHelpText": {
-        "value": "TODO.graphSetRadioButtonGroup.accessibleHelpText"
+        "value": "Choose graph areas that are visible."
       },
       "integralRadioButton": {
         "advanced": {
           "accessibleName": {
-            "value": "Primary and Integral Graph Set"
+            "value": "Integral and Primary"
           },
           "accessibleHelpText": {
-            "value": "TODO.integralRadioButton.accessibleHelpText"
+            "value": "Show Integral Graph Area and the Primary Graph Area."
           }
         },
         "lab": {
           "accessibleName": {
-            "value": "Primary, Integral, and First Derivative Graph Set"
+            "value": "Integral, Primary, and First Derivative"
           },
           "accessibleHelpText": {
-            "value": "TODO.integralRadioButton.accessibleHelpText"
+            "value": "Show Integral Graph Area, Primary Graph Area, and First Derivative Graph Area."
           }
         }
       },
       "derivativeRadioButton": {
         "accessibleName": {
-          "value": "Primary and First Derivative Graph Set"
+          "value": "Primary and First Derivative"
         },
         "accessibleHelpText": {
-          "value": "TODO.derivativeRadioButton.accessibleHelpText"
+          "value": "Show Primary Graph Area and First Derivative Graph Area."
         }
       },
       "secondDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Primary, First Derivative, and Second Derivative Graph Set"
+          "value": "Primary, First Derivative, and Second Derivative"
         },
         "accessibleHelpText": {
-          "value": "TODO.secondDerivativeRadioButton.accessibleHelpText"
+          "value": "Show Primary Graph Area, First Derivative Graph Area, and Second Derivative Graph Area."
         }
       }
     },
