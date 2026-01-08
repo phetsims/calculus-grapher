@@ -184,7 +184,7 @@
         "value": "Smooth"
       },
       "accessibleHelpText": {
-        "value": "TODO.smoothButton.accessibleHelpText"
+        "value": "Remove sharp corners and abrupt changes in primary curve shape."
       },
       "accessibleContextResponse": {
         "value": "TODO.smoothButton.accessibleContextResponse"
