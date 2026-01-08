@@ -207,17 +207,23 @@ a11y:
     accessibleContextResponseChecked:   f of {$variable} shown.
     accessibleContextResponseUnchecked: f of {$variable} hidden.
   tangentScrubber:
-    accessibleName:     Tangent Scrubber
-    accessibleHelpText: Move tangent line along curve with scrubber to explore relationship between f of {$variable} and other graph areas with {$variable} values aligned.
+    accessibleName:           Tangent tool
+    accessibleHelpText:       Move scrubber horizontally to explore tangent line at scrubber {$variable} coordinate.
+    accessibleObjectResponse: '{$variable} equals {$value}, slope equals {$slope}'
   referenceLineScrubber:
-    accessibleName:     Reference Line Scrubber
-    accessibleHelpText: Move reference line to align {$variable} values on all graphs and explore corresponding y values..
+    accessibleName:     Reference Line tool
+    accessibleHelpText: Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate.
+    accessibleObjectResponse1: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, first derivative equals {$firstDerivativeValue}'
+    accessibleObjectResponse2: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, integral equals {$integralValue}'
+    accessibleObjectResponse3: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}'
+    accessibleObjectResponse4: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
   areaUnderCurveScrubber:
-    accessibleName:     Area Under Curve Scrubber
-    accessibleHelpText: TODO.areaUnderCurveScrubber.accessibleHelpText
+    accessibleName:           Area Under Curve tool
+    accessibleHelpText:       Move scrubber horizontally to explore area under curve between {$variable} equals zero and scrubber position.
+    accessibleObjectResponse: '{$variable} equals {$value}, net signed area equals {$netSignedArea}'
   curveManipulatorNode:
-    accessibleName:     Curve Manipulator
-    accessibleHelpText: TODO.curveManipulatorNode.accessibleHelpText
+    accessibleName:           Curve Manipulator
+    accessibleHelpText:       TODO.curveManipulatorNode.accessibleHelpText
     accessibleObjectResponse: '{$x} {$y}'
   pushButtonGroup:
     accessibleHelpText: Actions applied to curve in primary graph area.

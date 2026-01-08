@@ -287,14 +287,20 @@ type StringsType = {
     'tangentScrubber': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
     'referenceLineScrubber': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse1StringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse2StringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse3StringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse4StringProperty': LocalizedStringProperty;
     };
     'areaUnderCurveScrubber': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
     'curveManipulatorNode': {
       'accessibleNameStringProperty': LocalizedStringProperty;

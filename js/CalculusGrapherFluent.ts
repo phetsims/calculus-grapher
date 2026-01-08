@@ -176,10 +176,16 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChec
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
 addToMapIfDefined( 'a11y_tangentScrubber_accessibleName', 'a11y.tangentScrubber.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_tangentScrubber_accessibleHelpText', 'a11y.tangentScrubber.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_tangentScrubber_accessibleObjectResponse', 'a11y.tangentScrubber.accessibleObjectResponseStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleName', 'a11y.referenceLineScrubber.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleHelpText', 'a11y.referenceLineScrubber.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleObjectResponse1', 'a11y.referenceLineScrubber.accessibleObjectResponse1StringProperty' );
+addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleObjectResponse2', 'a11y.referenceLineScrubber.accessibleObjectResponse2StringProperty' );
+addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleObjectResponse3', 'a11y.referenceLineScrubber.accessibleObjectResponse3StringProperty' );
+addToMapIfDefined( 'a11y_referenceLineScrubber_accessibleObjectResponse4', 'a11y.referenceLineScrubber.accessibleObjectResponse4StringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleName', 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleHelpText', 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleObjectResponse', 'a11y.areaUnderCurveScrubber.accessibleObjectResponseStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleName', 'a11y.curveManipulatorNode.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleHelpText', 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleObjectResponse', 'a11y.curveManipulatorNode.accessibleObjectResponseStringProperty' );
@@ -476,15 +482,21 @@ const CalculusGrapherFluent = {
     },
     tangentScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleNameStringProperty' ) ),
-      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
+      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
+      accessibleObjectResponse: new FluentPattern<{ slope: FluentVariable, value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleObjectResponseStringProperty' ), [{"name":"slope"},{"name":"value"},{"name":"variable"}] )
     },
     referenceLineScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleNameStringProperty' ) ),
-      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
+      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
+      accessibleObjectResponse1: new FluentPattern<{ firstDerivativeValue: FluentVariable, fValue: FluentVariable, value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleObjectResponse1', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleObjectResponse1StringProperty' ), [{"name":"firstDerivativeValue"},{"name":"fValue"},{"name":"value"},{"name":"variable"}] ),
+      accessibleObjectResponse2: new FluentPattern<{ fValue: FluentVariable, integralValue: FluentVariable, value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleObjectResponse2', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleObjectResponse2StringProperty' ), [{"name":"fValue"},{"name":"integralValue"},{"name":"value"},{"name":"variable"}] ),
+      accessibleObjectResponse3: new FluentPattern<{ firstDerivativeValue: FluentVariable, fValue: FluentVariable, integralValue: FluentVariable, value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleObjectResponse3', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleObjectResponse3StringProperty' ), [{"name":"firstDerivativeValue"},{"name":"fValue"},{"name":"integralValue"},{"name":"value"},{"name":"variable"}] ),
+      accessibleObjectResponse4: new FluentPattern<{ firstDerivativeValue: FluentVariable, fValue: FluentVariable, secondDerivativeValue: FluentVariable, value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleObjectResponse4', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleObjectResponse4StringProperty' ), [{"name":"firstDerivativeValue"},{"name":"fValue"},{"name":"secondDerivativeValue"},{"name":"value"},{"name":"variable"}] )
     },
     areaUnderCurveScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' ) )
+      accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
+      accessibleObjectResponse: new FluentPattern<{ netSignedArea: FluentVariable, value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleObjectResponseStringProperty' ), [{"name":"netSignedArea"},{"name":"value"},{"name":"variable"}] )
     },
     curveManipulatorNode: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleNameStringProperty' ) ),

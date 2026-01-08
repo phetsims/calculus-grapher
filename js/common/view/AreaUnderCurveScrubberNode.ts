@@ -16,6 +16,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
@@ -36,7 +37,9 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
       handleColor: areaUnderCurveScrubber.colorProperty,
       lineStroke: areaUnderCurveScrubber.colorProperty,
       handleAccessibleNameProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleHelpText.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } )
     }, providedOptions );
 
     super( areaUnderCurveScrubber, chartTransform, options );
