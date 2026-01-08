@@ -61,14 +61,6 @@ export default class CurveManipulator extends PhetioObject {
       phetioReadOnly: true,
       phetioDocumentation: 'Whether a cue popup will be displayed when the manipulator gets focus.'
     } );
-
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Is this desired behavior?
-    // When switching between curves, update the y-coordinate of the cursor so that it is on a curve.
-    predictSelectedProperty.lazyLink( predictSelected => {
-      const x = this.positionProperty.value.x;
-      const selectedCurve = predictSelected ? predictCurve : originalCurve;
-      this.positionProperty.value = selectedCurve.getClosestPointAt( x ).getVector();
-    } );
   }
 
   public reset(): void {
