@@ -105,27 +105,27 @@ a11y:
     accessibleContextResponseChecked:   Area Under Curve tool shown.
     accessibleContextResponseUnchecked: Area Under Curve tool hidden.
   variableRadioButtonGroup:
-    accessibleHelpText: TODO.variableRadioButtonGroup.accessibleHelpText
+    accessibleHelpText: Choose variable for horizontal axis.
     xRadioButton:
-      accessibleHelpText: TODO.xRadioButton.accessibleHelpText
+      accessibleHelpText: Label horizontal axis with x.
     tRadioButton:
-      accessibleHelpText: TODO.tRadioButton.accessibleHelpText
+      accessibleHelpText: Label horizontal axis with t.
   notationRadioButtonGroup:
-    accessibleHelpText: TODO.notationRadioButtonGroup.accessibleHelpText
+    accessibleHelpText: Choose derivative notation.
     lagrangeRadioButton:
-      accessibleName:     Lagrange, f of {$variable}
-      accessibleHelpText: TODO.lagrangeRadioButton.accessibleHelpText
+      accessibleName:     Lagrange, f prime of {$variable}
+      accessibleHelpText: Use apostrophes for derivatives.
     leibnizRadioButton:
       accessibleName:     Leibniz, d f over d {$variable}
-      accessibleHelpText: TODO.leibnizRadioButton.accessibleHelpText
+      accessibleHelpText: Show derivative as ratio of change in y with respect to {$variable}.
   discontinuitiesRadioButtonGroup:
-    accessibleHelpText: TODO.discontinuitiesRadioButtonGroup.accessibleHelpText
+    accessibleHelpText: Choose how to display discontinuities in curves.
     noLineRadioButton:
       accessibleName:     No Line
-      accessibleHelpText: TODO.noLineRadioButton.accessibleHelpText
+      accessibleHelpText: Leave gap between discontinuities.
     dashedLineRadioButton:
       accessibleName:     Dashed Line
-      accessibleHelpText: TODO.dashedLineRadioButton.accessibleHelpText
+      accessibleHelpText: Connect discontinuities with dashed line.
   predictToggleSwitch:
     accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
   curveManipulationWidthSlider:

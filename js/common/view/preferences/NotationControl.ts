@@ -90,7 +90,9 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } ),
-          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpText.createProperty( {
+            variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+          } )
         }
       }
     ];
