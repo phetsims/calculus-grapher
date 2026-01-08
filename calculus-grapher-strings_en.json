@@ -433,7 +433,7 @@
     },
     "graphSetRadioButtonGroup": {
       "accessibleName": {
-        "value": "Graph Set TODO"
+        "value": "Graph Set"
       },
       "accessibleHelpText": {
         "value": "TODO.graphSetRadioButtonGroup.accessibleHelpText"
