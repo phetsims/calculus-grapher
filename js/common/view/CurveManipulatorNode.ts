@@ -73,10 +73,10 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
       keyboardCurveManipulationEnabled => focusHighlightPath.setDashed( keyboardCurveManipulationEnabled ) );
 
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 Is this desired behavior?
-    // Whenever the manipulator gets focus, disable keyboard manipulation of the curve.
+    // Whenever the manipulator gets focus, reset the manipulation mode to its initial state.
     this.focusedProperty.link( focused => {
       if ( focused ) {
-        curveManipulator.keyboardCurveManipulationEnabledProperty.value = false;
+        curveManipulator.keyboardCurveManipulationEnabledProperty.reset();
       }
     } );
 
