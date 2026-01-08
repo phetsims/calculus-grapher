@@ -150,7 +150,7 @@ export default class GraphsNode extends Node {
 
     // Reference Line, length adjusted depending on whether values are visible.
     this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
-      options.tandem.createTandem( 'referenceLineNode' ) );
+      model.graphSetProperty, options.tandem.createTandem( 'referenceLineNode' ) );
     CalculusGrapherPreferences.valuesVisibleProperty.link( () => {
       const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 10 : 0 );
       const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers

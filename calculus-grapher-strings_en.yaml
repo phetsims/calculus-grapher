@@ -211,9 +211,12 @@ a11y:
     accessibleHelpText:       Move scrubber horizontally to explore tangent line at scrubber {$variable} coordinate.
     accessibleObjectResponse: '{$variable} equals {$x}, slope equals {$slope}'
   referenceLineScrubber:
-    accessibleName:           Reference Line tool
-    accessibleHelpText:       Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate.
-    accessibleObjectResponse: '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
+    accessibleName:                                          Reference Line tool
+    accessibleHelpText:                                      Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate.
+    accessibleObjectResponseFirstDerivative:                 '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}'
+    accessibleObjectResponseIntegral:                        '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}'
+    accessibleObjectResponseIntegralFirstDerivative:         '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}'
+    accessibleObjectResponseFirstDerivativeSecondDerivative: '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
   areaUnderCurveScrubber:
     accessibleName:           Area Under Curve tool
     accessibleHelpText:       Move scrubber horizontally to explore area under curve between {$variable} equals zero and scrubber position.

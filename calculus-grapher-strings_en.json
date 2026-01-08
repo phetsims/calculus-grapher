@@ -577,8 +577,17 @@
       "accessibleHelpText": {
         "value": "Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate."
       },
-      "accessibleObjectResponse": {
-        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}"
+      "accessibleObjectResponseFirstDerivative": {
+        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}"
+      },
+      "accessibleObjectResponseIntegral": {
+        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}"
+      },
+      "accessibleObjectResponseIntegralFirstDerivative": {
+        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}"
+      },
+      "accessibleObjectResponseFirstDerivativeSecondDerivative": {
+        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}"
       }
     },
     "areaUnderCurveScrubber": {

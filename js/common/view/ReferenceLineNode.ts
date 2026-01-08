@@ -11,9 +11,11 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -24,6 +26,8 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
+import GraphSet from '../model/GraphSet.js';
+import GraphType from '../model/GraphType.js';
 import ReferenceLine from '../model/ReferenceLine.js';
 import ScrubberNode from './ScrubberNode.js';
 
@@ -33,9 +37,11 @@ const X_DECIMAL_PLACES = 1;
 export default class ReferenceLineNode extends ScrubberNode {
 
   private readonly referenceLine: ReferenceLine;
+  private readonly graphSetProperty: TReadOnlyProperty<GraphSet>;
 
   public constructor( referenceLine: ReferenceLine,
                       chartTransform: ChartTransform,
+                      graphSetProperty: TReadOnlyProperty<GraphSet>,
                       tandem: Tandem ) {
 
     super( referenceLine, chartTransform, {
@@ -57,6 +63,7 @@ export default class ReferenceLineNode extends ScrubberNode {
     } );
 
     this.referenceLine = referenceLine;
+    this.graphSetProperty = graphSetProperty;
 
     // See https://github.com/phetsims/calculus-grapher/issues/305
     const xDisplayProperty = new DerivedProperty( [ referenceLine.xProperty ],
@@ -90,16 +97,53 @@ export default class ReferenceLineNode extends ScrubberNode {
     } );
   }
 
-  //TODO https://github.com/phetsims/calculus-grapher/issues/343 Prune this to describe only the graphs that are shown.
+  /**
+   * Accessible response for the set of graphs that are currently shown.
+   */
   public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponse.format( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-      integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-      firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-      secondDerivativeValue: toFixedNumber( this.referenceLine.secondDerivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
-    } ) );
+    const graphSet = this.graphSetProperty.value;
+    let accessibleObjectResponse: string | null = null;
+    if ( graphSet.length === 2 ) {
+      if ( graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseFirstDerivative.format( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+          firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+        } );
+      }
+      else if ( graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) ) {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseIntegral.format( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+          integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+        } );
+      }
+    }
+    else if ( graphSet.length === 3 ) {
+      if ( graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseIntegralFirstDerivative.format( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+          integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+          firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+        } );
+      }
+      else if ( graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) && graphSet.includes( GraphType.SECOND_DERIVATIVE ) ) {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseFirstDerivativeSecondDerivative.format( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+          firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+          secondDerivativeValue: toFixedNumber( this.referenceLine.secondDerivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+        } );
+      }
+    }
+    affirm( accessibleObjectResponse, 'Unsupported graphSet' );
+
+    this.addAccessibleObjectResponse( accessibleObjectResponse );
   }
 
   /**
