@@ -1,11 +1,9 @@
 // Copyright 2023-2025, University of Colorado Boulder
 
 /**
- * ReferenceLineNode is the view representation of a vertical reference line
- * The reference line is composed of a vertical line, a XDragHandler and
- * a label that indicates the numerical value of its x- position (atop the vertical line)
- * The label is only visible if valuesVisibleProperty in the preferences is set to true
- * The shadedSphere (in XDragHandler) is user-controlled.
+ * ReferenceLineNode is a subclass of ScrubberNode that sets the appropriate colors for the scrubber and adds
+ * Ôa numerical label at the top of the vertical line. The label is only visible if valuesVisibleProperty in
+ * Preferences is set to true
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)
