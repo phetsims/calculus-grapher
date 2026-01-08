@@ -60,6 +60,10 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
     } );
   }
 
+  public override doAccessibleObjectResponse(): void {
+    this.addAccessibleObjectResponse( 'AreaUnderCurveScrubberNode object response' );
+  }
+
   /**
    * Creates an icon for the area-under-curve scrubber.
    */

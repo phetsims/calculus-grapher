@@ -43,7 +43,7 @@ export type ScrubberNodeOptions = SelfOptions &
   PickOptional<NodeOptions, 'pickable'> &
   PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class ScrubberNode extends Node {
+export default abstract class ScrubberNode extends Node {
 
   // vertical line displayed by the scrubber
   protected readonly line: Line;
@@ -66,6 +66,8 @@ export default class ScrubberNode extends Node {
       phetioHandleNodeVisiblePropertyInstrumented: true
     }, providedOptions );
 
+    super( options );
+
     // vertical line
     const line = new Line( 0, options.lineTop, 0, options.lineBottom, {
       stroke: options.lineStroke,
@@ -75,7 +77,7 @@ export default class ScrubberNode extends Node {
     } );
 
     // Draggable handle, for translating x
-    const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, {
+    const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, this, {
       yModel: chartTransform.modelYRange.min,
       mainColor: options.handleColor,
       accessibleName: options.handleAccessibleNameProperty,
@@ -84,9 +86,7 @@ export default class ScrubberNode extends Node {
       phetioVisiblePropertyInstrumented: options.phetioHandleNodeVisiblePropertyInstrumented
     } );
 
-    options.children = [ line, handleNode ];
-
-    super( options );
+    this.children = [ line, handleNode ];
 
     this.line = line;
     this.handleNode = handleNode;
@@ -102,6 +102,10 @@ export default class ScrubberNode extends Node {
     } );
 
     this.addLinkedElement( scrubber );
+
+    handleNode.focusedProperty.lazyLink( focused => {
+      focused && this.doAccessibleObjectResponse();
+    } );
   }
 
   /**
@@ -111,6 +115,11 @@ export default class ScrubberNode extends Node {
     this.line.setY1( yTop );
     this.line.setY2( yBottom );
   }
+
+  /**
+   * Adds an object response when the scrubber gets focused or is moved.
+   */
+  public abstract doAccessibleObjectResponse(): void;
 
   /**
    * Creates an icon for a scrubber.

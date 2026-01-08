@@ -7,6 +7,7 @@
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
@@ -24,6 +25,8 @@ export type TangentScrubberNodeOptions = SelfOptions &
 
 export default class TangentScrubberNode extends ScrubberNode {
 
+  private readonly tangentScrubber: TangentScrubber;
+
   public constructor( tangentScrubber: TangentScrubber,
                       chartTransform: ChartTransform,
                       providedOptions: TangentScrubberNodeOptions ) {
@@ -40,6 +43,16 @@ export default class TangentScrubberNode extends ScrubberNode {
     }, providedOptions );
 
     super( tangentScrubber, chartTransform, options );
+
+    this.tangentScrubber = tangentScrubber;
+  }
+
+  public override doAccessibleObjectResponse(): void {
+    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentScrubber.accessibleObjectResponse.format( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+      value: toFixedNumber( this.tangentScrubber.xProperty.value, 2 ),
+      slope: toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, 2 )
+    } ) );
   }
 
   /**

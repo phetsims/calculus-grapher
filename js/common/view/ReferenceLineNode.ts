@@ -85,6 +85,10 @@ export default class ReferenceLineNode extends ScrubberNode {
     } );
   }
 
+  public override doAccessibleObjectResponse(): void {
+    this.addAccessibleObjectResponse( 'ReferenceLineNode object response' );
+  }
+
   /**
    * Creates an icon for the reference line.
    */

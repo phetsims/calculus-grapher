@@ -22,6 +22,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import ScrubberNode from './ScrubberNode.js';
 
 type SelfOptions = {
 
@@ -37,7 +38,10 @@ type XDragHandleNodeOptions = SelfOptions &
 
 export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphereNode ) {
 
-  public constructor( xProperty: Property<number>, chartTransform: ChartTransform, providedOptions: XDragHandleNodeOptions ) {
+  public constructor( xProperty: Property<number>,
+                      chartTransform: ChartTransform,
+                      scrubberNode: ScrubberNode,
+                      providedOptions: XDragHandleNodeOptions ) {
 
     const options = optionize4<XDragHandleNodeOptions, SelfOptions, ShadedSphereNodeOptions>()(
       {}, AccessibleDraggableOptions, {
@@ -85,6 +89,7 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
       drag: ( event, listener ) => {
         xProperty.value = chartTransform.viewToModelX( listener.modelPoint.x );
       },
+      end: () => scrubberNode.doAccessibleObjectResponse(),
       keyboardDragListenerOptions: {
         dragSpeed: 300, // in view coordinates per second
         shiftDragSpeed: 75
