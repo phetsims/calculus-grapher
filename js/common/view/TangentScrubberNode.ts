@@ -51,7 +51,7 @@ export default class TangentScrubberNode extends ScrubberNode {
   public override doAccessibleObjectResponse(): void {
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentScrubber.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      value: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      x: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
       slope: toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
     } ) );
   }

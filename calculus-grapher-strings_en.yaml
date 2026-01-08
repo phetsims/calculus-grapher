@@ -209,18 +209,15 @@ a11y:
   tangentScrubber:
     accessibleName:           Tangent tool
     accessibleHelpText:       Move scrubber horizontally to explore tangent line at scrubber {$variable} coordinate.
-    accessibleObjectResponse: '{$variable} equals {$value}, slope equals {$slope}'
+    accessibleObjectResponse: '{$variable} equals {$x}, slope equals {$slope}'
   referenceLineScrubber:
-    accessibleName:     Reference Line tool
-    accessibleHelpText: Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate.
-    accessibleObjectResponse1: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, first derivative equals {$firstDerivativeValue}'
-    accessibleObjectResponse2: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, integral equals {$integralValue}'
-    accessibleObjectResponse3: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}'
-    accessibleObjectResponse4: '{$variable} equals {$value}, f of {$variable} equals {$fValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
+    accessibleName:           Reference Line tool
+    accessibleHelpText:       Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate.
+    accessibleObjectResponse: '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
   areaUnderCurveScrubber:
     accessibleName:           Area Under Curve tool
     accessibleHelpText:       Move scrubber horizontally to explore area under curve between {$variable} equals zero and scrubber position.
-    accessibleObjectResponse: '{$variable} equals {$value}, net signed area equals {$netSignedArea}'
+    accessibleObjectResponse: '{$variable} equals {$x}, net signed area equals {$netSignedArea}'
   curveManipulatorNode:
     accessibleName:           Curve Manipulator
     accessibleHelpText:       TODO.curveManipulatorNode.accessibleHelpText

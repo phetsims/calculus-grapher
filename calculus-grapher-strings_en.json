@@ -567,7 +567,7 @@
         "value": "Move scrubber horizontally to explore tangent line at scrubber {$variable} coordinate."
       },
       "accessibleObjectResponse": {
-        "value": "{$variable} equals {$value}, slope equals {$slope}"
+        "value": "{$variable} equals {$x}, slope equals {$slope}"
       }
     },
     "referenceLineScrubber": {
@@ -577,17 +577,8 @@
       "accessibleHelpText": {
         "value": "Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate."
       },
-      "accessibleObjectResponse1": {
-        "value": "{$variable} equals {$value}, f of {$variable} equals {$fValue}, first derivative equals {$firstDerivativeValue}"
-      },
-      "accessibleObjectResponse2": {
-        "value": "{$variable} equals {$value}, f of {$variable} equals {$fValue}, integral equals {$integralValue}"
-      },
-      "accessibleObjectResponse3": {
-        "value": "{$variable} equals {$value}, f of {$variable} equals {$fValue}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}"
-      },
-      "accessibleObjectResponse4": {
-        "value": "{$variable} equals {$value}, f of {$variable} equals {$fValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}"
+      "accessibleObjectResponse": {
+        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}"
       }
     },
     "areaUnderCurveScrubber": {
@@ -598,7 +589,7 @@
         "value": "Move scrubber horizontally to explore area under curve between {$variable} equals zero and scrubber position."
       },
       "accessibleObjectResponse": {
-        "value": "{$variable} equals {$value}, net signed area equals {$netSignedArea}"
+        "value": "{$variable} equals {$x}, net signed area equals {$netSignedArea}"
       }
     },
     "curveManipulatorNode": {

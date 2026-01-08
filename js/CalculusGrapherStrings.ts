@@ -292,10 +292,7 @@ type StringsType = {
     'referenceLineScrubber': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponse1StringProperty': LocalizedStringProperty;
-      'accessibleObjectResponse2StringProperty': LocalizedStringProperty;
-      'accessibleObjectResponse3StringProperty': LocalizedStringProperty;
-      'accessibleObjectResponse4StringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
     'areaUnderCurveScrubber': {
       'accessibleNameStringProperty': LocalizedStringProperty;

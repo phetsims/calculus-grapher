@@ -69,7 +69,7 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
   public override doAccessibleObjectResponse(): void {
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      value: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      x: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
       netSignedArea: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
     } ) );
   }
