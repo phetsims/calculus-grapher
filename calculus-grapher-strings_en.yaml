@@ -218,6 +218,7 @@ a11y:
   curveManipulatorNode:
     accessibleName:     Curve Manipulator
     accessibleHelpText: TODO.curveManipulatorNode.accessibleHelpText
+    accessibleObjectResponse: '{$x} {$y}'
   pushButtonGroup:
     accessibleHelpText: Actions applied to curve in primary graph area.
   headings:

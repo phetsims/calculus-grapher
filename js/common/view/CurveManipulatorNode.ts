@@ -9,6 +9,7 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import Shape from '../../../../kite/js/Shape.js';
 import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
@@ -24,6 +25,8 @@ import CurveManipulator from '../model/CurveManipulator.js';
 import CurveManipulatorKeyboardListener from './CurveManipulatorKeyboardListener.js';
 
 export default class CurveManipulatorNode extends InteractiveHighlighting( ShadedSphereNode ) {
+
+  public readonly curveManipulator: CurveManipulator;
 
   public constructor(
     curveManipulator: CurveManipulator,
@@ -52,6 +55,8 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
     } );
 
     super( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, options );
+
+    this.curveManipulator = curveManipulator;
 
     this.addLinkedElement( curveManipulator );
 
@@ -83,6 +88,18 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
     curveManipulator.positionProperty.link( position => {
       this.center = chartTransform.modelToViewPosition( position );
     } );
+
+    // Object response when the manipulator gets focus.
+    this.focusedProperty.lazyLink( focused => {
+      focused && this.doAccessibleObjectResponse();
+    } );
+  }
+
+  public doAccessibleObjectResponse(): void {
+    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleObjectResponse.format( {
+      x: toFixedNumber( this.curveManipulator.positionProperty.value.x, 2 ),
+      y: toFixedNumber( this.curveManipulator.positionProperty.value.y, 2 )
+    } ) );
   }
 }
 

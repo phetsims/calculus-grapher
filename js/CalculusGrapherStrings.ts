@@ -299,6 +299,7 @@ type StringsType = {
     'curveManipulatorNode': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
     'pushButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;

@@ -589,6 +589,9 @@
       },
       "accessibleHelpText": {
         "value": "TODO.curveManipulatorNode.accessibleHelpText"
+      },
+      "accessibleObjectResponse": {
+        "value": "{$x} {$y}"
       }
     },
     "pushButtonGroup": {

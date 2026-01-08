@@ -182,6 +182,7 @@ addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleName', 'a11y.areaUnder
 addToMapIfDefined( 'a11y_areaUnderCurveScrubber_accessibleHelpText', 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleName', 'a11y.curveManipulatorNode.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleHelpText', 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleObjectResponse', 'a11y.curveManipulatorNode.accessibleObjectResponseStringProperty' );
 addToMapIfDefined( 'a11y_pushButtonGroup_accessibleHelpText', 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
@@ -487,7 +488,8 @@ const CalculusGrapherFluent = {
     },
     curveManipulatorNode: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleNameStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' ) )
+      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' ) ),
+      accessibleObjectResponse: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleObjectResponseStringProperty' ), [{"name":"x"},{"name":"y"}] )
     },
     pushButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_pushButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' ) )
