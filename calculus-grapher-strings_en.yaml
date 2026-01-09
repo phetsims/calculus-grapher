@@ -152,7 +152,7 @@ a11y:
       accessibleHelpText: Convert curve to sinusoid.
     freeformRadioButton:
       accessibleName:     Custom
-      accessibleHelpText: Add freely drawn custom shape to curve.
+      accessibleHelpText: Freely drawn curve.
     tiltRadioButton:
       accessibleName:     Tilt
       accessibleHelpText: Tilt curve diagonally while pinned at left edge of horizontal axis.

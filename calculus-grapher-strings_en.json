@@ -414,7 +414,7 @@
           "value": "Custom"
         },
         "accessibleHelpText": {
-          "value": "Add freely drawn custom shape to curve."
+          "value": "Freely drawn curve."
         }
       },
       "tiltRadioButton": {
