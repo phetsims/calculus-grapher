@@ -20,6 +20,7 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationControls from './CurveManipulationControls.js';
 import CurvePushButtonGroup from './CurvePushButtonGroup.js';
@@ -37,6 +38,7 @@ export default class CalculusGrapherControlPanel extends Panel {
                       predictSelectedProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
+                      curveManipulator: CurveManipulator,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
@@ -64,8 +66,8 @@ export default class CalculusGrapherControlPanel extends Panel {
       predictEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, predictSelectedProperty,
-      options.hasSmoothButton, options.tandem.createTandem( 'pushButtonGroup' ) );
+    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, curveManipulator,
+      predictSelectedProperty, options.hasSmoothButton, options.tandem.createTandem( 'pushButtonGroup' ) );
 
     // assemble all the scenery nodes
     const contentNode = new VBox( {

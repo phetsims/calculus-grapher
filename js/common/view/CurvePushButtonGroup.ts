@@ -14,6 +14,7 @@ import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveEraserButton from './CurveEraserButton.js';
 import SmoothButton from './SmoothButton.js';
@@ -22,6 +23,7 @@ import UndoButton from './UndoButton.js';
 export default class CurvePushButtonGroup extends VBox {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
+                      curveManipulator: CurveManipulator,
                       predictSelectedProperty: TReadOnlyProperty<boolean>,
                       hasSmoothButton: boolean,
                       tandem: Tandem ) {
@@ -32,7 +34,8 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Create an eraser Button. Disabling this button when there's nothing to erase is NOT a requirement.
     // See https://github.com/phetsims/calculus-grapher/issues/219
-    const eraserButton = new CurveEraserButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'eraserButton' ) );
+    const eraserButton = new CurveEraserButton( interactiveCurveProperty, curveManipulator, predictSelectedProperty,
+      tandem.createTandem( 'eraserButton' ) );
 
     // Put the eraser and undo buttons side by side
     const hBox = new HBox( {

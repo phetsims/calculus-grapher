@@ -14,11 +14,13 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
 export default class CurveEraserButton extends EraserButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
+                      curveManipulator: CurveManipulator,
                       predictSelectedProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
@@ -27,7 +29,10 @@ export default class CurveEraserButton extends EraserButton {
     } );
 
     super( {
-      listener: () => interactiveCurveProperty.value.erase(),
+      listener: () => {
+        interactiveCurveProperty.value.erase();
+        curveManipulator.reset();
+      },
       iconWidth: 16,
       xMargin: 10,
       accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
