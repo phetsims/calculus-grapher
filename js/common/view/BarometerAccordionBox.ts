@@ -79,6 +79,7 @@ export default class BarometerAccordionBox extends AccordionBox {
       },
 
       // AccordionBoxOptions
+      isDisposable: false,
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty,
       resize: true,

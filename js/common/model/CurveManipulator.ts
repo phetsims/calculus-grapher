@@ -8,14 +8,12 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import TransformedCurve from './TransformedCurve.js';
 
 // The default position is at the center of the graph.
 const DEFAULT_POSITION = new Vector2(
@@ -34,12 +32,10 @@ export default class CurveManipulator extends PhetioObject {
   // Whether the associated KeyboardCueNode is visible when the manipulator gets focus.
   public readonly keyboardCueEnabledProperty: Property<boolean>;
 
-  public constructor( originalCurve: TransformedCurve,
-                      predictCurve: TransformedCurve,
-                      predictSelectedProperty: TReadOnlyProperty<boolean>,
-                      tandem: Tandem ) {
+  public constructor( tandem: Tandem ) {
 
     super( {
+      isDisposable: false,
       tandem: tandem,
       phetioState: false
     } );

@@ -35,6 +35,7 @@ export default class TangentArrowNode extends ArrowNode {
       arrowLength: 100,
 
       // ArrowNodeOptions
+      isDisposable: false,
       fill: tangentScrubber.colorProperty,
       headWidth: 10,
       headHeight: 10,

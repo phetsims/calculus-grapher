@@ -45,6 +45,7 @@ export default class ValuesControl extends PreferencesControl {
     } );
 
     super( {
+      isDisposable: false,
       labelNode: labelText,
       controlNode: toggleSwitch,
       descriptionNode: descriptionText,

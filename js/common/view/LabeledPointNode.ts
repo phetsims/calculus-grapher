@@ -39,6 +39,7 @@ export default class LabeledPointNode extends Node {
     const options = optionize<LabeledPointNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
+      isDisposable: false,
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       visibleProperty: new DerivedProperty(
         [ labeledPoint.visibleProperty, curveLayerVisibleProperty, predictEnabledProperty,

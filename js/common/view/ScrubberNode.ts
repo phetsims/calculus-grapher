@@ -63,7 +63,10 @@ export default abstract class ScrubberNode extends Node {
       lineDash: [ 6, 6 ],
       lineTop: 0,
       lineBottom: 100,
-      phetioHandleNodeVisiblePropertyInstrumented: true
+      phetioHandleNodeVisiblePropertyInstrumented: true,
+
+      // NodeOptions
+      isDisposable: false
     }, providedOptions );
 
     super( options );

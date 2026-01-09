@@ -66,6 +66,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
     ];
 
     super( predictSelectedProperty, rectangularRadioButtonGroupItems, {
+      isDisposable: false,
       visibleProperty: CalculusGrapherPreferences.predictFeatureEnabledProperty,
       orientation: 'horizontal',
       spacing: 5,

@@ -8,6 +8,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import IntentionalAny from '../../../../phet-core/js/types/IntentionalAny.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
@@ -17,7 +18,6 @@ import IOType from '../../../../tandem/js/types/IOType.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import GraphType from './GraphType.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -34,6 +34,7 @@ export default class GraphSet extends PhetioObject {
     super( optionize<GraphSetOptions, SelfOptions, PhetioObjectOptions>()( {
 
       // PhetioObjectOptions
+      isDisposable: false,
       tandem: Tandem.OPT_OUT,
       phetioState: false,
       phetioType: GraphSet.GraphSetIO

@@ -28,6 +28,7 @@ export default class SmoothButton extends TextPushButton {
     } );
 
     super( CalculusGrapherFluent.smoothStringProperty, {
+      isDisposable: false,
       listener: () => interactiveCurveProperty.value.smooth(),
       textNodeOptions: {
         font: CalculusGrapherConstants.CONTROL_FONT,

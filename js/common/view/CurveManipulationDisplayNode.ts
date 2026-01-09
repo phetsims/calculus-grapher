@@ -9,6 +9,7 @@
 import Multilink from '../../../../axon/js/Multilink.js';
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -20,7 +21,6 @@ import CurveManipulationProperties from '../model/CurveManipulationProperties.js
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 import CurveNode from './CurveNode.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 export default class CurveManipulationDisplayNode extends Node {
 
@@ -57,6 +57,7 @@ export default class CurveManipulationDisplayNode extends Node {
     } );
 
     super( {
+      isDisposable: false,
       children: [ chartRectangle, curveNode ],
       tandem: tandem
     } );

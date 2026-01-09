@@ -51,6 +51,7 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
         yModel: 0,
 
         // ShadedSphereNodeOptions
+        isDisposable: false,
         cursor: 'ew-resize'
       }, providedOptions );
 

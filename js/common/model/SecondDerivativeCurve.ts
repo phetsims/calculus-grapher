@@ -31,6 +31,7 @@ export default class SecondDerivativeCurve extends Curve {
     super( {
 
       // CurveOptions
+      isDisposable: false,
       xRange: originalCurve.xRange,
       numberOfPoints: originalCurve.numberOfPoints,
       tandem: tandem

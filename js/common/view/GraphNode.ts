@@ -155,6 +155,7 @@ export default class GraphNode extends Node {
       },
 
       // NodeOptions
+      isDisposable: false,
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 

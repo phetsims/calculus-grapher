@@ -38,6 +38,7 @@ export default class ReferenceLineCheckbox extends Checkbox {
 
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        isDisposable: false,
         accessibleName: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleNameStringProperty,
         accessibleHelpText: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleHelpTextStringProperty,
         accessibleContextResponseChecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseCheckedStringProperty,

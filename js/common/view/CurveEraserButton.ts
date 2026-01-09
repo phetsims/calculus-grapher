@@ -32,6 +32,7 @@ export default class CurveEraserButton extends EraserButton {
     } );
 
     super( {
+      isDisposable: false,
       listener: () => {
         interactiveCurveProperty.value.erase();
         curveManipulator.reset();

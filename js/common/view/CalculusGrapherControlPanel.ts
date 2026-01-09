@@ -47,6 +47,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       hasSmoothButton: true,
 
       // PanelOptions
+      isDisposable: false,
       stroke: CalculusGrapherColors.panelStrokeProperty,
       fill: CalculusGrapherColors.panelFillProperty,
       cornerRadius: CalculusGrapherConstants.CORNER_RADIUS,

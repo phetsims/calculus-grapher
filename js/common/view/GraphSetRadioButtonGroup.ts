@@ -30,6 +30,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
                       tandem: Tandem ) {
 
     super( graphSetProperty, graphSetRadioButtonGroupItems, {
+      isDisposable: false,
       spacing: 5,
       radioButtonOptions: {
         baseColor: CalculusGrapherColors.panelFillProperty,

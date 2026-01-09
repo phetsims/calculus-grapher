@@ -29,6 +29,7 @@ export default class UndoButton extends ReturnButton {
     } );
 
     super( {
+      isDisposable: false,
       listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
       iconOptions: { height: 13 },

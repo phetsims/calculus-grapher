@@ -21,6 +21,7 @@ export default class GridCheckbox extends Checkbox {
 
     super( scrubberVisibleProperty, new GridIcon(), combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
+        isDisposable: false,
         accessibleName: CalculusGrapherFluent.a11y.gridCheckbox.accessibleNameStringProperty,
         accessibleHelpText: CalculusGrapherFluent.a11y.gridCheckbox.accessibleHelpTextStringProperty,
         accessibleContextResponseChecked: CalculusGrapherFluent.a11y.gridCheckbox.accessibleContextResponseCheckedStringProperty,

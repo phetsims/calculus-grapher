@@ -38,6 +38,7 @@ export default class DiscontinuitiesControl extends PreferencesControl {
       tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
+      isDisposable: false,
       labelNode: labelText,
       controlNode: radioButtonGroup,
       labelSpacing: 20,

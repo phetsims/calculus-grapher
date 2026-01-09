@@ -75,6 +75,7 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
       } ) );
 
     super( checkbox, {
+      isDisposable: false,
       xMargin: POINTER_AREA_DILATION,
       yMargin: POINTER_AREA_DILATION,
       rectangleOptions: {

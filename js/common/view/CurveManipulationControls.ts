@@ -40,6 +40,7 @@ export default class CurveManipulationControls extends VBox {
       curveManipulationStrokeProperty, tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
+      isDisposable: false,
       children: [ widthControl, radioButtonGroup ],
       spacing: 15,
       tandem: tandem,

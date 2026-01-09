@@ -80,6 +80,7 @@ export default class AncillaryTool extends PhetioObject {
       ySecondDerivativePropertyFeatured: true,
 
       // PhetioObjectOptions
+      isDisposable: false,
       phetioState: false
     }, providedOptions );
 

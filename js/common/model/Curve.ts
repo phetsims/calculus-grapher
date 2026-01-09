@@ -92,6 +92,7 @@ export default class Curve extends PhetioObject {
       numberOfPoints: NUMBER_OF_POINTS,
 
       // PhetioObjectOptions
+      isDisposable: false,
       phetioState: false,
       pointsPropertyReadOnly: true
     }, providedOptions );

@@ -37,6 +37,7 @@ export default class CalculusGrapherCheckboxGroup extends VBox {
     const gridCheckbox = new GridCheckbox( gridVisibleProperty, tandem.createTandem( 'gridCheckbox' ) );
 
     super( {
+      isDisposable: false,
       children: [ referenceLineCheckbox, gridCheckbox ],
       align: 'left',
       spacing: 10,

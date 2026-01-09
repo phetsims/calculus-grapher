@@ -42,6 +42,7 @@ export default class LabeledLineNode extends Node {
       lineBottom: 100,
 
       // NodeOptions
+      isDisposable: false,
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       visibleProperty: labeledLine.visibleProperty
       // No PhET-iO instrumentation is desired, see https://github.com/phetsims/calculus-grapher/issues/198

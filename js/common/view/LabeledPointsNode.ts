@@ -36,6 +36,7 @@ export default class LabeledPointsNode extends Node {
       } ) );
 
     super( {
+      isDisposable: false,
       children: labeledPointNodes,
       tandem: tandem,
       phetioVisiblePropertyInstrumented: false

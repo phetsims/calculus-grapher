@@ -42,6 +42,7 @@ export default class AreaUnderCurvePlot extends Node {
     const options = optionize<AreaUnderCurvePlotOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
+      isDisposable: false,
       pickable: false // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
     }, providedOptions );
 

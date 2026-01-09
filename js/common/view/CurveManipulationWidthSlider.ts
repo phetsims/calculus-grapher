@@ -39,6 +39,7 @@ export default class CurveManipulationWidthSlider extends HSlider {
     const options = optionize<CurveManipulationWidthSliderOptions, SelfOptions, HSliderOptions>()( {
 
       // HSliderOptions
+      isDisposable: false,
       trackSize: new Dimension2( 100, 1 ),
       majorTickLength: 20,
       minorTickLength: 15,

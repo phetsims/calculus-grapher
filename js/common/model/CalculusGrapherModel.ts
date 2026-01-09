@@ -192,8 +192,7 @@ export default class CalculusGrapherModel implements TModel {
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
 
-    this.curveManipulator = new CurveManipulator( this.originalCurve, this.predictCurve, this.predictSelectedProperty,
-      this.toolsTandem.createTandem( 'curveManipulator' ) );
+    this.curveManipulator = new CurveManipulator( this.toolsTandem.createTandem( 'curveManipulator' ) );
 
     this.referenceLine = new ReferenceLine(
       this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,

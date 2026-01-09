@@ -34,6 +34,7 @@ export default class CurveManipulationWidthControl extends VBox {
     } );
 
     super( {
+      isDisposable: false,
       children: [ curveDisplayNode, slider ],
       spacing: 10,
       excludeInvisibleChildrenFromBounds: false,
