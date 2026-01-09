@@ -53,7 +53,7 @@ a11y:
       currentDetails:  TODO.currentDetails
       interactionHint: TODO.interactionHint
   labScreen:
-    screenButtonsHelpText: Manipulate a curve to explore its first derivative, second derivative, and integral, with or without discontinuities
+    screenButtonsHelpText: Manipulate a curve to explore its integral, first derivative, and second derivative, with or without discontinuities.
     screenSummary:
       playArea:        TODO.labScreen.screenSummary.playArea
       controlArea:     TODO.labScreen.screenSummary.controlArea

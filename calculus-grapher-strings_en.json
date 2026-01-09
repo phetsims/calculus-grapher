@@ -91,7 +91,7 @@
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate the graph of a function and explore its first derivative curve in real time."
+        "value": "Manipulate a curve to explore its first derivative."
       },
       "screenSummary": {
         "playArea": {
@@ -110,7 +110,7 @@
     },
     "integralScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate the graph of a function and explore its integral curve in real time."
+        "value": "Manipulate a curve to explore its integral."
       },
       "screenSummary": {
         "playArea": {
@@ -129,7 +129,7 @@
     },
     "advancedScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate the graph of a function and explore its first derivative and integral curves, with or without discontinuities."
+        "value": "Manipulate a curve to explore its first derivative and integral, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -148,7 +148,7 @@
     },
     "labScreen": {
       "screenButtonsHelpText": {
-        "value": "Flexibly manipulate the graph of a function and explore its first derivative, second derivative, and integral curves, with or without discontinuities"
+        "value": "Manipulate a curve to explore its integral, first derivative, and second derivative, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
