@@ -121,7 +121,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Interactive f(x) 'original' curve
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
-    this.originalCurveNode = new TransformedCurveNode( originalCurve, curveManipulationProperties, this.chartTransform, {
+    this.originalCurveNode = new TransformedCurveNode( originalCurve, this.chartTransform, {
       stroke: graphType.strokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
       continuousLinePlotOptions: {
@@ -145,7 +145,7 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Interactive 'Predict' curve
-    this.predictCurveNode = new TransformedCurveNode( predictCurve, curveManipulationProperties, this.chartTransform, {
+    this.predictCurveNode = new TransformedCurveNode( predictCurve, this.chartTransform, {
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210

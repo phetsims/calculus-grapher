@@ -20,7 +20,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CueingArrowsNode from './CueingArrowsNode.js';
 import CurveNode, { CurveNodeOptions } from './CurveNode.js';
@@ -38,7 +37,6 @@ export default class TransformedCurveNode extends CurveNode {
   public readonly transformedCurve: TransformedCurve;
 
   public constructor( transformedCurve: TransformedCurve,
-                      curveManipulationProperties: CurveManipulationProperties,
                       chartTransform: ChartTransform,
                       providedOptions: TransformedCurveNodeOptions ) {
 
