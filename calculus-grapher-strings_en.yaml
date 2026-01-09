@@ -208,18 +208,18 @@ a11y:
     accessibleContextResponseUnchecked: f of {$variable} hidden.
   tangentScrubber:
     accessibleName:           Tangent tool
-    accessibleHelpText:       Move scrubber horizontally to explore tangent line at scrubber {$variable} coordinate.
-    accessibleObjectResponse: '{$variable} equals {$x}, slope equals {$slope}'
+    accessibleHelpText:       Move horizontally to explore tangent line at {$variable} coordinate.
+    accessibleObjectResponse: '{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}'
   referenceLineScrubber:
     accessibleName:                                          Reference Line tool
-    accessibleHelpText:                                      Move scrubber horizontally to explore corresponding y values on all graphs at scrubber {$variable} coordinate.
+    accessibleHelpText:                                      Move horizontally to explore corresponding y values on all graphs at tool {$variable} coordinate.
     accessibleObjectResponseFirstDerivative:                 '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}'
     accessibleObjectResponseIntegral:                        '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}'
     accessibleObjectResponseIntegralFirstDerivative:         '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}'
     accessibleObjectResponseFirstDerivativeSecondDerivative: '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
   areaUnderCurveScrubber:
     accessibleName:           Area Under Curve tool
-    accessibleHelpText:       Move scrubber horizontally to explore area under curve between {$variable} equals zero and scrubber position.
+    accessibleHelpText:       Move horizontally to explore area under curve between {$variable} equals zero and tool position.
     accessibleObjectResponse: '{$variable} equals {$x}, net signed area equals {$netSignedArea}'
   curveManipulatorNode:
     accessibleName:           Curve Manipulator

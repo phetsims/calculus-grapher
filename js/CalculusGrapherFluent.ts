@@ -483,7 +483,7 @@ const CalculusGrapherFluent = {
     tangentScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
-      accessibleObjectResponse: new FluentPattern<{ slope: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleObjectResponseStringProperty' ), [{"name":"slope"},{"name":"variable"},{"name":"x"}] )
+      accessibleObjectResponse: new FluentPattern<{ firstDerivativeValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentScrubber_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.tangentScrubber.accessibleObjectResponseStringProperty' ), [{"name":"firstDerivativeValue"},{"name":"variable"},{"name":"x"}] )
     },
     referenceLineScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLineScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLineScrubber.accessibleNameStringProperty' ) ),
