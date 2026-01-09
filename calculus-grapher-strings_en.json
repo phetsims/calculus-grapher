@@ -379,10 +379,10 @@
       },
       "triangleRadioButton": {
         "accessibleName": {
-          "value": "Triangle"
+          "value": "Tent"
         },
         "accessibleHelpText": {
-          "value": "Add triangle to curve."
+          "value": "Add tent shape to curve."
         }
       },
       "pedestalRadioButton": {
@@ -398,7 +398,7 @@
           "value": "Parabola"
         },
         "accessibleHelpText": {
-          "value": "Add parabola to curve."
+          "value": "Add parabola bounded by horizontal axis to curve."
         }
       },
       "sinusoidRadioButton": {
@@ -406,7 +406,7 @@
           "value": "Sinusoid"
         },
         "accessibleHelpText": {
-          "value": "Convert curve to sinusoid."
+          "value": "Convert curve to sine wave."
         }
       },
       "freeformRadioButton": {
