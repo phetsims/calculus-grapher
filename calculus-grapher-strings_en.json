@@ -367,7 +367,7 @@
         "value": "Shapes"
       },
       "accessibleHelpText": {
-        "value": "Choose shape to be added to curve in primary graph area."
+        "value": "Choose shape to be added to curve in Primary Graph Area."
       },
       "hillRadioButton": {
         "accessibleName": {
@@ -529,14 +529,14 @@
         "value": "Curve to Manipulate"
       },
       "accessibleHelpText": {
-        "value": "Choose curve to manipulate in primary graph area."
+        "value": "Choose curve to manipulate in Primary Graph Area."
       },
       "originalCurveRadioButton": {
         "accessibleName": {
           "value": "f of {$variable}"
         },
         "accessibleHelpText": {
-          "value": "Manipulate f of {$variable} in primary graph area."
+          "value": "Manipulate f of {$variable} in Primary Graph Area."
         }
       },
       "predictCurveRadioButton": {
@@ -544,7 +544,7 @@
           "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve in primary graph area."
+          "value": "Manipulate prediction curve in Primary Graph Area."
         }
       }
     },
@@ -617,7 +617,7 @@
     },
     "pushButtonGroup": {
       "accessibleHelpText": {
-        "value": "Actions applied to curve in primary graph area."
+        "value": "Actions applied to curve in Primary Graph Area."
       }
     },
     "headings": {
