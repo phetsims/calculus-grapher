@@ -443,8 +443,8 @@ const CalculusGrapherFluent = {
       accessibleParagraph: new FluentPattern<{ firstDerivativeValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty' ), [{"name":"firstDerivativeValue"},{"name":"variable"},{"name":"x"}] )
     },
     netSignedAreaAccordionBox: {
-      accessibleHelpTextCollapsedStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' ) ),
-      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty' ) )
+      accessibleHelpTextCollapsed: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' ), [{"name":"variable"}] ),
+      accessibleParagraph: new FluentPattern<{ integralValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleParagraphStringProperty' ), [{"name":"integralValue"},{"name":"variable"},{"name":"x"}] )
     },
     originalGraph: {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_originalGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.originalGraph.accessibleHeadingStringProperty' ) ),
@@ -496,7 +496,7 @@ const CalculusGrapherFluent = {
     areaUnderCurveScrubber: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
-      accessibleObjectResponse: new FluentPattern<{ netSignedArea: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleObjectResponseStringProperty' ), [{"name":"netSignedArea"},{"name":"variable"},{"name":"x"}] )
+      accessibleObjectResponse: new FluentPattern<{ integralValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveScrubber_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveScrubber.accessibleObjectResponseStringProperty' ), [{"name":"integralValue"},{"name":"variable"},{"name":"x"}] )
     },
     curveManipulatorNode: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorNode_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorNode.accessibleNameStringProperty' ) ),

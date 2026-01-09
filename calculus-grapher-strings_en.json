@@ -475,18 +475,18 @@
     },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "Explore slope of tangent line at {$variable} coordinate of Tangent tool."
+        "value": "Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "Slope of tangent line equals {$firstDerivativeValue} at {$variable} equals {$x}."
+        "value": "Slope of line tangent to f of {$variable} curve equals {$firstDerivativeValue} at {$variable} equals {$x}."
       }
     },
     "netSignedAreaAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "TODO.netSignedAreaAccordionBox.accessibleHelpTextCollapsed"
+        "value": "Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool."
       },
       "accessibleParagraph": {
-        "value": "TODO.netSignedAreaAccordionBox.accessibleParagraph"
+        "value": "Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
       }
     },
     "originalGraph": {
@@ -598,7 +598,7 @@
         "value": "Move horizontally to explore area under curve between {$variable} equals zero and tool position."
       },
       "accessibleObjectResponse": {
-        "value": "{$variable} equals {$x}, net signed area equals {$netSignedArea}"
+        "value": "{$variable} equals {$x}, integral equals {$integralValue}, net signed area equals {$integralValue}"
       }
     },
     "curveManipulatorNode": {

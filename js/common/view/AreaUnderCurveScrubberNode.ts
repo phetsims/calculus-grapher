@@ -70,7 +70,7 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       x: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      netSignedArea: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
+      integralValue: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
     } ) );
   }
 

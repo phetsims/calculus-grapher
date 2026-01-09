@@ -43,9 +43,9 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       } ),
       barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.createProperty( {
         firstDerivativeValue: new DerivedProperty( [ tangentScrubber.derivativeCurvePointProperty ],
-          derivative => toFixedNumber( derivative.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS ) ),
+          derivativeCurvePoint => toFixedNumber( derivativeCurvePoint.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS ) ),
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-        x: tangentScrubber.xProperty
+        x: new DerivedProperty( [ tangentScrubber.xProperty ], x => toFixedNumber( x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ) )
       } )
     }, providedOptions );
 

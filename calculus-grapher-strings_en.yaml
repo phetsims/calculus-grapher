@@ -66,7 +66,7 @@ a11y:
     accessibleContextResponseUnchecked: Grid lines hidden.
   smoothButton:
     accessibleName:            Smooth
-    accessibleHelpText: Remove sharp corners and abrupt changes in primary curve shape.
+    accessibleHelpText:        Remove sharp corners and abrupt changes in primary curve shape.
     accessibleContextResponse: TODO.smoothButton.accessibleContextResponse
   eraserButton:
     accessibleName:                        Erase Curve Manipulations
@@ -175,11 +175,11 @@ a11y:
       accessibleName:     Primary, First Derivative, and Second Derivative
       accessibleHelpText: Show Primary Graph Area, First Derivative Graph Area, and Second Derivative Graph Area.
   slopeOfTangentAccordionBox:
-    accessibleHelpTextCollapsed: Explore slope of tangent line for f of ${variable} at {$variable} coordinate of Tangent tool.
-    accessibleParagraph:         Slope of tangent line equals {$firstDerivativeValue} at {$variable} equals {$x}.
+    accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool.
+    accessibleParagraph:         Slope of line tangent to f of {$variable} curve equals {$firstDerivativeValue} at {$variable} equals {$x}.
   netSignedAreaAccordionBox:
-    accessibleHelpTextCollapsed: TODO.netSignedAreaAccordionBox.accessibleHelpTextCollapsed
-    accessibleParagraph:         TODO.netSignedAreaAccordionBox.accessibleParagraph
+    accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
+    accessibleParagraph:         Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
   originalGraph:
     accessibleHeading:   Primary Graph Area
     accessibleParagraph: TODO.originalGraph.accessibleParagraph
@@ -220,7 +220,7 @@ a11y:
   areaUnderCurveScrubber:
     accessibleName:           Area Under Curve tool
     accessibleHelpText:       Move horizontally to explore area under curve between {$variable} equals zero and tool position.
-    accessibleObjectResponse: '{$variable} equals {$x}, net signed area equals {$netSignedArea}'
+    accessibleObjectResponse: '{$variable} equals {$x}, integral equals {$integralValue}, net signed area equals {$integralValue}'
   curveManipulatorNode:
     accessibleName:           Curve Manipulator
     accessibleHelpText:       TODO.curveManipulatorNode.accessibleHelpText
