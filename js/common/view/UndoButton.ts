@@ -3,6 +3,9 @@
 /**
  * UndoButton is the push button that allows the user to undo the last action on the curve.
  *
+ * NOTE: Disabling this button when there's nothing to undo is NOT a requirement.
+ * See https://github.com/phetsims/calculus-grapher/issues/219
+ *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 

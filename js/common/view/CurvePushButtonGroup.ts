@@ -28,12 +28,8 @@ export default class CurvePushButtonGroup extends VBox {
                       hasSmoothButton: boolean,
                       tandem: Tandem ) {
 
-    // Create an undo Button. Disabling this button when there's nothing to undo is NOT a requirement.
-    // See https://github.com/phetsims/calculus-grapher/issues/219
     const undoButton = new UndoButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'undoButton' ) );
 
-    // Create an eraser Button. Disabling this button when there's nothing to erase is NOT a requirement.
-    // See https://github.com/phetsims/calculus-grapher/issues/219
     const eraserButton = new CurveEraserButton( interactiveCurveProperty, curveManipulator, predictSelectedProperty,
       tandem.createTandem( 'eraserButton' ) );
 

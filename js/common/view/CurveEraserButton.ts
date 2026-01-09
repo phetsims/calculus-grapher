@@ -4,6 +4,9 @@
  * CurveEraserButton is the push button that allows the user to erase all manipulations that were made to
  * the interactive curve.
  *
+ * NOTE: Disabling this button when there's nothing to erase is NOT a requirement.
+ * See https://github.com/phetsims/calculus-grapher/issues/219
+ *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
