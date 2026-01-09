@@ -233,6 +233,6 @@ a11y:
   headings:
     graphAreas:                           Graph Areas
     curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
-    toolControls:                         Tool Controls
+    explorationToolControls:              Exploration Tool Controls
     explorationTools:                     Exploration Tools
-    actionsButtonGroup:                   Actions Button Group
+    actionButton:                         Action Buttons

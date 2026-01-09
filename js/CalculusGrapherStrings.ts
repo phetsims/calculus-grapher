@@ -317,9 +317,9 @@ type StringsType = {
     'headings': {
       'graphAreasStringProperty': LocalizedStringProperty;
       'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
-      'toolControlsStringProperty': LocalizedStringProperty;
+      'explorationToolControlsStringProperty': LocalizedStringProperty;
       'explorationToolsStringProperty': LocalizedStringProperty;
-      'actionsButtonGroupStringProperty': LocalizedStringProperty;
+      'actionButtonStringProperty': LocalizedStringProperty;
     }
   }
 };

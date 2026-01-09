@@ -632,14 +632,14 @@
       "curveManipulationSettingsAndControls": {
         "value": "Curve Manipulation Settings and Controls"
       },
-      "toolControls": {
-        "value": "Tool Controls"
+      "explorationToolControls": {
+        "value": "Exploration Tool Controls"
       },
       "explorationTools": {
         "value": "Exploration Tools"
       },
-      "actionsButtonGroup": {
-        "value": "Actions Button Group"
+      "actionButton": {
+        "value": "Action Buttons"
       }
     }
   }
