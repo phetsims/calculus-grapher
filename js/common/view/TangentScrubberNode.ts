@@ -37,8 +37,8 @@ export default class TangentScrubberNode extends ScrubberNode {
       // ScrubberNodeOptions
       handleColor: tangentScrubber.colorProperty,
       lineStroke: tangentScrubber.colorProperty,
-      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.tangentScrubber.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.tangentScrubber.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.tangentTool.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.tangentTool.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     }, providedOptions );
@@ -49,7 +49,7 @@ export default class TangentScrubberNode extends ScrubberNode {
   }
 
   public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentScrubber.accessibleObjectResponse.format( {
+    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       x: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
       firstDerivativeValue: toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )

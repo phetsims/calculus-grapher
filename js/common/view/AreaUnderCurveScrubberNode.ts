@@ -40,8 +40,8 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
       // ScrubberNodeOptions
       handleColor: areaUnderCurveScrubber.colorProperty,
       lineStroke: areaUnderCurveScrubber.colorProperty,
-      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     }, providedOptions );
@@ -67,7 +67,7 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
   }
 
   public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveScrubber.accessibleObjectResponse.format( {
+    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       x: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
       integralValue: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )

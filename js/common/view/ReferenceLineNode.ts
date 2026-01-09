@@ -56,8 +56,8 @@ export default class ReferenceLineNode extends ScrubberNode {
       // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
       phetioHandleNodeVisiblePropertyInstrumented: false,
 
-      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.referenceLineTool.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.referenceLineTool.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     } );
@@ -105,7 +105,7 @@ export default class ReferenceLineNode extends ScrubberNode {
     let accessibleObjectResponse: string | null = null;
     if ( graphSet.length === 2 ) {
       if ( graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseFirstDerivative.format( {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseFirstDerivative.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
           x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
           y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
@@ -113,7 +113,7 @@ export default class ReferenceLineNode extends ScrubberNode {
         } );
       }
       else if ( graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseIntegral.format( {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseIntegral.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
           x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
           y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
@@ -123,7 +123,7 @@ export default class ReferenceLineNode extends ScrubberNode {
     }
     else if ( graphSet.length === 3 ) {
       if ( graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseIntegralFirstDerivative.format( {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseIntegralFirstDerivative.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
           x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
           y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
@@ -132,7 +132,7 @@ export default class ReferenceLineNode extends ScrubberNode {
         } );
       }
       else if ( graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) && graphSet.includes( GraphType.SECOND_DERIVATIVE ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineScrubber.accessibleObjectResponseFirstDerivativeSecondDerivative.format( {
+        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseFirstDerivativeSecondDerivative.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
           x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
           y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),

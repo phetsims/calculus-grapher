@@ -562,7 +562,7 @@
         "value": "f of {$variable} hidden."
       }
     },
-    "tangentScrubber": {
+    "tangentTool": {
       "accessibleName": {
         "value": "Tangent tool"
       },
@@ -573,7 +573,7 @@
         "value": "{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}"
       }
     },
-    "referenceLineScrubber": {
+    "referenceLineTool": {
       "accessibleName": {
         "value": "Reference Line tool"
       },
@@ -593,7 +593,7 @@
         "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}"
       }
     },
-    "areaUnderCurveScrubber": {
+    "areaUnderCurveTool": {
       "accessibleName": {
         "value": "Area Under Curve tool"
       },

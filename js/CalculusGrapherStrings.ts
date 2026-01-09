@@ -285,12 +285,12 @@ type StringsType = {
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
-    'tangentScrubber': {
+    'tangentTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
-    'referenceLineScrubber': {
+    'referenceLineTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponseFirstDerivativeStringProperty': LocalizedStringProperty;
@@ -298,7 +298,7 @@ type StringsType = {
       'accessibleObjectResponseIntegralFirstDerivativeStringProperty': LocalizedStringProperty;
       'accessibleObjectResponseFirstDerivativeSecondDerivativeStringProperty': LocalizedStringProperty;
     };
-    'areaUnderCurveScrubber': {
+    'areaUnderCurveTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponseStringProperty': LocalizedStringProperty;
