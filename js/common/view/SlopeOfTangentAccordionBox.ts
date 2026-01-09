@@ -10,11 +10,13 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
 
@@ -36,8 +38,15 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE
       },
-      accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty,
-      barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty
+      accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } ),
+      barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.createProperty( {
+        firstDerivativeValue: new DerivedProperty( [ tangentScrubber.derivativeCurvePointProperty ],
+          derivative => toFixedNumber( derivative.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS ) ),
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+        x: tangentScrubber.xProperty
+      } )
     }, providedOptions );
 
     super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherFluent.barometer.slopeOfTangentStringProperty,

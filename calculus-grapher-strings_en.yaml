@@ -175,8 +175,8 @@ a11y:
       accessibleName:     Primary, First Derivative, and Second Derivative
       accessibleHelpText: Show Primary Graph Area, First Derivative Graph Area, and Second Derivative Graph Area.
   slopeOfTangentAccordionBox:
-    accessibleHelpTextCollapsed: TODO.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed
-    accessibleParagraph:         TODO.slopeOfTangentAccordionBox.accessibleParagraph
+    accessibleHelpTextCollapsed: Explore slope of tangent line for f of ${variable} at {$variable} coordinate of Tangent tool.
+    accessibleParagraph:         Slope of tangent line equals {$firstDerivativeValue} at {$variable} equals {$x}.
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: TODO.netSignedAreaAccordionBox.accessibleHelpTextCollapsed
     accessibleParagraph:         TODO.netSignedAreaAccordionBox.accessibleParagraph

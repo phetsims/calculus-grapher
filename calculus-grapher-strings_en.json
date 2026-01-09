@@ -475,10 +475,10 @@
     },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "TODO.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed"
+        "value": "Explore slope of tangent line at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "TODO.slopeOfTangentAccordionBox.accessibleParagraph"
+        "value": "Slope of tangent line equals {$firstDerivativeValue} at {$variable} equals {$x}."
       }
     },
     "netSignedAreaAccordionBox": {
@@ -567,7 +567,7 @@
         "value": "Move horizontally to explore tangent line at {$variable} coordinate."
       },
       "accessibleObjectResponse": {
-        "value": "{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope equals {$firstDerivativeValue}"
+        "value": "{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}"
       }
     },
     "referenceLineScrubber": {
