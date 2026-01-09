@@ -168,6 +168,7 @@ export default class GraphsNode extends Node {
       } );
 
     // Parent for scrubbers, to maintain rendering order.
+    //TODO https://github.com/phetsims/calculus-grapher/issues/343 Hide heading if no tools are visible.
     this.scrubberNodesParent = new Node( {
       accessibleHeading: CalculusGrapherFluent.a11y.headings.explorationToolsStringProperty,
       children: [ this.referenceLineNode ]
