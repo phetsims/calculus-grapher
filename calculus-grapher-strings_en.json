@@ -411,10 +411,10 @@
       },
       "freeformRadioButton": {
         "accessibleName": {
-          "value": "Freeform"
+          "value": "Custom"
         },
         "accessibleHelpText": {
-          "value": "TODO.freeformRadioButton.accessibleHelpText"
+          "value": "Add freely drawn custom shape to curve."
         }
       },
       "tiltRadioButton": {
