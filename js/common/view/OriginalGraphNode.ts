@@ -37,6 +37,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
@@ -190,7 +191,15 @@ export default class OriginalGraphNode extends GraphNode {
       this.chartTransform,
       new DerivedProperty( [ this.curveLayerVisibleProperty, predictSelectedProperty ],
         ( curveLayerVisible, predictSelected ) => curveLayerVisible && !predictSelected ),
-      options.tandem.createTandem( 'originalCurveManipulatorNode' ) );
+      {
+        tandem: options.tandem.createTandem( 'originalCurveManipulatorNode' ),
+        accessibleName: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleName.createProperty( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+        } ),
+        accessibleHelpText: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleHelpText.createProperty( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+        } )
+      } );
 
     // Predict curve manipulator
     this.predictCurveManipulatorNode = new CurveManipulatorNode(
@@ -200,7 +209,11 @@ export default class OriginalGraphNode extends GraphNode {
       curveManipulationProperties.widthProperty,
       this.chartTransform,
       DerivedProperty.and( [ this.curveLayerVisibleProperty, predictSelectedProperty ] ),
-      options.tandem.createTandem( 'predictCurveManipulatorNode' ) );
+      {
+        tandem: options.tandem.createTandem( 'predictCurveManipulatorNode' ),
+        accessibleName: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpTextStringProperty
+      } );
 
     // Keyboard cues (popups) for toggling the manipulators between modes. Each manipulator has its own popup
     // because they have different colors, so it might not be obvious that they behave similarly.

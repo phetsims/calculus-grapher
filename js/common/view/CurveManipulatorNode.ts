@@ -10,13 +10,13 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import Shape from '../../../../kite/js/Shape.js';
-import { combineOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import { PressListenerEvent } from '../../../../scenery/js/listeners/PressListener.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -25,6 +25,11 @@ import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulatorDragListener from './CurveManipulatorDragListener.js';
 import CurveManipulatorKeyboardListener from './CurveManipulatorKeyboardListener.js';
+
+type SelfOptions = EmptySelfOptions;
+
+type CurveManipulatorNodeOptions = SelfOptions &
+  PickRequired<ShadedSphereNodeOptions, 'tandem' | 'accessibleName' | 'accessibleHelpText'>;
 
 export default class CurveManipulatorNode extends InteractiveHighlighting( ShadedSphereNode ) {
 
@@ -37,17 +42,15 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
                       curveManipulationWidthProperty: TReadOnlyProperty<number>,
                       chartTransform: ChartTransform,
                       visibleProperty: TReadOnlyProperty<boolean>,
-                      tandem: Tandem ) {
+                      providedOptions: CurveManipulatorNodeOptions ) {
 
-    const options = combineOptions<ShadedSphereNodeOptions>( {}, AccessibleDraggableOptions, {
-      isDisposable: false,
-      visibleProperty: visibleProperty,
-      mainColor: curveManipulator.color,
-      cursor: 'pointer',
-      accessibleName: CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleHelpTextStringProperty,
-      tandem: tandem
-    } );
+    const options = optionize4<ShadedSphereNodeOptions, SelfOptions, ShadedSphereNodeOptions>()(
+      {}, AccessibleDraggableOptions, {
+        isDisposable: false,
+        visibleProperty: visibleProperty,
+        mainColor: curveManipulator.color,
+        cursor: 'pointer'
+      }, providedOptions );
 
     super( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, options );
 
@@ -82,7 +85,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
     // Toggle between positioning the manipulator and modifying the curve.
     this.addInputListener( new CurveManipulatorKeyboardListener( curveManipulator.keyboardEditEnabledProperty,
-      tandem.createTandem( 'keyboardListener' ) ) );
+      options.tandem.createTandem( 'keyboardListener' ) ) );
 
     // Drag the manipulator with pointer or keyboard.
     this.curveDragListener = new CurveManipulatorDragListener(
@@ -91,7 +94,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
       chartTransform,
       curveManipulationModeProperty,
       curveManipulationWidthProperty,
-      tandem // CurveManipulatorDragListener will create tandem.dragListener and tandem.keyboardDragListener.
+      options.tandem // CurveManipulatorDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
     this.addInputListener( this.curveDragListener );
   }
@@ -109,7 +112,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
    * This is called when the manipulator gets focus and when the manipulator is moved.
    */
   public doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.curveManipulatorNode.accessibleObjectResponse.format( {
+    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponse.format( {
       x: toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
       y: toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
     } ) );

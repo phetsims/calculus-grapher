@@ -604,15 +604,25 @@
         "value": "{$variable} equals {$x}, integral equals {$integralValue}, net signed area equals {$integralValue}"
       }
     },
-    "curveManipulatorNode": {
-      "accessibleName": {
-        "value": "Curve Manipulator"
-      },
-      "accessibleHelpText": {
-        "value": "TODO.curveManipulatorNode.accessibleHelpText"
-      },
+    "curveManipulator": {
       "accessibleObjectResponse": {
         "value": "{$x} {$y}"
+      }
+    },
+    "primaryCurveManipulator": {
+      "accessibleName": {
+        "value": "f of {$variable} Curve Manipulator"
+      },
+      "accessibleHelpText": {
+        "value": "Use this manipulator to change shape of f of {$variable} curve."
+      }
+    },
+    "predictCurveManipulator": {
+      "accessibleName": {
+        "value": "Prediction Curve Manipulator"
+      },
+      "accessibleHelpText": {
+        "value": "Use this manipulator to change shape of prediction curve."
       }
     },
     "pushButtonGroup": {

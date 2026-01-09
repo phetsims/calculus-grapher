@@ -303,10 +303,16 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
-    'curveManipulatorNode': {
+    'curveManipulator': {
+      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+    };
+    'primaryCurveManipulator': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+    };
+    'predictCurveManipulator': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'pushButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
