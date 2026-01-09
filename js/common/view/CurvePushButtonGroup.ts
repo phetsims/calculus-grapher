@@ -45,7 +45,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Optionally, create a Smooth button.
     if ( hasSmoothButton ) {
-      const smoothButton = new SmoothButton( interactiveCurveProperty, tandem.createTandem( 'smoothButton' ) );
+      const smoothButton = new SmoothButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'smoothButton' ) );
       children.push( smoothButton );
     }
 

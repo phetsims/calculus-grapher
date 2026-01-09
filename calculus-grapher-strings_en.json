@@ -184,10 +184,13 @@
         "value": "Smooth"
       },
       "accessibleHelpText": {
-        "value": "Remove sharp corners and abrupt changes in primary curve shape."
+        "value": "Remove sharp corners and abrupt changes in curve shape."
       },
-      "accessibleContextResponse": {
-        "value": "TODO.smoothButton.accessibleContextResponse"
+      "accessibleContextResponsePrimaryCurve": {
+        "value": "f of {$variable} curve smoothed."
+      },
+      "accessibleContextResponsePredictCurve": {
+        "value": "Prediction curve smoothed."
       }
     },
     "eraserButton": {

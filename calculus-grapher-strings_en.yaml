@@ -65,9 +65,10 @@ a11y:
     accessibleContextResponseChecked:   Grid lines shown.
     accessibleContextResponseUnchecked: Grid lines hidden.
   smoothButton:
-    accessibleName:            Smooth
-    accessibleHelpText:        Remove sharp corners and abrupt changes in primary curve shape.
-    accessibleContextResponse: TODO.smoothButton.accessibleContextResponse
+    accessibleName:                        Smooth
+    accessibleHelpText:                    Remove sharp corners and abrupt changes in curve shape.
+    accessibleContextResponsePrimaryCurve: f of {$variable} curve smoothed.
+    accessibleContextResponsePredictCurve: Prediction curve smoothed.
   eraserButton:
     accessibleName:                        Erase Curve Manipulations
     accessibleHelpText:                    Reset curve to y equals zero but maintain curve manipulation settings.

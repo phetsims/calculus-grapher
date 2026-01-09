@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import TextPushButton from '../../../../sun/js/buttons/TextPushButton.js';
@@ -13,11 +14,18 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
 export default class SmoothButton extends TextPushButton {
 
-  public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>, tandem: Tandem ) {
+  public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
+                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      tandem: Tandem ) {
+
+    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponsePrimaryCurve.createProperty( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    } );
 
     super( CalculusGrapherFluent.smoothStringProperty, {
       listener: () => interactiveCurveProperty.value.smooth(),
@@ -32,7 +40,12 @@ export default class SmoothButton extends TextPushButton {
       },
       accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
-      accessibleContextResponse: CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponseStringProperty,
+      accessibleContextResponse: new DerivedStringProperty( [
+        predictSelectedProperty,
+        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponsePredictCurveStringProperty,
+        accessibleContextResponsePrimaryCurveStringProperty
+      ], ( predictSelected, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
+        predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem
     } );
   }
