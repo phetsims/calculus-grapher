@@ -32,28 +32,28 @@ curveManipulator:
   keyboardCue:         to toggle mode
 a11y:
   derivativeScreen:
-    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its first derivative curve in real time.
+    screenButtonsHelpText: Manipulate a curve to explore its first derivative.
     screenSummary:
       playArea:        TODO.derivativeScreen.screenSummary.playArea
       controlArea:     TODO.derivativeScreen.screenSummary.controlArea
       currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
       interactionHint: TODO.derivativeScreen.screenSummary.interactionHint
   integralScreen:
-    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its integral curve in real time.
+    screenButtonsHelpText: Manipulate a curve to explore its integral.
     screenSummary:
       playArea:        TODO.integralScreen.screenSummary.playArea
       controlArea:     TODO.integralScreen.screenSummary.controlArea
       currentDetails:  TODO.integralScreen.screenSummary.currentDetails
       interactionHint: TODO.integralScreen.screenSummary.interactionHint
   advancedScreen:
-    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its first derivative and integral curves, with or without discontinuities.
+    screenButtonsHelpText: Manipulate a curve to explore its first derivative and integral, with or without discontinuities.
     screenSummary:
       playArea:        TODO.playArea
       controlArea:     TODO.controlArea
       currentDetails:  TODO.currentDetails
       interactionHint: TODO.interactionHint
   labScreen:
-    screenButtonsHelpText: Flexibly manipulate the graph of a function and explore its first derivative, second derivative, and integral curves, with or without discontinuities
+    screenButtonsHelpText: Manipulate a curve to explore its first derivative, second derivative, and integral, with or without discontinuities
     screenSummary:
       playArea:        TODO.labScreen.screenSummary.playArea
       controlArea:     TODO.labScreen.screenSummary.controlArea
