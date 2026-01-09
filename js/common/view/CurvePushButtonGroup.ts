@@ -23,14 +23,14 @@ import UndoButton from './UndoButton.js';
 export default class CurvePushButtonGroup extends VBox {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      curveManipulator: CurveManipulator,
+                      activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>,
                       predictSelectedProperty: TReadOnlyProperty<boolean>,
                       hasSmoothButton: boolean,
                       tandem: Tandem ) {
 
     const undoButton = new UndoButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'undoButton' ) );
 
-    const eraserButton = new CurveEraserButton( interactiveCurveProperty, curveManipulator, predictSelectedProperty,
+    const eraserButton = new CurveEraserButton( interactiveCurveProperty, activeCurveManipulatorProperty, predictSelectedProperty,
       tandem.createTandem( 'eraserButton' ) );
 
     // Put the eraser and undo buttons side by side

@@ -20,6 +20,7 @@ import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioO
 import Tandem from '../../../../tandem/js/Tandem.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
@@ -97,7 +98,9 @@ export default class CalculusGrapherModel implements TModel {
   public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
 
   // Model elements for the various tools
-  public readonly curveManipulator: CurveManipulator;
+  public readonly originalCurveManipulator: CurveManipulator;
+  public readonly predictCurveManipulator: CurveManipulator;
+  public readonly activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>;
   public readonly referenceLine: ReferenceLine;
   public readonly labeledPoints: LabeledPoint[];
   public readonly labeledLines: LabeledLine[];
@@ -192,7 +195,18 @@ export default class CalculusGrapherModel implements TModel {
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
 
-    this.curveManipulator = new CurveManipulator( this.toolsTandem.createTandem( 'curveManipulator' ) );
+    this.originalCurveManipulator = new CurveManipulator( CalculusGrapherColors.originalCurveStrokeProperty, {
+      tandem: this.toolsTandem.createTandem( 'originalCurveManipulator' ),
+      phetioDocumentation: 'Manipulator for the original curve.'
+    } );
+
+    this.predictCurveManipulator = new CurveManipulator( CalculusGrapherColors.predictCurveStrokeProperty, {
+      tandem: this.toolsTandem.createTandem( 'predictCurveManipulator' ),
+      phetioDocumentation: 'Manipulator for the predict curve.'
+    } );
+
+    this.activeCurveManipulatorProperty = new DerivedProperty( [ this.predictEnabledProperty ],
+      predictEnabled => predictEnabled ? this.predictCurveManipulator : this.originalCurveManipulator );
 
     this.referenceLine = new ReferenceLine(
       this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
@@ -245,7 +259,8 @@ export default class CalculusGrapherModel implements TModel {
     this.gridVisibleProperty.reset();
 
     // Reset tools
-    this.curveManipulator.reset();
+    this.originalCurveManipulator.reset();
+    this.predictCurveManipulator.reset();
     this.referenceLine.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
     // Do not reset this.labeledLines, because they are configured only via PhET-iO.

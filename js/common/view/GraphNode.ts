@@ -96,7 +96,7 @@ type SelfOptions = {
   chartRectangleHeight: number;
 
   // options to the bamboo ChartRectangle
-  chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke'>;
+  chartRectangleOptions?: PickOptional<ChartRectangleOptions, 'fill' | 'stroke' | 'cursor'>;
 
   // Whether to create a CurveNode for the provided Curve.
   createCurveNode?: boolean;

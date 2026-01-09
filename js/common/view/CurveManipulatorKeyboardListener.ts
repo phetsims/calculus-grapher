@@ -24,17 +24,19 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
     keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
-  public constructor( keyboardCurveManipulationEnabledProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( keyboardEditEnabledProperty: Property<boolean>, tandem: Tandem ) {
     super( {
       tandem: tandem,
       keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulatorKeyboardListener.HOTKEY_DATA ] ),
-      fire: ( event, keysPressed ) => {
-        if ( keyboardCurveManipulationEnabledProperty.value ) {
-          keyboardCurveManipulationEnabledProperty.value = false;
+
+      // Toggle the mode of the curve manipulator.
+      fire: () => {
+        if ( keyboardEditEnabledProperty.value ) {
+          keyboardEditEnabledProperty.value = false;
           sharedSoundPlayers.get( 'checkboxUnchecked' ).play();
         }
         else {
-          keyboardCurveManipulationEnabledProperty.value = true;
+          keyboardEditEnabledProperty.value = true;
           sharedSoundPlayers.get( 'checkboxChecked' ).play();
         }
       }

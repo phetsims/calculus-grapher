@@ -38,7 +38,7 @@ export default class CalculusGrapherControlPanel extends Panel {
                       predictSelectedProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      curveManipulator: CurveManipulator,
+                      activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>,
                       providedOptions: CalculusGrapherControlPanelOptions ) {
 
     const options = optionize<CalculusGrapherControlPanelOptions, SelfOptions, PanelOptions>()( {
@@ -67,7 +67,7 @@ export default class CalculusGrapherControlPanel extends Panel {
       predictEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 
     // create yellow curve buttons associated with undo, erase and (optionally) smoothing the curve
-    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, curveManipulator,
+    const pushButtonGroup = new CurvePushButtonGroup( interactiveCurveProperty, activeCurveManipulatorProperty,
       predictSelectedProperty, options.hasSmoothButton, options.tandem.createTandem( 'pushButtonGroup' ) );
 
     // assemble all the scenery nodes

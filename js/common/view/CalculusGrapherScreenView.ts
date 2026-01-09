@@ -84,7 +84,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.predictSelectedProperty,
       model.predictEnabledProperty,
       model.interactiveCurveProperty,
-      model.curveManipulator,
+      model.activeCurveManipulatorProperty,
       combineOptions<CalculusGrapherControlPanelOptions>( {
         tandem: options.tandem.createTandem( 'controlPanel' )
       }, options.controlPanelOptions ) );

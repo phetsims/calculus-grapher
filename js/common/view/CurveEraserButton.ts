@@ -23,7 +23,7 @@ import TransformedCurve from '../model/TransformedCurve.js';
 export default class CurveEraserButton extends EraserButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      curveManipulator: CurveManipulator,
+                      activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>,
                       predictSelectedProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
@@ -35,7 +35,7 @@ export default class CurveEraserButton extends EraserButton {
       isDisposable: false,
       listener: () => {
         interactiveCurveProperty.value.erase();
-        curveManipulator.reset();
+        activeCurveManipulatorProperty.value.reset();
       },
       iconWidth: 16,
       xMargin: 10,

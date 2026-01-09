@@ -22,13 +22,12 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import KeyboardCueNode from '../../../../scenery-phet/js/accessibility/nodes/KeyboardCueNode.js';
-import TextKeyNode from '../../../../scenery-phet/js/keyboard/TextKeyNode.js';
 import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
@@ -43,7 +42,7 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
-import CurveManipulatorDragListener from './CurveManipulatorDragListener.js';
+import CurveManipulatorKeyboardCueNode from './CurveManipulatorKeyboardCueNode.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
@@ -68,13 +67,25 @@ export default class OriginalGraphNode extends GraphNode {
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly showOriginalCurveProperty: Property<boolean>;
 
-  // Draggable that is used to manipulate the curve.
-  private readonly curveManipulatorNode: CurveManipulatorNode;
+  // Manipulators for original and predict curves.
+  private readonly originalCurveManipulatorNode: CurveManipulatorNode;
+  private readonly predictCurveManipulatorNode: CurveManipulatorNode;
 
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
-    // Destructuring fields from the model into local constants, to improve readability.
-    const { originalCurve, predictCurve, curveManipulationProperties, predictEnabledProperty } = model;
+    // Destructure fields from the model into local constants, to improve readability.
+    const {
+      curveManipulationProperties,
+      gridVisibleProperty,
+      labeledPoints,
+      labeledPointsLinkableElement,
+      originalCurve,
+      originalCurveManipulator,
+      predictCurve,
+      predictCurveManipulator,
+      predictEnabledProperty,
+      predictSelectedProperty
+    } = model;
 
     const graphType = GraphType.ORIGINAL;
 
@@ -85,7 +96,7 @@ export default class OriginalGraphNode extends GraphNode {
         new Text( CalculusGrapherFluent.predictStringProperty, {
           font: CalculusGrapherConstants.CONTROL_FONT,
           maxWidth: 100,
-          visibleProperty: model.predictEnabledProperty, // show/hide 'Predict'
+          visibleProperty: predictEnabledProperty, // show/hide 'Predict'
           tandem: labelNodeTandem.createTandem( 'predictText' ),
           phetioDocumentation: 'Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the vertical axis.'
         } ),
@@ -103,6 +114,7 @@ export default class OriginalGraphNode extends GraphNode {
 
       // In addition to fill and stroke, make the chartRectangle interactive for accessibility.
       chartRectangleOptions: {
+        cursor: 'pointer', // Press anywhere in the chartRectangle manipulate curve.
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
@@ -110,7 +122,7 @@ export default class OriginalGraphNode extends GraphNode {
       accessibleParagraph: CalculusGrapherFluent.a11y.originalGraph.accessibleParagraphStringProperty
     }, providedOptions );
 
-    super( graphType, originalCurve, model.gridVisibleProperty, options );
+    super( graphType, originalCurve, gridVisibleProperty, options );
 
     this.showOriginalCurveProperty = new BooleanProperty( false, {
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
@@ -162,31 +174,53 @@ export default class OriginalGraphNode extends GraphNode {
       opacity: 0.25,
       visibleProperty: this.curveLayerVisibleProperty,
       fill: new DerivedProperty( [
-        model.predictEnabledProperty,
+        predictEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
         CalculusGrapherColors.originalCurveStrokeProperty
       ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
         predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );
 
-    // Curve manipulator
-    this.curveManipulatorNode = new CurveManipulatorNode( model.curveManipulator, model.predictSelectedProperty,
-      this.chartTransform, this.curveLayerVisibleProperty, options.tandem.createTandem( 'curveManipulatorNode' ) );
+    // Original curve manipulator
+    this.originalCurveManipulatorNode = new CurveManipulatorNode(
+      originalCurveManipulator,
+      originalCurve,
+      curveManipulationProperties.modeProperty,
+      curveManipulationProperties.widthProperty,
+      this.chartTransform,
+      new DerivedProperty( [ this.curveLayerVisibleProperty, predictSelectedProperty ],
+        ( curveLayerVisible, predictSelected ) => curveLayerVisible && !predictSelected ),
+      options.tandem.createTandem( 'originalCurveManipulatorNode' ) );
 
-    // Cue for toggling curve manipulator between modes.
-    const curveManipulatorCueNode = new KeyboardCueNode( {
-      createKeyNode: TextKeyNode.space,
-      stringProperty: CalculusGrapherFluent.curveManipulator.keyboardCueStringProperty,
-      visibleProperty: DerivedProperty.and( [ this.curveManipulatorNode.focusedProperty, model.curveManipulator.keyboardCueEnabledProperty ] )
-    } );
-    this.curveManipulatorNode.boundsProperty.link( bounds => {
-      curveManipulatorCueNode.centerX = bounds.centerX;
-      curveManipulatorCueNode.top = bounds.bottom + 10;
+    // Predict curve manipulator
+    this.predictCurveManipulatorNode = new CurveManipulatorNode(
+      predictCurveManipulator,
+      predictCurve,
+      curveManipulationProperties.modeProperty,
+      curveManipulationProperties.widthProperty,
+      this.chartTransform,
+      DerivedProperty.and( [ this.curveLayerVisibleProperty, predictSelectedProperty ] ),
+      options.tandem.createTandem( 'predictCurveManipulatorNode' ) );
+
+    // Keyboard cues (popups) for toggling the manipulators between modes. Each manipulator has its own popup
+    // because they have different colors, so it might not be obvious that they behave similarly.
+    const originalKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.originalCurveManipulatorNode );
+    const predictKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.predictCurveManipulatorNode );
+
+    // Center the keyboard cue below whichever manipulator is visible.
+    Multilink.multilink( [
+      this.originalCurveManipulatorNode.visibleProperty,
+      this.originalCurveManipulatorNode.boundsProperty,
+      this.predictCurveManipulatorNode.boundsProperty
+    ], ( originalVisible, originalManipulatorBounds, predictManipulatorBounds ) => {
+      const manipulatorBounds = originalVisible ? originalManipulatorBounds : predictManipulatorBounds;
+      originalKeyboardCueNode.centerX = manipulatorBounds.centerX;
+      originalKeyboardCueNode.top = manipulatorBounds.bottom + 10;
     } );
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
     const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
-      model.predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
+      predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
     showOriginalCurveCheckbox.boundsProperty.link( () => {
       showOriginalCurveCheckbox.right =
         this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
@@ -194,8 +228,8 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Labeled points
-    const labeledPointsNode = new LabeledPointsNode( model.labeledPoints, model.labeledPointsLinkableElement,
-      this.chartTransform, model.predictEnabledProperty, this.curveLayerVisibleProperty,
+    const labeledPointsNode = new LabeledPointsNode( labeledPoints, labeledPointsLinkableElement,
+      this.chartTransform, predictEnabledProperty, this.curveLayerVisibleProperty,
       options.tandem.createTandem( 'labeledPointsNode' )
     );
 
@@ -204,33 +238,23 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveLayer.addChild( this.predictCurveNode );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
-    this.addChild( this.curveManipulatorNode );
-    this.addChild( curveManipulatorCueNode );
+    this.addChild( this.originalCurveManipulatorNode );
+    this.addChild( this.predictCurveManipulatorNode );
+    this.addChild( originalKeyboardCueNode );
+    this.addChild( predictKeyboardCueNode );
     this.addChild( labeledPointsNode );
     this.addChild( showOriginalCurveCheckbox );
 
-    // Which of the CurveNode instances is currently interactive
-    const interactiveCurveNodeProperty = new DerivedProperty( [ model.predictEnabledProperty ],
-      predictEnabled => predictEnabled ? this.predictCurveNode : this.originalCurveNode
-    );
-
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Make CurveManipulatorNode responsible for adding CurveManipulatorDragListener.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 dragListener and keyboardDragListener tandems should be relocated to child elements of curveManipulator.
-    // Pointer and keyboard support for moving curveManipulator and manipulating the curve.
-    const curveDragListener = new CurveManipulatorDragListener(
-      this.curveManipulatorNode,
-      interactiveCurveNodeProperty,
-      this.chartTransform,
-      curveManipulationProperties.modeProperty,
-      curveManipulationProperties.widthProperty,
-      options.tandem // CurveManipulatorDragListener will create tandem.dragListener and tandem.keyboardDragListener.
-    );
-    this.curveManipulatorNode.addInputListener( curveDragListener );
-
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
-    this.chartRectangle.cursor = 'pointer';
     //TODO https://github.com/phetsims/calculus-grapher/issues/125 createForwardingListener has no PhET-iO support, so instrument inputEnabledProperty.
-    this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => curveDragListener.dragListener.press( event ) ) );
+    this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => {
+      if ( predictSelectedProperty.value ) {
+        this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
+      }
+      else {
+        this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
+      }
+    } ) );
 
     // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enabled/disable interactivity,
     // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
@@ -245,7 +269,8 @@ export default class OriginalGraphNode extends GraphNode {
     // Focus order
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
-      this.curveManipulatorNode,
+      this.originalCurveManipulatorNode,
+      this.predictCurveManipulatorNode,
       showOriginalCurveCheckbox,
       this.eyeToggleButton
     ];
