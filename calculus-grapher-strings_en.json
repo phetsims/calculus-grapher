@@ -544,7 +544,7 @@
           "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve in Primary Graph Area."
+          "value": "Manipulate prediction curve in Primary Graph Area to predict f of {$variable} based on other graph areas."
         }
       }
     },
