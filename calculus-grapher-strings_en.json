@@ -379,7 +379,7 @@
           "value": "Triangle"
         },
         "accessibleHelpText": {
-          "value": "TODO.triangleRadioButton.accessibleHelpText"
+          "value": "Add triangle to curve."
         }
       },
       "pedestalRadioButton": {
@@ -395,7 +395,7 @@
           "value": "Parabola"
         },
         "accessibleHelpText": {
-          "value": "TODO.parabolaRadioButton.accessibleHelpText"
+          "value": "Add parabola to curve."
         }
       },
       "sinusoidRadioButton": {
@@ -403,7 +403,7 @@
           "value": "Sinusoid"
         },
         "accessibleHelpText": {
-          "value": "TODO.sinusoidRadioButton.accessibleHelpText"
+          "value": "Convert curve to sinusoid."
         }
       },
       "freeformRadioButton": {

@@ -139,16 +139,16 @@ a11y:
       accessibleHelpText: Add smooth hill to curve.
     triangleRadioButton:
       accessibleName:     Triangle
-      accessibleHelpText: TODO.triangleRadioButton.accessibleHelpText
+      accessibleHelpText: Add triangle to curve.
     pedestalRadioButton:
       accessibleName:     Pedestal
       accessibleHelpText: Add pedestal with smooth corners to curve.
     parabolaRadioButton:
       accessibleName:     Parabola
-      accessibleHelpText: TODO.parabolaRadioButton.accessibleHelpText
+      accessibleHelpText: Add parabola to curve.
     sinusoidRadioButton:
       accessibleName:     Sinusoid
-      accessibleHelpText: TODO.sinusoidRadioButton.accessibleHelpText
+      accessibleHelpText: Convert curve to sinusoid.
     freeformRadioButton:
       accessibleName:     Freeform
       accessibleHelpText: TODO.freeformRadioButton.accessibleHelpText
