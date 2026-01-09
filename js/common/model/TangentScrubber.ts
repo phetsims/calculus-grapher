@@ -20,7 +20,10 @@ export default class TangentScrubber extends AncillaryTool {
   // See phetioDocumentation for addLinkedElement( this.colorProperty ) below
   public readonly colorProperty: ProfileColorProperty;
 
-  public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
+  public constructor( integralCurve: Curve,
+                      originalCurve: Curve,
+                      derivativeCurve: Curve,
+                      secondDerivativeCurve: Curve,
                       tandem: Tandem ) {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {

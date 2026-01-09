@@ -51,7 +51,8 @@ export default abstract class ScrubberNode extends Node {
   // spherical handle for dragging the scrubber
   protected readonly handleNode: Node;
 
-  protected constructor( scrubber: AncillaryTool, chartTransform: ChartTransform,
+  protected constructor( scrubber: AncillaryTool,
+                         chartTransform: ChartTransform,
                          providedOptions: ScrubberNodeOptions ) {
 
     const options = optionize<ScrubberNodeOptions, SelfOptions, NodeOptions>()( {

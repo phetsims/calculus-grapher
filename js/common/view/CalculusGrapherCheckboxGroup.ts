@@ -29,7 +29,9 @@ export default class CalculusGrapherCheckboxGroup extends VBox {
   public static readonly RICH_TEXT_MAX_WIDTH = 100;
   public static readonly RICH_TEXT_MAX_HEIGHT = 40;
 
-  public constructor( gridVisibleProperty: Property<boolean>, referenceLineVisibleProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( gridVisibleProperty: Property<boolean>,
+                      referenceLineVisibleProperty: Property<boolean>,
+                      tandem: Tandem ) {
 
     const referenceLineCheckbox = new ReferenceLineCheckbox( referenceLineVisibleProperty,
       tandem.createTandem( 'referenceLineCheckbox' ) );

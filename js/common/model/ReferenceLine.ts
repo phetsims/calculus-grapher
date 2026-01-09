@@ -23,7 +23,10 @@ export default class ReferenceLine extends AncillaryTool {
   // Color for the vertical line
   public readonly lineColorProperty: ProfileColorProperty;
 
-  public constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
+  public constructor( integralCurve: Curve,
+                      originalCurve: Curve,
+                      derivativeCurve: Curve,
+                      secondDerivativeCurve: Curve,
                       tandem: Tandem ) {
 
     super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {

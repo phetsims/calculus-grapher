@@ -28,13 +28,12 @@ const FREEFORM_MIN_DX = 0.1;
 
 export default class CurveManipulatorDragListener extends SoundRichDragListener {
 
-  public constructor(
-    curveManipulatorNode: CurveManipulatorNode,
-    interactiveCurveNodeProperty: TReadOnlyProperty<TransformedCurveNode>,
-    chartTransform: ChartTransform,
-    curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
-    curveManipulationWidthProperty: TReadOnlyProperty<number>,
-    tandem: Tandem ) {
+  public constructor( curveManipulatorNode: CurveManipulatorNode,
+                      interactiveCurveNodeProperty: TReadOnlyProperty<TransformedCurveNode>,
+                      chartTransform: ChartTransform,
+                      curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
+                      curveManipulationWidthProperty: TReadOnlyProperty<number>,
+                      tandem: Tandem ) {
 
     const curveManipulator = curveManipulatorNode.curveManipulator;
 

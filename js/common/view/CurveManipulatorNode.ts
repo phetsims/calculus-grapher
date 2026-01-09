@@ -28,12 +28,11 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
 
   public readonly curveManipulator: CurveManipulator;
 
-  public constructor(
-    curveManipulator: CurveManipulator,
-    predictSelectedProperty: TReadOnlyProperty<boolean>,
-    chartTransform: ChartTransform,
-    visibleProperty: TReadOnlyProperty<boolean>,
-    tandem: Tandem ) {
+  public constructor( curveManipulator: CurveManipulator,
+                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      chartTransform: ChartTransform,
+                      visibleProperty: TReadOnlyProperty<boolean>,
+                      tandem: Tandem ) {
 
     // Color matches the curve that is being manipulated.
     const mainColorProperty = new DerivedProperty( [

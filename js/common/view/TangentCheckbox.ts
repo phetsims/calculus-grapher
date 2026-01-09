@@ -24,7 +24,8 @@ import TangentScrubberNode from './TangentScrubberNode.js';
 export default class TangentCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>,
-                      predictEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      tandem: Tandem ) {
 
     const icon = TangentScrubberNode.createIcon();
 

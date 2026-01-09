@@ -33,7 +33,9 @@ export default class LabeledLineNode extends Node {
 
   private readonly line: Line;
 
-  public constructor( labeledLine: LabeledLine, chartTransform: ChartTransform, providedOptions?: LabeledLineNodeOptions ) {
+  public constructor( labeledLine: LabeledLine,
+                      chartTransform: ChartTransform,
+                      providedOptions?: LabeledLineNodeOptions ) {
 
     const options = optionize<LabeledLineNodeOptions, SelfOptions, NodeOptions>()( {
 

@@ -67,7 +67,10 @@ export default class AncillaryTool extends PhetioObject {
   protected readonly yDerivativeProperty: ReadOnlyProperty<number | null>;
   protected readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
 
-  protected constructor( integralCurve: Curve, originalCurve: Curve, derivativeCurve: Curve, secondDerivativeCurve: Curve,
+  protected constructor( integralCurve: Curve,
+                         originalCurve: Curve,
+                         derivativeCurve: Curve,
+                         secondDerivativeCurve: Curve,
                          providedOptions: AncillaryToolOptions ) {
 
     const options = optionize<AncillaryToolOptions, SelfOptions, PhetioObjectOptions>()( {

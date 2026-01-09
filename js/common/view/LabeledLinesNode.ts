@@ -28,8 +28,10 @@ export default class LabeledLinesNode extends Node {
 
   public readonly labeledLineNodes: LabeledLineNode[];
 
-  public constructor( labeledLines: LabeledLine[], labeledLinesLinkableElement: PhetioObject,
-                      chartTransform: ChartTransform, providedOptions: LabeledLinesNodeOptions ) {
+  public constructor( labeledLines: LabeledLine[],
+                      labeledLinesLinkableElement: PhetioObject,
+                      chartTransform: ChartTransform,
+                      providedOptions: LabeledLinesNodeOptions ) {
 
     const options = optionize<LabeledLinesNodeOptions, StrictOmit<SelfOptions, 'labeledLineOptions'>, NodeOptions>()( {
 

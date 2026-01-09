@@ -13,6 +13,7 @@
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import Circle, { CircleOptions } from '../../../../scenery/js/nodes/Circle.js';
@@ -20,7 +21,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import { PathOptions } from '../../../../scenery/js/nodes/Path.js';
 import TPaint from '../../../../scenery/js/util/TPaint.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // These are specific to Calculus Grapher, and not appropriate if migrated to bamboo.
 const RADIUS = 2.5;
@@ -41,7 +41,9 @@ export default class DiscontinuousPointsPlot extends Node {
 
   private readonly disposeDiscontinuousPointsPlot: () => void;
 
-  public constructor( chartTransform: ChartTransform, dataSet: Vector2[], providedOptions?: DiscontinuousPointsPlotOptions ) {
+  public constructor( chartTransform: ChartTransform,
+                      dataSet: Vector2[],
+                      providedOptions?: DiscontinuousPointsPlotOptions ) {
 
     const options = optionize<DiscontinuousPointsPlotOptions, SelfOptions, PathOptions>()( {
 

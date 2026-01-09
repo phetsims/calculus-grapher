@@ -24,7 +24,8 @@ import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 export default class AreaUnderCurveCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>,
-                      predictEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      tandem: Tandem ) {
 
     const icon = AreaUnderCurveScrubberNode.createIcon();
 
