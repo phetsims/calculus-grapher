@@ -59,8 +59,6 @@ type GraphTypeLabelNodeOptions = SelfOptions & PickOptional<NodeOptions, 'tandem
 
 export default class GraphTypeLabelNode extends Node {
 
-  private readonly disposeGraphTypeLabelNode: () => void;
-
   public constructor( graphType: GraphType, providedOptions?: GraphTypeLabelNodeOptions ) {
 
     const options = optionize<GraphTypeLabelNodeOptions, SelfOptions, NodeOptions>()( {
@@ -73,7 +71,10 @@ export default class GraphTypeLabelNode extends Node {
         limitsFontSize: 0.5 * NOMINAL_FONT_SIZE,
         fractionFontSize: 0.75 * NOMINAL_FONT_SIZE,
         superscriptSize: 0.625 * NOMINAL_FONT_SIZE
-      }
+      },
+
+      // NodeOptions
+      isDisposable: false
     }, providedOptions );
 
     super( options );
@@ -97,14 +98,6 @@ export default class GraphTypeLabelNode extends Node {
       this.addChild( labelNode );
     };
     derivativeNotationProperty.link( derivationNotationListener );
-
-    this.disposeGraphTypeLabelNode = () => {
-      variableStringProperty.dispose();
-      labelNode.dispose();
-      if ( derivativeNotationProperty.hasListener( derivationNotationListener ) ) {
-        derivativeNotationProperty.unlink( derivationNotationListener );
-      }
-    };
   }
 }
 
