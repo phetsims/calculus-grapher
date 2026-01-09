@@ -168,11 +168,14 @@ export default class GraphsNode extends Node {
         tandem: options.tandem.createTandem( 'labeledLinesNode' )
       } );
 
-    // Parent for scrubbers, to maintain rendering order.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/343 Hide heading if no tools are visible.
+    // Parent for scrubbers, to maintain rendering order. Also functions as a core description heading.
     this.scrubberNodesParent = new Node( {
       accessibleHeading: CalculusGrapherFluent.a11y.headings.explorationToolsStringProperty,
-      children: [ this.referenceLineNode ]
+      children: [ this.referenceLineNode ],
+      excludeInvisibleChildrenFromBounds: true
+    } );
+    this.scrubberNodesParent.childBoundsProperty.link( bounds => {
+      this.scrubberNodesParent.visible = !bounds.isEmpty(); // Heading is visible only if at least 1 scrubber is visible.
     } );
 
     options.children = [ this.graphSetNode, this.scrubberNodesParent, labeledLinesNode ];
