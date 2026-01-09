@@ -209,7 +209,7 @@ a11y:
     accessibleContextResponseUnchecked: f of {$variable} hidden.
   tangentTool:
     accessibleName:           Tangent tool
-    accessibleHelpText:       Move horizontally to explore tangent line at {$variable} coordinate.
+    accessibleHelpText:       Move horizontally to explore tangent at {$variable} coordinate.
     accessibleObjectResponse: '{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}'
   referenceLineTool:
     accessibleName:                                          Reference Line tool

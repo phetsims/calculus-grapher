@@ -567,7 +567,7 @@
         "value": "Tangent tool"
       },
       "accessibleHelpText": {
-        "value": "Move horizontally to explore tangent line at {$variable} coordinate."
+        "value": "Move horizontally to explore tangent at {$variable} coordinate."
       },
       "accessibleObjectResponse": {
         "value": "{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}"
