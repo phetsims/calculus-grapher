@@ -620,6 +620,11 @@
         "value": "Actions applied to curve in Primary Graph Area."
       }
     },
+    "graphAreas": {
+      "accessibleListLeadingParagraph": {
+        "value": "Currently shows"
+      }
+    },
     "headings": {
       "graphAreas": {
         "value": "Graph Areas"

@@ -191,6 +191,7 @@ addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleName', 'a11y.curveManipu
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleHelpText', 'a11y.curveManipulatorNode.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulatorNode_accessibleObjectResponse', 'a11y.curveManipulatorNode.accessibleObjectResponseStringProperty' );
 addToMapIfDefined( 'a11y_pushButtonGroup_accessibleHelpText', 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_graphAreas_accessibleListLeadingParagraph', 'a11y.graphAreas.accessibleListLeadingParagraphStringProperty' );
 addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_toolControls', 'a11y.headings.toolControlsStringProperty' );
@@ -507,6 +508,9 @@ const CalculusGrapherFluent = {
     },
     pushButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_pushButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' ) )
+    },
+    graphAreas: {
+      accessibleListLeadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_accessibleListLeadingParagraph', _.get( CalculusGrapherStrings, 'a11y.graphAreas.accessibleListLeadingParagraphStringProperty' ) )
     },
     headings: {
       graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),

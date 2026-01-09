@@ -311,6 +311,9 @@ type StringsType = {
     'pushButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
+    'graphAreas': {
+      'accessibleListLeadingParagraphStringProperty': LocalizedStringProperty;
+    };
     'headings': {
       'graphAreasStringProperty': LocalizedStringProperty;
       'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
