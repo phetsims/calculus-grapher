@@ -1,4 +1,4 @@
-// Copyright 2023-2025, University of Colorado Boulder
+// Copyright 2023-2026, University of Colorado Boulder
 
 /**
  * LabeledPoint is the model element for a labeled point on a curve. These elements can only be made visible

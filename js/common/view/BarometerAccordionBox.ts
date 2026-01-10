@@ -1,4 +1,4 @@
-// Copyright 2022-2025, University of Colorado Boulder
+// Copyright 2022-2026, University of Colorado Boulder
 
 /**
  * BarometerAccordionBox is the base class accordion box that shows a vertical axis with a barometer indicator

@@ -1,4 +1,4 @@
-// Copyright 2025, University of Colorado Boulder
+// Copyright 2026, University of Colorado Boulder
 
 /**
  * GraphAreasAccessibleListNode is the description of what currently appears under the 'Graph Areas' heading.
