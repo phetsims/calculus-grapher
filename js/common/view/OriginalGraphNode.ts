@@ -22,7 +22,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import Multilink from '../../../../axon/js/Multilink.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
@@ -220,15 +219,15 @@ export default class OriginalGraphNode extends GraphNode {
     const originalKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.originalCurveManipulatorNode );
     const predictKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.predictCurveManipulatorNode );
 
-    // Center the keyboard cue below whichever manipulator is visible.
-    Multilink.multilink( [
-      this.originalCurveManipulatorNode.visibleProperty,
-      this.originalCurveManipulatorNode.boundsProperty,
-      this.predictCurveManipulatorNode.boundsProperty
-    ], ( originalVisible, originalManipulatorBounds, predictManipulatorBounds ) => {
-      const manipulatorBounds = originalVisible ? originalManipulatorBounds : predictManipulatorBounds;
-      originalKeyboardCueNode.centerX = manipulatorBounds.centerX;
-      originalKeyboardCueNode.top = manipulatorBounds.bottom + 10;
+    // Center the keyboard cues below their manipulators.
+    const keyboardCueYOffset = 10;
+    this.originalCurveManipulatorNode.boundsProperty.link( bounds => {
+      originalKeyboardCueNode.centerX = bounds.centerX;
+      originalKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
+    } );
+    this.predictCurveManipulatorNode.boundsProperty.link( bounds => {
+      predictKeyboardCueNode.centerX = bounds.centerX;
+      predictKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
     } );
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
