@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.1.0-dev.7 Mon Jan 05 2026 14:42:26 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.1.0-dev.8 Tue Jan 13 2026 14:09:29 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "1a4637cfff70e7e8b0844dc43848a86ae89b4cf5",
     "branch": "main"
@@ -17,11 +17,11 @@
     "branch": "main"
   },
   "calculus-grapher": {
-    "sha": "00ab9af74b19a8d89c2c31b9ab2b86f03f3976af",
+    "sha": "d3369b89fdc88012fc6ca53ed240bf0278f43011",
     "branch": "main"
   },
   "chipper": {
-    "sha": "4bd8435cb0256e5cbc2eb8e6e6df6b42e6ce89e8",
+    "sha": "51348a127e60b754195629300419a4291ee05389",
     "branch": "main"
   },
   "dot": {
@@ -29,7 +29,7 @@
     "branch": "main"
   },
   "joist": {
-    "sha": "029ed7421be6ba46c3c90b39cd9b01d517eae6fe",
+    "sha": "c563823c777b42ab8efae9324d2e0d4445a2e411",
     "branch": "main"
   },
   "kite": {
@@ -37,11 +37,11 @@
     "branch": "main"
   },
   "perennial-alias": {
-    "sha": "9fc22afe2e5992ce176b20529a0631162b6dbde1",
+    "sha": "554807c8730ce4c583a69be909306ebf7183e557",
     "branch": "main"
   },
   "phet-core": {
-    "sha": "baf98423a2d17dd7993bc502f21bc12658c0dca6",
+    "sha": "6588af4794051c43cc419fbad2cb15ed2377294a",
     "branch": "main"
   },
   "phet-io": {
@@ -49,11 +49,11 @@
     "branch": "main"
   },
   "phet-io-sim-specific": {
-    "sha": "ed862e6f283dcdf21d5c2d21732421996465ab7b",
+    "sha": "4a96de01f553ec182184838993017ac6e262032e",
     "branch": "main"
   },
   "phet-io-wrappers": {
-    "sha": "f48259a1d221831e2175eb1b3af2fcc8413069b1",
+    "sha": "3cf1456b9addb7fc19cb6db8dbcdaab4bbcbb5d0",
     "branch": "main"
   },
   "phetcommon": {
@@ -73,11 +73,11 @@
     "branch": "main"
   },
   "scenery-phet": {
-    "sha": "bf45b40fe57e1d6c96719aa7d69abcdb259186c0",
+    "sha": "2d4c67406f1139a2e8ab2be7ed0e06463d596b7b",
     "branch": "main"
   },
   "sherpa": {
-    "sha": "c1f6b01a53a0caa02f4d5e09303d078772db2050",
+    "sha": "a4f66f020c430423daa562a5e2cb4fb8daf2a4ad",
     "branch": "main"
   },
   "studio": {
@@ -85,7 +85,7 @@
     "branch": "main"
   },
   "sun": {
-    "sha": "cff3001c7b3f0621cd8fe45028c8d75cb740b0fd",
+    "sha": "6d817ef633765de9806b03fcf18da0d0faaf4a71",
     "branch": "main"
   },
   "tambo": {
