@@ -18,7 +18,6 @@ import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import { PressListenerEvent } from '../../../../scenery/js/listeners/PressListener.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
-import Line, { LineOptions } from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -52,19 +51,9 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
       {}, AccessibleDraggableOptions, {
         isDisposable: false,
         visibleProperty: visibleProperty,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        children: [ new TargetNode( 12, curveManipulator.color ) ]
       }, providedOptions );
-
-    const radius = 12;
-    const color = curveManipulator.color;
-    options.children = [
-      createCrosshairs( radius, color ),
-      new Circle( {
-        radius: radius,
-        stroke: color,
-        lineWidth: 2
-      } )
-    ];
 
     super( options );
 
@@ -133,22 +122,28 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
   }
 }
 
-function createCrosshairs( radius: number, stroke: TColor ): Node {
+class TargetNode extends Node {
 
-  const lineOptions: LineOptions = {
-    stroke: stroke,
-    lineWidth: 1
-  };
-
-  const innerRadius = 0.25 * radius;
-
-  return new Node( {
-    children: [
-      new Line( -radius, 0, -innerRadius, 0, lineOptions ),
-      new Line( +radius, 0, +innerRadius, 0, lineOptions ),
-      new Line( 0, -radius, 0, -innerRadius, lineOptions ),
-      new Line( 0, +radius, 0, +innerRadius, lineOptions ) ]
-  } );
+  public constructor( radius: number, color: TColor ) {
+    super( {
+      children: [
+        new Circle( {
+          radius: radius,
+          stroke: color,
+          lineWidth: 1
+        } ),
+        new Circle( {
+          radius: radius / 2,
+          stroke: color,
+          lineWidth: 1
+        } ),
+        new Circle( {
+          radius: radius / 8,
+          fill: color
+        } )
+      ]
+    } );
+  }
 }
 
 calculusGrapher.register( 'CurveManipulatorNode', CurveManipulatorNode );
