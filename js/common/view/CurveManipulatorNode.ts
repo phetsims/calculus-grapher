@@ -13,10 +13,14 @@ import Shape from '../../../../kite/js/Shape.js';
 import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
-import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
+import { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import { PressListenerEvent } from '../../../../scenery/js/listeners/PressListener.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Line, { LineOptions } from '../../../../scenery/js/nodes/Line.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -31,7 +35,7 @@ type SelfOptions = EmptySelfOptions;
 type CurveManipulatorNodeOptions = SelfOptions &
   PickRequired<ShadedSphereNodeOptions, 'tandem' | 'accessibleName' | 'accessibleHelpText'>;
 
-export default class CurveManipulatorNode extends InteractiveHighlighting( ShadedSphereNode ) {
+export default class CurveManipulatorNode extends InteractiveHighlighting( Node ) {
 
   public readonly curveManipulator: CurveManipulator;
   public readonly curveDragListener: CurveManipulatorDragListener;
@@ -48,11 +52,21 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
       {}, AccessibleDraggableOptions, {
         isDisposable: false,
         visibleProperty: visibleProperty,
-        mainColor: curveManipulator.color,
         cursor: 'pointer'
       }, providedOptions );
 
-    super( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, options );
+    const radius = 12;
+    const color = curveManipulator.color;
+    options.children = [
+      createCrosshairs( radius, color ),
+      new Circle( {
+        radius: radius,
+        stroke: color,
+        lineWidth: 2
+      } )
+    ];
+
+    super( options );
 
     this.curveManipulator = curveManipulator;
 
@@ -117,6 +131,24 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Shade
       y: toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
     } ) );
   }
+}
+
+function createCrosshairs( radius: number, stroke: TColor ): Node {
+
+  const lineOptions: LineOptions = {
+    stroke: stroke,
+    lineWidth: 1
+  };
+
+  const innerRadius = 0.25 * radius;
+
+  return new Node( {
+    children: [
+      new Line( -radius, 0, -innerRadius, 0, lineOptions ),
+      new Line( +radius, 0, +innerRadius, 0, lineOptions ),
+      new Line( 0, -radius, 0, -innerRadius, lineOptions ),
+      new Line( 0, +radius, 0, +innerRadius, lineOptions ) ]
+  } );
 }
 
 calculusGrapher.register( 'CurveManipulatorNode', CurveManipulatorNode );
