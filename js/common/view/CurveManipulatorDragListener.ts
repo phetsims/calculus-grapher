@@ -99,6 +99,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
 
     super( {
 
+      //TODO https://github.com/phetsims/calculus-grapher/issues/125 This positionProperty needs to be reset on Reset All.
       // Position in view coordinates because we have not provided the transform option.
       positionProperty: new Vector2Property( chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) ),
 
