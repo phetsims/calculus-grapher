@@ -10,6 +10,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import TRangedProperty from '../../../../axon/js/TRangedProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -18,7 +19,8 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 type SelfOptions = EmptySelfOptions;
 
 export type YZoomButtonGroupOptions = SelfOptions &
-  PickRequired<PlusMinusZoomButtonGroupOptions, 'tandem' | 'accessibleNameZoomIn' | 'accessibleNameZoomOut'>;
+  PickOptional<PlusMinusZoomButtonGroupOptions, 'zoomInButtonOptions' | 'zoomOutButtonOptions'> &
+  PickRequired<PlusMinusZoomButtonGroupOptions, 'tandem'>;
 
 export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
 
@@ -62,15 +64,19 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
     const options = optionize<YZoomButtonGroupOptions, SelfOptions, PlusMinusZoomButtonGroupOptions>()( {
       isDisposable: false,
       orientation: 'vertical',
+      touchAreaXDilation: 6,
+      touchAreaYDilation: 3,
       buttonOptions: {
         stroke: 'black'
       },
-      touchAreaXDilation: 6,
-      touchAreaYDilation: 3,
-      accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-      accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
-      accessibleContextResponseZoomIn: accessibleContextResponseZoomInProperty,
-      accessibleContextResponseZoomOut: accessibleContextResponseZoomOutProperty,
+      zoomInButtonOptions: {
+        accessibleHelpText: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
+        accessibleContextResponse: accessibleContextResponseZoomInProperty
+      },
+      zoomOutButtonOptions: {
+        accessibleHelpText: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
+        accessibleContextResponse: accessibleContextResponseZoomOutProperty
+      },
       visiblePropertyOptions: {
         phetioFeatured: true
       }

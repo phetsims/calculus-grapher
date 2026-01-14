@@ -35,8 +35,12 @@ export default class SecondDerivativeGraphNode extends GraphNode {
         accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty
       },
       yZoomButtonGroupOptions: {
-        accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameSecondDerivativeStringProperty,
-        accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameSecondDerivativeStringProperty
+        zoomInButtonOptions: {
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameSecondDerivativeStringProperty
+        },
+        zoomOutButtonOptions: {
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameSecondDerivativeStringProperty
+        }
       }
     }, providedOptions );
 

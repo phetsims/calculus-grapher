@@ -108,7 +108,7 @@ type SelfOptions = {
     'accessibleName' | 'accessibleHelpText' | 'accessibleContextResponseOn' | 'accessibleContextResponseOff'>;
 
   // Propagated to yZoomButtonGroup.
-  yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'accessibleNameZoomIn' | 'accessibleNameZoomOut'>;
+  yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'zoomInButtonOptions' | 'zoomOutButtonOptions'>;
 };
 
 export type GraphNodeOptions = SelfOptions &

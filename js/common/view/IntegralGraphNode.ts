@@ -35,8 +35,12 @@ export default class IntegralGraphNode extends GraphNode {
         accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty
       },
       yZoomButtonGroupOptions: {
-        accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameIntegralStringProperty,
-        accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameIntegralStringProperty
+        zoomInButtonOptions: {
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameIntegralStringProperty
+        },
+        zoomOutButtonOptions: {
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameIntegralStringProperty
+        }
       }
     }, providedOptions );
 
