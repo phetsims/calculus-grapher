@@ -107,7 +107,8 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       positionProperty: curveManipulator.positionProperty,
 
       // Drag bounds in model coordinates.
-      dragBoundsProperty: new Property( new Bounds2( chartTransform.modelXRange.min, chartTransform.modelYRange.min,
+      dragBoundsProperty: new Property( new Bounds2(
+        chartTransform.modelXRange.min, chartTransform.modelYRange.min,
         chartTransform.modelXRange.max, chartTransform.modelYRange.max ) ),
 
       dragListenerOptions: {
