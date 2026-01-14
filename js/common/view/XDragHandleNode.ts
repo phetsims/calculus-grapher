@@ -14,6 +14,7 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import { optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
@@ -72,29 +73,38 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
 
     super( options.radius, options );
 
-    // Initial position in view coordinates.
-    const positionView = new Vector2( chartTransform.modelToViewX( xProperty.value ), this.y );
+    // Initial position in model coordinates.
+    const positionProperty = new Property( new Vector2( xProperty.value, chartTransform.viewToModelY( this.y ) ) );
 
-    // Drag bounds in view coordinates.
-    const dragBoundsView = new Bounds2(
-      chartTransform.modelToViewX( chartTransform.modelXRange.min ),
-      chartTransform.modelToViewY( chartTransform.modelYRange.min ),
-      chartTransform.modelToViewX( chartTransform.modelXRange.max ),
-      chartTransform.modelToViewY( chartTransform.modelYRange.max )
-    );
+    // Drag bounds in model coordinates.
+    const dragBoundsProperty = new Property( new Bounds2(
+      chartTransform.modelXRange.min, chartTransform.modelYRange.min,
+      chartTransform.modelXRange.max, chartTransform.modelYRange.max ) );
 
     // As the handle is dragged, change xProperty.
     this.addInputListener( new SoundRichDragListener( {
-      positionProperty: new Property( positionView ),
-      dragBoundsProperty: new Property( dragBoundsView ),
-      drag: ( event, listener ) => {
-        xProperty.value = chartTransform.viewToModelX( listener.modelPoint.x );
-      },
-      end: () => scrubberNode.doAccessibleObjectResponse(),
+
+      // Synthesize a ModelViewTransform2 from the ChartTransform.
+      transform: ModelViewTransform2.createOffsetXYScaleMapping(
+        new Vector2( 0, chartTransform.viewHeight / 2 ), // offset of the origin in view coordinates
+        chartTransform.viewWidth / chartTransform.modelXRange.getLength(), // xScale, model to view
+        -( chartTransform.viewHeight / chartTransform.modelYRange.getLength() ) // yScale, model to view
+      ),
+
+      positionProperty: positionProperty,
+      dragBoundsProperty: dragBoundsProperty,
+
       keyboardDragListenerOptions: {
         dragSpeed: 300, // in view coordinates per second
         shiftDragSpeed: 75
       },
+
+      drag: ( event, listener ) => {
+        xProperty.value = positionProperty.value.x;
+      },
+
+      end: () => scrubberNode.doAccessibleObjectResponse(),
+
       tandem: options.tandem
     } ) );
 
