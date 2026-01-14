@@ -115,10 +115,30 @@ type StringsType = {
       'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
     };
     'eyeToggleButton': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
+      'integral': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
+      };
+      'primary': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
+      };
+      'firstDerivative': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
+      };
+      'secondDerivative': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
+      }
     };
     'yZoomButtonGroup': {
       'zoomInButton': {

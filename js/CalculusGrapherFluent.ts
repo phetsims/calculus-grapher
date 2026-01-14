@@ -90,10 +90,22 @@ addToMapIfDefined( 'a11y_undoButton_accessibleName', 'a11y.undoButton.accessible
 addToMapIfDefined( 'a11y_undoButton_accessibleHelpText', 'a11y.undoButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleContextResponsePrimaryCurve', 'a11y.undoButton.accessibleContextResponsePrimaryCurveStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleContextResponsePredictCurve', 'a11y.undoButton.accessibleContextResponsePredictCurveStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleName', 'a11y.eyeToggleButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleHelpText', 'a11y.eyeToggleButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleContextResponseOff', 'a11y.eyeToggleButton.accessibleContextResponseOffStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleContextResponseOn', 'a11y.eyeToggleButton.accessibleContextResponseOnStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_integral_accessibleName', 'a11y.eyeToggleButton.integral.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_integral_accessibleHelpText', 'a11y.eyeToggleButton.integral.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_integral_accessibleContextResponseOff', 'a11y.eyeToggleButton.integral.accessibleContextResponseOffStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_integral_accessibleContextResponseOn', 'a11y.eyeToggleButton.integral.accessibleContextResponseOnStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_primary_accessibleName', 'a11y.eyeToggleButton.primary.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_primary_accessibleHelpText', 'a11y.eyeToggleButton.primary.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_primary_accessibleContextResponseOff', 'a11y.eyeToggleButton.primary.accessibleContextResponseOffStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_primary_accessibleContextResponseOn', 'a11y.eyeToggleButton.primary.accessibleContextResponseOnStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_firstDerivative_accessibleName', 'a11y.eyeToggleButton.firstDerivative.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_firstDerivative_accessibleHelpText', 'a11y.eyeToggleButton.firstDerivative.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_firstDerivative_accessibleContextResponseOff', 'a11y.eyeToggleButton.firstDerivative.accessibleContextResponseOffStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_firstDerivative_accessibleContextResponseOn', 'a11y.eyeToggleButton.firstDerivative.accessibleContextResponseOnStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_secondDerivative_accessibleName', 'a11y.eyeToggleButton.secondDerivative.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_secondDerivative_accessibleHelpText', 'a11y.eyeToggleButton.secondDerivative.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_secondDerivative_accessibleContextResponseOff', 'a11y.eyeToggleButton.secondDerivative.accessibleContextResponseOffStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_secondDerivative_accessibleContextResponseOn', 'a11y.eyeToggleButton.secondDerivative.accessibleContextResponseOnStringProperty' );
 addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameIntegral', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameIntegralStringProperty' );
 addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameFirstDerivative', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameFirstDerivativeStringProperty' );
 addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameSecondDerivative', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameSecondDerivativeStringProperty' );
@@ -321,10 +333,30 @@ const CalculusGrapherFluent = {
       accessibleContextResponsePredictCurveStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_undoButton_accessibleContextResponsePredictCurve', _.get( CalculusGrapherStrings, 'a11y.undoButton.accessibleContextResponsePredictCurveStringProperty' ) )
     },
     eyeToggleButton: {
-      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleHelpTextStringProperty' ) ),
-      accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleContextResponseOffStringProperty' ) ),
-      accessibleContextResponseOnStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleContextResponseOn', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleContextResponseOnStringProperty' ) )
+      integral: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_integral_accessibleName', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.integral.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_integral_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.integral.accessibleHelpTextStringProperty' ) ),
+        accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_integral_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.integral.accessibleContextResponseOffStringProperty' ) ),
+        accessibleContextResponseOnStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_integral_accessibleContextResponseOn', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.integral.accessibleContextResponseOnStringProperty' ) )
+      },
+      primary: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_primary_accessibleName', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.primary.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_primary_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.primary.accessibleHelpTextStringProperty' ) ),
+        accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_primary_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.primary.accessibleContextResponseOffStringProperty' ) ),
+        accessibleContextResponseOnStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_primary_accessibleContextResponseOn', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.primary.accessibleContextResponseOnStringProperty' ) )
+      },
+      firstDerivative: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_firstDerivative_accessibleName', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.firstDerivative.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_firstDerivative_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.firstDerivative.accessibleHelpTextStringProperty' ) ),
+        accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_firstDerivative_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.firstDerivative.accessibleContextResponseOffStringProperty' ) ),
+        accessibleContextResponseOnStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_firstDerivative_accessibleContextResponseOn', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.firstDerivative.accessibleContextResponseOnStringProperty' ) )
+      },
+      secondDerivative: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_secondDerivative_accessibleName', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.secondDerivative.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_secondDerivative_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.secondDerivative.accessibleHelpTextStringProperty' ) ),
+        accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_secondDerivative_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.secondDerivative.accessibleContextResponseOffStringProperty' ) ),
+        accessibleContextResponseOnStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_secondDerivative_accessibleContextResponseOn', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.secondDerivative.accessibleContextResponseOnStringProperty' ) )
+      }
     },
     yZoomButtonGroup: {
       zoomInButton: {

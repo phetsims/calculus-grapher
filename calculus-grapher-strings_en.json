@@ -222,17 +222,61 @@
       }
     },
     "eyeToggleButton": {
-      "accessibleName": {
-        "value": "Curve Visibility"
+      "integral": {
+        "accessibleName": {
+          "value": "Integral Curve Visibility"
+        },
+        "accessibleHelpText": {
+          "value": "Show or hide curve."
+        },
+        "accessibleContextResponseOff": {
+          "value": "Curve hidden."
+        },
+        "accessibleContextResponseOn": {
+          "value": "Curve shown."
+        }
       },
-      "accessibleHelpText": {
-        "value": "Show or hide curve for this graph area."
+      "primary": {
+        "accessibleName": {
+          "value": "Primary Curve Visibility"
+        },
+        "accessibleHelpText": {
+          "value": "Show or hide curve in Primary Graph Area to support predictions."
+        },
+        "accessibleContextResponseOff": {
+          "value": "Curve hidden."
+        },
+        "accessibleContextResponseOn": {
+          "value": "Curve shown."
+        }
       },
-      "accessibleContextResponseOff": {
-        "value": "Curve hidden."
+      "firstDerivative": {
+        "accessibleName": {
+          "value": "First Derivative Curve Visibility"
+        },
+        "accessibleHelpText": {
+          "value": "Show or hide curve."
+        },
+        "accessibleContextResponseOff": {
+          "value": "Curve hidden."
+        },
+        "accessibleContextResponseOn": {
+          "value": "Curve shown."
+        }
       },
-      "accessibleContextResponseOn": {
-        "value": "Curve shown."
+      "secondDerivative": {
+        "accessibleName": {
+          "value": "Second Derivative Curve Visibility"
+        },
+        "accessibleHelpText": {
+          "value": "Show or hide curve."
+        },
+        "accessibleContextResponseOff": {
+          "value": "Curve hidden."
+        },
+        "accessibleContextResponseOn": {
+          "value": "Curve shown."
+        }
       }
     },
     "yZoomButtonGroup": {

@@ -80,10 +80,26 @@ a11y:
     accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable}.
     accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve.
   eyeToggleButton:
-    accessibleName:               Curve Visibility
-    accessibleHelpText:           Show or hide curve for this graph area.
-    accessibleContextResponseOff: Curve hidden.
-    accessibleContextResponseOn:  Curve shown.
+    integral:
+      accessibleName:               Integral Curve Visibility
+      accessibleHelpText:           Show or hide curve.
+      accessibleContextResponseOff: Curve hidden.
+      accessibleContextResponseOn:  Curve shown.
+    primary:
+      accessibleName:               Primary Curve Visibility
+      accessibleHelpText:           Show or hide curve in Primary Graph Area to support predictions.
+      accessibleContextResponseOff: Curve hidden.
+      accessibleContextResponseOn:  Curve shown.
+    firstDerivative:
+      accessibleName:               First Derivative Curve Visibility
+      accessibleHelpText:           Show or hide curve.
+      accessibleContextResponseOff: Curve hidden.
+      accessibleContextResponseOn:  Curve shown.
+    secondDerivative:
+      accessibleName:               Second Derivative Curve Visibility
+      accessibleHelpText:           Show or hide curve.
+      accessibleContextResponseOff: Curve hidden.
+      accessibleContextResponseOn:  Curve shown.
   yZoomButtonGroup:
     zoomInButton:
       accessibleNameIntegral:         Zoom in Integral y Axis
