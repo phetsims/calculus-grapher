@@ -27,7 +27,13 @@ export default class IntegralGraphNode extends GraphNode {
 
     const options = optionize<IntegralGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.integralGraph.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.integralGraph.accessibleParagraphStringProperty
+      accessibleParagraph: CalculusGrapherFluent.a11y.integralGraph.accessibleParagraphStringProperty,
+      eyeToggleButtonOptions: {
+        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
+        accessibleContextResponseOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOnStringProperty,
+        accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty
+      }
     }, providedOptions );
 
     super( GraphType.INTEGRAL, integralCurve, gridVisibleProperty, options );

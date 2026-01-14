@@ -34,12 +34,12 @@ import Range from '../../../../dot/js/Range.js';
 import { numberOfDecimalPlaces } from '../../../../dot/js/util/numberOfDecimalPlaces.js';
 import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import optionize from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import EyeToggleButton from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
+import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
@@ -103,6 +103,10 @@ type SelfOptions = {
 
   // Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the vertical axis.
   labelNode?: Node;
+
+  // Propagated to eyeToggleButton.
+  eyeToggleButtonOptions: PickRequired<EyeToggleButtonOptions,
+    'accessibleName' | 'accessibleHelpText' | 'accessibleContextResponseOn' | 'accessibleContextResponseOff'>;
 };
 
 export type GraphNodeOptions = SelfOptions &
@@ -260,18 +264,14 @@ export default class GraphNode extends Node {
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
-    this.eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty, {
+    this.eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty, combineOptions<EyeToggleButtonOptions>( {
       scale: 0.5,
       baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
-      accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
-      accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty,
-      accessibleContextResponseOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOnStringProperty,
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
-    } );
+    }, options.eyeToggleButtonOptions ) );
 
     // Optional zoom buttons for the y-axis.
     if ( this.yZoomLevelProperty ) {
