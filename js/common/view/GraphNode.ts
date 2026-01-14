@@ -1,7 +1,7 @@
 // Copyright 2020-2026, University of Colorado Boulder
 
 /**
- * GraphNode is the view representation of a Graph, which includes a curve, a chart (grid and axes) and zoom buttons.
+ * GraphNode is the base class view for a Graph, which includes a curve, a chart (grid and axes) and zoom buttons.
  * The origin (0,0) is the upper-left corner of the ChartRectangle, this.chartRectangle.leftTop.
  *
  * Primary responsibilities are:
@@ -140,10 +140,10 @@ export default class GraphNode extends Node {
   protected readonly yZoomButtonGroup: Node | null;
   protected readonly eyeToggleButton: Node;
 
-  public constructor( graphType: GraphType,
-                      curve: Curve,
-                      gridVisibleProperty: TReadOnlyProperty<boolean>,
-                      providedOptions: GraphNodeOptions ) {
+  protected constructor( graphType: GraphType,
+                         curve: Curve,
+                         gridVisibleProperty: TReadOnlyProperty<boolean>,
+                         providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
 

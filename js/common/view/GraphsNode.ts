@@ -31,11 +31,14 @@ import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
+import DerivativeGraphNode from './DerivativeGraphNode.js';
 import GraphNode from './GraphNode.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
+import IntegralGraphNode from './IntegralGraphNode.js';
 import LabeledLinesNode from './LabeledLinesNode.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
+import SecondDerivativeGraphNode from './SecondDerivativeGraphNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 
 const GRAPH_NODE_Y_SPACING = 20; // vertical space between GraphNode instances, in view coordinates
@@ -50,7 +53,7 @@ export default class GraphsNode extends Node {
   public readonly originalGraphNode: OriginalGraphNode;
 
   // These GraphNodes will be conditionally created, based on whether they appear in model.graphSets.
-  private readonly integralGraphNode?: GraphNode;
+  private readonly integralGraphNode?: IntegralGraphNode;
   private readonly derivativeGraphNode?: GraphNode;
   private readonly secondDerivativeGraphNode?: GraphNode;
 
@@ -83,10 +86,10 @@ export default class GraphsNode extends Node {
 
     super();
 
-    // The view height of the graph's chartRectangle, based on the number of visible graphs.
+    // The view height of each graph's chartRectangle, based on the number of visible graphs.
     this.chartRectangleHeight = CalculusGrapherConstants.SINGLE_CHART_RECTANGLE_HEIGHT / model.graphSetProperty.value.length;
 
-    // OriginalGraphNode is always instrumented, because it should always be present.
+    // OriginalGraphNode is always present.
     this.originalGraphNode = new OriginalGraphNode( model, {
       chartRectangleHeight: this.chartRectangleHeight,
       tandem: options.tandem.createTandem( 'originalGraphNode' )
@@ -94,32 +97,28 @@ export default class GraphsNode extends Node {
 
     this.graphNodes = [ this.originalGraphNode ];
 
-    // Conditionally create the GraphNodes for the derived curves, if they are in model.graphSets.
+    // Optional integral graph
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
-      this.integralGraphNode = new GraphNode( GraphType.INTEGRAL, model.integralCurve, model.gridVisibleProperty, {
+      this.integralGraphNode = new IntegralGraphNode( model.integralCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
-        accessibleHeading: CalculusGrapherFluent.a11y.integralGraph.accessibleHeadingStringProperty,
-        accessibleParagraph: CalculusGrapherFluent.a11y.integralGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
       this.graphNodes.push( this.integralGraphNode );
     }
 
+    // Optional derivative graph
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
-      this.derivativeGraphNode = new GraphNode( GraphType.DERIVATIVE, model.derivativeCurve, model.gridVisibleProperty, {
+      this.derivativeGraphNode = new DerivativeGraphNode( model.derivativeCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
-        accessibleHeading: CalculusGrapherFluent.a11y.derivativeGraph.accessibleHeadingStringProperty,
-        accessibleParagraph: CalculusGrapherFluent.a11y.derivativeGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
       this.graphNodes.push( this.derivativeGraphNode );
     }
 
+    // Optional second derivative graph
     if ( GraphSet.includes( model.graphSets, GraphType.SECOND_DERIVATIVE ) ) {
-      this.secondDerivativeGraphNode = new GraphNode( GraphType.SECOND_DERIVATIVE, model.secondDerivativeCurve, model.gridVisibleProperty, {
+      this.secondDerivativeGraphNode = new SecondDerivativeGraphNode( model.secondDerivativeCurve, model.gridVisibleProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
-        accessibleHeading: CalculusGrapherFluent.a11y.secondDerivativeGraph.accessibleHeadingStringProperty,
-        accessibleParagraph: CalculusGrapherFluent.a11y.secondDerivativeGraph.accessibleParagraphStringProperty,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );
       this.graphNodes.push( this.secondDerivativeGraphNode );
