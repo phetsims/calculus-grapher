@@ -232,10 +232,7 @@ a11y:
     accessibleHelpText:       Use this manipulator to change shape of prediction curve.
   pushButtonGroup:
     accessibleHelpText: Actions applied to curve in Primary Graph Area.
-  graphAreas:
-    accessibleListLeadingParagraph: 'Currently shows'
   headings:
-    graphAreas:                           Graph Areas
     curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
     explorationToolControls:              Exploration Tool Controls
     explorationTools:                     Exploration Tools

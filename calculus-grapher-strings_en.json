@@ -630,15 +630,7 @@
         "value": "Actions applied to curve in Primary Graph Area."
       }
     },
-    "graphAreas": {
-      "accessibleListLeadingParagraph": {
-        "value": "Currently shows"
-      }
-    },
     "headings": {
-      "graphAreas": {
-        "value": "Graph Areas"
-      },
       "curveManipulationSettingsAndControls": {
         "value": "Curve Manipulation Settings and Controls"
       },

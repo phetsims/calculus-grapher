@@ -193,8 +193,6 @@ addToMapIfDefined( 'a11y_primaryCurveManipulator_accessibleHelpText', 'a11y.prim
 addToMapIfDefined( 'a11y_predictCurveManipulator_accessibleName', 'a11y.predictCurveManipulator.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_predictCurveManipulator_accessibleHelpText', 'a11y.predictCurveManipulator.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_pushButtonGroup_accessibleHelpText', 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_graphAreas_accessibleListLeadingParagraph', 'a11y.graphAreas.accessibleListLeadingParagraphStringProperty' );
-addToMapIfDefined( 'a11y_headings_graphAreas', 'a11y.headings.graphAreasStringProperty' );
 addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_explorationToolControls', 'a11y.headings.explorationToolControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_explorationTools', 'a11y.headings.explorationToolsStringProperty' );
@@ -517,11 +515,7 @@ const CalculusGrapherFluent = {
     pushButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_pushButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.pushButtonGroup.accessibleHelpTextStringProperty' ) )
     },
-    graphAreas: {
-      accessibleListLeadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_accessibleListLeadingParagraph', _.get( CalculusGrapherStrings, 'a11y.graphAreas.accessibleListLeadingParagraphStringProperty' ) )
-    },
     headings: {
-      graphAreasStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_graphAreas', _.get( CalculusGrapherStrings, 'a11y.headings.graphAreasStringProperty' ) ),
       curveManipulationSettingsAndControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationSettingsAndControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' ) ),
       explorationToolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_explorationToolControls', _.get( CalculusGrapherStrings, 'a11y.headings.explorationToolControlsStringProperty' ) ),
       explorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_explorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.explorationToolsStringProperty' ) ),

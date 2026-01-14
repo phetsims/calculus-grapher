@@ -31,7 +31,6 @@ import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
-import { GraphAreasAccessibleListNode } from './GraphAreasAccessibleListNode.js';
 import GraphNode from './GraphNode.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import LabeledLinesNode from './LabeledLinesNode.js';
@@ -79,7 +78,6 @@ export default class GraphsNode extends Node {
 
       // NodeOptions
       isDisposable: false,
-      accessibleHeading: CalculusGrapherFluent.a11y.headings.graphAreasStringProperty,
       phetioVisiblePropertyInstrumented: false
     }, providedOptions );
 
@@ -184,8 +182,6 @@ export default class GraphsNode extends Node {
     this.mutate( options );
 
     this.addLinkedElement( model.graphSetProperty );
-
-    this.addChild( new GraphAreasAccessibleListNode( model.graphSetProperty ) );
   }
 
   public reset(): void {
