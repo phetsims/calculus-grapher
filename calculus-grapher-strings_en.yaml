@@ -181,7 +181,7 @@ a11y:
       accessibleName:     Primary and First Derivative Graph Areas
       accessibleHelpText: Explore Primary Graph Area at top, First Derivative Graph Area below.
     secondDerivativeRadioButton:
-      accessibleName:     Primary, First Derivative, and Second Derivative
+      accessibleName:     Primary, First Derivative, and Second Derivative Graph Areas
       accessibleHelpText: Explore Primary Graph Area at top, First Derivative Graph Area in center, Second Derivative Graph Area at bottom.
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool.

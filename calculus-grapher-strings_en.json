@@ -493,7 +493,7 @@
       },
       "secondDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Primary, First Derivative, and Second Derivative"
+          "value": "Primary, First Derivative, and Second Derivative Graph Areas"
         },
         "accessibleHelpText": {
           "value": "Explore Primary Graph Area at top, First Derivative Graph Area in center, Second Derivative Graph Area at bottom."
