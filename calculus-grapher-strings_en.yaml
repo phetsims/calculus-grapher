@@ -82,8 +82,8 @@ a11y:
   eyeToggleButton:
     accessibleName:               Curve Visibility
     accessibleHelpText:           Show or hide curve for this graph area.
-    accessibleContextResponseOff: Curve shown.
-    accessibleContextResponseOn:  Curve hidden.
+    accessibleContextResponseOff: Curve hidden.
+    accessibleContextResponseOn:  Curve shown.
   yZoomButtonGroup:
     zoomInButton:
       accessibleNameIntegral:         Zoom in Integral y Axis
