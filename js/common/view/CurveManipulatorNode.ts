@@ -83,7 +83,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
 
     // Move to the position of the curve manipulator.
     curveManipulator.positionProperty.link( position => {
-      this.center = chartTransform.modelToViewPosition( position );
+      this.translation = chartTransform.modelToViewPosition( position );
     } );
 
     // Toggle between positioning the manipulator and modifying the curve.
