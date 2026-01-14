@@ -21,7 +21,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import AxisArrowNode, { AxisArrowNodeOptions } from '../../../../bamboo/js/AxisArrowNode.js';
@@ -42,13 +41,11 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
-import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -59,6 +56,7 @@ import GraphType from '../model/GraphType.js';
 import CurveNode from './CurveNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import PlottedPoint from './PlottedPoint.js';
+import YZoomButtonGroup, { YZoomButtonGroupOptions } from './YZoomButtonGroup.js';
 
 const MAJOR_GRID_LINE_SPACING = 1;
 const MINOR_GRID_LINE_SPACING = 0.25;
@@ -72,7 +70,7 @@ const MINOR_GRID_LINE_OPTIONS = {
 const BUTTON_SPACING = 14; // space between buttons and tick labels or chartRectangle
 
 // Lookup table for zoomLevelProperty
-type ZoomInfo = {
+export type ZoomInfo = {
   max: number; // axis range will be [-max,max], in model coordinates
   tickSpacing: number; // tick spacing in model coordinates
 };
@@ -110,8 +108,7 @@ type SelfOptions = {
     'accessibleName' | 'accessibleHelpText' | 'accessibleContextResponseOn' | 'accessibleContextResponseOff'>;
 
   // Propagated to yZoomButtonGroup.
-  yZoomButtonGroupOptions?: PickRequired<PlusMinusZoomButtonGroupOptions,
-    'accessibleNameZoomIn' | 'accessibleNameZoomOut'>;
+  yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'accessibleNameZoomIn' | 'accessibleNameZoomOut'>;
 };
 
 export type GraphNodeOptions = SelfOptions &
@@ -282,53 +279,10 @@ export default class GraphNode extends Node {
     if ( this.yZoomLevelProperty ) {
       affirm( options.yZoomButtonGroupOptions, 'yZoomButtonGroupOptions is required if yZoomLevelProperty is provided' );
 
-      const yMinProperty = new DerivedProperty( [ this.yZoomLevelProperty ], yZoomLevel => -Y_ZOOM_INFO[ yZoomLevel ].max );
-      const yMaxProperty = new DerivedProperty( [ this.yZoomLevelProperty ], yZoomLevel => Y_ZOOM_INFO[ yZoomLevel ].max );
-
-      const accessibleContextResponseZoomInProperty = new DerivedStringProperty( [
-          this.yZoomLevelProperty,
-          // Context response when we are fully zoomed in.
-          CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponseMax.createProperty( {
-            min: yMinProperty,
-            max: yMaxProperty
-          } ),
-          CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponse.createProperty( {
-            min: yMinProperty,
-            max: yMaxProperty
-          } )
-        ],
-        ( zoomLevel, responseMax, response ) => ( zoomLevel === this.yZoomLevelProperty?.range.max ) ? responseMax : response );
-
-      const accessibleContextResponseZoomOutProperty = new DerivedStringProperty( [
-          this.yZoomLevelProperty,
-          // Context response when we are fully zoomed out.
-          CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseMax.createProperty( {
-            min: yMinProperty,
-            max: yMaxProperty
-          } ),
-          CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponse.createProperty( {
-            min: yMinProperty,
-            max: yMaxProperty
-          } )
-        ],
-        ( zoomLevel, responseMax, response ) => ( zoomLevel === this.yZoomLevelProperty?.range.min ) ? responseMax : response );
-
-      this.yZoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, combineOptions<PlusMinusZoomButtonGroupOptions>( {
-        orientation: 'vertical',
-        buttonOptions: {
-          stroke: 'black'
-        },
-        touchAreaXDilation: 6,
-        touchAreaYDilation: 3,
-        accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-        accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
-        accessibleContextResponseZoomIn: accessibleContextResponseZoomInProperty,
-        accessibleContextResponseZoomOut: accessibleContextResponseZoomOutProperty,
-        tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
-        visiblePropertyOptions: {
-          phetioFeatured: true
-        }
-      }, options.yZoomButtonGroupOptions ) );
+      this.yZoomButtonGroup = new YZoomButtonGroup( this.yZoomLevelProperty, Y_ZOOM_INFO,
+        combineOptions<YZoomButtonGroupOptions>( {
+          tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
+        }, options.yZoomButtonGroupOptions ) );
     }
     else {
       this.yZoomButtonGroup = null;
