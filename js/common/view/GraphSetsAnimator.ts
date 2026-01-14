@@ -10,6 +10,7 @@
  */
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -17,7 +18,6 @@ import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import GraphNode from './GraphNode.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 const STEPPER = null; // step method must be called by the client
 const OPACITY_DURATION = 0.5; // duration of opacity animation, in seconds
@@ -220,6 +220,9 @@ export default class GraphSetsAnimator {
       // ... and away we go.
       this.fadeOutAnimation.start();
     }
+
+    // Update the focus order to match the visual UI.
+    graphSetNode.pdomOrder = newGraphNodes;
   }
 
   public step( dt: number ): void {

@@ -89,13 +89,8 @@ export default class GraphsNode extends Node {
     // The view height of each graph's chartRectangle, based on the number of visible graphs.
     this.chartRectangleHeight = CalculusGrapherConstants.SINGLE_CHART_RECTANGLE_HEIGHT / model.graphSetProperty.value.length;
 
-    // OriginalGraphNode is always present.
-    this.originalGraphNode = new OriginalGraphNode( model, {
-      chartRectangleHeight: this.chartRectangleHeight,
-      tandem: options.tandem.createTandem( 'originalGraphNode' )
-    } );
-
-    this.graphNodes = [ this.originalGraphNode ];
+    // Order is important because it determines pdomOrder.
+    this.graphNodes = [];
 
     // Optional integral graph
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
@@ -105,6 +100,13 @@ export default class GraphsNode extends Node {
       } );
       this.graphNodes.push( this.integralGraphNode );
     }
+
+    // OriginalGraphNode is always present.
+    this.originalGraphNode = new OriginalGraphNode( model, {
+      chartRectangleHeight: this.chartRectangleHeight,
+      tandem: options.tandem.createTandem( 'originalGraphNode' )
+    } );
+    this.graphNodes.push( this.originalGraphNode );
 
     // Optional derivative graph
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
@@ -193,6 +195,7 @@ export default class GraphsNode extends Node {
 
   /**
    * Gets the GraphNode instances that correspond to graphSet, in the same order as graphSet.
+   * This order also determines the pdomOrder, which matches the visual UI by design.
    */
   private getGraphNodes( graphSet: GraphSet ): GraphNode[] {
     return graphSet.graphTypes.map( graphType => {
