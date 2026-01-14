@@ -9,12 +9,11 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import TRangedProperty from '../../../../axon/js/TRangedProperty.js';
-import { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import { ZoomInfo } from './GraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -24,11 +23,11 @@ export type YZoomButtonGroupOptions = SelfOptions &
 export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
 
   public constructor( yZoomLevelProperty: TRangedProperty,
-                      zoomInfo: ZoomInfo[],
+                      yRangeMaxValues: number[], // indexed by yZoomLevelProperty.value
                       providedOptions: YZoomButtonGroupOptions ) {
 
-    const yMinProperty = new DerivedProperty( [ yZoomLevelProperty ], yZoomLevel => -zoomInfo[ yZoomLevel ].max );
-    const yMaxProperty = new DerivedProperty( [ yZoomLevelProperty ], yZoomLevel => zoomInfo[ yZoomLevel ].max );
+    const yMaxProperty = new DerivedProperty( [ yZoomLevelProperty ], yZoomLevel => yRangeMaxValues[ yZoomLevel ] );
+    const yMinProperty = new DerivedProperty( [ yMaxProperty ], yMax => -yMax );
 
     // Context response for the zoom-in button.
     const accessibleContextResponseZoomInProperty = new DerivedStringProperty( [
@@ -60,7 +59,8 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
       ],
       ( zoomLevel, responseMax, response ) => ( zoomLevel === yZoomLevelProperty.range.min ) ? responseMax : response );
 
-    super( yZoomLevelProperty, combineOptions<PlusMinusZoomButtonGroupOptions>( {
+    const options = optionize<YZoomButtonGroupOptions, SelfOptions, PlusMinusZoomButtonGroupOptions>()( {
+      isDisposable: false,
       orientation: 'vertical',
       buttonOptions: {
         stroke: 'black'
@@ -74,7 +74,9 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
       visiblePropertyOptions: {
         phetioFeatured: true
       }
-    }, providedOptions ) );
+    }, providedOptions );
+
+    super( yZoomLevelProperty, options );
   }
 }
 

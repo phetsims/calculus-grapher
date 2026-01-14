@@ -70,7 +70,7 @@ const MINOR_GRID_LINE_OPTIONS = {
 const BUTTON_SPACING = 14; // space between buttons and tick labels or chartRectangle
 
 // Lookup table for zoomLevelProperty
-export type ZoomInfo = {
+type ZoomInfo = {
   max: number; // axis range will be [-max,max], in model coordinates
   tickSpacing: number; // tick spacing in model coordinates
 };
@@ -279,7 +279,7 @@ export default class GraphNode extends Node {
     if ( this.yZoomLevelProperty ) {
       affirm( options.yZoomButtonGroupOptions, 'yZoomButtonGroupOptions is required if yZoomLevelProperty is provided' );
 
-      this.yZoomButtonGroup = new YZoomButtonGroup( this.yZoomLevelProperty, Y_ZOOM_INFO,
+      this.yZoomButtonGroup = new YZoomButtonGroup( this.yZoomLevelProperty, Y_ZOOM_INFO.map( zoomInfo => zoomInfo.max ),
         combineOptions<YZoomButtonGroupOptions>( {
           tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
         }, options.yZoomButtonGroupOptions ) );
