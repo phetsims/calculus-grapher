@@ -41,13 +41,12 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
-import PlusMinusZoomButtonGroup from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
+import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -107,6 +106,9 @@ type SelfOptions = {
   // Propagated to eyeToggleButton.
   eyeToggleButtonOptions: PickRequired<EyeToggleButtonOptions,
     'accessibleName' | 'accessibleHelpText' | 'accessibleContextResponseOn' | 'accessibleContextResponseOff'>;
+
+  zoomButtonGroupOptions?: PickRequired<PlusMinusZoomButtonGroupOptions,
+    'accessibleNameZoomIn' | 'accessibleNameZoomOut' | 'accessibleHelpTextZoomIn' | 'accessibleHelpTextZoomOut'>;
 };
 
 export type GraphNodeOptions = SelfOptions &
@@ -149,7 +151,7 @@ export default class GraphNode extends Node {
                          gridVisibleProperty: TReadOnlyProperty<boolean>,
                          providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode'>, NodeOptions>()( {
+    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'zoomButtonGroupOptions'>, NodeOptions>()( {
 
       // SelfOptions
       createCurveNode: true,
@@ -275,22 +277,19 @@ export default class GraphNode extends Node {
 
     // Optional zoom buttons for the y-axis.
     if ( this.yZoomLevelProperty ) {
-      this.yZoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
+      affirm( options.zoomButtonGroupOptions, 'zoomButtonGroupOptions is required if yZoomLevelProperty is provided' );
+      this.yZoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, combineOptions<PlusMinusZoomButtonGroupOptions>( {
         orientation: 'vertical',
         buttonOptions: {
           stroke: 'black'
         },
         touchAreaXDilation: 6,
         touchAreaYDilation: 3,
-        accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty,
-        accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty,
-        accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-        accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
         tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
         visiblePropertyOptions: {
           phetioFeatured: true
         }
-      } );
+      }, options.zoomButtonGroupOptions ) );
     }
     else {
       this.yZoomButtonGroup = null;
