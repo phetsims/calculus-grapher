@@ -273,23 +273,28 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     } );
 
-    // Create yZoomButtonGroup if we have a yZoomLevelProperty.
-    this.yZoomButtonGroup = this.yZoomLevelProperty ? new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
-      orientation: 'vertical',
-      buttonOptions: {
-        stroke: 'black'
-      },
-      touchAreaXDilation: 6,
-      touchAreaYDilation: 3,
-      accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty,
-      accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty,
-      accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-      accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
-      tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
-      visiblePropertyOptions: {
-        phetioFeatured: true
-      }
-    } ) : null;
+    // Optional zoom buttons for the y-axis.
+    if ( this.yZoomLevelProperty ) {
+      this.yZoomButtonGroup = new PlusMinusZoomButtonGroup( this.yZoomLevelProperty, {
+        orientation: 'vertical',
+        buttonOptions: {
+          stroke: 'black'
+        },
+        touchAreaXDilation: 6,
+        touchAreaYDilation: 3,
+        accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty,
+        accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty,
+        accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
+        accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
+        tandem: options.tandem.createTandem( 'yZoomButtonGroup' ),
+        visiblePropertyOptions: {
+          phetioFeatured: true
+        }
+      } );
+    }
+    else {
+      this.yZoomButtonGroup = null;
+    }
 
     // Adjust button positions when the visibility of ticks changes.
     ticksParent.visibleProperty.link( ticksParentVisible => {
