@@ -14,7 +14,7 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import Vector2Property from '../../../../dot/js/Vector2Property.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -44,16 +44,13 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
     let antepenultimatePosition: Vector2 | null = null;
 
     // Update whichever curve is currently interactive.
-    const update = ( isEventFromPDOM: boolean, viewPoint: Vector2 ): void => {
+    const update = ( isEventFromPDOM: boolean, modelPosition: Vector2 ): void => {
 
       // When the manipulator is first moved with the keyboard, disable the keyboard cue so
       // that we do not see it until Reset All is pressed.
       if ( isEventFromPDOM ) {
         curveManipulator.keyboardCueEnabledProperty.value = false;
       }
-
-      // Current modelPosition
-      const modelPosition = chartTransform.viewToModelPosition( viewPoint );
 
       if ( !isEventFromPDOM || curveManipulator.keyboardEditEnabledProperty.value ) {
         if ( curveManipulationModeProperty.value === CurveManipulationMode.FREEFORM ) {
@@ -74,7 +71,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
             antepenultimatePosition = penultimatePosition;
             penultimatePosition = modelPosition;
 
-            // Move the curve cursor to the new position.
+            // Move to the new position.
             curveManipulator.positionProperty.value = modelPosition;
           }
         }
@@ -86,25 +83,32 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
             curveManipulationWidthProperty.value,
             modelPosition );
 
-          // Move the curve cursor to the new position.
+          // Move to the new position.
           curveManipulator.positionProperty.value = modelPosition;
         }
       }
       else {
 
-        // Move the curve cursor to the new position without modifying the curve.
+        // Move the manipulator to the new position without modifying the curve.
         curveManipulator.positionProperty.value = modelPosition;
       }
     };
 
     super( {
 
-      //TODO https://github.com/phetsims/calculus-grapher/issues/125 This positionProperty needs to be reset on Reset All.
-      // Position in view coordinates because we have not provided the transform option.
-      positionProperty: new Vector2Property( chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) ),
+      // Synthesize a ModelViewTransform2 from the ChartTransform.
+      transform: ModelViewTransform2.createOffsetXYScaleMapping(
+        new Vector2( 0, chartTransform.viewHeight / 2 ), // offset of the origin in view coordinates
+        chartTransform.viewWidth / chartTransform.modelXRange.getLength(), // xScale, model to view
+        -( chartTransform.viewHeight / chartTransform.modelYRange.getLength() ) // yScale, model to view
+      ),
 
-      // Drag bounds are in view coordinates because we have not provided the transform option.
-      dragBoundsProperty: new Property( new Bounds2( 0, 0, chartTransform.viewWidth, chartTransform.viewHeight ) ),
+      // Position in model coordinates.
+      positionProperty: curveManipulator.positionProperty,
+
+      // Drag bounds in model coordinates.
+      dragBoundsProperty: new Property( new Bounds2( chartTransform.modelXRange.min, chartTransform.modelYRange.min,
+        chartTransform.modelXRange.max, chartTransform.modelYRange.max ) ),
 
       dragListenerOptions: {
         applyOffset: false // Because wherever we press in the graph is where the manipulation starts.
@@ -126,11 +130,11 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
         penultimatePosition = null;
 
         // listener.modelPoint is in view coordinates because we have not provided the transform option.
-        update( event.isFromPDOM(), listener.modelPoint );
+        update( event.isFromPDOM(), curveManipulator.positionProperty.value );
       },
 
       // listener.modelPoint is in view coordinates because we have not provided the transform option.
-      drag: ( event, listener ) => update( event.isFromPDOM(), listener.modelPoint ),
+      drag: ( event, listener ) => update( event.isFromPDOM(), curveManipulator.positionProperty.value ),
 
       end: () => curveManipulatorNode.doAccessibleObjectResponse(),
 
@@ -141,7 +145,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
     // manipulator's current position.
     curveManipulator.keyboardEditEnabledProperty.link( keyboardEditEnabled => {
       if ( keyboardEditEnabled ) {
-        update( true, chartTransform.modelToViewPosition( curveManipulator.positionProperty.value ) );
+        update( true, curveManipulator.positionProperty.value );
       }
     } );
   }
