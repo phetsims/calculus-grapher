@@ -206,10 +206,10 @@ a11y:
     accessibleHelpText: Choose curve to manipulate in Primary Graph Area.
     originalCurveRadioButton:
       accessibleName:     f of {$variable}
-      accessibleHelpText: Manipulate f of {$variable}.
+      accessibleHelpText: Manipulate f of {$variable} in Primary Graph Area.
     predictCurveRadioButton:
       accessibleName:     Predict
-      accessibleHelpText: Manipulate prediction curve to predict f of {$variable} based on other graph areas.
+      accessibleHelpText: Manipulate prediction curve in Primary Graph Area to predict primary curve based on other graph areas.
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.

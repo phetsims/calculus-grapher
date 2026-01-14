@@ -560,7 +560,7 @@
           "value": "f of {$variable}"
         },
         "accessibleHelpText": {
-          "value": "Manipulate f of {$variable}."
+          "value": "Manipulate f of {$variable} in Primary Graph Area."
         }
       },
       "predictCurveRadioButton": {
@@ -568,7 +568,7 @@
           "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve to predict f of {$variable} based on other graph areas."
+          "value": "Manipulate prediction curve in Primary Graph Area to predict primary curve based on other graph areas."
         }
       }
     },
