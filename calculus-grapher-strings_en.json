@@ -82,10 +82,10 @@
       "value": "Curve Manipulator"
     },
     "keyboardHelpLabel": {
-      "value": "Toggle between positioning manipulator and modifying curve"
+      "value": "Grab or release curve"
     },
     "keyboardCue": {
-      "value": "to toggle mode"
+      "value": "to <b>Grab</b> or <b>Release</b> curve"
     }
   },
   "a11y": {

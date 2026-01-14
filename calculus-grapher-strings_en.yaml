@@ -28,8 +28,8 @@ predictPreferenceDescription: Adds a mode that allows you to predict f of {{vari
 referenceLine:                Reference<br>Line
 curveManipulator:
   keyboardHelpHeading: Curve Manipulator
-  keyboardHelpLabel:   Toggle between positioning manipulator and modifying curve
-  keyboardCue:         to toggle mode
+  keyboardHelpLabel:   Grab or release curve
+  keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
 a11y:
   derivativeScreen:
     screenButtonsHelpText: Manipulate a curve to explore its first derivative.
