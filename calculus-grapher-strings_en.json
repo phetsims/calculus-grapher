@@ -460,35 +460,35 @@
     },
     "graphSetRadioButtonGroup": {
       "accessibleName": {
-        "value": "Visible Graph Areas"
+        "value": "Viewable Graph Set"
       },
       "accessibleHelpText": {
-        "value": "Choose graph areas that are visible."
+        "value": "Choose which set of graph areas to investigate and find relationships."
       },
       "integralRadioButton": {
         "advanced": {
           "accessibleName": {
-            "value": "Integral and Primary"
+            "value": "Integral and Primary Graph Areas"
           },
           "accessibleHelpText": {
-            "value": "Show Integral Graph Area and the Primary Graph Area."
+            "value": "Explore Integral Graph Area at top, Primary Graph Area below."
           }
         },
         "lab": {
           "accessibleName": {
-            "value": "Integral, Primary, and First Derivative"
+            "value": "Integral, Primary, and First Derivative Graph Areas"
           },
           "accessibleHelpText": {
-            "value": "Show Integral Graph Area, Primary Graph Area, and First Derivative Graph Area."
+            "value": "Explore Integral Graph Area at top, Primary Graph Area in center, First Derivative Graph Area at bottom."
           }
         }
       },
       "derivativeRadioButton": {
         "accessibleName": {
-          "value": "Primary and First Derivative"
+          "value": "Primary and First Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Show Primary Graph Area and First Derivative Graph Area."
+          "value": "Explore Primary Graph Area at top, First Derivative Graph Area below."
         }
       },
       "secondDerivativeRadioButton": {
@@ -496,7 +496,7 @@
           "value": "Primary, First Derivative, and Second Derivative"
         },
         "accessibleHelpText": {
-          "value": "Show Primary Graph Area, First Derivative Graph Area, and Second Derivative Graph Area."
+          "value": "Explore Primary Graph Area at top, First Derivative Graph Area in center, Second Derivative Graph Area at bottom."
         }
       }
     },

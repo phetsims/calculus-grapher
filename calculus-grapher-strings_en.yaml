@@ -168,21 +168,21 @@ a11y:
       accessibleName:     Shift
       accessibleHelpText: Shift entire curve up or down.
   graphSetRadioButtonGroup:
-    accessibleName:     Visible Graph Areas
-    accessibleHelpText: Choose graph areas that are visible.
+    accessibleName:     Viewable Graph Set
+    accessibleHelpText: Choose which set of graph areas to investigate and find relationships.
     integralRadioButton:
       advanced:
-        accessibleName:     Integral and Primary
-        accessibleHelpText: Show Integral Graph Area and the Primary Graph Area.
+        accessibleName:     Integral and Primary Graph Areas
+        accessibleHelpText: Explore Integral Graph Area at top, Primary Graph Area below.
       lab:
-        accessibleName:     Integral, Primary, and First Derivative
-        accessibleHelpText: Show Integral Graph Area, Primary Graph Area, and First Derivative Graph Area.
+        accessibleName:     Integral, Primary, and First Derivative Graph Areas
+        accessibleHelpText: Explore Integral Graph Area at top, Primary Graph Area in center, First Derivative Graph Area at bottom.
     derivativeRadioButton:
-      accessibleName:     Primary and First Derivative
-      accessibleHelpText: Show Primary Graph Area and First Derivative Graph Area.
+      accessibleName:     Primary and First Derivative Graph Areas
+      accessibleHelpText: Explore Primary Graph Area at top, First Derivative Graph Area below.
     secondDerivativeRadioButton:
       accessibleName:     Primary, First Derivative, and Second Derivative
-      accessibleHelpText: Show Primary Graph Area, First Derivative Graph Area, and Second Derivative Graph Area.
+      accessibleHelpText: Explore Primary Graph Area at top, First Derivative Graph Area in center, Second Derivative Graph Area at bottom.
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool.
     accessibleParagraph:         Slope of line tangent to f of {$variable} curve equals {$firstDerivativeValue} at {$variable} equals {$x}.
