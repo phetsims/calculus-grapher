@@ -130,11 +130,9 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
         antepenultimatePosition = null;
         penultimatePosition = null;
 
-        // listener.modelPoint is in view coordinates because we have not provided the transform option.
         update( event.isFromPDOM(), curveManipulator.positionProperty.value );
       },
 
-      // listener.modelPoint is in view coordinates because we have not provided the transform option.
       drag: ( event, listener ) => update( event.isFromPDOM(), curveManipulator.positionProperty.value ),
 
       end: () => curveManipulatorNode.doAccessibleObjectResponse(),
