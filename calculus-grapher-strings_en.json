@@ -237,19 +237,43 @@
     },
     "yZoomButtonGroup": {
       "zoomInButton": {
-        "accessibleName": {
-          "value": "Zoom In y Axis"
+        "accessibleNameIntegral": {
+          "value": "Zoom in Integral y Axis"
+        },
+        "accessibleNameFirstDerivative": {
+          "value": "Zoom in First Derivative y Axis"
+        },
+        "accessibleNameSecondDerivative": {
+          "value": "Zoom in Second Derivative y Axis"
         },
         "accessibleHelpText": {
-          "value": "Zoom y Axis in for this graph area."
+          "value": "Zoom in y axis only."
+        },
+        "accessibleContextResponse": {
+          "value": "zoomed in, y range {$min} to {$max}"
+        },
+        "accessibleContextResponseMax": {
+          "value": "zoomed in, y range {$min} to {$max}, max reached"
         }
       },
       "zoomOutButton": {
-        "accessibleName": {
-          "value": "Zoom Out y Axis"
+        "accessibleNameIntegral": {
+          "value": "Zoom out Integral y Axis"
+        },
+        "accessibleNameFirstDerivative": {
+          "value": "Zoom out First Derivative y Axis"
+        },
+        "accessibleNameSecondDerivative": {
+          "value": "Zoom out Second Derivative y Axis"
         },
         "accessibleHelpText": {
-          "value": "Zoom y Axis out for this graph area."
+          "value": "Zoom out y axis only."
+        },
+        "accessibleContextResponse": {
+          "value": "zoomed out, y range {$min} to {$max}"
+        },
+        "accessibleContextResponseMax": {
+          "value": "zoomed out, y range {$min} to {$max}, max reached"
         }
       }
     },

@@ -34,11 +34,9 @@ export default class DerivativeGraphNode extends GraphNode {
         accessibleContextResponseOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOnStringProperty,
         accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty
       },
-      zoomButtonGroupOptions: {
-        accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty,
-        accessibleHelpTextZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-        accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty,
-        accessibleHelpTextZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty
+      yZoomButtonGroupOptions: {
+        accessibleNameZoomIn: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameFirstDerivativeStringProperty,
+        accessibleNameZoomOut: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameFirstDerivativeStringProperty
       }
     }, providedOptions );
 

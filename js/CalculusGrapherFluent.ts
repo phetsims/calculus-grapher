@@ -94,10 +94,18 @@ addToMapIfDefined( 'a11y_eyeToggleButton_accessibleName', 'a11y.eyeToggleButton.
 addToMapIfDefined( 'a11y_eyeToggleButton_accessibleHelpText', 'a11y.eyeToggleButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_eyeToggleButton_accessibleContextResponseOff', 'a11y.eyeToggleButton.accessibleContextResponseOffStringProperty' );
 addToMapIfDefined( 'a11y_eyeToggleButton_accessibleContextResponseOn', 'a11y.eyeToggleButton.accessibleContextResponseOnStringProperty' );
-addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleName', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameIntegral', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameIntegralStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameFirstDerivative', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameFirstDerivativeStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameSecondDerivative', 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameSecondDerivativeStringProperty' );
 addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleHelpText', 'a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleName', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleContextResponse', 'a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponseStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomInButton_accessibleContextResponseMax', 'a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponseMaxStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleNameIntegral', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameIntegralStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleNameFirstDerivative', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameFirstDerivativeStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleNameSecondDerivative', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameSecondDerivativeStringProperty' );
 addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleHelpText', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleContextResponse', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseStringProperty' );
+addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleContextResponseMax', 'a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseMaxStringProperty' );
 addToMapIfDefined( 'a11y_tangentCheckbox_accessibleHelpText', 'a11y.tangentCheckbox.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_tangentCheckbox_accessibleContextResponseChecked', 'a11y.tangentCheckbox.accessibleContextResponseCheckedStringProperty' );
 addToMapIfDefined( 'a11y_tangentCheckbox_accessibleContextResponseUnchecked', 'a11y.tangentCheckbox.accessibleContextResponseUncheckedStringProperty' );
@@ -320,12 +328,20 @@ const CalculusGrapherFluent = {
     },
     yZoomButtonGroup: {
       zoomInButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameIntegralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameIntegral', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameIntegralStringProperty' ) ),
+        accessibleNameFirstDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameFirstDerivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameFirstDerivativeStringProperty' ) ),
+        accessibleNameSecondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleNameSecondDerivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleNameSecondDerivativeStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty' ) ),
+        accessibleContextResponse: new FluentPattern<{ max: FluentVariable, min: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponseStringProperty' ), [{"name":"max"},{"name":"min"}] ),
+        accessibleContextResponseMax: new FluentPattern<{ max: FluentVariable, min: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleContextResponseMax', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponseMaxStringProperty' ), [{"name":"max"},{"name":"min"}] )
       },
       zoomOutButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameIntegralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleNameIntegral', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameIntegralStringProperty' ) ),
+        accessibleNameFirstDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleNameFirstDerivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameFirstDerivativeStringProperty' ) ),
+        accessibleNameSecondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleNameSecondDerivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleNameSecondDerivativeStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty' ) ),
+        accessibleContextResponse: new FluentPattern<{ max: FluentVariable, min: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseStringProperty' ), [{"name":"max"},{"name":"min"}] ),
+        accessibleContextResponseMax: new FluentPattern<{ max: FluentVariable, min: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleContextResponseMax', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseMaxStringProperty' ), [{"name":"max"},{"name":"min"}] )
       }
     },
     tangentCheckbox: {

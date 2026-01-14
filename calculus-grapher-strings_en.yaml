@@ -86,11 +86,19 @@ a11y:
     accessibleContextResponseOn:  Curve hidden.
   yZoomButtonGroup:
     zoomInButton:
-      accessibleName:     Zoom In y Axis
-      accessibleHelpText: Zoom y Axis in for this graph area.
+      accessibleNameIntegral:         Zoom in Integral y Axis
+      accessibleNameFirstDerivative:  Zoom in First Derivative y Axis
+      accessibleNameSecondDerivative: Zoom in Second Derivative y Axis
+      accessibleHelpText:             Zoom in y axis only.
+      accessibleContextResponse:      'zoomed in, y range {$min} to {$max}'
+      accessibleContextResponseMax:   'zoomed in, y range {$min} to {$max}, max reached'
     zoomOutButton:
-      accessibleName:     Zoom Out y Axis
-      accessibleHelpText: Zoom y Axis out for this graph area.
+      accessibleNameIntegral:         Zoom out Integral y Axis
+      accessibleNameFirstDerivative:  Zoom out First Derivative y Axis
+      accessibleNameSecondDerivative: Zoom out Second Derivative y Axis
+      accessibleHelpText:             Zoom out y axis only.
+      accessibleContextResponse:      'zoomed out, y range {$min} to {$max}'
+      accessibleContextResponseMax:   'zoomed out, y range {$min} to {$max}, max reached'
   tangentCheckbox:
     accessibleHelpText:                 Show or hide Tangent tool.
     accessibleContextResponseChecked:   Tangent tool shown.
@@ -225,11 +233,11 @@ a11y:
   curveManipulator:
     accessibleObjectResponse: '{$x} {$y}'
   primaryCurveManipulator:
-    accessibleName:           f of {$variable} Curve Manipulator
-    accessibleHelpText:       Use this manipulator to change shape of f of {$variable} curve.
+    accessibleName:     f of {$variable} Curve Manipulator
+    accessibleHelpText: Use this manipulator to change shape of f of {$variable} curve.
   predictCurveManipulator:
-    accessibleName:           Prediction Curve Manipulator
-    accessibleHelpText:       Use this manipulator to change shape of prediction curve.
+    accessibleName:     Prediction Curve Manipulator
+    accessibleHelpText: Use this manipulator to change shape of prediction curve.
   pushButtonGroup:
     accessibleHelpText: Actions applied to curve in Primary Graph Area.
   headings:
