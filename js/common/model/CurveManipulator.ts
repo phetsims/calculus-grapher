@@ -32,7 +32,7 @@ export default class CurveManipulator extends PhetioObject {
   // Color of the manipulator, color coded to a curve.
   public readonly color: TColor;
 
-  // Position of the cursor, in model coordinates.
+  // Position, in model coordinates.
   public readonly positionProperty: Property<Vector2>;
 
   // Whether moving the manipulator with the keyboard changes the curve.

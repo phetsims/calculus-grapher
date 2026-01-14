@@ -44,6 +44,7 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -52,7 +53,6 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import Curve, { CurveOptions } from './Curve.js';
 import CurveManipulationMode from './CurveManipulationMode.js';
 import CurvePoint from './CurvePoint.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // constants
 const EDGE_SLOPE_FACTOR = CalculusGrapherQueryParameters.edgeSlopeFactor;
@@ -231,13 +231,13 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Modifies the points based on the curveManipulationMode and selected width.
-   * Sets wasManipulatedProperty and notifies listeners that the Curve has changed.
+   * Sets wasManipulatedProperty and notifies listeners that the curve has changed.
    *
    * @param mode
    * @param width
-   * @param position - position of cursor in model coordinates
-   * @param [penultimatePosition] - last position of cursor in model coordinates, relevant only for CurveManipulationMode.FREEFORM
-   * @param [antepenultimatePosition] - before last position in model coordinates, relevant only for CurveManipulationMode.FREEFORM
+   * @param position - position of the curve manipulator, in model coordinates
+   * @param [penultimatePosition] - last position, in model coordinates, relevant only for CurveManipulationMode.FREEFORM
+   * @param [antepenultimatePosition] - before last position, in model coordinates, relevant only for CurveManipulationMode.FREEFORM
    */
   public manipulateCurve( mode: CurveManipulationMode,
                           width: number,
