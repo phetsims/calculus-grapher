@@ -43,11 +43,11 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     const labelAlignGroup = new AlignGroup(); // to give radio-button labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleHelpTextStringProperty ),
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleHelpTextStringProperty ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.DERIVATIVE, labelAlignGroup,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleHelpTextStringProperty )
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryFirstDerivativeRadioButton.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryFirstDerivativeRadioButton.accessibleHelpTextStringProperty )
     ];
 
     const createModel = () => new AdvancedModel( {

@@ -101,47 +101,33 @@ export default class ReferenceLineNode extends ScrubberNode {
    * Accessible response for the set of graphs that are currently shown.
    */
   public override doAccessibleObjectResponse(): void {
+
     const graphSet = this.graphSetProperty.value;
-    let accessibleObjectResponse: string | null = null;
-    if ( graphSet.length === 2 ) {
-      if ( graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseFirstDerivative.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-          firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
-        } );
-      }
-      else if ( graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseIntegral.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-          integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
-        } );
-      }
+
+    let graphSetSelector: 'primaryFirstDerivative' | 'integralPrimary' | 'integralPrimaryFirstDerivative' | 'primaryFirstDerivativeSecondDerivative';
+    if ( graphSet.length === 2 && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
+      graphSetSelector = 'primaryFirstDerivative';
     }
-    else if ( graphSet.length === 3 ) {
-      if ( graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseIntegralFirstDerivative.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-          integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-          firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
-        } );
-      }
-      else if ( graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) && graphSet.includes( GraphType.SECOND_DERIVATIVE ) ) {
-        accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponseFirstDerivativeSecondDerivative.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-          x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-          y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-          firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-          secondDerivativeValue: toFixedNumber( this.referenceLine.secondDerivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
-        } );
-      }
+    else if ( graphSet.length === 2 && graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) ) {
+      graphSetSelector = 'integralPrimary';
     }
-    affirm( accessibleObjectResponse, 'Unsupported graphSet' );
+    else if ( graphSet.length === 3 && graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
+      graphSetSelector = 'integralPrimaryFirstDerivative';
+    }
+    else {
+      affirm( graphSet.length === 3 && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) && graphSet.includes( GraphType.SECOND_DERIVATIVE ) );
+      graphSetSelector = 'primaryFirstDerivativeSecondDerivative';
+    }
+
+    const accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.format( {
+      graphSet: graphSetSelector,
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+      x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+      integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+      firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+      secondDerivativeValue: toFixedNumber( this.referenceLine.secondDerivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+    } );
 
     this.addAccessibleObjectResponse( accessibleObjectResponse );
   }

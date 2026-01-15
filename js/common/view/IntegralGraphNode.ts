@@ -25,23 +25,25 @@ export default class IntegralGraphNode extends GraphNode {
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: IntegralGraphNodeOptions ) {
 
+    const graphSelector = 'integral';
+
     const options = optionize<IntegralGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.integralGraph.accessibleHeadingStringProperty,
       accessibleParagraph: CalculusGrapherFluent.a11y.integralGraph.accessibleParagraphStringProperty,
       eyeToggleButtonOptions: {
         accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.createProperty( {
-          graph: 'integral'
+          graph: graphSelector
         } )
       },
       yZoomButtonGroupOptions: {
         zoomInButtonOptions: {
           accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleName.createProperty( {
-            graph: 'integral'
+            graph: graphSelector
           } )
         },
         zoomOutButtonOptions: {
           accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleName.createProperty( {
-            graph: 'integral'
+            graph: graphSelector
           } )
         }
       }

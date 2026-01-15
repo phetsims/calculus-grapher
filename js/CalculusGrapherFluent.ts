@@ -148,14 +148,14 @@ addToMapIfDefined( 'a11y_curveManipulationModeRadioButtonGroup_shiftRadioButton_
 addToMapIfDefined( 'a11y_curveManipulationModeRadioButtonGroup_shiftRadioButton_accessibleHelpText', 'a11y.curveManipulationModeRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_accessibleName', 'a11y.graphSetRadioButtonGroup.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralRadioButton_advanced_accessibleName', 'a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralRadioButton_advanced_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralRadioButton_lab_accessibleName', 'a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralRadioButton_lab_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_derivativeRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_derivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_secondDerivativeRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_secondDerivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralPrimaryRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralPrimaryRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralPrimaryFirstDerivativeRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.integralPrimaryFirstDerivativeRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralPrimaryFirstDerivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.integralPrimaryFirstDerivativeRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeSecondDerivativeRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeSecondDerivativeRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeSecondDerivativeRadioButton_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleHelpTextCollapsed', 'a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph', 'a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty' );
 addToMapIfDefined( 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' );
@@ -183,10 +183,7 @@ addToMapIfDefined( 'a11y_tangentTool_accessibleHelpText', 'a11y.tangentTool.acce
 addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse', 'a11y.tangentTool.accessibleObjectResponseStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineTool_accessibleName', 'a11y.referenceLineTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineTool_accessibleHelpText', 'a11y.referenceLineTool.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponseFirstDerivative', 'a11y.referenceLineTool.accessibleObjectResponseFirstDerivativeStringProperty' );
-addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponseIntegral', 'a11y.referenceLineTool.accessibleObjectResponseIntegralStringProperty' );
-addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponseIntegralFirstDerivative', 'a11y.referenceLineTool.accessibleObjectResponseIntegralFirstDerivativeStringProperty' );
-addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponseFirstDerivativeSecondDerivative', 'a11y.referenceLineTool.accessibleObjectResponseFirstDerivativeSecondDerivativeStringProperty' );
+addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponse', 'a11y.referenceLineTool.accessibleObjectResponseStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleName', 'a11y.areaUnderCurveTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleHelpText', 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse', 'a11y.areaUnderCurveTool.accessibleObjectResponseStringProperty' );
@@ -427,23 +424,21 @@ const CalculusGrapherFluent = {
     graphSetRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
-      integralRadioButton: {
-        advanced: {
-          accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralRadioButton_advanced_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleNameStringProperty' ) ),
-          accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralRadioButton_advanced_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralRadioButton.advanced.accessibleHelpTextStringProperty' ) )
-        },
-        lab: {
-          accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralRadioButton_lab_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleNameStringProperty' ) ),
-          accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralRadioButton_lab_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralRadioButton.lab.accessibleHelpTextStringProperty' ) )
-        }
+      integralPrimaryRadioButton: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralPrimaryRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralPrimaryRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleHelpTextStringProperty' ) )
       },
-      derivativeRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_derivativeRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_derivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.derivativeRadioButton.accessibleHelpTextStringProperty' ) )
+      primaryFirstDerivativeRadioButton: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
       },
-      secondDerivativeRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_secondDerivativeRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_secondDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.secondDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
+      integralPrimaryFirstDerivativeRadioButton: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralPrimaryFirstDerivativeRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralPrimaryFirstDerivativeRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_integralPrimaryFirstDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.integralPrimaryFirstDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
+      },
+      primaryFirstDerivativeSecondDerivativeRadioButton: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeSecondDerivativeRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeSecondDerivativeRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryFirstDerivativeSecondDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryFirstDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
     slopeOfTangentAccordionBox: {
@@ -496,10 +491,7 @@ const CalculusGrapherFluent = {
     referenceLineTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
-      accessibleObjectResponseFirstDerivative: new FluentPattern<{ firstDerivativeValue: FluentVariable, variable: FluentVariable, x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponseFirstDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponseFirstDerivativeStringProperty' ), [{"name":"firstDerivativeValue"},{"name":"variable"},{"name":"x"},{"name":"y"}] ),
-      accessibleObjectResponseIntegral: new FluentPattern<{ integralValue: FluentVariable, variable: FluentVariable, x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponseIntegral', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponseIntegralStringProperty' ), [{"name":"integralValue"},{"name":"variable"},{"name":"x"},{"name":"y"}] ),
-      accessibleObjectResponseIntegralFirstDerivative: new FluentPattern<{ firstDerivativeValue: FluentVariable, integralValue: FluentVariable, variable: FluentVariable, x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponseIntegralFirstDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponseIntegralFirstDerivativeStringProperty' ), [{"name":"firstDerivativeValue"},{"name":"integralValue"},{"name":"variable"},{"name":"x"},{"name":"y"}] ),
-      accessibleObjectResponseFirstDerivativeSecondDerivative: new FluentPattern<{ firstDerivativeValue: FluentVariable, secondDerivativeValue: FluentVariable, variable: FluentVariable, x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponseFirstDerivativeSecondDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponseFirstDerivativeSecondDerivativeStringProperty' ), [{"name":"firstDerivativeValue"},{"name":"secondDerivativeValue"},{"name":"variable"},{"name":"x"},{"name":"y"}] )
+      accessibleObjectResponse: new FluentPattern<{ firstDerivativeValue: FluentVariable, graphSet: 'primaryFirstDerivative' | 'integralPrimary' | 'integralPrimaryFirstDerivative' | 'primaryFirstDerivativeSecondDerivative' | TReadOnlyProperty<'primaryFirstDerivative' | 'integralPrimary' | 'integralPrimaryFirstDerivative' | 'primaryFirstDerivativeSecondDerivative'>, integralValue: FluentVariable, secondDerivativeValue: FluentVariable, variable: FluentVariable, x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponseStringProperty' ), [{"name":"firstDerivativeValue"},{"name":"graphSet","variants":["primaryFirstDerivative","integralPrimary","integralPrimaryFirstDerivative","primaryFirstDerivativeSecondDerivative"]},{"name":"integralValue"},{"name":"secondDerivativeValue"},{"name":"variable"},{"name":"x"},{"name":"y"}] )
     },
     areaUnderCurveTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleNameStringProperty' ) ),

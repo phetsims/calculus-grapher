@@ -447,25 +447,15 @@
       "accessibleHelpText": {
         "value": "Choose which set of graph areas to investigate and find relationships."
       },
-      "integralRadioButton": {
-        "advanced": {
-          "accessibleName": {
-            "value": "Integral and Primary Graph Areas"
-          },
-          "accessibleHelpText": {
-            "value": "Explore Integral Graph at top, Primary Area below."
-          }
+      "integralPrimaryRadioButton": {
+        "accessibleName": {
+          "value": "Integral and Primary Graph Areas"
         },
-        "lab": {
-          "accessibleName": {
-            "value": "Integral, Primary, and First Derivative Graph Areas"
-          },
-          "accessibleHelpText": {
-            "value": "Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom."
-          }
+        "accessibleHelpText": {
+          "value": "Explore Integral Graph at top, Primary Graph below."
         }
       },
-      "derivativeRadioButton": {
+      "primaryFirstDerivativeRadioButton": {
         "accessibleName": {
           "value": "Primary and First Derivative Graph Areas"
         },
@@ -473,7 +463,15 @@
           "value": "Explore Primary Graph at top, First Derivative Graph below."
         }
       },
-      "secondDerivativeRadioButton": {
+      "integralPrimaryFirstDerivativeRadioButton": {
+        "accessibleName": {
+          "value": "Integral, Primary, and First Derivative Graph Areas"
+        },
+        "accessibleHelpText": {
+          "value": "Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom."
+        }
+      },
+      "primaryFirstDerivativeSecondDerivativeRadioButton": {
         "accessibleName": {
           "value": "Primary, First Derivative, and Second Derivative Graph Areas"
         },
@@ -586,17 +584,8 @@
       "accessibleHelpText": {
         "value": "Move horizontally to align {$variable} coordinates on all graphs and explore corresponding y coordinates."
       },
-      "accessibleObjectResponseFirstDerivative": {
-        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}"
-      },
-      "accessibleObjectResponseIntegral": {
-        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}"
-      },
-      "accessibleObjectResponseIntegralFirstDerivative": {
-        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}"
-      },
-      "accessibleObjectResponseFirstDerivativeSecondDerivative": {
-        "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}"
+      "accessibleObjectResponse": {
+        "value": "{ $graphSet ->\n  [primaryFirstDerivative] {$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}\n  [integralPrimary] {$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}\n  [integralPrimaryFirstDerivative] {$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}\n  *[primaryFirstDerivativeSecondDerivative] {$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}\n}"
       }
     },
     "areaUnderCurveTool": {

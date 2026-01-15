@@ -226,21 +226,19 @@ type StringsType = {
     'graphSetRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'integralRadioButton': {
-        'advanced': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-          'accessibleHelpTextStringProperty': LocalizedStringProperty;
-        };
-        'lab': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-          'accessibleHelpTextStringProperty': LocalizedStringProperty;
-        }
-      };
-      'derivativeRadioButton': {
+      'integralPrimaryRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
-      'secondDerivativeRadioButton': {
+      'primaryFirstDerivativeRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'integralPrimaryFirstDerivativeRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'primaryFirstDerivativeSecondDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
@@ -295,10 +293,7 @@ type StringsType = {
     'referenceLineTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseFirstDerivativeStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseIntegralStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseIntegralFirstDerivativeStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseFirstDerivativeSecondDerivativeStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
     'areaUnderCurveTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;

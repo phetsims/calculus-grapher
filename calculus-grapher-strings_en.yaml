@@ -177,17 +177,16 @@ a11y:
   graphSetRadioButtonGroup:
     accessibleName:     Viewable Graph Set
     accessibleHelpText: Choose which set of graph areas to investigate and find relationships.
-    integralRadioButton:
-      advanced:
-        accessibleName:     Integral and Primary Graph Areas
-        accessibleHelpText: Explore Integral Graph at top, Primary Area below.
-      lab:
-        accessibleName:     Integral, Primary, and First Derivative Graph Areas
-        accessibleHelpText: Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom.
-    derivativeRadioButton:
+    integralPrimaryRadioButton:
+      accessibleName:     Integral and Primary Graph Areas
+      accessibleHelpText: Explore Integral Graph at top, Primary Graph at bottom.
+    primaryFirstDerivativeRadioButton:
       accessibleName:     Primary and First Derivative Graph Areas
-      accessibleHelpText: Explore Primary Graph at top, First Derivative Graph below.
-    secondDerivativeRadioButton:
+      accessibleHelpText: Explore Primary Graph at top, First Derivative Graph at bottom.
+    integralPrimaryFirstDerivativeRadioButton:
+      accessibleName:     Integral, Primary, and First Derivative Graph Areas
+      accessibleHelpText: Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom.
+    primaryFirstDerivativeSecondDerivativeRadioButton:
       accessibleName:     Primary, First Derivative, and Second Derivative Graph Areas
       accessibleHelpText: Explore Primary Graph at top, First Derivative Graph in center, Second Derivative Graph at bottom.
   slopeOfTangentAccordionBox:
@@ -229,10 +228,12 @@ a11y:
   referenceLineTool:
     accessibleName:     Reference Line
     accessibleHelpText: Move horizontally to align {$variable} coordinates on all graphs and explore corresponding y coordinates.
-    accessibleObjectResponseFirstDerivative:                 '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}'
-    accessibleObjectResponseIntegral:                        '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}'
-    accessibleObjectResponseIntegralFirstDerivative:         '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}'
-    accessibleObjectResponseFirstDerivativeSecondDerivative: '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
+    accessibleObjectResponse:
+      select_graphSet:
+        primaryFirstDerivative:                 '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}'
+        integralPrimary:                        '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}'
+        integralPrimaryFirstDerivative:         '{$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}'
+        primaryFirstDerivativeSecondDerivative: '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
     accessibleHelpText: Move horizontally. Explore relationship between net signed area of shaded area from {$variable} equals zero to current {$variable} value and integral curve with {$variable} coordinates aligned.
