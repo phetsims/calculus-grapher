@@ -67,10 +67,15 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
   }
 
   public override doAccessibleObjectResponse(): void {
+
+    const integralValue = toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
+
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.format( {
+      sign: integralValue === 0 ? 'zero' : integralValue > 0 ? 'positive' : 'negative',
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       x: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      integralValue: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
+      absoluteIntegralValue: Math.abs( integralValue ),
+      integralValue: integralValue
     } ) );
   }
 

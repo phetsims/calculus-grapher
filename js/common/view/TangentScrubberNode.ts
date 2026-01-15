@@ -49,10 +49,15 @@ export default class TangentScrubberNode extends ScrubberNode {
   }
 
   public override doAccessibleObjectResponse(): void {
+
+    const firstDerivativeValue = toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
+
     this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.format( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+      sign: firstDerivativeValue === 0 ? 'zero' : firstDerivativeValue > 0 ? 'positive' : 'negative',
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
       x: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      firstDerivativeValue: toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
+      absoluteFirstDerivativeValue: Math.abs( firstDerivativeValue ),
+      firstDerivativeValue: firstDerivativeValue
     } ) );
   }
 

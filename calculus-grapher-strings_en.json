@@ -574,7 +574,7 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and first derivative curve. Vertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
-        "value": "{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}"
+        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}\n  [positive] at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}\n  *[negative] at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}\n}"
       }
     },
     "referenceLineTool": {
@@ -585,7 +585,7 @@
         "value": "Move horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
-        "value": "{ $graphSet ->\n  [primaryFirstDerivative] {$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}\n  [integralPrimary] {$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}\n  [integralPrimaryFirstDerivative] {$variable} equals {$x}, f of {$variable} equals {$y}, integral equals {$integralValue}, first derivative equals {$firstDerivativeValue}\n  *[primaryFirstDerivativeSecondDerivative] {$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}\n}"
+        "value": "{ $graphSet ->\n  [primaryFirstDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, first derivative is {$firstDerivativeValue}\n  [integralPrimary] at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}\n  [integralPrimaryFirstDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}, first derivative is {$firstDerivativeValue}\n  *[primaryFirstDerivativeSecondDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, first derivative is {$firstDerivativeValue}, second derivative is {$secondDerivativeValue}\n}"
       }
     },
     "areaUnderCurveTool": {
@@ -596,7 +596,7 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore relationship between accumulated net signed area and integral curve. Area is shaded between {$variable} axis and graph of f of {$variable} from left up to current {$variable} value. Vertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
-        "value": "{$variable} equals {$x}, integral equals {$integralValue}, net signed area equals {$integralValue}"
+        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, net signed area is {$absoluteIntegralValue}, integral equals {$integralValue}\n  [positive] at {$variable} equals {$x}, net signed area is positive {$absoluteIntegralValue}, integral equals {$integralValue}\n  *[negative] at {$variable} equals {$x}, net signed area is negative {$absoluteIntegralValue}, integral equals {$integralValue}\n}"
       }
     },
     "curveManipulator": {
