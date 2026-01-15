@@ -187,16 +187,16 @@ a11y:
     integralRadioButton:
       advanced:
         accessibleName:     Integral and Primary Graph Areas
-        accessibleHelpText: Explore Integral Graph Area at top, Primary Graph Area below.
+        accessibleHelpText: Explore Integral Graph at top, Primary Area below.
       lab:
         accessibleName:     Integral, Primary, and First Derivative Graph Areas
-        accessibleHelpText: Explore Integral Graph Area at top, Primary Graph Area in center, First Derivative Graph Area at bottom.
+        accessibleHelpText: Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom.
     derivativeRadioButton:
       accessibleName:     Primary and First Derivative Graph Areas
-      accessibleHelpText: Explore Primary Graph Area at top, First Derivative Graph Area below.
+      accessibleHelpText: Explore Primary Graph at top, First Derivative Graph below.
     secondDerivativeRadioButton:
       accessibleName:     Primary, First Derivative, and Second Derivative Graph Areas
-      accessibleHelpText: Explore Primary Graph Area at top, First Derivative Graph Area in center, Second Derivative Graph Area at bottom.
+      accessibleHelpText: Explore Primary Graph at top, First Derivative Graph in center, Second Derivative Graph at bottom.
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool.
     accessibleParagraph:         Slope of line tangent to f of {$variable} curve equals {$firstDerivativeValue} at {$variable} equals {$x}.

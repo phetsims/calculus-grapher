@@ -509,7 +509,7 @@
             "value": "Integral and Primary Graph Areas"
           },
           "accessibleHelpText": {
-            "value": "Explore Integral Graph Area at top, Primary Graph Area below."
+            "value": "Explore Integral Graph at top, Primary Area below."
           }
         },
         "lab": {
@@ -517,7 +517,7 @@
             "value": "Integral, Primary, and First Derivative Graph Areas"
           },
           "accessibleHelpText": {
-            "value": "Explore Integral Graph Area at top, Primary Graph Area in center, First Derivative Graph Area at bottom."
+            "value": "Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom."
           }
         }
       },
@@ -526,7 +526,7 @@
           "value": "Primary and First Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Primary Graph Area at top, First Derivative Graph Area below."
+          "value": "Explore Primary Graph at top, First Derivative Graph below."
         }
       },
       "secondDerivativeRadioButton": {
@@ -534,7 +534,7 @@
           "value": "Primary, First Derivative, and Second Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Primary Graph Area at top, First Derivative Graph Area in center, Second Derivative Graph Area at bottom."
+          "value": "Explore Primary Graph at top, First Derivative Graph in center, Second Derivative Graph at bottom."
         }
       }
     },
