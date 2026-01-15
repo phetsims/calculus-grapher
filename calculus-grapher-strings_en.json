@@ -222,60 +222,33 @@
       }
     },
     "eyeToggleButton": {
+      "accessibleHelpText": {
+        "value": "Show or hide curve."
+      },
+      "accessibleContextResponseOff": {
+        "value": "Curve hidden."
+      },
+      "accessibleContextResponseOn": {
+        "value": "Curve shown."
+      },
       "integral": {
         "accessibleName": {
           "value": "Integral Curve Visibility"
-        },
-        "accessibleHelpText": {
-          "value": "Show or hide curve."
-        },
-        "accessibleContextResponseOff": {
-          "value": "Curve hidden."
-        },
-        "accessibleContextResponseOn": {
-          "value": "Curve shown."
         }
       },
       "primary": {
         "accessibleName": {
           "value": "Primary Curve Visibility"
-        },
-        "accessibleHelpText": {
-          "value": "Show or hide curve in Primary Graph Area to support predictions."
-        },
-        "accessibleContextResponseOff": {
-          "value": "Curve hidden."
-        },
-        "accessibleContextResponseOn": {
-          "value": "Curve shown."
         }
       },
       "firstDerivative": {
         "accessibleName": {
-          "value": "First Derivative Curve Visibility"
-        },
-        "accessibleHelpText": {
-          "value": "Show or hide curve."
-        },
-        "accessibleContextResponseOff": {
-          "value": "Curve hidden."
-        },
-        "accessibleContextResponseOn": {
-          "value": "Curve shown."
+          "value": "First Derivative Curve Visibility."
         }
       },
       "secondDerivative": {
         "accessibleName": {
           "value": "Second Derivative Curve Visibility"
-        },
-        "accessibleHelpText": {
-          "value": "Show or hide curve."
-        },
-        "accessibleContextResponseOff": {
-          "value": "Curve hidden."
-        },
-        "accessibleContextResponseOn": {
-          "value": "Curve shown."
         }
       }
     },
@@ -317,13 +290,13 @@
     },
     "tangentCheckbox": {
       "accessibleHelpText": {
-        "value": "Show or hide Tangent tool."
+        "value": "Add or remove Tangent Tool."
       },
       "accessibleContextResponseChecked": {
-        "value": "Tangent tool shown."
+        "value": "Tangent Tool added."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Tangent tool hidden."
+        "value": "Tangent Tool removed."
       }
     },
     "referenceLineCheckbox": {
@@ -331,27 +304,27 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "Show or hide Reference Line tool."
+        "value": "Add or remove Reference Line."
       },
       "accessibleContextResponseChecked": {
-        "value": "Reference Line tool shown."
+        "value": "Reference Line added."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Reference Line tool hidden."
+        "value": "Reference Line removed."
       }
     },
     "areaUnderCurveCheckbox": {
       "accessibleName": {
-        "value": "Area Under Curve"
+        "value": "Area Under Curve Tool"
       },
       "accessibleHelpText": {
-        "value": "Show or hide Area Under Curve tool."
+        "value": "Add or remove Area Under Curve Tool."
       },
       "accessibleContextResponseChecked": {
-        "value": "Area Under Curve tool shown."
+        "value": "Area Under Curve Tool added."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Area Under Curve tool hidden."
+        "value": "Area Under Curve Tool removed."
       }
     },
     "variableRadioButtonGroup": {
@@ -626,10 +599,10 @@
     },
     "tangentTool": {
       "accessibleName": {
-        "value": "Tangent tool"
+        "value": "Tangent Tool"
       },
       "accessibleHelpText": {
-        "value": "Move horizontally to explore tangent at {$variable} coordinate."
+        "value": "Move horizontally. Explore relationship between line tangent to f of {$variable} and first derivative curve with {$variable} coordinates aligned."
       },
       "accessibleObjectResponse": {
         "value": "{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}"
@@ -637,10 +610,10 @@
     },
     "referenceLineTool": {
       "accessibleName": {
-        "value": "Reference Line tool"
+        "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "Move horizontally to explore corresponding y values on all graphs at tool {$variable} coordinate."
+        "value": "Move horizontally to align {$variable} coordinates on all graphs and explore corresponding y coordinates."
       },
       "accessibleObjectResponseFirstDerivative": {
         "value": "{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}"
@@ -657,10 +630,10 @@
     },
     "areaUnderCurveTool": {
       "accessibleName": {
-        "value": "Area Under Curve tool"
+        "value": "Area Under Curve Tool"
       },
       "accessibleHelpText": {
-        "value": "Move horizontally to explore area under curve between {$variable} equals zero and tool position."
+        "value": "Move horizontally. Explore relationship between net signed area of shaded area from {$variable} equals zero to current {$variable} value and integral curve with {$variable} coordinates aligned."
       },
       "accessibleObjectResponse": {
         "value": "{$variable} equals {$x}, integral equals {$integralValue}, net signed area equals {$integralValue}"

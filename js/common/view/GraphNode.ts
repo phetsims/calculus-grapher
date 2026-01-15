@@ -46,6 +46,7 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -104,8 +105,7 @@ type SelfOptions = {
   labelNode?: Node;
 
   // Propagated to eyeToggleButton.
-  eyeToggleButtonOptions: PickRequired<EyeToggleButtonOptions,
-    'accessibleName' | 'accessibleHelpText' | 'accessibleContextResponseOn' | 'accessibleContextResponseOff'>;
+  eyeToggleButtonOptions?: PickRequired<EyeToggleButtonOptions, 'accessibleName'>;
 
   // Propagated to yZoomButtonGroup.
   yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'zoomInButtonOptions' | 'zoomOutButtonOptions'>;
@@ -151,7 +151,7 @@ export default class GraphNode extends Node {
                          gridVisibleProperty: TReadOnlyProperty<boolean>,
                          providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'yZoomButtonGroupOptions'>, NodeOptions>()( {
+    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'eyeToggleButtonOptions' | 'yZoomButtonGroupOptions'>, NodeOptions>()( {
 
       // SelfOptions
       createCurveNode: true,
@@ -272,6 +272,9 @@ export default class GraphNode extends Node {
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
+      accessibleHelpText: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
+      accessibleContextResponseOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOnStringProperty,
+      accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty,
       tandem: options.tandem.createTandem( 'eyeToggleButton' )
     }, options.eyeToggleButtonOptions ) );
 
