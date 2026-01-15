@@ -223,11 +223,11 @@ a11y:
     accessibleContextResponseUnchecked: f of {$variable} hidden.
   tangentTool:
     accessibleName:     Tangent Tool
-    accessibleHelpText: Move horizontally. Explore relationship between line tangent to f of {$variable} and first derivative curve with {$variable} coordinates aligned.
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and first derivative curve. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse: '{$variable} equals {$x}, first derivative equals {$firstDerivativeValue}, slope of tangent line equals {$firstDerivativeValue}'
   referenceLineTool:
     accessibleName:     Reference Line
-    accessibleHelpText: Move horizontally to align {$variable} coordinates on all graphs and explore corresponding y coordinates.
+    accessibleHelpText: Move horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
       select_graphSet:
         primaryFirstDerivative:                 '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}'
@@ -236,7 +236,7 @@ a11y:
         primaryFirstDerivativeSecondDerivative: '{$variable} equals {$x}, f of {$variable} equals {$y}, first derivative equals {$firstDerivativeValue}, second derivative equals {$secondDerivativeValue}'
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
-    accessibleHelpText: Move horizontally. Explore relationship between net signed area of shaded area from {$variable} equals zero to current {$variable} value and integral curve with {$variable} coordinates aligned.
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between accumulated net signed area and integral curve. Area is shaded between {$variable} axis and graph of f of {$variable} from left up to current {$variable} value. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse: '{$variable} equals {$x}, integral equals {$integralValue}, net signed area equals {$integralValue}'
   curveManipulator:
     accessibleObjectResponse: '{$x} {$y}'
