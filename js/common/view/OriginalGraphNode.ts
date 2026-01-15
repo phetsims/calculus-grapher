@@ -121,7 +121,9 @@ export default class OriginalGraphNode extends GraphNode {
       accessibleHeading: CalculusGrapherFluent.a11y.originalGraph.accessibleHeadingStringProperty,
       accessibleParagraph: CalculusGrapherFluent.a11y.originalGraph.accessibleParagraphStringProperty,
       eyeToggleButtonOptions: {
-        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.primary.accessibleNameStringProperty
+        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.createProperty( {
+          graph: 'primary'
+        } )
       }
     }, providedOptions );
 

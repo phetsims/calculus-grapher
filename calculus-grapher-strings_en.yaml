@@ -80,36 +80,32 @@ a11y:
     accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable}.
     accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve.
   eyeToggleButton:
+    accessibleName:
+      select_graph:
+        integral:         Integral Curve Visibility
+        primary:          Primary Curve Visibility
+        firstDerivative:  First Derivative Curve Visibility
+        secondDerivative: Second Derivative Curve Visibility
     accessibleHelpText:           Show or hide curve.
     accessibleContextResponseOff: Curve hidden.
     accessibleContextResponseOn:  Curve shown.
-    integral:
-      accessibleName: Integral Curve Visibility
-    primary:
-      accessibleName: Primary Curve Visibility
-    firstDerivative:
-      accessibleName: First Derivative Curve Visibility
-    secondDerivative:
-      accessibleName: Second Derivative Curve Visibility
   yZoomButtonGroup:
     zoomInButton:
+      accessibleName:
+        select_graph:
+          integral:         Zoom In Integral y Axis
+          firstDerivative:  Zoom In First Derivative y Axis
+          secondDerivative: Zoom In Second Derivative y Axis
       accessibleHelpText:        Zoom in y axis only.
       accessibleContextResponse: 'zoomed in, y range {$min} to {$max}'
-      integral:
-        accessibleName: Zoom In Integral y Axis
-      firstDerivative:
-        accessibleName: Zoom In First Derivative y Axis
-      secondDerivative:
-        accessibleName: Zoom In Second Derivative y Axis
     zoomOutButton:
+      accessibleName:
+        select_graph:
+          integral:         Zoom Out Integral y Axis
+          firstDerivative:  Zoom Out First Derivative y Axis
+          secondDerivative: Zoom Out Second Derivative y Axis
       accessibleHelpText:        Zoom out y axis only.
       accessibleContextResponse: 'zoomed out, y range {$min} to {$max}'
-      integral:
-        accessibleName: Zoom Out Integral y Axis
-      firstDerivative:
-        accessibleName: Zoom Out First Derivative y Axis
-      secondDerivative:
-        accessibleName: Zoom Out Second Derivative y Axis
   tangentCheckbox:
     accessibleHelpText:                 Add or remove Tangent Tool.
     accessibleContextResponseChecked:   Tangent Tool added.

@@ -115,48 +115,21 @@ type StringsType = {
       'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
     };
     'eyeToggleButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
       'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
-      'integral': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'primary': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'firstDerivative': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'secondDerivative': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      }
     };
     'yZoomButtonGroup': {
       'zoomInButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
-        'integral': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-        };
-        'firstDerivative': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-        };
-        'secondDerivative': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-        }
       };
       'zoomOutButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
-        'integral': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-        };
-        'firstDerivative': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-        };
-        'secondDerivative': {
-          'accessibleNameStringProperty': LocalizedStringProperty;
-        }
       }
     };
     'tangentCheckbox': {

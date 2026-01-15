@@ -29,14 +29,20 @@ export default class DerivativeGraphNode extends GraphNode {
       accessibleHeading: CalculusGrapherFluent.a11y.derivativeGraph.accessibleHeadingStringProperty,
       accessibleParagraph: CalculusGrapherFluent.a11y.derivativeGraph.accessibleParagraphStringProperty,
       eyeToggleButtonOptions: {
-        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.firstDerivative.accessibleNameStringProperty
+        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.createProperty( {
+          graph: 'firstDerivative'
+        } )
       },
       yZoomButtonGroupOptions: {
         zoomInButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.firstDerivative.accessibleNameStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleName.createProperty( {
+            graph: 'firstDerivative'
+          } )
         },
         zoomOutButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.firstDerivative.accessibleNameStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleName.createProperty( {
+            graph: 'firstDerivative'
+          } )
         }
       }
     }, providedOptions );

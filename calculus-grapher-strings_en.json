@@ -222,6 +222,9 @@
       }
     },
     "eyeToggleButton": {
+      "accessibleName": {
+        "value": "{ $graph ->\n  [integral] Integral Curve Visibility\n  [primary] Primary Curve Visibility\n  [firstDerivative] First Derivative Curve Visibility\n  *[secondDerivative] Second Derivative Curve Visibility\n}"
+      },
       "accessibleHelpText": {
         "value": "Show or hide curve."
       },
@@ -230,73 +233,29 @@
       },
       "accessibleContextResponseOn": {
         "value": "Curve shown."
-      },
-      "integral": {
-        "accessibleName": {
-          "value": "Integral Curve Visibility"
-        }
-      },
-      "primary": {
-        "accessibleName": {
-          "value": "Primary Curve Visibility"
-        }
-      },
-      "firstDerivative": {
-        "accessibleName": {
-          "value": "First Derivative Curve Visibility."
-        }
-      },
-      "secondDerivative": {
-        "accessibleName": {
-          "value": "Second Derivative Curve Visibility"
-        }
       }
     },
     "yZoomButtonGroup": {
       "zoomInButton": {
+        "accessibleName": {
+          "value": "{ $graph ->\n  [integral] Zoom In Integral y Axis\n  [firstDerivative] Zoom In First Derivative y Axis\n  *[secondDerivative] Zoom In Second Derivative y Axis\n}"
+        },
         "accessibleHelpText": {
           "value": "Zoom in y axis only."
         },
         "accessibleContextResponse": {
           "value": "zoomed in, y range {$min} to {$max}"
-        },
-        "integral": {
-          "accessibleName": {
-            "value": "Zoom In Integral y Axis"
-          }
-        },
-        "firstDerivative": {
-          "accessibleName": {
-            "value": "Zoom In First Derivative y Axis"
-          }
-        },
-        "secondDerivative": {
-          "accessibleName": {
-            "value": "Zoom In Second Derivative y Axis"
-          }
         }
       },
       "zoomOutButton": {
+        "accessibleName": {
+          "value": "{ $graph ->\n  [integral] Zoom Out Integral y Axis\n  [firstDerivative] Zoom Out First Derivative y Axis\n  *[secondDerivative] Zoom Out Second Derivative y Axis\n}"
+        },
         "accessibleHelpText": {
           "value": "Zoom out y axis only."
         },
         "accessibleContextResponse": {
           "value": "zoomed out, y range {$min} to {$max}"
-        },
-        "integral": {
-          "accessibleName": {
-            "value": "Zoom Out Integral y Axis"
-          }
-        },
-        "firstDerivative": {
-          "accessibleName": {
-            "value": "Zoom Out First Derivative y Axis"
-          }
-        },
-        "secondDerivative": {
-          "accessibleName": {
-            "value": "Zoom Out Second Derivative y Axis"
-          }
         }
       }
     },
