@@ -1,4 +1,4 @@
-// Copyright 2023-2025, University of Colorado Boulder
+// Copyright 2023-2026, University of Colorado Boulder
 
 /**
  * GraphSetsAnimator handles the animation between 2 GraphSets. The animation consists of a sequence of 3 steps:
