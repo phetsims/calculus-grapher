@@ -133,18 +133,30 @@ type StringsType = {
     };
     'yZoomButtonGroup': {
       'zoomInButton': {
-        'accessibleNameIntegralStringProperty': LocalizedStringProperty;
-        'accessibleNameFirstDerivativeStringProperty': LocalizedStringProperty;
-        'accessibleNameSecondDerivativeStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
+        'integral': {
+          'accessibleNameStringProperty': LocalizedStringProperty;
+        };
+        'firstDerivative': {
+          'accessibleNameStringProperty': LocalizedStringProperty;
+        };
+        'secondDerivative': {
+          'accessibleNameStringProperty': LocalizedStringProperty;
+        }
       };
       'zoomOutButton': {
-        'accessibleNameIntegralStringProperty': LocalizedStringProperty;
-        'accessibleNameFirstDerivativeStringProperty': LocalizedStringProperty;
-        'accessibleNameSecondDerivativeStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
+        'integral': {
+          'accessibleNameStringProperty': LocalizedStringProperty;
+        };
+        'firstDerivative': {
+          'accessibleNameStringProperty': LocalizedStringProperty;
+        };
+        'secondDerivative': {
+          'accessibleNameStringProperty': LocalizedStringProperty;
+        }
       }
     };
     'tangentCheckbox': {

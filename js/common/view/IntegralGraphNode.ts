@@ -33,10 +33,10 @@ export default class IntegralGraphNode extends GraphNode {
       },
       yZoomButtonGroupOptions: {
         zoomInButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameIntegralStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.integral.accessibleNameStringProperty
         },
         zoomOutButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameIntegralStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.integral.accessibleNameStringProperty
         }
       }
     }, providedOptions );

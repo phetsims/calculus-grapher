@@ -33,10 +33,10 @@ export default class SecondDerivativeGraphNode extends GraphNode {
       },
       yZoomButtonGroupOptions: {
         zoomInButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleNameSecondDerivativeStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.secondDerivative.accessibleNameStringProperty
         },
         zoomOutButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleNameSecondDerivativeStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.secondDerivative.accessibleNameStringProperty
         }
       }
     }, providedOptions );

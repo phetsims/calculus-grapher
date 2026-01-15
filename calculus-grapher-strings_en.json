@@ -254,37 +254,49 @@
     },
     "yZoomButtonGroup": {
       "zoomInButton": {
-        "accessibleNameIntegral": {
-          "value": "Zoom in Integral y Axis"
-        },
-        "accessibleNameFirstDerivative": {
-          "value": "Zoom in First Derivative y Axis"
-        },
-        "accessibleNameSecondDerivative": {
-          "value": "Zoom in Second Derivative y Axis"
-        },
         "accessibleHelpText": {
           "value": "Zoom in y axis only."
         },
         "accessibleContextResponse": {
           "value": "zoomed in, y range {$min} to {$max}"
+        },
+        "integral": {
+          "accessibleName": {
+            "value": "Zoom In Integral y Axis"
+          }
+        },
+        "firstDerivative": {
+          "accessibleName": {
+            "value": "Zoom In First Derivative y Axis"
+          }
+        },
+        "secondDerivative": {
+          "accessibleName": {
+            "value": "Zoom In Second Derivative y Axis"
+          }
         }
       },
       "zoomOutButton": {
-        "accessibleNameIntegral": {
-          "value": "Zoom out Integral y Axis"
-        },
-        "accessibleNameFirstDerivative": {
-          "value": "Zoom out First Derivative y Axis"
-        },
-        "accessibleNameSecondDerivative": {
-          "value": "Zoom out Second Derivative y Axis"
-        },
         "accessibleHelpText": {
           "value": "Zoom out y axis only."
         },
         "accessibleContextResponse": {
           "value": "zoomed out, y range {$min} to {$max}"
+        },
+        "integral": {
+          "accessibleName": {
+            "value": "Zoom Out Integral y Axis"
+          }
+        },
+        "firstDerivative": {
+          "accessibleName": {
+            "value": "Zoom Out First Derivative y Axis"
+          }
+        },
+        "secondDerivative": {
+          "accessibleName": {
+            "value": "Zoom Out Second Derivative y Axis"
+          }
         }
       }
     },
