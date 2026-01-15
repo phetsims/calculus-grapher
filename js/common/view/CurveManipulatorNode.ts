@@ -64,12 +64,11 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     const focusHighlightPath = new HighlightPath( Shape.bounds( this.localBounds.dilated( 5 ) ) );
     this.setFocusHighlight( focusHighlightPath );
 
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Do we need a separate interactive highlight?
+    // Separate interactive highlight because (unlike focusHighlightPath) we don't want its lineDash to change.
     const interactiveHighlightPath = new HighlightPath( Shape.bounds( this.localBounds.dilated( 5 ) ) );
     this.setInteractiveHighlight( interactiveHighlightPath );
 
     // Change the focus highlight lineDash to indicate whether moving the manipulator with the keyboard will also change the curve.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 Do we also need to modify the interactive highlight? The mode is not relevant for pointer.
     curveManipulator.keyboardEditEnabledProperty.link( keyboardEditEnabled => focusHighlightPath.setDashed( keyboardEditEnabled ) );
 
     // Whenever the manipulator gets focus, reset the keyboard manipulation mode to its initial state,
