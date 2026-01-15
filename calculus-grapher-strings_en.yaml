@@ -146,7 +146,7 @@ a11y:
     accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
   curveManipulationWidthSlider:
     accessibleName:     Shape Width
-    accessibleHelpText: Adjust width of curve manipulation shape.
+    accessibleHelpText: Adjust width of curve manipulation shape. Width ranges from {$min} to {$max} {$variable} axis units.
   curveManipulationModeRadioButtonGroup:
     accessibleName:     Shapes
     accessibleHelpText: Choose shape to be added to curve in Primary Graph Area.

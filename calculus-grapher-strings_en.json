@@ -365,7 +365,7 @@
         "value": "Shape Width"
       },
       "accessibleHelpText": {
-        "value": "Adjust width of curve manipulation shape."
+        "value": "Adjust width of curve manipulation shape. Width ranges from {$min} to {$max} {$variable} axis units."
       }
     },
     "curveManipulationModeRadioButtonGroup": {

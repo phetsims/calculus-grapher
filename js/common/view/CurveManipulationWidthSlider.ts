@@ -9,7 +9,7 @@
  * @author Martin Veillette
  */
 
-import Property from '../../../../axon/js/Property.js';
+import TRangedProperty from '../../../../axon/js/TRangedProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -18,6 +18,7 @@ import HSlider, { HSliderOptions } from '../../../../sun/js/HSlider.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
@@ -29,7 +30,7 @@ type CurveManipulationWidthSliderOptions = SelfOptions & PickRequired<HSliderOpt
 
 export default class CurveManipulationWidthSlider extends HSlider {
 
-  public constructor( curveManipulationWidthProperty: Property<number>,
+  public constructor( curveManipulationWidthProperty: TRangedProperty,
                       providedOptions: CurveManipulationWidthSliderOptions ) {
 
     // an array of numbers corresponding to the positions of the ticks (in model coordinate)
@@ -45,13 +46,17 @@ export default class CurveManipulationWidthSlider extends HSlider {
       minorTickLength: 15,
       minorTickLineWidth: 0.5,
       thumbSize: new Dimension2( 15, 30 ),
-      keyboardStep: 0.5,
 
+      keyboardStep: 0.5,
       // snap to ticks
       constrainValue: ( value: number ) => findClosestTick( tickValues, value ),
 
       accessibleName: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleHelpTextStringProperty
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleHelpText.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+        min: curveManipulationWidthProperty.range.min,
+        max: curveManipulationWidthProperty.range.max
+      } )
     }, providedOptions );
 
     super( curveManipulationWidthProperty, WIDTH_RANGE, options );
