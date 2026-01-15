@@ -107,14 +107,12 @@ a11y:
       accessibleNameSecondDerivative: Zoom in Second Derivative y Axis
       accessibleHelpText:             Zoom in y axis only.
       accessibleContextResponse:      'zoomed in, y range {$min} to {$max}'
-      accessibleContextResponseMax:   'zoomed in, y range {$min} to {$max}, max reached'
     zoomOutButton:
       accessibleNameIntegral:         Zoom out Integral y Axis
       accessibleNameFirstDerivative:  Zoom out First Derivative y Axis
       accessibleNameSecondDerivative: Zoom out Second Derivative y Axis
       accessibleHelpText:             Zoom out y axis only.
       accessibleContextResponse:      'zoomed out, y range {$min} to {$max}'
-      accessibleContextResponseMax:   'zoomed out, y range {$min} to {$max}, max reached'
   tangentCheckbox:
     accessibleHelpText:                 Show or hide Tangent tool.
     accessibleContextResponseChecked:   Tangent tool shown.

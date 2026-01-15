@@ -295,9 +295,6 @@
         },
         "accessibleContextResponse": {
           "value": "zoomed in, y range {$min} to {$max}"
-        },
-        "accessibleContextResponseMax": {
-          "value": "zoomed in, y range {$min} to {$max}, max reached"
         }
       },
       "zoomOutButton": {
@@ -315,9 +312,6 @@
         },
         "accessibleContextResponse": {
           "value": "zoomed out, y range {$min} to {$max}"
-        },
-        "accessibleContextResponseMax": {
-          "value": "zoomed out, y range {$min} to {$max}, max reached"
         }
       }
     },

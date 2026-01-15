@@ -147,7 +147,6 @@ type StringsType = {
         'accessibleNameSecondDerivativeStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
-        'accessibleContextResponseMaxStringProperty': LocalizedStringProperty;
       };
       'zoomOutButton': {
         'accessibleNameIntegralStringProperty': LocalizedStringProperty;
@@ -155,7 +154,6 @@ type StringsType = {
         'accessibleNameSecondDerivativeStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
-        'accessibleContextResponseMaxStringProperty': LocalizedStringProperty;
       }
     };
     'tangentCheckbox': {

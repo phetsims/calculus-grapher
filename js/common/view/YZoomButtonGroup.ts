@@ -7,7 +7,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import TRangedProperty from '../../../../axon/js/TRangedProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
@@ -31,36 +30,6 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
     const yMaxProperty = new DerivedProperty( [ yZoomLevelProperty ], yZoomLevel => yRangeMaxValues[ yZoomLevel ] );
     const yMinProperty = new DerivedProperty( [ yMaxProperty ], yMax => -yMax );
 
-    // Context response for the zoom-in button.
-    const accessibleContextResponseZoomInProperty = new DerivedStringProperty( [
-        yZoomLevelProperty,
-        // Context response when we are fully zoomed in.
-        CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponseMax.createProperty( {
-          min: yMinProperty,
-          max: yMaxProperty
-        } ),
-        CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponse.createProperty( {
-          min: yMinProperty,
-          max: yMaxProperty
-        } )
-      ],
-      ( zoomLevel, responseMax, response ) => ( zoomLevel === yZoomLevelProperty.range.max ) ? responseMax : response );
-
-    // Context response for the zoom-out button.
-    const accessibleContextResponseZoomOutProperty = new DerivedStringProperty( [
-        yZoomLevelProperty,
-        // Context response when we are fully zoomed out.
-        CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseMax.createProperty( {
-          min: yMinProperty,
-          max: yMaxProperty
-        } ),
-        CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponse.createProperty( {
-          min: yMinProperty,
-          max: yMaxProperty
-        } )
-      ],
-      ( zoomLevel, responseMax, response ) => ( zoomLevel === yZoomLevelProperty.range.min ) ? responseMax : response );
-
     const options = optionize<YZoomButtonGroupOptions, SelfOptions, PlusMinusZoomButtonGroupOptions>()( {
       isDisposable: false,
       orientation: 'vertical',
@@ -71,11 +40,17 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
       },
       zoomInButtonOptions: {
         accessibleHelpText: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-        accessibleContextResponse: accessibleContextResponseZoomInProperty
+        accessibleContextResponse: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponse.createProperty( {
+          min: yMinProperty,
+          max: yMaxProperty
+        } )
       },
       zoomOutButtonOptions: {
         accessibleHelpText: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
-        accessibleContextResponse: accessibleContextResponseZoomOutProperty
+        accessibleContextResponse: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponse.createProperty( {
+          min: yMinProperty,
+          max: yMaxProperty
+        } )
       },
       visiblePropertyOptions: {
         phetioFeatured: true
