@@ -373,7 +373,7 @@
         "value": "Shapes"
       },
       "accessibleHelpText": {
-        "value": "Choose shape to be added to curve in Primary Graph Area."
+        "value": "Choose shape to add to curve in Primary Graph Area."
       },
       "hillRadioButton": {
         "accessibleName": {
