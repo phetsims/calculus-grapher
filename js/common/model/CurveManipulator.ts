@@ -13,6 +13,7 @@ import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -81,7 +82,9 @@ export default class CurveManipulator extends PhetioObject {
     } );
 
     this.positionProperty.lazyLink( position => {
-      this.wasMovedProperty.value = true;
+      if ( !isSettingPhetioStateProperty.value ) {
+        this.wasMovedProperty.value = true;
+      }
     } );
   }
 
