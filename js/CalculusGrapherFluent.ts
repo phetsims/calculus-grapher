@@ -187,7 +187,10 @@ addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponse', 'a11y.refe
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleName', 'a11y.areaUnderCurveTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleHelpText', 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse', 'a11y.areaUnderCurveTool.accessibleObjectResponseStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse', 'a11y.curveManipulator.accessibleObjectResponseStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseGrabbed', 'a11y.curveManipulator.accessibleObjectResponseGrabbedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseReleased', 'a11y.curveManipulator.accessibleObjectResponseReleasedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseMovedReleased', 'a11y.curveManipulator.accessibleObjectResponseMovedReleasedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseMovedGrabbed', 'a11y.curveManipulator.accessibleObjectResponseMovedGrabbedStringProperty' );
 addToMapIfDefined( 'a11y_primaryCurveManipulator_accessibleName', 'a11y.primaryCurveManipulator.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_primaryCurveManipulator_accessibleHelpText', 'a11y.primaryCurveManipulator.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_predictCurveManipulator_accessibleName', 'a11y.predictCurveManipulator.accessibleNameStringProperty' );
@@ -499,7 +502,10 @@ const CalculusGrapherFluent = {
       accessibleObjectResponse: new FluentPattern<{ absoluteIntegralValue: FluentVariable, integralValue: FluentVariable, sign: number | 'zero' | 'positive' | 'negative' | TReadOnlyProperty<number | 'zero' | 'positive' | 'negative'>, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponseStringProperty' ), [{"name":"absoluteIntegralValue"},{"name":"integralValue"},{"name":"sign","variants":[{"type":"number","value":"zero"},"positive","negative"]},{"name":"variable"},{"name":"x"}] )
     },
     curveManipulator: {
-      accessibleObjectResponse: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseStringProperty' ), [{"name":"x"},{"name":"y"}] )
+      accessibleObjectResponseGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+      accessibleObjectResponseReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+      accessibleObjectResponseMovedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseMovedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseMovedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+      accessibleObjectResponseMovedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseMovedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseMovedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] )
     },
     primaryCurveManipulator: {
       accessibleName: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_primaryCurveManipulator_accessibleName', _.get( CalculusGrapherStrings, 'a11y.primaryCurveManipulator.accessibleNameStringProperty' ), [{"name":"variable"}] ),

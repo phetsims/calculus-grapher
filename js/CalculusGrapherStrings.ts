@@ -301,7 +301,10 @@ type StringsType = {
       'accessibleObjectResponseStringProperty': LocalizedStringProperty;
     };
     'curveManipulator': {
-      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseGrabbedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseReleasedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseMovedReleasedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseMovedGrabbedStringProperty': LocalizedStringProperty;
     };
     'primaryCurveManipulator': {
       'accessibleNameStringProperty': LocalizedStringProperty;

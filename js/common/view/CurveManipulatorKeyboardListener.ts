@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
 import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
 import type { OneKeyStroke } from '../../../../scenery/js/input/KeyDescriptor.js';
 import KeyboardListener from '../../../../scenery/js/listeners/KeyboardListener.js';
@@ -15,6 +14,7 @@ import sharedSoundPlayers from '../../../../tambo/js/sharedSoundPlayers.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import CurveManipulatorNode from './CurveManipulatorNode.js';
 
 export default class CurveManipulatorKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
 
@@ -24,7 +24,10 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
     keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
-  public constructor( keyboardEditEnabledProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( curveManipulatorNode: CurveManipulatorNode, tandem: Tandem ) {
+
+    const keyboardEditEnabledProperty = curveManipulatorNode.curveManipulator.keyboardEditEnabledProperty;
+
     super( {
       tandem: tandem,
       keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulatorKeyboardListener.HOTKEY_DATA ] ),
@@ -39,6 +42,7 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
           keyboardEditEnabledProperty.value = true;
           sharedSoundPlayers.get( 'checkboxChecked' ).play();
         }
+        curveManipulatorNode.doAccessibleObjectResponseGrabRelease();
       }
     } );
   }

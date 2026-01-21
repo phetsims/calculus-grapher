@@ -76,7 +76,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     this.focusedProperty.lazyLink( focused => {
       if ( focused ) {
         curveManipulator.keyboardEditEnabledProperty.reset();
-        this.doAccessibleObjectResponse();
+        this.doAccessibleObjectResponseFocused();
       }
     } );
 
@@ -86,8 +86,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     } );
 
     // Toggle between positioning the manipulator and modifying the curve.
-    this.addInputListener( new CurveManipulatorKeyboardListener( curveManipulator.keyboardEditEnabledProperty,
-      options.tandem.createTandem( 'keyboardListener' ) ) );
+    this.addInputListener( new CurveManipulatorKeyboardListener( this, options.tandem.createTandem( 'keyboardListener' ) ) );
 
     // Drag the manipulator with pointer or keyboard.
     this.curveDragListener = new CurveManipulatorDragListener(
@@ -110,14 +109,54 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
   }
 
   /**
-   * Adds an accessible object response that describes the current state of the manipulator.
-   * This is called when the manipulator gets focus and when the manipulator is moved.
+   * Adds an accessible object response that describes the current state of the manipulator when it is moved.
    */
-  public doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponse.format( {
-      x: toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      y: toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
-    } ) );
+  public doAccessibleObjectResponseMoved( isFromPDOM: boolean ): void {
+    let response: string;
+    const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+    const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
+    if ( this.curveManipulator.keyboardEditEnabledProperty.value || !isFromPDOM ) {
+      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseMovedGrabbed.format( {
+        x: xDescription,
+        y: yDescription
+      } );
+    }
+    else {
+      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseMovedReleased.format( {
+        x: xDescription,
+        y: yDescription
+      } );
+    }
+    this.addAccessibleObjectResponse( response );
+  }
+
+  /**
+   * Adds an accessible object response when the manipulator is grabbed or released with the keyboard.
+   */
+  public doAccessibleObjectResponseGrabRelease(): void {
+    let response: string;
+    const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+    const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
+    if ( this.curveManipulator.keyboardEditEnabledProperty.value ) {
+      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseGrabbed.format( {
+        x: xDescription,
+        y: yDescription
+      } );
+    }
+    else {
+      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseReleased.format( {
+        x: xDescription,
+        y: yDescription
+      } );
+    }
+    this.addAccessibleObjectResponse( response );
+  }
+
+  /**
+   * Adds an accessible object response when the manipulator gets focus.
+   */
+  public doAccessibleObjectResponseFocused(): void {
+    this.doAccessibleObjectResponseGrabRelease();
   }
 }
 

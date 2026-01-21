@@ -600,8 +600,17 @@
       }
     },
     "curveManipulator": {
-      "accessibleObjectResponse": {
-        "value": "{$x} {$y}"
+      "accessibleObjectResponseGrabbed": {
+        "value": "grabbed at {$x} {$y}, shape added"
+      },
+      "accessibleObjectResponseReleased": {
+        "value": "released at {$x} {$y}, off curve"
+      },
+      "accessibleObjectResponseMovedReleased": {
+        "value": "at {$x} {$y}"
+      },
+      "accessibleObjectResponseMovedGrabbed": {
+        "value": "at {$x} {$y}, shape added"
       }
     },
     "primaryCurveManipulator": {

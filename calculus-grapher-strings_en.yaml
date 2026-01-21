@@ -247,7 +247,10 @@ a11y:
         positive: at {$variable} equals {$x}, net signed area is positive {$absoluteIntegralValue}, integral equals {$integralValue}
         negative: at {$variable} equals {$x}, net signed area is negative {$absoluteIntegralValue}, integral equals {$integralValue}
   curveManipulator:
-    accessibleObjectResponse: '{$x} {$y}'
+    accessibleObjectResponseGrabbed:       'grabbed at {$x} {$y}, shape added'
+    accessibleObjectResponseReleased:      'released at {$x} {$y}, off curve'
+    accessibleObjectResponseMovedReleased: 'at {$x} {$y}'
+    accessibleObjectResponseMovedGrabbed:  'at {$x} {$y}, shape added'
   primaryCurveManipulator:
     accessibleName:     f of {$variable} Curve Manipulator
     accessibleHelpText: Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed.
