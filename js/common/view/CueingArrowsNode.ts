@@ -1,8 +1,9 @@
 // Copyright 2022-2025, University of Colorado Boulder
 
 /**
- * CueingArrowsNode is a representation of two arrows pointing in opposite direction, often used to provide a cue
- * to the user that a nearby object is draggable
+ * CueingArrowsNode is a representation of two arrows pointing in opposite directions (up and down), used to provide
+ * a cue to the user that a nearby object is draggable. In this sim, the cueing arrows are applied to the curve
+ * manipulator.
  *
  * @author Martin Veillette
  */
