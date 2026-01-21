@@ -43,6 +43,9 @@ export default class CurveManipulator extends PhetioObject {
   // similar to manipulators.
   public readonly keyboardCueEnabledProperty: Property<boolean>;
 
+  // Whether this manipulator has been moved. Used to show cueing arrows until the manipulator is moved.
+  public readonly wasMovedProperty: Property<boolean>;
+
   public constructor( color: TColor, providedOptions: CurveManipulatorOptions ) {
 
     const options = optionize<CurveManipulatorOptions, SelfOptions, PhetioObjectOptions>()( {
@@ -70,12 +73,23 @@ export default class CurveManipulator extends PhetioObject {
       phetioReadOnly: true,
       phetioDocumentation: 'Whether a cue popup will be displayed when the manipulator gets keyboard focus.'
     } );
+
+    this.wasMovedProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'wasMovedProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'Whether this manipulator has been moved.'
+    } );
+
+    this.positionProperty.lazyLink( position => {
+      this.wasMovedProperty.value = true;
+    } );
   }
 
   public reset(): void {
     this.positionProperty.reset();
     this.keyboardEditEnabledProperty.reset();
     this.keyboardCueEnabledProperty.reset();
+    this.wasMovedProperty.reset();
   }
 }
 

@@ -40,8 +40,6 @@
  * @author Martin Veillette
  */
 
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import Property from '../../../../axon/js/Property.js';
 import CompletePiecewiseLinearFunction from '../../../../dot/js/CompletePiecewiseLinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
@@ -75,9 +73,6 @@ export type TransformedCurveOptions = SelfOptions & CurveOptions;
 
 export default class TransformedCurve extends Curve {
 
-  // Has the curve been manipulated since instantiation or the last reset call? Used by the view to show cueing arrows.
-  public readonly wasManipulatedProperty: Property<boolean>;
-
   public constructor( providedOptions: TransformedCurveOptions ) {
 
     const options = optionize<TransformedCurveOptions, SelfOptions, CurveOptions>()( {
@@ -87,12 +82,6 @@ export default class TransformedCurve extends Curve {
     }, providedOptions );
 
     super( options );
-
-    this.wasManipulatedProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'wasManipulatedProperty' ),
-      phetioReadOnly: true,
-      phetioDocumentation: 'Has the curve been manipulated by the student?'
-    } );
 
     // To make the sim acceptably responsive, the value of pointsProperty (an array of CurvePoint) typically does not
     // change. Instead, the CurvePoints are mutated in place, and curveChangedEmitter.emit is called when the mutation
@@ -111,8 +100,6 @@ export default class TransformedCurve extends Curve {
   }
 
   public reset(): void {
-
-    this.wasManipulatedProperty.reset();
 
     // Reset every CurvePoint to its initial state.
     this.points.forEach( point => point.reset() );
@@ -274,9 +261,6 @@ export default class TransformedCurve extends Curve {
     else {
       throw new Error( `unsupported mode: ${mode}` );
     }
-
-    // Note that the curve has been manipulated.
-    this.wasManipulatedProperty.value = true;
 
     // Notify that the curve has changed.
     this.curveChangedEmitter.emit();

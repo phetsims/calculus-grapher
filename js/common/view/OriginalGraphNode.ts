@@ -42,14 +42,15 @@ import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurvePlot from './AreaUnderCurvePlot.js';
+import CueingArrowsNode from './CueingArrowsNode.js';
 import CurveManipulatorKeyboardCueNode from './CurveManipulatorKeyboardCueNode.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
+import CurveNode from './CurveNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
 import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
 import TangentArrowNode from './TangentArrowNode.js';
-import TransformedCurveNode from './TransformedCurveNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -58,10 +59,10 @@ type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'ch
 export default class OriginalGraphNode extends GraphNode {
 
   // Node for the original curve f(x), which is interactive
-  private readonly originalCurveNode: TransformedCurveNode;
+  private readonly originalCurveNode: CurveNode;
 
   // Node for the predict curve, which is interactive
-  private readonly predictCurveNode: TransformedCurveNode;
+  private readonly predictCurveNode: CurveNode;
 
   // Indicates if the original curve is visible while in 'Predict' mode.
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
@@ -138,7 +139,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Interactive f(x) 'original' curve
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
-    this.originalCurveNode = new TransformedCurveNode( originalCurve, this.chartTransform, {
+    this.originalCurveNode = new CurveNode( originalCurve, this.chartTransform, {
       stroke: graphType.strokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
       continuousLinePlotOptions: {
@@ -146,7 +147,6 @@ export default class OriginalGraphNode extends GraphNode {
       },
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
       plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
-      isInteractiveProperty: DerivedProperty.not( predictEnabledProperty ),
       visibleProperty: new DerivedProperty(
         [ predictEnabledProperty, this.showOriginalCurveProperty ],
         ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
@@ -162,12 +162,11 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Interactive 'Predict' curve
-    this.predictCurveNode = new TransformedCurveNode( predictCurve, this.chartTransform, {
+    this.predictCurveNode = new CurveNode( predictCurve, this.chartTransform, {
       stroke: CalculusGrapherColors.predictCurveStrokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
       plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
-      isInteractiveProperty: predictEnabledProperty,
       visibleProperty: predictEnabledProperty,
       tandem: options.tandem.createTandem( 'predictCurveNode' )
     } );
@@ -219,6 +218,16 @@ export default class OriginalGraphNode extends GraphNode {
         accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpTextStringProperty
       } );
 
+    // Cueing arrows for the original and predict curve manipulators.
+    const originalCueingArrowsNode = new CueingArrowsNode( this.originalCurveManipulatorNode, this.chartTransform, {
+      tandem: options.tandem.createTandem( 'originalCueingArrowsNode' ),
+      phetioDocumentation: 'Cueing arrows for the original curve, visible until the user moves the curve manipulator.'
+    } );
+    const predictCueingArrowsNode = new CueingArrowsNode( this.predictCurveManipulatorNode, this.chartTransform, {
+      tandem: options.tandem.createTandem( 'predictCueingArrowsNode' ),
+      phetioDocumentation: 'Cueing arrows for the predict curve, visible until the user moves the curve manipulator.'
+    } );
+
     // Keyboard cues (popups) for toggling the manipulators between modes. Each manipulator has its own popup
     // because they have different colors, so it might not be obvious that they behave similarly.
     const originalKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.originalCurveManipulatorNode );
@@ -257,6 +266,8 @@ export default class OriginalGraphNode extends GraphNode {
     highlightRectangle.moveToBack();
     this.addChild( this.originalCurveManipulatorNode );
     this.addChild( this.predictCurveManipulatorNode );
+    this.addChild( originalCueingArrowsNode );
+    this.addChild( predictCueingArrowsNode );
     this.addChild( originalKeyboardCueNode );
     this.addChild( predictKeyboardCueNode );
     this.addChild( labeledPointsNode );
