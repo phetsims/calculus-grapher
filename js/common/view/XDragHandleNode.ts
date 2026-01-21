@@ -136,6 +136,7 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
       this.x = chartTransform.modelToViewX( x );
     } );
 
+    // Home/End keyboard listener to move the drag handle to min and max x-coordinates.
     this.addInputListener( new KeyboardListener( {
       tandem: options.tandem.createTandem( 'homeEndKeyboardListener' ),
       keyStringProperties: HotkeyData.combineKeyStringProperties( [ XDragHandleNode.HOTKEY_DATA ] ),
