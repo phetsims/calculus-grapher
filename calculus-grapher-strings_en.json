@@ -644,8 +644,8 @@
       "explorationTools": {
         "value": "Exploration Tools"
       },
-      "actionButton": {
-        "value": "Action Buttons"
+      "curveActions": {
+        "value": "Curve Actions"
       }
     }
   }

@@ -321,7 +321,7 @@ type StringsType = {
       'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
       'explorationToolControlsStringProperty': LocalizedStringProperty;
       'explorationToolsStringProperty': LocalizedStringProperty;
-      'actionButtonStringProperty': LocalizedStringProperty;
+      'curveActionsStringProperty': LocalizedStringProperty;
     }
   }
 };
