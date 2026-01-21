@@ -250,10 +250,10 @@ a11y:
     accessibleObjectResponse: '{$x} {$y}'
   primaryCurveManipulator:
     accessibleName:     f of {$variable} Curve Manipulator
-    accessibleHelpText: Use this manipulator to change shape of f of {$variable} curve.
+    accessibleHelpText: Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed.
   predictCurveManipulator:
     accessibleName:     Prediction Curve Manipulator
-    accessibleHelpText: Use this manipulator to change shape of prediction curve.
+    accessibleHelpText: Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed.
   pushButtonGroup:
     accessibleHelpText: Actions applied to curve in Primary Graph Area.
   headings:

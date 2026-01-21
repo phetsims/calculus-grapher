@@ -213,7 +213,9 @@ export default class OriginalGraphNode extends GraphNode {
       {
         tandem: options.tandem.createTandem( 'predictCurveManipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpTextStringProperty
+        accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpText.createProperty( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+        } )
       } );
 
     // Cueing arrows for the original and predict curve manipulators.

@@ -609,7 +609,7 @@
         "value": "f of {$variable} Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "Use this manipulator to change shape of f of {$variable} curve."
+        "value": "Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed."
       }
     },
     "predictCurveManipulator": {
@@ -617,7 +617,7 @@
         "value": "Prediction Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "Use this manipulator to change shape of prediction curve."
+        "value": "Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed."
       }
     },
     "pushButtonGroup": {
