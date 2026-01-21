@@ -22,6 +22,7 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
@@ -154,10 +155,6 @@ export default class OriginalGraphNode extends GraphNode {
           phetioValueType: BooleanIO
         } ),
       tandem: originalCurveNodeTandem,
-
-      // originalCurveNode does not have an input listener, but we want to allow PhET-iO clients to use
-      // originalCurveNode.inputEnabledProperty to control chartRectangle.inputEnabledProperty (see derivation below).
-      // See https://github.com/phetsims/calculus-grapher/issues/240
       phetioInputEnabledPropertyInstrumented: true
     } );
 
@@ -168,7 +165,8 @@ export default class OriginalGraphNode extends GraphNode {
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
       plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       visibleProperty: predictEnabledProperty,
-      tandem: options.tandem.createTandem( 'predictCurveNode' )
+      tandem: options.tandem.createTandem( 'predictCurveNode' ),
+      phetioInputEnabledPropertyInstrumented: true
     } );
 
     // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
@@ -192,8 +190,8 @@ export default class OriginalGraphNode extends GraphNode {
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
-      new DerivedProperty( [ this.curveLayerVisibleProperty, predictSelectedProperty ],
-        ( curveLayerVisible, predictSelected ) => curveLayerVisible && !predictSelected ),
+      new DerivedProperty( [ this.curveLayerVisibleProperty, predictSelectedProperty, this.originalCurveNode.inputEnabledProperty ],
+        ( curveLayerVisible, predictSelected, inputEnabled ) => curveLayerVisible && !predictSelected && inputEnabled ),
       {
         tandem: options.tandem.createTandem( 'originalCurveManipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleName.createProperty( {
@@ -211,7 +209,7 @@ export default class OriginalGraphNode extends GraphNode {
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
-      DerivedProperty.and( [ this.curveLayerVisibleProperty, predictSelectedProperty ] ),
+      DerivedProperty.and( [ this.curveLayerVisibleProperty, predictSelectedProperty, this.predictCurveNode.inputEnabledProperty ] ),
       {
         tandem: options.tandem.createTandem( 'predictCurveManipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleNameStringProperty,
@@ -274,25 +272,36 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( showOriginalCurveCheckbox );
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
-    //TODO https://github.com/phetsims/calculus-grapher/issues/125 createForwardingListener has no PhET-iO support, so instrument inputEnabledProperty.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => {
       if ( predictSelectedProperty.value ) {
-        this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
+        if ( this.predictCurveNode.inputEnabledProperty.value ) {
+          this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
+        }
       }
       else {
-        this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
+        if ( this.originalCurveNode.inputEnabledProperty.value ) {
+          this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
+        }
       }
     } ) );
 
-    // This allows PhET-iO clients to use originalCurveNode.inputEnabledProperty to enable/disable interactivity,
-    // and prevents manipulation of the curves when they are hidden using the eyeToggleButton.
-    // See https://github.com/phetsims/calculus-grapher/issues/240 and https://github.com/phetsims/calculus-grapher/issues/272.
-    // Do not instrument.
-    this.chartRectangle.setInputEnabledProperty( new DerivedProperty(
-      [ this.originalCurveNode.inputEnabledProperty, predictEnabledProperty, this.curveLayerVisibleProperty ],
-      ( originalCurveNodeInputEnabled, predictEnabled, curveLayerVisible ) =>
-        ( originalCurveNodeInputEnabled || predictEnabled ) && curveLayerVisible
-    ) );
+    // Adjust the cursor for chartRectangle based on which curve is being manipulated and whether input is enabled.
+    Multilink.lazyMultilink( [
+      predictSelectedProperty,
+      this.predictCurveNode.inputEnabledProperty,
+      this.originalCurveNode.inputEnabledProperty
+
+    ], ( predictSelected, predictInputEnabled, originalInputEnabled ) => {
+      if ( predictSelected && predictInputEnabled ) {
+        this.chartRectangle.cursor = 'pointer';
+      }
+      else if ( !predictSelected && originalInputEnabled ) {
+        this.chartRectangle.cursor = 'pointer';
+      }
+      else {
+        this.chartRectangle.cursor = 'default';
+      }
+    } );
 
     // Focus order
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
