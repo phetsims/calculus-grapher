@@ -128,6 +128,11 @@ export default class CalculusGrapherColors {
     default: Color.ORANGE
   } );
 
+  // fill for the cueing arrows on the original graph
+  public static readonly cueingArrowsStrokeProperty = new ProfileColorProperty( calculusGrapher, 'cueingArrowsStroke', {
+    default: 'rgb( 100, 100, 100 )'
+  } );
+
   // the vertical reference line
   public static readonly referenceLineStrokeProperty = new ProfileColorProperty( calculusGrapher, 'referenceLineStroke', {
     default: 'black'

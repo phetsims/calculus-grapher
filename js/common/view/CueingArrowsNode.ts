@@ -24,7 +24,7 @@ import CurveManipulatorNode from './CurveManipulatorNode.js';
 const ARROW_LENGTH = 50;
 const ARROW_NODE_OPTIONS = {
   fill: CalculusGrapherColors.cueingArrowsFillProperty,
-  stroke: 'rgb( 100, 100, 100 )',
+  stroke: CalculusGrapherColors.cueingArrowsStrokeProperty,
   headWidth: 25,
   headHeight: 21,
   tailWidth: 12,
