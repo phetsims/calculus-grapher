@@ -105,7 +105,9 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
    * @param event
    */
   public forwardPressListenerEvent( event: PressListenerEvent ): void {
-    this.curveDragListener.dragListener.press( event );
+    if ( this.visible ) {
+      this.curveDragListener.dragListener.press( event );
+    }
   }
 
   /**
