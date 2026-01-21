@@ -152,7 +152,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
   // Alpha for CalculusGrapherColors.integralPositiveFillProperty, so that PhET designer can fine-tune
   // See https://github.com/phetsims/calculus-grapher/issues/166
-  positiveAlpha: {
+  integralPositiveFillAlpha: {
     type: 'number',
     isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
     defaultValue: 0.25
@@ -160,7 +160,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
   // Alpha for CalculusGrapherColors.integralPositiveFillProperty, so that PhET designer can fine-tune
   // See https://github.com/phetsims/calculus-grapher/issues/166
-  negativeAlpha: {
+  integralNegativeFillAlpha: {
     type: 'number',
     isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
     defaultValue: 0.55
