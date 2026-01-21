@@ -53,7 +53,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
         curveManipulator.keyboardCueEnabledProperty.value = false;
       }
 
-      if ( !isEventFromPDOM || curveManipulator.keyboardEditEnabledProperty.value ) {
+      if ( !isEventFromPDOM || curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
         if ( curveManipulationModeProperty.value === CurveManipulationMode.FREEFORM ) {
 
           // Do not update the curve model if the drag points in (FREEFORM mode) are too close to each another,
@@ -144,10 +144,9 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       tandem: tandem
     } );
 
-    // When keyboard manipulation of the curve becomes enabled, immediately update the curve at the
-    // manipulator's current position.
-    curveManipulator.keyboardEditEnabledProperty.link( keyboardEditEnabled => {
-      if ( keyboardEditEnabled ) {
+    // When the curve is grabbed using the keyboard, immediately update the curve at the manipulator's current position.
+    curveManipulator.keyboardModeProperty.link( keyboardMode => {
+      if ( keyboardMode === 'grabbed' ) {
         update( true, curveManipulator.positionProperty.value );
       }
     } );

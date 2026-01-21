@@ -69,13 +69,13 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     this.setInteractiveHighlight( interactiveHighlightPath );
 
     // Change the focus highlight lineDash to indicate whether moving the manipulator with the keyboard will also change the curve.
-    curveManipulator.keyboardEditEnabledProperty.link( keyboardEditEnabled => focusHighlightPath.setDashed( keyboardEditEnabled ) );
+    curveManipulator.keyboardModeProperty.link( keyboardMode => focusHighlightPath.setDashed( keyboardMode === 'grabbed' ) );
 
     // Whenever the manipulator gets focus, reset the keyboard manipulation mode to its initial state,
     // and add an accessible object response.
     this.focusedProperty.lazyLink( focused => {
       if ( focused ) {
-        curveManipulator.keyboardEditEnabledProperty.reset();
+        curveManipulator.keyboardModeProperty.reset();
         this.doAccessibleObjectResponseFocused();
       }
     } );
@@ -117,7 +117,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
-    if ( this.curveManipulator.keyboardEditEnabledProperty.value || !isFromPDOM ) {
+    if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' || !isFromPDOM ) {
       response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseMovedGrabbed.format( {
         x: xDescription,
         y: yDescription
@@ -139,7 +139,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
-    if ( this.curveManipulator.keyboardEditEnabledProperty.value ) {
+    if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
       response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseGrabbed.format( {
         x: xDescription,
         y: yDescription

@@ -26,20 +26,20 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
 
   public constructor( curveManipulatorNode: CurveManipulatorNode, tandem: Tandem ) {
 
-    const keyboardEditEnabledProperty = curveManipulatorNode.curveManipulator.keyboardEditEnabledProperty;
+    const keyboardModeProperty = curveManipulatorNode.curveManipulator.keyboardModeProperty;
 
     super( {
       tandem: tandem,
       keyStringProperties: HotkeyData.combineKeyStringProperties( [ CurveManipulatorKeyboardListener.HOTKEY_DATA ] ),
 
-      // Toggle the mode of the curve manipulator.
+      // Toggle the keyboard mode of the curve manipulator.
       fire: () => {
-        if ( keyboardEditEnabledProperty.value ) {
-          keyboardEditEnabledProperty.value = false;
+        if ( keyboardModeProperty.value === 'grabbed' ) {
+          keyboardModeProperty.value = 'released';
           sharedSoundPlayers.get( 'checkboxUnchecked' ).play();
         }
         else {
-          keyboardEditEnabledProperty.value = true;
+          keyboardModeProperty.value = 'grabbed';
           sharedSoundPlayers.get( 'checkboxChecked' ).play();
         }
         curveManipulatorNode.doAccessibleObjectResponseGrabRelease();

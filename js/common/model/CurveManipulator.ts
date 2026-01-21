@@ -8,6 +8,7 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import StringUnionProperty from '../../../../axon/js/StringUnionProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -24,6 +25,9 @@ const DEFAULT_POSITION = new Vector2(
   CalculusGrapherConstants.CURVE_MANIPULATION_Y_RANGE.getCenter()
 );
 
+const CurveManipulatorKeyboardModeValues = [ 'grabbed', 'released' ] as const;
+export type CurveManipulatorKeyboardMode = ( typeof CurveManipulatorKeyboardModeValues )[number];
+
 type SelfOptions = EmptySelfOptions;
 
 type CurveManipulatorOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem' | 'phetioDocumentation'>;
@@ -37,7 +41,7 @@ export default class CurveManipulator extends PhetioObject {
   public readonly positionProperty: Property<Vector2>;
 
   // Whether moving the manipulator with the keyboard changes the curve.
-  public readonly keyboardEditEnabledProperty: Property<boolean>;
+  public readonly keyboardModeProperty: StringUnionProperty<CurveManipulatorKeyboardMode>;
 
   // Whether a cue popup will be displayed when the manipulator gets keyboard focus. This cue is per instance
   // instead of global because different instances have different colors and there are other tools that look
@@ -63,10 +67,11 @@ export default class CurveManipulator extends PhetioObject {
       phetioFeatured: true
     } );
 
-    this.keyboardEditEnabledProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'keyboardEditEnabledProperty' ),
+    this.keyboardModeProperty = new StringUnionProperty( 'released', {
+      validValues: CurveManipulatorKeyboardModeValues,
+      tandem: options.tandem.createTandem( 'keyboardModeProperty' ),
       phetioReadOnly: true,
-      phetioDocumentation: 'Whether moving the manipulator with the keyboard changes the curve.'
+      phetioDocumentation: 'Whether moving the manipulator with the keyboard changes the curve (grabbed) or just moves the manipulator (released).'
     } );
 
     this.keyboardCueEnabledProperty = new BooleanProperty( true, {
@@ -90,7 +95,7 @@ export default class CurveManipulator extends PhetioObject {
 
   public reset(): void {
     this.positionProperty.reset();
-    this.keyboardEditEnabledProperty.reset();
+    this.keyboardModeProperty.reset();
     this.keyboardCueEnabledProperty.reset();
     this.wasMovedProperty.reset();
   }
