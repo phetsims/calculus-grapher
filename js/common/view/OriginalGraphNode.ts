@@ -282,8 +282,8 @@ export default class OriginalGraphNode extends GraphNode {
     this.curveLayer.addChild( this.predictCurveNode );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
-    this.addChild( manipulatorsLayer );
     this.addChild( labeledPointsNode );
+    this.addChild( manipulatorsLayer );
     this.addChild( showOriginalCurveCheckbox );
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
