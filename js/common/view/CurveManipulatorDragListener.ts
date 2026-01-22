@@ -14,7 +14,6 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -137,8 +136,8 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       drag: ( event, listener ) => update( event.isFromPDOM(), curveManipulator.positionProperty.value ),
 
       end: ( event, listener ) => {
-        affirm( event, 'Expected event to be non-null' );
-        curveManipulatorNode.doAccessibleObjectResponseMoved( event.isFromPDOM() );
+        // Fuzzing does not provide an event.
+        event && curveManipulatorNode.doAccessibleObjectResponseMoved( event.isFromPDOM() );
       },
 
       tandem: tandem
