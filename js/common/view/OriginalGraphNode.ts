@@ -30,6 +30,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import SoundDragListener from '../../../../scenery-phet/js/SoundDragListener.js';
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
@@ -75,7 +76,7 @@ export default class OriginalGraphNode extends GraphNode {
 
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
-    // Destructure fields from the model into local constants, to improve readability.
+    // Destructure fields from the model into local constants to improve readability.
     const {
       curveManipulationProperties,
       gridVisibleProperty,
@@ -190,8 +191,8 @@ export default class OriginalGraphNode extends GraphNode {
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
-      new DerivedProperty( [ this.curveLayerVisibleProperty, predictSelectedProperty, this.originalCurveNode.inputEnabledProperty ],
-        ( curveLayerVisible, predictSelected, inputEnabled ) => curveLayerVisible && !predictSelected && inputEnabled ),
+      new DerivedProperty( [ predictSelectedProperty, this.originalCurveNode.inputEnabledProperty ],
+        ( predictSelected, inputEnabled ) => !predictSelected && inputEnabled ),
       {
         // Child of originalCurveNode in PhET-iO tree.
         tandem: this.originalCurveNode.tandem.createTandem( 'manipulatorNode' ),
@@ -210,7 +211,7 @@ export default class OriginalGraphNode extends GraphNode {
       curveManipulationProperties.modeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
-      DerivedProperty.and( [ this.curveLayerVisibleProperty, predictSelectedProperty, this.predictCurveNode.inputEnabledProperty ] ),
+      DerivedProperty.and( [ predictSelectedProperty, this.predictCurveNode.inputEnabledProperty ] ),
       {
         // Child of predictCurveNode in PhET-iO tree.
         tandem: this.predictCurveNode.tandem.createTandem( 'manipulatorNode' ),
@@ -263,44 +264,57 @@ export default class OriginalGraphNode extends GraphNode {
       options.tandem.createTandem( 'labeledPointsNode' )
     );
 
+    // Put everything related to curve manipulation in a layer to simplify controlling visibility.
+    const manipulatorsLayer = new Node( {
+      children: [
+        this.originalCurveManipulatorNode,
+        this.predictCurveManipulatorNode,
+        originalCueingArrowsNode,
+        predictCueingArrowsNode,
+        originalKeyboardCueNode,
+        predictKeyboardCueNode
+      ],
+      visibleProperty: this.curveLayerVisibleProperty
+    } );
+
     // Rendering order - see superclass GraphNode for additional children.
     this.curveLayer.addChild( this.originalCurveNode );
     this.curveLayer.addChild( this.predictCurveNode );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
-    this.addChild( this.originalCurveManipulatorNode );
-    this.addChild( this.predictCurveManipulatorNode );
-    this.addChild( originalCueingArrowsNode );
-    this.addChild( predictCueingArrowsNode );
-    this.addChild( originalKeyboardCueNode );
-    this.addChild( predictKeyboardCueNode );
+    this.addChild( manipulatorsLayer );
     this.addChild( labeledPointsNode );
     this.addChild( showOriginalCurveCheckbox );
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => {
-      if ( predictSelectedProperty.value ) {
-        this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
-      }
-      else {
-        this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
+      if ( this.curveLayerVisibleProperty.value ) {
+        if ( predictSelectedProperty.value ) {
+          this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
+        }
+        else {
+          this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
+        }
       }
     } ) );
 
-    // Adjust the cursor for chartRectangle based on which curve is being manipulated and whether input is enabled.
+    // Adjust the cursor for chartRectangle based on what is currently editable.
     Multilink.lazyMultilink( [
+      this.curveLayerVisibleProperty,
       predictSelectedProperty,
       this.predictCurveNode.inputEnabledProperty,
       this.originalCurveNode.inputEnabledProperty
-
-    ], ( predictSelected, predictInputEnabled, originalInputEnabled ) => {
-      if ( predictSelected && predictInputEnabled ) {
+    ], ( curveLayerVisible, predictSelected, predictInputEnabled, originalInputEnabled ) => {
+      if ( curveLayerVisible && predictSelected && predictInputEnabled ) {
+        // Predict curve can be edited.
         this.chartRectangle.cursor = 'pointer';
       }
-      else if ( !predictSelected && originalInputEnabled ) {
+      else if ( curveLayerVisible && !predictSelected && originalInputEnabled ) {
+        // Original curve can be edited.
         this.chartRectangle.cursor = 'pointer';
       }
       else {
+        // Nothing is editable.
         this.chartRectangle.cursor = 'default';
       }
     } );
