@@ -139,6 +139,15 @@ export default class OriginalGraphNode extends GraphNode {
       phetioFeatured: true
     } );
 
+    // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
+    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
+      predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
+    showOriginalCurveCheckbox.boundsProperty.link( () => {
+      showOriginalCurveCheckbox.right =
+        this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
+      showOriginalCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
+    } );
+
     // Interactive f(x) 'original' curve
     const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
     this.originalCurveNode = new CurveNode( originalCurve, this.chartTransform, {
@@ -168,20 +177,6 @@ export default class OriginalGraphNode extends GraphNode {
       visibleProperty: predictEnabledProperty,
       tandem: options.tandem.createTandem( 'predictCurveNode' ),
       phetioInputEnabledPropertyInstrumented: true
-    } );
-
-    // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
-    // See https://github.com/phetsims/calculus-grapher/issues/204
-    const highlightRectangle = new Rectangle( 0, 0, this.chartRectangle.width + 6, this.chartRectangle.height + 6, {
-      center: this.chartRectangle.center,
-      opacity: 0.25,
-      visibleProperty: this.curveLayerVisibleProperty,
-      fill: new DerivedProperty( [
-        predictEnabledProperty,
-        CalculusGrapherColors.predictCurveStrokeProperty,
-        CalculusGrapherColors.originalCurveStrokeProperty
-      ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
-        predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );
 
     // Original curve manipulator
@@ -249,21 +244,6 @@ export default class OriginalGraphNode extends GraphNode {
       predictKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
     } );
 
-    // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
-    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
-      predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
-    showOriginalCurveCheckbox.boundsProperty.link( () => {
-      showOriginalCurveCheckbox.right =
-        this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
-      showOriginalCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
-    } );
-
-    // Labeled points
-    const labeledPointsNode = new LabeledPointsNode( labeledPoints, labeledPointsLinkableElement,
-      this.chartTransform, predictEnabledProperty, this.curveLayerVisibleProperty,
-      options.tandem.createTandem( 'labeledPointsNode' )
-    );
-
     // Put everything related to curve manipulation in a layer to simplify controlling visibility.
     const manipulatorsLayer = new Node( {
       children: [
@@ -275,6 +255,26 @@ export default class OriginalGraphNode extends GraphNode {
         predictKeyboardCueNode
       ],
       visibleProperty: this.curveLayerVisibleProperty
+    } );
+
+    // Labeled points
+    const labeledPointsNode = new LabeledPointsNode( labeledPoints, labeledPointsLinkableElement,
+      this.chartTransform, predictEnabledProperty, this.curveLayerVisibleProperty,
+      options.tandem.createTandem( 'labeledPointsNode' )
+    );
+
+    // Add a highlight around the chartRectangle, color coded to the curve that is interactive.
+    // See https://github.com/phetsims/calculus-grapher/issues/204
+    const highlightRectangle = new Rectangle( 0, 0, this.chartRectangle.width + 6, this.chartRectangle.height + 6, {
+      center: this.chartRectangle.center,
+      opacity: 0.25,
+      visibleProperty: this.curveLayerVisibleProperty,
+      fill: new DerivedProperty( [
+        predictEnabledProperty,
+        CalculusGrapherColors.predictCurveStrokeProperty,
+        CalculusGrapherColors.originalCurveStrokeProperty
+      ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
+        predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );
 
     // Rendering order - see superclass GraphNode for additional children.
