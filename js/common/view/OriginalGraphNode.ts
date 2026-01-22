@@ -193,6 +193,7 @@ export default class OriginalGraphNode extends GraphNode {
       new DerivedProperty( [ this.curveLayerVisibleProperty, predictSelectedProperty, this.originalCurveNode.inputEnabledProperty ],
         ( curveLayerVisible, predictSelected, inputEnabled ) => curveLayerVisible && !predictSelected && inputEnabled ),
       {
+        // Child of originalCurveNode in PhET-iO tree.
         tandem: this.originalCurveNode.tandem.createTandem( 'manipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleName.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
@@ -211,6 +212,7 @@ export default class OriginalGraphNode extends GraphNode {
       this.chartTransform,
       DerivedProperty.and( [ this.curveLayerVisibleProperty, predictSelectedProperty, this.predictCurveNode.inputEnabledProperty ] ),
       {
+        // Child of predictCurveNode in PhET-iO tree.
         tandem: this.predictCurveNode.tandem.createTandem( 'manipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleNameStringProperty,
         accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpText.createProperty( {
@@ -220,10 +222,12 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Cueing arrows for the original and predict curve manipulators.
     const originalCueingArrowsNode = new CueingArrowsNode( this.originalCurveManipulatorNode, this.chartTransform, {
+      // Child of originalCurveManipulatorNode in PhET-iO tree.
       tandem: this.originalCurveManipulatorNode.tandem.createTandem( 'cueingArrowsNode' ),
       phetioDocumentation: 'Cueing arrows for the original curve, visible until the user moves the curve manipulator.'
     } );
     const predictCueingArrowsNode = new CueingArrowsNode( this.predictCurveManipulatorNode, this.chartTransform, {
+      // Child of predictCurveManipulatorNode in PhET-iO tree.
       tandem: this.predictCurveManipulatorNode.tandem.createTandem( 'cueingArrowsNode' ),
       phetioDocumentation: 'Cueing arrows for the predict curve, visible until the user moves the curve manipulator.'
     } );
