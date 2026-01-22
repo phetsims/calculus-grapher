@@ -280,14 +280,10 @@ export default class OriginalGraphNode extends GraphNode {
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => {
       if ( predictSelectedProperty.value ) {
-        if ( this.predictCurveNode.inputEnabledProperty.value ) {
-          this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
-        }
+        this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
       }
       else {
-        if ( this.originalCurveNode.inputEnabledProperty.value ) {
-          this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
-        }
+        this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
       }
     } ) );
 
