@@ -26,8 +26,6 @@ import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 
 export default class NotationControl extends PreferencesControl {
 
-  private readonly disposeNotationControl: () => void;
-
   public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherFluent.notationStringProperty, {
@@ -49,16 +47,6 @@ export default class NotationControl extends PreferencesControl {
         phetioFeatured: true
       }
     } );
-
-    this.disposeNotationControl = () => {
-      labelText.dispose();
-      radioButtonGroup.dispose();
-    };
-  }
-
-  public override dispose(): void {
-    this.disposeNotationControl();
-    super.dispose();
   }
 }
 
@@ -99,6 +87,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
     ];
 
     super( derivativeNotationProperty, items, {
+      isDisposable: false,
       orientation: 'vertical',
       spacing: 10,
       radioButtonOptions: {
@@ -115,8 +104,6 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
  * Labels for the radio buttons.
  */
 class NotationRadioButtonLabel extends HBox {
-
-  private readonly disposeNotationRadioButtonLabel: () => void;
 
   public constructor( derivedNotationStringProperty: TReadOnlyProperty<string>,
                       derivativeNotationProperty: StringUnionProperty<DerivativeNotation>,
@@ -138,16 +125,10 @@ class NotationRadioButtonLabel extends HBox {
     const children = [ text, exampleNode ];
 
     super( {
+      isDisposable: false,
       children: children,
       spacing: 15
     } );
-
-    this.disposeNotationRadioButtonLabel = () => children.forEach( child => child.dispose() );
-  }
-
-  public override dispose(): void {
-    this.disposeNotationRadioButtonLabel();
-    super.dispose();
   }
 }
 

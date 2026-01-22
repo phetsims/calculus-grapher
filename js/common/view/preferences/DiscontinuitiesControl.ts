@@ -24,8 +24,6 @@ import { ConnectDiscontinuities } from '../../CalculusGrapherQueryParameters.js'
 
 export default class DiscontinuitiesControl extends PreferencesControl {
 
-  private readonly disposeDiscontinuitiesControl: () => void;
-
   public constructor( connectDiscontinuitiesProperty: Property<ConnectDiscontinuities>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherFluent.discontinuitiesStringProperty, {
@@ -47,16 +45,6 @@ export default class DiscontinuitiesControl extends PreferencesControl {
         phetioFeatured: true
       }
     } );
-
-    this.disposeDiscontinuitiesControl = () => {
-      labelText.dispose();
-      radioButtonGroup.dispose();
-    };
-  }
-
-  public override dispose(): void {
-    this.disposeDiscontinuitiesControl();
-    super.dispose();
   }
 }
 
@@ -111,8 +99,6 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
  */
 class DiscontinuitiesRadioButtonLabel extends Node {
 
-  private readonly disposeDiscontinuitiesRadioButtonLabel: () => void;
-
   public constructor( value: ConnectDiscontinuities ) {
 
     const lineWidth = 2;
@@ -157,15 +143,9 @@ class DiscontinuitiesRadioButtonLabel extends Node {
     }
 
     super( {
+      isDisposable: false,
       children: children
     } );
-
-    this.disposeDiscontinuitiesRadioButtonLabel = () => children.forEach( child => child.dispose() );
-  }
-
-  public override dispose(): void {
-    this.disposeDiscontinuitiesRadioButtonLabel();
-    super.dispose();
   }
 }
 

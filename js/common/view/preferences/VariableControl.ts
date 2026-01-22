@@ -23,8 +23,6 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 
 export default class VariableControl extends PreferencesControl {
 
-  private readonly disposeVariableControl: () => void;
-
   public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherFluent.variableStringProperty, {
@@ -46,16 +44,6 @@ export default class VariableControl extends PreferencesControl {
         phetioFeatured: true
       }
     } );
-
-    this.disposeVariableControl = () => {
-      labelText.dispose();
-      radioButtonGroup.dispose();
-    };
-  }
-
-  public override dispose(): void {
-    this.disposeVariableControl();
-    super.dispose();
   }
 }
 
@@ -88,6 +76,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
     ];
 
     super( functionVariableProperty, items, {
+      isDisposable: false,
       orientation: 'horizontal',
       spacing: 20,
       radioButtonOptions: {
@@ -107,6 +96,7 @@ class VariableRadioButtonText extends RichText {
 
   public constructor( functionVariableStringProperty: TReadOnlyProperty<string>, radioButtonTandem: Tandem ) {
     super( functionVariableStringProperty, {
+      isDisposable: false,
       font: PreferencesDialogConstants.CONTENT_FONT,
       maxWidth: 100,
       tandem: radioButtonTandem.createTandem( 'text' )

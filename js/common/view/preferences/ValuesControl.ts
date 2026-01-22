@@ -21,8 +21,6 @@ import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 
 export default class ValuesControl extends PreferencesControl {
 
-  private readonly disposeValuesControl: () => void;
-
   public constructor( valuesVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
     const labelText = new Text( CalculusGrapherFluent.valuesStringProperty, {
@@ -55,17 +53,6 @@ export default class ValuesControl extends PreferencesControl {
         phetioFeatured: true
       }
     } );
-
-    this.disposeValuesControl = () => {
-      labelText.dispose();
-      toggleSwitch.dispose();
-      descriptionText.dispose();
-    };
-  }
-
-  public override dispose(): void {
-    this.disposeValuesControl();
-    super.dispose();
   }
 }
 

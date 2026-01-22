@@ -23,8 +23,6 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 
 export default class PredictControl extends PreferencesControl {
 
-  private readonly disposePredictFeatureControl: () => void;
-
   public constructor( predictPreferenceEnabledProperty: Property<boolean>, tandem: Tandem ) {
 
     // Note that this control has its own StringProperty, separate from the StringProperty used to label the 'Predict'
@@ -71,18 +69,6 @@ export default class PredictControl extends PreferencesControl {
         phetioFeatured: true
       }
     } );
-
-    this.disposePredictFeatureControl = () => {
-      labelText.dispose();
-      toggleSwitch.dispose();
-      descriptionStringProperty.dispose();
-      descriptionText.dispose();
-    };
-  }
-
-  public override dispose(): void {
-    this.disposePredictFeatureControl();
-    super.dispose();
   }
 }
 
