@@ -123,8 +123,8 @@ export default class ReferenceLineNode extends ScrubberNode {
       graphSet: graphSetSelector,
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      y: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-      integralValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+      y: toFixedNumber( this.referenceLine.originalCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+      integralValue: toFixedNumber( this.referenceLine.integralCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
       firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
       secondDerivativeValue: toFixedNumber( this.referenceLine.secondDerivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
     } );
