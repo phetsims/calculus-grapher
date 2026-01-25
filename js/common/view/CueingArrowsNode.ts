@@ -1,4 +1,4 @@
-// Copyright 2022-2025, University of Colorado Boulder
+// Copyright 2022-2026, University of Colorado Boulder
 
 /**
  * CueingArrowsNode is a representation of two arrows pointing in opposite directions (up and down), used to provide
