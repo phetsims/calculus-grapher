@@ -235,8 +235,8 @@ a11y:
     accessibleObjectResponse:
       select_graphSet:
         primaryFirstDerivative:                 at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}
-        integralPrimary:                        at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}
-        integralPrimaryFirstDerivative:         at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}, first derivative is {$firstDerivativeValue}
+        integralPrimary:                        at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}
+        integralPrimaryFirstDerivative:         at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}
         primaryFirstDerivativeSecondDerivative: at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
