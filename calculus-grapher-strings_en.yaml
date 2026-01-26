@@ -117,7 +117,7 @@ a11y:
     accessibleContextResponseUnchecked: Reference Line removed.
   areaUnderCurveCheckbox:
     accessibleName:                     Area Under Curve Tool
-    accessibleHelpText:                 Add or remove Area Under Curve Tool.
+    accessibleHelpText:                 Add or remove Area Under Curve Tool and shading under curve bounded by horizontal axis and f.
     accessibleContextResponseChecked:   Area Under Curve Tool added.
     accessibleContextResponseUnchecked: Area Under Curve Tool removed.
   variableRadioButtonGroup:
@@ -231,7 +231,7 @@ a11y:
         negative: at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
   referenceLineTool:
     accessibleName:     Reference Line
-    accessibleHelpText: Move horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
       select_graphSet:
         primaryFirstDerivative:                 at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}
