@@ -32,28 +32,28 @@ curveManipulator:
   keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
 a11y:
   derivativeScreen:
-    screenButtonsHelpText: Manipulate a curve to explore its first derivative.
+    screenButtonsHelpText: Manipulate a graph and explore its first derivative curve in real time.
     screenSummary:
       playArea:        TODO.derivativeScreen.screenSummary.playArea
       controlArea:     TODO.derivativeScreen.screenSummary.controlArea
       currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
       interactionHint: TODO.derivativeScreen.screenSummary.interactionHint
   integralScreen:
-    screenButtonsHelpText: Manipulate a curve to explore its integral.
+    screenButtonsHelpText: Manipulate a graph and explore its integral curve in real time.
     screenSummary:
       playArea:        TODO.integralScreen.screenSummary.playArea
       controlArea:     TODO.integralScreen.screenSummary.controlArea
       currentDetails:  TODO.integralScreen.screenSummary.currentDetails
       interactionHint: TODO.integralScreen.screenSummary.interactionHint
   advancedScreen:
-    screenButtonsHelpText: Manipulate a curve to explore its first derivative and integral, with or without discontinuities.
+    screenButtonsHelpText: Manipulate a graph and explore its first derivative and integral curves, with or without discontinuities.
     screenSummary:
       playArea:        TODO.playArea
       controlArea:     TODO.controlArea
       currentDetails:  TODO.currentDetails
       interactionHint: TODO.interactionHint
   labScreen:
-    screenButtonsHelpText: Manipulate a curve to explore its integral, first derivative, and second derivative, with or without discontinuities.
+    screenButtonsHelpText: Manipulate a graph and explore its integral, first derivative, and second derivative curves, with or without discontinuities.
     screenSummary:
       playArea:        TODO.labScreen.screenSummary.playArea
       controlArea:     TODO.labScreen.screenSummary.controlArea
@@ -66,19 +66,19 @@ a11y:
     accessibleContextResponseUnchecked: Grid lines hidden.
   smoothButton:
     accessibleName:                        Smooth
-    accessibleHelpText:                    Remove sharp corners and abrupt changes in curve shape.
-    accessibleContextResponsePrimaryCurve: f of {$variable} curve smoothed.
-    accessibleContextResponsePredictCurve: Prediction curve smoothed.
+    accessibleHelpText:                    Smooth sharp corners and discontinuities on curve in Primary Graph Area.
+    accessibleContextResponsePrimaryCurve: f of {$variable} and all curves smoothed.
+    accessibleContextResponsePredictCurve: Prediction curve only smoothed.
   eraserButton:
     accessibleName:                        Erase Curve Manipulations
-    accessibleHelpText:                    Reset curve to y equals zero but maintain curve manipulation settings.
-    accessibleContextResponsePrimaryCurve: f of {$variable} reset.
-    accessibleContextResponsePredictCurve: Prediction curve reset.
+    accessibleHelpText:                    Reset curve to y equals zero, maintain curve manipulation settings.
+    accessibleContextResponsePrimaryCurve: f of {$variable} and all curves reset, settings unchanged.
+    accessibleContextResponsePredictCurve: Prediction curve reset, other curves and settings unchanged.
   undoButton:
     accessibleName:                        Undo
     accessibleHelpText:                    Undo most recent curve manipulation.
-    accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable}.
-    accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve.
+    accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable} and all curves.
+    accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve only.
   eyeToggleButton:
     accessibleName:
       select_graph:
@@ -86,7 +86,7 @@ a11y:
         primary:          Primary Curve Visibility
         firstDerivative:  First Derivative Curve Visibility
         secondDerivative: Second Derivative Curve Visibility
-    accessibleHelpText:           Show or hide curve.
+    accessibleHelpText:           Show or hide curve to support predictions.
     accessibleContextResponseOff: Curve hidden.
     accessibleContextResponseOn:  Curve shown.
   yZoomButtonGroup:
@@ -155,19 +155,19 @@ a11y:
       accessibleHelpText: Add smooth hill to curve.
     triangleRadioButton:
       accessibleName:     Tent
-      accessibleHelpText: Add tent shape to curve.
+      accessibleHelpText: Add rigid tent shape to curve.
     pedestalRadioButton:
       accessibleName:     Pedestal
       accessibleHelpText: Add pedestal with smooth corners to curve.
     parabolaRadioButton:
       accessibleName:     Parabola
-      accessibleHelpText: Add parabola bounded by horizontal axis to curve.
+      accessibleHelpText: Add parabolic shape bounded by horizontal axis to curve.
     sinusoidRadioButton:
       accessibleName:     Sinusoid
-      accessibleHelpText: Convert curve to sine wave.
+      accessibleHelpText: Add up to 3 and a half periods to curve.
     freeformRadioButton:
-      accessibleName:     Custom
-      accessibleHelpText: Freely drawn curve.
+      accessibleName:     Freeform
+      accessibleHelpText: Freely draw curve with discontinuities likely.
     tiltRadioButton:
       accessibleName:     Tilt
       accessibleHelpText: Tilt curve diagonally while pinned at left edge of horizontal axis.
@@ -176,22 +176,22 @@ a11y:
       accessibleHelpText: Shift entire curve up or down.
   graphSetRadioButtonGroup:
     accessibleName:     Viewable Graph Set
-    accessibleHelpText: Choose which set of graph areas to investigate and find relationships.
+    accessibleHelpText: Choose which set of Graph Areas to investigate and find relationships.
     integralPrimaryRadioButton:
       accessibleName:     Integral and Primary Graph Areas
-      accessibleHelpText: Explore Integral Graph at top, Primary Graph at bottom.
+      accessibleHelpText: Explore Integral at top, Primary at bottom.
     primaryFirstDerivativeRadioButton:
       accessibleName:     Primary and First Derivative Graph Areas
-      accessibleHelpText: Explore Primary Graph at top, First Derivative Graph at bottom.
+      accessibleHelpText: Explore Primary at top, First Derivative at bottom.
     integralPrimaryFirstDerivativeRadioButton:
       accessibleName:     Integral, Primary, and First Derivative Graph Areas
-      accessibleHelpText: Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom.
+      accessibleHelpText: Explore Integral at top, Primary in center, First Derivative at bottom.
     primaryFirstDerivativeSecondDerivativeRadioButton:
       accessibleName:     Primary, First Derivative, and Second Derivative Graph Areas
-      accessibleHelpText: Explore Primary Graph at top, First Derivative Graph in center, Second Derivative Graph at bottom.
+      accessibleHelpText: Explore Primary at top, First Derivative in center, Second Derivative at bottom.
   slopeOfTangentAccordionBox:
-    accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool.
-    accessibleParagraph:         Slope of line tangent to f of {$variable} curve equals {$firstDerivativeValue} at {$variable} equals {$x}.
+    accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool.
+    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$firstDerivativeValue}.
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
     accessibleParagraph:         Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
@@ -215,7 +215,7 @@ a11y:
       accessibleHelpText: Manipulate f of {$variable} in Primary Graph Area.
     predictCurveRadioButton:
       accessibleName:     Predict
-      accessibleHelpText: Manipulate prediction curve in Primary Graph Area to predict primary curve based on other graph areas.
+      accessibleHelpText: Manipulate curve in Primary Graph Area to predict primary curve based on other graph areas. Use keyboard shortcuts if needed.
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
@@ -223,29 +223,29 @@ a11y:
     accessibleContextResponseUnchecked: f of {$variable} hidden.
   tangentTool:
     accessibleName:     Tangent Tool
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and first derivative curve. Vertical line passes through all graphs at same {$variable} value.
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve.
     accessibleObjectResponse:
       select_sign:
-        zero:     at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}
-        positive: at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}
-        negative: at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}
+        zero:     at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
+        positive: at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
+        negative: at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
   referenceLineTool:
     accessibleName:     Reference Line
     accessibleHelpText: Move horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
       select_graphSet:
-        primaryFirstDerivative:                 at {$variable} equals {$x}, f of {$variable} is {$y}, first derivative is {$firstDerivativeValue}
+        primaryFirstDerivative:                 at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}
         integralPrimary:                        at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}
         integralPrimaryFirstDerivative:         at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}, first derivative is {$firstDerivativeValue}
-        primaryFirstDerivativeSecondDerivative: at {$variable} equals {$x}, f of {$variable} is {$y}, first derivative is {$firstDerivativeValue}, second derivative is {$secondDerivativeValue}
+        primaryFirstDerivativeSecondDerivative: at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between accumulated net signed area and integral curve. Area is shaded between {$variable} axis and graph of f of {$variable} from left up to current {$variable} value. Vertical line passes through all graphs at same {$variable} value.
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve.
     accessibleObjectResponse:
       select_sign:
-        zero:     at {$variable} equals {$x}, net signed area is {$absoluteIntegralValue}, integral equals {$integralValue}
-        positive: at {$variable} equals {$x}, net signed area is positive {$absoluteIntegralValue}, integral equals {$integralValue}
-        negative: at {$variable} equals {$x}, net signed area is negative {$absoluteIntegralValue}, integral equals {$integralValue}
+        zero:     at {$variable} equals {$x}, dot at {$integralValue}, total area is {$absoluteIntegralValue} 
+        positive: at {$variable} equals {$x}, dot at {$integralValue}, total area is positive {$absoluteIntegralValue}
+        negative: at {$variable} equals {$x}, dot at {$integralValue}, total area is negative {$absoluteIntegralValue}
   curveManipulator:
     accessibleObjectResponseGrabbed:       'grabbed at {$x} {$y}, shape added'
     accessibleObjectResponseReleased:      'released at {$x} {$y}, off curve'
@@ -258,7 +258,7 @@ a11y:
     accessibleName:     Prediction Curve Manipulator
     accessibleHelpText: Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed.
   pushButtonGroup:
-    accessibleHelpText: Actions applied to curve in Primary Graph Area.
+    accessibleHelpText: Choose action to take on curve in Primary Graph Area.
   headings:
     curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
     explorationToolControls:              Exploration Tool Controls
