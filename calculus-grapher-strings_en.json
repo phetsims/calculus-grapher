@@ -91,7 +91,7 @@
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a curve to explore its first derivative."
+        "value": "Manipulate a graph and explore its first derivative curve in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -110,7 +110,7 @@
     },
     "integralScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a curve to explore its integral."
+        "value": "Manipulate a graph and explore its integral curve in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -129,7 +129,7 @@
     },
     "advancedScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a curve to explore its first derivative and integral, with or without discontinuities."
+        "value": "Manipulate a graph and explore its first derivative and integral curves, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -148,7 +148,7 @@
     },
     "labScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a curve to explore its integral, first derivative, and second derivative, with or without discontinuities."
+        "value": "Manipulate a graph and explore its integral, first derivative, and second derivative curves, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -184,13 +184,13 @@
         "value": "Smooth"
       },
       "accessibleHelpText": {
-        "value": "Remove sharp corners and abrupt changes in curve shape."
+        "value": "Smooth sharp corners and discontinuities on curve in Primary Graph Area."
       },
       "accessibleContextResponsePrimaryCurve": {
-        "value": "f of {$variable} curve smoothed."
+        "value": "f of {$variable} and all curves smoothed."
       },
       "accessibleContextResponsePredictCurve": {
-        "value": "Prediction curve smoothed."
+        "value": "Prediction curve only smoothed."
       }
     },
     "eraserButton": {
@@ -198,13 +198,13 @@
         "value": "Erase Curve Manipulations"
       },
       "accessibleHelpText": {
-        "value": "Reset curve to y equals zero but maintain curve manipulation settings."
+        "value": "Reset curve to y equals zero, maintain curve manipulation settings."
       },
       "accessibleContextResponsePrimaryCurve": {
-        "value": "f of {$variable} reset."
+        "value": "f of {$variable} and all curves reset, settings unchanged."
       },
       "accessibleContextResponsePredictCurve": {
-        "value": "Prediction curve reset."
+        "value": "Prediction curve reset, other curves and settings unchanged."
       }
     },
     "undoButton": {
@@ -215,10 +215,10 @@
         "value": "Undo most recent curve manipulation."
       },
       "accessibleContextResponsePrimaryCurve": {
-        "value": "Last manipulation removed from f of {$variable}."
+        "value": "Last manipulation removed from f of {$variable} and all curves."
       },
       "accessibleContextResponsePredictCurve": {
-        "value": "Last manipulation removed from prediction curve."
+        "value": "Last manipulation removed from prediction curve only."
       }
     },
     "eyeToggleButton": {
@@ -226,7 +226,7 @@
         "value": "{ $graph ->\n  [integral] Integral Curve Visibility\n  [primary] Primary Curve Visibility\n  [firstDerivative] First Derivative Curve Visibility\n  *[secondDerivative] Second Derivative Curve Visibility\n}"
       },
       "accessibleHelpText": {
-        "value": "Show or hide curve."
+        "value": "Show or hide curve to support predictions."
       },
       "accessibleContextResponseOff": {
         "value": "Curve hidden."
@@ -289,7 +289,7 @@
         "value": "Area Under Curve Tool"
       },
       "accessibleHelpText": {
-        "value": "Add or remove Area Under Curve Tool."
+        "value": "Add or remove Area Under Curve Tool and shading under curve bounded by horizontal axis and f."
       },
       "accessibleContextResponseChecked": {
         "value": "Area Under Curve Tool added."
@@ -388,7 +388,7 @@
           "value": "Tent"
         },
         "accessibleHelpText": {
-          "value": "Add tent shape to curve."
+          "value": "Add rigid tent shape to curve."
         }
       },
       "pedestalRadioButton": {
@@ -404,7 +404,7 @@
           "value": "Parabola"
         },
         "accessibleHelpText": {
-          "value": "Add parabola bounded by horizontal axis to curve."
+          "value": "Add parabolic shape bounded by horizontal axis to curve."
         }
       },
       "sinusoidRadioButton": {
@@ -412,15 +412,15 @@
           "value": "Sinusoid"
         },
         "accessibleHelpText": {
-          "value": "Convert curve to sine wave."
+          "value": "Add up to 3 and a half periods to curve."
         }
       },
       "freeformRadioButton": {
         "accessibleName": {
-          "value": "Custom"
+          "value": "Freeform"
         },
         "accessibleHelpText": {
-          "value": "Freely drawn curve."
+          "value": "Freely draw curve with discontinuities likely."
         }
       },
       "tiltRadioButton": {
@@ -445,14 +445,14 @@
         "value": "Viewable Graph Set"
       },
       "accessibleHelpText": {
-        "value": "Choose which set of graph areas to investigate and find relationships."
+        "value": "Choose which set of Graph Areas to investigate and find relationships."
       },
       "integralPrimaryRadioButton": {
         "accessibleName": {
           "value": "Integral and Primary Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Integral Graph at top, Primary Graph at bottom."
+          "value": "Explore Integral at top, Primary at bottom."
         }
       },
       "primaryFirstDerivativeRadioButton": {
@@ -460,7 +460,7 @@
           "value": "Primary and First Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Primary Graph at top, First Derivative Graph at bottom."
+          "value": "Explore Primary at top, First Derivative at bottom."
         }
       },
       "integralPrimaryFirstDerivativeRadioButton": {
@@ -468,7 +468,7 @@
           "value": "Integral, Primary, and First Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Integral Graph at top, Primary Graph in center, First Derivative Graph at bottom."
+          "value": "Explore Integral at top, Primary in center, First Derivative at bottom."
         }
       },
       "primaryFirstDerivativeSecondDerivativeRadioButton": {
@@ -476,16 +476,16 @@
           "value": "Primary, First Derivative, and Second Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Primary Graph at top, First Derivative Graph in center, Second Derivative Graph at bottom."
+          "value": "Explore Primary at top, First Derivative in center, Second Derivative at bottom."
         }
       }
     },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "Explore slope of line tangent to f of {$variable} curve at {$variable} coordinate of Tangent tool."
+        "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "Slope of line tangent to f of {$variable} curve equals {$firstDerivativeValue} at {$variable} equals {$x}."
+        "value": "At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$firstDerivativeValue}."
       }
     },
     "netSignedAreaAccordionBox": {
@@ -548,7 +548,7 @@
           "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve in Primary Graph Area to predict primary curve based on other graph areas."
+          "value": "Manipulate curve in Primary Graph Area to predict primary curve based on other graph areas. Use keyboard shortcuts if needed."
         }
       }
     },
@@ -571,10 +571,10 @@
         "value": "Tangent Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and first derivative curve. Vertical line passes through all graphs at same {$variable} value."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve."
       },
       "accessibleObjectResponse": {
-        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}\n  [positive] at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}\n  *[negative] at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, first derivative is {$firstDerivativeValue}\n}"
+        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}\n  [positive] at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}\n  *[negative] at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}\n}"
       }
     },
     "referenceLineTool": {
@@ -582,10 +582,10 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "Move horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value."
+        "value": "Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
-        "value": "{ $graphSet ->\n  [primaryFirstDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, first derivative is {$firstDerivativeValue}\n  [integralPrimary] at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}\n  [integralPrimaryFirstDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, integral is {$integralValue}, first derivative is {$firstDerivativeValue}\n  *[primaryFirstDerivativeSecondDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, first derivative is {$firstDerivativeValue}, second derivative is {$secondDerivativeValue}\n}"
+        "value": "{ $graphSet ->\n  [primaryFirstDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}\n  [integralPrimary] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}\n  [integralPrimaryFirstDerivative] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}\n  *[primaryFirstDerivativeSecondDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}\n}"
       }
     },
     "areaUnderCurveTool": {
@@ -593,10 +593,10 @@
         "value": "Area Under Curve Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between accumulated net signed area and integral curve. Area is shaded between {$variable} axis and graph of f of {$variable} from left up to current {$variable} value. Vertical line passes through all graphs at same {$variable} value."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve."
       },
       "accessibleObjectResponse": {
-        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, net signed area is {$absoluteIntegralValue}, integral equals {$integralValue}\n  [positive] at {$variable} equals {$x}, net signed area is positive {$absoluteIntegralValue}, integral equals {$integralValue}\n  *[negative] at {$variable} equals {$x}, net signed area is negative {$absoluteIntegralValue}, integral equals {$integralValue}\n}"
+        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, dot at {$integralValue}, total area is {$absoluteIntegralValue}\n  [positive] at {$variable} equals {$x}, dot at {$integralValue}, total area is positive {$absoluteIntegralValue}\n  *[negative] at {$variable} equals {$x}, dot at {$integralValue}, total area is negative {$absoluteIntegralValue}\n}"
       }
     },
     "curveManipulator": {
@@ -631,7 +631,7 @@
     },
     "pushButtonGroup": {
       "accessibleHelpText": {
-        "value": "Actions applied to curve in Primary Graph Area."
+        "value": "Choose action to take on curve in Primary Graph Area."
       }
     },
     "headings": {
