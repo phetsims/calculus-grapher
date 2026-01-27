@@ -42,11 +42,11 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     const labelAlignGroup = new AlignGroup(); // to give radio-button labels the same effective size
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryFirstDerivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryFirstDerivativeRadioButton.accessibleHelpTextStringProperty ),
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryDerivativeRadioButton.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryDerivativeRadioButton.accessibleHelpTextStringProperty ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.SECOND_DERIVATIVE, labelAlignGroup,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryFirstDerivativeSecondDerivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryFirstDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty )
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleNameStringProperty,
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty )
     ];
 
     const createModel = () => new LabModel( {

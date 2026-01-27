@@ -84,7 +84,7 @@ a11y:
       select_graph:
         integral:         Integral Curve Visibility
         primary:          Primary Curve Visibility
-        firstDerivative:  First Derivative Curve Visibility
+        derivative:       First Derivative Curve Visibility
         secondDerivative: Second Derivative Curve Visibility
     accessibleHelpText:           Show or hide curve to support predictions.
     accessibleContextResponseOff: Curve hidden.
@@ -94,7 +94,7 @@ a11y:
       accessibleName:
         select_graph:
           integral:         Zoom In Integral y Axis
-          firstDerivative:  Zoom In First Derivative y Axis
+          derivative:       Zoom In First Derivative y Axis
           secondDerivative: Zoom In Second Derivative y Axis
       accessibleHelpText:        Zoom in y axis only.
       accessibleContextResponse: 'zoomed in, y range {$min} to {$max}'
@@ -102,7 +102,7 @@ a11y:
       accessibleName:
         select_graph:
           integral:         Zoom Out Integral y Axis
-          firstDerivative:  Zoom Out First Derivative y Axis
+          derivative:       Zoom Out First Derivative y Axis
           secondDerivative: Zoom Out Second Derivative y Axis
       accessibleHelpText:        Zoom out y axis only.
       accessibleContextResponse: 'zoomed out, y range {$min} to {$max}'
@@ -180,18 +180,18 @@ a11y:
     integralPrimaryRadioButton:
       accessibleName:     Integral and Primary Graph Areas
       accessibleHelpText: Explore Integral at top, Primary at bottom.
-    primaryFirstDerivativeRadioButton:
+    primaryDerivativeRadioButton:
       accessibleName:     Primary and First Derivative Graph Areas
       accessibleHelpText: Explore Primary at top, First Derivative at bottom.
-    integralPrimaryFirstDerivativeRadioButton:
+    integralPrimaryDerivativeRadioButton:
       accessibleName:     Integral, Primary, and First Derivative Graph Areas
       accessibleHelpText: Explore Integral at top, Primary in center, First Derivative at bottom.
-    primaryFirstDerivativeSecondDerivativeRadioButton:
+    primaryDerivativeSecondDerivativeRadioButton:
       accessibleName:     Primary, First Derivative, and Second Derivative Graph Areas
       accessibleHelpText: Explore Primary at top, First Derivative in center, Second Derivative at bottom.
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool.
-    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$firstDerivativeValue}.
+    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}.
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
     accessibleParagraph:         Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
@@ -226,24 +226,24 @@ a11y:
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve.
     accessibleObjectResponse:
       select_sign:
-        zero:     at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
-        positive: at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
-        negative: at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}
+        zero:     at {$variable} equals {$x}, slope is {$absoluteDerivativeValue}, dot at {$derivativeValue}
+        positive: at {$variable} equals {$x}, slope is positive {$absoluteDerivativeValue}, dot at {$derivativeValue}
+        negative: at {$variable} equals {$x}, slope is negative {$absoluteDerivativeValue}, dot at {$derivativeValue}
   referenceLineTool:
     accessibleName:     Reference Line
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
       select_graphSet:
-        primaryFirstDerivative:                 at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}
-        integralPrimary:                        at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}
-        integralPrimaryFirstDerivative:         at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}
-        primaryFirstDerivativeSecondDerivative: at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}
+        primaryDerivative:                 at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}
+        integralPrimary:                   at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}
+        integralPrimaryDerivative:         at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}
+        primaryDerivativeSecondDerivative: at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve.
     accessibleObjectResponse:
       select_sign:
-        zero:     at {$variable} equals {$x}, dot at {$integralValue}, total area is {$absoluteIntegralValue} 
+        zero:     at {$variable} equals {$x}, dot at {$integralValue}, total area is {$absoluteIntegralValue}
         positive: at {$variable} equals {$x}, dot at {$integralValue}, total area is positive {$absoluteIntegralValue}
         negative: at {$variable} equals {$x}, dot at {$integralValue}, total area is negative {$absoluteIntegralValue}
   curveManipulator:

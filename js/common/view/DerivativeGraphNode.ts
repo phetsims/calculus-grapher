@@ -25,7 +25,7 @@ export default class DerivativeGraphNode extends GraphNode {
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: DerivativeGraphNodeOptions ) {
 
-    const graphSelector = 'firstDerivative';
+    const graphSelector = 'derivative';
 
     const options = optionize<DerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.derivativeGraph.accessibleHeadingStringProperty,

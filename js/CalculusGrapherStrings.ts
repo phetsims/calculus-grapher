@@ -230,15 +230,15 @@ type StringsType = {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
-      'primaryFirstDerivativeRadioButton': {
+      'primaryDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
-      'integralPrimaryFirstDerivativeRadioButton': {
+      'integralPrimaryDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
-      'primaryFirstDerivativeSecondDerivativeRadioButton': {
+      'primaryDerivativeSecondDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }

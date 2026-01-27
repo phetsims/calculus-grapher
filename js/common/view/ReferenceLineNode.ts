@@ -104,19 +104,19 @@ export default class ReferenceLineNode extends ScrubberNode {
 
     const graphSet = this.graphSetProperty.value;
 
-    let graphSetSelector: 'primaryFirstDerivative' | 'integralPrimary' | 'integralPrimaryFirstDerivative' | 'primaryFirstDerivativeSecondDerivative';
+    let graphSetSelector: 'primaryDerivative' | 'integralPrimary' | 'integralPrimaryDerivative' | 'primaryDerivativeSecondDerivative';
     if ( graphSet.length === 2 && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-      graphSetSelector = 'primaryFirstDerivative';
+      graphSetSelector = 'primaryDerivative';
     }
     else if ( graphSet.length === 2 && graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) ) {
       graphSetSelector = 'integralPrimary';
     }
     else if ( graphSet.length === 3 && graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-      graphSetSelector = 'integralPrimaryFirstDerivative';
+      graphSetSelector = 'integralPrimaryDerivative';
     }
     else {
       affirm( graphSet.length === 3 && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) && graphSet.includes( GraphType.SECOND_DERIVATIVE ) );
-      graphSetSelector = 'primaryFirstDerivativeSecondDerivative';
+      graphSetSelector = 'primaryDerivativeSecondDerivative';
     }
 
     const accessibleObjectResponse = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.format( {
@@ -125,7 +125,7 @@ export default class ReferenceLineNode extends ScrubberNode {
       x: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
       y: toFixedNumber( this.referenceLine.originalCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
       integralValue: toFixedNumber( this.referenceLine.integralCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
-      firstDerivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
+      derivativeValue: toFixedNumber( this.referenceLine.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS ),
       secondDerivativeValue: toFixedNumber( this.referenceLine.secondDerivativeCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
     } );
 

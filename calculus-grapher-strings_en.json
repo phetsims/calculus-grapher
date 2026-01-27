@@ -223,7 +223,7 @@
     },
     "eyeToggleButton": {
       "accessibleName": {
-        "value": "{ $graph ->\n  [integral] Integral Curve Visibility\n  [primary] Primary Curve Visibility\n  [firstDerivative] First Derivative Curve Visibility\n  *[secondDerivative] Second Derivative Curve Visibility\n}"
+        "value": "{ $graph ->\n  [integral] Integral Curve Visibility\n  [primary] Primary Curve Visibility\n  [derivative] First Derivative Curve Visibility\n  *[secondDerivative] Second Derivative Curve Visibility\n}"
       },
       "accessibleHelpText": {
         "value": "Show or hide curve to support predictions."
@@ -238,7 +238,7 @@
     "yZoomButtonGroup": {
       "zoomInButton": {
         "accessibleName": {
-          "value": "{ $graph ->\n  [integral] Zoom In Integral y Axis\n  [firstDerivative] Zoom In First Derivative y Axis\n  *[secondDerivative] Zoom In Second Derivative y Axis\n}"
+          "value": "{ $graph ->\n  [integral] Zoom In Integral y Axis\n  [derivative] Zoom In First Derivative y Axis\n  *[secondDerivative] Zoom In Second Derivative y Axis\n}"
         },
         "accessibleHelpText": {
           "value": "Zoom in y axis only."
@@ -249,7 +249,7 @@
       },
       "zoomOutButton": {
         "accessibleName": {
-          "value": "{ $graph ->\n  [integral] Zoom Out Integral y Axis\n  [firstDerivative] Zoom Out First Derivative y Axis\n  *[secondDerivative] Zoom Out Second Derivative y Axis\n}"
+          "value": "{ $graph ->\n  [integral] Zoom Out Integral y Axis\n  [derivative] Zoom Out First Derivative y Axis\n  *[secondDerivative] Zoom Out Second Derivative y Axis\n}"
         },
         "accessibleHelpText": {
           "value": "Zoom out y axis only."
@@ -455,7 +455,7 @@
           "value": "Explore Integral at top, Primary at bottom."
         }
       },
-      "primaryFirstDerivativeRadioButton": {
+      "primaryDerivativeRadioButton": {
         "accessibleName": {
           "value": "Primary and First Derivative Graph Areas"
         },
@@ -463,7 +463,7 @@
           "value": "Explore Primary at top, First Derivative at bottom."
         }
       },
-      "integralPrimaryFirstDerivativeRadioButton": {
+      "integralPrimaryDerivativeRadioButton": {
         "accessibleName": {
           "value": "Integral, Primary, and First Derivative Graph Areas"
         },
@@ -471,7 +471,7 @@
           "value": "Explore Integral at top, Primary in center, First Derivative at bottom."
         }
       },
-      "primaryFirstDerivativeSecondDerivativeRadioButton": {
+      "primaryDerivativeSecondDerivativeRadioButton": {
         "accessibleName": {
           "value": "Primary, First Derivative, and Second Derivative Graph Areas"
         },
@@ -485,7 +485,7 @@
         "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$firstDerivativeValue}."
+        "value": "At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}."
       }
     },
     "netSignedAreaAccordionBox": {
@@ -574,7 +574,7 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve."
       },
       "accessibleObjectResponse": {
-        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, slope is {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}\n  [positive] at {$variable} equals {$x}, slope is positive {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}\n  *[negative] at {$variable} equals {$x}, slope is negative {$absoluteFirstDerivativeValue}, dot at {$firstDerivativeValue}\n}"
+        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, slope is {$absoluteDerivativeValue}, dot at {$derivativeValue}\n  [positive] at {$variable} equals {$x}, slope is positive {$absoluteDerivativeValue}, dot at {$derivativeValue}\n  *[negative] at {$variable} equals {$x}, slope is negative {$absoluteDerivativeValue}, dot at {$derivativeValue}\n}"
       }
     },
     "referenceLineTool": {
@@ -585,7 +585,7 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
-        "value": "{ $graphSet ->\n  [primaryFirstDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}\n  [integralPrimary] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}\n  [integralPrimaryFirstDerivative] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}\n  *[primaryFirstDerivativeSecondDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$firstDerivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}\n}"
+        "value": "{ $graphSet ->\n  [primaryDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}\n  [integralPrimary] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}\n  [integralPrimaryDerivative] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}\n  *[primaryDerivativeSecondDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}\n}"
       }
     },
     "areaUnderCurveTool": {
