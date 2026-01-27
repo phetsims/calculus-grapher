@@ -5,7 +5,7 @@
 /* eslint-disable */
 /* @formatter:off */
 
-import { TReadOnlyProperty } from '../../axon/js/TReadOnlyProperty.js';
+import {TReadOnlyProperty} from '../../axon/js/TReadOnlyProperty.js';
 import FluentLibrary from '../../chipper/js/browser-and-node/FluentLibrary.js';
 import FluentConstant from '../../chipper/js/browser/FluentConstant.js';
 import FluentContainer from '../../chipper/js/browser/FluentContainer.js';
@@ -477,7 +477,7 @@ const CalculusGrapherFluent = {
       },
       predictCurveRadioButton: {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
       }
     },
     showOriginalCurveCheckbox: {
