@@ -600,6 +600,12 @@
       }
     },
     "curveManipulator": {
+      "accessibleObjectResponseFocusedReleased": {
+        "value": "at {$x} {$y}, off curve"
+      },
+      "accessibleObjectResponseFocusedGrabbed": {
+        "value": "at {$x} {$y}, grabbed"
+      },
       "accessibleObjectResponseGrabbed": {
         "value": "grabbed at {$x} {$y}, shape added"
       },

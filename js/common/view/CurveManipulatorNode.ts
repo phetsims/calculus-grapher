@@ -111,6 +111,28 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
   }
 
   /**
+   * Adds an accessible object response when the manipulator gets keyboard focus.
+   */
+  private doAccessibleObjectResponseFocused(): void {
+    let response: string;
+    const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+    const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
+    if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
+      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseFocusedGrabbed.format( {
+        x: xDescription,
+        y: yDescription
+      } );
+    }
+    else {
+      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseFocusedReleased.format( {
+        x: xDescription,
+        y: yDescription
+      } );
+    }
+    this.addAccessibleObjectResponse( response );
+  }
+
+  /**
    * Adds an accessible object response when the manipulator is moved with any form of input.
    */
   public doAccessibleObjectResponseMoved( isFromPDOM: boolean ): void {
@@ -152,13 +174,6 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
       } );
     }
     this.addAccessibleObjectResponse( response );
-  }
-
-  /**
-   * Adds an accessible object response when the manipulator gets keyboard focus.
-   */
-  public doAccessibleObjectResponseFocused(): void {
-    this.doAccessibleObjectResponseGrabbedReleased();
   }
 }
 
