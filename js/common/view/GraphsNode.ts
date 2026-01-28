@@ -34,6 +34,7 @@ import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import DerivativeGraphNode from './DerivativeGraphNode.js';
 import ReferenceLineDescriber from './description/ReferenceLineDescriber.js';
+import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
 import GraphNode from './GraphNode.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import IntegralGraphNode from './IntegralGraphNode.js';
@@ -256,13 +257,17 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
+    const tangentScrubberDescriber = new TangentScrubberDescriber( tangentScrubber,
+      this.originalGraphNode.curveLayerVisibleProperty, derivativeGraphNode.curveLayerVisibleProperty );
+
     // Add the scrubber
-    const tangentScrubberNode = new TangentScrubberNode( tangentScrubber, this.originalGraphNode.chartTransform, {
-      lineTop: this.getChartRectanglesTop(),
-      lineBottom: this.getChartRectanglesBottom(),
-      visibleProperty: tangentVisibleProperty,
-      tandem: this.tandem.createTandem( 'tangentScrubberNode' )
-    } );
+    const tangentScrubberNode = new TangentScrubberNode( tangentScrubber, tangentScrubberDescriber,
+      this.originalGraphNode.chartTransform, {
+        lineTop: this.getChartRectanglesTop(),
+        lineBottom: this.getChartRectanglesBottom(),
+        visibleProperty: tangentVisibleProperty,
+        tandem: this.tandem.createTandem( 'tangentScrubberNode' )
+      } );
     this.scrubberNodesParent.addChild( tangentScrubberNode );
     tangentScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 

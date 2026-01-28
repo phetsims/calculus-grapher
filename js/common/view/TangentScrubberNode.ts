@@ -7,16 +7,15 @@
  */
 
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TangentScrubber from '../model/TangentScrubber.js';
+import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -27,8 +26,10 @@ export type TangentScrubberNodeOptions = SelfOptions &
 export default class TangentScrubberNode extends ScrubberNode {
 
   private readonly tangentScrubber: TangentScrubber;
+  private readonly describer: TangentScrubberDescriber;
 
   public constructor( tangentScrubber: TangentScrubber,
+                      describer: TangentScrubberDescriber,
                       chartTransform: ChartTransform,
                       providedOptions: TangentScrubberNodeOptions ) {
 
@@ -46,19 +47,14 @@ export default class TangentScrubberNode extends ScrubberNode {
     super( tangentScrubber, chartTransform, options );
 
     this.tangentScrubber = tangentScrubber;
+    this.describer = describer;
   }
 
+  /**
+   * Adds an accessible object response that describes the tangent scrubber and what it intersects.
+   */
   public override doAccessibleObjectResponse(): void {
-
-    const derivativeValue = toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
-
-    this.addAccessibleObjectResponse( CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.format( {
-      sign: derivativeValue === 0 ? 'zero' : derivativeValue > 0 ? 'positive' : 'negative',
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-      x: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      absoluteDerivativeValue: Math.abs( derivativeValue ),
-      derivativeValue: derivativeValue
-    } ) );
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse() );
   }
 
   /**
