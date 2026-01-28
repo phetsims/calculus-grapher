@@ -97,8 +97,8 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
   }
 
   /**
-   * Forwards a press listener event to the drag listener.
-   * @param event
+   * Forwards a press listener event to the drag listener. When the user clicks anywhere inside the chart rectangle,
+   * this is used to start dragListener interaction from that location.
    */
   public forwardPressListenerEvent( event: PressListenerEvent ): void {
     if ( this.visible ) {
