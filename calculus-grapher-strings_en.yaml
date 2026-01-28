@@ -229,36 +229,38 @@ a11y:
         zero:     at {$variable} equals {$x}, slope is {$absoluteDerivativeValue}, dot at {$derivativeValue}
         positive: at {$variable} equals {$x}, slope is positive {$absoluteDerivativeValue}, dot at {$derivativeValue}
         negative: at {$variable} equals {$x}, slope is negative {$absoluteDerivativeValue}, dot at {$derivativeValue}
+
   referenceLineTool:
     accessibleName:     Reference Line
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
+
+      # Patterns that have a phrase placeholder for each graph that the reference line intersects.
       patterns:
         select_graphSet:
           primaryDerivative:                 at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}
           integralPrimary:                   at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}
           integralPrimaryDerivative:         at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}
           primaryDerivativeSecondDerivative: at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}
+
+      # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.
       phrases:
-        primaryPhrases:
-          primaryValue:     f of {$variable} is {$value}
-          primaryUndefined: f of {$variable} is undefined
-          primaryHidden:    f curve hidden
-          predictValue:     predict f of {$variable} is {$value}
-          predictUndefined: predict f of {$variable} is undefined
-          predictHidden:    predict curve hidden
-          bothCurves:       '{$predictPhrase}, {$primaryPhrase}'
-        integralPhrases:
-          numberValue: integral up to {$variable} is {$value}
-          hidden:      integral curve hidden
-        derivativePhrases:
-          numberValue: derivative at {$variable} is {$value}
-          undefined:   derivative at {$variable} is undefined
-          hidden:      derivative curve hidden
-        secondDerivativePhrases:
-          numberValue: second derivative at {$variable} is {$value}
-          undefined:   second derivative at {$variable} is undefined
-          hidden:      second derivative curve hidden
+        primaryValue:              f of {$variable} is {$value}
+        primaryUndefined:          f of {$variable} is undefined
+        primaryHidden:             f curve hidden
+        predictValue:              predict f of {$variable} is {$value}
+        predictUndefined:          predict f of {$variable} is undefined
+        predictHidden:             predict curve hidden
+        predictAndPrimary:         '{$predictPhrase}, {$primaryPhrase}'
+        integralValue:             integral up to {$variable} is {$value}
+        integralHidden:            integral curve hidden
+        derivativeValue:           derivative at {$variable} is {$value}
+        derivativeUndefined:       derivative at {$variable} is undefined
+        derivativeHidden:          derivative curve hidden
+        secondDerivativeValue:     second derivative at {$variable} is {$value}
+        secondDerivativeUndefined: second derivative at {$variable} is undefined
+        secondDerivativeHidden:    second derivative curve hidden
+
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve.

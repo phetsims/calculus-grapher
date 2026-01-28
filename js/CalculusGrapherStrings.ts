@@ -296,29 +296,21 @@ type StringsType = {
       'accessibleObjectResponse': {
         'patternsStringProperty': LocalizedStringProperty;
         'phrases': {
-          'primaryPhrases': {
-            'primaryValueStringProperty': LocalizedStringProperty;
-            'primaryUndefinedStringProperty': LocalizedStringProperty;
-            'primaryHiddenStringProperty': LocalizedStringProperty;
-            'predictValueStringProperty': LocalizedStringProperty;
-            'predictUndefinedStringProperty': LocalizedStringProperty;
-            'predictHiddenStringProperty': LocalizedStringProperty;
-            'bothCurvesStringProperty': LocalizedStringProperty;
-          };
-          'integralPhrases': {
-            'numberValueStringProperty': LocalizedStringProperty;
-            'hiddenStringProperty': LocalizedStringProperty;
-          };
-          'derivativePhrases': {
-            'numberValueStringProperty': LocalizedStringProperty;
-            'undefinedStringProperty': LocalizedStringProperty;
-            'hiddenStringProperty': LocalizedStringProperty;
-          };
-          'secondDerivativePhrases': {
-            'numberValueStringProperty': LocalizedStringProperty;
-            'undefinedStringProperty': LocalizedStringProperty;
-            'hiddenStringProperty': LocalizedStringProperty;
-          }
+          'primaryValueStringProperty': LocalizedStringProperty;
+          'primaryUndefinedStringProperty': LocalizedStringProperty;
+          'primaryHiddenStringProperty': LocalizedStringProperty;
+          'predictValueStringProperty': LocalizedStringProperty;
+          'predictUndefinedStringProperty': LocalizedStringProperty;
+          'predictHiddenStringProperty': LocalizedStringProperty;
+          'predictAndPrimaryStringProperty': LocalizedStringProperty;
+          'integralValueStringProperty': LocalizedStringProperty;
+          'integralHiddenStringProperty': LocalizedStringProperty;
+          'derivativeValueStringProperty': LocalizedStringProperty;
+          'derivativeUndefinedStringProperty': LocalizedStringProperty;
+          'derivativeHiddenStringProperty': LocalizedStringProperty;
+          'secondDerivativeValueStringProperty': LocalizedStringProperty;
+          'secondDerivativeUndefinedStringProperty': LocalizedStringProperty;
+          'secondDerivativeHiddenStringProperty': LocalizedStringProperty;
         }
       }
     };

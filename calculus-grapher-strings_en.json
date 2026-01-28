@@ -589,58 +589,50 @@
           "value": "{ $graphSet ->\n  [primaryDerivative] at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}\n  [integralPrimary] at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}\n  [integralPrimaryDerivative] at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  *[primaryDerivativeSecondDerivative] at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}\n}"
         },
         "phrases": {
-          "primaryPhrases": {
-            "primaryValue": {
-              "value": "f of {$variable} is {$value}"
-            },
-            "primaryUndefined": {
-              "value": "f of {$variable} is undefined"
-            },
-            "primaryHidden": {
-              "value": "f curve hidden"
-            },
-            "predictValue": {
-              "value": "predict f of {$variable} is {$value}"
-            },
-            "predictUndefined": {
-              "value": "predict f of {$variable} is undefined"
-            },
-            "predictHidden": {
-              "value": "predict curve hidden"
-            },
-            "bothCurves": {
-              "value": "{$predictPhrase}, {$primaryPhrase}"
-            }
+          "primaryValue": {
+            "value": "f of {$variable} is {$value}"
           },
-          "integralPhrases": {
-            "numberValue": {
-              "value": "integral up to {$variable} is {$value}"
-            },
-            "hidden": {
-              "value": "integral curve hidden"
-            }
+          "primaryUndefined": {
+            "value": "f of {$variable} is undefined"
           },
-          "derivativePhrases": {
-            "numberValue": {
-              "value": "derivative at {$variable} is {$value}"
-            },
-            "undefined": {
-              "value": "derivative at {$variable} is undefined"
-            },
-            "hidden": {
-              "value": "derivative curve hidden"
-            }
+          "primaryHidden": {
+            "value": "f curve hidden"
           },
-          "secondDerivativePhrases": {
-            "numberValue": {
-              "value": "second derivative at {$variable} is {$value}"
-            },
-            "undefined": {
-              "value": "second derivative at {$variable} is undefined"
-            },
-            "hidden": {
-              "value": "second derivative curve hidden"
-            }
+          "predictValue": {
+            "value": "predict f of {$variable} is {$value}"
+          },
+          "predictUndefined": {
+            "value": "predict f of {$variable} is undefined"
+          },
+          "predictHidden": {
+            "value": "predict curve hidden"
+          },
+          "predictAndPrimary": {
+            "value": "{$predictPhrase}, {$primaryPhrase}"
+          },
+          "integralValue": {
+            "value": "integral up to {$variable} is {$value}"
+          },
+          "integralHidden": {
+            "value": "integral curve hidden"
+          },
+          "derivativeValue": {
+            "value": "derivative at {$variable} is {$value}"
+          },
+          "derivativeUndefined": {
+            "value": "derivative at {$variable} is undefined"
+          },
+          "derivativeHidden": {
+            "value": "derivative curve hidden"
+          },
+          "secondDerivativeValue": {
+            "value": "second derivative at {$variable} is {$value}"
+          },
+          "secondDerivativeUndefined": {
+            "value": "second derivative at {$variable} is undefined"
+          },
+          "secondDerivativeHidden": {
+            "value": "second derivative curve hidden"
           }
         }
       }
