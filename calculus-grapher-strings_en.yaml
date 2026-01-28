@@ -336,7 +336,7 @@ a11y:
         integralPrimaryDerivative:         '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}'
         primaryDerivativeSecondDerivative: '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}'
 
-      # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns
+      # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.*
       xPhrase: at {$variable} equals {$value}
       primaryPhrases:
         predictAndPrimary: '{$predictPhrase}, {$primaryPhrase}'
@@ -387,7 +387,7 @@ a11y:
       # Pattern with phrase placeholders that define the general form of the response.
       pattern: '{$xPhrase}, {$integralPhrase}, {$areaPhrase}'
 
-      # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.patterns
+      # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern
       xPhrase: at {$variable} equals {$value}
       integralPhrases:
         integralValue:  integral up to {$variable} is {$value}
