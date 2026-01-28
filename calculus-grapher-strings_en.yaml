@@ -237,11 +237,10 @@ a11y:
 
       # Patterns that have a phrase placeholder for each graph that the reference line intersects.
       patterns:
-        select_graphSet:
-          primaryDerivative:                 '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}'
-          integralPrimary:                   '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}'
-          integralPrimaryDerivative:         '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}'
-          primaryDerivativeSecondDerivative: '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}'
+        primaryDerivative:                 '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}'
+        integralPrimary:                   '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}'
+        integralPrimaryDerivative:         '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}'
+        primaryDerivativeSecondDerivative: '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}'
 
       # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.
       phrases:

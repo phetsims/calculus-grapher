@@ -586,7 +586,18 @@
       },
       "accessibleObjectResponse": {
         "patterns": {
-          "value": "{ $graphSet ->\n  [primaryDerivative] {$xPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  [integralPrimary] {$xPhrase}, {$integralPhrase}, {$primaryPhrase}\n  [integralPrimaryDerivative] {$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  *[primaryDerivativeSecondDerivative] {$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}\n}"
+          "primaryDerivative": {
+            "value": "{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}"
+          },
+          "integralPrimary": {
+            "value": "{$xPhrase}, {$integralPhrase}, {$primaryPhrase}"
+          },
+          "integralPrimaryDerivative": {
+            "value": "{$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}"
+          },
+          "primaryDerivativeSecondDerivative": {
+            "value": "{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}"
+          }
         },
         "phrases": {
           "xPhrase": {

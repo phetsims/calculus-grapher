@@ -36,36 +36,42 @@ export default class ReferenceLineDescriber {
    */
   public getAccessibleObjectResponse(): string {
 
+    let response: string;
     const graphSet = this.graphSetProperty.value;
 
-    // Get the top-level pattern that corresponds to the graph set.
-    // These patterns contain placeholders for phrases that must be filled in.
-    let graphSetSelector: 'primaryDerivative' | 'integralPrimary' | 'integralPrimaryDerivative' | 'primaryDerivativeSecondDerivative';
-    if ( graphSet.length === 2 && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-      graphSetSelector = 'primaryDerivative';
+    if ( graphSet.matches( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ] ) ) {
+      response = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.patterns.primaryDerivative.format( {
+        xPhrase: this.getXPhrase(),
+        primaryPhrase: this.getPrimaryPhrase(),
+        derivativePhrase: this.getDerivativePhrase()
+      } );
     }
-    else if ( graphSet.length === 2 && graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) ) {
-      graphSetSelector = 'integralPrimary';
+    else if ( graphSet.matches( [ GraphType.INTEGRAL, GraphType.ORIGINAL ] ) ) {
+      response = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.patterns.integralPrimary.format( {
+        xPhrase: this.getXPhrase(),
+        integralPhrase: this.getIntegralPhrase(),
+        primaryPhrase: this.getPrimaryPhrase()
+      } );
     }
-    else if ( graphSet.length === 3 && graphSet.includes( GraphType.INTEGRAL ) && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) ) {
-      graphSetSelector = 'integralPrimaryDerivative';
+    else if ( graphSet.matches( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ] ) ) {
+      response = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.patterns.integralPrimaryDerivative.format( {
+        xPhrase: this.getXPhrase(),
+        integralPhrase: this.getIntegralPhrase(),
+        primaryPhrase: this.getPrimaryPhrase(),
+        derivativePhrase: this.getDerivativePhrase()
+      } );
     }
     else {
-      affirm( graphSet.length === 3 && graphSet.includes( GraphType.ORIGINAL ) && graphSet.includes( GraphType.DERIVATIVE ) && graphSet.includes( GraphType.SECOND_DERIVATIVE ) );
-      graphSetSelector = 'primaryDerivativeSecondDerivative';
+      affirm( graphSet.matches( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ] ) );
+      response = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.patterns.primaryDerivativeSecondDerivative.format( {
+        xPhrase: this.getXPhrase(),
+        primaryPhrase: this.getPrimaryPhrase(),
+        derivativePhrase: this.getDerivativePhrase(),
+        secondDerivativePhrase: this.getSecondDerivativePhrase()
+      } );
     }
 
-    // Since we're using a Fluent selector, the set of placeholders is the union of the placeholders in all selectable
-    // patterns. Since the reference line computes points on all graphs (regardless of whether they are visible), it
-    // simplifies the implementation to similarly compute the core description for all placeholders.
-    return CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.patterns.format( {
-      graphSet: graphSetSelector,
-      xPhrase: this.getXPhrase(),
-      primaryPhrase: this.getPrimaryPhrase(),
-      integralPhrase: this.getIntegralPhrase(),
-      derivativePhrase: this.getDerivativePhrase(),
-      secondDerivativePhrase: this.getSecondDerivativePhrase()
-    } );
+    return response;
   }
 
   /**

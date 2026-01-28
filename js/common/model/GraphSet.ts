@@ -56,6 +56,17 @@ export default class GraphSet extends PhetioObject {
   }
 
   /**
+   * Determines whether the specified set of GraphTypes matches this GraphSet exactly.
+   */
+  public matches( graphTypes: GraphType[] ): boolean {
+    let matches = graphTypes.length === this.graphTypes.length;
+    for ( let i = 0; matches && i < graphTypes.length; i++ ) {
+      matches = this.graphTypes.includes( graphTypes[ i ] );
+    }
+    return matches;
+  }
+
+  /**
    * Given an array of GraphSet, does it include a specific GraphType.
    */
   public static includes( graphSets: GraphSet[], graphType: GraphType ): boolean {

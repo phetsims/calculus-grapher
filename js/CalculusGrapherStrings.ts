@@ -294,7 +294,12 @@ type StringsType = {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponse': {
-        'patternsStringProperty': LocalizedStringProperty;
+        'patterns': {
+          'primaryDerivativeStringProperty': LocalizedStringProperty;
+          'integralPrimaryStringProperty': LocalizedStringProperty;
+          'integralPrimaryDerivativeStringProperty': LocalizedStringProperty;
+          'primaryDerivativeSecondDerivativeStringProperty': LocalizedStringProperty;
+        };
         'phrases': {
           'xPhraseStringProperty': LocalizedStringProperty;
           'primaryValueStringProperty': LocalizedStringProperty;
