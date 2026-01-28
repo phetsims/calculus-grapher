@@ -33,6 +33,7 @@ import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import DerivativeGraphNode from './DerivativeGraphNode.js';
+import AreaUnderCurveScrubberDescriber from './description/AreaUnderCurveScrubberDescriber.js';
 import ReferenceLineDescriber from './description/ReferenceLineDescriber.js';
 import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
 import GraphNode from './GraphNode.js';
@@ -295,13 +296,17 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
+    const areaUnderCurveScrubberDescriber = new AreaUnderCurveScrubberDescriber( areaUnderCurveScrubber,
+      integralGraphNode.curveLayerVisibleProperty, this.originalGraphNode.curveLayerVisibleProperty );
+
     // Add the scrubber
-    const areaUnderCurveScrubberNode = new AreaUnderCurveScrubberNode( areaUnderCurveScrubber, this.originalGraphNode.chartTransform, {
-      lineTop: this.getChartRectanglesTop(),
-      lineBottom: this.getChartRectanglesBottom(),
-      visibleProperty: areaUnderCurveVisibleProperty,
-      tandem: this.tandem.createTandem( 'areaUnderCurveScrubberNode' )
-    } );
+    const areaUnderCurveScrubberNode = new AreaUnderCurveScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubberDescriber,
+      this.originalGraphNode.chartTransform, {
+        lineTop: this.getChartRectanglesTop(),
+        lineBottom: this.getChartRectanglesBottom(),
+        visibleProperty: areaUnderCurveVisibleProperty,
+        tandem: this.tandem.createTandem( 'areaUnderCurveScrubberNode' )
+      } );
     this.scrubberNodesParent.addChild( areaUnderCurveScrubberNode );
     areaUnderCurveScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 

@@ -25,7 +25,6 @@ export type TangentScrubberNodeOptions = SelfOptions &
 
 export default class TangentScrubberNode extends ScrubberNode {
 
-  private readonly tangentScrubber: TangentScrubber;
   private readonly describer: TangentScrubberDescriber;
 
   public constructor( tangentScrubber: TangentScrubber,
@@ -46,7 +45,6 @@ export default class TangentScrubberNode extends ScrubberNode {
 
     super( tangentScrubber, chartTransform, options );
 
-    this.tangentScrubber = tangentScrubber;
     this.describer = describer;
   }
 
