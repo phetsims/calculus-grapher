@@ -25,26 +25,18 @@ export default class SecondDerivativeGraphNode extends GraphNode {
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: SecondDerivativeGraphNodeOptions ) {
 
-    const graphSelector = 'secondDerivative';
-
     const options = optionize<SecondDerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.secondDerivativeGraph.accessibleHeadingStringProperty,
       accessibleParagraph: CalculusGrapherFluent.a11y.secondDerivativeGraph.accessibleParagraphStringProperty,
       eyeToggleButtonOptions: {
-        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.createProperty( {
-          graph: graphSelector
-        } )
+        accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.secondDerivativeStringProperty
       },
       yZoomButtonGroupOptions: {
         zoomInButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleName.createProperty( {
-            graph: graphSelector
-          } )
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleName.secondDerivativeStringProperty
         },
         zoomOutButtonOptions: {
-          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleName.createProperty( {
-            graph: graphSelector
-          } )
+          accessibleName: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleName.secondDerivativeStringProperty
         }
       }
     }, providedOptions );

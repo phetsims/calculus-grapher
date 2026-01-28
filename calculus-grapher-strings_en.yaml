@@ -123,11 +123,10 @@ a11y:
 
   eyeToggleButton:
     accessibleName:
-      select_graph:
-        integral:         Integral Curve Visibility
-        primary:          Primary Curve Visibility
-        derivative:       First Derivative Curve Visibility
-        secondDerivative: Second Derivative Curve Visibility
+      integral:         Integral Curve Visibility
+      primary:          Primary Curve Visibility
+      derivative:       First Derivative Curve Visibility
+      secondDerivative: Second Derivative Curve Visibility
     accessibleHelpText:           Show or hide curve to support predictions.
     accessibleContextResponseOff: Curve hidden.
     accessibleContextResponseOn:  Curve shown.
@@ -135,18 +134,16 @@ a11y:
   yZoomButtonGroup:
     zoomInButton:
       accessibleName:
-        select_graph:
-          integral:         Zoom In Integral y Axis
-          derivative:       Zoom In First Derivative y Axis
-          secondDerivative: Zoom In Second Derivative y Axis
+        integral:         Zoom In Integral y Axis
+        derivative:       Zoom In First Derivative y Axis
+        secondDerivative: Zoom In Second Derivative y Axis
       accessibleHelpText:        Zoom in y axis only.
       accessibleContextResponse: 'zoomed in, y range {$min} to {$max}'
     zoomOutButton:
       accessibleName:
-        select_graph:
-          integral:         Zoom Out Integral y Axis
-          derivative:       Zoom Out First Derivative y Axis
-          secondDerivative: Zoom Out Second Derivative y Axis
+        integral:         Zoom Out Integral y Axis
+        derivative:       Zoom Out First Derivative y Axis
+        secondDerivative: Zoom Out Second Derivative y Axis
       accessibleHelpText:        Zoom out y axis only.
       accessibleContextResponse: 'zoomed out, y range {$min} to {$max}'
 

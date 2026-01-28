@@ -244,7 +244,18 @@
     },
     "eyeToggleButton": {
       "accessibleName": {
-        "value": "{ $graph ->\n  [integral] Integral Curve Visibility\n  [primary] Primary Curve Visibility\n  [derivative] First Derivative Curve Visibility\n  *[secondDerivative] Second Derivative Curve Visibility\n}"
+        "integral": {
+          "value": "Integral Curve Visibility"
+        },
+        "primary": {
+          "value": "Primary Curve Visibility"
+        },
+        "derivative": {
+          "value": "First Derivative Curve Visibility"
+        },
+        "secondDerivative": {
+          "value": "Second Derivative Curve Visibility"
+        }
       },
       "accessibleHelpText": {
         "value": "Show or hide curve to support predictions."
@@ -259,7 +270,15 @@
     "yZoomButtonGroup": {
       "zoomInButton": {
         "accessibleName": {
-          "value": "{ $graph ->\n  [integral] Zoom In Integral y Axis\n  [derivative] Zoom In First Derivative y Axis\n  *[secondDerivative] Zoom In Second Derivative y Axis\n}"
+          "integral": {
+            "value": "Zoom In Integral y Axis"
+          },
+          "derivative": {
+            "value": "Zoom In First Derivative y Axis"
+          },
+          "secondDerivative": {
+            "value": "Zoom In Second Derivative y Axis"
+          }
         },
         "accessibleHelpText": {
           "value": "Zoom in y axis only."
@@ -270,7 +289,15 @@
       },
       "zoomOutButton": {
         "accessibleName": {
-          "value": "{ $graph ->\n  [integral] Zoom Out Integral y Axis\n  [derivative] Zoom Out First Derivative y Axis\n  *[secondDerivative] Zoom Out Second Derivative y Axis\n}"
+          "integral": {
+            "value": "Zoom Out Integral y Axis"
+          },
+          "derivative": {
+            "value": "Zoom Out First Derivative y Axis"
+          },
+          "secondDerivative": {
+            "value": "Zoom Out Second Derivative y Axis"
+          }
         },
         "accessibleHelpText": {
           "value": "Zoom out y axis only."
