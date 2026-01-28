@@ -39,7 +39,7 @@ export default class TangentScrubberDescriber {
    * Gets the phrase that describes the scrubber's position along the horizontal axis.
    */
   private getXPhrase(): string {
-    return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.xPhrase.format( {
+    return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.xPhrase.format( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
       value: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
     } );
@@ -56,24 +56,24 @@ export default class TangentScrubberDescriber {
       const slope = this.tangentScrubber.derivativeCurvePointProperty.value.y;
       if ( slope === 0 ) {
         // zero
-        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopeZeroValueStringProperty.value;
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrases.slopeZeroValueStringProperty.value;
       }
       else if ( slope > 0 ) {
         // positive
-        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopePositiveValue.format( {
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrases.slopePositiveValue.format( {
           absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
         } );
       }
       else {
         // negative
-        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopeNegativeValue.format( {
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrases.slopeNegativeValue.format( {
           absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
         } );
       }
     }
     else {
       // hidden
-      slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopeHiddenStringProperty.value;
+      slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrases.slopeHiddenStringProperty.value;
     }
     return slopePhrase;
   }
@@ -88,14 +88,14 @@ export default class TangentScrubberDescriber {
       // y-value
       const point = this.tangentScrubber.derivativeCurvePointProperty.value;
       affirm( !point.isDiscontinuous, 'Tangent tool does not support discontinuities in derivative curve.' );
-      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.derivativeValue.format( {
+      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.derivativePhrases.derivativeValue.format( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
         value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
       } );
     }
     else {
       // hidden
-      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.derivativeHiddenStringProperty.value;
+      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.derivativePhrases.derivativeHiddenStringProperty.value;
     }
     return derivativePhrase;
   }

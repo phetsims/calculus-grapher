@@ -222,30 +222,12 @@ a11y:
     accessibleContextResponseChecked:   f of {$variable} shown.
     accessibleContextResponseUnchecked: f of {$variable} hidden.
 
-  tangentTool:
-    accessibleName:     Tangent Tool
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve.
-    accessibleObjectResponse:
-
-      # Pattern has a phrase placeholder for each graph that the tangent tool intersects.
-      pattern: '{$xPhrase}, {$slopePhrase}, {$derivativePhrase}'
-
-      # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
-      phrases:
-        xPhrase:            at {$variable} equals {$value}
-        slopeHidden:        f curve hidden
-        slopeZeroValue:     slope is zero
-        slopePositiveValue: slope is positive {$absoluteValue}
-        slopeNegativeValue: slope is negative {$absoluteValue}
-        derivativeValue:    derivative at {$variable} is {$value}
-        derivativeHidden:   derivative curve hidden
-
   referenceLineTool:
     accessibleName:     Reference Line
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
 
-      # Patterns that have a phrase placeholder for each graph that the reference line intersects.
+      # Each graph set has an associated pattern with phrase placeholders that defines the general form of the response.
       patterns:
         primaryDerivative:                 '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}'
         integralPrimary:                   '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}'
@@ -253,37 +235,60 @@ a11y:
         primaryDerivativeSecondDerivative: '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}'
 
       # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns
-      phrases:
-        xPhrase:                   at {$variable} equals {$value}
-        primaryValue:              f of {$variable} is {$value}
-        primaryUndefined:          f of {$variable} is undefined
-        primaryHidden:             f curve hidden
-        predictValue:              predict f of {$variable} is {$value}
-        predictUndefined:          predict f of {$variable} is undefined
-        predictHidden:             predict curve hidden
-        predictAndPrimary:         '{$predictPhrase}, {$primaryPhrase}'
-        integralValue:             integral up to {$variable} is {$value}
-        integralHidden:            integral curve hidden
-        derivativeValue:           derivative at {$variable} is {$value}
-        derivativeUndefined:       derivative at {$variable} is undefined
-        derivativeHidden:          derivative curve hidden
-        secondDerivativeValue:     second derivative at {$variable} is {$value}
+      xPhrase: at {$variable} equals {$value}
+      primaryPhrases:
+        predictAndPrimary: '{$predictPhrase}, {$primaryPhrase}'
+        predictUndefined:  predict f of {$variable} is undefined
+        predictValue:      predict f of {$variable} is {$value}
+        predictHidden:     predict curve hidden
+        primaryUndefined:  f of {$variable} is undefined
+        primaryValue:      f of {$variable} is {$value}
+        primaryHidden:     f curve hidden
+      integralPhrases:
+        integralValue:   integral up to {$variable} is {$value}
+        integralHidden:  integral curve hidden
+      derivativePhrases:
+        derivativeUndefined:   derivative at {$variable} is undefined
+        derivativeValue: derivative at {$variable} is {$value}
+        derivativeHidden:      derivative curve hidden
+      secondDerivativePhrases:
         secondDerivativeUndefined: second derivative at {$variable} is undefined
+        secondDerivativeValue: second derivative at {$variable} is {$value}
         secondDerivativeHidden:    second derivative curve hidden
+
+  tangentTool:
+    accessibleName:     Tangent Tool
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve.
+    accessibleObjectResponse:
+
+      # Pattern with phrase placeholders defines the general form of the response.
+      pattern: '{$xPhrase}, {$slopePhrase}, {$derivativePhrase}'
+
+      # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
+      xPhrase:            at {$variable} equals {$value}
+      slopePhrases:
+        slopeHidden:        f curve hidden
+        slopeZeroValue:     slope is zero
+        slopePositiveValue: slope is positive {$absoluteValue}
+        slopeNegativeValue: slope is negative {$absoluteValue}
+      derivativePhrases:
+        derivativeValue:    derivative at {$variable} is {$value}
+        derivativeHidden:   derivative curve hidden
 
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve.
     accessibleObjectResponse:
 
-      # Pattern has a phrase placeholder for each graph that the tangent tool intersects.
+      # Pattern with phrase placeholders defines the general form of the response.
       pattern: '{$xPhrase}, {$integralPhrase}, {$areaPhrase}'
 
       # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.patterns
-      phrases:
-        xPhrase:           at {$variable} equals {$value}
+      xPhrase:           at {$variable} equals {$value}
+      integralPhrases:
         integralValue:     integral up to {$variable} is {$value}
         integralHidden:    integral curve hidden
+      areaPhrases:
         areaZeroValue:     net signed area is zero under f
         areaPositiveValue: net signed area is positive {$absoluteValue} under f
         areaNegativeValue: net signed area is negative {$absoluteValue} under f

@@ -285,22 +285,6 @@ type StringsType = {
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
-    'tangentTool': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponse': {
-        'patternStringProperty': LocalizedStringProperty;
-        'phrases': {
-          'xPhraseStringProperty': LocalizedStringProperty;
-          'slopeHiddenStringProperty': LocalizedStringProperty;
-          'slopeZeroValueStringProperty': LocalizedStringProperty;
-          'slopePositiveValueStringProperty': LocalizedStringProperty;
-          'slopeNegativeValueStringProperty': LocalizedStringProperty;
-          'derivativeValueStringProperty': LocalizedStringProperty;
-          'derivativeHiddenStringProperty': LocalizedStringProperty;
-        }
-      }
-    };
     'referenceLineTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
@@ -311,23 +295,47 @@ type StringsType = {
           'integralPrimaryDerivativeStringProperty': LocalizedStringProperty;
           'primaryDerivativeSecondDerivativeStringProperty': LocalizedStringProperty;
         };
-        'phrases': {
-          'xPhraseStringProperty': LocalizedStringProperty;
-          'primaryValueStringProperty': LocalizedStringProperty;
-          'primaryUndefinedStringProperty': LocalizedStringProperty;
-          'primaryHiddenStringProperty': LocalizedStringProperty;
-          'predictValueStringProperty': LocalizedStringProperty;
-          'predictUndefinedStringProperty': LocalizedStringProperty;
-          'predictHiddenStringProperty': LocalizedStringProperty;
+        'xPhraseStringProperty': LocalizedStringProperty;
+        'primaryPhrases': {
           'predictAndPrimaryStringProperty': LocalizedStringProperty;
+          'predictUndefinedStringProperty': LocalizedStringProperty;
+          'predictValueStringProperty': LocalizedStringProperty;
+          'predictHiddenStringProperty': LocalizedStringProperty;
+          'primaryUndefinedStringProperty': LocalizedStringProperty;
+          'primaryValueStringProperty': LocalizedStringProperty;
+          'primaryHiddenStringProperty': LocalizedStringProperty;
+        };
+        'integralPhrases': {
           'integralValueStringProperty': LocalizedStringProperty;
           'integralHiddenStringProperty': LocalizedStringProperty;
-          'derivativeValueStringProperty': LocalizedStringProperty;
+        };
+        'derivativePhrases': {
           'derivativeUndefinedStringProperty': LocalizedStringProperty;
+          'derivativeValueStringProperty': LocalizedStringProperty;
           'derivativeHiddenStringProperty': LocalizedStringProperty;
-          'secondDerivativeValueStringProperty': LocalizedStringProperty;
+        };
+        'secondDerivativePhrases': {
           'secondDerivativeUndefinedStringProperty': LocalizedStringProperty;
+          'secondDerivativeValueStringProperty': LocalizedStringProperty;
           'secondDerivativeHiddenStringProperty': LocalizedStringProperty;
+        }
+      }
+    };
+    'tangentTool': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse': {
+        'patternStringProperty': LocalizedStringProperty;
+        'xPhraseStringProperty': LocalizedStringProperty;
+        'slopePhrases': {
+          'slopeHiddenStringProperty': LocalizedStringProperty;
+          'slopeZeroValueStringProperty': LocalizedStringProperty;
+          'slopePositiveValueStringProperty': LocalizedStringProperty;
+          'slopeNegativeValueStringProperty': LocalizedStringProperty;
+        };
+        'derivativePhrases': {
+          'derivativeValueStringProperty': LocalizedStringProperty;
+          'derivativeHiddenStringProperty': LocalizedStringProperty;
         }
       }
     };
@@ -336,10 +344,12 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponse': {
         'patternStringProperty': LocalizedStringProperty;
-        'phrases': {
-          'xPhraseStringProperty': LocalizedStringProperty;
+        'xPhraseStringProperty': LocalizedStringProperty;
+        'integralPhrases': {
           'integralValueStringProperty': LocalizedStringProperty;
           'integralHiddenStringProperty': LocalizedStringProperty;
+        };
+        'areaPhrases': {
           'areaZeroValueStringProperty': LocalizedStringProperty;
           'areaPositiveValueStringProperty': LocalizedStringProperty;
           'areaNegativeValueStringProperty': LocalizedStringProperty;

@@ -566,42 +566,6 @@
         "value": "f of {$variable} hidden."
       }
     },
-    "tangentTool": {
-      "accessibleName": {
-        "value": "Tangent Tool"
-      },
-      "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve."
-      },
-      "accessibleObjectResponse": {
-        "pattern": {
-          "value": "{$xPhrase}, {$slopePhrase}, {$derivativePhrase}"
-        },
-        "phrases": {
-          "xPhrase": {
-            "value": "at {$variable} equals {$value}"
-          },
-          "slopeHidden": {
-            "value": "f curve hidden"
-          },
-          "slopeZeroValue": {
-            "value": "slope is zero"
-          },
-          "slopePositiveValue": {
-            "value": "slope is positive {$absoluteValue}"
-          },
-          "slopeNegativeValue": {
-            "value": "slope is negative {$absoluteValue}"
-          },
-          "derivativeValue": {
-            "value": "derivative at {$variable} is {$value}"
-          },
-          "derivativeHidden": {
-            "value": "derivative curve hidden"
-          }
-        }
-      }
-    },
     "referenceLineTool": {
       "accessibleName": {
         "value": "Reference Line"
@@ -624,54 +588,98 @@
             "value": "{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}"
           }
         },
-        "phrases": {
-          "xPhrase": {
-            "value": "at {$variable} equals {$value}"
-          },
-          "primaryValue": {
-            "value": "f of {$variable} is {$value}"
-          },
-          "primaryUndefined": {
-            "value": "f of {$variable} is undefined"
-          },
-          "primaryHidden": {
-            "value": "f curve hidden"
-          },
-          "predictValue": {
-            "value": "predict f of {$variable} is {$value}"
+        "xPhrase": {
+          "value": "at {$variable} equals {$value}"
+        },
+        "primaryPhrases": {
+          "predictAndPrimary": {
+            "value": "{$predictPhrase}, {$primaryPhrase}"
           },
           "predictUndefined": {
             "value": "predict f of {$variable} is undefined"
           },
+          "predictValue": {
+            "value": "predict f of {$variable} is {$value}"
+          },
           "predictHidden": {
             "value": "predict curve hidden"
           },
-          "predictAndPrimary": {
-            "value": "{$predictPhrase}, {$primaryPhrase}"
+          "primaryUndefined": {
+            "value": "f of {$variable} is undefined"
           },
+          "primaryValue": {
+            "value": "f of {$variable} is {$value}"
+          },
+          "primaryHidden": {
+            "value": "f curve hidden"
+          }
+        },
+        "integralPhrases": {
           "integralValue": {
             "value": "integral up to {$variable} is {$value}"
           },
           "integralHidden": {
             "value": "integral curve hidden"
+          }
+        },
+        "derivativePhrases": {
+          "derivativeUndefined": {
+            "value": "derivative at {$variable} is undefined"
           },
           "derivativeValue": {
             "value": "derivative at {$variable} is {$value}"
           },
-          "derivativeUndefined": {
-            "value": "derivative at {$variable} is undefined"
-          },
           "derivativeHidden": {
             "value": "derivative curve hidden"
+          }
+        },
+        "secondDerivativePhrases": {
+          "secondDerivativeUndefined": {
+            "value": "second derivative at {$variable} is undefined"
           },
           "secondDerivativeValue": {
             "value": "second derivative at {$variable} is {$value}"
           },
-          "secondDerivativeUndefined": {
-            "value": "second derivative at {$variable} is undefined"
-          },
           "secondDerivativeHidden": {
             "value": "second derivative curve hidden"
+          }
+        }
+      }
+    },
+    "tangentTool": {
+      "accessibleName": {
+        "value": "Tangent Tool"
+      },
+      "accessibleHelpText": {
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve."
+      },
+      "accessibleObjectResponse": {
+        "pattern": {
+          "value": "{$xPhrase}, {$slopePhrase}, {$derivativePhrase}"
+        },
+        "xPhrase": {
+          "value": "at {$variable} equals {$value}"
+        },
+        "slopePhrases": {
+          "slopeHidden": {
+            "value": "f curve hidden"
+          },
+          "slopeZeroValue": {
+            "value": "slope is zero"
+          },
+          "slopePositiveValue": {
+            "value": "slope is positive {$absoluteValue}"
+          },
+          "slopeNegativeValue": {
+            "value": "slope is negative {$absoluteValue}"
+          }
+        },
+        "derivativePhrases": {
+          "derivativeValue": {
+            "value": "derivative at {$variable} is {$value}"
+          },
+          "derivativeHidden": {
+            "value": "derivative curve hidden"
           }
         }
       }
@@ -687,16 +695,18 @@
         "pattern": {
           "value": "{$xPhrase}, {$integralPhrase}, {$areaPhrase}"
         },
-        "phrases": {
-          "xPhrase": {
-            "value": "at {$variable} equals {$value}"
-          },
+        "xPhrase": {
+          "value": "at {$variable} equals {$value}"
+        },
+        "integralPhrases": {
           "integralValue": {
             "value": "integral up to {$variable} is {$value}"
           },
           "integralHidden": {
             "value": "integral curve hidden"
-          },
+          }
+        },
+        "areaPhrases": {
           "areaZeroValue": {
             "value": "net signed area is zero under f"
           },
