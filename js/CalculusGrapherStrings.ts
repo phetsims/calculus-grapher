@@ -90,11 +90,30 @@ type StringsType = {
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
-    'gridCheckbox': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
+    'headings': {
+      'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
+      'explorationToolControlsStringProperty': LocalizedStringProperty;
+      'explorationToolsStringProperty': LocalizedStringProperty;
+      'curveActionsStringProperty': LocalizedStringProperty;
+    };
+    'originalGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'integralGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'derivativeGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'secondDerivativeGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'pushButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'smoothButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -149,43 +168,29 @@ type StringsType = {
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
-    'variableRadioButtonGroup': {
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'xRadioButton': {
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      };
-      'tRadioButton': {
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      }
-    };
-    'notationRadioButtonGroup': {
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'lagrangeRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      };
-      'leibnizRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      }
-    };
-    'discontinuitiesRadioButtonGroup': {
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'noLineRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      };
-      'dashedLineRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      }
-    };
-    'predictToggleSwitch': {
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'curveManipulationWidthSlider': {
+    'gridCheckbox': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
+    };
+    'showOriginalCurveCheckbox': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
+    };
+    'predictRadioButtonGroup': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'originalCurveRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'predictCurveRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
     };
     'curveManipulationModeRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -243,6 +248,44 @@ type StringsType = {
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
     };
+    'variableRadioButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'xRadioButton': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'tRadioButton': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
+    'notationRadioButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'lagrangeRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'leibnizRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
+    'discontinuitiesRadioButtonGroup': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'noLineRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'dashedLineRadioButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
+    'curveManipulationWidthSlider': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'predictToggleSwitch': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
     'slopeOfTangentAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
@@ -251,41 +294,23 @@ type StringsType = {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
-    'originalGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    'curveManipulator': {
+      'accessibleObjectResponseFocusedReleasedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseFocusedGrabbedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseGrabbedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseReleasedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseMovedReleasedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponseMovedGrabbedStringProperty': LocalizedStringProperty;
     };
-    'integralGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
-    };
-    'derivativeGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
-    };
-    'secondDerivativeGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
-    };
-    'predictRadioButtonGroup': {
+    'primaryCurveManipulator': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'originalCurveRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      };
-      'predictCurveRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      }
     };
-    'showOriginalCurveCheckbox': {
+    'predictCurveManipulator': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
-    'referenceLineTool': {
+    'referenceLine': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponse': {
@@ -356,31 +381,6 @@ type StringsType = {
           'areaHiddenStringProperty': LocalizedStringProperty;
         }
       }
-    };
-    'curveManipulator': {
-      'accessibleObjectResponseFocusedReleasedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseFocusedGrabbedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseGrabbedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseReleasedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseMovedReleasedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseMovedGrabbedStringProperty': LocalizedStringProperty;
-    };
-    'primaryCurveManipulator': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'predictCurveManipulator': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'pushButtonGroup': {
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'headings': {
-      'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
-      'explorationToolControlsStringProperty': LocalizedStringProperty;
-      'explorationToolsStringProperty': LocalizedStringProperty;
-      'curveActionsStringProperty': LocalizedStringProperty;
     }
   }
 };

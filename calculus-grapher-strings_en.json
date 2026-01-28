@@ -165,18 +165,55 @@
         }
       }
     },
-    "gridCheckbox": {
-      "accessibleName": {
-        "value": "Coordinate Grid Lines"
+    "headings": {
+      "curveManipulationSettingsAndControls": {
+        "value": "Curve Manipulation Settings and Controls"
       },
+      "explorationToolControls": {
+        "value": "Exploration Tool Controls"
+      },
+      "explorationTools": {
+        "value": "Exploration Tools"
+      },
+      "curveActions": {
+        "value": "Curve Actions"
+      }
+    },
+    "originalGraph": {
+      "accessibleHeading": {
+        "value": "Primary Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.originalGraph.accessibleParagraph"
+      }
+    },
+    "integralGraph": {
+      "accessibleHeading": {
+        "value": "Integral Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.integralGraph.accessibleParagraph"
+      }
+    },
+    "derivativeGraph": {
+      "accessibleHeading": {
+        "value": "First Derivative Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.derivativeGraph.accessibleParagraph"
+      }
+    },
+    "secondDerivativeGraph": {
+      "accessibleHeading": {
+        "value": "Second Derivative Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.secondDerivativeGraph.accessibleParagraph"
+      }
+    },
+    "pushButtonGroup": {
       "accessibleHelpText": {
-        "value": "Show or hide grid lines on all graphs."
-      },
-      "accessibleContextResponseChecked": {
-        "value": "Grid lines shown."
-      },
-      "accessibleContextResponseUnchecked": {
-        "value": "Grid lines hidden."
+        "value": "Choose action to take on curve in Primary Graph Area."
       }
     },
     "smoothButton": {
@@ -298,74 +335,56 @@
         "value": "Area Under Curve Tool removed."
       }
     },
-    "variableRadioButtonGroup": {
-      "accessibleHelpText": {
-        "value": "Choose variable for horizontal axis."
-      },
-      "xRadioButton": {
-        "accessibleHelpText": {
-          "value": "Label horizontal axis with x."
-        }
-      },
-      "tRadioButton": {
-        "accessibleHelpText": {
-          "value": "Label horizontal axis with t."
-        }
-      }
-    },
-    "notationRadioButtonGroup": {
-      "accessibleHelpText": {
-        "value": "Choose derivative notation."
-      },
-      "lagrangeRadioButton": {
-        "accessibleName": {
-          "value": "Lagrange, f prime of {$variable}"
-        },
-        "accessibleHelpText": {
-          "value": "Use apostrophes for derivatives."
-        }
-      },
-      "leibnizRadioButton": {
-        "accessibleName": {
-          "value": "Leibniz, d f over d {$variable}"
-        },
-        "accessibleHelpText": {
-          "value": "Show derivative as ratio of change in y with respect to {$variable}."
-        }
-      }
-    },
-    "discontinuitiesRadioButtonGroup": {
-      "accessibleHelpText": {
-        "value": "Choose how to display discontinuities in curves."
-      },
-      "noLineRadioButton": {
-        "accessibleName": {
-          "value": "No Line"
-        },
-        "accessibleHelpText": {
-          "value": "Leave gap between discontinuities."
-        }
-      },
-      "dashedLineRadioButton": {
-        "accessibleName": {
-          "value": "Dashed Line"
-        },
-        "accessibleHelpText": {
-          "value": "Connect discontinuities with dashed line."
-        }
-      }
-    },
-    "predictToggleSwitch": {
-      "accessibleHelpText": {
-        "value": "Adds a mode that allows you to predict f of {$variable}."
-      }
-    },
-    "curveManipulationWidthSlider": {
+    "gridCheckbox": {
       "accessibleName": {
-        "value": "Shape Width"
+        "value": "Coordinate Grid Lines"
       },
       "accessibleHelpText": {
-        "value": "Adjust width of curve manipulation shape. Width ranges from {$min} to {$max} {$variable} axis units."
+        "value": "Show or hide grid lines on all graphs."
+      },
+      "accessibleContextResponseChecked": {
+        "value": "Grid lines shown."
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "Grid lines hidden."
+      }
+    },
+    "showOriginalCurveCheckbox": {
+      "accessibleName": {
+        "value": "Show f of {$variable}"
+      },
+      "accessibleHelpText": {
+        "value": "Show or hide f of {$variable} concurrent with prediction curve."
+      },
+      "accessibleContextResponseChecked": {
+        "value": "f of {$variable} shown."
+      },
+      "accessibleContextResponseUnchecked": {
+        "value": "f of {$variable} hidden."
+      }
+    },
+    "predictRadioButtonGroup": {
+      "accessibleName": {
+        "value": "Curve to Manipulate"
+      },
+      "accessibleHelpText": {
+        "value": "Choose curve to manipulate in Primary Graph Area."
+      },
+      "originalCurveRadioButton": {
+        "accessibleName": {
+          "value": "f of {$variable}"
+        },
+        "accessibleHelpText": {
+          "value": "Manipulate f of {$variable} in Primary Graph Area."
+        }
+      },
+      "predictCurveRadioButton": {
+        "accessibleName": {
+          "value": "Predict"
+        },
+        "accessibleHelpText": {
+          "value": "Manipulate prediction curve to predict f of {$variable} based on other graphs."
+        }
       }
     },
     "curveManipulationModeRadioButtonGroup": {
@@ -480,6 +499,76 @@
         }
       }
     },
+    "variableRadioButtonGroup": {
+      "accessibleHelpText": {
+        "value": "Choose variable for horizontal axis."
+      },
+      "xRadioButton": {
+        "accessibleHelpText": {
+          "value": "Label horizontal axis with x."
+        }
+      },
+      "tRadioButton": {
+        "accessibleHelpText": {
+          "value": "Label horizontal axis with t."
+        }
+      }
+    },
+    "notationRadioButtonGroup": {
+      "accessibleHelpText": {
+        "value": "Choose derivative notation."
+      },
+      "lagrangeRadioButton": {
+        "accessibleName": {
+          "value": "Lagrange, f prime of {$variable}"
+        },
+        "accessibleHelpText": {
+          "value": "Use apostrophes for derivatives."
+        }
+      },
+      "leibnizRadioButton": {
+        "accessibleName": {
+          "value": "Leibniz, d f over d {$variable}"
+        },
+        "accessibleHelpText": {
+          "value": "Show derivative as ratio of change in y with respect to {$variable}."
+        }
+      }
+    },
+    "discontinuitiesRadioButtonGroup": {
+      "accessibleHelpText": {
+        "value": "Choose how to display discontinuities in curves."
+      },
+      "noLineRadioButton": {
+        "accessibleName": {
+          "value": "No Line"
+        },
+        "accessibleHelpText": {
+          "value": "Leave gap between discontinuities."
+        }
+      },
+      "dashedLineRadioButton": {
+        "accessibleName": {
+          "value": "Dashed Line"
+        },
+        "accessibleHelpText": {
+          "value": "Connect discontinuities with dashed line."
+        }
+      }
+    },
+    "curveManipulationWidthSlider": {
+      "accessibleName": {
+        "value": "Shape Width"
+      },
+      "accessibleHelpText": {
+        "value": "Adjust width of curve manipulation shape. Width ranges from {$min} to {$max} {$variable} axis units."
+      }
+    },
+    "predictToggleSwitch": {
+      "accessibleHelpText": {
+        "value": "Adds a mode that allows you to predict f of {$variable}."
+      }
+    },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
         "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
@@ -496,77 +585,43 @@
         "value": "Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
       }
     },
-    "originalGraph": {
-      "accessibleHeading": {
-        "value": "Primary Graph Area"
+    "curveManipulator": {
+      "accessibleObjectResponseFocusedReleased": {
+        "value": "at {$x} {$y}, off curve"
       },
-      "accessibleParagraph": {
-        "value": "TODO.originalGraph.accessibleParagraph"
+      "accessibleObjectResponseFocusedGrabbed": {
+        "value": "at {$x} {$y}, grabbed"
+      },
+      "accessibleObjectResponseGrabbed": {
+        "value": "grabbed at {$x} {$y}, shape added"
+      },
+      "accessibleObjectResponseReleased": {
+        "value": "released at {$x} {$y}, off curve"
+      },
+      "accessibleObjectResponseMovedReleased": {
+        "value": "at {$x} {$y}"
+      },
+      "accessibleObjectResponseMovedGrabbed": {
+        "value": "at {$x} {$y}, shape added"
       }
     },
-    "integralGraph": {
-      "accessibleHeading": {
-        "value": "Integral Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.integralGraph.accessibleParagraph"
-      }
-    },
-    "derivativeGraph": {
-      "accessibleHeading": {
-        "value": "First Derivative Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.derivativeGraph.accessibleParagraph"
-      }
-    },
-    "secondDerivativeGraph": {
-      "accessibleHeading": {
-        "value": "Second Derivative Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.secondDerivativeGraph.accessibleParagraph"
-      }
-    },
-    "predictRadioButtonGroup": {
+    "primaryCurveManipulator": {
       "accessibleName": {
-        "value": "Curve to Manipulate"
+        "value": "f of {$variable} Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "Choose curve to manipulate in Primary Graph Area."
-      },
-      "originalCurveRadioButton": {
-        "accessibleName": {
-          "value": "f of {$variable}"
-        },
-        "accessibleHelpText": {
-          "value": "Manipulate f of {$variable} in Primary Graph Area."
-        }
-      },
-      "predictCurveRadioButton": {
-        "accessibleName": {
-          "value": "Predict"
-        },
-        "accessibleHelpText": {
-          "value": "Manipulate prediction curve to predict f of {$variable} based on other graphs."
-        }
+        "value": "Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed."
       }
     },
-    "showOriginalCurveCheckbox": {
+    "predictCurveManipulator": {
       "accessibleName": {
-        "value": "Show f of {$variable}"
+        "value": "Prediction Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "Show or hide f of {$variable} concurrent with prediction curve."
-      },
-      "accessibleContextResponseChecked": {
-        "value": "f of {$variable} shown."
-      },
-      "accessibleContextResponseUnchecked": {
-        "value": "f of {$variable} hidden."
+        "value": "Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed."
       }
     },
-    "referenceLineTool": {
+    "referenceLine": {
       "accessibleName": {
         "value": "Reference Line"
       },
@@ -720,61 +775,6 @@
             "value": "f curve hidden"
           }
         }
-      }
-    },
-    "curveManipulator": {
-      "accessibleObjectResponseFocusedReleased": {
-        "value": "at {$x} {$y}, off curve"
-      },
-      "accessibleObjectResponseFocusedGrabbed": {
-        "value": "at {$x} {$y}, grabbed"
-      },
-      "accessibleObjectResponseGrabbed": {
-        "value": "grabbed at {$x} {$y}, shape added"
-      },
-      "accessibleObjectResponseReleased": {
-        "value": "released at {$x} {$y}, off curve"
-      },
-      "accessibleObjectResponseMovedReleased": {
-        "value": "at {$x} {$y}"
-      },
-      "accessibleObjectResponseMovedGrabbed": {
-        "value": "at {$x} {$y}, shape added"
-      }
-    },
-    "primaryCurveManipulator": {
-      "accessibleName": {
-        "value": "f of {$variable} Curve Manipulator"
-      },
-      "accessibleHelpText": {
-        "value": "Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed."
-      }
-    },
-    "predictCurveManipulator": {
-      "accessibleName": {
-        "value": "Prediction Curve Manipulator"
-      },
-      "accessibleHelpText": {
-        "value": "Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed."
-      }
-    },
-    "pushButtonGroup": {
-      "accessibleHelpText": {
-        "value": "Choose action to take on curve in Primary Graph Area."
-      }
-    },
-    "headings": {
-      "curveManipulationSettingsAndControls": {
-        "value": "Curve Manipulation Settings and Controls"
-      },
-      "explorationToolControls": {
-        "value": "Exploration Tool Controls"
-      },
-      "explorationTools": {
-        "value": "Exploration Tools"
-      },
-      "curveActions": {
-        "value": "Curve Actions"
       }
     }
   }

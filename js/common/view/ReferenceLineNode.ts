@@ -51,8 +51,8 @@ export default class ReferenceLineNode extends ScrubberNode {
       // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
       phetioHandleNodeVisiblePropertyInstrumented: false,
 
-      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.referenceLineTool.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.referenceLineTool.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.referenceLine.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.referenceLine.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     } );

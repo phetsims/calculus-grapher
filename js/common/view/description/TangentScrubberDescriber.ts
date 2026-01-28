@@ -88,14 +88,14 @@ export default class TangentScrubberDescriber {
       // y-value
       const point = this.tangentScrubber.derivativeCurvePointProperty.value;
       affirm( !point.isDiscontinuous, 'Tangent tool does not support discontinuities in derivative curve.' );
-      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.derivativePhrases.derivativeValue.format( {
+      derivativePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.derivativePhrases.derivativeValue.format( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
         value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
       } );
     }
     else {
       // hidden
-      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.derivativePhrases.derivativeHiddenStringProperty.value;
+      derivativePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.derivativePhrases.derivativeHiddenStringProperty.value;
     }
     return derivativePhrase;
   }
