@@ -574,7 +574,32 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve."
       },
       "accessibleObjectResponse": {
-        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, slope is {$absoluteDerivativeValue}, dot at {$derivativeValue}\n  [positive] at {$variable} equals {$x}, slope is positive {$absoluteDerivativeValue}, dot at {$derivativeValue}\n  *[negative] at {$variable} equals {$x}, slope is negative {$absoluteDerivativeValue}, dot at {$derivativeValue}\n}"
+        "pattern": {
+          "value": "{$xPhrase}, {$slopePhrase}, {$derivativePhrase}"
+        },
+        "phrases": {
+          "xPhrase": {
+            "value": "at {$variable} equals {$value}"
+          },
+          "slopeHidden": {
+            "value": "f curve hidden"
+          },
+          "slopeZeroValue": {
+            "value": "slope is zero"
+          },
+          "slopePositiveValue": {
+            "value": "slope is positive {$absoluteValue}"
+          },
+          "slopeNegativeValue": {
+            "value": "slope is negative {$absoluteValue}"
+          },
+          "derivativeValue": {
+            "value": "derivative at {$variable} is {$value}"
+          },
+          "derivativeHidden": {
+            "value": "derivative curve hidden"
+          }
+        }
       }
     },
     "referenceLineTool": {

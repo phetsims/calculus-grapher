@@ -221,14 +221,24 @@ a11y:
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
     accessibleContextResponseChecked:   f of {$variable} shown.
     accessibleContextResponseUnchecked: f of {$variable} hidden.
+
   tangentTool:
     accessibleName:     Tangent Tool
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve.
     accessibleObjectResponse:
-      select_sign:
-        zero:     at {$variable} equals {$x}, slope is {$absoluteDerivativeValue}, dot at {$derivativeValue}
-        positive: at {$variable} equals {$x}, slope is positive {$absoluteDerivativeValue}, dot at {$derivativeValue}
-        negative: at {$variable} equals {$x}, slope is negative {$absoluteDerivativeValue}, dot at {$derivativeValue}
+
+      # Pattern has a phrase placeholder for each graph that the tangent tool intersects.
+      pattern: '{$xPhrase}, {$slopePhrase}, {$derivativePhrase}'
+
+      # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
+      phrases:
+        xPhrase:             at {$variable} equals {$value}
+        slopeHidden:         f curve hidden
+        slopeZeroValue:      slope is zero
+        slopePositiveValue:  slope is positive {$absoluteValue}
+        slopeNegativeValue:  slope is negative {$absoluteValue}
+        derivativeValue:     derivative at {$variable} is {$value}
+        derivativeHidden:    derivative curve hidden
 
   referenceLineTool:
     accessibleName:     Reference Line
@@ -242,7 +252,7 @@ a11y:
         integralPrimaryDerivative:         '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}'
         primaryDerivativeSecondDerivative: '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}'
 
-      # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.
+      # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns
       phrases:
         xPhrase:                   at {$variable} equals {$value}
         primaryValue:              f of {$variable} is {$value}

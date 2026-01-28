@@ -8,6 +8,7 @@
 
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
+import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
@@ -27,16 +28,76 @@ export default class TangentScrubberDescriber {
    * Gets the accessible object response that describes the Tangent scrubber and what it intersects.
    */
   public getAccessibleObjectResponse(): string {
-
-    const derivativeValue = toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
-
-    return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.format( {
-      sign: derivativeValue === 0 ? 'zero' : derivativeValue > 0 ? 'positive' : 'negative',
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-      x: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      absoluteDerivativeValue: Math.abs( derivativeValue ),
-      derivativeValue: derivativeValue
+    return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.pattern.format( {
+      xPhrase: this.getXPhrase(),
+      slopePhrase: this.getSlopePhrase(),
+      derivativePhrase: this.getDerivativePhrase()
     } );
+  }
+
+  /**
+   * Gets the phrase that describes the reference line's position along the horizontal axis.
+   */
+  private getXPhrase(): string {
+    return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.xPhrase.format( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+      value: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+    } );
+  }
+
+  /**
+   * Gets the phrase that describes the slope of the line that is tangent to the primary curve.
+   * Slope is described as zero, positive, negative, or hidden.
+   */
+  private getSlopePhrase(): string {
+    let slopePhrase: string;
+    if ( this.primaryCurveLayerVisibleProperty.value ) {
+      affirm( !this.tangentScrubber.originalCurvePointProperty.value.isDiscontinuous, 'Tangent tool does not support discontinuities in primary curve.' );
+      const slope = this.tangentScrubber.derivativeCurvePointProperty.value.y;
+      if ( slope === 0 ) {
+        // zero
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopeZeroValueStringProperty.value;
+      }
+      else if ( slope > 0 ) {
+        // positive
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopePositiveValue.format( {
+          absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
+        } );
+      }
+      else {
+        // negative
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopeNegativeValue.format( {
+          absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
+        } );
+      }
+    }
+    else {
+      // hidden
+      slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.slopeHiddenStringProperty.value;
+    }
+    return slopePhrase;
+  }
+
+  /**
+   * Gets the phrase that describes the tangent tool's intersection with the derivative graph.
+   * The derivative is described as a y-value or hidden.
+   */
+  private getDerivativePhrase(): string {
+    let derivativePhrase: string;
+    if ( this.derivativeCurveLayerVisibleProperty.value ) {
+      // y-value
+      const point = this.tangentScrubber.derivativeCurvePointProperty.value;
+      affirm( !point.isDiscontinuous, 'Tangent tool does not support discontinuities in derivative curve.' );
+      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.derivativeValue.format( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+        value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+      } );
+    }
+    else {
+      // hidden
+      derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.derivativeHiddenStringProperty.value;
+    }
+    return derivativePhrase;
   }
 }
 

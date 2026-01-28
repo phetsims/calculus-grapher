@@ -181,7 +181,14 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChec
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
 addToMapIfDefined( 'a11y_tangentTool_accessibleName', 'a11y.tangentTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_tangentTool_accessibleHelpText', 'a11y.tangentTool.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse', 'a11y.tangentTool.accessibleObjectResponseStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_pattern', 'a11y.tangentTool.accessibleObjectResponse.patternStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_xPhrase', 'a11y.tangentTool.accessibleObjectResponse.phrases.xPhraseStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeHidden', 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeHiddenStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeZeroValue', 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeZeroValueStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_slopePositiveValue', 'a11y.tangentTool.accessibleObjectResponse.phrases.slopePositiveValueStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeNegativeValue', 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeNegativeValueStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_derivativeValue', 'a11y.tangentTool.accessibleObjectResponse.phrases.derivativeValueStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_phrases_derivativeHidden', 'a11y.tangentTool.accessibleObjectResponse.phrases.derivativeHiddenStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineTool_accessibleName', 'a11y.referenceLineTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineTool_accessibleHelpText', 'a11y.referenceLineTool.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponse_patterns_primaryDerivative', 'a11y.referenceLineTool.accessibleObjectResponse.patterns.primaryDerivativeStringProperty' );
@@ -511,7 +518,21 @@ const CalculusGrapherFluent = {
     tangentTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
-      accessibleObjectResponse: new FluentPattern<{ absoluteDerivativeValue: FluentVariable, derivativeValue: FluentVariable, sign: number | 'zero' | 'positive' | 'negative' | TReadOnlyProperty<number | 'zero' | 'positive' | 'negative'>, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponseStringProperty' ), [{"name":"absoluteDerivativeValue"},{"name":"derivativeValue"},{"name":"sign","variants":[{"type":"number","value":"zero"},"positive","negative"]},{"name":"variable"},{"name":"x"}] )
+      accessibleObjectResponse: {
+        _comment_0: new FluentComment( {"comment":"Pattern has a phrase placeholder for each graph that the tangent tool intersects.","associatedKey":"pattern"} ),
+        pattern: new FluentPattern<{ derivativePhrase: FluentVariable, slopePhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_pattern', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.patternStringProperty' ), [{"name":"derivativePhrase"},{"name":"slopePhrase"},{"name":"xPhrase"}] ),
+        _comment_1: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"phrases"} ),
+        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
+        phrases: {
+          xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_xPhrase', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
+          slopeHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeHidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeHiddenStringProperty' ) ),
+          slopeZeroValueStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeZeroValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeZeroValueStringProperty' ) ),
+          slopePositiveValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_slopePositiveValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.slopePositiveValueStringProperty' ), [{"name":"absoluteValue"}] ),
+          slopeNegativeValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeNegativeValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeNegativeValueStringProperty' ), [{"name":"absoluteValue"}] ),
+          derivativeValue: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_derivativeValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.derivativeValueStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
+          derivativeHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_derivativeHidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.derivativeHiddenStringProperty' ) )
+        }
+      }
     },
     referenceLineTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleNameStringProperty' ) ),
@@ -524,7 +545,8 @@ const CalculusGrapherFluent = {
           integralPrimaryDerivative: new FluentPattern<{ derivativePhrase: FluentVariable, integralPhrase: FluentVariable, primaryPhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse_patterns_integralPrimaryDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponse.patterns.integralPrimaryDerivativeStringProperty' ), [{"name":"derivativePhrase"},{"name":"integralPhrase"},{"name":"primaryPhrase"},{"name":"xPhrase"}] ),
           primaryDerivativeSecondDerivative: new FluentPattern<{ derivativePhrase: FluentVariable, primaryPhrase: FluentVariable, secondDerivativePhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse_patterns_primaryDerivativeSecondDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponse.patterns.primaryDerivativeSecondDerivativeStringProperty' ), [{"name":"derivativePhrase"},{"name":"primaryPhrase"},{"name":"secondDerivativePhrase"},{"name":"xPhrase"}] )
         },
-        _comment_1: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.","associatedKey":"phrases"} ),
+        _comment_1: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"phrases"} ),
+        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
         phrases: {
           xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse_phrases_xPhrase', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponse.phrases.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
           primaryValue: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse_phrases_primaryValue', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponse.phrases.primaryValueStringProperty' ), [{"name":"value"},{"name":"variable"}] ),

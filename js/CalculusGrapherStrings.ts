@@ -288,7 +288,18 @@ type StringsType = {
     'tangentTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse': {
+        'patternStringProperty': LocalizedStringProperty;
+        'phrases': {
+          'xPhraseStringProperty': LocalizedStringProperty;
+          'slopeHiddenStringProperty': LocalizedStringProperty;
+          'slopeZeroValueStringProperty': LocalizedStringProperty;
+          'slopePositiveValueStringProperty': LocalizedStringProperty;
+          'slopeNegativeValueStringProperty': LocalizedStringProperty;
+          'derivativeValueStringProperty': LocalizedStringProperty;
+          'derivativeHiddenStringProperty': LocalizedStringProperty;
+        }
+      }
     };
     'referenceLineTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
