@@ -162,8 +162,8 @@ export default class GraphsNode extends Node {
       this.secondDerivativeGraphNode ? this.secondDerivativeGraphNode.curveLayerVisibleProperty : new Property( false ) );
 
     // Reference Line, length adjusted depending on whether values are visible.
-    this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
-      referenceLineDescriber, options.tandem.createTandem( 'referenceLineNode' ) );
+    this.referenceLineNode = new ReferenceLineNode( model.referenceLine, referenceLineDescriber,
+      this.originalGraphNode.chartTransform, options.tandem.createTandem( 'referenceLineNode' ) );
     CalculusGrapherPreferences.valuesVisibleProperty.link( () => {
       const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 10 : 0 );
       const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers
