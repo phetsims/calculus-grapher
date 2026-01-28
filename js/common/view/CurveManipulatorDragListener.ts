@@ -137,7 +137,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
 
       end: ( event, listener ) => {
         // Fuzzing does not provide an event.
-        event && describer.doAccessibleObjectResponseMoved( event.isFromPDOM() );
+        event && describer.addAccessibleObjectResponseMoved( event.isFromPDOM() );
       },
 
       tandem: tandem

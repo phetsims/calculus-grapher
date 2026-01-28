@@ -76,7 +76,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     this.focusedProperty.lazyLink( focused => {
       if ( focused ) {
         curveManipulator.keyboardModeProperty.reset();
-        describer.doAccessibleObjectResponseFocused();
+        describer.addAccessibleObjectResponseFocused();
       }
     } );
 

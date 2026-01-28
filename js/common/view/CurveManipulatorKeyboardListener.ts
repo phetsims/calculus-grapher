@@ -43,7 +43,7 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
           keyboardModeProperty.value = 'grabbed';
           sharedSoundPlayers.get( 'checkboxChecked' ).play();
         }
-        describer.doAccessibleObjectResponseGrabbedReleased();
+        describer.addAccessibleObjectResponseGrabbedReleased();
       }
     } );
   }

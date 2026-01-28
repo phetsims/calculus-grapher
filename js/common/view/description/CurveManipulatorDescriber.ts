@@ -26,7 +26,7 @@ export default class CurveManipulatorDescriber {
   /**
    * Adds an accessible object response that describes the manipulator when it gets keyboard focus.
    */
-  public doAccessibleObjectResponseFocused(): void {
+  public addAccessibleObjectResponseFocused(): void {
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
@@ -48,7 +48,7 @@ export default class CurveManipulatorDescriber {
   /**
    * Add an accessible object response that describes the manipulator when it is moved.
    */
-  public doAccessibleObjectResponseMoved( isFromPDOM: boolean ): void {
+  public addAccessibleObjectResponseMoved( isFromPDOM: boolean ): void {
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
@@ -70,7 +70,7 @@ export default class CurveManipulatorDescriber {
   /**
    * Adds an accessible object response that describes the manipulator when it is grabbed or released with the keyboard.
    */
-  public doAccessibleObjectResponseGrabbedReleased(): void {
+  public addAccessibleObjectResponseGrabbedReleased(): void {
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
