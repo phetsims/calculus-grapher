@@ -36,6 +36,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
 
   public readonly curveManipulator: CurveManipulator;
   public readonly curveDragListener: CurveManipulatorDragListener;
+  private readonly describer: CurveManipulatorDescriber;
 
   public constructor( curveManipulator: CurveManipulator,
                       transformedCurve: TransformedCurve,
@@ -56,6 +57,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     super( options );
 
     this.curveManipulator = curveManipulator;
+    this.describer = new CurveManipulatorDescriber( this.curveManipulator );
 
     this.addLinkedElement( curveManipulator );
 
@@ -69,14 +71,12 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     // Change the focus highlight lineDash to indicate whether moving the manipulator with the keyboard will also change the curve.
     curveManipulator.keyboardModeProperty.link( keyboardMode => focusHighlightPath.setDashed( keyboardMode === 'grabbed' ) );
 
-    const describer = new CurveManipulatorDescriber( curveManipulator, this );
-
     // Whenever the manipulator gets focus, reset the keyboard manipulation mode to its initial state,
     // and add an accessible object response.
     this.focusedProperty.lazyLink( focused => {
       if ( focused ) {
         curveManipulator.keyboardModeProperty.reset();
-        describer.addAccessibleObjectResponseFocused();
+        this.doAccessibleObjectResponseFocused();
       }
     } );
 
@@ -86,17 +86,11 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     } );
 
     // Toggle between positioning the manipulator and modifying the curve.
-    this.addInputListener( new CurveManipulatorKeyboardListener( curveManipulator, describer,
-      options.tandem.createTandem( 'keyboardListener' ) ) );
+    this.addInputListener( new CurveManipulatorKeyboardListener( this, options.tandem.createTandem( 'keyboardListener' ) ) );
 
     // Drag the manipulator with pointer or keyboard.
-    this.curveDragListener = new CurveManipulatorDragListener(
-      curveManipulator,
-      describer,
-      transformedCurve,
-      chartTransform,
-      curveManipulationModeProperty,
-      curveManipulationWidthProperty,
+    this.curveDragListener = new CurveManipulatorDragListener( this, transformedCurve, chartTransform,
+      curveManipulationModeProperty, curveManipulationWidthProperty,
       options.tandem // CurveManipulatorDragListener will create tandem.dragListener and tandem.keyboardDragListener.
     );
     this.addInputListener( this.curveDragListener );
@@ -110,6 +104,18 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     if ( this.visible ) {
       this.curveDragListener.dragListener.press( event );
     }
+  }
+
+  private doAccessibleObjectResponseFocused(): void {
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseFocused() );
+  }
+
+  public doAccessibleObjectResponseMoved( isFromDOM: boolean ): void {
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseMoved( isFromDOM ) );
+  }
+
+  public doAccessibleObjectResponseGrabbedReleased(): void {
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseGrabbedReleased() );
   }
 }
 

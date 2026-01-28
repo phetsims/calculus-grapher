@@ -19,9 +19,8 @@ import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragList
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
-import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
-import CurveManipulatorDescriber from './description/CurveManipulatorDescriber.js';
+import CurveManipulatorNode from './CurveManipulatorNode.js';
 
 // Minimum x distance between drag points when drawing in FREEFORM mode.
 // See https://github.com/phetsims/calculus-grapher/issues/297
@@ -29,8 +28,7 @@ const FREEFORM_MIN_DX = 0.1;
 
 export default class CurveManipulatorDragListener extends SoundRichDragListener {
 
-  public constructor( curveManipulator: CurveManipulator,
-                      describer: CurveManipulatorDescriber,
+  public constructor( curveManipulatorNode: CurveManipulatorNode,
                       transformedCurve: TransformedCurve,
                       chartTransform: ChartTransform,
                       curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
@@ -42,6 +40,8 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
     // These are relevant only for CurveManipulationMode.FREEFORM.
     let penultimatePosition: Vector2 | null = null;
     let antepenultimatePosition: Vector2 | null = null;
+
+    const curveManipulator = curveManipulatorNode.curveManipulator;
 
     // Update whichever curve is currently interactive.
     const update = ( isEventFromPDOM: boolean, modelPosition: Vector2 ): void => {
@@ -137,7 +137,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
 
       end: ( event, listener ) => {
         // Fuzzing does not provide an event.
-        event && describer.addAccessibleObjectResponseMoved( event.isFromPDOM() );
+        event && curveManipulatorNode.doAccessibleObjectResponseMoved( event.isFromPDOM() );
       },
 
       tandem: tandem

@@ -1,13 +1,12 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * CurveManipulatorDescriber creates core descriptions for a curve manipulator.
+ * CurveManipulatorDescriber creates accessible responses for a curve manipulator.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
-import Node from '../../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
@@ -17,18 +16,14 @@ export default class CurveManipulatorDescriber {
 
   private readonly curveManipulator: CurveManipulator;
 
-  // Responses will be added to this Node.
-  private readonly curveManipulatorNode: Node;
-
-  public constructor( curveManipulator: CurveManipulator, curveManipulatorNode: Node ) {
+  public constructor( curveManipulator: CurveManipulator ) {
     this.curveManipulator = curveManipulator;
-    this.curveManipulatorNode = curveManipulatorNode;
   }
 
   /**
-   * Adds an accessible object response that describes the manipulator when it gets keyboard focus.
+   * Gets an accessible object response that describes the manipulator when it gets keyboard focus.
    */
-  public addAccessibleObjectResponseFocused(): void {
+  public getAccessibleObjectResponseFocused(): string {
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
@@ -44,13 +39,13 @@ export default class CurveManipulatorDescriber {
         y: yDescription
       } );
     }
-    this.curveManipulatorNode.addAccessibleObjectResponse( response );
+    return response;
   }
 
   /**
-   * Add an accessible object response that describes the manipulator when it is moved.
+   * Gets an accessible object response that describes the manipulator when it is moved.
    */
-  public addAccessibleObjectResponseMoved( isFromPDOM: boolean ): void {
+  public getAccessibleObjectResponseMoved( isFromPDOM: boolean ): string {
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
@@ -66,13 +61,13 @@ export default class CurveManipulatorDescriber {
         y: yDescription
       } );
     }
-    this.curveManipulatorNode.addAccessibleObjectResponse( response );
+    return response;
   }
 
   /**
-   * Adds an accessible object response that describes the manipulator when it is grabbed or released with the keyboard.
+   * Gets an accessible object response that describes the manipulator when it is grabbed or released with the keyboard.
    */
-  public addAccessibleObjectResponseGrabbedReleased(): void {
+  public getAccessibleObjectResponseGrabbedReleased(): string {
     let response: string;
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
@@ -88,7 +83,7 @@ export default class CurveManipulatorDescriber {
         y: yDescription
       } );
     }
-    this.curveManipulatorNode.addAccessibleObjectResponse( response );
+    return response;
   }
 }
 
