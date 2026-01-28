@@ -106,14 +106,23 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     }
   }
 
+  /**
+   * Adds an accessible object response that describes the manipulator when it gets keyboard focus.
+   */
   private doAccessibleObjectResponseFocused(): void {
     this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseFocused() );
   }
 
+  /**
+   * Adds an accessible object response that describes the manipulator when it is moved.
+   */
   public doAccessibleObjectResponseMoved( isFromDOM: boolean ): void {
     this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseMoved( isFromDOM ) );
   }
 
+  /**
+   * Adds an accessible object response that describes the manipulator when it is grabbed or released with the keyboard.
+   */
   public doAccessibleObjectResponseGrabbedReleased(): void {
     this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseGrabbedReleased() );
   }
