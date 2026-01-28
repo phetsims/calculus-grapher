@@ -24,7 +24,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import ReferenceLine from '../model/ReferenceLine.js';
-import ReferenceLineDescriber from './ReferenceLineDescriber.js';
+import ReferenceLineDescriber from './description/ReferenceLineDescriber.js';
 import ScrubberNode from './ScrubberNode.js';
 
 // number of decimal places shown for the x value, dragging snaps to this interval

@@ -6,16 +6,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
-import GraphSet from '../model/GraphSet.js';
-import GraphType from '../model/GraphType.js';
-import ReferenceLine from '../model/ReferenceLine.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
+import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
+import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
+import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
+import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
+import GraphSet from '../../model/GraphSet.js';
+import GraphType from '../../model/GraphType.js';
+import ReferenceLine from '../../model/ReferenceLine.js';
 
 export default class ReferenceLineDescriber {
 
