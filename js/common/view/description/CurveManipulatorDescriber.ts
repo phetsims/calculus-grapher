@@ -16,6 +16,8 @@ import CurveManipulator from '../../model/CurveManipulator.js';
 export default class CurveManipulatorDescriber {
 
   private readonly curveManipulator: CurveManipulator;
+
+  // Responses will be added to this Node.
   private readonly curveManipulatorNode: Node;
 
   public constructor( curveManipulator: CurveManipulator, curveManipulatorNode: Node ) {
