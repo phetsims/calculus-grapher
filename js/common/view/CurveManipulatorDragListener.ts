@@ -19,8 +19,9 @@ import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragList
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
-import CurveManipulatorNode from './CurveManipulatorNode.js';
+import CurveManipulatorDescriber from './description/CurveManipulatorDescriber.js';
 
 // Minimum x distance between drag points when drawing in FREEFORM mode.
 // See https://github.com/phetsims/calculus-grapher/issues/297
@@ -28,14 +29,13 @@ const FREEFORM_MIN_DX = 0.1;
 
 export default class CurveManipulatorDragListener extends SoundRichDragListener {
 
-  public constructor( curveManipulatorNode: CurveManipulatorNode,
+  public constructor( curveManipulator: CurveManipulator,
+                      describer: CurveManipulatorDescriber,
                       transformedCurve: TransformedCurve,
                       chartTransform: ChartTransform,
                       curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
                       curveManipulationWidthProperty: TReadOnlyProperty<number>,
                       tandem: Tandem ) {
-
-    const curveManipulator = curveManipulatorNode.curveManipulator;
 
     // Variables to keep track of old model positions associated with the dragListener.
     // Set them to null as no drag event has occurred yet.
@@ -137,7 +137,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
 
       end: ( event, listener ) => {
         // Fuzzing does not provide an event.
-        event && curveManipulatorNode.doAccessibleObjectResponseMoved( event.isFromPDOM() );
+        event && describer.doAccessibleObjectResponseMoved( event.isFromPDOM() );
       },
 
       tandem: tandem

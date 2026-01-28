@@ -14,7 +14,8 @@ import sharedSoundPlayers from '../../../../tambo/js/sharedSoundPlayers.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CurveManipulatorNode from './CurveManipulatorNode.js';
+import CurveManipulator from '../model/CurveManipulator.js';
+import CurveManipulatorDescriber from './description/CurveManipulatorDescriber.js';
 
 export default class CurveManipulatorKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
 
@@ -24,9 +25,9 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
     keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
-  public constructor( curveManipulatorNode: CurveManipulatorNode, tandem: Tandem ) {
+  public constructor( curveManipulator: CurveManipulator, describer: CurveManipulatorDescriber, tandem: Tandem ) {
 
-    const keyboardModeProperty = curveManipulatorNode.curveManipulator.keyboardModeProperty;
+    const keyboardModeProperty = curveManipulator.keyboardModeProperty;
 
     super( {
       tandem: tandem,
@@ -42,7 +43,7 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
           keyboardModeProperty.value = 'grabbed';
           sharedSoundPlayers.get( 'checkboxChecked' ).play();
         }
-        curveManipulatorNode.doAccessibleObjectResponseGrabbedReleased();
+        describer.doAccessibleObjectResponseGrabbedReleased();
       }
     } );
   }

@@ -8,7 +8,6 @@
 
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
-import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import Shape from '../../../../kite/js/Shape.js';
 import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -21,13 +20,12 @@ import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulatorDragListener from './CurveManipulatorDragListener.js';
 import CurveManipulatorKeyboardListener from './CurveManipulatorKeyboardListener.js';
+import CurveManipulatorDescriber from './description/CurveManipulatorDescriber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -71,12 +69,14 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     // Change the focus highlight lineDash to indicate whether moving the manipulator with the keyboard will also change the curve.
     curveManipulator.keyboardModeProperty.link( keyboardMode => focusHighlightPath.setDashed( keyboardMode === 'grabbed' ) );
 
+    const describer = new CurveManipulatorDescriber( curveManipulator, this );
+
     // Whenever the manipulator gets focus, reset the keyboard manipulation mode to its initial state,
     // and add an accessible object response.
     this.focusedProperty.lazyLink( focused => {
       if ( focused ) {
         curveManipulator.keyboardModeProperty.reset();
-        this.doAccessibleObjectResponseFocused();
+        describer.doAccessibleObjectResponseFocused();
       }
     } );
 
@@ -86,11 +86,13 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     } );
 
     // Toggle between positioning the manipulator and modifying the curve.
-    this.addInputListener( new CurveManipulatorKeyboardListener( this, options.tandem.createTandem( 'keyboardListener' ) ) );
+    this.addInputListener( new CurveManipulatorKeyboardListener( curveManipulator, describer,
+      options.tandem.createTandem( 'keyboardListener' ) ) );
 
     // Drag the manipulator with pointer or keyboard.
     this.curveDragListener = new CurveManipulatorDragListener(
-      this,
+      curveManipulator,
+      describer,
       transformedCurve,
       chartTransform,
       curveManipulationModeProperty,
@@ -108,72 +110,6 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
     if ( this.visible ) {
       this.curveDragListener.dragListener.press( event );
     }
-  }
-
-  /**
-   * Adds an accessible object response when the manipulator gets keyboard focus.
-   */
-  private doAccessibleObjectResponseFocused(): void {
-    let response: string;
-    const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
-    const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
-    if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
-      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseFocusedGrabbed.format( {
-        x: xDescription,
-        y: yDescription
-      } );
-    }
-    else {
-      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseFocusedReleased.format( {
-        x: xDescription,
-        y: yDescription
-      } );
-    }
-    this.addAccessibleObjectResponse( response );
-  }
-
-  /**
-   * Adds an accessible object response when the manipulator is moved with any form of input.
-   */
-  public doAccessibleObjectResponseMoved( isFromPDOM: boolean ): void {
-    let response: string;
-    const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
-    const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
-    if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' || !isFromPDOM ) {
-      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseMovedGrabbed.format( {
-        x: xDescription,
-        y: yDescription
-      } );
-    }
-    else {
-      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseMovedReleased.format( {
-        x: xDescription,
-        y: yDescription
-      } );
-    }
-    this.addAccessibleObjectResponse( response );
-  }
-
-  /**
-   * Adds an accessible object response when the manipulator is grabbed or released with the keyboard.
-   */
-  public doAccessibleObjectResponseGrabbedReleased(): void {
-    let response: string;
-    const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
-    const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
-    if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
-      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseGrabbed.format( {
-        x: xDescription,
-        y: yDescription
-      } );
-    }
-    else {
-      response = CalculusGrapherFluent.a11y.curveManipulator.accessibleObjectResponseReleased.format( {
-        x: xDescription,
-        y: yDescription
-      } );
-    }
-    this.addAccessibleObjectResponse( response );
   }
 }
 
