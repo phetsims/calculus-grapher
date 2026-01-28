@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * TangentScrubberDescriber creates accessible responses for the tangent scrubber.
+ * TangentScrubberDescriber creates accessible responses for the Tangent scrubber.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -24,7 +24,7 @@ export default class TangentScrubberDescriber {
   }
 
   /**
-   * Gets the accessible object response that describes the tangent scrubber and what it intersects.
+   * Gets the accessible object response that describes the Tangent scrubber and what it intersects.
    */
   public getAccessibleObjectResponse(): string {
 

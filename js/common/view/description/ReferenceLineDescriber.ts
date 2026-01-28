@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * ReferenceLineDescriber creates accessible responses for the reference line.
+ * ReferenceLineDescriber creates accessible responses for the Reference Line.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -32,7 +32,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the accessible object response that describes the reference line and what it intersects.
+   * Gets the accessible object response that describes the Reference Line and what it intersects.
    */
   public getAccessibleObjectResponse(): string {
 
