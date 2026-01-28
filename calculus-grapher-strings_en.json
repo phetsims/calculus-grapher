@@ -174,9 +174,6 @@
       },
       "explorationTools": {
         "value": "Exploration Tools"
-      },
-      "curveActions": {
-        "value": "Curve Actions"
       }
     },
     "slopeOfTangentAccordionBox": {
@@ -196,6 +193,9 @@
       }
     },
     "pushButtonGroup": {
+      "accessibleHeading": {
+        "value": "Curve Actions"
+      },
       "accessibleHelpText": {
         "value": "Choose action to take on curve in Primary Graph Area."
       }

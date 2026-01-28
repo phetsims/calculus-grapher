@@ -81,7 +81,6 @@ a11y:
     curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
     explorationToolControls:              Exploration Tool Controls
     explorationTools:                     Exploration Tools
-    curveActions:                         Curve Actions
 
   #=======================================================================================================
   # Accordion Boxes
@@ -95,12 +94,12 @@ a11y:
     accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
     accessibleParagraph:         Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
 
-
   #=======================================================================================================
   # Buttons
   #=======================================================================================================
 
   pushButtonGroup:
+    accessibleHeading:  Curve Actions
     accessibleHelpText: Choose action to take on curve in Primary Graph Area.
 
   smoothButton:

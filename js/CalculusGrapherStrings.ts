@@ -94,7 +94,6 @@ type StringsType = {
       'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
       'explorationToolControlsStringProperty': LocalizedStringProperty;
       'explorationToolsStringProperty': LocalizedStringProperty;
-      'curveActionsStringProperty': LocalizedStringProperty;
     };
     'slopeOfTangentAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
@@ -105,6 +104,7 @@ type StringsType = {
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'pushButtonGroup': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'smoothButton': {
