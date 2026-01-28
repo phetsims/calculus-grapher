@@ -84,24 +84,17 @@ a11y:
     curveActions:                         Curve Actions
 
   #=======================================================================================================
-  # Graph Areas
+  # Accordion Boxes
   #=======================================================================================================
 
-  originalGraph:
-    accessibleHeading:   Primary Graph Area
-    accessibleParagraph: TODO.originalGraph.accessibleParagraph
+  slopeOfTangentAccordionBox:
+    accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool.
+    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}.
 
-  integralGraph:
-    accessibleHeading:   Integral Graph Area
-    accessibleParagraph: TODO.integralGraph.accessibleParagraph
+  netSignedAreaAccordionBox:
+    accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
+    accessibleParagraph:         Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
 
-  derivativeGraph:
-    accessibleHeading:   First Derivative Graph Area
-    accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
-
-  secondDerivativeGraph:
-    accessibleHeading:   Second Derivative Graph Area
-    accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
 
   #=======================================================================================================
   # Buttons
@@ -189,6 +182,26 @@ a11y:
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
     accessibleContextResponseChecked:   f of {$variable} shown.
     accessibleContextResponseUnchecked: f of {$variable} hidden.
+
+  #=======================================================================================================
+  # Graph Areas
+  #=======================================================================================================
+
+  originalGraph:
+    accessibleHeading:   Primary Graph Area
+    accessibleParagraph: TODO.originalGraph.accessibleParagraph
+
+  integralGraph:
+    accessibleHeading:   Integral Graph Area
+    accessibleParagraph: TODO.integralGraph.accessibleParagraph
+
+  derivativeGraph:
+    accessibleHeading:   First Derivative Graph Area
+    accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
+
+  secondDerivativeGraph:
+    accessibleHeading:   Second Derivative Graph Area
+    accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
 
   #=======================================================================================================
   # Radio Button Groups
@@ -291,18 +304,6 @@ a11y:
   # Predict control in Preferences > Simulation
   predictToggleSwitch:
     accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
-
-  #=======================================================================================================
-  # Accordion Boxes
-  #=======================================================================================================
-
-  slopeOfTangentAccordionBox:
-    accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool.
-    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}.
-
-  netSignedAreaAccordionBox:
-    accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
-    accessibleParagraph:         Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
 
   #=======================================================================================================
   # Tools

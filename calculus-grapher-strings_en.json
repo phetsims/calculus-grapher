@@ -179,36 +179,20 @@
         "value": "Curve Actions"
       }
     },
-    "originalGraph": {
-      "accessibleHeading": {
-        "value": "Primary Graph Area"
+    "slopeOfTangentAccordionBox": {
+      "accessibleHelpTextCollapsed": {
+        "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "TODO.originalGraph.accessibleParagraph"
+        "value": "At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}."
       }
     },
-    "integralGraph": {
-      "accessibleHeading": {
-        "value": "Integral Graph Area"
+    "netSignedAreaAccordionBox": {
+      "accessibleHelpTextCollapsed": {
+        "value": "Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool."
       },
       "accessibleParagraph": {
-        "value": "TODO.integralGraph.accessibleParagraph"
-      }
-    },
-    "derivativeGraph": {
-      "accessibleHeading": {
-        "value": "First Derivative Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.derivativeGraph.accessibleParagraph"
-      }
-    },
-    "secondDerivativeGraph": {
-      "accessibleHeading": {
-        "value": "Second Derivative Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.secondDerivativeGraph.accessibleParagraph"
+        "value": "Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
       }
     },
     "pushButtonGroup": {
@@ -361,6 +345,38 @@
       },
       "accessibleContextResponseUnchecked": {
         "value": "f of {$variable} hidden."
+      }
+    },
+    "originalGraph": {
+      "accessibleHeading": {
+        "value": "Primary Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.originalGraph.accessibleParagraph"
+      }
+    },
+    "integralGraph": {
+      "accessibleHeading": {
+        "value": "Integral Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.integralGraph.accessibleParagraph"
+      }
+    },
+    "derivativeGraph": {
+      "accessibleHeading": {
+        "value": "First Derivative Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.derivativeGraph.accessibleParagraph"
+      }
+    },
+    "secondDerivativeGraph": {
+      "accessibleHeading": {
+        "value": "Second Derivative Graph Area"
+      },
+      "accessibleParagraph": {
+        "value": "TODO.secondDerivativeGraph.accessibleParagraph"
       }
     },
     "predictRadioButtonGroup": {
@@ -567,22 +583,6 @@
     "predictToggleSwitch": {
       "accessibleHelpText": {
         "value": "Adds a mode that allows you to predict f of {$variable}."
-      }
-    },
-    "slopeOfTangentAccordionBox": {
-      "accessibleHelpTextCollapsed": {
-        "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
-      },
-      "accessibleParagraph": {
-        "value": "At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}."
-      }
-    },
-    "netSignedAreaAccordionBox": {
-      "accessibleHelpTextCollapsed": {
-        "value": "Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool."
-      },
-      "accessibleParagraph": {
-        "value": "Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
       }
     },
     "curveManipulator": {

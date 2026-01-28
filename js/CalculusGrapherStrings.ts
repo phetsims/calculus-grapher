@@ -96,20 +96,12 @@ type StringsType = {
       'explorationToolsStringProperty': LocalizedStringProperty;
       'curveActionsStringProperty': LocalizedStringProperty;
     };
-    'originalGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
+    'slopeOfTangentAccordionBox': {
+      'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
-    'integralGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
-    };
-    'derivativeGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
-    };
-    'secondDerivativeGraph': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
+    'netSignedAreaAccordionBox': {
+      'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'pushButtonGroup': {
@@ -179,6 +171,22 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
+    };
+    'originalGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'integralGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'derivativeGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
+    };
+    'secondDerivativeGraph': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'predictRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -285,14 +293,6 @@ type StringsType = {
     };
     'predictToggleSwitch': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'slopeOfTangentAccordionBox': {
-      'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
-    };
-    'netSignedAreaAccordionBox': {
-      'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'curveManipulator': {
       'accessibleObjectResponseFocusedReleasedStringProperty': LocalizedStringProperty;
