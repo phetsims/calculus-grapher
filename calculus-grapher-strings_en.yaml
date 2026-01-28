@@ -98,6 +98,7 @@ a11y:
   # Buttons
   #=======================================================================================================
 
+  # Push buttons at the bottom of the control panel.
   pushButtonGroup:
     accessibleHeading:  Curve Actions
     accessibleHelpText: Choose action to take on curve in Primary Graph Area.
