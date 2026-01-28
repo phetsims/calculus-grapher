@@ -104,7 +104,7 @@ export default class ReferenceLineDescriber {
 
   /**
    * Gets the phrase that describes the reference line's intersection with the predict curve.
-   * The predict curve is described as undefined (if there is a discontinuity), a number, or hidden.
+   * The predict curve is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getPredictCurvePhrase(): string {
     let predictPhrase: string;
@@ -117,7 +117,7 @@ export default class ReferenceLineDescriber {
         } );
       }
       else {
-        // numeric y-value
+        // y-value
         predictPhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.predictValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
@@ -133,7 +133,7 @@ export default class ReferenceLineDescriber {
 
   /**
    * Gets the phrase that describes the reference line's intersection with the primary curve.
-   * The primary curve is described as undefined (if there is a discontinuity), a number, or hidden.
+   * The primary curve is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getPrimaryCurvePhrase(): string {
     let primaryCurvePhrase: string;
@@ -146,7 +146,7 @@ export default class ReferenceLineDescriber {
         } );
       }
       else {
-        // numeric y-value
+        // y-value
         primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.primaryValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
@@ -162,12 +162,12 @@ export default class ReferenceLineDescriber {
 
   /**
    * Gets the phrase that describes the reference line's intersection with the integral graph.
-   * The integral is described as a number or hidden.
+   * The integral is described as a y-value or hidden.
    */
   private getIntegralPhrase(): string {
     let integralPhrase: string;
     if ( this.integralCurveLayerVisibleProperty.value ) {
-      // numeric y-value
+      // y-value
       integralPhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.integralValue.format( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
         value: toFixedNumber( this.referenceLine.integralCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
@@ -182,7 +182,7 @@ export default class ReferenceLineDescriber {
 
   /**
    * Gets the phrase that describes the reference line's intersection with the derivative graph.
-   * The derivative is described as undefined (if there is a discontinuity), a number, or hidden.
+   * The derivative is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getDerivativePhrase(): string {
     let derivativePhrase: string;
@@ -195,7 +195,7 @@ export default class ReferenceLineDescriber {
         } );
       }
       else {
-        // numeric y-value
+        // y-value
         derivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.derivativeValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
@@ -211,7 +211,7 @@ export default class ReferenceLineDescriber {
 
   /**
    * Gets the phrase that describes the reference line's intersection with the second derivative graph.
-   * The second derivative is described as undefined (if there is a discontinuity), a number, or hidden.
+   * The second derivative is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getSecondDerivativePhrase(): string {
     let secondDerivativePhrase: string;
@@ -224,7 +224,7 @@ export default class ReferenceLineDescriber {
         } );
       }
       else {
-        // numeric y-value
+        // y-value
         secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.secondDerivativeValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
