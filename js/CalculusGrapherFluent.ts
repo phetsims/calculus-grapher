@@ -390,6 +390,7 @@ const CalculusGrapherFluent = {
       accessibleContextResponsePrimaryCurve: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_undoButton_accessibleContextResponsePrimaryCurve', _.get( CalculusGrapherStrings, 'a11y.undoButton.accessibleContextResponsePrimaryCurveStringProperty' ), [{"name":"variable"}] ),
       accessibleContextResponsePredictCurveStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_undoButton_accessibleContextResponsePredictCurve', _.get( CalculusGrapherStrings, 'a11y.undoButton.accessibleContextResponsePredictCurveStringProperty' ) )
     },
+    _comment_17: new FluentComment( {"comment":"Controls visibility of curves on a graph, and accessibleName is specific to the graph.","associatedKey":"eyeToggleButton"} ),
     eyeToggleButton: {
       accessibleName: {
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleName_integral', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleName.integralStringProperty' ) ),
@@ -401,6 +402,7 @@ const CalculusGrapherFluent = {
       accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleContextResponseOffStringProperty' ) ),
       accessibleContextResponseOnStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleContextResponseOn', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleContextResponseOnStringProperty' ) )
     },
+    _comment_18: new FluentComment( {"comment":"Zooms the y-axis of a graph, and accessibleNames are specific to the graph.","associatedKey":"yZoomButtonGroup"} ),
     yZoomButtonGroup: {
       zoomInButton: {
         accessibleName: {
@@ -421,9 +423,9 @@ const CalculusGrapherFluent = {
         accessibleContextResponse: new FluentPattern<{ max: FluentVariable, min: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponseStringProperty' ), [{"name":"max"},{"name":"min"}] )
       }
     },
-    _comment_17: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"tangentCheckbox"} ),
-    _comment_18: new FluentComment( {"comment":"Checkboxes","associatedKey":"tangentCheckbox"} ),
     _comment_19: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"tangentCheckbox"} ),
+    _comment_20: new FluentComment( {"comment":"Checkboxes","associatedKey":"tangentCheckbox"} ),
+    _comment_21: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"tangentCheckbox"} ),
     tangentCheckbox: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentCheckbox_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentCheckbox.accessibleHelpTextStringProperty' ) ),
       accessibleContextResponseCheckedStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentCheckbox_accessibleContextResponseChecked', _.get( CalculusGrapherStrings, 'a11y.tangentCheckbox.accessibleContextResponseCheckedStringProperty' ) ),
@@ -453,9 +455,9 @@ const CalculusGrapherFluent = {
       accessibleContextResponseChecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' ), [{"name":"variable"}] ),
       accessibleContextResponseUnchecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' ), [{"name":"variable"}] )
     },
-    _comment_20: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"originalGraph"} ),
-    _comment_21: new FluentComment( {"comment":"Graph Areas","associatedKey":"originalGraph"} ),
     _comment_22: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"originalGraph"} ),
+    _comment_23: new FluentComment( {"comment":"Graph Areas","associatedKey":"originalGraph"} ),
+    _comment_24: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"originalGraph"} ),
     originalGraph: {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_originalGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.originalGraph.accessibleHeadingStringProperty' ) ),
       accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_originalGraph_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.originalGraph.accessibleParagraphStringProperty' ) )
@@ -472,9 +474,9 @@ const CalculusGrapherFluent = {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraph.accessibleHeadingStringProperty' ) ),
       accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraph_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraph.accessibleParagraphStringProperty' ) )
     },
-    _comment_23: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
-    _comment_24: new FluentComment( {"comment":"Radio Button Groups","associatedKey":"predictRadioButtonGroup"} ),
     _comment_25: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_26: new FluentComment( {"comment":"Radio Button Groups","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_27: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
     predictRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -543,7 +545,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryDerivativeSecondDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_26: new FluentComment( {"comment":"Variable control in Preferences > Simulation","associatedKey":"variableRadioButtonGroup"} ),
+    _comment_28: new FluentComment( {"comment":"Variable control in Preferences > Simulation","associatedKey":"variableRadioButtonGroup"} ),
     variableRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_variableRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.variableRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       xRadioButton: {
@@ -553,7 +555,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_variableRadioButtonGroup_tRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.variableRadioButtonGroup.tRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_27: new FluentComment( {"comment":"Notation control in Preferences > Simulation","associatedKey":"notationRadioButtonGroup"} ),
+    _comment_29: new FluentComment( {"comment":"Notation control in Preferences > Simulation","associatedKey":"notationRadioButtonGroup"} ),
     notationRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_notationRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       lagrangeRadioButton: {
@@ -565,7 +567,7 @@ const CalculusGrapherFluent = {
         accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_notationRadioButtonGroup_leibnizRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
       }
     },
-    _comment_28: new FluentComment( {"comment":"Discontinuities control in Preferences > Simulation","associatedKey":"discontinuitiesRadioButtonGroup"} ),
+    _comment_30: new FluentComment( {"comment":"Discontinuities control in Preferences > Simulation","associatedKey":"discontinuitiesRadioButtonGroup"} ),
     discontinuitiesRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_discontinuitiesRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.discontinuitiesRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       noLineRadioButton: {
@@ -577,24 +579,24 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_discontinuitiesRadioButtonGroup_dashedLineRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_29: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulationWidthSlider"} ),
-    _comment_30: new FluentComment( {"comment":"Sliders","associatedKey":"curveManipulationWidthSlider"} ),
     _comment_31: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulationWidthSlider"} ),
+    _comment_32: new FluentComment( {"comment":"Sliders","associatedKey":"curveManipulationWidthSlider"} ),
+    _comment_33: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulationWidthSlider"} ),
     curveManipulationWidthSlider: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationWidthSlider_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationWidthSlider.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ max: FluentVariable, min: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationWidthSlider_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationWidthSlider.accessibleHelpTextStringProperty' ), [{"name":"max"},{"name":"min"},{"name":"variable"}] )
     },
-    _comment_32: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
-    _comment_33: new FluentComment( {"comment":"Switches","associatedKey":"predictToggleSwitch"} ),
     _comment_34: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
-    _comment_35: new FluentComment( {"comment":"Predict control in Preferences > Simulation","associatedKey":"predictToggleSwitch"} ),
+    _comment_35: new FluentComment( {"comment":"Switches","associatedKey":"predictToggleSwitch"} ),
+    _comment_36: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
+    _comment_37: new FluentComment( {"comment":"Predict control in Preferences > Simulation","associatedKey":"predictToggleSwitch"} ),
     predictToggleSwitch: {
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_predictToggleSwitch_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictToggleSwitch.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
     },
-    _comment_36: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
-    _comment_37: new FluentComment( {"comment":"Tools","associatedKey":"curveManipulator"} ),
     _comment_38: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
-    _comment_39: new FluentComment( {"comment":"Curve Manipulators","associatedKey":"curveManipulator"} ),
+    _comment_39: new FluentComment( {"comment":"Tools","associatedKey":"curveManipulator"} ),
+    _comment_40: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
+    _comment_41: new FluentComment( {"comment":"Curve Manipulators","associatedKey":"curveManipulator"} ),
     curveManipulator: {
       accessibleObjectResponseFocusedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseFocusedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseFocusedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
       accessibleObjectResponseFocusedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseFocusedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseFocusedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
@@ -611,7 +613,7 @@ const CalculusGrapherFluent = {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictCurveManipulator_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictCurveManipulator.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_predictCurveManipulator_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictCurveManipulator.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
     },
-    _comment_40: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
+    _comment_42: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
     referenceLine: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
@@ -652,7 +654,7 @@ const CalculusGrapherFluent = {
         }
       }
     },
-    _comment_41: new FluentComment( {"comment":"Tangent Tool","associatedKey":"tangentTool"} ),
+    _comment_43: new FluentComment( {"comment":"Tangent Tool","associatedKey":"tangentTool"} ),
     tangentTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
@@ -676,7 +678,7 @@ const CalculusGrapherFluent = {
         }
       }
     },
-    _comment_42: new FluentComment( {"comment":"Area Under Curve Tool","associatedKey":"areaUnderCurveTool"} ),
+    _comment_44: new FluentComment( {"comment":"Area Under Curve Tool","associatedKey":"areaUnderCurveTool"} ),
     areaUnderCurveTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),

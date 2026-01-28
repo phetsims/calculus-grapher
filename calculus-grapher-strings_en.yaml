@@ -121,6 +121,7 @@ a11y:
     accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable} and all curves.
     accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve only.
 
+  # Controls visibility of curves on a graph, and accessibleName is specific to the graph.
   eyeToggleButton:
     accessibleName:
       integral:         Integral Curve Visibility
@@ -131,6 +132,7 @@ a11y:
     accessibleContextResponseOff: Curve hidden.
     accessibleContextResponseOn:  Curve shown.
 
+  # Zooms the y-axis of a graph, and accessibleNames are specific to the graph.
   yZoomButtonGroup:
     zoomInButton:
       accessibleName:
