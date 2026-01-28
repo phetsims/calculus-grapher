@@ -586,9 +586,12 @@
       },
       "accessibleObjectResponse": {
         "patterns": {
-          "value": "{ $graphSet ->\n  [primaryDerivative] at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}\n  [integralPrimary] at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}\n  [integralPrimaryDerivative] at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  *[primaryDerivativeSecondDerivative] at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}\n}"
+          "value": "{ $graphSet ->\n  [primaryDerivative] {$xPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  [integralPrimary] {$xPhrase}, {$integralPhrase}, {$primaryPhrase}\n  [integralPrimaryDerivative] {$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  *[primaryDerivativeSecondDerivative] {$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}\n}"
         },
         "phrases": {
+          "xPhrase": {
+            "value": "at {$variable} equals {$value}"
+          },
           "primaryValue": {
             "value": "f of {$variable} is {$value}"
           },

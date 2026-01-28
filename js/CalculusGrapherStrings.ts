@@ -296,6 +296,7 @@ type StringsType = {
       'accessibleObjectResponse': {
         'patternsStringProperty': LocalizedStringProperty;
         'phrases': {
+          'xPhraseStringProperty': LocalizedStringProperty;
           'primaryValueStringProperty': LocalizedStringProperty;
           'primaryUndefinedStringProperty': LocalizedStringProperty;
           'primaryHiddenStringProperty': LocalizedStringProperty;

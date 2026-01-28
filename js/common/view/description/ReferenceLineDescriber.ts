@@ -56,16 +56,25 @@ export default class ReferenceLineDescriber {
     }
 
     // Since we're using a Fluent selector, the set of placeholders is the union of the placeholders in all selectable
-    // patterns. Since the reference line computes points on all graphs (regardless of whether they are visible) it
-    // simplifies the implementation to similarly compute the core description for every graph.
+    // patterns. Since the reference line computes points on all graphs (regardless of whether they are visible), it
+    // simplifies the implementation to similarly compute the core description for all placeholders.
     return CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.patterns.format( {
       graphSet: graphSetSelector,
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-      xValue: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
+      xPhrase: this.getXPhrase(),
       primaryPhrase: this.getPrimaryPhrase(),
       integralPhrase: this.getIntegralPhrase(),
       derivativePhrase: this.getDerivativePhrase(),
       secondDerivativePhrase: this.getSecondDerivativePhrase()
+    } );
+  }
+
+  /**
+   * Gets the phrase that describes the reference line's position along the horizontal axis.
+   */
+  private getXPhrase(): string {
+    return CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.xPhrase.format( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+      value: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
     } );
   }
 
