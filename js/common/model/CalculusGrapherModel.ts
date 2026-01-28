@@ -208,10 +208,8 @@ export default class CalculusGrapherModel implements TModel {
     this.activeCurveManipulatorProperty = new DerivedProperty( [ this.predictEnabledProperty ],
       predictEnabled => predictEnabled ? this.predictCurveManipulator : this.originalCurveManipulator );
 
-    this.referenceLine = new ReferenceLine(
-      this.integralCurve, this.originalCurve, this.derivativeCurve, this.secondDerivativeCurve,
-      this.toolsTandem.createTandem( 'referenceLine' )
-    );
+    this.referenceLine = new ReferenceLine( this.integralCurve, this.originalCurve, this.predictCurve,
+      this.derivativeCurve, this.secondDerivativeCurve, this.toolsTandem.createTandem( 'referenceLine' ) );
 
     // This exists so that we have something we can link to from the view.
     // See https://github.com/phetsims/calculus-grapher/issues/198
@@ -225,6 +223,7 @@ export default class CalculusGrapherModel implements TModel {
       CalculusGrapherConstants.NUMBER_OF_LABELED_POINTS,
       this.integralCurve,
       this.originalCurve,
+      this.predictCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
       this.labeledPointsLinkableElement.tandem );
@@ -242,6 +241,7 @@ export default class CalculusGrapherModel implements TModel {
       CalculusGrapherConstants.NUMBER_OF_LABELED_LINES,
       this.integralCurve,
       this.originalCurve,
+      this.predictCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
       this.labeledLinesLinkableElement.tandem );

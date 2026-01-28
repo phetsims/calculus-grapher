@@ -25,11 +25,12 @@ export default class ReferenceLine extends AncillaryTool {
 
   public constructor( integralCurve: Curve,
                       originalCurve: Curve,
+                      predictedCurve: Curve,
                       derivativeCurve: Curve,
                       secondDerivativeCurve: Curve,
                       tandem: Tandem ) {
 
-    super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+    super( integralCurve, originalCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {
 
       // A bit right of center, see https://github.com/phetsims/calculus-grapher/issues/248
       x: ( CalculusGrapherConstants.CURVE_X_RANGE.min + 0.55 * CalculusGrapherConstants.CURVE_X_RANGE.getLength() ),

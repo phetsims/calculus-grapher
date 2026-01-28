@@ -585,7 +585,64 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
-        "value": "{ $graphSet ->\n  [primaryDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}\n  [integralPrimary] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}\n  [integralPrimaryDerivative] at {$variable} equals {$x}, integral is {$integralValue}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}\n  *[primaryDerivativeSecondDerivative] at {$variable} equals {$x}, f of {$variable} is {$y}, f prime of {$variable} is {$derivativeValue}, f double prime of {$variable} is {$secondDerivativeValue}\n}"
+        "patterns": {
+          "value": "{ $graphSet ->\n  [primaryDerivative] at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}\n  [integralPrimary] at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}\n  [integralPrimaryDerivative] at {$variable} equals {$xValue}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}\n  *[primaryDerivativeSecondDerivative] at {$variable} equals {$xValue}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}\n}"
+        },
+        "phrases": {
+          "primaryPhrases": {
+            "primaryValue": {
+              "value": "f of {$variable} is {$value}"
+            },
+            "primaryUndefined": {
+              "value": "f of {$variable} is undefined"
+            },
+            "primaryHidden": {
+              "value": "f curve hidden"
+            },
+            "predictValue": {
+              "value": "predict f of {$variable} is {$value}"
+            },
+            "predictUndefined": {
+              "value": "predict f of {$variable} is undefined"
+            },
+            "predictHidden": {
+              "value": "predict curve hidden"
+            },
+            "bothCurves": {
+              "value": "{$predictPhrase}, {$primaryPhrase}"
+            }
+          },
+          "integralPhrases": {
+            "numberValue": {
+              "value": "integral up to {$variable} is {$value}"
+            },
+            "hidden": {
+              "value": "integral curve hidden"
+            }
+          },
+          "derivativePhrases": {
+            "numberValue": {
+              "value": "derivative at {$variable} is {$value}"
+            },
+            "undefined": {
+              "value": "derivative at {$variable} is undefined"
+            },
+            "hidden": {
+              "value": "derivative curve hidden"
+            }
+          },
+          "secondDerivativePhrases": {
+            "numberValue": {
+              "value": "second derivative at {$variable} is {$value}"
+            },
+            "undefined": {
+              "value": "second derivative at {$variable} is undefined"
+            },
+            "hidden": {
+              "value": "second derivative curve hidden"
+            }
+          }
+        }
       }
     },
     "areaUnderCurveTool": {

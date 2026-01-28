@@ -10,6 +10,7 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Property from '../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -37,6 +38,7 @@ import GraphSetsAnimator from './GraphSetsAnimator.js';
 import IntegralGraphNode from './IntegralGraphNode.js';
 import LabeledLinesNode from './LabeledLinesNode.js';
 import OriginalGraphNode from './OriginalGraphNode.js';
+import ReferenceLineDescriber from './ReferenceLineDescriber.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import SecondDerivativeGraphNode from './SecondDerivativeGraphNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
@@ -149,9 +151,19 @@ export default class GraphsNode extends Node {
         this.chartRectangleHeight, GRAPH_NODE_Y_SPACING );
     } );
 
+    const referenceLineDescriber = new ReferenceLineDescriber(
+      model.referenceLine,
+      model.graphSetProperty,
+      model.predictEnabledProperty,
+      this.originalGraphNode.showOriginalCurveProperty,
+      this.originalGraphNode.curveLayerVisibleProperty,
+      this.integralGraphNode ? this.integralGraphNode.curveLayerVisibleProperty : new Property( false ),
+      this.derivativeGraphNode ? this.derivativeGraphNode.curveLayerVisibleProperty : new Property( false ),
+      this.secondDerivativeGraphNode ? this.secondDerivativeGraphNode.curveLayerVisibleProperty : new Property( false ) );
+
     // Reference Line, length adjusted depending on whether values are visible.
     this.referenceLineNode = new ReferenceLineNode( model.referenceLine, this.originalGraphNode.chartTransform,
-      model.graphSetProperty, options.tandem.createTandem( 'referenceLineNode' ) );
+      referenceLineDescriber, options.tandem.createTandem( 'referenceLineNode' ) );
     CalculusGrapherPreferences.valuesVisibleProperty.link( () => {
       const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 10 : 0 );
       const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers

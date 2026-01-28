@@ -29,6 +29,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
 
   public constructor( integralCurve: Curve,
                       originalCurve: Curve,
+                      predictCurve: Curve,
                       derivativeCurve: Curve,
                       secondDerivativeCurve: Curve,
                       providedOptions: LabeledLineOptions ) {
@@ -39,7 +40,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
       visible: CalculusGrapherQueryParameters.labeledLinesVisible
     }, providedOptions );
 
-    super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
+    super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
 
     this.lineColorProperty = new ColorProperty( Color.black, {
       tandem: options.tandem.createTandem( 'lineColorProperty' )
@@ -50,12 +51,13 @@ export default class LabeledLine extends LabeledAncillaryTool {
    * Creates a specified number of LabeledLine instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createLabeledLines( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
-                                     derivativeCurve: Curve, secondDerivativeCurve: Curve,
-                                     parentTandem: Tandem ): LabeledLine[] {
+  public static createLabeledLines( numberOfTools: number, integralCurve: Curve,
+                                    originalCurve: Curve, predictCurve: Curve,
+                                    derivativeCurve: Curve, secondDerivativeCurve: Curve,
+                                    parentTandem: Tandem ): LabeledLine[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>
-        new LabeledLine( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+        new LabeledLine( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
           label: label,
           tandem: parentTandem.createTandem( `${label}Line` )

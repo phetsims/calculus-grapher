@@ -39,7 +39,7 @@ export default class IntegralModel extends CalculusGrapherModel {
 
     super( options );
 
-    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve,
+    this.areaUnderCurveScrubber = new AreaUnderCurveScrubber( this.integralCurve, this.originalCurve, this.predictCurve,
       this.derivativeCurve, this.secondDerivativeCurve, this.toolsTandem.createTandem( 'areaUnderCurveScrubber' ) );
   }
 

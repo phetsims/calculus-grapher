@@ -31,6 +31,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
 
   public constructor( integralCurve: Curve,
                       originalCurve: Curve,
+                      predictCurve: Curve,
                       derivativeCurve: Curve,
                       secondDerivativeCurve: Curve,
                       providedOptions: LabeledPointOptions ) {
@@ -41,7 +42,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
       visible: CalculusGrapherQueryParameters.labeledPointsVisible
     }, providedOptions );
 
-    super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, options );
+    super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
 
     this.pointColorProperty = new ColorProperty( options.pointColor, {
       tandem: options.tandem.createTandem( 'pointColorProperty' )
@@ -52,12 +53,13 @@ export default class LabeledPoint extends LabeledAncillaryTool {
    * Creates a specified number of LabeledPoint instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createLabeledPoints( numberOfTools: number, integralCurve: Curve, originalCurve: Curve,
+  public static createLabeledPoints( numberOfTools: number, integralCurve: Curve,
+                                     originalCurve: Curve, predictCurve: Curve,
                                      derivativeCurve: Curve, secondDerivativeCurve: Curve,
                                      parentTandem: Tandem ): LabeledPoint[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>
-        new LabeledPoint( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+        new LabeledPoint( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
           label: label,
           pointColor: CalculusGrapherColors.originalCurveStrokeProperty.value,

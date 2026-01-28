@@ -22,16 +22,18 @@ export default class TangentScrubber extends AncillaryTool {
 
   public constructor( integralCurve: Curve,
                       originalCurve: Curve,
+                      predictCurve: Curve,
                       derivativeCurve: Curve,
                       secondDerivativeCurve: Curve,
                       tandem: Tandem ) {
 
-    super( integralCurve, originalCurve, derivativeCurve, secondDerivativeCurve, {
+    super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
       x: Math.floor( CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3 ),
 
-      // Do not feature integral and second derivative in Studio, because they are not relevant for tangent,
+      // Do not feature these Properties in Studio, because they are not relevant for tangent,
       // see https://github.com/phetsims/calculus-grapher/issues/225
       yIntegralPropertyFeatured: false,
+      yPredictPropertyFeatured: false,
       ySecondDerivativePropertyFeatured: false,
       tandem: tandem
     } );

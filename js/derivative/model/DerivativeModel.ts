@@ -39,8 +39,8 @@ export default class DerivativeModel extends CalculusGrapherModel {
 
     super( options );
 
-    this.tangentScrubber = new TangentScrubber( this.integralCurve, this.originalCurve, this.derivativeCurve,
-      this.secondDerivativeCurve, this.toolsTandem.createTandem( 'tangentScrubber' )
+    this.tangentScrubber = new TangentScrubber( this.integralCurve, this.originalCurve, this.predictCurve,
+      this.derivativeCurve, this.secondDerivativeCurve, this.toolsTandem.createTandem( 'tangentScrubber' )
     );
   }
 

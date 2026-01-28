@@ -293,7 +293,34 @@ type StringsType = {
     'referenceLineTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse': {
+        'patternsStringProperty': LocalizedStringProperty;
+        'phrases': {
+          'primaryPhrases': {
+            'primaryValueStringProperty': LocalizedStringProperty;
+            'primaryUndefinedStringProperty': LocalizedStringProperty;
+            'primaryHiddenStringProperty': LocalizedStringProperty;
+            'predictValueStringProperty': LocalizedStringProperty;
+            'predictUndefinedStringProperty': LocalizedStringProperty;
+            'predictHiddenStringProperty': LocalizedStringProperty;
+            'bothCurvesStringProperty': LocalizedStringProperty;
+          };
+          'integralPhrases': {
+            'numberValueStringProperty': LocalizedStringProperty;
+            'hiddenStringProperty': LocalizedStringProperty;
+          };
+          'derivativePhrases': {
+            'numberValueStringProperty': LocalizedStringProperty;
+            'undefinedStringProperty': LocalizedStringProperty;
+            'hiddenStringProperty': LocalizedStringProperty;
+          };
+          'secondDerivativePhrases': {
+            'numberValueStringProperty': LocalizedStringProperty;
+            'undefinedStringProperty': LocalizedStringProperty;
+            'hiddenStringProperty': LocalizedStringProperty;
+          }
+        }
+      }
     };
     'areaUnderCurveTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;

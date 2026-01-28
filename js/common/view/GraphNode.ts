@@ -137,7 +137,8 @@ export default class GraphNode extends Node {
   protected readonly curveLayer: Node;
 
   // Visibility of curveLayer
-  protected readonly curveLayerVisibleProperty: BooleanProperty;
+  private readonly _curveLayerVisibleProperty: BooleanProperty;
+  public readonly curveLayerVisibleProperty: TReadOnlyProperty<boolean>;
 
   // Optional Property for zooming the y-axis
   private readonly yZoomLevelProperty?: NumberProperty;
@@ -200,13 +201,14 @@ export default class GraphNode extends Node {
       } );
     }
 
-    this.curveLayerVisibleProperty = new BooleanProperty( true, {
+    this._curveLayerVisibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'curveLayerVisibleProperty' ),
       phetioFeatured: true,
       phetioDocumentation: 'Controls whether the graph\'s curve layer is visible. The curve layer contains the plots ' +
                            'for any curves, optional tangent line and point, and optional area-under-curve plot and point. ' +
                            'The value of this Property can be toggled by pressing eyeToggleButton.'
     } );
+    this.curveLayerVisibleProperty = this._curveLayerVisibleProperty;
 
     const curveLayerChildren = [];
     this.curveNode && curveLayerChildren.push( this.curveNode );
@@ -266,7 +268,7 @@ export default class GraphNode extends Node {
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
-    this.eyeToggleButton = new EyeToggleButton( this.curveLayerVisibleProperty, combineOptions<EyeToggleButtonOptions>( {
+    this.eyeToggleButton = new EyeToggleButton( this._curveLayerVisibleProperty, combineOptions<EyeToggleButtonOptions>( {
       scale: 0.5,
       baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
         visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
@@ -376,7 +378,7 @@ export default class GraphNode extends Node {
    */
   public reset(): void {
     this.yZoomLevelProperty && this.yZoomLevelProperty.reset();
-    this.curveLayerVisibleProperty.reset();
+    this._curveLayerVisibleProperty.reset();
     this.curveNode && this.curveNode.reset();
   }
 

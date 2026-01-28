@@ -68,7 +68,8 @@ export default class OriginalGraphNode extends GraphNode {
 
   // Indicates if the original curve is visible while in 'Predict' mode.
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
-  private readonly showOriginalCurveProperty: Property<boolean>;
+  private readonly _showOriginalCurveProperty: Property<boolean>;
+  public readonly showOriginalCurveProperty: TReadOnlyProperty<boolean>;
 
   // Manipulators for original and predict curves.
   private readonly originalCurveManipulatorNode: CurveManipulatorNode;
@@ -132,15 +133,16 @@ export default class OriginalGraphNode extends GraphNode {
 
     super( graphType, originalCurve, gridVisibleProperty, options );
 
-    this.showOriginalCurveProperty = new BooleanProperty( false, {
+    this._showOriginalCurveProperty = new BooleanProperty( false, {
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
       phetioDocumentation: 'Controls whether the original curve is visible while the Predict radio button is selected.' +
                            'The value of this Property can be changed by toggling showOriginalCurveCheckbox.',
       phetioFeatured: true
     } );
+    this.showOriginalCurveProperty = this._showOriginalCurveProperty;
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
-    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this.showOriginalCurveProperty,
+    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this._showOriginalCurveProperty,
       predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
     showOriginalCurveCheckbox.boundsProperty.link( () => {
       showOriginalCurveCheckbox.right =
@@ -332,7 +334,7 @@ export default class OriginalGraphNode extends GraphNode {
   public override reset(): void {
     this.originalCurveNode.reset();
     this.predictCurveNode.reset();
-    this.showOriginalCurveProperty.reset();
+    this._showOriginalCurveProperty.reset();
     super.reset();
   }
 
