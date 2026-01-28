@@ -684,7 +684,32 @@
         "value": "Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve."
       },
       "accessibleObjectResponse": {
-        "value": "{ $sign ->\n  [zero] at {$variable} equals {$x}, dot at {$integralValue}, total area is {$absoluteIntegralValue}\n  [positive] at {$variable} equals {$x}, dot at {$integralValue}, total area is positive {$absoluteIntegralValue}\n  *[negative] at {$variable} equals {$x}, dot at {$integralValue}, total area is negative {$absoluteIntegralValue}\n}"
+        "pattern": {
+          "value": "{$xPhrase}, {$integralPhrase}, {$areaPhrase}"
+        },
+        "phrases": {
+          "xPhrase": {
+            "value": "at {$variable} equals {$value}"
+          },
+          "integralValue": {
+            "value": "integral up to {$variable} is {$value}"
+          },
+          "integralHidden": {
+            "value": "integral curve hidden"
+          },
+          "areaZeroValue": {
+            "value": "net signed area is zero under f"
+          },
+          "areaPositiveValue": {
+            "value": "net signed area is positive {$absoluteValue} under f"
+          },
+          "areaNegativeValue": {
+            "value": "net signed area is negative {$absoluteValue} under f"
+          },
+          "areaHidden": {
+            "value": "f curve hidden"
+          }
+        }
       }
     },
     "curveManipulator": {

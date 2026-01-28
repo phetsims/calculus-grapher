@@ -25,7 +25,7 @@ export default class TangentScrubberDescriber {
   }
 
   /**
-   * Gets the accessible object response that describes the Tangent scrubber and what it intersects.
+   * Gets the accessible object response that describes the scrubber's position and what its vertical line intersects.
    */
   public getAccessibleObjectResponse(): string {
     return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.pattern.format( {
@@ -36,7 +36,7 @@ export default class TangentScrubberDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's position along the horizontal axis.
+   * Gets the phrase that describes the scrubber's position along the horizontal axis.
    */
   private getXPhrase(): string {
     return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.phrases.xPhrase.format( {
@@ -79,7 +79,7 @@ export default class TangentScrubberDescriber {
   }
 
   /**
-   * Gets the phrase that describes the tangent tool's intersection with the derivative graph.
+   * Gets the phrase that describes the scrubber's intersection with the derivative graph.
    * The derivative is described as a y-value or hidden.
    */
   private getDerivativePhrase(): string {

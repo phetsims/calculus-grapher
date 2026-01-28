@@ -24,19 +24,76 @@ export default class AreaUnderCurveScrubberDescriber {
   }
 
   /**
-   * Gets the accessible object response that describes the Area Under Curve scrubber and what it intersects.
+   * Gets the accessible object response that describes the scrubber's position and what its vertical line intersects.
    */
   public getAccessibleObjectResponse(): string {
-
-    const integralValue = toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
-
-    return CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.format( {
-      sign: integralValue === 0 ? 'zero' : integralValue > 0 ? 'positive' : 'negative',
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      x: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ),
-      absoluteIntegralValue: Math.abs( integralValue ),
-      integralValue: integralValue
+    return CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.pattern.format( {
+      xPhrase: this.getXPhrase(),
+      integralPhrase: this.getIntegralPhrase(),
+      areaPhrase: this.getAreaPhrase()
     } );
+  }
+
+  /**
+   * Gets the phrase that describes the scrubber's position along the horizontal axis.
+   */
+  private getXPhrase(): string {
+    return CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.xPhrase.format( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+      value: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+    } );
+  }
+
+  /**
+   * Gets the phrase that describes the scrubber's intersection with the integral graph.
+   * The integral is described as a y-value or hidden.
+   */
+  private getIntegralPhrase(): string {
+    let integralPhrase: string;
+    if ( this.integralCurveLayerVisibleProperty.value ) {
+      // y-value
+      integralPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.integralValue.format( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+        value: toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
+      } );
+    }
+    else {
+      // hidden
+      integralPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.integralHiddenStringProperty.value;
+    }
+    return integralPhrase;
+  }
+
+  /**
+   * Gets the phrase that describes the area under the primary curve from 0 to the scrubber's position.
+   * Area is described as zero, positive, negative, or hidden.
+   */
+  private getAreaPhrase(): string {
+    let areaPhrase: string;
+    if ( this.primaryCurveLayerVisibleProperty.value ) {
+      const area = this.areaUnderCurveScrubber.integralCurvePointProperty.value.y;
+      if ( area === 0 ) {
+        // zero
+        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaZeroValueStringProperty.value;
+      }
+      else if ( area > 0 ) {
+        // positive
+        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaPositiveValue.format( {
+          absoluteValue: toFixedNumber( Math.abs( area ), CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
+        } );
+      }
+      else {
+        // negative
+        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaNegativeValue.format( {
+          absoluteValue: toFixedNumber( Math.abs( area ), CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
+        } );
+      }
+    }
+    else {
+      // hidden
+      areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaHiddenStringProperty.value;
+    }
+    return areaPhrase;
   }
 }
 

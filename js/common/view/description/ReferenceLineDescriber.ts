@@ -32,7 +32,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the accessible object response that describes the Reference Line and what it intersects.
+   * Gets the accessible object response that describes the scrubber's position and what its vertical line intersects.
    */
   public getAccessibleObjectResponse(): string {
 
@@ -75,7 +75,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's position along the horizontal axis.
+   * Gets the phrase that describes the scrubber's position along the horizontal axis.
    */
   private getXPhrase(): string {
     return CalculusGrapherFluent.a11y.referenceLineTool.accessibleObjectResponse.phrases.xPhrase.format( {
@@ -85,7 +85,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's intersection with the primary graph, which may be showing
+   * Gets the phrase that describes the scrubber's intersection with the primary graph, which may be showing
    * the primary curve, the predict curve, both, or neither.
    */
   private getPrimaryPhrase(): string {
@@ -103,7 +103,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's intersection with the predict curve.
+   * Gets the phrase that describes the scrubber's intersection with the predict curve.
    * The predict curve is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getPredictCurvePhrase(): string {
@@ -132,7 +132,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's intersection with the primary curve.
+   * Gets the phrase that describes the scrubber's intersection with the primary curve.
    * The primary curve is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getPrimaryCurvePhrase(): string {
@@ -161,7 +161,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's intersection with the integral graph.
+   * Gets the phrase that describes the scrubber's intersection with the integral graph.
    * The integral is described as a y-value or hidden.
    */
   private getIntegralPhrase(): string {
@@ -181,7 +181,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's intersection with the derivative graph.
+   * Gets the phrase that describes the scrubber's intersection with the derivative graph.
    * The derivative is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getDerivativePhrase(): string {
@@ -210,7 +210,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the reference line's intersection with the second derivative graph.
+   * Gets the phrase that describes the scrubber's intersection with the second derivative graph.
    * The second derivative is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getSecondDerivativePhrase(): string {

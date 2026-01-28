@@ -334,7 +334,18 @@ type StringsType = {
     'areaUnderCurveTool': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse': {
+        'patternStringProperty': LocalizedStringProperty;
+        'phrases': {
+          'xPhraseStringProperty': LocalizedStringProperty;
+          'integralValueStringProperty': LocalizedStringProperty;
+          'integralHiddenStringProperty': LocalizedStringProperty;
+          'areaZeroValueStringProperty': LocalizedStringProperty;
+          'areaPositiveValueStringProperty': LocalizedStringProperty;
+          'areaNegativeValueStringProperty': LocalizedStringProperty;
+          'areaHiddenStringProperty': LocalizedStringProperty;
+        }
+      }
     };
     'curveManipulator': {
       'accessibleObjectResponseFocusedReleasedStringProperty': LocalizedStringProperty;

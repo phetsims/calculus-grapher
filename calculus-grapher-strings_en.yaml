@@ -232,13 +232,13 @@ a11y:
 
       # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
       phrases:
-        xPhrase:             at {$variable} equals {$value}
-        slopeHidden:         f curve hidden
-        slopeZeroValue:      slope is zero
-        slopePositiveValue:  slope is positive {$absoluteValue}
-        slopeNegativeValue:  slope is negative {$absoluteValue}
-        derivativeValue:     derivative at {$variable} is {$value}
-        derivativeHidden:    derivative curve hidden
+        xPhrase:            at {$variable} equals {$value}
+        slopeHidden:        f curve hidden
+        slopeZeroValue:     slope is zero
+        slopePositiveValue: slope is positive {$absoluteValue}
+        slopeNegativeValue: slope is negative {$absoluteValue}
+        derivativeValue:    derivative at {$variable} is {$value}
+        derivativeHidden:   derivative curve hidden
 
   referenceLineTool:
     accessibleName:     Reference Line
@@ -275,10 +275,20 @@ a11y:
     accessibleName:     Area Under Curve Tool
     accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve.
     accessibleObjectResponse:
-      select_sign:
-        zero:     at {$variable} equals {$x}, dot at {$integralValue}, total area is {$absoluteIntegralValue}
-        positive: at {$variable} equals {$x}, dot at {$integralValue}, total area is positive {$absoluteIntegralValue}
-        negative: at {$variable} equals {$x}, dot at {$integralValue}, total area is negative {$absoluteIntegralValue}
+
+      # Pattern has a phrase placeholder for each graph that the tangent tool intersects.
+      pattern: '{$xPhrase}, {$integralPhrase}, {$areaPhrase}'
+
+      # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.patterns
+      phrases:
+        xPhrase:           at {$variable} equals {$value}
+        integralValue:     integral up to {$variable} is {$value}
+        integralHidden:    integral curve hidden
+        areaZeroValue:     net signed area is zero under f
+        areaPositiveValue: net signed area is positive {$absoluteValue} under f
+        areaNegativeValue: net signed area is negative {$absoluteValue} under f
+        areaHidden:        f curve hidden
+
   curveManipulator:
     accessibleObjectResponseFocusedReleased: 'at {$x} {$y}, off curve'
     accessibleObjectResponseFocusedGrabbed:  'at {$x} {$y}, grabbed'

@@ -213,7 +213,14 @@ addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponse_phrases_seco
 addToMapIfDefined( 'a11y_referenceLineTool_accessibleObjectResponse_phrases_secondDerivativeHidden', 'a11y.referenceLineTool.accessibleObjectResponse.phrases.secondDerivativeHiddenStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleName', 'a11y.areaUnderCurveTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleHelpText', 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse', 'a11y.areaUnderCurveTool.accessibleObjectResponseStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_pattern', 'a11y.areaUnderCurveTool.accessibleObjectResponse.patternStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_xPhrase', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.xPhraseStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_integralValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.integralValueStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_integralHidden', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.integralHiddenStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaZeroValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaZeroValueStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaPositiveValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaPositiveValueStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaNegativeValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaNegativeValueStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaHidden', 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaHiddenStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseFocusedReleased', 'a11y.curveManipulator.accessibleObjectResponseFocusedReleasedStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseFocusedGrabbed', 'a11y.curveManipulator.accessibleObjectResponseFocusedGrabbedStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponseGrabbed', 'a11y.curveManipulator.accessibleObjectResponseGrabbedStringProperty' );
@@ -520,9 +527,11 @@ const CalculusGrapherFluent = {
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
       accessibleObjectResponse: {
         _comment_0: new FluentComment( {"comment":"Pattern has a phrase placeholder for each graph that the tangent tool intersects.","associatedKey":"pattern"} ),
+        _comment_1: new FluentComment( {"comment":"Pattern has a phrase placeholder for each graph that the tangent tool intersects.","associatedKey":"pattern"} ),
         pattern: new FluentPattern<{ derivativePhrase: FluentVariable, slopePhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_pattern', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.patternStringProperty' ), [{"name":"derivativePhrase"},{"name":"slopePhrase"},{"name":"xPhrase"}] ),
-        _comment_1: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"phrases"} ),
-        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
+        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"phrases"} ),
+        _comment_3: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
+        _comment_4: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
         phrases: {
           xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_xPhrase', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
           slopeHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_phrases_slopeHidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.phrases.slopeHiddenStringProperty' ) ),
@@ -547,6 +556,7 @@ const CalculusGrapherFluent = {
         },
         _comment_1: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"phrases"} ),
         _comment_2: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
+        _comment_3: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
         phrases: {
           xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse_phrases_xPhrase', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponse.phrases.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
           primaryValue: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLineTool_accessibleObjectResponse_phrases_primaryValue', _.get( CalculusGrapherStrings, 'a11y.referenceLineTool.accessibleObjectResponse.phrases.primaryValueStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
@@ -570,7 +580,23 @@ const CalculusGrapherFluent = {
     areaUnderCurveTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
-      accessibleObjectResponse: new FluentPattern<{ absoluteIntegralValue: FluentVariable, integralValue: FluentVariable, sign: number | 'zero' | 'positive' | 'negative' | TReadOnlyProperty<number | 'zero' | 'positive' | 'negative'>, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponseStringProperty' ), [{"name":"absoluteIntegralValue"},{"name":"integralValue"},{"name":"sign","variants":[{"type":"number","value":"zero"},"positive","negative"]},{"name":"variable"},{"name":"x"}] )
+      accessibleObjectResponse: {
+        _comment_0: new FluentComment( {"comment":"Pattern has a phrase placeholder for each graph that the tangent tool intersects.","associatedKey":"pattern"} ),
+        _comment_1: new FluentComment( {"comment":"Pattern has a phrase placeholder for each graph that the tangent tool intersects.","associatedKey":"pattern"} ),
+        pattern: new FluentPattern<{ areaPhrase: FluentVariable, integralPhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_pattern', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.patternStringProperty' ), [{"name":"areaPhrase"},{"name":"integralPhrase"},{"name":"xPhrase"}] ),
+        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"phrases"} ),
+        _comment_3: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
+        _comment_4: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.patterns","associatedKey":"phrases"} ),
+        phrases: {
+          xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_xPhrase', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
+          integralValue: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_integralValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.integralValueStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
+          integralHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_integralHidden', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.integralHiddenStringProperty' ) ),
+          areaZeroValueStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaZeroValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaZeroValueStringProperty' ) ),
+          areaPositiveValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaPositiveValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaPositiveValueStringProperty' ), [{"name":"absoluteValue"}] ),
+          areaNegativeValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaNegativeValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaNegativeValueStringProperty' ), [{"name":"absoluteValue"}] ),
+          areaHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_phrases_areaHidden', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.phrases.areaHiddenStringProperty' ) )
+        }
+      }
     },
     curveManipulator: {
       accessibleObjectResponseFocusedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponseFocusedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponseFocusedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
