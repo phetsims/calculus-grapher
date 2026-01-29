@@ -132,14 +132,14 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleName', 'a11y.showOr
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleHelpText', 'a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
-addToMapIfDefined( 'a11y_originalGraph_accessibleHeading', 'a11y.originalGraph.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_originalGraph_accessibleParagraph', 'a11y.originalGraph.accessibleParagraphStringProperty' );
-addToMapIfDefined( 'a11y_integralGraph_accessibleHeading', 'a11y.integralGraph.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_integralGraph_accessibleParagraph', 'a11y.integralGraph.accessibleParagraphStringProperty' );
-addToMapIfDefined( 'a11y_derivativeGraph_accessibleHeading', 'a11y.derivativeGraph.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_derivativeGraph_accessibleParagraph', 'a11y.derivativeGraph.accessibleParagraphStringProperty' );
-addToMapIfDefined( 'a11y_secondDerivativeGraph_accessibleHeading', 'a11y.secondDerivativeGraph.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_secondDerivativeGraph_accessibleParagraph', 'a11y.secondDerivativeGraph.accessibleParagraphStringProperty' );
+addToMapIfDefined( 'a11y_primaryGraphArea_accessibleHeading', 'a11y.primaryGraphArea.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_primaryGraphArea_accessibleParagraph', 'a11y.primaryGraphArea.accessibleParagraphStringProperty' );
+addToMapIfDefined( 'a11y_integralGraphArea_accessibleHeading', 'a11y.integralGraphArea.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_integralGraphArea_accessibleParagraph', 'a11y.integralGraphArea.accessibleParagraphStringProperty' );
+addToMapIfDefined( 'a11y_derivativeGraphArea_accessibleHeading', 'a11y.derivativeGraphArea.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_derivativeGraphArea_accessibleParagraph', 'a11y.derivativeGraphArea.accessibleParagraphStringProperty' );
+addToMapIfDefined( 'a11y_secondDerivativeGraphArea_accessibleHeading', 'a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_secondDerivativeGraphArea_accessibleParagraph', 'a11y.secondDerivativeGraphArea.accessibleParagraphStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_accessibleName', 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_accessibleHelpText', 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_originalCurveRadioButton_accessibleName', 'a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleNameStringProperty' );
@@ -455,24 +455,24 @@ const CalculusGrapherFluent = {
       accessibleContextResponseChecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' ), [{"name":"variable"}] ),
       accessibleContextResponseUnchecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' ), [{"name":"variable"}] )
     },
-    _comment_22: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"originalGraph"} ),
-    _comment_23: new FluentComment( {"comment":"Graph Areas","associatedKey":"originalGraph"} ),
-    _comment_24: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"originalGraph"} ),
-    originalGraph: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_originalGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.originalGraph.accessibleHeadingStringProperty' ) ),
-      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_originalGraph_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.originalGraph.accessibleParagraphStringProperty' ) )
+    _comment_22: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"primaryGraphArea"} ),
+    _comment_23: new FluentComment( {"comment":"Graph Areas","associatedKey":"primaryGraphArea"} ),
+    _comment_24: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"primaryGraphArea"} ),
+    primaryGraphArea: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleHeadingStringProperty' ) ),
+      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleParagraphStringProperty' ) )
     },
-    integralGraph: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.integralGraph.accessibleHeadingStringProperty' ) ),
-      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralGraph_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.integralGraph.accessibleParagraphStringProperty' ) )
+    integralGraphArea: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.integralGraphArea.accessibleHeadingStringProperty' ) ),
+      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralGraphArea_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.integralGraphArea.accessibleParagraphStringProperty' ) )
     },
-    derivativeGraph: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.derivativeGraph.accessibleHeadingStringProperty' ) ),
-      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraph_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.derivativeGraph.accessibleParagraphStringProperty' ) )
+    derivativeGraphArea: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleHeadingStringProperty' ) ),
+      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleParagraphStringProperty' ) )
     },
-    secondDerivativeGraph: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraph_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraph.accessibleHeadingStringProperty' ) ),
-      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraph_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraph.accessibleParagraphStringProperty' ) )
+    secondDerivativeGraphArea: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty' ) ),
+      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleParagraphStringProperty' ) )
     },
     _comment_25: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
     _comment_26: new FluentComment( {"comment":"Radio Button Groups","associatedKey":"predictRadioButtonGroup"} ),

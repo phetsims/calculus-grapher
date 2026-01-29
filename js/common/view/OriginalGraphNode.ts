@@ -122,8 +122,8 @@ export default class OriginalGraphNode extends GraphNode {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
-      accessibleHeading: CalculusGrapherFluent.a11y.originalGraph.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.originalGraph.accessibleParagraphStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.primaryGraphArea.accessibleHeadingStringProperty,
+      accessibleParagraph: CalculusGrapherFluent.a11y.primaryGraphArea.accessibleParagraphStringProperty,
       eyeToggleButtonOptions: {
         accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.primaryStringProperty
       }

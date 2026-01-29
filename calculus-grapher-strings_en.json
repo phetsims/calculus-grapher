@@ -374,36 +374,36 @@
         "value": "f of {$variable} hidden."
       }
     },
-    "originalGraph": {
+    "primaryGraphArea": {
       "accessibleHeading": {
         "value": "Primary Graph Area"
       },
       "accessibleParagraph": {
-        "value": "TODO.originalGraph.accessibleParagraph"
+        "value": "TODO.primaryGraphArea.accessibleParagraph"
       }
     },
-    "integralGraph": {
+    "integralGraphArea": {
       "accessibleHeading": {
         "value": "Integral Graph Area"
       },
       "accessibleParagraph": {
-        "value": "TODO.integralGraph.accessibleParagraph"
+        "value": "TODO.integralGraphArea.accessibleParagraph"
       }
     },
-    "derivativeGraph": {
+    "derivativeGraphArea": {
       "accessibleHeading": {
         "value": "First Derivative Graph Area"
       },
       "accessibleParagraph": {
-        "value": "TODO.derivativeGraph.accessibleParagraph"
+        "value": "TODO.derivativeGraphArea.accessibleParagraph"
       }
     },
-    "secondDerivativeGraph": {
+    "secondDerivativeGraphArea": {
       "accessibleHeading": {
         "value": "Second Derivative Graph Area"
       },
       "accessibleParagraph": {
-        "value": "TODO.secondDerivativeGraph.accessibleParagraph"
+        "value": "TODO.secondDerivativeGraphArea.accessibleParagraph"
       }
     },
     "predictRadioButtonGroup": {

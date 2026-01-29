@@ -186,21 +186,21 @@ a11y:
   # Graph Areas
   #=======================================================================================================
 
-  originalGraph:
+  primaryGraphArea:
     accessibleHeading:   Primary Graph Area
-    accessibleParagraph: TODO.originalGraph.accessibleParagraph
+    accessibleParagraph: TODO.primaryGraphArea.accessibleParagraph
 
-  integralGraph:
+  integralGraphArea:
     accessibleHeading:   Integral Graph Area
-    accessibleParagraph: TODO.integralGraph.accessibleParagraph
+    accessibleParagraph: TODO.integralGraphArea.accessibleParagraph
 
-  derivativeGraph:
+  derivativeGraphArea:
     accessibleHeading:   First Derivative Graph Area
-    accessibleParagraph: TODO.derivativeGraph.accessibleParagraph
+    accessibleParagraph: TODO.derivativeGraphArea.accessibleParagraph
 
-  secondDerivativeGraph:
+  secondDerivativeGraphArea:
     accessibleHeading:   Second Derivative Graph Area
-    accessibleParagraph: TODO.secondDerivativeGraph.accessibleParagraph
+    accessibleParagraph: TODO.secondDerivativeGraphArea.accessibleParagraph
 
   #=======================================================================================================
   # Radio Button Groups

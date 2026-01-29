@@ -26,8 +26,8 @@ export default class DerivativeGraphNode extends GraphNode {
                       providedOptions: DerivativeGraphNodeOptions ) {
 
     const options = optionize<DerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
-      accessibleHeading: CalculusGrapherFluent.a11y.derivativeGraph.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.derivativeGraph.accessibleParagraphStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.derivativeGraphArea.accessibleHeadingStringProperty,
+      accessibleParagraph: CalculusGrapherFluent.a11y.derivativeGraphArea.accessibleParagraphStringProperty,
       eyeToggleButtonOptions: {
         accessibleName: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleName.derivativeStringProperty
       },
