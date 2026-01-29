@@ -206,6 +206,7 @@ a11y:
   # Radio Button Groups
   #=======================================================================================================
 
+  # Switch between f(x) and Predict curves
   predictRadioButtonGroup:
     accessibleName:     Curve to Manipulate
     accessibleHelpText: Choose curve to manipulate in Primary Graph Area.
@@ -216,6 +217,7 @@ a11y:
       accessibleName:     Predict
       accessibleHelpText: Manipulate prediction curve to predict f of {$variable} based on other graphs.
 
+  # Select the shape to add to the curve in the primary graph area.
   shapesRadioButtonGroup:
     accessibleName:     Shapes
     accessibleHelpText: Choose shape to add to curve in Primary Graph Area.
@@ -244,6 +246,7 @@ a11y:
       accessibleName:     Shift
       accessibleHelpText: Shift entire curve up or down.
 
+  # Select the set of graphs that are visible.
   graphSetRadioButtonGroup:
     accessibleName:     Viewable Graph Set
     accessibleHelpText: Choose which set of Graph Areas to investigate and find relationships.
