@@ -51,8 +51,8 @@ export default class CurveManipulationWidthSlider extends HSlider {
       // snap to ticks
       constrainValue: ( value: number ) => findClosestTick( tickValues, value ),
 
-      accessibleName: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationWidthSlider.accessibleHelpText.createProperty( {
+      accessibleName: CalculusGrapherFluent.a11y.shapeWidthSlider.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.shapeWidthSlider.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
         min: curveManipulationWidthProperty.range.min,
         max: curveManipulationWidthProperty.range.max

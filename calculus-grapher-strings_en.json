@@ -430,7 +430,7 @@
         }
       }
     },
-    "curveManipulationModeRadioButtonGroup": {
+    "shapesRadioButtonGroup": {
       "accessibleName": {
         "value": "Shapes"
       },
@@ -599,7 +599,7 @@
         }
       }
     },
-    "curveManipulationWidthSlider": {
+    "shapeWidthSlider": {
       "accessibleName": {
         "value": "Shape Width"
       },

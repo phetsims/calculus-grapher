@@ -51,8 +51,8 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
           selectedLineWidth: 2
         }
       },
-      accessibleName: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.shapesRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.shapesRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem,
 
       // These options are a bit of a hack to implement a 2x2 grid.

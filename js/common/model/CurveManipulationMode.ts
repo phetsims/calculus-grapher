@@ -32,38 +32,38 @@ export default class CurveManipulationMode extends EnumerationValue {
 
   // Enumeration values
   public static readonly HILL = new CurveManipulationMode( 'hill',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.hillRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly TRIANGLE = new CurveManipulationMode( 'triangle',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly PEDESTAL = new CurveManipulationMode( 'pedestal',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly PARABOLA = new CurveManipulationMode( 'parabola',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly SINUSOID = new CurveManipulationMode( 'sinusoid',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly FREEFORM = new CurveManipulationMode( 'freeform',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly TILT = new CurveManipulationMode( 'tilt',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly SHIFT = new CurveManipulationMode( 'shift',
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationModeRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty,
+    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly enumeration = new Enumeration( CurveManipulationMode );
