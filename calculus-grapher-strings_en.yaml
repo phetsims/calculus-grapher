@@ -39,7 +39,7 @@ a11y:
 
   # Derivative screen
   derivativeScreen:
-    screenButtonsHelpText: Manipulate a graph and explore its first derivative curve in real time.
+    screenButtonsHelpText: Manipulate a graph and explore its derivative curve in real time.
     screenSummary:
       playArea:        TODO.derivativeScreen.screenSummary.playArea
       controlArea:     TODO.derivativeScreen.screenSummary.controlArea
@@ -57,7 +57,7 @@ a11y:
 
   # Advanced screen
   advancedScreen:
-    screenButtonsHelpText: Manipulate a graph and explore its first derivative and integral curves, with or without discontinuities.
+    screenButtonsHelpText: Manipulate a graph and explore its derivative and integral curves in real time, with or without discontinuities.
     screenSummary:
       playArea:        TODO.playArea
       controlArea:     TODO.controlArea
@@ -66,7 +66,7 @@ a11y:
 
   # Lab screen
   labScreen:
-    screenButtonsHelpText: Manipulate a graph and explore its integral, first derivative, and second derivative curves, with or without discontinuities.
+    screenButtonsHelpText: Manipulate a graph and explore its integral, derivative, and second derivative curves in real time, with or without discontinuities.
     screenSummary:
       playArea:        TODO.labScreen.screenSummary.playArea
       controlArea:     TODO.labScreen.screenSummary.controlArea
@@ -126,7 +126,7 @@ a11y:
     accessibleName:
       integral:         Integral Curve Visibility
       primary:          Primary Curve Visibility
-      derivative:       First Derivative Curve Visibility
+      derivative:       Derivative Curve Visibility
       secondDerivative: Second Derivative Curve Visibility
     accessibleHelpText:           Show or hide curve to support predictions.
     accessibleContextResponseOff: Curve hidden.
@@ -137,14 +137,14 @@ a11y:
     zoomInButton:
       accessibleName:
         integral:         Zoom In Integral y Axis
-        derivative:       Zoom In First Derivative y Axis
+        derivative:       Zoom In Derivative y Axis
         secondDerivative: Zoom In Second Derivative y Axis
       accessibleHelpText:        Zoom in y axis only.
       accessibleContextResponse: 'zoomed in, y range {$min} to {$max}'
     zoomOutButton:
       accessibleName:
         integral:         Zoom Out Integral y Axis
-        derivative:       Zoom Out First Derivative y Axis
+        derivative:       Zoom Out Derivative y Axis
         secondDerivative: Zoom Out Second Derivative y Axis
       accessibleHelpText:        Zoom out y axis only.
       accessibleContextResponse: 'zoomed out, y range {$min} to {$max}'
@@ -195,7 +195,7 @@ a11y:
     accessibleParagraph: TODO.integralGraphArea.accessibleParagraph
 
   derivativeGraphArea:
-    accessibleHeading:   First Derivative Graph Area
+    accessibleHeading:   Derivative Graph Area
     accessibleParagraph: TODO.derivativeGraphArea.accessibleParagraph
 
   secondDerivativeGraphArea:
@@ -254,14 +254,14 @@ a11y:
       accessibleName:     Integral and Primary Graph Areas
       accessibleHelpText: Explore Integral at top, Primary at bottom.
     primaryDerivativeRadioButton:
-      accessibleName:     Primary and First Derivative Graph Areas
-      accessibleHelpText: Explore Primary at top, First Derivative at bottom.
+      accessibleName:     Primary and Derivative Graph Areas
+      accessibleHelpText: Explore Primary at top, Derivative at bottom.
     integralPrimaryDerivativeRadioButton:
-      accessibleName:     Integral, Primary, and First Derivative Graph Areas
-      accessibleHelpText: Explore Integral at top, Primary in center, First Derivative at bottom.
+      accessibleName:     Integral, Primary, and Derivative Graph Areas
+      accessibleHelpText: Explore Integral at top, Primary in center, Derivative at bottom.
     primaryDerivativeSecondDerivativeRadioButton:
-      accessibleName:     Primary, First Derivative, and Second Derivative Graph Areas
-      accessibleHelpText: Explore Primary at top, First Derivative in center, Second Derivative at bottom.
+      accessibleName:     Primary, Derivative, and Second Derivative Graph Areas
+      accessibleHelpText: Explore Primary at top, Derivative in center, Second Derivative at bottom.
 
   # Variable control in Preferences > Simulation
   variableRadioButtonGroup:
@@ -364,7 +364,7 @@ a11y:
   # Tangent Tool
   tangentTool:
     accessibleName:     Tangent Tool
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve.
+    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between steepness of visible line tangent to f of {$variable} and y value on derivative curve at same {$variable} coordinate. Information provides current {$variable} value, slope of line tangent to f of {$variable}, and value of derivative at {$variable} on derivative curve.
     accessibleObjectResponse:
 
       # Pattern with phrase placeholders that define the general form of the response.
