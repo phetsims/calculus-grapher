@@ -54,7 +54,6 @@ type StringsType = {
     'keyboardCueStringProperty': LocalizedStringProperty;
   };
   'explorationToolControlsStringProperty': LocalizedStringProperty;
-  'toolStringProperty': LocalizedStringProperty;
   'a11y': {
     'derivativeScreen': {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;

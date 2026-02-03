@@ -91,9 +91,6 @@
   "explorationToolControls": {
     "value": "Exploration Tool Controls"
   },
-  "tool": {
-    "value": "tool"
-  },
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {

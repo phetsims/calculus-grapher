@@ -56,7 +56,6 @@ addToMapIfDefined( 'curveManipulator_keyboardHelpHeading', 'curveManipulator.key
 addToMapIfDefined( 'curveManipulator_keyboardHelpLabel', 'curveManipulator.keyboardHelpLabelStringProperty' );
 addToMapIfDefined( 'curveManipulator_keyboardCue', 'curveManipulator.keyboardCueStringProperty' );
 addToMapIfDefined( 'explorationToolControls', 'explorationToolControlsStringProperty' );
-addToMapIfDefined( 'tool', 'toolStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenButtonsHelpText', 'a11y.derivativeScreen.screenButtonsHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_playArea', 'a11y.derivativeScreen.screenSummary.playAreaStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_controlArea', 'a11y.derivativeScreen.screenSummary.controlAreaStringProperty' );
@@ -304,7 +303,6 @@ const CalculusGrapherFluent = {
     keyboardCueStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardCueStringProperty' )
   },
   explorationToolControlsStringProperty: _.get( CalculusGrapherStrings, 'explorationToolControlsStringProperty' ),
-  toolStringProperty: _.get( CalculusGrapherStrings, 'toolStringProperty' ),
   a11y: {
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"derivativeScreen"} ),
     _comment_1: new FluentComment( {"comment":"Screen Summaries","associatedKey":"derivativeScreen"} ),
