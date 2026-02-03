@@ -88,6 +88,12 @@
       "value": "to <b>Grab</b> or <b>Release</b> curve"
     }
   },
+  "explorationToolControls": {
+    "value": "Exploration Tool Controls"
+  },
+  "tool": {
+    "value": "tool"
+  },
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {

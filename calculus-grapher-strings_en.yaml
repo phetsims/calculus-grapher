@@ -30,6 +30,8 @@ curveManipulator:
   keyboardHelpHeading: Curve Manipulator
   keyboardHelpLabel:   Grab or release curve
   keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
+explorationToolControls: Exploration Tool Controls
+tool: tool
 
 a11y:
 
