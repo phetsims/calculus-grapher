@@ -91,7 +91,7 @@
   "a11y": {
     "derivativeScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a graph and explore its first derivative curve in real time."
+        "value": "Manipulate a graph and explore its derivative curve in real time."
       },
       "screenSummary": {
         "playArea": {
@@ -129,7 +129,7 @@
     },
     "advancedScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a graph and explore its first derivative and integral curves, with or without discontinuities."
+        "value": "Manipulate a graph and explore its derivative and integral curves in real time, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -148,7 +148,7 @@
     },
     "labScreen": {
       "screenButtonsHelpText": {
-        "value": "Manipulate a graph and explore its integral, first derivative, and second derivative curves, with or without discontinuities."
+        "value": "Manipulate a graph and explore its integral, derivative, and second derivative curves in real time, with or without discontinuities."
       },
       "screenSummary": {
         "playArea": {
@@ -251,7 +251,7 @@
           "value": "Primary Curve Visibility"
         },
         "derivative": {
-          "value": "First Derivative Curve Visibility"
+          "value": "Derivative Curve Visibility"
         },
         "secondDerivative": {
           "value": "Second Derivative Curve Visibility"
@@ -274,7 +274,7 @@
             "value": "Zoom In Integral y Axis"
           },
           "derivative": {
-            "value": "Zoom In First Derivative y Axis"
+            "value": "Zoom In Derivative y Axis"
           },
           "secondDerivative": {
             "value": "Zoom In Second Derivative y Axis"
@@ -293,7 +293,7 @@
             "value": "Zoom Out Integral y Axis"
           },
           "derivative": {
-            "value": "Zoom Out First Derivative y Axis"
+            "value": "Zoom Out Derivative y Axis"
           },
           "secondDerivative": {
             "value": "Zoom Out Second Derivative y Axis"
@@ -392,7 +392,7 @@
     },
     "derivativeGraphArea": {
       "accessibleHeading": {
-        "value": "First Derivative Graph Area"
+        "value": "Derivative Graph Area"
       },
       "accessibleParagraph": {
         "value": "TODO.derivativeGraphArea.accessibleParagraph"
@@ -519,26 +519,26 @@
       },
       "primaryDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Primary and First Derivative Graph Areas"
+          "value": "Primary and Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Primary at top, First Derivative at bottom."
+          "value": "Explore Primary at top, Derivative at bottom."
         }
       },
       "integralPrimaryDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Integral, Primary, and First Derivative Graph Areas"
+          "value": "Integral, Primary, and Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Integral at top, Primary in center, First Derivative at bottom."
+          "value": "Explore Integral at top, Primary in center, Derivative at bottom."
         }
       },
       "primaryDerivativeSecondDerivativeRadioButton": {
         "accessibleName": {
-          "value": "Primary, First Derivative, and Second Derivative Graph Areas"
+          "value": "Primary, Derivative, and Second Derivative Graph Areas"
         },
         "accessibleHelpText": {
-          "value": "Explore Primary at top, First Derivative in center, Second Derivative at bottom."
+          "value": "Explore Primary at top, Derivative in center, Second Derivative at bottom."
         }
       }
     },
@@ -733,7 +733,7 @@
         "value": "Tangent Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between visible line tangent to f of {$variable} and coordinates of dot on first derivative curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, slope of tangent line, and y coordinate of dot on first derivative curve."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between steepness of visible line tangent to f of {$variable} and y value on derivative curve at same {$variable} coordinate. Information provides current {$variable} value, slope of line tangent to f of {$variable}, and value of derivative at {$variable} on derivative curve."
       },
       "accessibleObjectResponse": {
         "pattern": {
