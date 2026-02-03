@@ -6,8 +6,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
+import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulatorKeyboardListener from './CurveManipulatorKeyboardListener.js';
@@ -25,7 +27,23 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
             lineWrap: 200
           }
         }
-      } )
+      } ),
+
+      // Move
+      KeyboardHelpSectionRow.labelWithIcon(
+        SceneryPhetFluent.keyboardHelpDialog.moveStringProperty,
+        KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon(), {
+          labelInnerContent: SceneryPhetFluent.a11y.keyboardHelpDialog.draggableItems.moveDescriptionStringProperty
+        } ),
+
+      // Move slower
+      KeyboardHelpSectionRow.labelWithIconList(
+        SceneryPhetFluent.keyboardHelpDialog.moveSlowerStringProperty, [
+          KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.arrowKeysRowIcon() ),
+          KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.wasdRowIcon() )
+        ], {
+          labelInnerContent: SceneryPhetFluent.a11y.keyboardHelpDialog.draggableItems.moveSlowerDescriptionStringProperty
+        } )
     ];
 
     // 'Curve Handle' title
