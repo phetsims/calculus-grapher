@@ -15,7 +15,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
 // Specify HotkeyData for each KeyboardHelpSectionRow, so that we can use KeyboardHelpSectionRow.fromHotkeyData
-// which creates default core descriptions.
+// which creates both the visual interface and core description.
 
 const MOVE_HOTKEY_DATA = new HotkeyData( {
   keys: [ 'arrowLeft', 'arrowRight' ],
