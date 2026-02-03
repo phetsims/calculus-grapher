@@ -2,7 +2,7 @@
 
 /**
  * ExplorationToolControlsKeyboardHelpSection is the keyboard-help section that describes how to interact with the
- * exploration tool controls (Reference Line, Tangent, Area Under Curve).
+ * exploration tools (Reference Line, Tangent, Area Under Curve).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
