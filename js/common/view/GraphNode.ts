@@ -105,7 +105,7 @@ type SelfOptions = {
   labelNode?: Node;
 
   // Propagated to eyeToggleButton.
-  eyeToggleButtonOptions?: PickRequired<EyeToggleButtonOptions, 'accessibleName'>;
+  eyeToggleButtonOptions?: PickRequired<EyeToggleButtonOptions, 'accessibleNameOn' | 'accessibleNameOff'>;
 
   // Propagated to yZoomButtonGroup.
   yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'zoomInButtonOptions' | 'zoomOutButtonOptions'>;
