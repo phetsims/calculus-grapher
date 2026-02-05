@@ -97,10 +97,14 @@ addToMapIfDefined( 'a11y_undoButton_accessibleName', 'a11y.undoButton.accessible
 addToMapIfDefined( 'a11y_undoButton_accessibleHelpText', 'a11y.undoButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleContextResponsePrimaryCurve', 'a11y.undoButton.accessibleContextResponsePrimaryCurveStringProperty' );
 addToMapIfDefined( 'a11y_undoButton_accessibleContextResponsePredictCurve', 'a11y.undoButton.accessibleContextResponsePredictCurveStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleName_integral', 'a11y.eyeToggleButton.accessibleName.integralStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleName_primary', 'a11y.eyeToggleButton.accessibleName.primaryStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleName_derivative', 'a11y.eyeToggleButton.accessibleName.derivativeStringProperty' );
-addToMapIfDefined( 'a11y_eyeToggleButton_accessibleName_secondDerivative', 'a11y.eyeToggleButton.accessibleName.secondDerivativeStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOn_integral', 'a11y.eyeToggleButton.accessibleNameOn.integralStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOn_primary', 'a11y.eyeToggleButton.accessibleNameOn.primaryStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOn_derivative', 'a11y.eyeToggleButton.accessibleNameOn.derivativeStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOn_secondDerivative', 'a11y.eyeToggleButton.accessibleNameOn.secondDerivativeStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOff_integral', 'a11y.eyeToggleButton.accessibleNameOff.integralStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOff_primary', 'a11y.eyeToggleButton.accessibleNameOff.primaryStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOff_derivative', 'a11y.eyeToggleButton.accessibleNameOff.derivativeStringProperty' );
+addToMapIfDefined( 'a11y_eyeToggleButton_accessibleNameOff_secondDerivative', 'a11y.eyeToggleButton.accessibleNameOff.secondDerivativeStringProperty' );
 addToMapIfDefined( 'a11y_eyeToggleButton_accessibleHelpText', 'a11y.eyeToggleButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_eyeToggleButton_accessibleContextResponseOff', 'a11y.eyeToggleButton.accessibleContextResponseOffStringProperty' );
 addToMapIfDefined( 'a11y_eyeToggleButton_accessibleContextResponseOn', 'a11y.eyeToggleButton.accessibleContextResponseOnStringProperty' );
@@ -394,11 +398,17 @@ const CalculusGrapherFluent = {
     },
     _comment_17: new FluentComment( {"comment":"Controls visibility of curves on a graph, and accessibleName is specific to the graph.","associatedKey":"eyeToggleButton"} ),
     eyeToggleButton: {
-      accessibleName: {
-        integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleName_integral', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleName.integralStringProperty' ) ),
-        primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleName_primary', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleName.primaryStringProperty' ) ),
-        derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleName_derivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleName.derivativeStringProperty' ) ),
-        secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleName_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleName.secondDerivativeStringProperty' ) )
+      accessibleNameOn: {
+        integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_integral', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.integralStringProperty' ) ),
+        primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_primary', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.primaryStringProperty' ) ),
+        derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_derivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.derivativeStringProperty' ) ),
+        secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.secondDerivativeStringProperty' ) )
+      },
+      accessibleNameOff: {
+        integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_integral', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.integralStringProperty' ) ),
+        primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_primary', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.primaryStringProperty' ) ),
+        derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_derivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.derivativeStringProperty' ) ),
+        secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.secondDerivativeStringProperty' ) )
       },
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleHelpTextStringProperty' ) ),
       accessibleContextResponseOffStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleContextResponseOff', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleContextResponseOffStringProperty' ) ),

@@ -124,11 +124,16 @@ a11y:
 
   # Controls visibility of curves on a graph, and accessibleName is specific to the graph.
   eyeToggleButton:
-    accessibleName:
-      integral:         Integral Curve Visibility
-      primary:          Primary Curve Visibility
-      derivative:       Derivative Curve Visibility
-      secondDerivative: Second Derivative Curve Visibility
+    accessibleNameOn:
+      integral:         Hide Integral Curve
+      primary:          Hide Primary Curve
+      derivative:       Hide Derivative Curve
+      secondDerivative: Hide Second Derivative Curve
+    accessibleNameOff:
+      integral:         Show Integral Curve
+      primary:          Show Primary Curve
+      derivative:       Show Derivative Curve
+      secondDerivative: Show Second Derivative Curve
     accessibleHelpText:           Show or hide curve to support predictions.
     accessibleContextResponseOff: Curve hidden.
     accessibleContextResponseOn:  Curve shown.

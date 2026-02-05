@@ -246,18 +246,32 @@
       }
     },
     "eyeToggleButton": {
-      "accessibleName": {
+      "accessibleNameOn": {
         "integral": {
-          "value": "Integral Curve Visibility"
+          "value": "Hide Integral Curve"
         },
         "primary": {
-          "value": "Primary Curve Visibility"
+          "value": "Hide Primary Curve"
         },
         "derivative": {
-          "value": "Derivative Curve Visibility"
+          "value": "Hide Derivative Curve"
         },
         "secondDerivative": {
-          "value": "Second Derivative Curve Visibility"
+          "value": "Hide Second Derivative Curve"
+        }
+      },
+      "accessibleNameOff": {
+        "integral": {
+          "value": "Show Integral Curve"
+        },
+        "primary": {
+          "value": "Show Primary Curve"
+        },
+        "derivative": {
+          "value": "Show Derivative Curve"
+        },
+        "secondDerivative": {
+          "value": "Show Second Derivative Curve"
         }
       },
       "accessibleHelpText": {

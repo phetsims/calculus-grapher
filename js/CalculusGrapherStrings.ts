@@ -127,7 +127,13 @@ type StringsType = {
       'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
     };
     'eyeToggleButton': {
-      'accessibleName': {
+      'accessibleNameOn': {
+        'integralStringProperty': LocalizedStringProperty;
+        'primaryStringProperty': LocalizedStringProperty;
+        'derivativeStringProperty': LocalizedStringProperty;
+        'secondDerivativeStringProperty': LocalizedStringProperty;
+      };
+      'accessibleNameOff': {
         'integralStringProperty': LocalizedStringProperty;
         'primaryStringProperty': LocalizedStringProperty;
         'derivativeStringProperty': LocalizedStringProperty;
