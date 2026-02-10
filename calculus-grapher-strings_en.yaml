@@ -60,10 +60,10 @@ a11y:
   advancedScreen:
     screenButtonsHelpText: Manipulate a graph and explore its derivative and integral curves in real time, with or without discontinuities.
     screenSummary:
-      playArea:        TODO.playArea
-      controlArea:     TODO.controlArea
-      currentDetails:  TODO.currentDetails
-      interactionHint: TODO.interactionHint
+      playArea:        TODO.advancedScreen.sceenSummary.playArea
+      controlArea:     TODO.advancedScreen.sceenSummary.controlArea
+      currentDetails:  TODO.advancedScreen.sceenSummary.currentDetails
+      interactionHint: TODO.advancedScreen.sceenSummary.interactionHint
 
   # Lab screen
   labScreen:

@@ -136,16 +136,16 @@
       },
       "screenSummary": {
         "playArea": {
-          "value": "TODO.playArea"
+          "value": "TODO.advancedScreen.sceenSummary.playArea"
         },
         "controlArea": {
-          "value": "TODO.controlArea"
+          "value": "TODO.advancedScreen.sceenSummary.controlArea"
         },
         "currentDetails": {
-          "value": "TODO.currentDetails"
+          "value": "TODO.advancedScreen.sceenSummary.currentDetails"
         },
         "interactionHint": {
-          "value": "TODO.interactionHint"
+          "value": "TODO.advancedScreen.sceenSummary.interactionHint"
         }
       }
     },
