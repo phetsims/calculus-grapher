@@ -179,6 +179,20 @@
         "value": "Exploration Tools"
       }
     },
+    "accessibleParagraphs": {
+      "rightNow": {
+        "value": "Right now,"
+      },
+      "valuesLabeledOnAxes": {
+        "value": "Values labeled on axes."
+      },
+      "gridLinesShown": {
+        "value": "Grid lines shown."
+      },
+      "gridLinesHidden": {
+        "value": "Grid lines hidden."
+      }
+    },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
         "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
@@ -394,33 +408,21 @@
     "primaryGraphArea": {
       "accessibleHeading": {
         "value": "Primary Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.primaryGraphArea.accessibleParagraph"
       }
     },
     "integralGraphArea": {
       "accessibleHeading": {
         "value": "Integral Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.integralGraphArea.accessibleParagraph"
       }
     },
     "derivativeGraphArea": {
       "accessibleHeading": {
         "value": "Derivative Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.derivativeGraphArea.accessibleParagraph"
       }
     },
     "secondDerivativeGraphArea": {
       "accessibleHeading": {
         "value": "Second Derivative Graph Area"
-      },
-      "accessibleParagraph": {
-        "value": "TODO.secondDerivativeGraphArea.accessibleParagraph"
       }
     },
     "predictRadioButtonGroup": {

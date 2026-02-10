@@ -84,6 +84,16 @@ a11y:
     explorationTools:                     Exploration Tools
 
   #=======================================================================================================
+  # Accessible Paragraphs
+  #=======================================================================================================
+
+  accessibleParagraphs:
+    rightNow:            Right now,
+    valuesLabeledOnAxes: Values labeled on axes.
+    gridLinesShown:      Grid lines shown.
+    gridLinesHidden:     Grid lines hidden.
+
+  #=======================================================================================================
   # Accordion Boxes
   #=======================================================================================================
 
@@ -194,19 +204,15 @@ a11y:
 
   primaryGraphArea:
     accessibleHeading:   Primary Graph Area
-    accessibleParagraph: TODO.primaryGraphArea.accessibleParagraph
 
   integralGraphArea:
     accessibleHeading:   Integral Graph Area
-    accessibleParagraph: TODO.integralGraphArea.accessibleParagraph
 
   derivativeGraphArea:
     accessibleHeading:   Derivative Graph Area
-    accessibleParagraph: TODO.derivativeGraphArea.accessibleParagraph
 
   secondDerivativeGraphArea:
     accessibleHeading:   Second Derivative Graph Area
-    accessibleParagraph: TODO.secondDerivativeGraphArea.accessibleParagraph
 
   #=======================================================================================================
   # Radio Button Groups

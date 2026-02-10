@@ -48,6 +48,7 @@ import CueingArrowsNode from './CueingArrowsNode.js';
 import CurveManipulatorKeyboardCueNode from './CurveManipulatorKeyboardCueNode.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 import CurveNode from './CurveNode.js';
+import OriginalGraphAccessibleListNode from './description/OriginalGraphAccessibleListNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
@@ -123,7 +124,8 @@ export default class OriginalGraphNode extends GraphNode {
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
       accessibleHeading: CalculusGrapherFluent.a11y.primaryGraphArea.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.primaryGraphArea.accessibleParagraphStringProperty,
+      accessibleListNode: new OriginalGraphAccessibleListNode( model.originalCurve, model.predictCurve,
+        model.gridVisibleProperty ),
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.primaryStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.primaryStringProperty

@@ -13,6 +13,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import GraphType from '../model/GraphType.js';
 import SecondDerivativeCurve from '../model/SecondDerivativeCurve.js';
+import SecondDerivativeGraphAccessibleListNode from './description/SecondDerivativeGraphAccessibleListNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -27,7 +28,7 @@ export default class SecondDerivativeGraphNode extends GraphNode {
 
     const options = optionize<SecondDerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleParagraphStringProperty,
+      accessibleListNode: new SecondDerivativeGraphAccessibleListNode( secondDerivativeCurve, gridVisibleProperty ),
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.secondDerivativeStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.secondDerivativeStringProperty

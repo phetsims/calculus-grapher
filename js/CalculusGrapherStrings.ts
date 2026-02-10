@@ -96,6 +96,12 @@ type StringsType = {
       'explorationToolControlsStringProperty': LocalizedStringProperty;
       'explorationToolsStringProperty': LocalizedStringProperty;
     };
+    'accessibleParagraphs': {
+      'rightNowStringProperty': LocalizedStringProperty;
+      'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
+      'gridLinesShownStringProperty': LocalizedStringProperty;
+      'gridLinesHiddenStringProperty': LocalizedStringProperty;
+    };
     'slopeOfTangentAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
@@ -194,19 +200,15 @@ type StringsType = {
     };
     'primaryGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'integralGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'derivativeGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'secondDerivativeGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'predictRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;

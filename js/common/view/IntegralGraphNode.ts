@@ -13,6 +13,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import GraphType from '../model/GraphType.js';
 import IntegralCurve from '../model/IntegralCurve.js';
+import IntegralGraphAccessibleListNode from './description/IntegralGraphAccessibleListNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -27,7 +28,7 @@ export default class IntegralGraphNode extends GraphNode {
 
     const options = optionize<IntegralGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.integralGraphArea.accessibleHeadingStringProperty,
-      accessibleParagraph: CalculusGrapherFluent.a11y.integralGraphArea.accessibleParagraphStringProperty,
+      accessibleListNode: new IntegralGraphAccessibleListNode( integralCurve, gridVisibleProperty ),
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.integralStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.integralStringProperty

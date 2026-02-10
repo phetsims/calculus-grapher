@@ -39,6 +39,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
@@ -109,11 +110,14 @@ type SelfOptions = {
 
   // Propagated to yZoomButtonGroup.
   yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'zoomInButtonOptions' | 'zoomOutButtonOptions'>;
+
+  // Describes the graph.
+  accessibleListNode: AccessibleListNode;
 };
 
 export type GraphNodeOptions = SelfOptions &
   PickOptional<NodeOptions, 'inputEnabledProperty'> &
-  PickRequired<NodeOptions, 'tandem' | 'accessibleHeading' | 'accessibleParagraph'>;
+  PickRequired<NodeOptions, 'tandem' | 'accessibleHeading'>;
 
 export default class GraphNode extends Node {
 
@@ -371,6 +375,11 @@ export default class GraphNode extends Node {
     this.yZoomButtonGroup && pdomOrder.push( this.yZoomButtonGroup );
     pdomOrder.push( this.eyeToggleButton );
     this.pdomOrder = pdomOrder;
+
+    // Describes what is currently shown on the graph.
+    if ( options.accessibleListNode ) {
+      this.addChild( options.accessibleListNode );
+    }
   }
 
   /**
