@@ -6,10 +6,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
+import KeyboardDragListener from '../../../../scenery/js/listeners/KeyboardDragListener.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulatorKeyboardListener from './CurveManipulatorKeyboardListener.js';
@@ -30,20 +30,14 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
       } ),
 
       // Move
-      KeyboardHelpSectionRow.labelWithIcon(
-        SceneryPhetFluent.keyboardHelpDialog.moveStringProperty,
-        KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon(), {
-          labelInnerContent: SceneryPhetFluent.a11y.keyboardHelpDialog.draggableItems.moveDescriptionStringProperty
-        } ),
+      KeyboardHelpSectionRow.fromHotkeyData( KeyboardDragListener.MOVE_HOTKEY_DATA, {
+        labelStringProperty: SceneryPhetFluent.keyboardHelpDialog.moveStringProperty
+      } ),
 
       // Move slower
-      KeyboardHelpSectionRow.labelWithIconList(
-        SceneryPhetFluent.keyboardHelpDialog.moveSlowerStringProperty, [
-          KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.arrowKeysRowIcon() ),
-          KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.wasdRowIcon() )
-        ], {
-          labelInnerContent: SceneryPhetFluent.a11y.keyboardHelpDialog.draggableItems.moveSlowerDescriptionStringProperty
-        } )
+      KeyboardHelpSectionRow.fromHotkeyData( KeyboardDragListener.MOVE_SLOWER_HOTKEY_DATA, {
+        labelStringProperty: SceneryPhetFluent.keyboardHelpDialog.moveSlowerStringProperty
+      } )
     ];
 
     // 'Curve Handle' title
