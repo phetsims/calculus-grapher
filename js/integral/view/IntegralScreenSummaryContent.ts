@@ -9,16 +9,21 @@
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import CalculusGrapherSymbols from '../../common/CalculusGrapherSymbols.js';
 
 export default class IntegralScreenSummaryContent extends ScreenSummaryContent {
 
   public constructor() {
 
     super( {
-      playAreaContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.playAreaStringProperty,
+      playAreaContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.playArea.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } ),
       controlAreaContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.controlAreaStringProperty,
       currentDetailsContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.currentDetailsStringProperty,
-      interactionHintContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.interactionHintStringProperty
+      interactionHintContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.interactionHint.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } )
     } );
   }
 }

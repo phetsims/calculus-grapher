@@ -9,13 +9,16 @@
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import CalculusGrapherSymbols from '../../common/CalculusGrapherSymbols.js';
 
 export default class DerivativeScreenSummaryContent extends ScreenSummaryContent {
 
   public constructor() {
 
     super( {
-      playAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.playAreaStringProperty,
+      playAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.playArea.createProperty( {
+        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+      } ),
       controlAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.controlAreaStringProperty,
       currentDetailsContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetailsStringProperty,
       interactionHintContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.interactionHintStringProperty

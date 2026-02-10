@@ -315,7 +315,7 @@ const CalculusGrapherFluent = {
     derivativeScreen: {
       screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenButtonsHelpTextStringProperty' ) ),
       screenSummary: {
-        playAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.playAreaStringProperty' ) ),
+        playArea: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.playAreaStringProperty' ), [{"name":"variable"}] ),
         controlAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_controlArea', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.controlAreaStringProperty' ) ),
         currentDetailsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetailsStringProperty' ) ),
         interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.interactionHintStringProperty' ) )
@@ -325,17 +325,17 @@ const CalculusGrapherFluent = {
     integralScreen: {
       screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralScreen_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenButtonsHelpTextStringProperty' ) ),
       screenSummary: {
-        playAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenSummary.playAreaStringProperty' ) ),
+        playArea: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_integralScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenSummary.playAreaStringProperty' ), [{"name":"variable"}] ),
         controlAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralScreen_screenSummary_controlArea', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenSummary.controlAreaStringProperty' ) ),
         currentDetailsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralScreen_screenSummary_currentDetails', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenSummary.currentDetailsStringProperty' ) ),
-        interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralScreen_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenSummary.interactionHintStringProperty' ) )
+        interactionHint: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_integralScreen_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.integralScreen.screenSummary.interactionHintStringProperty' ), [{"name":"variable"}] )
       }
     },
     _comment_5: new FluentComment( {"comment":"Advanced screen","associatedKey":"advancedScreen"} ),
     advancedScreen: {
       screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_advancedScreen_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.advancedScreen.screenButtonsHelpTextStringProperty' ) ),
       screenSummary: {
-        playAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_advancedScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.advancedScreen.screenSummary.playAreaStringProperty' ) ),
+        playArea: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_advancedScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.advancedScreen.screenSummary.playAreaStringProperty' ), [{"name":"variable"}] ),
         controlAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_advancedScreen_screenSummary_controlArea', _.get( CalculusGrapherStrings, 'a11y.advancedScreen.screenSummary.controlAreaStringProperty' ) ),
         currentDetailsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_advancedScreen_screenSummary_currentDetails', _.get( CalculusGrapherStrings, 'a11y.advancedScreen.screenSummary.currentDetailsStringProperty' ) ),
         interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_advancedScreen_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.advancedScreen.screenSummary.interactionHintStringProperty' ) )
@@ -345,7 +345,7 @@ const CalculusGrapherFluent = {
     labScreen: {
       screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_labScreen_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.labScreen.screenButtonsHelpTextStringProperty' ) ),
       screenSummary: {
-        playAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_labScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.labScreen.screenSummary.playAreaStringProperty' ) ),
+        playArea: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_labScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.labScreen.screenSummary.playAreaStringProperty' ), [{"name":"variable"}] ),
         controlAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_labScreen_screenSummary_controlArea', _.get( CalculusGrapherStrings, 'a11y.labScreen.screenSummary.controlAreaStringProperty' ) ),
         currentDetailsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_labScreen_screenSummary_currentDetails', _.get( CalculusGrapherStrings, 'a11y.labScreen.screenSummary.currentDetailsStringProperty' ) ),
         interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_labScreen_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.labScreen.screenSummary.interactionHintStringProperty' ) )

@@ -30,7 +30,7 @@ curveManipulator:
   keyboardHelpHeading: Curve Manipulator
   keyboardHelpLabel:   Grab or release curve
   keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
-explorationToolControls: Exploration Tool Controls
+explorationToolControls:      Exploration Tool Controls
 
 a11y:
 
@@ -42,37 +42,68 @@ a11y:
   derivativeScreen:
     screenButtonsHelpText: Manipulate a graph and explore its derivative curve in real time.
     screenSummary:
-      playArea:        TODO.derivativeScreen.screenSummary.playArea
-      controlArea:     TODO.derivativeScreen.screenSummary.controlArea
+      playArea:        |-
+                       There is an interactive curve in the Primary Graph Area representing f of {$variable} and a 
+                       non-interactive curve representing the first derivative of f. You can choose different shapes to
+                       add to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
+                       investigation of all curves with {$variable} coordinates aligned.
+      controlArea:     Reset the sim to start over.
       currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
-      interactionHint: TODO.derivativeScreen.screenSummary.interactionHint
+      interactionHint: |-
+                       Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness
+                       of f curve at different points.
 
   # Integral screen
   integralScreen:
     screenButtonsHelpText: Manipulate a graph and explore its integral curve in real time.
     screenSummary:
-      playArea:        TODO.integralScreen.screenSummary.playArea
-      controlArea:     TODO.integralScreen.screenSummary.controlArea
+      playArea:        |-
+                       There is an interactive curve in the Primary Graph Area representing f of {$variable} and a
+                       non-interactive curve representing the integral of f. You can choose different shapes to add to
+                       curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
+                       investigation of all curves with {$variable} coordinates aligned.
+      controlArea:     Reset the sim to start over.
       currentDetails:  TODO.integralScreen.screenSummary.currentDetails
-      interactionHint: TODO.integralScreen.screenSummary.interactionHint
+      interactionHint: |-
+                       Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate
+                       net signed area under f curve bounded by horizontal axis and f of {$variable} starting from left.
 
   # Advanced screen
   advancedScreen:
-    screenButtonsHelpText: Manipulate a graph and explore its derivative and integral curves in real time, with or without discontinuities.
+    screenButtonsHelpText: |-
+                           Manipulate a graph and explore its derivative and integral curves in real time,
+                           with or without discontinuities.
     screenSummary:
-      playArea:        TODO.advancedScreen.sceenSummary.playArea
-      controlArea:     TODO.advancedScreen.sceenSummary.controlArea
+      playArea:        |-
+                       There is an interactive curve in the Primary Graph Area representing f of {$variable} and
+                       non interactive curves in other Graph Areas. You can choose different shapes and widths to
+                       add to curve in Primary Graph Area at any point. You can change which set of two Graph Areas
+                       are viewable: Integral and Primary or Primary and First Derivative. There are Exploration Tools
+                       allowing flexible investigation of all viewable curves with {$variable} coordinates aligned.
+      controlArea:     Reset the sim to start over.
       currentDetails:  TODO.advancedScreen.sceenSummary.currentDetails
-      interactionHint: TODO.advancedScreen.sceenSummary.interactionHint
+      interactionHint: |-
+                       Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
+                       relationships between graphs in viewable graph set.
 
   # Lab screen
   labScreen:
-    screenButtonsHelpText: Manipulate a graph and explore its integral, derivative, and second derivative curves in real time, with or without discontinuities.
+    screenButtonsHelpText: |-
+                           Manipulate a graph and explore its integral, derivative, and second derivative curves in 
+                           real time, with or without discontinuities.
     screenSummary:
-      playArea:        TODO.labScreen.screenSummary.playArea
-      controlArea:     TODO.labScreen.screenSummary.controlArea
+      playArea:        |-
+                       There is an interactive curve in the Primary Graph Area representing f of {$variable} and
+                       non interactive curves in other Graphs Areas. You can choose different shapes and widths to
+                       add to curve in Primary Graph Area at any point. You can change which set of three Graph Areas
+                       are viewable: Integral, Primary, and First Derivative, or Primary, First Derivative, and 
+                       Second Derivative. There are Exploration Tools allowing flexible investigation of all curves
+                       with {$variable} coordinates aligned.
+      controlArea:     Reset the sim to start over.
       currentDetails:  TODO.labScreen.screenSummary.currentDetails
-      interactionHint: TODO.labScreen.screenSummary.interactionHint
+      interactionHint: |-
+                       Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
+                       relationships between graphs in viewable graph set.
 
   #=======================================================================================================
   # Accessible Headings
@@ -203,16 +234,16 @@ a11y:
   #=======================================================================================================
 
   primaryGraphArea:
-    accessibleHeading:   Primary Graph Area
+    accessibleHeading: Primary Graph Area
 
   integralGraphArea:
-    accessibleHeading:   Integral Graph Area
+    accessibleHeading: Integral Graph Area
 
   derivativeGraphArea:
-    accessibleHeading:   Derivative Graph Area
+    accessibleHeading: Derivative Graph Area
 
   secondDerivativeGraphArea:
-    accessibleHeading:   Second Derivative Graph Area
+    accessibleHeading: Second Derivative Graph Area
 
   #=======================================================================================================
   # Radio Button Groups
