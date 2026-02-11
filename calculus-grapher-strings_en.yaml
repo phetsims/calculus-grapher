@@ -217,10 +217,10 @@ a11y:
     accessibleContextResponseUnchecked: Area Under Curve Tool removed.
 
   gridCheckbox:
-    accessibleName:                     Coordinate Grid Lines
-    accessibleHelpText:                 Show or hide grid lines on all graphs.
-    accessibleContextResponseChecked:   Grid lines shown.
-    accessibleContextResponseUnchecked: Grid lines hidden.
+    accessibleName:                     Coordinate Grid
+    accessibleHelpText:                 Show or hide coordinate grid on all graphs.
+    accessibleContextResponseChecked:   Coordinate grid shown.
+    accessibleContextResponseUnchecked: Coordinate grid hidden.
 
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
@@ -235,10 +235,10 @@ a11y:
   # Common to all graph areas
   allGraphAreas:
     accessibleParagraph:
-      rightNow:            Right now,
-      gridLinesShown:      Grid lines shown.
-      gridLinesHidden:     Grid lines hidden.
-      valuesLabeledOnAxes: Values labeled on axes.
+      rightNow:             Right now,
+      coordinateGridShown:  Coordinate grid shown.
+      coordinateGridHidden: Coordinate grid hidden.
+      valuesLabeledOnAxes:  Values labeled on axes.
 
   primaryGraphArea:
     accessibleHeading: Primary Graph Area

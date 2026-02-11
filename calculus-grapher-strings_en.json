@@ -379,16 +379,16 @@
     },
     "gridCheckbox": {
       "accessibleName": {
-        "value": "Coordinate Grid Lines"
+        "value": "Coordinate Grid"
       },
       "accessibleHelpText": {
-        "value": "Show or hide grid lines on all graphs."
+        "value": "Show or hide coordinate grid on all graphs."
       },
       "accessibleContextResponseChecked": {
-        "value": "Grid lines shown."
+        "value": "Coordinate grid shown."
       },
       "accessibleContextResponseUnchecked": {
-        "value": "Grid lines hidden."
+        "value": "Coordinate grid hidden."
       }
     },
     "showOriginalCurveCheckbox": {
@@ -410,11 +410,11 @@
         "rightNow": {
           "value": "Right now,"
         },
-        "gridLinesShown": {
-          "value": "Grid lines shown."
+        "coordinateGridShown": {
+          "value": "Coordinate grid shown."
         },
-        "gridLinesHidden": {
-          "value": "Grid lines hidden."
+        "coordinateGridHidden": {
+          "value": "Coordinate grid hidden."
         },
         "valuesLabeledOnAxes": {
           "value": "Values labeled on axes."

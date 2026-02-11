@@ -205,8 +205,8 @@ type StringsType = {
     'allGraphAreas': {
       'accessibleParagraph': {
         'rightNowStringProperty': LocalizedStringProperty;
-        'gridLinesShownStringProperty': LocalizedStringProperty;
-        'gridLinesHiddenStringProperty': LocalizedStringProperty;
+        'coordinateGridShownStringProperty': LocalizedStringProperty;
+        'coordinateGridHiddenStringProperty': LocalizedStringProperty;
         'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
       }
     };

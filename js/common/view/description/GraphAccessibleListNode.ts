@@ -28,8 +28,8 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
     return {
       stringProperty: new DerivedStringProperty( [
           gridLinesVisibleProperty,
-          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.gridLinesShownStringProperty,
-          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.gridLinesHiddenStringProperty
+          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.coordinateGridShownStringProperty,
+          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.coordinateGridHiddenStringProperty
         ],
         ( gridLinesVisible, gridLinesShownString, gridLinesHiddenString ) => gridLinesVisible ? gridLinesShownString : gridLinesHiddenString )
     };
