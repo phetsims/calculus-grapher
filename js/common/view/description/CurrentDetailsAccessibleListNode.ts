@@ -135,7 +135,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       ( someCurveVisible, curvesShownString, allCurvesHiddenString ) => someCurveVisible ? curvesShownString : allCurvesHiddenString
     );
 
-    // uniq is necessary because widthPattern and noWidthPattern have some of the same dependent Properties.
+    // _.uniq is necessary because the FluentPatterns share dependent Properties.
     const leadingParagraphDependencies = _.uniq( [
 
       // Possible pattern to be filled in.

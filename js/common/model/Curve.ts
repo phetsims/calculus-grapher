@@ -22,7 +22,9 @@
  */
 
 import Emitter from '../../../../axon/js/Emitter.js';
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property, { PropertyOptions } from '../../../../axon/js/Property.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Range from '../../../../dot/js/Range.js';
 import { clamp } from '../../../../dot/js/util/clamp.js';
 import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
@@ -73,6 +75,16 @@ export default class Curve extends PhetioObject {
   // invasive to the performance of the simulation as observers had to listen to the yProperty
   // of all CurvePoints. See https://github.com/phetsims/calculus-grapher/issues/19
   public readonly curveChangedEmitter: Emitter;
+
+  // Number of points in pointsProperty with type 'discontinuous'.
+  // Used exclusively for core description.
+  public readonly numberOfDiscontinuitiesProperty: TReadOnlyProperty<number>;
+  private readonly _numberOfDiscontinuitiesProperty: Property<number>;
+
+  // Number of points in pointsProperty with type 'cusp'.
+  // Used exclusively for core description.
+  public readonly numberOfCuspsProperty: TReadOnlyProperty<number>;
+  private readonly _numberOfCuspsProperty: Property<number>;
 
   // Range of the x-axis
   public readonly xRange: Range;
@@ -145,6 +157,23 @@ export default class Curve extends PhetioObject {
     // use an Emitter that emits once after all CurvePoints are set upon manipulation.
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
+
+    this._numberOfDiscontinuitiesProperty = new NumberProperty( this.getNumberOfDiscontinuities(), {
+      //numberType: 'Integer', //TODO https://github.com/phetsims/calculus-grapher/issues/343
+      isValidValue: value => value >= 0
+    } );
+    this.numberOfDiscontinuitiesProperty = this._numberOfDiscontinuitiesProperty;
+
+    this._numberOfCuspsProperty = new NumberProperty( this.getNumberOfCusps(), {
+      // numberType: 'Integer', //TODO https://github.com/phetsims/calculus-grapher/issues/343
+      isValidValue: value => value >= 0
+    } );
+    this.numberOfCuspsProperty = this._numberOfCuspsProperty;
+
+    this.curveChangedEmitter.addListener( () => {
+      this._numberOfDiscontinuitiesProperty.value = this.getNumberOfDiscontinuities();
+      this._numberOfCuspsProperty.value = this.getNumberOfCusps();
+    } );
   }
 
   /**
@@ -184,6 +213,14 @@ export default class Curve extends PhetioObject {
 
     // Clamp the index to a point inside our range.
     return clamp( index, 0, this.points.length - 1 );
+  }
+
+  private getNumberOfDiscontinuities(): number {
+    return roundSymmetric( _.filter( this.points, point => point.pointType === 'discontinuous' ).length / 2 );
+  }
+
+  private getNumberOfCusps(): number {
+    return roundSymmetric( _.filter( this.points, point => point.pointType === 'cusp' ).length / 2 );
   }
 }
 

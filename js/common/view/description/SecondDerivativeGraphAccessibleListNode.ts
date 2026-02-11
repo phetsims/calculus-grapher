@@ -18,8 +18,8 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAccess
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      GraphAccessibleListNode.getGridLinesShownHidden( gridVisibleProperty ),
-      GraphAccessibleListNode.getValuesLabeledOnAxesItem()
+      GraphAccessibleListNode.getGridLinesListItem( gridVisibleProperty ),
+      GraphAccessibleListNode.getValuesListItem()
     ];
 
     super( listItems );

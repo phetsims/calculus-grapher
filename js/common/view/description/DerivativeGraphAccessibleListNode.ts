@@ -17,8 +17,8 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
   public constructor( derivativeCurve: DerivativeCurve, gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      GraphAccessibleListNode.getGridLinesShownHidden( gridVisibleProperty ),
-      GraphAccessibleListNode.getValuesLabeledOnAxesItem()
+      GraphAccessibleListNode.getGridLinesListItem( gridVisibleProperty ),
+      GraphAccessibleListNode.getValuesListItem()
     ];
 
     super( listItems );

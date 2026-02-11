@@ -212,15 +212,43 @@ type StringsType = {
     };
     'primaryGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleListNode': {
+        'primaryCurve': {
+          'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+          'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
+        };
+        'predictCurve': {
+          'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+          'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
+        }
+      }
     };
     'integralGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleListNode': {
+        'continuousStringProperty': LocalizedStringProperty;
+        'hiddenStringProperty': LocalizedStringProperty;
+      }
     };
     'derivativeGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleListNode': {
+        'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+        'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+        'hiddenStringProperty': LocalizedStringProperty;
+      }
     };
     'secondDerivativeGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleListNode': {
+        'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+        'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+        'hiddenStringProperty': LocalizedStringProperty;
+      }
     };
     'predictRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
