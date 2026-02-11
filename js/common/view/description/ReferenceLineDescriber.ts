@@ -113,13 +113,13 @@ export default class ReferenceLineDescriber {
       if ( point.isDiscontinuous ) {
         // undefined
         predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.predictUndefined.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
         } );
       }
       else {
         // y-value
         predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.predictValue.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
         } );
       }
@@ -142,13 +142,13 @@ export default class ReferenceLineDescriber {
       if ( point.isDiscontinuous ) {
         // undefined
         primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.primaryUndefined.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
         } );
       }
       else {
         // y-value
         primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.primaryValue.format( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
         } );
       }
