@@ -58,6 +58,8 @@ addToMapIfDefined( 'curveManipulator_keyboardCue', 'curveManipulator.keyboardCue
 addToMapIfDefined( 'explorationTools', 'explorationToolsStringProperty' );
 addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_widthPattern', 'a11y.allScreens.screenSummary.currentDetails.widthPatternStringProperty' );
 addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_noWidthPattern', 'a11y.allScreens.screenSummary.currentDetails.noWidthPatternStringProperty' );
+addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_curveSentence_curvesShown', 'a11y.allScreens.screenSummary.currentDetails.curveSentence.curvesShownStringProperty' );
+addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_curveSentence_allCurvesHidden', 'a11y.allScreens.screenSummary.currentDetails.curveSentence.allCurvesHiddenStringProperty' );
 addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_primary', 'a11y.allScreens.screenSummary.currentDetails.primaryStringProperty' );
 addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_predict', 'a11y.allScreens.screenSummary.currentDetails.predictStringProperty' );
 addToMapIfDefined( 'a11y_allScreens_screenSummary_currentDetails_integral', 'a11y.allScreens.screenSummary.currentDetails.integralStringProperty' );
@@ -315,8 +317,12 @@ const CalculusGrapherFluent = {
     allScreens: {
       screenSummary: {
         currentDetails: {
-          widthPattern: new FluentPattern<{ shape: FluentVariable, width: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_widthPattern', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.widthPatternStringProperty' ), [{"name":"shape"},{"name":"width"}] ),
-          noWidthPattern: new FluentPattern<{ shape: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_noWidthPattern', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.noWidthPatternStringProperty' ), [{"name":"shape"}] ),
+          widthPattern: new FluentPattern<{ curveSentence: FluentVariable, shape: FluentVariable, width: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_widthPattern', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.widthPatternStringProperty' ), [{"name":"curveSentence"},{"name":"shape"},{"name":"width"}] ),
+          noWidthPattern: new FluentPattern<{ curveSentence: FluentVariable, shape: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_noWidthPattern', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.noWidthPatternStringProperty' ), [{"name":"curveSentence"},{"name":"shape"}] ),
+          curveSentence: {
+            curvesShownStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_curveSentence_curvesShown', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.curveSentence.curvesShownStringProperty' ) ),
+            allCurvesHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_curveSentence_allCurvesHidden', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.curveSentence.allCurvesHiddenStringProperty' ) )
+          },
           primary: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_primary', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.primaryStringProperty' ), [{"name":"variable"}] ),
           predict: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_predict', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.predictStringProperty' ), [{"name":"variable"}] ),
           integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_allScreens_screenSummary_currentDetails_integral', _.get( CalculusGrapherStrings, 'a11y.allScreens.screenSummary.currentDetails.integralStringProperty' ) ),

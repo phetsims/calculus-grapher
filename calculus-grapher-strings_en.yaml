@@ -42,8 +42,11 @@ a11y:
   allScreens:
     screenSummary:
       currentDetails:
-        widthPattern:     'Right now, {$shape} shape with width {$width} chosen. Curves shown are:'
-        noWidthPattern:   'Right now, {$shape} shape chosen. Curves shown are:'
+        widthPattern:   'Right now, {$shape} shape with width {$width} chosen. {$curveSentence}'
+        noWidthPattern: 'Right now, {$shape} shape chosen. {$curveSentence}'
+        curveSentence:
+          curvesShown:     'Curves shown are:'
+          allCurvesHidden: 'All curves hidden.'
         primary:          f of {$variable}
         predict:          Predict f of {$variable}
         integral:         Integral

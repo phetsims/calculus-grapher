@@ -60,6 +60,10 @@ type StringsType = {
         'currentDetails': {
           'widthPatternStringProperty': LocalizedStringProperty;
           'noWidthPatternStringProperty': LocalizedStringProperty;
+          'curveSentence': {
+            'curvesShownStringProperty': LocalizedStringProperty;
+            'allCurvesHiddenStringProperty': LocalizedStringProperty;
+          };
           'primaryStringProperty': LocalizedStringProperty;
           'predictStringProperty': LocalizedStringProperty;
           'integralStringProperty': LocalizedStringProperty;

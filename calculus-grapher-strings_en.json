@@ -96,10 +96,18 @@
       "screenSummary": {
         "currentDetails": {
           "widthPattern": {
-            "value": "Right now, {$shape} shape with width {$width} chosen. Curves shown are:"
+            "value": "Right now, {$shape} shape with width {$width} chosen. {$curveSentence}"
           },
           "noWidthPattern": {
-            "value": "Right now, {$shape} shape chosen. Curves shown are:"
+            "value": "Right now, {$shape} shape chosen. {$curveSentence}"
+          },
+          "curveSentence": {
+            "curvesShown": {
+              "value": "Curves shown are:"
+            },
+            "allCurvesHidden": {
+              "value": "All curves hidden."
+            }
           },
           "primary": {
             "value": "f of {$variable}"
