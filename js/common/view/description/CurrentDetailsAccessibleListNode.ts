@@ -28,13 +28,13 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
   // think twice about whether it's appropriate or necessary.
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
-    // Visible Properties for each curve.
+    // visible Properties for each curve that is relevant for this description.
     const visibleProperties: TReadOnlyProperty<boolean>[] = [];
 
     // Bullet list items for the accessible list.
     const listItems: AccessibleListItem[] = [];
 
-    // Integral
+    // Integral. Only screens with an integral include this description.
     if ( graphsNode.integralGraphNode ) {
 
       // visible Property
@@ -50,7 +50,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       } );
     }
 
-    // f of x, visible Property and list item.
+    // f of x, visible Property and list item.  All screens include this description.
     const primaryCurveVisibleProperty = new DerivedProperty( [
         graphsNode.originalGraphNode.curveLayerVisibleProperty,
         graphsNode.originalGraphNode.showOriginalCurveProperty,
@@ -68,7 +68,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       visibleProperty: primaryCurveVisibleProperty
     } );
 
-    // Predict f of x, visible Property and list item.
+    // Predict f of x, visible Property and list item. All screens include this description.
     const predictCurveVisibleProperty = DerivedProperty.and( [
       graphsNode.originalGraphNode.curveLayerVisibleProperty,
       CalculusGrapherPreferences.predictFeatureEnabledProperty,
@@ -83,7 +83,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       visibleProperty: predictCurveVisibleProperty
     } );
 
-    // Derivative
+    // Derivative. Only screens that with a derivative include this description.
     if ( graphsNode.derivativeGraphNode ) {
 
       // visible Property
@@ -99,7 +99,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       } );
     }
 
-    // Second Derivative
+    // Second Derivative. Only screens with a second derivative include this description.
     if ( graphsNode.secondDerivativeGraphNode ) {
 
       // visible Property
