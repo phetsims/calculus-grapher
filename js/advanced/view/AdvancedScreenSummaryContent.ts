@@ -1,27 +1,26 @@
 // Copyright 2025, University of Colorado Boulder
 
 /**
- * AdvancedScreenSummaryContent is the description screen summary for the 'Advanced' screen.
+ * AdvancedScreenSummaryContent is the screen summary for the 'Advanced' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
-import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../common/CalculusGrapherSymbols.js';
+import CalculusGrapherModel from '../../common/model/CalculusGrapherModel.js';
+import CalculusGrapherScreenSummaryContent from '../../common/view/description/CalculusGrapherScreenSummaryContent.js';
+import GraphsNode from '../../common/view/GraphsNode.js';
 
-export default class AdvancedScreenSummaryContent extends ScreenSummaryContent {
+export default class AdvancedScreenSummaryContent extends CalculusGrapherScreenSummaryContent {
 
-  public constructor() {
+  public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
-    super( {
+    super( model, graphsNode, {
       playAreaContent: CalculusGrapherFluent.a11y.advancedScreen.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      controlAreaContent: CalculusGrapherFluent.a11y.allScreens.screenSummary.controlAreaStringProperty,
-      currentDetailsContent: new Property( 'TODO.currentDetails' ), //TODO https://github.com/phetsims/calculus-grapher/issues/343
       interactionHintContent: CalculusGrapherFluent.a11y.advancedScreen.screenSummary.interactionHintStringProperty
     } );
   }

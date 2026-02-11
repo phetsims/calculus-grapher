@@ -79,13 +79,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       this.resetAllButton
     ];
 
-    // screenSummaryContent cannot be set via options because it depends on the existence of view elements.
-    affirm( this.graphsNode.derivativeGraphNode, 'DerivativeScreenView requires a derivativeGraphNode.' );
-    this.setScreenSummaryContent( new DerivativeScreenSummaryContent( model,
-      this.graphsNode.originalGraphNode.showOriginalCurveProperty,
-      this.graphsNode.originalGraphNode.curveLayerVisibleProperty,
-      this.graphsNode.derivativeGraphNode?.curveLayerVisibleProperty
-    ) );
+    // screenSummaryContent cannot be set via options because it depends on the existence of this.graphsNode.
+    this.setScreenSummaryContent( new DerivativeScreenSummaryContent( model, this.graphsNode ) );
   }
 
   public override reset(): void {
