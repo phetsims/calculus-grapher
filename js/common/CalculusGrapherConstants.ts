@@ -118,6 +118,7 @@ export default class CalculusGrapherConstants {
   public static readonly Y_DESCRIPTION_DECIMALS = 2;
   public static readonly SLOPE_DESCRIPTION_DECIMALS = 2;
   public static readonly AREA_DESCRIPTION_DECIMALS = 2;
+  public static readonly WIDTH_DESCRIPTION_DECIMALS = 1;
 }
 
 calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

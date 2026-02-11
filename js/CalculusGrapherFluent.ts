@@ -59,7 +59,11 @@ addToMapIfDefined( 'explorationToolControls', 'explorationToolControlsStringProp
 addToMapIfDefined( 'a11y_derivativeScreen_screenButtonsHelpText', 'a11y.derivativeScreen.screenButtonsHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_playArea', 'a11y.derivativeScreen.screenSummary.playAreaStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_controlArea', 'a11y.derivativeScreen.screenSummary.controlAreaStringProperty' );
-addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_currentDetails', 'a11y.derivativeScreen.screenSummary.currentDetailsStringProperty' );
+addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_currentDetails_widthPattern', 'a11y.derivativeScreen.screenSummary.currentDetails.widthPatternStringProperty' );
+addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_currentDetails_noWidthPattern', 'a11y.derivativeScreen.screenSummary.currentDetails.noWidthPatternStringProperty' );
+addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_currentDetails_primary', 'a11y.derivativeScreen.screenSummary.currentDetails.primaryStringProperty' );
+addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_currentDetails_predict', 'a11y.derivativeScreen.screenSummary.currentDetails.predictStringProperty' );
+addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_currentDetails_derivative', 'a11y.derivativeScreen.screenSummary.currentDetails.derivativeStringProperty' );
 addToMapIfDefined( 'a11y_derivativeScreen_screenSummary_interactionHint', 'a11y.derivativeScreen.screenSummary.interactionHintStringProperty' );
 addToMapIfDefined( 'a11y_integralScreen_screenButtonsHelpText', 'a11y.integralScreen.screenButtonsHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_integralScreen_screenSummary_playArea', 'a11y.integralScreen.screenSummary.playAreaStringProperty' );
@@ -317,7 +321,13 @@ const CalculusGrapherFluent = {
       screenSummary: {
         playArea: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_playArea', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.playAreaStringProperty' ), [{"name":"variable"}] ),
         controlAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_controlArea', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.controlAreaStringProperty' ) ),
-        currentDetailsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetailsStringProperty' ) ),
+        currentDetails: {
+          widthPattern: new FluentPattern<{ shape: FluentVariable, width: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails_widthPattern', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetails.widthPatternStringProperty' ), [{"name":"shape"},{"name":"width"}] ),
+          noWidthPattern: new FluentPattern<{ shape: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails_noWidthPattern', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetails.noWidthPatternStringProperty' ), [{"name":"shape"}] ),
+          primary: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails_primary', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetails.primaryStringProperty' ), [{"name":"variable"}] ),
+          predict: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails_predict', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetails.predictStringProperty' ), [{"name":"variable"}] ),
+          derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_currentDetails_derivative', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.currentDetails.derivativeStringProperty' ) )
+        },
         interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeScreen_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.derivativeScreen.screenSummary.interactionHintStringProperty' ) )
       }
     },

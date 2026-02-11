@@ -34,8 +34,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
         hasSmoothButton: false
-      },
-      screenSummaryContent: new DerivativeScreenSummaryContent()
+      }
     }, providedOptions );
 
     super( model, options );
@@ -79,6 +78,14 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     this.pdomControlAreaNode.pdomOrder = [
       this.resetAllButton
     ];
+
+    // screenSummaryContent cannot be set via options because it depends on the existence of view elements.
+    affirm( this.graphsNode.derivativeGraphNode, 'DerivativeScreenView requires a derivativeGraphNode.' );
+    this.setScreenSummaryContent( new DerivativeScreenSummaryContent( model,
+      this.graphsNode.originalGraphNode.showOriginalCurveProperty,
+      this.graphsNode.originalGraphNode.curveLayerVisibleProperty,
+      this.graphsNode.derivativeGraphNode?.curveLayerVisibleProperty
+    ) );
   }
 
   public override reset(): void {

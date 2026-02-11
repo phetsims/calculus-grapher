@@ -23,8 +23,8 @@ export default class CurveManipulationMode extends EnumerationValue {
   // Prefix used for tandems related to a CurveManipulationMode
   public readonly tandemPrefix: string;
 
-  // For core description of associated radio buttons.
-  public readonly radioButtonAccessibleNameProperty: TReadOnlyProperty<string>;
+  // For core description
+  public readonly accessibleNameProperty: TReadOnlyProperty<string>;
   public readonly radioButtonAccessibleHelpTextProperty: TReadOnlyProperty<string>;
 
   // Determines visibility of the width slider
@@ -69,12 +69,12 @@ export default class CurveManipulationMode extends EnumerationValue {
   public static readonly enumeration = new Enumeration( CurveManipulationMode );
 
   public constructor( tandemPrefix: string,
-                      radioButtonAccessibleNameProperty: TReadOnlyProperty<string>,
+                      accessibleNameProperty: TReadOnlyProperty<string>,
                       radioButtonAccessibleHelpTextProperty: TReadOnlyProperty<string>,
                       hasAdjustableWidth = true ) {
     super();
     this.tandemPrefix = tandemPrefix;
-    this.radioButtonAccessibleNameProperty = radioButtonAccessibleNameProperty;
+    this.accessibleNameProperty = accessibleNameProperty;
     this.radioButtonAccessibleHelpTextProperty = radioButtonAccessibleHelpTextProperty;
     this.hasAdjustableWidth = hasAdjustableWidth;
   }

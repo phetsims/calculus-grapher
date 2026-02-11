@@ -104,7 +104,21 @@
           "value": "Reset the sim to start over."
         },
         "currentDetails": {
-          "value": "TODO.derivativeScreen.screenSummary.currentDetails"
+          "widthPattern": {
+            "value": "Right now, {$shape} shape with width {$width} chosen. Curves shown are:"
+          },
+          "noWidthPattern": {
+            "value": "Right now, {$shape} shape chosen. Curves shown are:"
+          },
+          "primary": {
+            "value": "f of {$variable}"
+          },
+          "predict": {
+            "value": "Predict f of {$variable}"
+          },
+          "derivative": {
+            "value": "Derivative"
+          }
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness\nof f curve at different points."

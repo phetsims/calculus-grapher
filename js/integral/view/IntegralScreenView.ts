@@ -34,8 +34,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
       // CalculusGrapherScreenViewOptions
       controlPanelOptions: {
         hasSmoothButton: false
-      },
-      screenSummaryContent: new IntegralScreenSummaryContent()
+      }
     }, providedOptions );
 
     super( model, options );
@@ -80,6 +79,9 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     this.pdomControlAreaNode.pdomOrder = [
       this.resetAllButton
     ];
+
+    // screenSummaryContent cannot be set via options because it depends on the existence of view elements.
+    this.setScreenSummaryContent( new IntegralScreenSummaryContent() );
   }
 
   public override reset(): void {

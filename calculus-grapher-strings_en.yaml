@@ -48,7 +48,12 @@ a11y:
                        add to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
                        investigation of all curves with {$variable} coordinates aligned.
       controlArea:     Reset the sim to start over.
-      currentDetails:  TODO.derivativeScreen.screenSummary.currentDetails
+      currentDetails:
+        widthPattern:   'Right now, {$shape} shape with width {$width} chosen. Curves shown are:'
+        noWidthPattern: 'Right now, {$shape} shape chosen. Curves shown are:'
+        primary:        f of {$variable}
+        predict:        Predict f of {$variable}
+        derivative:     Derivative
       interactionHint: |-
                        Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness
                        of f curve at different points.

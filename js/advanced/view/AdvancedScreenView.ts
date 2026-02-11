@@ -8,7 +8,7 @@
  */
 
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
@@ -24,13 +24,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
 
   public constructor( model: AdvancedModel, providedOptions: AdvancedScreenViewOptions ) {
 
-    const options = optionize<AdvancedScreenViewOptions, SelfOptions, CalculusGrapherScreenViewOptions>()( {
-
-      // CalculusGrapherScreenViewOptions
-      screenSummaryContent: new AdvancedScreenSummaryContent()
-    }, providedOptions );
-
-    super( model, options );
+    super( model, providedOptions );
 
     // Play Area focus order
     affirm( this.graphSetRadioButtonGroup, 'This screen is expected to have a graphSetRadioButtonGroup.' );
@@ -45,6 +39,9 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
     this.pdomControlAreaNode.pdomOrder = [
       this.resetAllButton
     ];
+
+    // screenSummaryContent cannot be set via options because it depends on the existence of view elements.
+    this.setScreenSummaryContent( new AdvancedScreenSummaryContent() );
   }
 }
 

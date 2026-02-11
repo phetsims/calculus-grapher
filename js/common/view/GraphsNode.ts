@@ -57,9 +57,9 @@ export default class GraphsNode extends Node {
   public readonly originalGraphNode: OriginalGraphNode;
 
   // These GraphNodes will be conditionally created, based on whether they appear in model.graphSets.
-  private readonly integralGraphNode?: IntegralGraphNode;
-  private readonly derivativeGraphNode?: GraphNode;
-  private readonly secondDerivativeGraphNode?: GraphNode;
+  public readonly integralGraphNode?: IntegralGraphNode;
+  public readonly derivativeGraphNode?: GraphNode;
+  public readonly secondDerivativeGraphNode?: GraphNode;
 
   // For iterating over all GraphNode instances
   private readonly graphNodes: GraphNode[];
