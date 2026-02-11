@@ -27,7 +27,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
     super( model, providedOptions );
 
     // Play Area focus order
-    affirm( this.graphSetRadioButtonGroup, 'This screen is expected to have a graphSetRadioButtonGroup.' );
+    affirm( this.graphSetRadioButtonGroup, 'AdvancedScreenView requires a graphSetRadioButtonGroup.' );
     this.pdomPlayAreaNode.pdomOrder = [
       this.graphSetRadioButtonGroup,
       this.graphsNode,
