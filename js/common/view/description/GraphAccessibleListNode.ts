@@ -1,7 +1,8 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * GraphAccessibleListNode is the accessible list that describes the integral graph.
+ * GraphAccessibleListNode is the base class for accessible lists that describe graphs.
+ * It handles the parts of the accessible list that are common to all graphs.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -18,24 +19,27 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
   protected constructor( listItems: AccessibleListItem[] ) {
 
     super( listItems, {
-      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.accessibleParagraphs.rightNowStringProperty
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.rightNowStringProperty
     } );
   }
 
+  // Grid lines show.
+  // Grid lines hidden.
   protected static getGridLinesShownHidden( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
     return {
       stringProperty: new DerivedStringProperty( [
           gridLinesVisibleProperty,
-          CalculusGrapherFluent.a11y.accessibleParagraphs.gridLinesShownStringProperty,
-          CalculusGrapherFluent.a11y.accessibleParagraphs.gridLinesHiddenStringProperty
+          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.gridLinesShownStringProperty,
+          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.gridLinesHiddenStringProperty
         ],
         ( gridLinesVisible, gridLinesShownString, gridLinesHiddenString ) => gridLinesVisible ? gridLinesShownString : gridLinesHiddenString )
     };
   }
 
+  // Values labeled on axes.
   protected static getValuesLabeledOnAxesItem(): AccessibleListItem {
     return {
-      stringProperty: CalculusGrapherFluent.a11y.accessibleParagraphs.valuesLabeledOnAxesStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.valuesLabeledOnAxesStringProperty,
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     };
   }

@@ -121,16 +121,6 @@ a11y:
     explorationTools:                     Exploration Tools
 
   #=======================================================================================================
-  # Accessible Paragraphs
-  #=======================================================================================================
-
-  accessibleParagraphs:
-    rightNow:            Right now,
-    valuesLabeledOnAxes: Values labeled on axes.
-    gridLinesShown:      Grid lines shown.
-    gridLinesHidden:     Grid lines hidden.
-
-  #=======================================================================================================
   # Accordion Boxes
   #=======================================================================================================
 
@@ -238,6 +228,14 @@ a11y:
   #=======================================================================================================
   # Graph Areas
   #=======================================================================================================
+
+  # Common to all graph areas
+  allGraphAreas:
+    accessibleParagraph:
+      rightNow:            Right now,
+      gridLinesShown:      Grid lines shown.
+      gridLinesHidden:     Grid lines hidden.
+      valuesLabeledOnAxes: Values labeled on axes.
 
   primaryGraphArea:
     accessibleHeading: Primary Graph Area

@@ -102,12 +102,6 @@ type StringsType = {
       'explorationToolControlsStringProperty': LocalizedStringProperty;
       'explorationToolsStringProperty': LocalizedStringProperty;
     };
-    'accessibleParagraphs': {
-      'rightNowStringProperty': LocalizedStringProperty;
-      'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
-      'gridLinesShownStringProperty': LocalizedStringProperty;
-      'gridLinesHiddenStringProperty': LocalizedStringProperty;
-    };
     'slopeOfTangentAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
@@ -203,6 +197,14 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
+    };
+    'allGraphAreas': {
+      'accessibleParagraph': {
+        'rightNowStringProperty': LocalizedStringProperty;
+        'gridLinesShownStringProperty': LocalizedStringProperty;
+        'gridLinesHiddenStringProperty': LocalizedStringProperty;
+        'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
+      }
     };
     'primaryGraphArea': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
