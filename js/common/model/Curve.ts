@@ -217,11 +217,11 @@ export default class Curve extends PhetioObject {
   }
 
   private getNumberOfDiscontinuities(): number {
-    return roundSymmetric( _.filter( this.points, point => point.pointType === 'discontinuous' ).length / 2 );
+    return _.filter( this.points, point => point.pointType === 'discontinuous' ).length / 2;
   }
 
   private getNumberOfCusps(): number {
-    return roundSymmetric( _.filter( this.points, point => point.pointType === 'cusp' ).length / 2 );
+    return _.filter( this.points, point => point.pointType === 'cusp' ).length / 2;
   }
 }
 
