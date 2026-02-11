@@ -32,8 +32,8 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
         model.curveManipulationProperties.modeProperty,
         model.curveManipulationProperties.widthProperty,
 
-        // FluentPattern instances are not observable. I was advised to get their dependent Properties, but
-        // I'm skeptical that this will work correctly for dynamic locale. And there is currently no way to test.
+        // FluentPattern instances are not observable. I was advised to observe their dependent Properties.
+        // But I'm skeptical that this works correctly for dynamic locale. And there is currently no way to test.
         ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.getDependentProperties(),
         ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.noWidthPattern.getDependentProperties()
       ] ),
