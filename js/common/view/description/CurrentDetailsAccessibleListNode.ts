@@ -20,6 +20,10 @@ import GraphsNode from '../GraphsNode.js';
 
 export default class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
+  // I hate the coupling here that results from passing in the entire model and graphNode. But these descriptions
+  // have changed so many times, and need access to so many things buried in the model and view, that it's not worth the
+  // cost to reduce the coupling here. So if you find yourself adding new code that reaches into model or graphsNode,
+  // think twice and decide whether it's really appropriate or necessary.
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     const leadingParagraphStringProperty = DerivedProperty.deriveAny(
