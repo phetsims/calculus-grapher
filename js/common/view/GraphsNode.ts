@@ -58,8 +58,8 @@ export default class GraphsNode extends Node {
 
   // These GraphNodes will be conditionally created, based on whether they appear in model.graphSets.
   public readonly integralGraphNode?: IntegralGraphNode;
-  public readonly derivativeGraphNode?: GraphNode;
-  public readonly secondDerivativeGraphNode?: GraphNode;
+  public readonly derivativeGraphNode?: DerivativeGraphNode;
+  public readonly secondDerivativeGraphNode?: SecondDerivativeGraphNode;
 
   // For iterating over all GraphNode instances
   private readonly graphNodes: GraphNode[];
@@ -98,7 +98,7 @@ export default class GraphsNode extends Node {
 
     // Optional integral graph
     if ( GraphSet.includes( model.graphSets, GraphType.INTEGRAL ) ) {
-      this.integralGraphNode = new IntegralGraphNode( model.integralCurve, model.gridVisibleProperty, {
+      this.integralGraphNode = new IntegralGraphNode( model.integralCurve, model.gridVisibleProperty, model.graphSetProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
         tandem: options.tandem.createTandem( 'integralGraphNode' )
       } );
@@ -114,7 +114,7 @@ export default class GraphsNode extends Node {
 
     // Optional derivative graph
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
-      this.derivativeGraphNode = new DerivativeGraphNode( model.derivativeCurve, model.gridVisibleProperty, {
+      this.derivativeGraphNode = new DerivativeGraphNode( model.derivativeCurve, model.gridVisibleProperty, model.graphSetProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
         tandem: options.tandem.createTandem( 'derivativeGraphNode' )
       } );
@@ -123,7 +123,7 @@ export default class GraphsNode extends Node {
 
     // Optional second derivative graph
     if ( GraphSet.includes( model.graphSets, GraphType.SECOND_DERIVATIVE ) ) {
-      this.secondDerivativeGraphNode = new SecondDerivativeGraphNode( model.secondDerivativeCurve, model.gridVisibleProperty, {
+      this.secondDerivativeGraphNode = new SecondDerivativeGraphNode( model.secondDerivativeCurve, model.gridVisibleProperty, model.graphSetProperty, {
         chartRectangleHeight: this.chartRectangleHeight,
         tandem: options.tandem.createTandem( 'secondDerivativeGraphNode' )
       } );

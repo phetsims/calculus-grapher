@@ -6,11 +6,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import SecondDerivativeCurve from '../model/SecondDerivativeCurve.js';
 import SecondDerivativeGraphAccessibleListNode from './description/SecondDerivativeGraphAccessibleListNode.js';
@@ -22,8 +24,12 @@ type SecondDerivativeGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOpti
 
 export default class SecondDerivativeGraphNode extends GraphNode {
 
+  // For core description.
+  public readonly secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean>;
+
   public constructor( secondDerivativeCurve: SecondDerivativeCurve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
+                      graphSetProperty: TReadOnlyProperty<GraphSet>,
                       providedOptions: SecondDerivativeGraphNodeOptions ) {
 
     const options = optionize<SecondDerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
@@ -44,6 +50,10 @@ export default class SecondDerivativeGraphNode extends GraphNode {
     }, providedOptions );
 
     super( GraphType.SECOND_DERIVATIVE, secondDerivativeCurve, gridVisibleProperty, options );
+
+    this.secondDerivativeCurveVisibleProperty = new DerivedProperty(
+      [ graphSetProperty, this.curveLayerVisibleProperty ],
+      ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.SECOND_DERIVATIVE ) && curveLayerVisible );
   }
 }
 

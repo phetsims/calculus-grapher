@@ -76,6 +76,10 @@ export default class OriginalGraphNode extends GraphNode {
   private readonly originalCurveManipulatorNode: CurveManipulatorNode;
   private readonly predictCurveManipulatorNode: CurveManipulatorNode;
 
+  // For core description
+  public readonly originalCurveVisibleProperty: TReadOnlyProperty<boolean>;
+  public readonly predictCurveVisibleProperty: TReadOnlyProperty<boolean>;
+
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
 
     // Destructure fields from the model into local constants to improve readability.
@@ -330,6 +334,16 @@ export default class OriginalGraphNode extends GraphNode {
       showOriginalCurveCheckbox,
       this.eyeToggleButton
     ];
+
+    this.originalCurveVisibleProperty = new DerivedProperty( [
+        this.curveLayerVisibleProperty,
+        this.showOriginalCurveProperty,
+        model.predictEnabledProperty
+      ],
+      ( originalCurveLayerVisible, showOriginalCurve, predictEnabled ) =>
+        originalCurveLayerVisible && ( showOriginalCurve || !predictEnabled ) );
+
+    this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
   }
 
   public override reset(): void {

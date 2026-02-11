@@ -6,11 +6,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import IntegralCurve from '../model/IntegralCurve.js';
 import IntegralGraphAccessibleListNode from './description/IntegralGraphAccessibleListNode.js';
@@ -22,8 +24,12 @@ type IntegralGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'ch
 
 export default class IntegralGraphNode extends GraphNode {
 
+  // For core description.
+  public readonly integralCurveVisibleProperty: TReadOnlyProperty<boolean>;
+
   public constructor( integralCurve: IntegralCurve,
                       gridVisibleProperty: TReadOnlyProperty<boolean>,
+                      graphSetProperty: TReadOnlyProperty<GraphSet>,
                       providedOptions: IntegralGraphNodeOptions ) {
 
     const options = optionize<IntegralGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
@@ -44,6 +50,10 @@ export default class IntegralGraphNode extends GraphNode {
     }, providedOptions );
 
     super( GraphType.INTEGRAL, integralCurve, gridVisibleProperty, options );
+
+    this.integralCurveVisibleProperty = new DerivedProperty(
+      [ graphSetProperty, this.curveLayerVisibleProperty ],
+      ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.INTEGRAL ) && curveLayerVisible );
   }
 }
 
