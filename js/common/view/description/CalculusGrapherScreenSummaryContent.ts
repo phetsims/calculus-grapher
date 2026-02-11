@@ -1,7 +1,8 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * CalculusGrapherScreenSummaryContent is the base class for all screen summaries.
+ * CalculusGrapherScreenSummaryContent is the base class for all screen summaries.  It handles the parts of the
+ * screen summary that are common to all screens.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
