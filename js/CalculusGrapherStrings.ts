@@ -53,7 +53,7 @@ type StringsType = {
     'keyboardHelpLabelStringProperty': LocalizedStringProperty;
     'keyboardCueStringProperty': LocalizedStringProperty;
   };
-  'explorationToolControlsStringProperty': LocalizedStringProperty;
+  'explorationToolsStringProperty': LocalizedStringProperty;
   'a11y': {
     'allScreens': {
       'screenSummary': {
