@@ -60,7 +60,7 @@ a11y:
     screenSummary:
       playArea:        |-
                        There is an interactive curve in the Primary Graph Area representing f of {$variable} and a 
-                       non-interactive curve representing the first derivative of f. You can choose different shapes to
+                       non-interactive curve representing the derivative of f. You can choose different shapes to
                        add to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
                        investigation of all curves with {$variable} coordinates aligned.
 
@@ -91,7 +91,7 @@ a11y:
                        There is an interactive curve in the Primary Graph Area representing f of {$variable} and
                        non interactive curves in other Graph Areas. You can choose different shapes and widths to
                        add to curve in Primary Graph Area at any point. You can change which set of two Graph Areas
-                       are viewable: Integral and Primary or Primary and First Derivative. There are Exploration Tools
+                       are viewable: Integral and Primary or Primary and Derivative. There are Exploration Tools
                        allowing flexible investigation of all viewable curves with {$variable} coordinates aligned.
       interactionHint: |-
                        Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
@@ -107,7 +107,7 @@ a11y:
                        There is an interactive curve in the Primary Graph Area representing f of {$variable} and
                        non interactive curves in other Graphs Areas. You can choose different shapes and widths to
                        add to curve in Primary Graph Area at any point. You can change which set of three Graph Areas
-                       are viewable: Integral, Primary, and First Derivative, or Primary, First Derivative, and 
+                       are viewable: Integral, Primary, and Derivative, or Primary, Derivative, and 
                        Second Derivative. There are Exploration Tools allowing flexible investigation of all curves
                        with {$variable} coordinates aligned.
       interactionHint: |-
