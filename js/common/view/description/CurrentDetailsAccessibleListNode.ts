@@ -31,10 +31,10 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     // visible Properties for each curve that is relevant for this description.
     const visibleProperties: TReadOnlyProperty<boolean>[] = [];
 
-    // Bullet list items for the accessible list.
+    // Ordered bullet list items for the accessible list.
     const listItems: AccessibleListItem[] = [];
 
-    // Integral. Only screens with an integral include this description.
+    // Integral Curve. Only screens with an integral include this description.
     if ( graphsNode.integralGraphNode ) {
 
       // visible Property
@@ -50,40 +50,48 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       } );
     }
 
-    // f of x, visible Property and list item.  All screens include this description.
-    const primaryCurveVisibleProperty = new DerivedProperty( [
+    // Original Curve. All screens include this description.
+    {
+      // visible Property
+      const primaryCurveVisibleProperty = new DerivedProperty( [
+          graphsNode.originalGraphNode.curveLayerVisibleProperty,
+          graphsNode.originalGraphNode.showOriginalCurveProperty,
+          CalculusGrapherPreferences.predictFeatureEnabledProperty,
+          model.predictSelectedProperty
+        ],
+        ( originalCurveLayerVisible, showOriginalCurve, predictFeatureEnabled, predictSelected ) =>
+          originalCurveLayerVisible && ( showOriginalCurve || !( predictFeatureEnabled && predictSelected ) ) );
+      visibleProperties.push( primaryCurveVisibleProperty );
+
+      // list item
+      listItems.push( {
+        stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.primary.createProperty( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+        } ),
+        visibleProperty: primaryCurveVisibleProperty
+      } );
+    }
+
+    // Predict Curve. All screens include this description.
+    {
+      // visible Property
+      const predictCurveVisibleProperty = DerivedProperty.and( [
         graphsNode.originalGraphNode.curveLayerVisibleProperty,
-        graphsNode.originalGraphNode.showOriginalCurveProperty,
         CalculusGrapherPreferences.predictFeatureEnabledProperty,
         model.predictSelectedProperty
-      ],
-      ( originalCurveLayerVisible, showOriginalCurve, predictFeatureEnabled, predictSelected ) =>
-        originalCurveLayerVisible && ( showOriginalCurve || !( predictFeatureEnabled && predictSelected ) ) );
-    visibleProperties.push( primaryCurveVisibleProperty );
+      ] );
+      visibleProperties.push( predictCurveVisibleProperty );
 
-    listItems.push( {
-      stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.primary.createProperty( {
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-      } ),
-      visibleProperty: primaryCurveVisibleProperty
-    } );
+      // list item
+      listItems.push( {
+        stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.predict.createProperty( {
+          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+        } ),
+        visibleProperty: predictCurveVisibleProperty
+      } );
+    }
 
-    // Predict f of x, visible Property and list item. All screens include this description.
-    const predictCurveVisibleProperty = DerivedProperty.and( [
-      graphsNode.originalGraphNode.curveLayerVisibleProperty,
-      CalculusGrapherPreferences.predictFeatureEnabledProperty,
-      model.predictSelectedProperty
-    ] );
-    visibleProperties.push( predictCurveVisibleProperty );
-
-    listItems.push( {
-      stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.predict.createProperty( {
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-      } ),
-      visibleProperty: predictCurveVisibleProperty
-    } );
-
-    // Derivative. Only screens that with a derivative include this description.
+    // Derivative Curve. Only screens that with a derivative include this description.
     if ( graphsNode.derivativeGraphNode ) {
 
       // visible Property
@@ -99,7 +107,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       } );
     }
 
-    // Second Derivative. Only screens with a second derivative include this description.
+    // Second Derivative Curve. Only screens with a second derivative include this description.
     if ( graphsNode.secondDerivativeGraphNode ) {
 
       // visible Property
