@@ -242,15 +242,37 @@ a11y:
 
   primaryGraphArea:
     accessibleHeading: Primary Graph Area
+    accessibleListNode:
+      primaryCurve:
+        continuousAndDifferentiable:       f of {$variable} is continuous and differentiable at all points.
+        continuousAndNotDifferentiable:    f of {$variable} is continuous but not differentiable at {$numberOfCusps} cusps.
+        discontinuousAndNotDifferentiable: f of {$variable} is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
+        hidden:                            f of {$variable} hidden.
+      predictCurve:
+        continuousAndDifferentiable:       Predict f of {$variable} is continuous and differentiable at all points.
+        continuousAndNotDifferentiable:    Predict f of {$variable} is continuous but not differentiable at {$numberOfCusps} cusps.
+        discontinuousAndNotDifferentiable: Predict f of {$variable} is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
+        hidden:                            Predict f of {$variable} hidden.
 
   integralGraphArea:
     accessibleHeading: Integral Graph Area
+    accessibleListNode:
+      continuous: Integral curve is continuous and represents definite integral from zero to {$variable} for f of {$variable}.
+      hidden:     Integral curve hidden.
 
   derivativeGraphArea:
     accessibleHeading: Derivative Graph Area
+    accessibleListNode:
+      continuousAndDifferentiable:       Derivative curve is continuous and differentiable at all points.
+      discontinuousAndNotDifferentiable: Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
+      hidden:                            Derivative curve hidden.
 
   secondDerivativeGraphArea:
     accessibleHeading: Second Derivative Graph Area
+    accessibleListNode:
+      continuousAndDifferentiable:       Second derivative curve is continuous and differentiable at all points.
+      discontinuousAndNotDifferentiable: Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
+      hidden:                            Second derivative curve hidden.
 
   #=======================================================================================================
   # Radio Button Groups

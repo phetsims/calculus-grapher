@@ -597,8 +597,8 @@ export default class TransformedCurve extends Curve {
 
     // Assign type to points
 
-    // Main idea: assign the smooth type to ALL points between penultimatePosition to position (
-    // and possibly antepenultimatePosition if it exists), then come back to it by reassigning the
+    // Main idea: assign the smooth type to ALL points between penultimatePosition to position
+    // (and possibly antepenultimatePosition if it exists), then come back to it by reassigning the
     // closestPoint (and its point partner ahead of the drag) to be discontinuous.
 
     // does penultimatePosition exist?
