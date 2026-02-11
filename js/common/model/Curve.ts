@@ -158,23 +158,27 @@ export default class Curve extends PhetioObject {
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
-    this._numberOfDiscontinuitiesProperty = new NumberProperty( this.getNumberOfDiscontinuities(), {
-      //numberType: 'Integer', //TODO https://github.com/phetsims/calculus-grapher/issues/343
-      isValidValue: value => value >= 0
+    this._numberOfDiscontinuitiesProperty = new NumberProperty( 0, {
+      numberType: 'Integer',
+      isValidValue: value => value >= 0,
+      tandem: options.tandem.createTandem( 'numberOfDiscontinuitiesProperty' ),
+      phetioReadOnly: true
     } );
     this.numberOfDiscontinuitiesProperty = this._numberOfDiscontinuitiesProperty;
 
-    this._numberOfCuspsProperty = new NumberProperty( this.getNumberOfCusps(), {
-      // numberType: 'Integer', //TODO https://github.com/phetsims/calculus-grapher/issues/343
-      isValidValue: value => value >= 0
+    this._numberOfCuspsProperty = new NumberProperty( 0, {
+      numberType: 'Integer',
+      isValidValue: value => value >= 0,
+      tandem: options.tandem.createTandem( 'numberOfCuspsProperty' ),
+      phetioReadOnly: true
     } );
     this.numberOfCuspsProperty = this._numberOfCuspsProperty;
 
-    this.curveChangedEmitter.addListener( () => {
-      //TODO https://github.com/phetsims/calculus-grapher/issues/343 Can we make 1 pass through points to update both counts?
-      this._numberOfDiscontinuitiesProperty.value = this.getNumberOfDiscontinuities();
-      this._numberOfCuspsProperty.value = this.getNumberOfCusps();
-    } );
+    // Initialize _numberOfDiscontinuitiesProperty and _numberOfCuspsProperty.
+    this.updateDiscontinuitiesAndCusps();
+
+    // Update the number of discontinuities and cusps in one pass through the points.
+    this.curveChangedEmitter.addListener( () => this.updateDiscontinuitiesAndCusps() );
   }
 
   /**
@@ -216,12 +220,32 @@ export default class Curve extends PhetioObject {
     return clamp( index, 0, this.points.length - 1 );
   }
 
-  private getNumberOfDiscontinuities(): number {
-    return _.filter( this.points, point => point.pointType === 'discontinuous' ).length / 2;
-  }
+  /**
+   * Updates the counts of discontinuities and cusps in one pass through the points.
+   */
+  private updateDiscontinuitiesAndCusps(): void {
 
-  private getNumberOfCusps(): number {
-    return _.filter( this.points, point => point.pointType === 'cusp' ).length / 2;
+    let numberOfDiscontinuities = 0;
+    let numberOfCusps = 0;
+
+    const points = this.pointsProperty.value;
+    for ( let i = 0; i < points.length - 1; i++ ) {
+
+      // Workaround: A discontinuity or cusp is typically identified by 2 adjacent CurvePoint instances with
+      // pointType 'discontinuous' or 'cusp'. So only count 1 point in those cases. We can't simply divide the total
+      // by 2 because there is an exception: at the beginning or end of the point array, there may be a lone CurvePoint
+      // for a discontinuity or cusp. This seems like a problem with how the CurvePoints are set, but it proved
+      // difficult to determine how to fix it.
+      if ( points[ i ].pointType === 'discontinuous' && ( i === 0 || points[ i - 1 ].pointType !== 'discontinuous' ) ) {
+        numberOfDiscontinuities++;
+      }
+      else if ( points[ i ].pointType === 'cusp' && ( i === 0 || points[ i - 1 ].pointType !== 'cusp' ) ) {
+        numberOfCusps++;
+      }
+    }
+
+    this._numberOfDiscontinuitiesProperty.value = numberOfDiscontinuities;
+    this._numberOfCuspsProperty.value = numberOfCusps;
   }
 }
 
