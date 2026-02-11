@@ -171,6 +171,7 @@ export default class Curve extends PhetioObject {
     this.numberOfCuspsProperty = this._numberOfCuspsProperty;
 
     this.curveChangedEmitter.addListener( () => {
+      //TODO https://github.com/phetsims/calculus-grapher/issues/343 Can we make 1 pass through points to update both counts?
       this._numberOfDiscontinuitiesProperty.value = this.getNumberOfDiscontinuities();
       this._numberOfCuspsProperty.value = this.getNumberOfCusps();
     } );
