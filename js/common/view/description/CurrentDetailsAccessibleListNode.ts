@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * CurrentDetailsAccessibleListNode is the screen summary 'current details' shared by all screens.
+ * CurrentDetailsAccessibleListNode is the 'current details' part of the screen summary, shared by all screens.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
