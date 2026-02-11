@@ -126,7 +126,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     // True if at least one curve is visible.
     const someCurveVisibleProperty = DerivedProperty.or( visibleProperties );
 
-    // {$curveSentence} parameter in the leading paragraph.
+    // Value for the {$curveSentence} parameter in the leading paragraph.
     const curvesSentenceStringProperty = new DerivedStringProperty( [
         someCurveVisibleProperty,
         CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.curveSentence.curvesShownStringProperty,
