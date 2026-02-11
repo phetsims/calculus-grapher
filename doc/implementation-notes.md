@@ -36,7 +36,7 @@ The reader is encouraged to read the model document before proceeding:
 * Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at
   an arbitrary x location. and label that point.
 
-_Terminology alert!_ Core Description, introduced in version 1.1, uses different terms for some things.
+⚠️ _Terminology Alert!_ Core Description, introduced in version 1.1, uses different terms for some things.
 The most significant (confusing) differences are:
 
 * Graph is described as Graph Area.
