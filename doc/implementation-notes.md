@@ -19,13 +19,13 @@ The reader is encouraged to read the model document before proceeding:
 * Original Graph - It refers to the graph that contains the f(x) function. It is the only graph whose curve(s) can be
   user manipulated. The original graph includes the original curve and, optionally, the predict curve.
 * Curve - A curve is a complete parametrization of the shape of a mathematical function on a graph. All model curves are
-  composed of closely-spaced curve points. In calculus-grapher, a model curve is a complete representation of a
+  composed of closely-spaced curve points. In Calculus Grapher, a model curve is a complete representation of a
   mathematical function.
-* Original curve - It refers to the curve on the original graph that represents the f(x) function. It can be manipulated
+* Original Curve - It refers to the curve on the original graph that represents the f(x) function. It can be manipulated
   by the user.
 * Predict Curve - It is a curve that is generated based on a user's input. It allows the user to attempt to predict the
   function f(x). It is set to be invisible by default.
-* Plot - In Calculus-Grapher, a plot is defined as a representation of a portion of a curve. The curve of a graph may be
+* Plot - In Calculus Grapher, a plot is defined as a representation of a portion of a curve. The curve of a graph may be
   composed of several plots to represent separate elements of the curve, such as the discontinuous points, discontinuity
   lines, continuous portion of the curve, etc. This is based on the PhET library bamboo.
 * Scrubber - a tool with a sphere-shaped handle, which can be dragged to place the tool at an arbitrary x location
@@ -35,6 +35,13 @@ The reader is encouraged to read the model document before proceeding:
   x location, and label that line
 * Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at
   an arbitrary x location. and label that point.
+
+_Terminology alert!_ Core Description, introduced in version 1.1, uses different terms for some things.
+The most significant (confusing) differences are:
+
+* Graph is described as Graph Area.
+* Original Graph is described as Original Graph Area.
+* Original Curve is described as Primary Curve, f(x), or f(t).
 
 ## General Considerations
 
@@ -65,7 +72,8 @@ to the left, and +y up, while the view has +x to the left, and +y _down_. The sc
 * **Listeners**: Unless explicitly noted in the code, all uses of `link`, `addListener`, etc. do _not_ need a
   corresponding
   `unlink`, `removeListener`, etc. Classes remove listeners by implementing or overriding `dispose`. Factory functions
-  remove listeners via `disposeEmitter.addListener`.
+  remove listeners via `disposeEmitter.addListener`. Objects that are not intended to be disposed will typically
+  be instantiated with `isDisposable: false`.
 
 ## Common Framework for All Screens
 
@@ -91,7 +99,9 @@ be sub-classed
 - DerivativeCurve - The first derivative of a Curve. Extends Curve.
 - SecondDerivativeCurve - The second derivative of a Curve. Extends Curve.
 
-AncillaryTool - A model base class associated with an x value on the graph. Intended to be sub-classed
+CurveManipulator - A model class that manipulates the curve.
+
+AncillaryTool - A model base class associated with an x value on the graph. Intended to be sub-classed.
 
 - AreaUnderCurveScrubber - Model for the scrubber 'AreaUnderCurve'. Extends AncillaryTool.
 - TangentScrubber - Model for the scrubber 'Tangent'- Extends AncillaryTool.
@@ -146,6 +156,7 @@ quantities associated with the x value:
 
 - the integral of f(x)
 - the original function f(x)
+- the prediction of function f(x)
 - the derivative of f(x)
 - the second derivative of f(x)
 
