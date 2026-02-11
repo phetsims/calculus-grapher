@@ -28,7 +28,7 @@ export default class DerivativeScreenSummaryContent extends ScreenSummaryContent
       playAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      controlAreaContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.controlAreaStringProperty,
+      controlAreaContent: CalculusGrapherFluent.a11y.allScreens.screenSummary.controlAreaStringProperty,
       currentDetailsContent: new CurrentDetailsAccessibleListNode( model, showOriginalCurveProperty,
         originalCurveLayerVisibleProperty, derivativeCurveLayerVisibleProperty ),
       interactionHintContent: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.interactionHintStringProperty
@@ -48,20 +48,20 @@ class CurrentDetailsAccessibleListNode extends AccessibleListNode {
       _.uniq( [
         model.curveManipulationProperties.modeProperty,
         model.curveManipulationProperties.widthProperty,
-        ...CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.widthPattern.getDependentProperties(),
-        ...CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.noWidthPattern.getDependentProperties()
+        ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.getDependentProperties(),
+        ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.noWidthPattern.getDependentProperties()
       ] ),
       () => {
         const mode = model.curveManipulationProperties.modeProperty.value;
         const width = model.curveManipulationProperties.widthProperty.value;
         if ( mode.hasAdjustableWidth ) {
-          return CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.widthPattern.format( {
+          return CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.format( {
             shape: mode.accessibleNameProperty.value,
             width: toFixedNumber( width, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS )
           } );
         }
         else {
-          return CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.noWidthPattern.format( {
+          return CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.noWidthPattern.format( {
             shape: mode.accessibleNameProperty.value
           } );
         }
@@ -71,7 +71,7 @@ class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
       // f of x
       {
-        stringProperty: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.primary.createProperty( {
+        stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.primary.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
         visibleProperty: new DerivedProperty(
@@ -81,7 +81,7 @@ class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
       // Predict f of x
       {
-        stringProperty: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.predict.createProperty( {
+        stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.predict.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
         visibleProperty: DerivedProperty.and( [ originalCurveLayerVisibleProperty, model.predictEnabledProperty ] )
@@ -89,7 +89,7 @@ class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
       // Derivative
       {
-        stringProperty: CalculusGrapherFluent.a11y.derivativeScreen.screenSummary.currentDetails.derivativeStringProperty,
+        stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.derivativeStringProperty,
         visibleProperty: derivativeCurveLayerVisibleProperty
       }
     ];

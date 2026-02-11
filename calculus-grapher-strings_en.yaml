@@ -38,6 +38,19 @@ a11y:
   # Screen Summaries
   #=======================================================================================================
 
+  # Common to all screens
+  allScreens:
+    screenSummary:
+      currentDetails:
+        widthPattern:     'Right now, {$shape} shape with width {$width} chosen. Curves shown are:'
+        noWidthPattern:   'Right now, {$shape} shape chosen. Curves shown are:'
+        primary:          f of {$variable}
+        predict:          Predict f of {$variable}
+        integral:         Integral
+        derivative:       Derivative
+        secondDerivative: Second Derivative
+      controlArea: Reset the sim to start over.
+
   # Derivative screen
   derivativeScreen:
     screenButtonsHelpText: Manipulate a graph and explore its derivative curve in real time.
@@ -47,13 +60,7 @@ a11y:
                        non-interactive curve representing the first derivative of f. You can choose different shapes to
                        add to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
                        investigation of all curves with {$variable} coordinates aligned.
-      controlArea:     Reset the sim to start over.
-      currentDetails:
-        widthPattern:   'Right now, {$shape} shape with width {$width} chosen. Curves shown are:'
-        noWidthPattern: 'Right now, {$shape} shape chosen. Curves shown are:'
-        primary:        f of {$variable}
-        predict:        Predict f of {$variable}
-        derivative:     Derivative
+
       interactionHint: |-
                        Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness
                        of f curve at different points.
@@ -67,8 +74,6 @@ a11y:
                        non-interactive curve representing the integral of f. You can choose different shapes to add to
                        curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
                        investigation of all curves with {$variable} coordinates aligned.
-      controlArea:     Reset the sim to start over.
-      currentDetails:  TODO.integralScreen.screenSummary.currentDetails
       interactionHint: |-
                        Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate
                        net signed area under f curve bounded by horizontal axis and f of {$variable} starting from left.
@@ -85,8 +90,6 @@ a11y:
                        add to curve in Primary Graph Area at any point. You can change which set of two Graph Areas
                        are viewable: Integral and Primary or Primary and First Derivative. There are Exploration Tools
                        allowing flexible investigation of all viewable curves with {$variable} coordinates aligned.
-      controlArea:     Reset the sim to start over.
-      currentDetails:  TODO.advancedScreen.sceenSummary.currentDetails
       interactionHint: |-
                        Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
                        relationships between graphs in viewable graph set.
@@ -104,8 +107,6 @@ a11y:
                        are viewable: Integral, Primary, and First Derivative, or Primary, First Derivative, and 
                        Second Derivative. There are Exploration Tools allowing flexible investigation of all curves
                        with {$variable} coordinates aligned.
-      controlArea:     Reset the sim to start over.
-      currentDetails:  TODO.labScreen.screenSummary.currentDetails
       interactionHint: |-
                        Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
                        relationships between graphs in viewable graph set.

@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Property from '../../../../axon/js/Property.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
@@ -19,8 +20,8 @@ export default class LabScreenSummaryContent extends ScreenSummaryContent {
       playAreaContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      controlAreaContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.controlAreaStringProperty,
-      currentDetailsContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.currentDetailsStringProperty,
+      controlAreaContent: CalculusGrapherFluent.a11y.allScreens.screenSummary.controlAreaStringProperty,
+      currentDetailsContent: new Property( 'TODO.currentDetails' ), //TODO https://github.com/phetsims/calculus-grapher/issues/343
       interactionHintContent: CalculusGrapherFluent.a11y.labScreen.screenSummary.interactionHintStringProperty
     } );
   }

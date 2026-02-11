@@ -92,17 +92,8 @@
     "value": "Exploration Tool Controls"
   },
   "a11y": {
-    "derivativeScreen": {
-      "screenButtonsHelpText": {
-        "value": "Manipulate a graph and explore its derivative curve in real time."
-      },
+    "allScreens": {
       "screenSummary": {
-        "playArea": {
-          "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and a \nnon-interactive curve representing the first derivative of f. You can choose different shapes to\nadd to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
-        },
-        "controlArea": {
-          "value": "Reset the sim to start over."
-        },
         "currentDetails": {
           "widthPattern": {
             "value": "Right now, {$shape} shape with width {$width} chosen. Curves shown are:"
@@ -116,9 +107,28 @@
           "predict": {
             "value": "Predict f of {$variable}"
           },
+          "integral": {
+            "value": "Integral"
+          },
           "derivative": {
             "value": "Derivative"
+          },
+          "secondDerivative": {
+            "value": "Second Derivative"
           }
+        },
+        "controlArea": {
+          "value": "Reset the sim to start over."
+        }
+      }
+    },
+    "derivativeScreen": {
+      "screenButtonsHelpText": {
+        "value": "Manipulate a graph and explore its derivative curve in real time."
+      },
+      "screenSummary": {
+        "playArea": {
+          "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and a \nnon-interactive curve representing the first derivative of f. You can choose different shapes to\nadd to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness\nof f curve at different points."
@@ -133,12 +143,6 @@
         "playArea": {
           "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and a\nnon-interactive curve representing the integral of f. You can choose different shapes to add to\ncurve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
         },
-        "controlArea": {
-          "value": "Reset the sim to start over."
-        },
-        "currentDetails": {
-          "value": "TODO.integralScreen.screenSummary.currentDetails"
-        },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate\nnet signed area under f curve bounded by horizontal axis and f of {$variable} starting from left."
         }
@@ -152,12 +156,6 @@
         "playArea": {
           "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and\nnon interactive curves in other Graph Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of two Graph Areas\nare viewable: Integral and Primary or Primary and First Derivative. There are Exploration Tools\nallowing flexible investigation of all viewable curves with {$variable} coordinates aligned."
         },
-        "controlArea": {
-          "value": "Reset the sim to start over."
-        },
-        "currentDetails": {
-          "value": "TODO.advancedScreen.sceenSummary.currentDetails"
-        },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore\nrelationships between graphs in viewable graph set."
         }
@@ -170,12 +168,6 @@
       "screenSummary": {
         "playArea": {
           "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and\nnon interactive curves in other Graphs Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of three Graph Areas\nare viewable: Integral, Primary, and First Derivative, or Primary, First Derivative, and \nSecond Derivative. There are Exploration Tools allowing flexible investigation of all curves\nwith {$variable} coordinates aligned."
-        },
-        "controlArea": {
-          "value": "Reset the sim to start over."
-        },
-        "currentDetails": {
-          "value": "TODO.labScreen.screenSummary.currentDetails"
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore\nrelationships between graphs in viewable graph set."

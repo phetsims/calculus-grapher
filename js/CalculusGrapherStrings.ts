@@ -55,18 +55,24 @@ type StringsType = {
   };
   'explorationToolControlsStringProperty': LocalizedStringProperty;
   'a11y': {
-    'derivativeScreen': {
-      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+    'allScreens': {
       'screenSummary': {
-        'playAreaStringProperty': LocalizedStringProperty;
-        'controlAreaStringProperty': LocalizedStringProperty;
         'currentDetails': {
           'widthPatternStringProperty': LocalizedStringProperty;
           'noWidthPatternStringProperty': LocalizedStringProperty;
           'primaryStringProperty': LocalizedStringProperty;
           'predictStringProperty': LocalizedStringProperty;
+          'integralStringProperty': LocalizedStringProperty;
           'derivativeStringProperty': LocalizedStringProperty;
+          'secondDerivativeStringProperty': LocalizedStringProperty;
         };
+        'controlAreaStringProperty': LocalizedStringProperty;
+      }
+    };
+    'derivativeScreen': {
+      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+      'screenSummary': {
+        'playAreaStringProperty': LocalizedStringProperty;
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
@@ -74,8 +80,6 @@ type StringsType = {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
       'screenSummary': {
         'playAreaStringProperty': LocalizedStringProperty;
-        'controlAreaStringProperty': LocalizedStringProperty;
-        'currentDetailsStringProperty': LocalizedStringProperty;
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
@@ -83,8 +87,6 @@ type StringsType = {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
       'screenSummary': {
         'playAreaStringProperty': LocalizedStringProperty;
-        'controlAreaStringProperty': LocalizedStringProperty;
-        'currentDetailsStringProperty': LocalizedStringProperty;
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
@@ -92,8 +94,6 @@ type StringsType = {
       'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
       'screenSummary': {
         'playAreaStringProperty': LocalizedStringProperty;
-        'controlAreaStringProperty': LocalizedStringProperty;
-        'currentDetailsStringProperty': LocalizedStringProperty;
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
