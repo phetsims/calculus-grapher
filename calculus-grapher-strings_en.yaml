@@ -401,7 +401,9 @@ a11y:
   # Reference Line
   referenceLine:
     accessibleName:     Reference Line
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value.
+    accessibleHelpText: |-
+                        Move vertical line horizontally to change {$variable} value and explore y values on all graphs.
+                        Vertical line passes through all graphs at same {$variable} value.
     accessibleObjectResponse:
 
       # Each graph set has an associated pattern with phrase placeholders that define the general form of the response.
@@ -436,7 +438,11 @@ a11y:
   # Tangent Tool
   tangentTool:
     accessibleName:     Tangent Tool
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between steepness of visible line tangent to f of {$variable} and y value on derivative curve at same {$variable} coordinate. Information provides current {$variable} value, slope of line tangent to f of {$variable}, and value of derivative at {$variable} on derivative curve.
+    accessibleHelpText: |-
+                        Move vertical line horizontally to change {$variable} value and explore relationship between
+                        steepness of visible line tangent to f of {$variable} and y value on derivative curve at same
+                        {$variable} coordinate. Information provides current {$variable} value, slope of line tangent
+                        to f of {$variable}, and value of derivative at {$variable} on derivative curve.
     accessibleObjectResponse:
 
       # Pattern with phrase placeholders that define the general form of the response.
@@ -456,7 +462,12 @@ a11y:
   # Area Under Curve Tool
   areaUnderCurveTool:
     accessibleName:     Area Under Curve Tool
-    accessibleHelpText: Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve.
+    accessibleHelpText: |-
+                        Move vertical line horizontally to change {$variable} value and explore relationship between
+                        cumulative net signed area under f from left and coordinates of dot on integral curve. Area is
+                        bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same
+                        {$variable} value. Information provides current {$variable} value, y coordinate of dot on
+                        integral curve, and total net signed area under f curve.
     accessibleObjectResponse:
 
       # Pattern with phrase placeholders that define the general form of the response.
