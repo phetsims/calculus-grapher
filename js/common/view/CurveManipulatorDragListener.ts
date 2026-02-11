@@ -38,8 +38,8 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
     // Variables to keep track of old model positions associated with the dragListener.
     // Set them to null as no drag event has occurred yet.
     // These are relevant only for CurveManipulationMode.FREEFORM.
-    let penultimatePosition: Vector2 | null = null;
-    let antepenultimatePosition: Vector2 | null = null;
+    let penultimatePosition: Vector2 | null = null; // second to last position
+    let antepenultimatePosition: Vector2 | null = null; // third to last position
 
     const curveManipulator = curveManipulatorNode.curveManipulator;
 
