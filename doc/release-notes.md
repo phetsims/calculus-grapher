@@ -36,7 +36,7 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 * Interactive Highlights: see _Preferences > Visual > Interactive Highlights_
 * Basic Sound
 * Core Description
-* Curve manipulation now supports mouse, touch, and keyboard via a "curve manipulator" that can be repositioned and dragged to edit a curve.
+* Curve manipulation now supports mouse, touch, and keyboard. The user interface includes a "curve manipulator" that can be repositioned and dragged to edit a curve.
 
 ## 1.0 (2023-04-17)
 
