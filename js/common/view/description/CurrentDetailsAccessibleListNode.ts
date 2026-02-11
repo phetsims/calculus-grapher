@@ -28,22 +28,29 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
   // think twice about whether it's appropriate or necessary.
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
+    // Visible Properties for each curve.
     const visibleProperties: TReadOnlyProperty<boolean>[] = [];
+
+    // Bullet list items for the accessible list.
     const listItems: AccessibleListItem[] = [];
 
     // Integral
     if ( graphsNode.integralGraphNode ) {
+
+      // visible Property
       const integralCurveVisibleProperty = new DerivedProperty(
         [ model.graphSetProperty, graphsNode.integralGraphNode.curveLayerVisibleProperty ],
         ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.INTEGRAL ) && curveLayerVisible );
       visibleProperties.push( integralCurveVisibleProperty );
+
+      // list item
       listItems.push( {
         stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.integralStringProperty,
         visibleProperty: integralCurveVisibleProperty
       } );
     }
 
-    // f of x
+    // f of x, visible Property and list item.
     const primaryCurveVisibleProperty = new DerivedProperty( [
         graphsNode.originalGraphNode.curveLayerVisibleProperty,
         graphsNode.originalGraphNode.showOriginalCurveProperty,
@@ -53,6 +60,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       ( originalCurveLayerVisible, showOriginalCurve, predictFeatureEnabled, predictSelected ) =>
         originalCurveLayerVisible && ( showOriginalCurve || !( predictFeatureEnabled && predictSelected ) ) );
     visibleProperties.push( primaryCurveVisibleProperty );
+
     listItems.push( {
       stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.primary.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
@@ -60,13 +68,14 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       visibleProperty: primaryCurveVisibleProperty
     } );
 
-    // Predict f of x
+    // Predict f of x, visible Property and list item.
     const predictCurveVisibleProperty = DerivedProperty.and( [
       graphsNode.originalGraphNode.curveLayerVisibleProperty,
       CalculusGrapherPreferences.predictFeatureEnabledProperty,
       model.predictSelectedProperty
     ] );
     visibleProperties.push( predictCurveVisibleProperty );
+
     listItems.push( {
       stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.predict.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
@@ -76,10 +85,14 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
 
     // Derivative
     if ( graphsNode.derivativeGraphNode ) {
+
+      // visible Property
       const derivativeCurveVisibleProperty = new DerivedProperty(
         [ model.graphSetProperty, graphsNode.derivativeGraphNode.curveLayerVisibleProperty ],
         ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.DERIVATIVE ) && curveLayerVisible );
       visibleProperties.push( derivativeCurveVisibleProperty );
+
+      // list item
       listItems.push( {
         stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.derivativeStringProperty,
         visibleProperty: derivativeCurveVisibleProperty
@@ -88,10 +101,14 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
 
     // Second Derivative
     if ( graphsNode.secondDerivativeGraphNode ) {
+
+      // visible Property
       const secondDerivativeCurveVisibleProperty = new DerivedProperty(
         [ model.graphSetProperty, graphsNode.secondDerivativeGraphNode.curveLayerVisibleProperty ],
         ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.SECOND_DERIVATIVE ) && curveLayerVisible );
       visibleProperties.push( secondDerivativeCurveVisibleProperty );
+
+      // list item
       listItems.push( {
         stringProperty: CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.secondDerivativeStringProperty,
         visibleProperty: secondDerivativeCurveVisibleProperty
@@ -101,6 +118,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     // True if at least one curve is visible.
     const someCurveVisibleProperty = DerivedProperty.or( visibleProperties );
 
+    // {$curveSentence} parameter in the leading paragraph.
     const curvesSentenceStringProperty = new DerivedStringProperty( [
         someCurveVisibleProperty,
         CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.curveSentence.curvesShownStringProperty,
@@ -109,25 +127,30 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       ( someCurveVisible, curvesShownString, allCurvesHiddenString ) => someCurveVisible ? curvesShownString : allCurvesHiddenString
     );
 
-    const leadingParagraphStringProperty = DerivedStringProperty.deriveAny(
-      // uniq is necessary because widthPattern and noWidthPattern have some of the same dependent Properties.
-      _.uniq( [
-        model.curveManipulationProperties.modeProperty,
-        model.curveManipulationProperties.widthProperty,
-        curvesSentenceStringProperty,
+    // uniq is necessary because widthPattern and noWidthPattern have some of the same dependent Properties.
+    const leadingParagraphDependencies = _.uniq( [
 
-        // FluentPattern instances are not observable. I was advised to observe their dependent Properties.
-        // But I'm skeptical that this works correctly for dynamic locale. And there is currently no way to test.
-        ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.getDependentProperties(),
-        ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.noWidthPattern.getDependentProperties()
-      ] ),
+      // Possible pattern to be filled in.
+      // FluentPattern instances are not observable. I was advised to observe their dependent Properties.
+      // But I'm skeptical that this works correctly for dynamic locale. And there is currently no way to test.
+      ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.noWidthPattern.getDependentProperties(),
+
+      // Values to fill in the above patterns.
+      model.curveManipulationProperties.modeProperty,
+      model.curveManipulationProperties.widthProperty,
+      curvesSentenceStringProperty
+    ] );
+
+    const leadingParagraphStringProperty = DerivedStringProperty.deriveAny( leadingParagraphDependencies,
       () => {
+
         const mode = model.curveManipulationProperties.modeProperty.value;
-        const width = model.curveManipulationProperties.widthProperty.value;
+
         if ( mode.hasAdjustableWidth ) {
           return CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.format( {
             shape: mode.accessibleNameProperty.value,
-            width: toFixedNumber( width, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
+            width: toFixedNumber( model.curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
             curveSentence: curvesSentenceStringProperty.value
           } );
         }
