@@ -238,7 +238,7 @@ a11y:
   #=======================================================================================================
 
   # Common to all graph areas
-  allGraphAreas:
+  graphArea:
     accessibleListNode:
       leadingParagraph:    Right now,
       coordinateGridShown: Coordinate grid shown.

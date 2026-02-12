@@ -415,7 +415,7 @@
         "value": "f of {$variable} hidden."
       }
     },
-    "allGraphAreas": {
+    "graphArea": {
       "accessibleListNode": {
         "leadingParagraph": {
           "value": "Right now,"

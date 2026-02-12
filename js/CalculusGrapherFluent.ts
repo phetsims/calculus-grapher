@@ -139,9 +139,9 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleName', 'a11y.showOr
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleHelpText', 'a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
-addToMapIfDefined( 'a11y_allGraphAreas_accessibleListNode_leadingParagraph', 'a11y.allGraphAreas.accessibleListNode.leadingParagraphStringProperty' );
-addToMapIfDefined( 'a11y_allGraphAreas_accessibleListNode_coordinateGridShown', 'a11y.allGraphAreas.accessibleListNode.coordinateGridShownStringProperty' );
-addToMapIfDefined( 'a11y_allGraphAreas_accessibleListNode_valuesLabeledOnAxes', 'a11y.allGraphAreas.accessibleListNode.valuesLabeledOnAxesStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_accessibleListNode_leadingParagraph', 'a11y.graphArea.accessibleListNode.leadingParagraphStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_accessibleListNode_coordinateGridShown', 'a11y.graphArea.accessibleListNode.coordinateGridShownStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_accessibleListNode_valuesLabeledOnAxes', 'a11y.graphArea.accessibleListNode.valuesLabeledOnAxesStringProperty' );
 addToMapIfDefined( 'a11y_primaryGraphArea_accessibleHeading', 'a11y.primaryGraphArea.accessibleHeadingStringProperty' );
 addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_continuousAndDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty' );
 addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_continuousAndNotDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndNotDifferentiableStringProperty' );
@@ -509,15 +509,15 @@ const CalculusGrapherFluent = {
       accessibleContextResponseChecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' ), [{"name":"variable"}] ),
       accessibleContextResponseUnchecked: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', _.get( CalculusGrapherStrings, 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' ), [{"name":"variable"}] )
     },
-    _comment_23: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"allGraphAreas"} ),
-    _comment_24: new FluentComment( {"comment":"Graph Areas","associatedKey":"allGraphAreas"} ),
-    _comment_25: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"allGraphAreas"} ),
-    _comment_26: new FluentComment( {"comment":"Common to all graph areas","associatedKey":"allGraphAreas"} ),
-    allGraphAreas: {
+    _comment_23: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"graphArea"} ),
+    _comment_24: new FluentComment( {"comment":"Graph Areas","associatedKey":"graphArea"} ),
+    _comment_25: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"graphArea"} ),
+    _comment_26: new FluentComment( {"comment":"Common to all graph areas","associatedKey":"graphArea"} ),
+    graphArea: {
       accessibleListNode: {
-        leadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_allGraphAreas_accessibleListNode_leadingParagraph', _.get( CalculusGrapherStrings, 'a11y.allGraphAreas.accessibleListNode.leadingParagraphStringProperty' ) ),
-        coordinateGridShownStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_allGraphAreas_accessibleListNode_coordinateGridShown', _.get( CalculusGrapherStrings, 'a11y.allGraphAreas.accessibleListNode.coordinateGridShownStringProperty' ) ),
-        valuesLabeledOnAxesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_allGraphAreas_accessibleListNode_valuesLabeledOnAxes', _.get( CalculusGrapherStrings, 'a11y.allGraphAreas.accessibleListNode.valuesLabeledOnAxesStringProperty' ) )
+        leadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_accessibleListNode_leadingParagraph', _.get( CalculusGrapherStrings, 'a11y.graphArea.accessibleListNode.leadingParagraphStringProperty' ) ),
+        coordinateGridShownStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_accessibleListNode_coordinateGridShown', _.get( CalculusGrapherStrings, 'a11y.graphArea.accessibleListNode.coordinateGridShownStringProperty' ) ),
+        valuesLabeledOnAxesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_accessibleListNode_valuesLabeledOnAxes', _.get( CalculusGrapherStrings, 'a11y.graphArea.accessibleListNode.valuesLabeledOnAxesStringProperty' ) )
       }
     },
     primaryGraphArea: {

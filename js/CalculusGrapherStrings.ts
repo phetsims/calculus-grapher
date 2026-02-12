@@ -212,7 +212,7 @@ type StringsType = {
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
-    'allGraphAreas': {
+    'graphArea': {
       'accessibleListNode': {
         'leadingParagraphStringProperty': LocalizedStringProperty;
         'coordinateGridShownStringProperty': LocalizedStringProperty;
