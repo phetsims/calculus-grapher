@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import AccessibleListNode, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
@@ -28,12 +27,8 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
    */
   protected static getCoordinateGridListItem( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
     return {
-      stringProperty: new DerivedStringProperty( [
-          gridLinesVisibleProperty,
-          CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.coordinateGrid.shownStringProperty,
-          CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.coordinateGrid.hiddenStringProperty
-        ],
-        ( gridLinesVisible, gridLinesShownString, gridLinesHiddenString ) => gridLinesVisible ? gridLinesShownString : gridLinesHiddenString )
+      stringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.coordinateGridShownStringProperty,
+      visibleProperty: gridLinesVisibleProperty
     };
   }
 

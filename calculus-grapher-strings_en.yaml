@@ -241,9 +241,7 @@ a11y:
   allGraphAreas:
     accessibleListNode:
       leadingParagraph:    Right now,
-      coordinateGrid:
-        shown:  Coordinate grid shown.
-        hidden: Coordinate grid hidden.
+      coordinateGridShown: Coordinate grid shown.
       valuesLabeledOnAxes: Values labeled on axes.
 
   primaryGraphArea:

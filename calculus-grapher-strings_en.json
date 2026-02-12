@@ -420,13 +420,8 @@
         "leadingParagraph": {
           "value": "Right now,"
         },
-        "coordinateGrid": {
-          "shown": {
-            "value": "Coordinate grid shown."
-          },
-          "hidden": {
-            "value": "Coordinate grid hidden."
-          }
+        "coordinateGridShown": {
+          "value": "Coordinate grid shown."
         },
         "valuesLabeledOnAxes": {
           "value": "Values labeled on axes."
