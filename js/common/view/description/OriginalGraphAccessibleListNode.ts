@@ -27,7 +27,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const listItems: AccessibleListItem[] = [
       OriginalGraphAccessibleListNode.getPrimaryCurveListItem( originalCurve, originalCurveVisibleProperty ),
       OriginalGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty ),
-      GraphAccessibleListNode.getGridLinesListItem( gridVisibleProperty ),
+      GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAccessibleListNode.getValuesListItem()
     ];
 
@@ -37,38 +37,32 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
   /**
    * Gets the bullet list item that describes the primary curve.
    */
-  private static getPrimaryCurveListItem( originalCurve: TransformedCurve,
-                                          originalCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  private static getPrimaryCurveListItem(
+    originalCurve: TransformedCurve,
+    originalCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
-    // _.uniq is necessary because the FluentPatterns share dependent Properties..
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
 
-      // Possible pattern to be filled in.
-      // FluentPattern instances are not observable. I was advised to observe their dependent Properties.
-      // But I'm skeptical that this works correctly for dynamic locale. And there is currently no way to test.
+      // Possible description strings.
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hidden.getDependentProperties(),
 
-      // Values to fill in the above patterns.
+      // Values to fill in the above descriptions.
       CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       originalCurve.numberOfDiscontinuitiesProperty,
       originalCurve.numberOfCuspsProperty,
       originalCurveVisibleProperty
     ] );
 
-    const primaryCurveStringProperty = DerivedStringProperty.deriveAny( dependencies,
+    const stringProperty = DerivedStringProperty.deriveAny( dependencies,
       () => {
         let string: string;
         const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
 
-        if ( !originalCurveVisibleProperty.value ) {
-          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hidden.format( {
-            variable: variable
-          } );
-        }
-        else {
+        if ( originalCurveVisibleProperty.value ) {
           const numberOfDiscontinuities = originalCurve.numberOfDiscontinuitiesProperty.value;
           const numberOfCusps = originalCurve.numberOfCuspsProperty.value;
 
@@ -91,11 +85,17 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
             } );
           }
         }
+        else {
+          // Hidden
+          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hidden.format( {
+            variable: variable
+          } );
+        }
         return string;
       } );
 
     return {
-      stringProperty: primaryCurveStringProperty
+      stringProperty: stringProperty
     };
   }
 
@@ -105,18 +105,16 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
   private static getPredictCurveListItem( predictCurve: TransformedCurve,
                                           predictCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
-    // _.uniq is necessary because the FluentPatterns share dependent Properties.
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
 
-      // Possible pattern to be filled in.
-      // FluentPattern instances are not observable. I was advised to observe their dependent Properties.
-      // But I'm skeptical that this works correctly for dynamic locale. And there is currently no way to test.
+      // Possible description strings.
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hidden.getDependentProperties(),
 
-      // Values to fill in the above patterns.
+      // Values to fill in the above descriptions.
       CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       predictCurve.numberOfDiscontinuitiesProperty,
       predictCurve.numberOfCuspsProperty,
@@ -125,15 +123,12 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
 
     const primaryCurveStringProperty = DerivedStringProperty.deriveAny( dependencies,
       () => {
+
         let string: string;
         const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
 
-        if ( !predictCurveVisibleProperty.value ) {
-          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hidden.format( {
-            variable: variable
-          } );
-        }
-        else {
+        if ( predictCurveVisibleProperty.value ) {
+
           const numberOfDiscontinuities = predictCurve.numberOfDiscontinuitiesProperty.value;
           const numberOfCusps = predictCurve.numberOfCuspsProperty.value;
 
@@ -155,6 +150,12 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
               numberOfCusps: numberOfCusps
             } );
           }
+        }
+        else {
+          // Hidden
+          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hidden.format( {
+            variable: variable
+          } );
         }
         return string;
       } );

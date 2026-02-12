@@ -55,7 +55,7 @@ export default class IntegralGraphNode extends GraphNode {
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.INTEGRAL ) && curveLayerVisible );
 
     // Add AccessibleListNode to describe the graph.
-    this.addChild( new IntegralGraphAccessibleListNode( integralCurve, this.integralCurveVisibleProperty, gridVisibleProperty ) );
+    this.addChild( new IntegralGraphAccessibleListNode( this.integralCurveVisibleProperty, gridVisibleProperty ) );
   }
 }
 

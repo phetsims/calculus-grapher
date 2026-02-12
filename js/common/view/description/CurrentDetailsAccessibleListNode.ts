@@ -20,16 +20,16 @@ import GraphsNode from '../GraphsNode.js';
 
 export default class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
-  // I hate the coupling here that results from passing in the entire model and graphNode. But these descriptions
-  // have changed so many times, and need access to so many things buried in the model and view, that it's not worth the
-  // cost to reduce the coupling here. So if you find yourself adding new code that reaches into model or graphsNode,
-  // think twice about whether it's appropriate or necessary.
+  // I hate the coupling here that results from passing in the entire model and graphNode. But these core descriptions
+  // have changed so many times, and they need access to so many things buried in the model and view, that it was
+  // not worth the cost of reducing the coupling. So if you find yourself adding new code that reaches into model
+  // or graphsNode, think twice about whether it's appropriate or necessary.
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     // visible Properties for each curve that is relevant for this description.
     const visibleProperties: TReadOnlyProperty<boolean>[] = [];
 
-    // Ordered bullet list items for the accessible list.
+    // Ordered items for the accessible list.
     const listItems: AccessibleListItem[] = [];
 
     // Integral Curve. Only screens with an integral include this description.
@@ -53,7 +53,6 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     } );
 
     // Predict Curve. All screens include this description.
-    // visible Property
     const predictCurveVisibleProperty = graphsNode.originalGraphNode.predictCurveVisibleProperty;
     visibleProperties.push( predictCurveVisibleProperty );
     listItems.push( {
@@ -95,16 +94,14 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       ( someCurveVisible, curvesShownString, allCurvesHiddenString ) => someCurveVisible ? curvesShownString : allCurvesHiddenString
     );
 
-    // _.uniq is necessary because the FluentPatterns share dependent Properties.
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const leadingParagraphDependencies = _.uniq( [
 
-      // Possible pattern to be filled in.
-      // FluentPattern instances are not observable. I was advised to observe their dependent Properties.
-      // But I'm skeptical that this works correctly for dynamic locale. And there is currently no way to test.
+      // Possible description strings.
       ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.widthPattern.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.allScreens.screenSummary.currentDetails.noWidthPattern.getDependentProperties(),
 
-      // Values to fill in the above patterns.
+      // Values to fill in the above descriptions.
       model.curveManipulationProperties.modeProperty,
       model.curveManipulationProperties.widthProperty,
       curvesSentenceStringProperty

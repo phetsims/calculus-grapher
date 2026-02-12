@@ -6,9 +6,11 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import SecondDerivativeCurve from '../../model/SecondDerivativeCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
@@ -19,12 +21,63 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAccess
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      GraphAccessibleListNode.getGridLinesListItem( gridVisibleProperty ),
+      SecondDerivativeGraphAccessibleListNode.getSecondDerivativeCurveListItem( secondDerivativeCurve, secondDerivativeCurveVisibleProperty ),
+      GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAccessibleListNode.getValuesListItem()
     ];
 
     super( listItems );
   }
+
+  /**
+   * Gets the list item that describes the second derivative curve.
+   */
+  private static getSecondDerivativeCurveListItem(
+    secondDerivativeCurve: SecondDerivativeCurve,
+    secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
+    const dependencies = _.uniq( [
+
+      // Possible description strings.
+      ...CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty,
+      CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleListNode.hiddenStringProperty,
+
+      // Values to fill in the above descriptions.
+      secondDerivativeCurve.numberOfDiscontinuitiesProperty,
+      secondDerivativeCurve.numberOfCuspsProperty,
+      secondDerivativeCurveVisibleProperty
+    ] );
+
+    const stringProperty = DerivedStringProperty.deriveAny( dependencies,
+      () => {
+        let string: string;
+        if ( secondDerivativeCurveVisibleProperty.value ) {
+          const numberOfDiscontinuities = secondDerivativeCurve.numberOfDiscontinuitiesProperty.value;
+          const numberOfCusps = secondDerivativeCurve.numberOfCuspsProperty.value;
+          if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
+            string = CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty.value;
+          }
+          else {
+            string = CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiable.format( {
+              numberOfDiscontinuities: numberOfDiscontinuities,
+              numberOfCusps: numberOfCusps
+            } );
+          }
+        }
+        else {
+          // Hidden
+          string = CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleListNode.hiddenStringProperty.value;
+        }
+        return string;
+      } );
+
+    return {
+      stringProperty: stringProperty
+    };
+  }
+
 }
 
 calculusGrapher.register( 'SecondDerivativeGraphAccessibleListNode', SecondDerivativeGraphAccessibleListNode );

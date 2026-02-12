@@ -23,8 +23,10 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
     } );
   }
 
-  // 'Grid lines show.' or 'Grid lines hidden.'
-  protected static getGridLinesListItem( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  /**
+   * Gets the list item that describes the coordinate grid.
+   */
+  protected static getCoordinateGridListItem( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
     return {
       stringProperty: new DerivedStringProperty( [
           gridLinesVisibleProperty,
@@ -35,7 +37,9 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
     };
   }
 
-  // 'Values labeled on axes.'
+  /**
+   * Gets the list item that describes the values on the axes.
+   */
   protected static getValuesListItem(): AccessibleListItem {
     return {
       stringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.valuesLabeledOnAxesStringProperty,
