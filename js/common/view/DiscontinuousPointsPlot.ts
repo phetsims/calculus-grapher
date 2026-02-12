@@ -1,6 +1,6 @@
 // Copyright 2023-2026, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/bamboo/issues/63 replace with ScatterPlot when it works correctly with fill and stroke
+//TODO https://github.com/phetsims/bamboo/issues/63 Replace with ScatterPlot when it works correctly with fill and stroke.
 /**
  * DiscontinuousPointsPlot plots discontinuity points for a curve. We wanted to use ScatterPlot here, but it has
  * problems drawing points that overlap. So this implementation is essentially a workaround. It uses scenery.Circle
