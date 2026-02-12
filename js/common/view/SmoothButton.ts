@@ -38,8 +38,8 @@ export default class SmoothButton extends TextPushButton {
       accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
-        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponsePredictCurveStringProperty,
-        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponseAllCurvesStringProperty
+        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponse.predictCurveStringProperty,
+        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponse.allCurvesStringProperty
       ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponseAllCurvesString ) =>
         predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponseAllCurvesString ),
       tandem: tandem

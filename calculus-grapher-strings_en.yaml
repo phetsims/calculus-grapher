@@ -42,8 +42,8 @@ a11y:
   allScreens:
     screenSummary:
       currentDetails:
-        widthPattern:   'Right now, {$shape} shape with width {$width} chosen. {$curveSentence}'
-        noWidthPattern: 'Right now, {$shape} shape chosen. {$curveSentence}'
+        widthPattern:     'Right now, {$shape} shape with width {$width} chosen. {$curveSentence}'
+        noWidthPattern:   'Right now, {$shape} shape chosen. {$curveSentence}'
         curveSentence:
           curvesShown:     'Curves shown are:'
           allCurvesHidden: 'All curves hidden.'
@@ -128,8 +128,8 @@ a11y:
   #=======================================================================================================
 
   slopeOfTangentAccordionBox:
-    accessibleHelpTextCollapsed: Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool.
-    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}.
+    accessibleHelpTextCollapsed: Explore slope of line tangent to f at {$variable} coordinate of Tangent tool.
+    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f is {$derivativeValue}.
 
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
@@ -140,29 +140,32 @@ a11y:
   #=======================================================================================================
 
   # Push buttons at the bottom of the control panel.
-  pushButtonGroup:
+  curveActionsButtonGroup:
     accessibleHeading:  Curve Actions
     accessibleHelpText: Choose action to take on curve in Primary Graph Area.
 
   smoothButton:
-    accessibleName:                        Smooth
-    accessibleHelpText:                    Smooth sharp corners and discontinuities on curve in Primary Graph Area.
-    accessibleContextResponseAllCurves: All curves smoothed.
-    accessibleContextResponsePredictCurve: Prediction curve only smoothed.
+    accessibleName:     Smooth
+    accessibleHelpText: Smooth sharp corners and discontinuities on curve in Primary Graph Area.
+    accessibleContextResponse:
+      allCurves:    All curves smoothed.
+      predictCurve: Prediction curve only smoothed.
 
   eraserButton:
-    accessibleName:                        Erase Curve Manipulations
-    accessibleHelpText:                    Reset curve to y equals zero, maintain curve manipulation settings.
-    accessibleContextResponsePrimaryCurve: f of {$variable} and all curves reset, settings unchanged.
-    accessibleContextResponsePredictCurve: Prediction curve reset, other curves and settings unchanged.
+    accessibleName:     Erase Curve Manipulations
+    accessibleHelpText: Reset curve to y equals zero, maintain curve manipulation settings.
+    accessibleContextResponse:
+      primaryCurve: f of {$variable} and all curves reset, settings unchanged.
+      predictCurve: Prediction curve reset, other curves and settings unchanged.
 
   undoButton:
-    accessibleName:                        Undo
-    accessibleHelpText:                    Undo most recent curve manipulation.
-    accessibleContextResponsePrimaryCurve: Last manipulation removed from f of {$variable} and all curves.
-    accessibleContextResponsePredictCurve: Last manipulation removed from prediction curve only.
+    accessibleName:     Undo
+    accessibleHelpText: Undo most recent curve manipulation.
+    accessibleContextResponse:
+      primaryCurve: Last manipulation removed from f of {$variable} and all curves.
+      predictCurve: Last manipulation removed from prediction curve only.
 
-  # Controls visibility of curves on a graph, and accessibleName is specific to the graph.
+  # Controls visibility of curves on a graph, and the accessible name is specific to the graph.
   eyeToggleButton:
     accessibleNameOn:
       integral:         Hide Integral Curve
@@ -178,7 +181,7 @@ a11y:
     accessibleContextResponseOff: Curve hidden.
     accessibleContextResponseOn:  Curve shown.
 
-  # Zooms the y-axis of a graph, and accessibleNames are specific to the graph.
+  # Zooms the y-axis of a graph, and the accessibleName is specific to the graph.
   yZoomButtonGroup:
     zoomInButton:
       accessibleName:
@@ -234,11 +237,12 @@ a11y:
 
   # Common to all graph areas
   allGraphAreas:
-    accessibleParagraph:
-      rightNow:             Right now,
-      coordinateGridShown:  Coordinate grid shown.
-      coordinateGridHidden: Coordinate grid hidden.
-      valuesLabeledOnAxes:  Values labeled on axes.
+    accessibleListNode:
+      leadingParagraph:        Right now,
+      coordinateGrid:
+        shown:  Coordinate grid shown.
+        hidden: Coordinate grid hidden.
+      valuesLabeledOnAxes: Values labeled on axes.
 
   primaryGraphArea:
     accessibleHeading: Primary Graph Area
@@ -383,17 +387,22 @@ a11y:
   # Tools
   #=======================================================================================================
 
-  # Curve Manipulators
+  # Common to all curve manipulators
   curveManipulator:
-    accessibleObjectResponseFocusedReleased: 'at {$x} {$y}, off curve'
-    accessibleObjectResponseFocusedGrabbed:  'at {$x} {$y}, grabbed'
-    accessibleObjectResponseGrabbed:         'grabbed at {$x} {$y}, shape added'
-    accessibleObjectResponseReleased:        'released at {$x} {$y}, off curve'
-    accessibleObjectResponseMovedReleased:   'at {$x} {$y}'
-    accessibleObjectResponseMovedGrabbed:    'at {$x} {$y}, shape added'
+    accessibleObjectResponse:
+      focusedReleased: 'at {$x} {$y}, off curve'
+      focusedGrabbed:  'at {$x} {$y}, grabbed'
+      grabbed:         'grabbed at {$x} {$y}, shape added'
+      released:        'released at {$x} {$y}, off curve'
+      movedReleased:   'at {$x} {$y}'
+      movedGrabbed:    'at {$x} {$y}, shape added'
+
+  # Curve manipulator for the primary curve
   primaryCurveManipulator:
     accessibleName:     f of {$variable} Curve Manipulator
     accessibleHelpText: Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed.
+
+  # Curve manipulator for the predict curve
   predictCurveManipulator:
     accessibleName:     Prediction Curve Manipulator
     accessibleHelpText: Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed.
@@ -415,7 +424,7 @@ a11y:
 
       # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.*
       xPhrase: at {$variable} equals {$value}
-      primaryPhrases:
+      primaryPhrase:
         predictAndPrimary: '{$predictPhrase}, {$primaryPhrase}'
         predictUndefined:  predict f of {$variable} is undefined
         predictValue:      predict f of {$variable} is {$value}
@@ -423,14 +432,14 @@ a11y:
         primaryUndefined:  f of {$variable} is undefined
         primaryValue:      f of {$variable} is {$value}
         primaryHidden:     f curve hidden
-      integralPhrases:
+      integralPhrase:
         integralValue:  integral up to {$variable} is {$value}
         integralHidden: integral curve hidden
-      derivativePhrases:
+      derivativePhrase:
         derivativeUndefined: derivative at {$variable} is undefined
         derivativeValue:     derivative at {$variable} is {$value}
         derivativeHidden:    derivative curve hidden
-      secondDerivativePhrases:
+      secondDerivativePhrase:
         secondDerivativeUndefined: second derivative at {$variable} is undefined
         secondDerivativeValue:     second derivative at {$variable} is {$value}
         secondDerivativeHidden:    second derivative curve hidden
@@ -450,12 +459,12 @@ a11y:
 
       # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
       xPhrase: at {$variable} equals {$value}
-      slopePhrases:
+      slopePhrase:
         slopeHidden:        f curve hidden
         slopeZeroValue:     slope is zero
         slopePositiveValue: slope is positive {$absoluteValue}
         slopeNegativeValue: slope is negative {$absoluteValue}
-      derivativePhrases:
+      derivativePhrase:
         derivativeValue:  derivative at {$variable} is {$value}
         derivativeHidden: derivative curve hidden
 
@@ -475,10 +484,10 @@ a11y:
 
       # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern
       xPhrase: at {$variable} equals {$value}
-      integralPhrases:
+      integralPhrase:
         integralValue:  integral up to {$variable} is {$value}
         integralHidden: integral curve hidden
-      areaPhrases:
+      areaPhrase:
         areaZeroValue:     net signed area is zero under f
         areaPositiveValue: net signed area is positive {$absoluteValue} under f
         areaNegativeValue: net signed area is negative {$absoluteValue} under f

@@ -24,7 +24,7 @@ export default class UndoButton extends ReturnButton {
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
-    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.undoButton.accessibleContextResponsePrimaryCurve.createProperty( {
+    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.primaryCurve.createProperty( {
       variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
     } );
 
@@ -37,7 +37,7 @@ export default class UndoButton extends ReturnButton {
       accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
-        CalculusGrapherFluent.a11y.undoButton.accessibleContextResponsePredictCurveStringProperty,
+        CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.predictCurveStringProperty,
         accessibleContextResponsePrimaryCurveStringProperty
       ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
         predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),

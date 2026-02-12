@@ -114,27 +114,33 @@ type StringsType = {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
     };
-    'pushButtonGroup': {
+    'curveActionsButtonGroup': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'smoothButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseAllCurvesStringProperty': LocalizedStringProperty;
-      'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
+      'accessibleContextResponse': {
+        'allCurvesStringProperty': LocalizedStringProperty;
+        'predictCurveStringProperty': LocalizedStringProperty;
+      }
     };
     'eraserButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponsePrimaryCurveStringProperty': LocalizedStringProperty;
-      'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
+      'accessibleContextResponse': {
+        'primaryCurveStringProperty': LocalizedStringProperty;
+        'predictCurveStringProperty': LocalizedStringProperty;
+      }
     };
     'undoButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponsePrimaryCurveStringProperty': LocalizedStringProperty;
-      'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
+      'accessibleContextResponse': {
+        'primaryCurveStringProperty': LocalizedStringProperty;
+        'predictCurveStringProperty': LocalizedStringProperty;
+      }
     };
     'eyeToggleButton': {
       'accessibleNameOn': {
@@ -203,10 +209,12 @@ type StringsType = {
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'allGraphAreas': {
-      'accessibleParagraph': {
-        'rightNowStringProperty': LocalizedStringProperty;
-        'coordinateGridShownStringProperty': LocalizedStringProperty;
-        'coordinateGridHiddenStringProperty': LocalizedStringProperty;
+      'accessibleListNode': {
+        'leadingParagraphStringProperty': LocalizedStringProperty;
+        'coordinateGrid': {
+          'shownStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
+        };
         'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
       }
     };
@@ -357,12 +365,14 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'curveManipulator': {
-      'accessibleObjectResponseFocusedReleasedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseFocusedGrabbedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseGrabbedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseReleasedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseMovedReleasedStringProperty': LocalizedStringProperty;
-      'accessibleObjectResponseMovedGrabbedStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse': {
+        'focusedReleasedStringProperty': LocalizedStringProperty;
+        'focusedGrabbedStringProperty': LocalizedStringProperty;
+        'grabbedStringProperty': LocalizedStringProperty;
+        'releasedStringProperty': LocalizedStringProperty;
+        'movedReleasedStringProperty': LocalizedStringProperty;
+        'movedGrabbedStringProperty': LocalizedStringProperty;
+      }
     };
     'primaryCurveManipulator': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -383,7 +393,7 @@ type StringsType = {
           'primaryDerivativeSecondDerivativeStringProperty': LocalizedStringProperty;
         };
         'xPhraseStringProperty': LocalizedStringProperty;
-        'primaryPhrases': {
+        'primaryPhrase': {
           'predictAndPrimaryStringProperty': LocalizedStringProperty;
           'predictUndefinedStringProperty': LocalizedStringProperty;
           'predictValueStringProperty': LocalizedStringProperty;
@@ -392,16 +402,16 @@ type StringsType = {
           'primaryValueStringProperty': LocalizedStringProperty;
           'primaryHiddenStringProperty': LocalizedStringProperty;
         };
-        'integralPhrases': {
+        'integralPhrase': {
           'integralValueStringProperty': LocalizedStringProperty;
           'integralHiddenStringProperty': LocalizedStringProperty;
         };
-        'derivativePhrases': {
+        'derivativePhrase': {
           'derivativeUndefinedStringProperty': LocalizedStringProperty;
           'derivativeValueStringProperty': LocalizedStringProperty;
           'derivativeHiddenStringProperty': LocalizedStringProperty;
         };
-        'secondDerivativePhrases': {
+        'secondDerivativePhrase': {
           'secondDerivativeUndefinedStringProperty': LocalizedStringProperty;
           'secondDerivativeValueStringProperty': LocalizedStringProperty;
           'secondDerivativeHiddenStringProperty': LocalizedStringProperty;
@@ -414,13 +424,13 @@ type StringsType = {
       'accessibleObjectResponse': {
         'patternStringProperty': LocalizedStringProperty;
         'xPhraseStringProperty': LocalizedStringProperty;
-        'slopePhrases': {
+        'slopePhrase': {
           'slopeHiddenStringProperty': LocalizedStringProperty;
           'slopeZeroValueStringProperty': LocalizedStringProperty;
           'slopePositiveValueStringProperty': LocalizedStringProperty;
           'slopeNegativeValueStringProperty': LocalizedStringProperty;
         };
-        'derivativePhrases': {
+        'derivativePhrase': {
           'derivativeValueStringProperty': LocalizedStringProperty;
           'derivativeHiddenStringProperty': LocalizedStringProperty;
         }
@@ -432,11 +442,11 @@ type StringsType = {
       'accessibleObjectResponse': {
         'patternStringProperty': LocalizedStringProperty;
         'xPhraseStringProperty': LocalizedStringProperty;
-        'integralPhrases': {
+        'integralPhrase': {
           'integralValueStringProperty': LocalizedStringProperty;
           'integralHiddenStringProperty': LocalizedStringProperty;
         };
-        'areaPhrases': {
+        'areaPhrase': {
           'areaZeroValueStringProperty': LocalizedStringProperty;
           'areaPositiveValueStringProperty': LocalizedStringProperty;
           'areaNegativeValueStringProperty': LocalizedStringProperty;

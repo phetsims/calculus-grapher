@@ -195,10 +195,10 @@
     },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "Explore slope of line tangent to f of {$variable} at {$variable} coordinate of Tangent tool."
+        "value": "Explore slope of line tangent to f at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "At {$variable} equals {$x}, slope of line tangent to f of {$variable} equals {$derivativeValue}."
+        "value": "At {$variable} equals {$x}, slope of line tangent to f is {$derivativeValue}."
       }
     },
     "netSignedAreaAccordionBox": {
@@ -209,7 +209,7 @@
         "value": "Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
       }
     },
-    "pushButtonGroup": {
+    "curveActionsButtonGroup": {
       "accessibleHeading": {
         "value": "Curve Actions"
       },
@@ -224,11 +224,13 @@
       "accessibleHelpText": {
         "value": "Smooth sharp corners and discontinuities on curve in Primary Graph Area."
       },
-      "accessibleContextResponseAllCurves": {
-        "value": "All curves smoothed."
-      },
-      "accessibleContextResponsePredictCurve": {
-        "value": "Prediction curve only smoothed."
+      "accessibleContextResponse": {
+        "allCurves": {
+          "value": "All curves smoothed."
+        },
+        "predictCurve": {
+          "value": "Prediction curve only smoothed."
+        }
       }
     },
     "eraserButton": {
@@ -238,11 +240,13 @@
       "accessibleHelpText": {
         "value": "Reset curve to y equals zero, maintain curve manipulation settings."
       },
-      "accessibleContextResponsePrimaryCurve": {
-        "value": "f of {$variable} and all curves reset, settings unchanged."
-      },
-      "accessibleContextResponsePredictCurve": {
-        "value": "Prediction curve reset, other curves and settings unchanged."
+      "accessibleContextResponse": {
+        "primaryCurve": {
+          "value": "f of {$variable} and all curves reset, settings unchanged."
+        },
+        "predictCurve": {
+          "value": "Prediction curve reset, other curves and settings unchanged."
+        }
       }
     },
     "undoButton": {
@@ -252,11 +256,13 @@
       "accessibleHelpText": {
         "value": "Undo most recent curve manipulation."
       },
-      "accessibleContextResponsePrimaryCurve": {
-        "value": "Last manipulation removed from f of {$variable} and all curves."
-      },
-      "accessibleContextResponsePredictCurve": {
-        "value": "Last manipulation removed from prediction curve only."
+      "accessibleContextResponse": {
+        "primaryCurve": {
+          "value": "Last manipulation removed from f of {$variable} and all curves."
+        },
+        "predictCurve": {
+          "value": "Last manipulation removed from prediction curve only."
+        }
       }
     },
     "eyeToggleButton": {
@@ -406,15 +412,17 @@
       }
     },
     "allGraphAreas": {
-      "accessibleParagraph": {
-        "rightNow": {
+      "accessibleListNode": {
+        "leadingParagraph": {
           "value": "Right now,"
         },
-        "coordinateGridShown": {
-          "value": "Coordinate grid shown."
-        },
-        "coordinateGridHidden": {
-          "value": "Coordinate grid hidden."
+        "coordinateGrid": {
+          "shown": {
+            "value": "Coordinate grid shown."
+          },
+          "hidden": {
+            "value": "Coordinate grid hidden."
+          }
         },
         "valuesLabeledOnAxes": {
           "value": "Values labeled on axes."
@@ -708,23 +716,25 @@
       }
     },
     "curveManipulator": {
-      "accessibleObjectResponseFocusedReleased": {
-        "value": "at {$x} {$y}, off curve"
-      },
-      "accessibleObjectResponseFocusedGrabbed": {
-        "value": "at {$x} {$y}, grabbed"
-      },
-      "accessibleObjectResponseGrabbed": {
-        "value": "grabbed at {$x} {$y}, shape added"
-      },
-      "accessibleObjectResponseReleased": {
-        "value": "released at {$x} {$y}, off curve"
-      },
-      "accessibleObjectResponseMovedReleased": {
-        "value": "at {$x} {$y}"
-      },
-      "accessibleObjectResponseMovedGrabbed": {
-        "value": "at {$x} {$y}, shape added"
+      "accessibleObjectResponse": {
+        "focusedReleased": {
+          "value": "at {$x} {$y}, off curve"
+        },
+        "focusedGrabbed": {
+          "value": "at {$x} {$y}, grabbed"
+        },
+        "grabbed": {
+          "value": "grabbed at {$x} {$y}, shape added"
+        },
+        "released": {
+          "value": "released at {$x} {$y}, off curve"
+        },
+        "movedReleased": {
+          "value": "at {$x} {$y}"
+        },
+        "movedGrabbed": {
+          "value": "at {$x} {$y}, shape added"
+        }
       }
     },
     "primaryCurveManipulator": {
@@ -768,7 +778,7 @@
         "xPhrase": {
           "value": "at {$variable} equals {$value}"
         },
-        "primaryPhrases": {
+        "primaryPhrase": {
           "predictAndPrimary": {
             "value": "{$predictPhrase}, {$primaryPhrase}"
           },
@@ -791,7 +801,7 @@
             "value": "f curve hidden"
           }
         },
-        "integralPhrases": {
+        "integralPhrase": {
           "integralValue": {
             "value": "integral up to {$variable} is {$value}"
           },
@@ -799,7 +809,7 @@
             "value": "integral curve hidden"
           }
         },
-        "derivativePhrases": {
+        "derivativePhrase": {
           "derivativeUndefined": {
             "value": "derivative at {$variable} is undefined"
           },
@@ -810,7 +820,7 @@
             "value": "derivative curve hidden"
           }
         },
-        "secondDerivativePhrases": {
+        "secondDerivativePhrase": {
           "secondDerivativeUndefined": {
             "value": "second derivative at {$variable} is undefined"
           },
@@ -837,7 +847,7 @@
         "xPhrase": {
           "value": "at {$variable} equals {$value}"
         },
-        "slopePhrases": {
+        "slopePhrase": {
           "slopeHidden": {
             "value": "f curve hidden"
           },
@@ -851,7 +861,7 @@
             "value": "slope is negative {$absoluteValue}"
           }
         },
-        "derivativePhrases": {
+        "derivativePhrase": {
           "derivativeValue": {
             "value": "derivative at {$variable} is {$value}"
           },
@@ -875,7 +885,7 @@
         "xPhrase": {
           "value": "at {$variable} equals {$value}"
         },
-        "integralPhrases": {
+        "integralPhrase": {
           "integralValue": {
             "value": "integral up to {$variable} is {$value}"
           },
@@ -883,7 +893,7 @@
             "value": "integral curve hidden"
           }
         },
-        "areaPhrases": {
+        "areaPhrase": {
           "areaZeroValue": {
             "value": "net signed area is zero under f"
           },

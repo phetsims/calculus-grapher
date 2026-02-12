@@ -91,7 +91,7 @@ export default class ReferenceLineDescriber {
   private getPrimaryPhrase(): string {
     let primaryPhrase: string;
     if ( this.predictEnabledProperty.value ) {
-      primaryPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.predictAndPrimary.format( {
+      primaryPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.predictAndPrimary.format( {
         predictPhrase: this.getPredictCurvePhrase(),
         primaryPhrase: this.getPrimaryCurvePhrase()
       } );
@@ -112,13 +112,13 @@ export default class ReferenceLineDescriber {
       const point = this.referenceLine.predictCurvePointProperty.value;
       if ( point.isDiscontinuous ) {
         // undefined
-        predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.predictUndefined.format( {
+        predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.predictUndefined.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
         } );
       }
       else {
         // y-value
-        predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.predictValue.format( {
+        predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.predictValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
         } );
@@ -126,7 +126,7 @@ export default class ReferenceLineDescriber {
     }
     else {
       // hidden
-      predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.predictHiddenStringProperty.value;
+      predictPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.predictHiddenStringProperty.value;
     }
     return predictPhrase;
   }
@@ -141,13 +141,13 @@ export default class ReferenceLineDescriber {
       const point = this.referenceLine.originalCurvePointProperty.value;
       if ( point.isDiscontinuous ) {
         // undefined
-        primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.primaryUndefined.format( {
+        primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.primaryUndefined.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
         } );
       }
       else {
         // y-value
-        primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.primaryValue.format( {
+        primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.primaryValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
         } );
@@ -155,7 +155,7 @@ export default class ReferenceLineDescriber {
     }
     else {
       // hidden
-      primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrases.primaryHiddenStringProperty.value;
+      primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.primaryHiddenStringProperty.value;
     }
     return primaryCurvePhrase;
   }
@@ -168,14 +168,14 @@ export default class ReferenceLineDescriber {
     let integralPhrase: string;
     if ( this.integralCurveLayerVisibleProperty.value ) {
       // y-value
-      integralPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.integralPhrases.integralValue.format( {
+      integralPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.integralPhrase.integralValue.format( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
         value: toFixedNumber( this.referenceLine.integralCurvePointProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
       } );
     }
     else {
       // hidden
-      integralPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.integralPhrases.integralHiddenStringProperty.value;
+      integralPhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.integralPhrase.integralHiddenStringProperty.value;
     }
     return integralPhrase;
   }
@@ -190,13 +190,13 @@ export default class ReferenceLineDescriber {
       const point = this.referenceLine.derivativeCurvePointProperty.value;
       if ( point.isDiscontinuous ) {
         // undefined
-        derivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.derivativePhrases.derivativeUndefined.format( {
+        derivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.derivativePhrase.derivativeUndefined.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
         } );
       }
       else {
         // y-value
-        derivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.derivativePhrases.derivativeValue.format( {
+        derivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.derivativePhrase.derivativeValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
         } );
@@ -204,7 +204,7 @@ export default class ReferenceLineDescriber {
     }
     else {
       // hidden
-      derivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.derivativePhrases.derivativeHiddenStringProperty.value;
+      derivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.derivativePhrase.derivativeHiddenStringProperty.value;
     }
     return derivativePhrase;
   }
@@ -219,13 +219,13 @@ export default class ReferenceLineDescriber {
       const point = this.referenceLine.secondDerivativeCurvePointProperty.value;
       if ( point.isDiscontinuous ) {
         // undefined
-        secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.secondDerivativePhrases.secondDerivativeUndefined.format( {
+        secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.secondDerivativePhrase.secondDerivativeUndefined.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
         } );
       }
       else {
         // y-value
-        secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.secondDerivativePhrases.secondDerivativeValue.format( {
+        secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.secondDerivativePhrase.secondDerivativeValue.format( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
           value: toFixedNumber( point.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS )
         } );
@@ -233,7 +233,7 @@ export default class ReferenceLineDescriber {
     }
     else {
       // hidden
-      secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.secondDerivativePhrases.secondDerivativeHiddenStringProperty.value;
+      secondDerivativePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.secondDerivativePhrase.secondDerivativeHiddenStringProperty.value;
     }
     return secondDerivativePhrase;
   }

@@ -19,7 +19,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
   protected constructor( listItems: AccessibleListItem[] ) {
 
     super( listItems, {
-      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.rightNowStringProperty
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.leadingParagraphStringProperty
     } );
   }
 
@@ -30,8 +30,8 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
     return {
       stringProperty: new DerivedStringProperty( [
           gridLinesVisibleProperty,
-          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.coordinateGridShownStringProperty,
-          CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.coordinateGridHiddenStringProperty
+          CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.coordinateGrid.shownStringProperty,
+          CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.coordinateGrid.hiddenStringProperty
         ],
         ( gridLinesVisible, gridLinesShownString, gridLinesHiddenString ) => gridLinesVisible ? gridLinesShownString : gridLinesHiddenString )
     };
@@ -42,7 +42,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
    */
   protected static getValuesListItem(): AccessibleListItem {
     return {
-      stringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleParagraph.valuesLabeledOnAxesStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.allGraphAreas.accessibleListNode.valuesLabeledOnAxesStringProperty,
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     };
   }
