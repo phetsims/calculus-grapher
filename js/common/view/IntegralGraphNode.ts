@@ -34,7 +34,6 @@ export default class IntegralGraphNode extends GraphNode {
 
     const options = optionize<IntegralGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.integralGraphArea.accessibleHeadingStringProperty,
-      accessibleListNode: new IntegralGraphAccessibleListNode( integralCurve, gridVisibleProperty ),
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.integralStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.integralStringProperty
@@ -54,6 +53,9 @@ export default class IntegralGraphNode extends GraphNode {
     this.integralCurveVisibleProperty = new DerivedProperty(
       [ graphSetProperty, this.curveLayerVisibleProperty ],
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.INTEGRAL ) && curveLayerVisible );
+
+    // Add AccessibleListNode to describe the graph.
+    this.addChild( new IntegralGraphAccessibleListNode( integralCurve, this.integralCurveVisibleProperty, gridVisibleProperty ) );
   }
 }
 

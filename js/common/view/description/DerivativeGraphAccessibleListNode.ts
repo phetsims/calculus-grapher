@@ -14,7 +14,9 @@ import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
 export default class DerivativeGraphAccessibleListNode extends GraphAccessibleListNode {
 
-  public constructor( derivativeCurve: DerivativeCurve, gridVisibleProperty: TReadOnlyProperty<boolean> ) {
+  public constructor( derivativeCurve: DerivativeCurve,
+                      derivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
       GraphAccessibleListNode.getGridLinesListItem( gridVisibleProperty ),

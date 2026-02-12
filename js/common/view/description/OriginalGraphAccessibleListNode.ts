@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
@@ -21,11 +20,9 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
 
   public constructor( originalCurve: TransformedCurve,
                       predictCurve: TransformedCurve,
+                      originalCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
-
-    //TODO https://github.com/phetsims/calculus-grapher/issues/343 These should be passed into constructor.
-    const originalCurveVisibleProperty = new BooleanProperty( true );
-    const predictCurveVisibleProperty = new BooleanProperty( true );
 
     const listItems: AccessibleListItem[] = [
       OriginalGraphAccessibleListNode.getPrimaryCurveListItem( originalCurve, originalCurveVisibleProperty ),

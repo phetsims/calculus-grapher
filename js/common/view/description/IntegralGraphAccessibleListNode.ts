@@ -14,7 +14,9 @@ import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
 export default class IntegralGraphAccessibleListNode extends GraphAccessibleListNode {
 
-  public constructor( integralCurve: IntegralCurve, gridVisibleProperty: TReadOnlyProperty<boolean> ) {
+  public constructor( integralCurve: IntegralCurve,
+                      integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
       GraphAccessibleListNode.getGridLinesListItem( gridVisibleProperty ),

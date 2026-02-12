@@ -128,8 +128,6 @@ export default class OriginalGraphNode extends GraphNode {
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
       accessibleHeading: CalculusGrapherFluent.a11y.primaryGraphArea.accessibleHeadingStringProperty,
-      accessibleListNode: new OriginalGraphAccessibleListNode( model.originalCurve, model.predictCurve,
-        model.gridVisibleProperty ),
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.primaryStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.primaryStringProperty
@@ -344,6 +342,10 @@ export default class OriginalGraphNode extends GraphNode {
         originalCurveLayerVisible && ( showOriginalCurve || !predictEnabled ) );
 
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
+
+    // Add AccessibleListNode to describe the graph.
+    this.addChild( new OriginalGraphAccessibleListNode( model.originalCurve, model.predictCurve,
+      this.originalCurveVisibleProperty, this.predictCurveVisibleProperty, model.gridVisibleProperty ) );
   }
 
   public override reset(): void {
