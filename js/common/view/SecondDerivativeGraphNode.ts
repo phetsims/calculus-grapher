@@ -8,6 +8,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -55,7 +56,15 @@ export default class SecondDerivativeGraphNode extends GraphNode {
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.SECOND_DERIVATIVE ) && curveLayerVisible );
 
     // Add AccessibleListNode to describe the graph.
-    this.addChild( new SecondDerivativeGraphAccessibleListNode( secondDerivativeCurve, this.secondDerivativeCurveVisibleProperty, gridVisibleProperty ) );
+    const accessibleListNode = new SecondDerivativeGraphAccessibleListNode( secondDerivativeCurve, this.secondDerivativeCurveVisibleProperty, gridVisibleProperty );
+    this.addChild( accessibleListNode );
+
+    affirm( this.yZoomButtonGroup, 'SecondDerivativeGraphNode requires a yZoomButtonGroup.' );
+    this.pdomOrder = [
+      accessibleListNode,
+      this.yZoomButtonGroup,
+      this.eyeToggleButton
+    ];
   }
 }
 

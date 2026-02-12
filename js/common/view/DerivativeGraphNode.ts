@@ -8,6 +8,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -55,7 +56,16 @@ export default class DerivativeGraphNode extends GraphNode {
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.DERIVATIVE ) && curveLayerVisible );
 
     // Add AccessibleListNode to describe the graph.
-    this.addChild( new DerivativeGraphAccessibleListNode( derivativeCurve, this.derivativeCurveVisibleProperty, gridVisibleProperty ) );
+    const accessibleListNode = new DerivativeGraphAccessibleListNode( derivativeCurve, this.derivativeCurveVisibleProperty, gridVisibleProperty );
+    this.addChild( accessibleListNode );
+
+    // Focus order.
+    affirm( this.yZoomButtonGroup, 'DerivativeGraphNode requires a yZoomButtonGroup.' );
+    this.pdomOrder = [
+      accessibleListNode,
+      this.yZoomButtonGroup,
+      this.eyeToggleButton
+    ];
   }
 }
 

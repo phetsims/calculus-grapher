@@ -144,7 +144,7 @@ export default class GraphNode extends Node {
   private readonly yZoomLevelProperty?: NumberProperty;
 
   // For setting pdomOrder in subclasses.
-  protected readonly yZoomButtonGroup: Node | null;
+  protected readonly yZoomButtonGroup?: Node;
   protected readonly eyeToggleButton: Node;
 
   protected constructor( graphType: GraphType,
@@ -289,9 +289,6 @@ export default class GraphNode extends Node {
           tandem: options.tandem.createTandem( 'yZoomButtonGroup' )
         }, options.yZoomButtonGroupOptions ) );
     }
-    else {
-      this.yZoomButtonGroup = null;
-    }
 
     // Adjust button positions when the visibility of ticks changes.
     ticksParent.visibleProperty.link( ticksParentVisible => {
@@ -365,12 +362,6 @@ export default class GraphNode extends Node {
       // Hide the y-axis minor grid lines if they get too close together.
       yMinorGridLines.visible = ( Math.abs( this.chartTransform.modelToViewDeltaY( MINOR_GRID_LINE_SPACING ) ) > 5 );
     } );
-
-    // Default focus order.
-    const pdomOrder: Node[] = [];
-    this.yZoomButtonGroup && pdomOrder.push( this.yZoomButtonGroup );
-    pdomOrder.push( this.eyeToggleButton );
-    this.pdomOrder = pdomOrder;
   }
 
   /**

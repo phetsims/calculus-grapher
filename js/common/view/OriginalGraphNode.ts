@@ -324,15 +324,6 @@ export default class OriginalGraphNode extends GraphNode {
       }
     } );
 
-    // Focus order
-    affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
-    this.pdomOrder = [
-      this.originalCurveManipulatorNode,
-      this.predictCurveManipulatorNode,
-      showOriginalCurveCheckbox,
-      this.eyeToggleButton
-    ];
-
     this.originalCurveVisibleProperty = new DerivedProperty( [
         this.curveLayerVisibleProperty,
         this.showOriginalCurveProperty,
@@ -344,8 +335,19 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
 
     // Add AccessibleListNode to describe the graph.
-    this.addChild( new OriginalGraphAccessibleListNode( model.originalCurve, model.predictCurve,
-      this.originalCurveVisibleProperty, this.predictCurveVisibleProperty, model.gridVisibleProperty ) );
+    const accessibleListNode = new OriginalGraphAccessibleListNode( model.originalCurve, model.predictCurve,
+      this.originalCurveVisibleProperty, this.predictCurveVisibleProperty, model.gridVisibleProperty );
+    this.addChild( accessibleListNode );
+
+    // Focus order
+    affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
+    this.pdomOrder = [
+      accessibleListNode,
+      this.originalCurveManipulatorNode,
+      this.predictCurveManipulatorNode,
+      showOriginalCurveCheckbox,
+      this.eyeToggleButton
+    ];
   }
 
   public override reset(): void {
