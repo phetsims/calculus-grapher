@@ -24,13 +24,13 @@ export default class CurvePushButtonGroup extends VBox {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
                       activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>,
-                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       hasSmoothButton: boolean,
                       tandem: Tandem ) {
 
-    const undoButton = new UndoButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'undoButton' ) );
+    const undoButton = new UndoButton( interactiveCurveProperty, predictEnabledProperty, tandem.createTandem( 'undoButton' ) );
 
-    const eraserButton = new CurveEraserButton( interactiveCurveProperty, activeCurveManipulatorProperty, predictSelectedProperty,
+    const eraserButton = new CurveEraserButton( interactiveCurveProperty, activeCurveManipulatorProperty, predictEnabledProperty,
       tandem.createTandem( 'eraserButton' ) );
 
     // Put the eraser and undo buttons side by side
@@ -44,7 +44,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Optionally, create a Smooth button.
     if ( hasSmoothButton ) {
-      const smoothButton = new SmoothButton( interactiveCurveProperty, predictSelectedProperty, tandem.createTandem( 'smoothButton' ) );
+      const smoothButton = new SmoothButton( interactiveCurveProperty, predictEnabledProperty, tandem.createTandem( 'smoothButton' ) );
       children.push( smoothButton );
     }
 

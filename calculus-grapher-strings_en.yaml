@@ -147,7 +147,7 @@ a11y:
   smoothButton:
     accessibleName:                        Smooth
     accessibleHelpText:                    Smooth sharp corners and discontinuities on curve in Primary Graph Area.
-    accessibleContextResponsePrimaryCurve: f of {$variable} and all curves smoothed.
+    accessibleContextResponseAllCurves: All curves smoothed.
     accessibleContextResponsePredictCurve: Prediction curve only smoothed.
 
   eraserButton:

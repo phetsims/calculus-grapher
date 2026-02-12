@@ -224,8 +224,8 @@
       "accessibleHelpText": {
         "value": "Smooth sharp corners and discontinuities on curve in Primary Graph Area."
       },
-      "accessibleContextResponsePrimaryCurve": {
-        "value": "f of {$variable} and all curves smoothed."
+      "accessibleContextResponseAllCurves": {
+        "value": "All curves smoothed."
       },
       "accessibleContextResponsePredictCurve": {
         "value": "Prediction curve only smoothed."
@@ -748,7 +748,7 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore y values on all graphs. Vertical line passes through all graphs at same {$variable} value."
+        "value": "Move vertical line horizontally to change {$variable} value and explore y values on all graphs.\nVertical line passes through all graphs at same {$variable} value."
       },
       "accessibleObjectResponse": {
         "patterns": {
@@ -828,7 +828,7 @@
         "value": "Tangent Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between steepness of visible line tangent to f of {$variable} and y value on derivative curve at same {$variable} coordinate. Information provides current {$variable} value, slope of line tangent to f of {$variable}, and value of derivative at {$variable} on derivative curve."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between\nsteepness of visible line tangent to f of {$variable} and y value on derivative curve at same\n{$variable} coordinate. Information provides current {$variable} value, slope of line tangent\nto f of {$variable}, and value of derivative at {$variable} on derivative curve."
       },
       "accessibleObjectResponse": {
         "pattern": {
@@ -866,7 +866,7 @@
         "value": "Area Under Curve Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between cumulative net signed area under f from left and coordinates of dot on integral curve. Area is bounded by {$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value. Information provides current {$variable} value, y coordinate of dot on integral curve, and total net signed area under f curve."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between\ncumulative net signed area under f from left and coordinates of dot on integral curve. Area is\nbounded by {$variable} axis and f curve. Vertical line passes through all graphs at same\n{$variable} value. Information provides current {$variable} value, y coordinate of dot on\nintegral curve, and total net signed area under f curve."
       },
       "accessibleObjectResponse": {
         "pattern": {

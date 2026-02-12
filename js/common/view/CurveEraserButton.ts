@@ -24,7 +24,7 @@ export default class CurveEraserButton extends EraserButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
                       activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>,
-                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
     const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponsePrimaryCurve.createProperty( {
@@ -42,11 +42,11 @@ export default class CurveEraserButton extends EraserButton {
       accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
-        predictSelectedProperty,
+        predictEnabledProperty,
         CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponsePredictCurveStringProperty,
         accessibleContextResponsePrimaryCurveStringProperty
-      ], ( predictSelected, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
-        predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
+      ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
+        predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem
     } );
   }

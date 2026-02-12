@@ -14,18 +14,13 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
 export default class SmoothButton extends TextPushButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
-
-    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponsePrimaryCurve.createProperty( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-    } );
 
     super( CalculusGrapherFluent.smoothStringProperty, {
       isDisposable: false,
@@ -42,11 +37,11 @@ export default class SmoothButton extends TextPushButton {
       accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
-        predictSelectedProperty,
+        predictEnabledProperty,
         CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponsePredictCurveStringProperty,
-        accessibleContextResponsePrimaryCurveStringProperty
-      ], ( predictSelected, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
-        predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
+        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponseAllCurvesStringProperty
+      ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponseAllCurvesString ) =>
+        predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponseAllCurvesString ),
       tandem: tandem
     } );
   }

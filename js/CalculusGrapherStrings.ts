@@ -121,7 +121,7 @@ type StringsType = {
     'smoothButton': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponsePrimaryCurveStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseAllCurvesStringProperty': LocalizedStringProperty;
       'accessibleContextResponsePredictCurveStringProperty': LocalizedStringProperty;
     };
     'eraserButton': {

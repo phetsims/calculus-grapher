@@ -21,7 +21,7 @@ import TransformedCurve from '../model/TransformedCurve.js';
 export default class UndoButton extends ReturnButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
-                      predictSelectedProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
     const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.undoButton.accessibleContextResponsePrimaryCurve.createProperty( {
@@ -36,11 +36,11 @@ export default class UndoButton extends ReturnButton {
       accessibleName: CalculusGrapherFluent.a11y.undoButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
-          predictSelectedProperty,
-          CalculusGrapherFluent.a11y.undoButton.accessibleContextResponsePredictCurveStringProperty,
-          accessibleContextResponsePrimaryCurveStringProperty
-        ], ( predictSelected, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
-          predictSelected ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
+        predictEnabledProperty,
+        CalculusGrapherFluent.a11y.undoButton.accessibleContextResponsePredictCurveStringProperty,
+        accessibleContextResponsePrimaryCurveStringProperty
+      ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
+        predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem
     } );
   }
