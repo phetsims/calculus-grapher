@@ -213,50 +213,52 @@ type StringsType = {
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
     'graphArea': {
-      'accessibleListNode': {
-        'leadingParagraphStringProperty': LocalizedStringProperty;
-        'coordinateGridShownStringProperty': LocalizedStringProperty;
-        'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
-      }
-    };
-    'primaryGraphArea': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleListNode': {
-        'primaryCurve': {
-          'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-          'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
-          'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+      'defaults': {
+        'accessibleListNode': {
+          'leadingParagraphStringProperty': LocalizedStringProperty;
+          'coordinateGridShownStringProperty': LocalizedStringProperty;
+          'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
+        }
+      };
+      'primary': {
+        'accessibleHeadingStringProperty': LocalizedStringProperty;
+        'accessibleListNode': {
+          'primaryCurve': {
+            'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+            'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+            'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+            'hiddenStringProperty': LocalizedStringProperty;
+          };
+          'predictCurve': {
+            'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+            'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+            'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+            'hiddenStringProperty': LocalizedStringProperty;
+          }
+        }
+      };
+      'integral': {
+        'accessibleHeadingStringProperty': LocalizedStringProperty;
+        'accessibleListNode': {
+          'continuousStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
-        };
-        'predictCurve': {
+        }
+      };
+      'derivative': {
+        'accessibleHeadingStringProperty': LocalizedStringProperty;
+        'accessibleListNode': {
           'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-          'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
           'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
         }
-      }
-    };
-    'integralGraphArea': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleListNode': {
-        'continuousStringProperty': LocalizedStringProperty;
-        'hiddenStringProperty': LocalizedStringProperty;
-      }
-    };
-    'derivativeGraphArea': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleListNode': {
-        'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-        'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
-        'hiddenStringProperty': LocalizedStringProperty;
-      }
-    };
-    'secondDerivativeGraphArea': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleListNode': {
-        'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-        'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
-        'hiddenStringProperty': LocalizedStringProperty;
+      };
+      'secondDerivative': {
+        'accessibleHeadingStringProperty': LocalizedStringProperty;
+        'accessibleListNode': {
+          'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
+          'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
+        }
       }
     };
     'predictRadioButtonGroup': {
@@ -366,22 +368,24 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'curveManipulator': {
-      'accessibleObjectResponse': {
-        'focusedReleasedStringProperty': LocalizedStringProperty;
-        'focusedGrabbedStringProperty': LocalizedStringProperty;
-        'grabbedStringProperty': LocalizedStringProperty;
-        'releasedStringProperty': LocalizedStringProperty;
-        'movedReleasedStringProperty': LocalizedStringProperty;
-        'movedGrabbedStringProperty': LocalizedStringProperty;
+      'defaults': {
+        'accessibleObjectResponse': {
+          'focusedReleasedStringProperty': LocalizedStringProperty;
+          'focusedGrabbedStringProperty': LocalizedStringProperty;
+          'grabbedStringProperty': LocalizedStringProperty;
+          'releasedStringProperty': LocalizedStringProperty;
+          'movedReleasedStringProperty': LocalizedStringProperty;
+          'movedGrabbedStringProperty': LocalizedStringProperty;
+        }
+      };
+      'primary': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'predict': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
-    };
-    'primaryCurveManipulator': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'predictCurveManipulator': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'referenceLine': {
       'accessibleNameStringProperty': LocalizedStringProperty;

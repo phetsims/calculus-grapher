@@ -139,29 +139,29 @@ addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleName', 'a11y.showOr
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleHelpText', 'a11y.showOriginalCurveCheckbox.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseChecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseCheckedStringProperty' );
 addToMapIfDefined( 'a11y_showOriginalCurveCheckbox_accessibleContextResponseUnchecked', 'a11y.showOriginalCurveCheckbox.accessibleContextResponseUncheckedStringProperty' );
-addToMapIfDefined( 'a11y_graphArea_accessibleListNode_leadingParagraph', 'a11y.graphArea.accessibleListNode.leadingParagraphStringProperty' );
-addToMapIfDefined( 'a11y_graphArea_accessibleListNode_coordinateGridShown', 'a11y.graphArea.accessibleListNode.coordinateGridShownStringProperty' );
-addToMapIfDefined( 'a11y_graphArea_accessibleListNode_valuesLabeledOnAxes', 'a11y.graphArea.accessibleListNode.valuesLabeledOnAxesStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleHeading', 'a11y.primaryGraphArea.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_continuousAndDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_continuousAndNotDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndNotDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_discontinuousAndNotDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_hidden', 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.hiddenStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_predictCurve_continuousAndDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_predictCurve_continuousAndNotDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndNotDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_predictCurve_discontinuousAndNotDifferentiable', 'a11y.primaryGraphArea.accessibleListNode.predictCurve.discontinuousAndNotDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_primaryGraphArea_accessibleListNode_predictCurve_hidden', 'a11y.primaryGraphArea.accessibleListNode.predictCurve.hiddenStringProperty' );
-addToMapIfDefined( 'a11y_integralGraphArea_accessibleHeading', 'a11y.integralGraphArea.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_integralGraphArea_accessibleListNode_continuous', 'a11y.integralGraphArea.accessibleListNode.continuousStringProperty' );
-addToMapIfDefined( 'a11y_integralGraphArea_accessibleListNode_hidden', 'a11y.integralGraphArea.accessibleListNode.hiddenStringProperty' );
-addToMapIfDefined( 'a11y_derivativeGraphArea_accessibleHeading', 'a11y.derivativeGraphArea.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_derivativeGraphArea_accessibleListNode_continuousAndDifferentiable', 'a11y.derivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_derivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', 'a11y.derivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_derivativeGraphArea_accessibleListNode_hidden', 'a11y.derivativeGraphArea.accessibleListNode.hiddenStringProperty' );
-addToMapIfDefined( 'a11y_secondDerivativeGraphArea_accessibleHeading', 'a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_secondDerivativeGraphArea_accessibleListNode_continuousAndDifferentiable', 'a11y.secondDerivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_secondDerivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', 'a11y.secondDerivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' );
-addToMapIfDefined( 'a11y_secondDerivativeGraphArea_accessibleListNode_hidden', 'a11y.secondDerivativeGraphArea.accessibleListNode.hiddenStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_defaults_accessibleListNode_leadingParagraph', 'a11y.graphArea.defaults.accessibleListNode.leadingParagraphStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_defaults_accessibleListNode_coordinateGridShown', 'a11y.graphArea.defaults.accessibleListNode.coordinateGridShownStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_defaults_accessibleListNode_valuesLabeledOnAxes', 'a11y.graphArea.defaults.accessibleListNode.valuesLabeledOnAxesStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleHeading', 'a11y.graphArea.primary.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_primaryCurve_continuousAndDifferentiable', 'a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_primaryCurve_continuousAndNotDifferentiable', 'a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndNotDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_primaryCurve_discontinuousAndNotDifferentiable', 'a11y.graphArea.primary.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_primaryCurve_hidden', 'a11y.graphArea.primary.accessibleListNode.primaryCurve.hiddenStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_predictCurve_continuousAndDifferentiable', 'a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_predictCurve_continuousAndNotDifferentiable', 'a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndNotDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_predictCurve_discontinuousAndNotDifferentiable', 'a11y.graphArea.primary.accessibleListNode.predictCurve.discontinuousAndNotDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_primary_accessibleListNode_predictCurve_hidden', 'a11y.graphArea.primary.accessibleListNode.predictCurve.hiddenStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_integral_accessibleHeading', 'a11y.graphArea.integral.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_integral_accessibleListNode_continuous', 'a11y.graphArea.integral.accessibleListNode.continuousStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_integral_accessibleListNode_hidden', 'a11y.graphArea.integral.accessibleListNode.hiddenStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_derivative_accessibleHeading', 'a11y.graphArea.derivative.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_derivative_accessibleListNode_continuousAndDifferentiable', 'a11y.graphArea.derivative.accessibleListNode.continuousAndDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_derivative_accessibleListNode_discontinuousAndNotDifferentiable', 'a11y.graphArea.derivative.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_derivative_accessibleListNode_hidden', 'a11y.graphArea.derivative.accessibleListNode.hiddenStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_secondDerivative_accessibleHeading', 'a11y.graphArea.secondDerivative.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_secondDerivative_accessibleListNode_continuousAndDifferentiable', 'a11y.graphArea.secondDerivative.accessibleListNode.continuousAndDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_secondDerivative_accessibleListNode_discontinuousAndNotDifferentiable', 'a11y.graphArea.secondDerivative.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' );
+addToMapIfDefined( 'a11y_graphArea_secondDerivative_accessibleListNode_hidden', 'a11y.graphArea.secondDerivative.accessibleListNode.hiddenStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_accessibleName', 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_accessibleHelpText', 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_originalCurveRadioButton_accessibleName', 'a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleNameStringProperty' );
@@ -212,16 +212,16 @@ addToMapIfDefined( 'a11y_discontinuitiesRadioButtonGroup_dashedLineRadioButton_a
 addToMapIfDefined( 'a11y_shapeWidthSlider_accessibleName', 'a11y.shapeWidthSlider.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_shapeWidthSlider_accessibleHelpText', 'a11y.shapeWidthSlider.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_predictToggleSwitch_accessibleHelpText', 'a11y.predictToggleSwitch.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse_focusedReleased', 'a11y.curveManipulator.accessibleObjectResponse.focusedReleasedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse_focusedGrabbed', 'a11y.curveManipulator.accessibleObjectResponse.focusedGrabbedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse_grabbed', 'a11y.curveManipulator.accessibleObjectResponse.grabbedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse_released', 'a11y.curveManipulator.accessibleObjectResponse.releasedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse_movedReleased', 'a11y.curveManipulator.accessibleObjectResponse.movedReleasedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulator_accessibleObjectResponse_movedGrabbed', 'a11y.curveManipulator.accessibleObjectResponse.movedGrabbedStringProperty' );
-addToMapIfDefined( 'a11y_primaryCurveManipulator_accessibleName', 'a11y.primaryCurveManipulator.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_primaryCurveManipulator_accessibleHelpText', 'a11y.primaryCurveManipulator.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_predictCurveManipulator_accessibleName', 'a11y.predictCurveManipulator.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_predictCurveManipulator_accessibleHelpText', 'a11y.predictCurveManipulator.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_defaults_accessibleObjectResponse_focusedReleased', 'a11y.curveManipulator.defaults.accessibleObjectResponse.focusedReleasedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_defaults_accessibleObjectResponse_focusedGrabbed', 'a11y.curveManipulator.defaults.accessibleObjectResponse.focusedGrabbedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_defaults_accessibleObjectResponse_grabbed', 'a11y.curveManipulator.defaults.accessibleObjectResponse.grabbedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_defaults_accessibleObjectResponse_released', 'a11y.curveManipulator.defaults.accessibleObjectResponse.releasedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_defaults_accessibleObjectResponse_movedReleased', 'a11y.curveManipulator.defaults.accessibleObjectResponse.movedReleasedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_defaults_accessibleObjectResponse_movedGrabbed', 'a11y.curveManipulator.defaults.accessibleObjectResponse.movedGrabbedStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_primary_accessibleName', 'a11y.curveManipulator.primary.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_primary_accessibleHelpText', 'a11y.curveManipulator.primary.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_predict_accessibleName', 'a11y.curveManipulator.predict.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulator_predict_accessibleHelpText', 'a11y.curveManipulator.predict.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_referenceLine_accessibleName', 'a11y.referenceLine.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_referenceLine_accessibleHelpText', 'a11y.referenceLine.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_referenceLine_accessibleObjectResponse_patterns_primaryDerivative', 'a11y.referenceLine.accessibleObjectResponse.patterns.primaryDerivativeStringProperty' );
@@ -311,17 +311,17 @@ const CalculusGrapherFluent = {
     netSignedAreaStringProperty: _.get( CalculusGrapherStrings, 'barometer.netSignedAreaStringProperty' ),
     slopeOfTangentStringProperty: _.get( CalculusGrapherStrings, 'barometer.slopeOfTangentStringProperty' )
   },
+  _comment_4: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predict"} ),
   predictStringProperty: _.get( CalculusGrapherStrings, 'predictStringProperty' ),
   showStringProperty: _.get( CalculusGrapherStrings, 'showStringProperty' ),
   predictPreferenceStringProperty: _.get( CalculusGrapherStrings, 'predictPreferenceStringProperty' ),
   valuesPreferenceDescriptionStringProperty: _.get( CalculusGrapherStrings, 'valuesPreferenceDescriptionStringProperty' ),
   predictPreferenceDescriptionStringProperty: _.get( CalculusGrapherStrings, 'predictPreferenceDescriptionStringProperty' ),
-  _comment_4: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
+  _comment_5: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
   referenceLineStringProperty: _.get( CalculusGrapherStrings, 'referenceLineStringProperty' ),
-  _comment_5: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
-  _comment_6: new FluentComment( {"comment":"Tools","associatedKey":"curveManipulator"} ),
-  _comment_7: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
-  _comment_8: new FluentComment( {"comment":"Common to all curve manipulators","associatedKey":"curveManipulator"} ),
+  _comment_6: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
+  _comment_7: new FluentComment( {"comment":"Tools","associatedKey":"curveManipulator"} ),
+  _comment_8: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
   curveManipulator: {
     keyboardHelpHeadingStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardHelpHeadingStringProperty' ),
     keyboardHelpLabelStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardHelpLabelStringProperty' ),
@@ -345,7 +345,9 @@ const CalculusGrapherFluent = {
             }
           },
           accessibleListNode: {
+            _comment_0: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
             primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screen_screenSummary_currentDetails_accessibleListNode_primary', _.get( CalculusGrapherStrings, 'a11y.screen.screenSummary.currentDetails.accessibleListNode.primaryStringProperty' ) ),
+            _comment_1: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predict"} ),
             predictStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screen_screenSummary_currentDetails_accessibleListNode_predict', _.get( CalculusGrapherStrings, 'a11y.screen.screenSummary.currentDetails.accessibleListNode.predictStringProperty' ) ),
             integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screen_screenSummary_currentDetails_accessibleListNode_integral', _.get( CalculusGrapherStrings, 'a11y.screen.screenSummary.currentDetails.accessibleListNode.integralStringProperty' ) ),
             derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screen_screenSummary_currentDetails_accessibleListNode_derivative', _.get( CalculusGrapherStrings, 'a11y.screen.screenSummary.currentDetails.accessibleListNode.derivativeStringProperty' ) ),
@@ -442,12 +444,14 @@ const CalculusGrapherFluent = {
     eyeToggleButton: {
       accessibleNameOn: {
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_integral', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.integralStringProperty' ) ),
+        _comment_0: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
         primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_primary', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.primaryStringProperty' ) ),
         derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_derivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.derivativeStringProperty' ) ),
         secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOn_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOn.secondDerivativeStringProperty' ) )
       },
       accessibleNameOff: {
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_integral', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.integralStringProperty' ) ),
+        _comment_0: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
         primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_primary', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.primaryStringProperty' ) ),
         derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_derivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.derivativeStringProperty' ) ),
         secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_eyeToggleButton_accessibleNameOff_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.eyeToggleButton.accessibleNameOff.secondDerivativeStringProperty' ) )
@@ -512,58 +516,62 @@ const CalculusGrapherFluent = {
     _comment_23: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"graphArea"} ),
     _comment_24: new FluentComment( {"comment":"Graph Areas","associatedKey":"graphArea"} ),
     _comment_25: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"graphArea"} ),
-    _comment_26: new FluentComment( {"comment":"Common to all graph areas","associatedKey":"graphArea"} ),
     graphArea: {
-      accessibleListNode: {
-        leadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_accessibleListNode_leadingParagraph', _.get( CalculusGrapherStrings, 'a11y.graphArea.accessibleListNode.leadingParagraphStringProperty' ) ),
-        coordinateGridShownStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_accessibleListNode_coordinateGridShown', _.get( CalculusGrapherStrings, 'a11y.graphArea.accessibleListNode.coordinateGridShownStringProperty' ) ),
-        valuesLabeledOnAxesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_accessibleListNode_valuesLabeledOnAxes', _.get( CalculusGrapherStrings, 'a11y.graphArea.accessibleListNode.valuesLabeledOnAxesStringProperty' ) )
-      }
-    },
-    primaryGraphArea: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleHeadingStringProperty' ) ),
-      accessibleListNode: {
-        primaryCurve: {
-          continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty' ) ),
-          continuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_continuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"}] ),
-          discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable, numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"},{"name":"numberOfDiscontinuities"}] ),
-          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_primaryCurve_hidden', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.primaryCurve.hiddenStringProperty' ) )
-        },
-        predictCurve: {
-          continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_predictCurve_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty' ) ),
-          continuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_predictCurve_continuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"}] ),
-          discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable, numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_predictCurve_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.predictCurve.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"},{"name":"numberOfDiscontinuities"}] ),
-          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryGraphArea_accessibleListNode_predictCurve_hidden', _.get( CalculusGrapherStrings, 'a11y.primaryGraphArea.accessibleListNode.predictCurve.hiddenStringProperty' ) )
+      _comment_0: new FluentComment( {"comment":"Defaults for all graph areas","associatedKey":"defaults"} ),
+      _comment_1: new FluentComment( {"comment":"Defaults for all curve manipulators","associatedKey":"defaults"} ),
+      defaults: {
+        accessibleListNode: {
+          leadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_defaults_accessibleListNode_leadingParagraph', _.get( CalculusGrapherStrings, 'a11y.graphArea.defaults.accessibleListNode.leadingParagraphStringProperty' ) ),
+          coordinateGridShownStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_defaults_accessibleListNode_coordinateGridShown', _.get( CalculusGrapherStrings, 'a11y.graphArea.defaults.accessibleListNode.coordinateGridShownStringProperty' ) ),
+          valuesLabeledOnAxesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_defaults_accessibleListNode_valuesLabeledOnAxes', _.get( CalculusGrapherStrings, 'a11y.graphArea.defaults.accessibleListNode.valuesLabeledOnAxesStringProperty' ) )
+        }
+      },
+      _comment_2: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+      primary: {
+        accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleHeadingStringProperty' ) ),
+        accessibleListNode: {
+          primaryCurve: {
+            continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_primaryCurve_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty' ) ),
+            continuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_primaryCurve_continuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"}] ),
+            discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable, numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_primaryCurve_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"},{"name":"numberOfDiscontinuities"}] ),
+            hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_primaryCurve_hidden', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.primaryCurve.hiddenStringProperty' ) )
+          },
+          predictCurve: {
+            continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_predictCurve_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty' ) ),
+            continuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_predictCurve_continuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"}] ),
+            discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable, numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_predictCurve_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.predictCurve.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"},{"name":"numberOfDiscontinuities"}] ),
+            hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_primary_accessibleListNode_predictCurve_hidden', _.get( CalculusGrapherStrings, 'a11y.graphArea.primary.accessibleListNode.predictCurve.hiddenStringProperty' ) )
+          }
+        }
+      },
+      integral: {
+        accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_integral_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphArea.integral.accessibleHeadingStringProperty' ) ),
+        accessibleListNode: {
+          continuous: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_integral_accessibleListNode_continuous', _.get( CalculusGrapherStrings, 'a11y.graphArea.integral.accessibleListNode.continuousStringProperty' ), [{"name":"variable"}] ),
+          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_integral_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.graphArea.integral.accessibleListNode.hiddenStringProperty' ) )
+        }
+      },
+      derivative: {
+        accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_derivative_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphArea.derivative.accessibleHeadingStringProperty' ) ),
+        accessibleListNode: {
+          continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_derivative_accessibleListNode_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.derivative.accessibleListNode.continuousAndDifferentiableStringProperty' ) ),
+          discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_derivative_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.derivative.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfDiscontinuities"}] ),
+          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_derivative_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.graphArea.derivative.accessibleListNode.hiddenStringProperty' ) )
+        }
+      },
+      secondDerivative: {
+        accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_secondDerivative_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphArea.secondDerivative.accessibleHeadingStringProperty' ) ),
+        accessibleListNode: {
+          continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_secondDerivative_accessibleListNode_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.secondDerivative.accessibleListNode.continuousAndDifferentiableStringProperty' ) ),
+          discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_graphArea_secondDerivative_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.graphArea.secondDerivative.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfDiscontinuities"}] ),
+          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphArea_secondDerivative_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.graphArea.secondDerivative.accessibleListNode.hiddenStringProperty' ) )
         }
       }
     },
-    integralGraphArea: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.integralGraphArea.accessibleHeadingStringProperty' ) ),
-      accessibleListNode: {
-        continuous: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_integralGraphArea_accessibleListNode_continuous', _.get( CalculusGrapherStrings, 'a11y.integralGraphArea.accessibleListNode.continuousStringProperty' ), [{"name":"variable"}] ),
-        hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_integralGraphArea_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.integralGraphArea.accessibleListNode.hiddenStringProperty' ) )
-      }
-    },
-    derivativeGraphArea: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleHeadingStringProperty' ) ),
-      accessibleListNode: {
-        continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty' ) ),
-        discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfDiscontinuities"}] ),
-        hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.hiddenStringProperty' ) )
-      }
-    },
-    secondDerivativeGraphArea: {
-      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty' ) ),
-      accessibleListNode: {
-        continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty' ) ),
-        discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfDiscontinuities"}] ),
-        hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.hiddenStringProperty' ) )
-      }
-    },
-    _comment_27: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
-    _comment_28: new FluentComment( {"comment":"Radio Button Groups","associatedKey":"predictRadioButtonGroup"} ),
-    _comment_29: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
-    _comment_30: new FluentComment( {"comment":"Switch between f(x) and Predict curves","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_26: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_27: new FluentComment( {"comment":"Radio Button Groups","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_28: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_29: new FluentComment( {"comment":"Switch between f(x) and Predict curves","associatedKey":"predictRadioButtonGroup"} ),
     predictRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -576,7 +584,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_31: new FluentComment( {"comment":"Select the shape to add to the curve in the primary graph area.","associatedKey":"shapesRadioButtonGroup"} ),
+    _comment_30: new FluentComment( {"comment":"Select the shape to add to the curve in the primary graph area.","associatedKey":"shapesRadioButtonGroup"} ),
     shapesRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -613,7 +621,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_shiftRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_32: new FluentComment( {"comment":"Select the set of graphs that are visible.","associatedKey":"graphSetRadioButtonGroup"} ),
+    _comment_31: new FluentComment( {"comment":"Select the set of graphs that are visible.","associatedKey":"graphSetRadioButtonGroup"} ),
     graphSetRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -634,7 +642,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryDerivativeSecondDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_33: new FluentComment( {"comment":"Variable control in Preferences > Simulation","associatedKey":"variableRadioButtonGroup"} ),
+    _comment_32: new FluentComment( {"comment":"Variable control in Preferences > Simulation","associatedKey":"variableRadioButtonGroup"} ),
     variableRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_variableRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.variableRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       xRadioButton: {
@@ -644,7 +652,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_variableRadioButtonGroup_tRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.variableRadioButtonGroup.tRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_34: new FluentComment( {"comment":"Notation control in Preferences > Simulation","associatedKey":"notationRadioButtonGroup"} ),
+    _comment_33: new FluentComment( {"comment":"Notation control in Preferences > Simulation","associatedKey":"notationRadioButtonGroup"} ),
     notationRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_notationRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       lagrangeRadioButton: {
@@ -656,7 +664,7 @@ const CalculusGrapherFluent = {
         accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_notationRadioButtonGroup_leibnizRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
       }
     },
-    _comment_35: new FluentComment( {"comment":"Discontinuities control in Preferences > Simulation","associatedKey":"discontinuitiesRadioButtonGroup"} ),
+    _comment_34: new FluentComment( {"comment":"Discontinuities control in Preferences > Simulation","associatedKey":"discontinuitiesRadioButtonGroup"} ),
     discontinuitiesRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_discontinuitiesRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.discontinuitiesRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       noLineRadioButton: {
@@ -668,45 +676,48 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_discontinuitiesRadioButtonGroup_dashedLineRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_36: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"shapeWidthSlider"} ),
-    _comment_37: new FluentComment( {"comment":"Sliders","associatedKey":"shapeWidthSlider"} ),
-    _comment_38: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"shapeWidthSlider"} ),
+    _comment_35: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"shapeWidthSlider"} ),
+    _comment_36: new FluentComment( {"comment":"Sliders","associatedKey":"shapeWidthSlider"} ),
+    _comment_37: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"shapeWidthSlider"} ),
     shapeWidthSlider: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapeWidthSlider_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapeWidthSlider.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ max: FluentVariable, min: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_shapeWidthSlider_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapeWidthSlider.accessibleHelpTextStringProperty' ), [{"name":"max"},{"name":"min"},{"name":"variable"}] )
     },
-    _comment_39: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
-    _comment_40: new FluentComment( {"comment":"Switches","associatedKey":"predictToggleSwitch"} ),
-    _comment_41: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
-    _comment_42: new FluentComment( {"comment":"Predict control in Preferences > Simulation","associatedKey":"predictToggleSwitch"} ),
+    _comment_38: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
+    _comment_39: new FluentComment( {"comment":"Switches","associatedKey":"predictToggleSwitch"} ),
+    _comment_40: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
+    _comment_41: new FluentComment( {"comment":"Predict control in Preferences > Simulation","associatedKey":"predictToggleSwitch"} ),
     predictToggleSwitch: {
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_predictToggleSwitch_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictToggleSwitch.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
     },
-    _comment_43: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
-    _comment_44: new FluentComment( {"comment":"Tools","associatedKey":"curveManipulator"} ),
-    _comment_45: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
-    _comment_46: new FluentComment( {"comment":"Common to all curve manipulators","associatedKey":"curveManipulator"} ),
+    _comment_42: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
+    _comment_43: new FluentComment( {"comment":"Tools","associatedKey":"curveManipulator"} ),
+    _comment_44: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulator"} ),
     curveManipulator: {
-      accessibleObjectResponse: {
-        focusedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse_focusedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponse.focusedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
-        focusedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse_focusedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponse.focusedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
-        grabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse_grabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponse.grabbedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
-        released: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse_released', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponse.releasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
-        movedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse_movedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponse.movedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
-        movedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_accessibleObjectResponse_movedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.accessibleObjectResponse.movedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] )
+      _comment_0: new FluentComment( {"comment":"Defaults for all graph areas","associatedKey":"defaults"} ),
+      _comment_1: new FluentComment( {"comment":"Defaults for all curve manipulators","associatedKey":"defaults"} ),
+      defaults: {
+        accessibleObjectResponse: {
+          focusedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_defaults_accessibleObjectResponse_focusedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.defaults.accessibleObjectResponse.focusedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+          focusedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_defaults_accessibleObjectResponse_focusedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.defaults.accessibleObjectResponse.focusedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+          grabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_defaults_accessibleObjectResponse_grabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.defaults.accessibleObjectResponse.grabbedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+          released: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_defaults_accessibleObjectResponse_released', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.defaults.accessibleObjectResponse.releasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+          movedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_defaults_accessibleObjectResponse_movedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.defaults.accessibleObjectResponse.movedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
+          movedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulator_defaults_accessibleObjectResponse_movedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.defaults.accessibleObjectResponse.movedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] )
+        }
+      },
+      _comment_2: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+      primary: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulator_primary_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.primary.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulator_primary_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.primary.accessibleHelpTextStringProperty' ) )
+      },
+      _comment_3: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predict"} ),
+      predict: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulator_predict_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.predict.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulator_predict_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulator.predict.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_47: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primaryCurveManipulator"} ),
-    primaryCurveManipulator: {
-      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryCurveManipulator_accessibleName', _.get( CalculusGrapherStrings, 'a11y.primaryCurveManipulator.accessibleNameStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_primaryCurveManipulator_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.primaryCurveManipulator.accessibleHelpTextStringProperty' ) )
-    },
-    _comment_48: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predictCurveManipulator"} ),
-    predictCurveManipulator: {
-      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictCurveManipulator_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictCurveManipulator.accessibleNameStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictCurveManipulator_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictCurveManipulator.accessibleHelpTextStringProperty' ) )
-    },
-    _comment_49: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
+    _comment_45: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
     referenceLine: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleName', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
@@ -747,7 +758,7 @@ const CalculusGrapherFluent = {
         }
       }
     },
-    _comment_50: new FluentComment( {"comment":"Tangent Tool","associatedKey":"tangentTool"} ),
+    _comment_46: new FluentComment( {"comment":"Tangent Tool","associatedKey":"tangentTool"} ),
     tangentTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),
@@ -771,7 +782,7 @@ const CalculusGrapherFluent = {
         }
       }
     },
-    _comment_51: new FluentComment( {"comment":"Area Under Curve Tool","associatedKey":"areaUnderCurveTool"} ),
+    _comment_47: new FluentComment( {"comment":"Area Under Curve Tool","associatedKey":"areaUnderCurveTool"} ),
     areaUnderCurveTool: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleName', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleNameStringProperty' ) ),
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' ), [{"name":"variable"}] ),

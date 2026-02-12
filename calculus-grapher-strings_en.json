@@ -416,95 +416,97 @@
       }
     },
     "graphArea": {
-      "accessibleListNode": {
-        "leadingParagraph": {
-          "value": "Right now,"
-        },
-        "coordinateGridShown": {
-          "value": "Coordinate grid shown."
-        },
-        "valuesLabeledOnAxes": {
-          "value": "Values labeled on axes."
-        }
-      }
-    },
-    "primaryGraphArea": {
-      "accessibleHeading": {
-        "value": "Primary Graph Area"
-      },
-      "accessibleListNode": {
-        "primaryCurve": {
-          "continuousAndDifferentiable": {
-            "value": "f is continuous and differentiable at all points."
+      "defaults": {
+        "accessibleListNode": {
+          "leadingParagraph": {
+            "value": "Right now,"
           },
-          "continuousAndNotDifferentiable": {
-            "value": "f is continuous but not differentiable at {$numberOfCusps} cusps."
+          "coordinateGridShown": {
+            "value": "Coordinate grid shown."
           },
-          "discontinuousAndNotDifferentiable": {
-            "value": "f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
-          },
-          "hidden": {
-            "value": "f curve hidden."
-          }
-        },
-        "predictCurve": {
-          "continuousAndDifferentiable": {
-            "value": "Predict f is continuous and differentiable at all points."
-          },
-          "continuousAndNotDifferentiable": {
-            "value": "Predict f is continuous but not differentiable at {$numberOfCusps} cusps."
-          },
-          "discontinuousAndNotDifferentiable": {
-            "value": "Predict f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
-          },
-          "hidden": {
-            "value": "Predict f curve hidden."
+          "valuesLabeledOnAxes": {
+            "value": "Values labeled on axes."
           }
         }
-      }
-    },
-    "integralGraphArea": {
-      "accessibleHeading": {
-        "value": "Integral Graph Area"
       },
-      "accessibleListNode": {
-        "continuous": {
-          "value": "Integral curve is continuous and represents definite integral from zero to {$variable} for f of {$variable}."
+      "primary": {
+        "accessibleHeading": {
+          "value": "Primary Graph Area"
         },
-        "hidden": {
-          "value": "Integral curve hidden."
+        "accessibleListNode": {
+          "primaryCurve": {
+            "continuousAndDifferentiable": {
+              "value": "f is continuous and differentiable at all points."
+            },
+            "continuousAndNotDifferentiable": {
+              "value": "f is continuous but not differentiable at {$numberOfCusps} cusps."
+            },
+            "discontinuousAndNotDifferentiable": {
+              "value": "f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
+            },
+            "hidden": {
+              "value": "f curve hidden."
+            }
+          },
+          "predictCurve": {
+            "continuousAndDifferentiable": {
+              "value": "Predict f is continuous and differentiable at all points."
+            },
+            "continuousAndNotDifferentiable": {
+              "value": "Predict f is continuous but not differentiable at {$numberOfCusps} cusps."
+            },
+            "discontinuousAndNotDifferentiable": {
+              "value": "Predict f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
+            },
+            "hidden": {
+              "value": "Predict f curve hidden."
+            }
+          }
         }
-      }
-    },
-    "derivativeGraphArea": {
-      "accessibleHeading": {
-        "value": "Derivative Graph Area"
       },
-      "accessibleListNode": {
-        "continuousAndDifferentiable": {
-          "value": "Derivative curve is continuous and differentiable at all points."
+      "integral": {
+        "accessibleHeading": {
+          "value": "Integral Graph Area"
         },
-        "discontinuousAndNotDifferentiable": {
-          "value": "Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities."
-        },
-        "hidden": {
-          "value": "Derivative curve hidden."
+        "accessibleListNode": {
+          "continuous": {
+            "value": "Integral curve is continuous and represents definite integral from zero to {$variable} for f of {$variable}."
+          },
+          "hidden": {
+            "value": "Integral curve hidden."
+          }
         }
-      }
-    },
-    "secondDerivativeGraphArea": {
-      "accessibleHeading": {
-        "value": "Second Derivative Graph Area"
       },
-      "accessibleListNode": {
-        "continuousAndDifferentiable": {
-          "value": "Second derivative curve is continuous and differentiable at all points."
+      "derivative": {
+        "accessibleHeading": {
+          "value": "Derivative Graph Area"
         },
-        "discontinuousAndNotDifferentiable": {
-          "value": "Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities."
+        "accessibleListNode": {
+          "continuousAndDifferentiable": {
+            "value": "Derivative curve is continuous and differentiable at all points."
+          },
+          "discontinuousAndNotDifferentiable": {
+            "value": "Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities."
+          },
+          "hidden": {
+            "value": "Derivative curve hidden."
+          }
+        }
+      },
+      "secondDerivative": {
+        "accessibleHeading": {
+          "value": "Second Derivative Graph Area"
         },
-        "hidden": {
-          "value": "Second derivative curve hidden."
+        "accessibleListNode": {
+          "continuousAndDifferentiable": {
+            "value": "Second derivative curve is continuous and differentiable at all points."
+          },
+          "discontinuousAndNotDifferentiable": {
+            "value": "Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities."
+          },
+          "hidden": {
+            "value": "Second derivative curve hidden."
+          }
         }
       }
     },
@@ -715,41 +717,43 @@
       }
     },
     "curveManipulator": {
-      "accessibleObjectResponse": {
-        "focusedReleased": {
-          "value": "at {$x} {$y}, off curve"
-        },
-        "focusedGrabbed": {
-          "value": "at {$x} {$y}, grabbed"
-        },
-        "grabbed": {
-          "value": "grabbed at {$x} {$y}, shape added"
-        },
-        "released": {
-          "value": "released at {$x} {$y}, off curve"
-        },
-        "movedReleased": {
-          "value": "at {$x} {$y}"
-        },
-        "movedGrabbed": {
-          "value": "at {$x} {$y}, shape added"
+      "defaults": {
+        "accessibleObjectResponse": {
+          "focusedReleased": {
+            "value": "at {$x} {$y}, off curve"
+          },
+          "focusedGrabbed": {
+            "value": "at {$x} {$y}, grabbed"
+          },
+          "grabbed": {
+            "value": "grabbed at {$x} {$y}, shape added"
+          },
+          "released": {
+            "value": "released at {$x} {$y}, off curve"
+          },
+          "movedReleased": {
+            "value": "at {$x} {$y}"
+          },
+          "movedGrabbed": {
+            "value": "at {$x} {$y}, shape added"
+          }
         }
-      }
-    },
-    "primaryCurveManipulator": {
-      "accessibleName": {
-        "value": "f Curve Manipulator"
       },
-      "accessibleHelpText": {
-        "value": "Manipulate f curve to explore changes to all graphs. Use keyboard shortcuts if needed."
-      }
-    },
-    "predictCurveManipulator": {
-      "accessibleName": {
-        "value": "Prediction Curve Manipulator"
+      "primary": {
+        "accessibleName": {
+          "value": "f Curve Manipulator"
+        },
+        "accessibleHelpText": {
+          "value": "Manipulate f curve to explore changes to all graphs. Use keyboard shortcuts if needed."
+        }
       },
-      "accessibleHelpText": {
-        "value": "Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed."
+      "predict": {
+        "accessibleName": {
+          "value": "Prediction Curve Manipulator"
+        },
+        "accessibleHelpText": {
+          "value": "Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed."
+        }
       }
     },
     "referenceLine": {

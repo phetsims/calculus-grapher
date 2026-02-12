@@ -34,7 +34,7 @@ export default class SecondDerivativeGraphNode extends GraphNode {
                       providedOptions: SecondDerivativeGraphNodeOptions ) {
 
     const options = optionize<SecondDerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
-      accessibleHeading: CalculusGrapherFluent.a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleHeadingStringProperty,
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.secondDerivativeStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.secondDerivativeStringProperty

@@ -125,7 +125,7 @@ export default class OriginalGraphNode extends GraphNode {
         fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
-      accessibleHeading: CalculusGrapherFluent.a11y.primaryGraphArea.accessibleHeadingStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.graphArea.primary.accessibleHeadingStringProperty,
       eyeToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOn.primaryStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleNameOff.primaryStringProperty
@@ -194,8 +194,8 @@ export default class OriginalGraphNode extends GraphNode {
       {
         // Child of originalCurveNode in PhET-iO tree.
         tandem: this.originalCurveNode.tandem.createTandem( 'manipulatorNode' ),
-        accessibleName: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleHelpTextStringProperty
+        accessibleName: CalculusGrapherFluent.a11y.curveManipulator.primary.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.primary.accessibleHelpTextStringProperty
       } );
 
     // Predict curve manipulator
@@ -209,8 +209,8 @@ export default class OriginalGraphNode extends GraphNode {
       {
         // Child of predictCurveNode in PhET-iO tree.
         tandem: this.predictCurveNode.tandem.createTandem( 'manipulatorNode' ),
-        accessibleName: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpTextStringProperty
+        accessibleName: CalculusGrapherFluent.a11y.curveManipulator.predict.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.predict.accessibleHelpTextStringProperty
       } );
 
     // Cueing arrows for the original and predict curve manipulators.
