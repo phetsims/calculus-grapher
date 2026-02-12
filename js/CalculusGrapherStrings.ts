@@ -55,20 +55,24 @@ type StringsType = {
   };
   'explorationToolsStringProperty': LocalizedStringProperty;
   'a11y': {
-    'allScreens': {
+    'screen': {
       'screenSummary': {
         'currentDetails': {
-          'widthPatternStringProperty': LocalizedStringProperty;
-          'noWidthPatternStringProperty': LocalizedStringProperty;
-          'curveSentence': {
-            'curvesShownStringProperty': LocalizedStringProperty;
-            'allCurvesHiddenStringProperty': LocalizedStringProperty;
+          'leadingParagraph': {
+            'widthPatternStringProperty': LocalizedStringProperty;
+            'noWidthPatternStringProperty': LocalizedStringProperty;
+            'curveSentence': {
+              'curvesShownStringProperty': LocalizedStringProperty;
+              'allCurvesHiddenStringProperty': LocalizedStringProperty;
+            }
           };
-          'primaryStringProperty': LocalizedStringProperty;
-          'predictStringProperty': LocalizedStringProperty;
-          'integralStringProperty': LocalizedStringProperty;
-          'derivativeStringProperty': LocalizedStringProperty;
-          'secondDerivativeStringProperty': LocalizedStringProperty;
+          'accessibleListNode': {
+            'primaryStringProperty': LocalizedStringProperty;
+            'predictStringProperty': LocalizedStringProperty;
+            'integralStringProperty': LocalizedStringProperty;
+            'derivativeStringProperty': LocalizedStringProperty;
+            'secondDerivativeStringProperty': LocalizedStringProperty;
+          }
         };
         'controlAreaStringProperty': LocalizedStringProperty;
       }

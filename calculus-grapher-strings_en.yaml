@@ -39,19 +39,21 @@ a11y:
   #=======================================================================================================
 
   # Common to all screens
-  allScreens:
+  screen:
     screenSummary:
       currentDetails:
-        widthPattern:     'Right now, {$shape} shape with width {$width} chosen. {$curveSentence}'
-        noWidthPattern:   'Right now, {$shape} shape chosen. {$curveSentence}'
-        curveSentence:
-          curvesShown:     'Curves shown are:'
-          allCurvesHidden: 'All curves hidden.'
-        primary:          f of {$variable}
-        predict:          Predict f of {$variable}
-        integral:         Integral
-        derivative:       Derivative
-        secondDerivative: Second Derivative
+        leadingParagraph:
+          widthPattern:   'Right now, {$shape} shape with width {$width} chosen. {$curveSentence}'
+          noWidthPattern: 'Right now, {$shape} shape chosen. {$curveSentence}'
+          curveSentence:
+            curvesShown:     'Curves shown are:'
+            allCurvesHidden: 'All curves hidden.'
+        accessibleListNode:
+          primary:          f of {$variable}
+          predict:          Predict f of {$variable}
+          integral:         Integral
+          derivative:       Derivative
+          secondDerivative: Second Derivative
       controlArea: Reset the sim to start over.
 
   # Derivative screen
@@ -238,7 +240,7 @@ a11y:
   # Common to all graph areas
   allGraphAreas:
     accessibleListNode:
-      leadingParagraph:        Right now,
+      leadingParagraph:    Right now,
       coordinateGrid:
         shown:  Coordinate grid shown.
         hidden: Coordinate grid hidden.

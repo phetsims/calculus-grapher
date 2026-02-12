@@ -26,7 +26,7 @@ export default class CalculusGrapherScreenSummaryContent extends ScreenSummaryCo
   protected constructor( model: CalculusGrapherModel, graphsNode: GraphsNode, providedOptions: CalculusGrapherScreenSummaryContentOptions ) {
 
     const options = optionize<CalculusGrapherScreenSummaryContentOptions, SelfOptions, ScreenSummaryContentOptions>()( {
-      controlAreaContent: CalculusGrapherFluent.a11y.allScreens.screenSummary.controlAreaStringProperty,
+      controlAreaContent: CalculusGrapherFluent.a11y.screen.screenSummary.controlAreaStringProperty,
       currentDetailsContent: new CurrentDetailsAccessibleListNode( model, graphsNode )
     }, providedOptions );
 

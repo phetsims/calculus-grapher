@@ -92,37 +92,41 @@
     "value": "Exploration Tools"
   },
   "a11y": {
-    "allScreens": {
+    "screen": {
       "screenSummary": {
         "currentDetails": {
-          "widthPattern": {
-            "value": "Right now, {$shape} shape with width {$width} chosen. {$curveSentence}"
-          },
-          "noWidthPattern": {
-            "value": "Right now, {$shape} shape chosen. {$curveSentence}"
-          },
-          "curveSentence": {
-            "curvesShown": {
-              "value": "Curves shown are:"
+          "leadingParagraph": {
+            "widthPattern": {
+              "value": "Right now, {$shape} shape with width {$width} chosen. {$curveSentence}"
             },
-            "allCurvesHidden": {
-              "value": "All curves hidden."
+            "noWidthPattern": {
+              "value": "Right now, {$shape} shape chosen. {$curveSentence}"
+            },
+            "curveSentence": {
+              "curvesShown": {
+                "value": "Curves shown are:"
+              },
+              "allCurvesHidden": {
+                "value": "All curves hidden."
+              }
             }
           },
-          "primary": {
-            "value": "f of {$variable}"
-          },
-          "predict": {
-            "value": "Predict f of {$variable}"
-          },
-          "integral": {
-            "value": "Integral"
-          },
-          "derivative": {
-            "value": "Derivative"
-          },
-          "secondDerivative": {
-            "value": "Second Derivative"
+          "accessibleListNode": {
+            "primary": {
+              "value": "f of {$variable}"
+            },
+            "predict": {
+              "value": "Predict f of {$variable}"
+            },
+            "integral": {
+              "value": "Integral"
+            },
+            "derivative": {
+              "value": "Derivative"
+            },
+            "secondDerivative": {
+              "value": "Second Derivative"
+            }
           }
         },
         "controlArea": {
