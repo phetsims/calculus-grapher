@@ -18,10 +18,10 @@ export default class IntegralScreenSummaryContent extends CalculusGrapherScreenS
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     super( model, graphsNode, {
-      playAreaContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.playArea.createProperty( {
+      playAreaContent: CalculusGrapherFluent.a11y.screen.integral.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      interactionHintContent: CalculusGrapherFluent.a11y.integralScreen.screenSummary.interactionHint.createProperty( {
+      interactionHintContent: CalculusGrapherFluent.a11y.screen.integral.screenSummary.interactionHint.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     } );

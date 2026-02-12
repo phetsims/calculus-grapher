@@ -56,53 +56,55 @@ type StringsType = {
   'explorationToolsStringProperty': LocalizedStringProperty;
   'a11y': {
     'screen': {
-      'screenSummary': {
-        'currentDetails': {
-          'leadingParagraph': {
-            'widthPatternStringProperty': LocalizedStringProperty;
-            'noWidthPatternStringProperty': LocalizedStringProperty;
-            'curveSentence': {
-              'curvesShownStringProperty': LocalizedStringProperty;
-              'allCurvesHiddenStringProperty': LocalizedStringProperty;
+      'defaults': {
+        'screenSummary': {
+          'currentDetails': {
+            'leadingParagraph': {
+              'widthPatternStringProperty': LocalizedStringProperty;
+              'noWidthPatternStringProperty': LocalizedStringProperty;
+              'curveSentence': {
+                'curvesShownStringProperty': LocalizedStringProperty;
+                'allCurvesHiddenStringProperty': LocalizedStringProperty;
+              }
+            };
+            'accessibleListNode': {
+              'primaryStringProperty': LocalizedStringProperty;
+              'predictStringProperty': LocalizedStringProperty;
+              'integralStringProperty': LocalizedStringProperty;
+              'derivativeStringProperty': LocalizedStringProperty;
+              'secondDerivativeStringProperty': LocalizedStringProperty;
             }
           };
-          'accessibleListNode': {
-            'primaryStringProperty': LocalizedStringProperty;
-            'predictStringProperty': LocalizedStringProperty;
-            'integralStringProperty': LocalizedStringProperty;
-            'derivativeStringProperty': LocalizedStringProperty;
-            'secondDerivativeStringProperty': LocalizedStringProperty;
-          }
-        };
-        'controlAreaStringProperty': LocalizedStringProperty;
-      }
-    };
-    'derivativeScreen': {
-      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
-      'screenSummary': {
-        'playAreaStringProperty': LocalizedStringProperty;
-        'interactionHintStringProperty': LocalizedStringProperty;
-      }
-    };
-    'integralScreen': {
-      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
-      'screenSummary': {
-        'playAreaStringProperty': LocalizedStringProperty;
-        'interactionHintStringProperty': LocalizedStringProperty;
-      }
-    };
-    'advancedScreen': {
-      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
-      'screenSummary': {
-        'playAreaStringProperty': LocalizedStringProperty;
-        'interactionHintStringProperty': LocalizedStringProperty;
-      }
-    };
-    'labScreen': {
-      'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
-      'screenSummary': {
-        'playAreaStringProperty': LocalizedStringProperty;
-        'interactionHintStringProperty': LocalizedStringProperty;
+          'controlAreaStringProperty': LocalizedStringProperty;
+        }
+      };
+      'derivative': {
+        'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+        'screenSummary': {
+          'playAreaStringProperty': LocalizedStringProperty;
+          'interactionHintStringProperty': LocalizedStringProperty;
+        }
+      };
+      'integral': {
+        'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+        'screenSummary': {
+          'playAreaStringProperty': LocalizedStringProperty;
+          'interactionHintStringProperty': LocalizedStringProperty;
+        }
+      };
+      'advanced': {
+        'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+        'screenSummary': {
+          'playAreaStringProperty': LocalizedStringProperty;
+          'interactionHintStringProperty': LocalizedStringProperty;
+        }
+      };
+      'lab': {
+        'screenButtonsHelpTextStringProperty': LocalizedStringProperty;
+        'screenSummary': {
+          'playAreaStringProperty': LocalizedStringProperty;
+          'interactionHintStringProperty': LocalizedStringProperty;
+        }
       }
     };
     'headings': {
