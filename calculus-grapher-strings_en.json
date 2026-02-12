@@ -113,10 +113,10 @@
           },
           "accessibleListNode": {
             "primary": {
-              "value": "f of {$variable}"
+              "value": "f"
             },
             "predict": {
-              "value": "Predict f of {$variable}"
+              "value": "Predict f"
             },
             "integral": {
               "value": "Integral"
@@ -140,7 +140,7 @@
       },
       "screenSummary": {
         "playArea": {
-          "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and a \nnon-interactive curve representing the derivative of f. You can choose different shapes to\nadd to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
+          "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a \nnon-interactive curve representing the derivative of f. You can choose different shapes to\nadd to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness\nof f curve at different points."
@@ -153,7 +153,7 @@
       },
       "screenSummary": {
         "playArea": {
-          "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and a\nnon-interactive curve representing the integral of f. You can choose different shapes to add to\ncurve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
+          "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a\nnon interactive curve representing the integral of f. You can choose different shapes to add to\ncurve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate\nnet signed area under f curve bounded by horizontal axis and f of {$variable} starting from left."
@@ -166,7 +166,7 @@
       },
       "screenSummary": {
         "playArea": {
-          "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and\nnon interactive curves in other Graph Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of two Graph Areas\nare viewable: Integral and Primary or Primary and Derivative. There are Exploration Tools\nallowing flexible investigation of all viewable curves with {$variable} coordinates aligned."
+          "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nnon interactive curves in other Graph Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of two Graph Areas\nare viewable: Integral and Primary or Primary and Derivative. There are Exploration Tools\nallowing flexible investigation of all viewable curves with {$variable} coordinates aligned."
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore\nrelationships between graphs in viewable graph set."
@@ -179,7 +179,7 @@
       },
       "screenSummary": {
         "playArea": {
-          "value": "There is an interactive curve in the Primary Graph Area representing f of {$variable} and\nnon interactive curves in other Graphs Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of three Graph Areas\nare viewable: Integral, Primary, and Derivative, or Primary, Derivative, and \nSecond Derivative. There are Exploration Tools allowing flexible investigation of all curves\nwith {$variable} coordinates aligned."
+          "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nnon interactive curves in other Graphs Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of three Graph Areas\nare viewable: Integral, Primary, and Derivative, or Primary, Derivative, and \nSecond Derivative. There are Exploration Tools allowing flexible investigation of all curves\nwith {$variable} coordinates aligned."
         },
         "interactionHint": {
           "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore\nrelationships between graphs in viewable graph set."
@@ -207,10 +207,10 @@
     },
     "netSignedAreaAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "Explore net signed area under f of {$variable} curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool."
+        "value": "Explore net signed area under f curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool."
       },
       "accessibleParagraph": {
-        "value": "Net signed area under f of {$variable} curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
+        "value": "Net signed area under f curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
       }
     },
     "curveActionsButtonGroup": {
@@ -246,10 +246,10 @@
       },
       "accessibleContextResponse": {
         "primaryCurve": {
-          "value": "f of {$variable} and all curves reset, settings unchanged."
+          "value": "f and derived curves reset, settings unchanged."
         },
         "predictCurve": {
-          "value": "Prediction curve reset, other curves and settings unchanged."
+          "value": "Predict curve reset, other curves and settings unchanged."
         }
       }
     },
@@ -262,7 +262,7 @@
       },
       "accessibleContextResponse": {
         "primaryCurve": {
-          "value": "Last manipulation removed from f of {$variable} and all curves."
+          "value": "Last manipulation removed from f and derived curves."
         },
         "predictCurve": {
           "value": "Last manipulation removed from prediction curve only."
@@ -440,30 +440,30 @@
       "accessibleListNode": {
         "primaryCurve": {
           "continuousAndDifferentiable": {
-            "value": "f of {$variable} is continuous and differentiable at all points."
+            "value": "f is continuous and differentiable at all points."
           },
           "continuousAndNotDifferentiable": {
-            "value": "f of {$variable} is continuous but not differentiable at {$numberOfCusps} cusps."
+            "value": "f is continuous but not differentiable at {$numberOfCusps} cusps."
           },
           "discontinuousAndNotDifferentiable": {
-            "value": "f of {$variable} is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
+            "value": "f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
           },
           "hidden": {
-            "value": "f of {$variable} hidden."
+            "value": "f curve hidden."
           }
         },
         "predictCurve": {
           "continuousAndDifferentiable": {
-            "value": "Predict f of {$variable} is continuous and differentiable at all points."
+            "value": "Predict f is continuous and differentiable at all points."
           },
           "continuousAndNotDifferentiable": {
-            "value": "Predict f of {$variable} is continuous but not differentiable at {$numberOfCusps} cusps."
+            "value": "Predict f is continuous but not differentiable at {$numberOfCusps} cusps."
           },
           "discontinuousAndNotDifferentiable": {
-            "value": "Predict f of {$variable} is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
+            "value": "Predict f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
           },
           "hidden": {
-            "value": "Predict f of {$variable} hidden."
+            "value": "Predict f curve hidden."
           }
         }
       }
@@ -525,7 +525,7 @@
           "value": "f of {$variable}"
         },
         "accessibleHelpText": {
-          "value": "Manipulate f of {$variable} in Primary Graph Area."
+          "value": "Manipulate f curve in Primary Graph Area."
         }
       },
       "predictCurveRadioButton": {
@@ -533,7 +533,7 @@
           "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve to predict f of {$variable} based on other graphs."
+          "value": "Manipulate prediction curve to predict graph of f based on other graphs."
         }
       }
     },
@@ -743,10 +743,10 @@
     },
     "primaryCurveManipulator": {
       "accessibleName": {
-        "value": "f of {$variable} Curve Manipulator"
+        "value": "f Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "Manipulate f of {$variable} to explore changes to all graphs. Use keyboard shortcuts if needed."
+        "value": "Manipulate f curve to explore changes to all graphs. Use keyboard shortcuts if needed."
       }
     },
     "predictCurveManipulator": {
@@ -754,7 +754,7 @@
         "value": "Prediction Curve Manipulator"
       },
       "accessibleHelpText": {
-        "value": "Manipulate curve to predict f of {$variable} based on other curves. Use keyboard shortcuts if needed."
+        "value": "Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed."
       }
     },
     "referenceLine": {
@@ -842,7 +842,7 @@
         "value": "Tangent Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between\nsteepness of visible line tangent to f of {$variable} and y value on derivative curve at same\n{$variable} coordinate. Information provides current {$variable} value, slope of line tangent\nto f of {$variable}, and value of derivative at {$variable} on derivative curve."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between\nsteepness of visible line tangent to f at {$variable}, and y value on derivative curve at same\n{$variable} coordinate. Information provides current {$variable} value, slope of line tangent\nto f at {$variable}, and value of derivative at {$variable} on derivative curve."
       },
       "accessibleObjectResponse": {
         "pattern": {

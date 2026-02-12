@@ -38,7 +38,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import GraphType from '../model/GraphType.js';
@@ -195,12 +194,8 @@ export default class OriginalGraphNode extends GraphNode {
       {
         // Child of originalCurveNode in PhET-iO tree.
         tandem: this.originalCurveNode.tandem.createTandem( 'manipulatorNode' ),
-        accessibleName: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleName.createProperty( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-        } ),
-        accessibleHelpText: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleHelpText.createProperty( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-        } )
+        accessibleName: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.primaryCurveManipulator.accessibleHelpTextStringProperty
       } );
 
     // Predict curve manipulator
@@ -215,9 +210,7 @@ export default class OriginalGraphNode extends GraphNode {
         // Child of predictCurveNode in PhET-iO tree.
         tandem: this.predictCurveNode.tandem.createTandem( 'manipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpText.createProperty( {
-          variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-        } )
+        accessibleHelpText: CalculusGrapherFluent.a11y.predictCurveManipulator.accessibleHelpTextStringProperty
       } );
 
     // Cueing arrows for the original and predict curve manipulators.

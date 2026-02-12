@@ -15,7 +15,6 @@ import ReturnButton from '../../../../scenery-phet/js/buttons/ReturnButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
 export default class UndoButton extends ReturnButton {
@@ -23,10 +22,6 @@ export default class UndoButton extends ReturnButton {
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
-
-    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.primaryCurve.createProperty( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-    } );
 
     super( {
       isDisposable: false,
@@ -38,7 +33,7 @@ export default class UndoButton extends ReturnButton {
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
         CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.predictCurveStringProperty,
-        accessibleContextResponsePrimaryCurveStringProperty
+        CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.primaryCurveStringProperty
       ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
         predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem

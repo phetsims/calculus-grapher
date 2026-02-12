@@ -16,7 +16,6 @@ import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
-import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
@@ -26,10 +25,6 @@ export default class CurveEraserButton extends EraserButton {
                       activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
-
-    const accessibleContextResponsePrimaryCurveStringProperty = CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponse.primaryCurve.createProperty( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-    } );
 
     super( {
       isDisposable: false,
@@ -44,7 +39,7 @@ export default class CurveEraserButton extends EraserButton {
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
         CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponse.predictCurveStringProperty,
-        accessibleContextResponsePrimaryCurveStringProperty
+        CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponse.primaryCurveStringProperty
       ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
         predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem

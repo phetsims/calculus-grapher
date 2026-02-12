@@ -14,7 +14,6 @@ import AccessibleListNode, { AccessibleListItem } from '../../../../../scenery-p
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
-import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import CalculusGrapherModel from '../../model/CalculusGrapherModel.js';
 import GraphsNode from '../GraphsNode.js';
 
@@ -46,9 +45,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const originalCurveVisibleProperty = graphsNode.originalGraphNode.originalCurveVisibleProperty;
     visibleProperties.push( originalCurveVisibleProperty );
     listItems.push( {
-      stringProperty: CalculusGrapherFluent.a11y.screen.screenSummary.currentDetails.accessibleListNode.primary.createProperty( {
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-      } ),
+      stringProperty: CalculusGrapherFluent.a11y.screen.screenSummary.currentDetails.accessibleListNode.primaryStringProperty,
       visibleProperty: originalCurveVisibleProperty
     } );
 
@@ -56,9 +53,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const predictCurveVisibleProperty = graphsNode.originalGraphNode.predictCurveVisibleProperty;
     visibleProperties.push( predictCurveVisibleProperty );
     listItems.push( {
-      stringProperty: CalculusGrapherFluent.a11y.screen.screenSummary.currentDetails.accessibleListNode.predict.createProperty( {
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-      } ),
+      stringProperty: CalculusGrapherFluent.a11y.screen.screenSummary.currentDetails.accessibleListNode.predictStringProperty,
       visibleProperty: predictCurveVisibleProperty
     } );
 

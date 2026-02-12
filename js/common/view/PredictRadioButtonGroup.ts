@@ -40,9 +40,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
           accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } ),
-          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpText.createProperty( {
-            variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-          } )
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -58,9 +56,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         tandemName: 'predictCurveRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpText.createProperty( {
-            variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-          } )
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];

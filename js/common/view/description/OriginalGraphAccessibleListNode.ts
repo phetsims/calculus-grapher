@@ -12,7 +12,6 @@ import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
-import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import TransformedCurve from '../../model/TransformedCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
@@ -45,13 +44,12 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty,
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hidden.getDependentProperties(),
+      CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
-      CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       originalCurve.numberOfDiscontinuitiesProperty,
       originalCurve.numberOfCuspsProperty,
       originalCurveVisibleProperty
@@ -60,26 +58,21 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const stringProperty = DerivedStringProperty.deriveAny( dependencies,
       () => {
         let string: string;
-        const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
 
         if ( originalCurveVisibleProperty.value ) {
           const numberOfDiscontinuities = originalCurve.numberOfDiscontinuitiesProperty.value;
           const numberOfCusps = originalCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiable.format( {
-              variable: variable
-            } );
+            string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty.value;
           }
           else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
             string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.continuousAndNotDifferentiable.format( {
-              variable: variable,
               numberOfCusps: numberOfCusps
             } );
           }
           else {
             string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiable.format( {
-              variable: variable,
               numberOfDiscontinuities: numberOfDiscontinuities,
               numberOfCusps: numberOfCusps
             } );
@@ -87,9 +80,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hidden.format( {
-            variable: variable
-          } );
+          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.primaryCurve.hiddenStringProperty.value;
         }
         return string;
       } );
@@ -109,13 +100,12 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty,
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hidden.getDependentProperties(),
+      CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
-      CalculusGrapherSymbols.accessibleVariableSymbolProperty,
       predictCurve.numberOfDiscontinuitiesProperty,
       predictCurve.numberOfCuspsProperty,
       predictCurveVisibleProperty
@@ -125,7 +115,6 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
       () => {
 
         let string: string;
-        const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
 
         if ( predictCurveVisibleProperty.value ) {
 
@@ -133,19 +122,15 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
           const numberOfCusps = predictCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiable.format( {
-              variable: variable
-            } );
+            string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty.value;
           }
           else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
             string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.continuousAndNotDifferentiable.format( {
-              variable: variable,
               numberOfCusps: numberOfCusps
             } );
           }
           else {
             string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.discontinuousAndNotDifferentiable.format( {
-              variable: variable,
               numberOfDiscontinuities: numberOfDiscontinuities,
               numberOfCusps: numberOfCusps
             } );
@@ -153,9 +138,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hidden.format( {
-            variable: variable
-          } );
+          string = CalculusGrapherFluent.a11y.primaryGraphArea.accessibleListNode.predictCurve.hiddenStringProperty.value;
         }
         return string;
       } );
