@@ -98,7 +98,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       solidCurve.shift( xMin, yCenter );
     }
     else if ( mode === CurveManipulationMode.FREEFORM ) {
-      CurveManipulationIconNode.freeformIconCurve( solidCurve, yMin, yMax );
+      CurveManipulationIconNode.freeformIconCurve( solidCurve, yMax );
     }
     else if ( mode === CurveManipulationMode.TILT ) {
 
@@ -178,7 +178,7 @@ export default class CurveManipulationIconNode extends AlignBox {
    * @param yMin - the minimum y-value for the curve
    * @param yMax - the maximum y-value for the curve
    */
-  public static freeformIconCurve( curve: TransformedCurve, yMin: number, yMax: number ): void {
+  public static freeformIconCurve( curve: TransformedCurve, yMax: number ): void {
 
     const xLength = curve.xRange.getLength();
     const xMin = curve.xRange.getMin();

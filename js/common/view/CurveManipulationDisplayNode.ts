@@ -97,7 +97,7 @@ export default class CurveManipulationDisplayNode extends Node {
           curve.sinusoid( width, xCenter, -yMax );
         }
         else if ( mode === CurveManipulationMode.FREEFORM ) {
-          CurveManipulationIconNode.freeformIconCurve( curve, yMin, 2 * yMax );
+          CurveManipulationIconNode.freeformIconCurve( curve, 2 * yMax );
           curve.shift( 0, -yMax );
         }
         else if ( mode === CurveManipulationMode.TILT ) {
