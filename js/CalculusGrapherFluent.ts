@@ -536,7 +536,7 @@ const CalculusGrapherFluent = {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleHeadingStringProperty' ) ),
       accessibleListNode: {
         continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty' ) ),
-        discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable, numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"},{"name":"numberOfDiscontinuities"}] ),
+        discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfDiscontinuities"}] ),
         hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_derivativeGraphArea_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.derivativeGraphArea.accessibleListNode.hiddenStringProperty' ) )
       }
     },
@@ -544,7 +544,7 @@ const CalculusGrapherFluent = {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleHeadingStringProperty' ) ),
       accessibleListNode: {
         continuousAndDifferentiableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_continuousAndDifferentiable', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty' ) ),
-        discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfCusps: FluentVariable, numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfCusps"},{"name":"numberOfDiscontinuities"}] ),
+        discontinuousAndNotDifferentiable: new FluentPattern<{ numberOfDiscontinuities: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_discontinuousAndNotDifferentiable', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiableStringProperty' ), [{"name":"numberOfDiscontinuities"}] ),
         hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_secondDerivativeGraphArea_accessibleListNode_hidden', _.get( CalculusGrapherStrings, 'a11y.secondDerivativeGraphArea.accessibleListNode.hiddenStringProperty' ) )
       }
     },

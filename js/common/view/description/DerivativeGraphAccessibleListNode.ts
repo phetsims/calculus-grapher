@@ -55,14 +55,12 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
         let string: string;
         if ( derivativeCurveVisibleProperty.value ) {
           const numberOfDiscontinuities = derivativeCurve.numberOfDiscontinuitiesProperty.value;
-          const numberOfCusps = derivativeCurve.numberOfCuspsProperty.value;
-          if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
+          if ( numberOfDiscontinuities === 0 ) {
             string = CalculusGrapherFluent.a11y.derivativeGraphArea.accessibleListNode.continuousAndDifferentiableStringProperty.value;
           }
           else {
             string = CalculusGrapherFluent.a11y.derivativeGraphArea.accessibleListNode.discontinuousAndNotDifferentiable.format( {
-              numberOfDiscontinuities: numberOfDiscontinuities,
-              numberOfCusps: numberOfCusps
+              numberOfDiscontinuities: numberOfDiscontinuities
             } );
           }
         }

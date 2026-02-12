@@ -264,14 +264,14 @@ a11y:
     accessibleHeading: Derivative Graph Area
     accessibleListNode:
       continuousAndDifferentiable:       Derivative curve is continuous and differentiable at all points.
-      discontinuousAndNotDifferentiable: Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
+      discontinuousAndNotDifferentiable: Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities.
       hidden:                            Derivative curve hidden.
 
   secondDerivativeGraphArea:
     accessibleHeading: Second Derivative Graph Area
     accessibleListNode:
       continuousAndDifferentiable:       Second derivative curve is continuous and differentiable at all points.
-      discontinuousAndNotDifferentiable: Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
+      discontinuousAndNotDifferentiable: Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities.
       hidden:                            Second derivative curve hidden.
 
   #=======================================================================================================
