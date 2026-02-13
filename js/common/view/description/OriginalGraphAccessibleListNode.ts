@@ -21,11 +21,12 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
                       predictCurve: TransformedCurve,
                       originalCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      predictEnabledProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
       OriginalGraphAccessibleListNode.getPrimaryCurveListItem( originalCurve, originalCurveVisibleProperty ),
-      OriginalGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty ),
+      OriginalGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
       GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAccessibleListNode.getValuesListItem()
     ];
@@ -94,7 +95,8 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
    * Gets the bullet list item that describes the predict curve.
    */
   private static getPredictCurveListItem( predictCurve: TransformedCurve,
-                                          predictCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+                                          predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                                          predictEnabledProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
@@ -116,7 +118,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
 
         let string: string;
 
-        if ( predictCurveVisibleProperty.value ) {
+        if ( predictCurveVisibleProperty.value && predictEnabledProperty.value ) {
 
           const numberOfDiscontinuities = predictCurve.numberOfDiscontinuitiesProperty.value;
           const numberOfCusps = predictCurve.numberOfCuspsProperty.value;
@@ -144,7 +146,8 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
       } );
 
     return {
-      stringProperty: primaryCurveStringProperty
+      stringProperty: primaryCurveStringProperty,
+      visibleProperty: predictEnabledProperty
     };
   }
 }
