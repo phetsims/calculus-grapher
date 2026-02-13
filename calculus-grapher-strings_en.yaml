@@ -118,19 +118,6 @@ a11y:
                          relationships between graphs in viewable graph set.
 
   #=======================================================================================================
-  # Accessible Headings
-  #=======================================================================================================
-
-  controlPanel:
-    accessibleHeading: Curve Manipulation Settings and Controls
-
-  checkboxGroup:
-    accessibleHeading: Exploration Tool Controls
-
-  explorationTools:
-    accessibleHeading: Exploration Tools
-
-  #=======================================================================================================
   # Accordion Boxes
   #=======================================================================================================
 
@@ -215,6 +202,10 @@ a11y:
   # Checkboxes
   #=======================================================================================================
 
+  # Checkboxes below the control panel.
+  checkboxGroup:
+    accessibleHeading: Exploration Tool Controls
+
   tangentCheckbox:
     accessibleHelpText:                 Add or remove Tangent Tool.
     accessibleContextResponseChecked:   Tangent Tool added.
@@ -290,6 +281,13 @@ a11y:
         continuousAndDifferentiable:       Second derivative curve is continuous and differentiable at all points.
         discontinuousAndNotDifferentiable: Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities.
         hidden:                            Second derivative curve hidden.
+
+  #=======================================================================================================
+  # Panels
+  #=======================================================================================================
+
+  controlPanel:
+    accessibleHeading: Curve Manipulation Settings and Controls
 
   #=======================================================================================================
   # Radio Button Groups
@@ -399,6 +397,10 @@ a11y:
   #=======================================================================================================
   # Tools
   #=======================================================================================================
+
+  # Heading for all tools.
+  explorationTools:
+    accessibleHeading: Exploration Tools
 
   curveManipulator:
 

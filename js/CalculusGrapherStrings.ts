@@ -107,15 +107,6 @@ type StringsType = {
         }
       }
     };
-    'controlPanel': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-    };
-    'checkboxGroup': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-    };
-    'explorationTools': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-    };
     'slopeOfTangentAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
       'accessibleParagraph': {
@@ -197,6 +188,9 @@ type StringsType = {
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
       }
     };
+    'checkboxGroup': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+    };
     'tangentCheckbox': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
@@ -274,6 +268,9 @@ type StringsType = {
           'hiddenStringProperty': LocalizedStringProperty;
         }
       }
+    };
+    'controlPanel': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
     };
     'predictRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -380,6 +377,9 @@ type StringsType = {
     };
     'predictToggleSwitch': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'explorationTools': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
     };
     'curveManipulator': {
       'defaults': {

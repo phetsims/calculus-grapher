@@ -188,21 +188,6 @@
         }
       }
     },
-    "controlPanel": {
-      "accessibleHeading": {
-        "value": "Curve Manipulation Settings and Controls"
-      }
-    },
-    "checkboxGroup": {
-      "accessibleHeading": {
-        "value": "Exploration Tool Controls"
-      }
-    },
-    "explorationTools": {
-      "accessibleHeading": {
-        "value": "Exploration Tools"
-      }
-    },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
         "value": "Explore slope of line tangent to f at {$variable} coordinate of Tangent tool."
@@ -370,6 +355,11 @@
         }
       }
     },
+    "checkboxGroup": {
+      "accessibleHeading": {
+        "value": "Exploration Tool Controls"
+      }
+    },
     "tangentCheckbox": {
       "accessibleHelpText": {
         "value": "Add or remove Tangent Tool."
@@ -530,6 +520,11 @@
             "value": "Second derivative curve hidden."
           }
         }
+      }
+    },
+    "controlPanel": {
+      "accessibleHeading": {
+        "value": "Curve Manipulation Settings and Controls"
       }
     },
     "predictRadioButtonGroup": {
@@ -736,6 +731,11 @@
     "predictToggleSwitch": {
       "accessibleHelpText": {
         "value": "Adds a mode that allows you to predict f of {$variable}."
+      }
+    },
+    "explorationTools": {
+      "accessibleHeading": {
+        "value": "Exploration Tools"
       }
     },
     "curveManipulator": {
