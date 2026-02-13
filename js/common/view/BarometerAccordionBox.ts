@@ -22,6 +22,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
+import { PDOMValueType } from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
@@ -47,8 +48,8 @@ type SelfOptions = {
   // bamboo ChartTransform
   chartTransformOptions?: ChartTransformOptions;
 
-  // Accessible description of the barometer.
-  barNodeAccessibleParagraphStringProperty: TReadOnlyProperty<string>;
+  // Accessible description accordion box's content.
+  contentAccessibleParagraph: PDOMValueType;
 };
 
 export type BarometerAccordionBoxOptions = SelfOptions & StrictOmit<AccordionBoxOptions, 'titleNode'> &
@@ -206,7 +207,7 @@ export default class BarometerAccordionBox extends AccordionBox {
       }, arrowNodeOptions ) );
 
     const barometerNode = new Node( {
-      accessibleParagraph: options.barNodeAccessibleParagraphStringProperty,
+      accessibleParagraph: options.contentAccessibleParagraph,
       children: [
         axisLine, quantitativeLayer, qualitativeLayer,
         barLine, positiveScaleExceededIndicator, negativeScaleExceededIndicator

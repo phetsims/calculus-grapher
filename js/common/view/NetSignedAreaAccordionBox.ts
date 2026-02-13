@@ -56,7 +56,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      barNodeAccessibleParagraphStringProperty: DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
+      contentAccessibleParagraph: DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
         () => {
           let string: string;
           const integralValue = toFixedNumber( areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
