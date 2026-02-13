@@ -118,7 +118,11 @@ type StringsType = {
     };
     'netSignedAreaAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;
-      'accessibleParagraphStringProperty': LocalizedStringProperty;
+      'accessibleParagraph': {
+        'zeroStringProperty': LocalizedStringProperty;
+        'positiveStringProperty': LocalizedStringProperty;
+        'negativeStringProperty': LocalizedStringProperty;
+      }
     };
     'curveActionsButtonGroup': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;

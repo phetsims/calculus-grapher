@@ -209,10 +209,18 @@
     },
     "netSignedAreaAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "Explore net signed area under f curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool."
+        "value": "Explore net signed area under f curve between {$variable} equals 0 and current {$variable} coordinate of Area Under Curve tool."
       },
       "accessibleParagraph": {
-        "value": "Net signed area under f curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}."
+        "zero": {
+          "value": "Net signed area under f curve is zero between {$variable} equals 0 and {$x}."
+        },
+        "positive": {
+          "value": "Net signed area under f curve is positive {$absoluteValue} between {$variable} equals 0 and {$x}."
+        },
+        "negative": {
+          "value": "Net signed area under f curve is negative {$absoluteValue} between {$variable} equals 0 and {$x}."
+        }
       }
     },
     "curveActionsButtonGroup": {

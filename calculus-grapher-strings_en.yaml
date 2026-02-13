@@ -135,8 +135,11 @@ a11y:
     accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f is {$derivativeValue}.
 
   netSignedAreaAccordionBox:
-    accessibleHelpTextCollapsed: Explore net signed area under f curve between {$variable} equals 0 and {$variable} coordinate of Area Under Curve tool.
-    accessibleParagraph:         Net signed area under f curve equals {$integralValue} between {$variable} equals 0 and {$variable} equals {$x}.
+    accessibleHelpTextCollapsed: Explore net signed area under f curve between {$variable} equals 0 and current {$variable} coordinate of Area Under Curve tool.
+    accessibleParagraph:
+      zero:     Net signed area under f curve is zero between {$variable} equals 0 and {$x}.
+      positive: Net signed area under f curve is positive {$absoluteValue} between {$variable} equals 0 and {$x}.
+      negative: Net signed area under f curve is negative {$absoluteValue} between {$variable} equals 0 and {$x}.
 
   #=======================================================================================================
   # Buttons

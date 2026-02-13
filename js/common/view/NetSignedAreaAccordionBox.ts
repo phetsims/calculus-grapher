@@ -9,7 +9,9 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -35,6 +37,15 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       [ areaUnderCurveScrubber.integralCurvePointProperty, areaUnderCurveScrubber.positiveFillProperty, areaUnderCurveScrubber.negativeFillProperty ],
       ( curvePoint, positiveFill, negativeFill ) => ( curvePoint.y > 0 ) ? positiveFill : negativeFill );
 
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
+    const accessibleParagraphDependencies = _.uniq( [
+      ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.getDependentProperties(),
+      areaUnderCurveScrubber.integralCurvePointProperty,
+      CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    ] );
+
     const options = optionize<NetSignedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
@@ -45,12 +56,35 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.createProperty( {
-        integralValue: new DerivedProperty( [ areaUnderCurveScrubber.integralCurvePointProperty ],
-          integralCurvePoint => toFixedNumber( integralCurvePoint.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS ) ),
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-        x: new DerivedProperty( [ areaUnderCurveScrubber.xProperty ], x => toFixedNumber( x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ) )
-      } )
+      barNodeAccessibleParagraphStringProperty: DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
+        () => {
+          let string: string;
+          const integralValue = toFixedNumber( areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
+          if ( integralValue === 0 ) {
+            // zero
+            string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.format( {
+              variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+              x: toFixed( areaUnderCurveScrubber.integralCurvePointProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+            } );
+          }
+          else if ( integralValue > 0 ) {
+            // positive
+            string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.format( {
+              absoluteValue: Math.abs( integralValue ),
+              variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+              x: toFixed( areaUnderCurveScrubber.integralCurvePointProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+            } );
+          }
+          else {
+            // negative
+            string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.format( {
+              absoluteValue: Math.abs( integralValue ),
+              variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
+              x: toFixed( areaUnderCurveScrubber.integralCurvePointProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+            } );
+          }
+          return string;
+        } )
     }, providedOptions );
 
     super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherFluent.barometer.netSignedAreaStringProperty,
