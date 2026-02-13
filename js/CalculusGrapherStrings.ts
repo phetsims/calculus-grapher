@@ -267,7 +267,7 @@ type StringsType = {
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
     };
-    'shapesRadioButtonGroup': {
+    'curveManipulationTypeRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'hillRadioButton': {

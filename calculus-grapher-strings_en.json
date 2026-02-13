@@ -98,10 +98,10 @@
           "currentDetails": {
             "leadingParagraph": {
               "widthPattern": {
-                "value": "Right now, {$shape} shape with width {$width} chosen. {$curveSentence}"
+                "value": "Right now, Curve Manipulation Type is {$curveManipulationType} with width {$width}. {$curveSentence}"
               },
               "noWidthPattern": {
-                "value": "Right now, {$shape} shape chosen. {$curveSentence}"
+                "value": "Right now, Curve Manipulation Type is {$curveManipulationType}. {$curveSentence}"
               },
               "curveSentence": {
                 "curvesShown": {
@@ -141,10 +141,10 @@
         },
         "screenSummary": {
           "playArea": {
-            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a \nnon-interactive curve representing the derivative of f. You can choose different shapes to\nadd to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
+            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a \nnon-interactive curve representing the derivative of f. You can choose a Curve Manipulation Type\nto modify the curve in different ways in the Primary Graph Area at any point. There are \nExploration Tools allowing flexible investigation of all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness\nof f curve at different points."
+            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto investigate steepness of f curve at different points."
           }
         }
       },
@@ -154,10 +154,10 @@
         },
         "screenSummary": {
           "playArea": {
-            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a\nnon interactive curve representing the integral of f. You can choose different shapes to add to\ncurve in Primary Graph Area at any point. There are Exploration Tools allowing flexible\ninvestigation of all curves with {$variable} coordinates aligned."
+            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a\nnon interactive curve representing the integral of f. You can choose a Curve Manipulation Type to\nmodify the curve in different ways in the Primary Graph Area at any point. There are Exploration\nTools allowing flexible investigation of all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate\nnet signed area under f curve bounded by horizontal axis and f of {$variable} starting from left."
+            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto investigate net signed area under f curve bounded by horizontal axis and f of {$variable}\nstarting from left."
           }
         }
       },
@@ -167,10 +167,10 @@
         },
         "screenSummary": {
           "playArea": {
-            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nnon interactive curves in other Graph Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of two Graph Areas\nare viewable: Integral and Primary or Primary and Derivative. There are Exploration Tools\nallowing flexible investigation of all viewable curves with {$variable} coordinates aligned."
+            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nnon interactive curves in other Graph Areas. You can choose a Curve Manipulation Type to\nmodify the curve in different ways in the Primary Graph Area at any point. You can change\nwhich set of two Graph Areas are viewable: Integral and Primary or Primary and Derivative.\nThere are Exploration Tools allowing flexible investigation of all viewable curves with\n{$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore\nrelationships between graphs in viewable graph set."
+            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto explore relationships between graphs in viewable graph set."
           }
         }
       },
@@ -180,10 +180,10 @@
         },
         "screenSummary": {
           "playArea": {
-            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nnon interactive curves in other Graphs Areas. You can choose different shapes and widths to\nadd to curve in Primary Graph Area at any point. You can change which set of three Graph Areas\nare viewable: Integral, Primary, and Derivative, or Primary, Derivative, and \nSecond Derivative. There are Exploration Tools allowing flexible investigation of all curves\nwith {$variable} coordinates aligned."
+            "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nnon interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type to\nmodify the curve in different ways in the Primary Graph Area at any point. You can change \nwhich set of three Graph Areas are viewable: Integral, Primary, and Derivative, or Primary,\nDerivative, and Second Derivative. There are Exploration Tools allowing flexible investigation\nof all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore\nrelationships between graphs in viewable graph set."
+            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto explore relationships between graphs in viewable graph set."
           }
         }
       }
@@ -512,12 +512,12 @@
         }
       }
     },
-    "shapesRadioButtonGroup": {
+    "curveManipulationTypeRadioButtonGroup": {
       "accessibleName": {
-        "value": "Shapes"
+        "value": "Curve Manipulation Type"
       },
       "accessibleHelpText": {
-        "value": "Choose shape to add to curve in Primary Graph Area."
+        "value": "Choose how to manipulate curve in Primary Graph Area."
       },
       "hillRadioButton": {
         "accessibleName": {
@@ -748,7 +748,7 @@
             "value": "at {$x} {$y}, grabbed"
           },
           "grabbed": {
-            "value": "grabbed at {$x} {$y}, shape added"
+            "value": "grabbed at {$x} {$y}, curve modified"
           },
           "released": {
             "value": "released at {$x} {$y}, off curve"
@@ -757,7 +757,7 @@
             "value": "at {$x} {$y}"
           },
           "movedGrabbed": {
-            "value": "at {$x} {$y}, shape added"
+            "value": "at {$x} {$y}, curve modified"
           }
         }
       },

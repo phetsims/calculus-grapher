@@ -109,14 +109,14 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
 
         if ( mode.hasAdjustableWidth ) {
           return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
-            shape: mode.accessibleNameProperty.value,
+            curveManipulationType: mode.accessibleNameProperty.value,
             width: toFixedNumber( model.curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
             curveSentence: curvesSentenceStringProperty.value
           } );
         }
         else {
           return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.format( {
-            shape: mode.accessibleNameProperty.value,
+            curveManipulationType: mode.accessibleNameProperty.value,
             curveSentence: curvesSentenceStringProperty.value
           } );
         }

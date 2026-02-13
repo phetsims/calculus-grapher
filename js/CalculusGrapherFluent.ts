@@ -160,24 +160,24 @@ addToMapIfDefined( 'a11y_predictRadioButtonGroup_originalCurveRadioButton_access
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_originalCurveRadioButton_accessibleHelpText', 'a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleName', 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_accessibleName', 'a11y.shapesRadioButtonGroup.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_accessibleHelpText', 'a11y.shapesRadioButtonGroup.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_hillRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.hillRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_hillRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_triangleRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_triangleRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_pedestalRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_pedestalRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_parabolaRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_parabolaRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_sinusoidRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_sinusoidRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_freeformRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_freeformRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_tiltRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_tiltRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_shiftRadioButton_accessibleName', 'a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_shapesRadioButtonGroup_shiftRadioButton_accessibleHelpText', 'a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_hillRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_hillRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_triangleRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_triangleRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_pedestalRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_pedestalRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_parabolaRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_parabolaRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_sinusoidRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_sinusoidRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_freeformRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_freeformRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_tiltRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_tiltRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_shiftRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_shiftRadioButton_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_accessibleName', 'a11y.graphSetRadioButtonGroup.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_accessibleHelpText', 'a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_graphSetRadioButtonGroup_integralPrimaryRadioButton_accessibleName', 'a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleNameStringProperty' );
@@ -348,8 +348,8 @@ const CalculusGrapherFluent = {
         screenSummary: {
           currentDetails: {
             leadingParagraph: {
-              widthPattern: new FluentPattern<{ curveSentence: FluentVariable, shape: FluentVariable, width: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_screen_defaults_screenSummary_currentDetails_leadingParagraph_widthPattern', _.get( CalculusGrapherStrings, 'a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPatternStringProperty' ), [{"name":"curveSentence"},{"name":"shape"},{"name":"width"}] ),
-              noWidthPattern: new FluentPattern<{ curveSentence: FluentVariable, shape: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_screen_defaults_screenSummary_currentDetails_leadingParagraph_noWidthPattern', _.get( CalculusGrapherStrings, 'a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPatternStringProperty' ), [{"name":"curveSentence"},{"name":"shape"}] ),
+              widthPattern: new FluentPattern<{ curveManipulationType: FluentVariable, curveSentence: FluentVariable, width: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_screen_defaults_screenSummary_currentDetails_leadingParagraph_widthPattern', _.get( CalculusGrapherStrings, 'a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPatternStringProperty' ), [{"name":"curveManipulationType"},{"name":"curveSentence"},{"name":"width"}] ),
+              noWidthPattern: new FluentPattern<{ curveManipulationType: FluentVariable, curveSentence: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_screen_defaults_screenSummary_currentDetails_leadingParagraph_noWidthPattern', _.get( CalculusGrapherStrings, 'a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPatternStringProperty' ), [{"name":"curveManipulationType"},{"name":"curveSentence"}] ),
               curveSentence: {
                 curvesShownStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screen_defaults_screenSummary_currentDetails_leadingParagraph_curveSentence_curvesShown', _.get( CalculusGrapherStrings, 'a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty' ) ),
                 allCurvesHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screen_defaults_screenSummary_currentDetails_leadingParagraph_curveSentence_allCurvesHidden', _.get( CalculusGrapherStrings, 'a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.allCurvesHiddenStringProperty' ) )
@@ -595,41 +595,41 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_25: new FluentComment( {"comment":"Select the shape to add to the curve in the primary graph area.","associatedKey":"shapesRadioButtonGroup"} ),
-    shapesRadioButtonGroup: {
-      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.accessibleNameStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
+    _comment_25: new FluentComment( {"comment":"Select the type of manipulation to be applied to the curve in the primary graph area.","associatedKey":"curveManipulationTypeRadioButtonGroup"} ),
+    curveManipulationTypeRadioButtonGroup: {
+      accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.accessibleNameStringProperty' ) ),
+      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       hillRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_hillRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.hillRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_hillRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_hillRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_hillRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty' ) )
       },
       triangleRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_triangleRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_triangleRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_triangleRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_triangleRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty' ) )
       },
       pedestalRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_pedestalRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_pedestalRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_pedestalRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_pedestalRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty' ) )
       },
       parabolaRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_parabolaRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_parabolaRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_parabolaRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_parabolaRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty' ) )
       },
       sinusoidRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_sinusoidRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_sinusoidRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_sinusoidRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_sinusoidRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty' ) )
       },
       freeformRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_freeformRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_freeformRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_freeformRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_freeformRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty' ) )
       },
       tiltRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_tiltRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_tiltRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_tiltRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_tiltRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty' ) )
       },
       shiftRadioButton: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_shiftRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_shapesRadioButtonGroup_shiftRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_shiftRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty' ) ),
+        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_shiftRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
     _comment_26: new FluentComment( {"comment":"Select the set of graphs that are visible.","associatedKey":"graphSetRadioButtonGroup"} ),

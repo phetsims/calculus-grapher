@@ -45,8 +45,8 @@ a11y:
       screenSummary:
         currentDetails:
           leadingParagraph:
-            widthPattern:   'Right now, {$shape} shape with width {$width} chosen. {$curveSentence}'
-            noWidthPattern: 'Right now, {$shape} shape chosen. {$curveSentence}'
+            widthPattern:   'Right now, Curve Manipulation Type is {$curveManipulationType} with width {$width}. {$curveSentence}'
+            noWidthPattern: 'Right now, Curve Manipulation Type is {$curveManipulationType}. {$curveSentence}'
             curveSentence:
               curvesShown:     'Curves shown are:'
               allCurvesHidden: 'All curves hidden.'
@@ -64,12 +64,12 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and a 
-                         non-interactive curve representing the derivative of f. You can choose different shapes to
-                         add to curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
-                         investigation of all curves with {$variable} coordinates aligned.
+                         non-interactive curve representing the derivative of f. You can choose a Curve Manipulation Type
+                         to modify the curve in different ways in the Primary Graph Area at any point. There are 
+                         Exploration Tools allowing flexible investigation of all curves with {$variable} coordinates aligned.
         interactionHint: |-
-                         Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate steepness
-                         of f curve at different points.
+                         Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools
+                         to investigate steepness of f curve at different points.
 
     # Integral screen
     integral:
@@ -77,12 +77,13 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and a
-                         non interactive curve representing the integral of f. You can choose different shapes to add to
-                         curve in Primary Graph Area at any point. There are Exploration Tools allowing flexible
-                         investigation of all curves with {$variable} coordinates aligned.
+                         non interactive curve representing the integral of f. You can choose a Curve Manipulation Type to
+                         modify the curve in different ways in the Primary Graph Area at any point. There are Exploration
+                         Tools allowing flexible investigation of all curves with {$variable} coordinates aligned.
         interactionHint: |-
-                         Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to investigate
-                         net signed area under f curve bounded by horizontal axis and f of {$variable} starting from left.
+                         Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools
+                         to investigate net signed area under f curve bounded by horizontal axis and f of {$variable}
+                         starting from left.
 
     # Advanced screen
     advanced:
@@ -92,13 +93,14 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and
-                         non interactive curves in other Graph Areas. You can choose different shapes and widths to
-                         add to curve in Primary Graph Area at any point. You can change which set of two Graph Areas
-                         are viewable: Integral and Primary or Primary and Derivative. There are Exploration Tools
-                         allowing flexible investigation of all viewable curves with {$variable} coordinates aligned.
+                         non interactive curves in other Graph Areas. You can choose a Curve Manipulation Type to
+                         modify the curve in different ways in the Primary Graph Area at any point. You can change
+                         which set of two Graph Areas are viewable: Integral and Primary or Primary and Derivative.
+                         There are Exploration Tools allowing flexible investigation of all viewable curves with
+                         {$variable} coordinates aligned.
         interactionHint: |-
-                         Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
-                         relationships between graphs in viewable graph set.
+                         Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools
+                         to explore relationships between graphs in viewable graph set.
 
     # Lab screen
     lab:
@@ -108,14 +110,14 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and
-                         non interactive curves in other Graphs Areas. You can choose different shapes and widths to
-                         add to curve in Primary Graph Area at any point. You can change which set of three Graph Areas
-                         are viewable: Integral, Primary, and Derivative, or Primary, Derivative, and 
-                         Second Derivative. There are Exploration Tools allowing flexible investigation of all curves
-                         with {$variable} coordinates aligned.
+                         non interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type to
+                         modify the curve in different ways in the Primary Graph Area at any point. You can change 
+                         which set of three Graph Areas are viewable: Integral, Primary, and Derivative, or Primary,
+                         Derivative, and Second Derivative. There are Exploration Tools allowing flexible investigation
+                         of all curves with {$variable} coordinates aligned.
         interactionHint: |-
-                         Choose Shape to add to curve in Primary Graph Area. Use Exploration Tools to explore
-                         relationships between graphs in viewable graph set.
+                         Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools
+                         to explore relationships between graphs in viewable graph set.
 
   #=======================================================================================================
   # Accordion Boxes
@@ -288,10 +290,10 @@ a11y:
       accessibleName:     Predict
       accessibleHelpText: Manipulate predict curve to predict graph of f based on other graphs.
 
-  # Select the shape to add to the curve in the primary graph area.
-  shapesRadioButtonGroup:
-    accessibleName:     Shapes
-    accessibleHelpText: Choose shape to add to curve in Primary Graph Area.
+  # Select the type of manipulation to be applied to the curve in the primary graph area.
+  curveManipulationTypeRadioButtonGroup:
+    accessibleName:     Curve Manipulation Type
+    accessibleHelpText: Choose how to manipulate curve in Primary Graph Area.
     hillRadioButton:
       accessibleName:     Hill
       accessibleHelpText: Add smooth hill to curve.
@@ -413,10 +415,10 @@ a11y:
       accessibleObjectResponse:
         focusedReleased: 'at {$x} {$y}, off curve'
         focusedGrabbed:  'at {$x} {$y}, grabbed'
-        grabbed:         'grabbed at {$x} {$y}, shape added'
+        grabbed:         'grabbed at {$x} {$y}, curve modified'
         released:        'released at {$x} {$y}, off curve'
         movedReleased:   'at {$x} {$y}'
-        movedGrabbed:    'at {$x} {$y}, shape added'
+        movedGrabbed:    'at {$x} {$y}, curve modified'
 
     # Curve manipulator for the primary curve
     primary:
