@@ -14,7 +14,7 @@ The reader is encouraged to read the model document before proceeding:
 
 ## Terminology
 
-* Graph - It consists of a coordinate plane with horizontal and vertical axes, with tick marks with optional grid lines.
+* Graph (Graph Area for core description) - It consists of a coordinate plane with horizontal and vertical axes, with tick marks with optional grid lines.
   and tick labels. A graph includes one or multiple curves which shows how a function behaves as its input (x) changes.
 * Original Graph - It refers to the graph that contains the f(x) function. It is the only graph whose curve(s) can be
   user manipulated. The original graph includes the original curve and, optionally, the predict curve.
@@ -39,10 +39,8 @@ The reader is encouraged to read the model document before proceeding:
 ⚠️ _Terminology Alert!_ Core Description, introduced in version 1.1, uses different terms for some things.
 The most significant (confusing) differences are:
 
-* Graph is described as Graph Area.
 * Original Graph is described as Primary Graph Area.
 * Original Curve is described as Primary Curve or f.
-* Triangle curve manipulation mode is Tent shape.
 
 ## General Considerations
 
