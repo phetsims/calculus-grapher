@@ -14,7 +14,7 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import SecondDerivativeCurve from '../../model/SecondDerivativeCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleListNode;
+const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList;
 
 export default class SecondDerivativeGraphAccessibleListNode extends GraphAccessibleListNode {
 

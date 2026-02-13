@@ -13,7 +13,7 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.defaults.accessibleListNode;
+const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList;
 
 export default class GraphAccessibleListNode extends AccessibleListNode {
 

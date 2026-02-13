@@ -15,7 +15,7 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import TransformedCurve from '../../model/TransformedCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode;
+const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList;
 
 export default class OriginalGraphAccessibleListNode extends GraphAccessibleListNode {
 

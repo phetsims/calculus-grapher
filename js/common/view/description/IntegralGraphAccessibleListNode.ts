@@ -14,7 +14,7 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.integral.accessibleListNode;
+const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.integral.accessibleList;
 
 export default class IntegralGraphAccessibleListNode extends GraphAccessibleListNode {
 

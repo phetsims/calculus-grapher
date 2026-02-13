@@ -17,7 +17,7 @@ import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherModel from '../../model/CalculusGrapherModel.js';
 import GraphsNode from '../GraphsNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleListNode;
+const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList;
 const LEADING_PARAGRAPH_STRINGS = CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph;
 
 export default class CurrentDetailsAccessibleListNode extends AccessibleListNode {

@@ -112,7 +112,7 @@
                 }
               }
             },
-            "accessibleListNode": {
+            "accessibleList": {
               "primary": {
                 "value": "f"
               },
@@ -419,7 +419,7 @@
     },
     "graphArea": {
       "defaults": {
-        "accessibleListNode": {
+        "accessibleList": {
           "leadingParagraph": {
             "value": "Right now,"
           },
@@ -435,7 +435,7 @@
         "accessibleHeading": {
           "value": "Primary Graph Area"
         },
-        "accessibleListNode": {
+        "accessibleList": {
           "primaryCurve": {
             "continuousAndDifferentiable": {
               "value": "f is continuous and differentiable at all points."
@@ -470,7 +470,7 @@
         "accessibleHeading": {
           "value": "Integral Graph Area"
         },
-        "accessibleListNode": {
+        "accessibleList": {
           "continuous": {
             "value": "Integral curve is continuous and represents definite integral from zero to {$variable} for f of {$variable}."
           },
@@ -483,7 +483,7 @@
         "accessibleHeading": {
           "value": "Derivative Graph Area"
         },
-        "accessibleListNode": {
+        "accessibleList": {
           "continuousAndDifferentiable": {
             "value": "Derivative curve is continuous and differentiable at all points."
           },
@@ -499,7 +499,7 @@
         "accessibleHeading": {
           "value": "Second Derivative Graph Area"
         },
-        "accessibleListNode": {
+        "accessibleList": {
           "continuousAndDifferentiable": {
             "value": "Second derivative curve is continuous and differentiable at all points."
           },

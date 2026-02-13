@@ -67,7 +67,7 @@ type StringsType = {
                 'allCurvesHiddenStringProperty': LocalizedStringProperty;
               }
             };
-            'accessibleListNode': {
+            'accessibleList': {
               'primaryStringProperty': LocalizedStringProperty;
               'predictStringProperty': LocalizedStringProperty;
               'integralStringProperty': LocalizedStringProperty;
@@ -216,7 +216,7 @@ type StringsType = {
     };
     'graphArea': {
       'defaults': {
-        'accessibleListNode': {
+        'accessibleList': {
           'leadingParagraphStringProperty': LocalizedStringProperty;
           'coordinateGridShownStringProperty': LocalizedStringProperty;
           'valuesLabeledOnAxesStringProperty': LocalizedStringProperty;
@@ -224,7 +224,7 @@ type StringsType = {
       };
       'primary': {
         'accessibleHeadingStringProperty': LocalizedStringProperty;
-        'accessibleListNode': {
+        'accessibleList': {
           'primaryCurve': {
             'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
             'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
@@ -241,14 +241,14 @@ type StringsType = {
       };
       'integral': {
         'accessibleHeadingStringProperty': LocalizedStringProperty;
-        'accessibleListNode': {
+        'accessibleList': {
           'continuousStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
         }
       };
       'derivative': {
         'accessibleHeadingStringProperty': LocalizedStringProperty;
-        'accessibleListNode': {
+        'accessibleList': {
           'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
           'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
@@ -256,7 +256,7 @@ type StringsType = {
       };
       'secondDerivative': {
         'accessibleHeadingStringProperty': LocalizedStringProperty;
-        'accessibleListNode': {
+        'accessibleList': {
           'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
           'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
