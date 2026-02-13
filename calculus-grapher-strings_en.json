@@ -220,141 +220,6 @@
         }
       }
     },
-    "curveActionsButtonGroup": {
-      "accessibleHeading": {
-        "value": "Curve Actions"
-      },
-      "accessibleHelpText": {
-        "value": "Choose action to take on curve in Primary Graph Area."
-      }
-    },
-    "smoothButton": {
-      "accessibleName": {
-        "value": "Smooth"
-      },
-      "accessibleHelpText": {
-        "value": "Smooth sharp corners and discontinuities on curve in Primary Graph Area."
-      },
-      "accessibleContextResponse": {
-        "allCurves": {
-          "value": "f and derived curves smoothed."
-        },
-        "predictCurve": {
-          "value": "Prediction curve only smoothed."
-        }
-      }
-    },
-    "eraserButton": {
-      "accessibleName": {
-        "value": "Erase Curve Manipulations"
-      },
-      "accessibleHelpText": {
-        "value": "Reset curve to y equals zero, maintain curve manipulation settings."
-      },
-      "accessibleContextResponse": {
-        "primaryCurve": {
-          "value": "f and derived curves reset, settings unchanged."
-        },
-        "predictCurve": {
-          "value": "Predict curve reset, other curves and settings unchanged."
-        }
-      }
-    },
-    "undoButton": {
-      "accessibleName": {
-        "value": "Undo"
-      },
-      "accessibleHelpText": {
-        "value": "Undo most recent curve manipulation."
-      },
-      "accessibleContextResponse": {
-        "primaryCurve": {
-          "value": "Last manipulation removed from f and derived curves."
-        },
-        "predictCurve": {
-          "value": "Last manipulation removed from prediction curve only."
-        }
-      }
-    },
-    "curveVisibilityToggleButton": {
-      "accessibleNameOn": {
-        "integral": {
-          "value": "Hide Integral Curve"
-        },
-        "primary": {
-          "value": "Hide Primary Curve"
-        },
-        "derivative": {
-          "value": "Hide Derivative Curve"
-        },
-        "secondDerivative": {
-          "value": "Hide Second Derivative Curve"
-        }
-      },
-      "accessibleNameOff": {
-        "integral": {
-          "value": "Show Integral Curve"
-        },
-        "primary": {
-          "value": "Show Primary Curve"
-        },
-        "derivative": {
-          "value": "Show Derivative Curve"
-        },
-        "secondDerivative": {
-          "value": "Show Second Derivative Curve"
-        }
-      },
-      "accessibleHelpText": {
-        "value": "Show or hide curve to support predictions."
-      },
-      "accessibleContextResponseOff": {
-        "value": "Curve hidden."
-      },
-      "accessibleContextResponseOn": {
-        "value": "Curve shown."
-      }
-    },
-    "yZoomButtonGroup": {
-      "zoomInButton": {
-        "accessibleName": {
-          "integral": {
-            "value": "Zoom In Integral y Axis"
-          },
-          "derivative": {
-            "value": "Zoom In Derivative y Axis"
-          },
-          "secondDerivative": {
-            "value": "Zoom In Second Derivative y Axis"
-          }
-        },
-        "accessibleHelpText": {
-          "value": "Zoom in y axis only."
-        },
-        "accessibleContextResponse": {
-          "value": "zoomed in, y range {$min} to {$max}"
-        }
-      },
-      "zoomOutButton": {
-        "accessibleName": {
-          "integral": {
-            "value": "Zoom Out Integral y Axis"
-          },
-          "derivative": {
-            "value": "Zoom Out Derivative y Axis"
-          },
-          "secondDerivative": {
-            "value": "Zoom Out Second Derivative y Axis"
-          }
-        },
-        "accessibleHelpText": {
-          "value": "Zoom out y axis only."
-        },
-        "accessibleContextResponse": {
-          "value": "zoomed out, y range {$min} to {$max}"
-        }
-      }
-    },
     "checkboxGroup": {
       "accessibleHeading": {
         "value": "Exploration Tool Controls"
@@ -525,6 +390,102 @@
     "controlPanel": {
       "accessibleHeading": {
         "value": "Curve Manipulation Settings and Controls"
+      }
+    },
+    "curveActionsButtonGroup": {
+      "accessibleHeading": {
+        "value": "Curve Actions"
+      },
+      "accessibleHelpText": {
+        "value": "Choose action to take on curve in Primary Graph Area."
+      }
+    },
+    "smoothButton": {
+      "accessibleName": {
+        "value": "Smooth"
+      },
+      "accessibleHelpText": {
+        "value": "Smooth sharp corners and discontinuities on curve in Primary Graph Area."
+      },
+      "accessibleContextResponse": {
+        "allCurves": {
+          "value": "f and derived curves smoothed."
+        },
+        "predictCurve": {
+          "value": "Prediction curve only smoothed."
+        }
+      }
+    },
+    "eraserButton": {
+      "accessibleName": {
+        "value": "Erase Curve Manipulations"
+      },
+      "accessibleHelpText": {
+        "value": "Reset curve to y equals zero, maintain curve manipulation settings."
+      },
+      "accessibleContextResponse": {
+        "primaryCurve": {
+          "value": "f and derived curves reset, settings unchanged."
+        },
+        "predictCurve": {
+          "value": "Predict curve reset, other curves and settings unchanged."
+        }
+      }
+    },
+    "undoButton": {
+      "accessibleName": {
+        "value": "Undo"
+      },
+      "accessibleHelpText": {
+        "value": "Undo most recent curve manipulation."
+      },
+      "accessibleContextResponse": {
+        "primaryCurve": {
+          "value": "Last manipulation removed from f and derived curves."
+        },
+        "predictCurve": {
+          "value": "Last manipulation removed from prediction curve only."
+        }
+      }
+    },
+    "yZoomButtonGroup": {
+      "zoomInButton": {
+        "accessibleName": {
+          "integral": {
+            "value": "Zoom In Integral y Axis"
+          },
+          "derivative": {
+            "value": "Zoom In Derivative y Axis"
+          },
+          "secondDerivative": {
+            "value": "Zoom In Second Derivative y Axis"
+          }
+        },
+        "accessibleHelpText": {
+          "value": "Zoom in y axis only."
+        },
+        "accessibleContextResponse": {
+          "value": "zoomed in, y range {$min} to {$max}"
+        }
+      },
+      "zoomOutButton": {
+        "accessibleName": {
+          "integral": {
+            "value": "Zoom Out Integral y Axis"
+          },
+          "derivative": {
+            "value": "Zoom Out Derivative y Axis"
+          },
+          "secondDerivative": {
+            "value": "Zoom Out Second Derivative y Axis"
+          }
+        },
+        "accessibleHelpText": {
+          "value": "Zoom out y axis only."
+        },
+        "accessibleContextResponse": {
+          "value": "zoomed out, y range {$min} to {$max}"
+        }
       }
     },
     "predictRadioButtonGroup": {
@@ -731,6 +692,45 @@
     "predictToggleSwitch": {
       "accessibleHelpText": {
         "value": "Adds a mode that allows you to predict f of {$variable}."
+      }
+    },
+    "curveVisibilityToggleButton": {
+      "accessibleNameOn": {
+        "integral": {
+          "value": "Hide Integral Curve"
+        },
+        "primary": {
+          "value": "Hide Primary Curve"
+        },
+        "derivative": {
+          "value": "Hide Derivative Curve"
+        },
+        "secondDerivative": {
+          "value": "Hide Second Derivative Curve"
+        }
+      },
+      "accessibleNameOff": {
+        "integral": {
+          "value": "Show Integral Curve"
+        },
+        "primary": {
+          "value": "Show Primary Curve"
+        },
+        "derivative": {
+          "value": "Show Derivative Curve"
+        },
+        "secondDerivative": {
+          "value": "Show Second Derivative Curve"
+        }
+      },
+      "accessibleHelpText": {
+        "value": "Show or hide curve to support predictions."
+      },
+      "accessibleContextResponseOff": {
+        "value": "Curve hidden."
+      },
+      "accessibleContextResponseOn": {
+        "value": "Curve shown."
       }
     },
     "explorationTools": {

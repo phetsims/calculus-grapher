@@ -136,69 +136,6 @@ a11y:
       negative: Net signed area under f curve is negative {$absoluteArea} between {$variable} equals 0 and {$x}.
 
   #=======================================================================================================
-  # Buttons
-  #=======================================================================================================
-
-  # Push buttons at the bottom of the control panel.
-  curveActionsButtonGroup:
-    accessibleHeading:  Curve Actions
-    accessibleHelpText: Choose action to take on curve in Primary Graph Area.
-
-  smoothButton:
-    accessibleName:     Smooth
-    accessibleHelpText: Smooth sharp corners and discontinuities on curve in Primary Graph Area.
-    accessibleContextResponse:
-      allCurves:    f and derived curves smoothed.
-      predictCurve: Prediction curve only smoothed.
-
-  eraserButton:
-    accessibleName:     Erase Curve Manipulations
-    accessibleHelpText: Reset curve to y equals zero, maintain curve manipulation settings.
-    accessibleContextResponse:
-      primaryCurve: f and derived curves reset, settings unchanged.
-      predictCurve: Predict curve reset, other curves and settings unchanged.
-
-  undoButton:
-    accessibleName:     Undo
-    accessibleHelpText: Undo most recent curve manipulation.
-    accessibleContextResponse:
-      primaryCurve: Last manipulation removed from f and derived curves.
-      predictCurve: Last manipulation removed from prediction curve only.
-
-  # Controls visibility of curves on a graph, and the accessible name is specific to the graph.
-  curveVisibilityToggleButton:
-    accessibleNameOn:
-      integral:         Hide Integral Curve
-      primary:          Hide Primary Curve
-      derivative:       Hide Derivative Curve
-      secondDerivative: Hide Second Derivative Curve
-    accessibleNameOff:
-      integral:         Show Integral Curve
-      primary:          Show Primary Curve
-      derivative:       Show Derivative Curve
-      secondDerivative: Show Second Derivative Curve
-    accessibleHelpText:           Show or hide curve to support predictions.
-    accessibleContextResponseOff: Curve hidden.
-    accessibleContextResponseOn:  Curve shown.
-
-  # Zooms the y-axis of a graph, and the accessibleName is specific to the graph.
-  yZoomButtonGroup:
-    zoomInButton:
-      accessibleName:
-        integral:         Zoom In Integral y Axis
-        derivative:       Zoom In Derivative y Axis
-        secondDerivative: Zoom In Second Derivative y Axis
-      accessibleHelpText:        Zoom in y axis only.
-      accessibleContextResponse: 'zoomed in, y range {$min} to {$max}'
-    zoomOutButton:
-      accessibleName:
-        integral:         Zoom Out Integral y Axis
-        derivative:       Zoom Out Derivative y Axis
-        secondDerivative: Zoom Out Second Derivative y Axis
-      accessibleHelpText:        Zoom out y axis only.
-      accessibleContextResponse: 'zoomed out, y range {$min} to {$max}'
-
-  #=======================================================================================================
   # Checkboxes
   #=======================================================================================================
 
@@ -290,7 +227,54 @@ a11y:
     accessibleHeading: Curve Manipulation Settings and Controls
 
   #=======================================================================================================
-  # Radio Button Groups
+  # Push Buttons
+  #=======================================================================================================
+
+  # Push buttons at the bottom of the control panel.
+  curveActionsButtonGroup:
+    accessibleHeading:  Curve Actions
+    accessibleHelpText: Choose action to take on curve in Primary Graph Area.
+
+  smoothButton:
+    accessibleName:     Smooth
+    accessibleHelpText: Smooth sharp corners and discontinuities on curve in Primary Graph Area.
+    accessibleContextResponse:
+      allCurves:    f and derived curves smoothed.
+      predictCurve: Prediction curve only smoothed.
+
+  eraserButton:
+    accessibleName:     Erase Curve Manipulations
+    accessibleHelpText: Reset curve to y equals zero, maintain curve manipulation settings.
+    accessibleContextResponse:
+      primaryCurve: f and derived curves reset, settings unchanged.
+      predictCurve: Predict curve reset, other curves and settings unchanged.
+
+  undoButton:
+    accessibleName:     Undo
+    accessibleHelpText: Undo most recent curve manipulation.
+    accessibleContextResponse:
+      primaryCurve: Last manipulation removed from f and derived curves.
+      predictCurve: Last manipulation removed from prediction curve only.
+
+  # Zooms the y-axis of a graph, and the accessibleName is specific to the graph.
+  yZoomButtonGroup:
+    zoomInButton:
+      accessibleName:
+        integral:         Zoom In Integral y Axis
+        derivative:       Zoom In Derivative y Axis
+        secondDerivative: Zoom In Second Derivative y Axis
+      accessibleHelpText:        Zoom in y axis only.
+      accessibleContextResponse: 'zoomed in, y range {$min} to {$max}'
+    zoomOutButton:
+      accessibleName:
+        integral:         Zoom Out Integral y Axis
+        derivative:       Zoom Out Derivative y Axis
+        secondDerivative: Zoom Out Second Derivative y Axis
+      accessibleHelpText:        Zoom out y axis only.
+      accessibleContextResponse: 'zoomed out, y range {$min} to {$max}'
+
+  #=======================================================================================================
+  # Radio Buttons
   #=======================================================================================================
 
   # Switch between f(x) and Predict curves
@@ -393,6 +377,26 @@ a11y:
   # Predict control in Preferences > Simulation
   predictToggleSwitch:
     accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
+
+  #=======================================================================================================
+  # Toggle Buttons
+  #=======================================================================================================
+
+  # Controls visibility of curves on a graph, and the accessible name is specific to the graph.
+  curveVisibilityToggleButton:
+    accessibleNameOn:
+      integral:         Hide Integral Curve
+      primary:          Hide Primary Curve
+      derivative:       Hide Derivative Curve
+      secondDerivative: Hide Second Derivative Curve
+    accessibleNameOff:
+      integral:         Show Integral Curve
+      primary:          Show Primary Curve
+      derivative:       Show Derivative Curve
+      secondDerivative: Show Second Derivative Curve
+    accessibleHelpText:           Show or hide curve to support predictions.
+    accessibleContextResponseOff: Curve hidden.
+    accessibleContextResponseOn:  Curve shown.
 
   #=======================================================================================================
   # Tools

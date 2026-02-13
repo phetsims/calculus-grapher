@@ -123,71 +123,6 @@ type StringsType = {
         'negativeStringProperty': LocalizedStringProperty;
       }
     };
-    'curveActionsButtonGroup': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-    };
-    'smoothButton': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponse': {
-        'allCurvesStringProperty': LocalizedStringProperty;
-        'predictCurveStringProperty': LocalizedStringProperty;
-      }
-    };
-    'eraserButton': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponse': {
-        'primaryCurveStringProperty': LocalizedStringProperty;
-        'predictCurveStringProperty': LocalizedStringProperty;
-      }
-    };
-    'undoButton': {
-      'accessibleNameStringProperty': LocalizedStringProperty;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponse': {
-        'primaryCurveStringProperty': LocalizedStringProperty;
-        'predictCurveStringProperty': LocalizedStringProperty;
-      }
-    };
-    'curveVisibilityToggleButton': {
-      'accessibleNameOn': {
-        'integralStringProperty': LocalizedStringProperty;
-        'primaryStringProperty': LocalizedStringProperty;
-        'derivativeStringProperty': LocalizedStringProperty;
-        'secondDerivativeStringProperty': LocalizedStringProperty;
-      };
-      'accessibleNameOff': {
-        'integralStringProperty': LocalizedStringProperty;
-        'primaryStringProperty': LocalizedStringProperty;
-        'derivativeStringProperty': LocalizedStringProperty;
-        'secondDerivativeStringProperty': LocalizedStringProperty;
-      };
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
-      'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
-    };
-    'yZoomButtonGroup': {
-      'zoomInButton': {
-        'accessibleName': {
-          'integralStringProperty': LocalizedStringProperty;
-          'derivativeStringProperty': LocalizedStringProperty;
-          'secondDerivativeStringProperty': LocalizedStringProperty;
-        };
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-        'accessibleContextResponseStringProperty': LocalizedStringProperty;
-      };
-      'zoomOutButton': {
-        'accessibleName': {
-          'integralStringProperty': LocalizedStringProperty;
-          'derivativeStringProperty': LocalizedStringProperty;
-          'secondDerivativeStringProperty': LocalizedStringProperty;
-        };
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
-        'accessibleContextResponseStringProperty': LocalizedStringProperty;
-      }
-    };
     'checkboxGroup': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
     };
@@ -271,6 +206,54 @@ type StringsType = {
     };
     'controlPanel': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
+    };
+    'curveActionsButtonGroup': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'smoothButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponse': {
+        'allCurvesStringProperty': LocalizedStringProperty;
+        'predictCurveStringProperty': LocalizedStringProperty;
+      }
+    };
+    'eraserButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponse': {
+        'primaryCurveStringProperty': LocalizedStringProperty;
+        'predictCurveStringProperty': LocalizedStringProperty;
+      }
+    };
+    'undoButton': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponse': {
+        'primaryCurveStringProperty': LocalizedStringProperty;
+        'predictCurveStringProperty': LocalizedStringProperty;
+      }
+    };
+    'yZoomButtonGroup': {
+      'zoomInButton': {
+        'accessibleName': {
+          'integralStringProperty': LocalizedStringProperty;
+          'derivativeStringProperty': LocalizedStringProperty;
+          'secondDerivativeStringProperty': LocalizedStringProperty;
+        };
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
+      };
+      'zoomOutButton': {
+        'accessibleName': {
+          'integralStringProperty': LocalizedStringProperty;
+          'derivativeStringProperty': LocalizedStringProperty;
+          'secondDerivativeStringProperty': LocalizedStringProperty;
+        };
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
+      }
     };
     'predictRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
@@ -377,6 +360,23 @@ type StringsType = {
     };
     'predictToggleSwitch': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'curveVisibilityToggleButton': {
+      'accessibleNameOn': {
+        'integralStringProperty': LocalizedStringProperty;
+        'primaryStringProperty': LocalizedStringProperty;
+        'derivativeStringProperty': LocalizedStringProperty;
+        'secondDerivativeStringProperty': LocalizedStringProperty;
+      };
+      'accessibleNameOff': {
+        'integralStringProperty': LocalizedStringProperty;
+        'primaryStringProperty': LocalizedStringProperty;
+        'derivativeStringProperty': LocalizedStringProperty;
+        'secondDerivativeStringProperty': LocalizedStringProperty;
+      };
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
+      'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
     };
     'explorationTools': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
