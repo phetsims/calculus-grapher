@@ -471,13 +471,13 @@ a11y:
       # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
       xPhrase: at {$variable} equals {$value}
       slopePhrase:
-        slopeHidden:        f curve hidden
-        slopeZeroValue:     slope is zero
-        slopePositiveValue: slope is positive {$absoluteValue}
-        slopeNegativeValue: slope is negative {$absoluteValue}
+        zero:     slope is zero
+        positive: slope is positive {$absoluteValue}
+        negative: slope is negative {$absoluteValue}
+        hidden:   f curve hidden
       derivativePhrase:
-        derivativeValue:  derivative at {$variable} is {$value}
-        derivativeHidden: derivative curve hidden
+        derivativeValue: derivative at {$variable} is {$value}
+        hidden:          derivative curve hidden
 
   # Area Under Curve Tool
   areaUnderCurveTool:
@@ -496,10 +496,10 @@ a11y:
       # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern
       xPhrase: at {$variable} equals {$value}
       integralPhrase:
-        integralValue:  integral up to {$variable} is {$value}
-        integralHidden: integral curve hidden
+        integralValue: integral up to {$variable} is {$value}
+        hidden:        integral curve hidden
       areaPhrase:
-        areaZeroValue:     net signed area is zero under f
-        areaPositiveValue: net signed area is positive {$absoluteValue} under f
-        areaNegativeValue: net signed area is negative {$absoluteValue} under f
-        areaHidden:        f curve hidden
+        zero:     net signed area is zero under f
+        positive: net signed area is positive {$absoluteValue} under f
+        negative: net signed area is negative {$absoluteValue} under f
+        hidden:   f curve hidden

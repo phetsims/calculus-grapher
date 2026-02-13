@@ -56,24 +56,24 @@ export default class TangentScrubberDescriber {
       const slope = this.tangentScrubber.derivativeCurvePointProperty.value.y;
       if ( slope === 0 ) {
         // zero
-        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeZeroValueStringProperty.value;
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.zeroStringProperty.value;
       }
       else if ( slope > 0 ) {
         // positive
-        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopePositiveValue.format( {
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.positive.format( {
           absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
         } );
       }
       else {
         // negative
-        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeNegativeValue.format( {
+        slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.negative.format( {
           absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
         } );
       }
     }
     else {
       // hidden
-      slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeHiddenStringProperty.value;
+      slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.hiddenStringProperty.value;
     }
     return slopePhrase;
   }
@@ -95,7 +95,7 @@ export default class TangentScrubberDescriber {
     }
     else {
       // hidden
-      derivativePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.derivativePhrase.derivativeHiddenStringProperty.value;
+      derivativePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.derivativePhrase.hiddenStringProperty.value;
     }
     return derivativePhrase;
   }

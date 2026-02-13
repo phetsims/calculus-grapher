@@ -869,24 +869,24 @@
           "value": "at {$variable} equals {$value}"
         },
         "slopePhrase": {
-          "slopeHidden": {
-            "value": "f curve hidden"
-          },
-          "slopeZeroValue": {
+          "zero": {
             "value": "slope is zero"
           },
-          "slopePositiveValue": {
+          "positive": {
             "value": "slope is positive {$absoluteValue}"
           },
-          "slopeNegativeValue": {
+          "negative": {
             "value": "slope is negative {$absoluteValue}"
+          },
+          "hidden": {
+            "value": "f curve hidden"
           }
         },
         "derivativePhrase": {
           "derivativeValue": {
             "value": "derivative at {$variable} is {$value}"
           },
-          "derivativeHidden": {
+          "hidden": {
             "value": "derivative curve hidden"
           }
         }
@@ -915,16 +915,16 @@
           }
         },
         "areaPhrase": {
-          "areaZeroValue": {
+          "zero": {
             "value": "net signed area is zero under f"
           },
-          "areaPositiveValue": {
+          "positive": {
             "value": "net signed area is positive {$absoluteValue} under f"
           },
-          "areaNegativeValue": {
+          "negative": {
             "value": "net signed area is negative {$absoluteValue} under f"
           },
-          "areaHidden": {
+          "hidden": {
             "value": "f curve hidden"
           }
         }

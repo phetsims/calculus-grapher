@@ -440,14 +440,14 @@ type StringsType = {
         'patternStringProperty': LocalizedStringProperty;
         'xPhraseStringProperty': LocalizedStringProperty;
         'slopePhrase': {
-          'slopeHiddenStringProperty': LocalizedStringProperty;
-          'slopeZeroValueStringProperty': LocalizedStringProperty;
-          'slopePositiveValueStringProperty': LocalizedStringProperty;
-          'slopeNegativeValueStringProperty': LocalizedStringProperty;
+          'zeroStringProperty': LocalizedStringProperty;
+          'positiveStringProperty': LocalizedStringProperty;
+          'negativeStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
         };
         'derivativePhrase': {
           'derivativeValueStringProperty': LocalizedStringProperty;
-          'derivativeHiddenStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
         }
       }
     };
@@ -462,10 +462,10 @@ type StringsType = {
           'integralHiddenStringProperty': LocalizedStringProperty;
         };
         'areaPhrase': {
-          'areaZeroValueStringProperty': LocalizedStringProperty;
-          'areaPositiveValueStringProperty': LocalizedStringProperty;
-          'areaNegativeValueStringProperty': LocalizedStringProperty;
-          'areaHiddenStringProperty': LocalizedStringProperty;
+          'zeroStringProperty': LocalizedStringProperty;
+          'positiveStringProperty': LocalizedStringProperty;
+          'negativeStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
         }
       }
     }

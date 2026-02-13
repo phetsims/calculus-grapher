@@ -252,22 +252,22 @@ addToMapIfDefined( 'a11y_tangentTool_accessibleName', 'a11y.tangentTool.accessib
 addToMapIfDefined( 'a11y_tangentTool_accessibleHelpText', 'a11y.tangentTool.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_pattern', 'a11y.tangentTool.accessibleObjectResponse.patternStringProperty' );
 addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_xPhrase', 'a11y.tangentTool.accessibleObjectResponse.xPhraseStringProperty' );
-addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopeHidden', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeHiddenStringProperty' );
-addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopeZeroValue', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeZeroValueStringProperty' );
-addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopePositiveValue', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopePositiveValueStringProperty' );
-addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopeNegativeValue', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeNegativeValueStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_zero', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.zeroStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_positive', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.positiveStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_negative', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.negativeStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_hidden', 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.hiddenStringProperty' );
 addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_derivativePhrase_derivativeValue', 'a11y.tangentTool.accessibleObjectResponse.derivativePhrase.derivativeValueStringProperty' );
-addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_derivativePhrase_derivativeHidden', 'a11y.tangentTool.accessibleObjectResponse.derivativePhrase.derivativeHiddenStringProperty' );
+addToMapIfDefined( 'a11y_tangentTool_accessibleObjectResponse_derivativePhrase_hidden', 'a11y.tangentTool.accessibleObjectResponse.derivativePhrase.hiddenStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleName', 'a11y.areaUnderCurveTool.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleHelpText', 'a11y.areaUnderCurveTool.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_pattern', 'a11y.areaUnderCurveTool.accessibleObjectResponse.patternStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_xPhrase', 'a11y.areaUnderCurveTool.accessibleObjectResponse.xPhraseStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_integralPhrase_integralValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.integralPhrase.integralValueStringProperty' );
 addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_integralPhrase_integralHidden', 'a11y.areaUnderCurveTool.accessibleObjectResponse.integralPhrase.integralHiddenStringProperty' );
-addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaZeroValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaZeroValueStringProperty' );
-addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaPositiveValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaPositiveValueStringProperty' );
-addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaNegativeValue', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaNegativeValueStringProperty' );
-addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaHidden', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaHiddenStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_zero', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.zeroStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_positive', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.positiveStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_negative', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.negativeStringProperty' );
+addToMapIfDefined( 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_hidden', 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.hiddenStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -804,14 +804,14 @@ const CalculusGrapherFluent = {
         _comment_4: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
         xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_xPhrase', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
         slopePhrase: {
-          slopeHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopeHidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeHiddenStringProperty' ) ),
-          slopeZeroValueStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopeZeroValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeZeroValueStringProperty' ) ),
-          slopePositiveValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopePositiveValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopePositiveValueStringProperty' ), [{"name":"absoluteValue"}] ),
-          slopeNegativeValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_slopeNegativeValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.slopeNegativeValueStringProperty' ), [{"name":"absoluteValue"}] )
+          zeroStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_zero', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.zeroStringProperty' ) ),
+          positive: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_positive', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.positiveStringProperty' ), [{"name":"absoluteValue"}] ),
+          negative: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_negative', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.negativeStringProperty' ), [{"name":"absoluteValue"}] ),
+          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_hidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.hiddenStringProperty' ) )
         },
         derivativePhrase: {
           derivativeValue: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_derivativePhrase_derivativeValue', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.derivativePhrase.derivativeValueStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
-          derivativeHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_derivativePhrase_derivativeHidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.derivativePhrase.derivativeHiddenStringProperty' ) )
+          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_derivativePhrase_hidden', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.derivativePhrase.hiddenStringProperty' ) )
         }
       }
     },
@@ -832,10 +832,10 @@ const CalculusGrapherFluent = {
           integralHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_integralPhrase_integralHidden', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.integralPhrase.integralHiddenStringProperty' ) )
         },
         areaPhrase: {
-          areaZeroValueStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaZeroValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaZeroValueStringProperty' ) ),
-          areaPositiveValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaPositiveValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaPositiveValueStringProperty' ), [{"name":"absoluteValue"}] ),
-          areaNegativeValue: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaNegativeValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaNegativeValueStringProperty' ), [{"name":"absoluteValue"}] ),
-          areaHiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_areaHidden', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaHiddenStringProperty' ) )
+          zeroStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_zero', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.zeroStringProperty' ) ),
+          positive: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_positive', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.positiveStringProperty' ), [{"name":"absoluteValue"}] ),
+          negative: new FluentPattern<{ absoluteValue: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_negative', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.negativeStringProperty' ), [{"name":"absoluteValue"}] ),
+          hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_areaPhrase_hidden', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.hiddenStringProperty' ) )
         }
       }
     }

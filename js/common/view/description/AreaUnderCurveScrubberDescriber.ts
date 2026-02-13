@@ -74,24 +74,24 @@ export default class AreaUnderCurveScrubberDescriber {
       const area = this.areaUnderCurveScrubber.integralCurvePointProperty.value.y;
       if ( area === 0 ) {
         // zero
-        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaZeroValueStringProperty.value;
+        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.zeroStringProperty.value;
       }
       else if ( area > 0 ) {
         // positive
-        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaPositiveValue.format( {
+        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.positive.format( {
           absoluteValue: toFixedNumber( Math.abs( area ), CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
         } );
       }
       else {
         // negative
-        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaNegativeValue.format( {
+        areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.negative.format( {
           absoluteValue: toFixedNumber( Math.abs( area ), CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
         } );
       }
     }
     else {
       // hidden
-      areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.areaHiddenStringProperty.value;
+      areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.hiddenStringProperty.value;
     }
     return areaPhrase;
   }
