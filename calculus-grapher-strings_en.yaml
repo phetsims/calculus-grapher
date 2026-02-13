@@ -169,7 +169,7 @@ a11y:
       predictCurve: Last manipulation removed from prediction curve only.
 
   # Controls visibility of curves on a graph, and the accessible name is specific to the graph.
-  eyeToggleButton:
+  curveVisibilityToggleButton:
     accessibleNameOn:
       integral:         Hide Integral Curve
       primary:          Hide Primary Curve

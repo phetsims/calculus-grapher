@@ -148,7 +148,7 @@ type StringsType = {
         'predictCurveStringProperty': LocalizedStringProperty;
       }
     };
-    'eyeToggleButton': {
+    'curveVisibilityToggleButton': {
       'accessibleNameOn': {
         'integralStringProperty': LocalizedStringProperty;
         'primaryStringProperty': LocalizedStringProperty;

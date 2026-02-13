@@ -271,7 +271,7 @@
         }
       }
     },
-    "eyeToggleButton": {
+    "curveVisibilityToggleButton": {
       "accessibleNameOn": {
         "integral": {
           "value": "Hide Integral Curve"

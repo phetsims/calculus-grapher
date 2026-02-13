@@ -20,7 +20,6 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import AxisArrowNode, { AxisArrowNodeOptions } from '../../../../bamboo/js/AxisArrowNode.js';
@@ -39,14 +38,12 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
-import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
+import { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -55,6 +52,7 @@ import Curve from '../model/Curve.js';
 import CurvePoint from '../model/CurvePoint.js';
 import GraphType from '../model/GraphType.js';
 import CurveNode from './CurveNode.js';
+import CurveVisibilityToggleButton, { CurveVisibilityToggleButtonOptions } from './CurveVisibilityToggleButton.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import PlottedPoint from './PlottedPoint.js';
 import YZoomButtonGroup, { YZoomButtonGroupOptions } from './YZoomButtonGroup.js';
@@ -268,17 +266,10 @@ export default class GraphNode extends Node {
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
-    this.eyeToggleButton = new EyeToggleButton( this._curveLayerVisibleProperty, combineOptions<EyeToggleButtonOptions>( {
-      scale: 0.5,
-      baseColor: new DerivedProperty( [ this.curveLayerVisibleProperty ],
-        visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
-      touchAreaXDilation: 8,
-      touchAreaYDilation: 8,
-      accessibleHelpText: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleHelpTextStringProperty,
-      accessibleContextResponseOn: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOnStringProperty,
-      accessibleContextResponseOff: CalculusGrapherFluent.a11y.eyeToggleButton.accessibleContextResponseOffStringProperty,
-      tandem: options.tandem.createTandem( 'eyeToggleButton' )
-    }, options.eyeToggleButtonOptions ) );
+    this.eyeToggleButton = new CurveVisibilityToggleButton( this._curveLayerVisibleProperty,
+      combineOptions<CurveVisibilityToggleButtonOptions>( {
+        tandem: options.tandem.createTandem( 'eyeToggleButton' )
+      }, options.eyeToggleButtonOptions ) );
 
     // Optional zoom buttons for the y-axis.
     if ( this.yZoomLevelProperty ) {
