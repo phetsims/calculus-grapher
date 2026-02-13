@@ -36,7 +36,7 @@ export default class CurveManipulationControls extends VBox {
       curveManipulationStrokeProperty, tandem.createTandem( 'widthControl' ) );
 
     // Radio Buttons for choosing the manipulation mode
-    const radioButtonGroup = new CurveManipulationTypeRadioButtonGroup( curveManipulationProperties.modeProperty,
+    const radioButtonGroup = new CurveManipulationTypeRadioButtonGroup( curveManipulationProperties.curveManipulationTypeProperty,
       curveManipulationStrokeProperty, tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {

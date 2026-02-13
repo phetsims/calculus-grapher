@@ -28,7 +28,7 @@ export default class CurveManipulationWidthControl extends VBox {
       curveManipulationStrokeProperty, tandem.createTandem( 'curveDisplayNode' ) );
 
     const slider = new CurveManipulationWidthSlider( curveManipulationProperties.widthProperty, {
-      visibleProperty: new DerivedProperty( [ curveManipulationProperties.modeProperty ],
+      visibleProperty: new DerivedProperty( [ curveManipulationProperties.curveManipulationTypeProperty ],
         mode => mode.hasAdjustableWidth ),
       tandem: tandem.createTandem( 'slider' )
     } );

@@ -72,7 +72,7 @@ export default class CurveManipulationDisplayNode extends Node {
     affirm( yMax > yMin, 'yMax value should be greater than yMin' );
 
     Multilink.multilink(
-      [ curveManipulationProperties.modeProperty, curveManipulationProperties.widthProperty ],
+      [ curveManipulationProperties.curveManipulationTypeProperty, curveManipulationProperties.widthProperty ],
       ( mode, width ) => {
 
         curve.reset();

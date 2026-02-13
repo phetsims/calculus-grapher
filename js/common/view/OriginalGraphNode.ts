@@ -186,7 +186,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.originalCurveManipulatorNode = new CurveManipulatorNode(
       originalCurveManipulator,
       originalCurve,
-      curveManipulationProperties.modeProperty,
+      curveManipulationProperties.curveManipulationTypeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
       new DerivedProperty( [ predictEnabledProperty, this.originalCurveNode.inputEnabledProperty ],
@@ -202,7 +202,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveManipulatorNode = new CurveManipulatorNode(
       predictCurveManipulator,
       predictCurve,
-      curveManipulationProperties.modeProperty,
+      curveManipulationProperties.curveManipulationTypeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
       DerivedProperty.and( [ predictEnabledProperty, this.predictCurveNode.inputEnabledProperty ] ),

@@ -30,7 +30,7 @@ type CurveManipulationPropertiesOptions = SelfOptions & PickRequired<PhetioObjec
 export default class CurveManipulationProperties {
 
   // The 'mode' that user is in for manipulating curves.
-  public readonly modeProperty: EnumerationProperty<CurveManipulationType>;
+  public readonly curveManipulationTypeProperty: EnumerationProperty<CurveManipulationType>;
 
   // The width of the curve-manipulation. This only applies to some CurveManipulationModes
   // and the value is interpreted differently for each response algorithm to curve
@@ -48,9 +48,9 @@ export default class CurveManipulationProperties {
     affirm( curveManipulationModeChoices.includes( initialMode ),
       `curveManipulationModeChoices must include initial value: ${initialMode}` );
 
-    this.modeProperty = new EnumerationProperty( initialMode, {
+    this.curveManipulationTypeProperty = new EnumerationProperty( initialMode, {
       validValues: curveManipulationModeChoices,
-      tandem: options.tandem.createTandem( 'modeProperty' ),
+      tandem: options.tandem.createTandem( 'curveManipulationTypeProperty' ),
       phetioDocumentation: 'Determines how the curve will be modified (manipulated) when the student interacts with it. ' +
                            'Applies to the interactive (original and predict) curves only.',
       phetioFeatured: true
@@ -67,7 +67,7 @@ export default class CurveManipulationProperties {
   }
 
   public reset(): void {
-    this.modeProperty.reset();
+    this.curveManipulationTypeProperty.reset();
     this.widthProperty.reset();
   }
 

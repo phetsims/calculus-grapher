@@ -97,7 +97,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       ...CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.getDependentProperties(),
 
       // Values to fill in the above descriptions.
-      model.curveManipulationProperties.modeProperty,
+      model.curveManipulationProperties.curveManipulationTypeProperty,
       model.curveManipulationProperties.widthProperty,
       curvesSentenceStringProperty
     ] );
@@ -105,7 +105,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const leadingParagraphStringProperty = DerivedStringProperty.deriveAny( leadingParagraphDependencies,
       () => {
 
-        const mode = model.curveManipulationProperties.modeProperty.value;
+        const mode = model.curveManipulationProperties.curveManipulationTypeProperty.value;
 
         if ( mode.hasAdjustableWidth ) {
           return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
