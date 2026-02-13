@@ -425,7 +425,7 @@ a11y:
 
     # Curve manipulator for the predict curve
     predict:
-      accessibleName:     Prediction Curve Manipulator
+      accessibleName:     Predict Curve Manipulator
       accessibleHelpText: Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed.
 
   # Reference Line

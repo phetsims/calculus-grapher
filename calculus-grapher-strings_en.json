@@ -771,7 +771,7 @@
       },
       "predict": {
         "accessibleName": {
-          "value": "Prediction Curve Manipulator"
+          "value": "Predict Curve Manipulator"
         },
         "accessibleHelpText": {
           "value": "Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed."
