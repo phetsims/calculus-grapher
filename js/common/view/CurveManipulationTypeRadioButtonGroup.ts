@@ -1,7 +1,7 @@
 // Copyright 2022-2026, University of Colorado Boulder
 
 /**
- * CurveManipulationModeRadioButtonGroup is the radio button group for choosing a curve manipulation model.
+ * CurveManipulationTypeRadioButtonGroup is the radio button group for choosing a curve manipulation model.
  * The buttons are arranged in a 2-column grid. Hiding buttons via PhET-iO will automatically cause the
  * layout to update so that there are no 'holes' in the grid.
  *
@@ -20,7 +20,7 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
-export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationType> {
+export default class CurveManipulationTypeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationType> {
 
   public constructor( curveManipulationModeProperty: Property<CurveManipulationType>,
                       curveManipulationStroke: TColor,
@@ -70,4 +70,4 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
   }
 }
 
-calculusGrapher.register( 'CurveManipulationModeRadioButtonGroup', CurveManipulationModeRadioButtonGroup );
+calculusGrapher.register( 'CurveManipulationTypeRadioButtonGroup', CurveManipulationTypeRadioButtonGroup );

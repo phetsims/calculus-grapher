@@ -14,7 +14,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
-import CurveManipulationModeRadioButtonGroup from './CurveManipulationModeRadioButtonGroup.js';
+import CurveManipulationTypeRadioButtonGroup from './CurveManipulationTypeRadioButtonGroup.js';
 import CurveManipulationWidthControl from './CurveManipulationWidthControl.js';
 
 export default class CurveManipulationControls extends VBox {
@@ -36,7 +36,7 @@ export default class CurveManipulationControls extends VBox {
       curveManipulationStrokeProperty, tandem.createTandem( 'widthControl' ) );
 
     // Radio Buttons for choosing the manipulation mode
-    const radioButtonGroup = new CurveManipulationModeRadioButtonGroup( curveManipulationProperties.modeProperty,
+    const radioButtonGroup = new CurveManipulationTypeRadioButtonGroup( curveManipulationProperties.modeProperty,
       curveManipulationStrokeProperty, tandem.createTandem( 'radioButtonGroup' ) );
 
     super( {
