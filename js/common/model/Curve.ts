@@ -31,6 +31,7 @@ import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import phetioStateSetEmitter from '../../../../tandem/js/phetioStateSetEmitter.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -160,17 +161,15 @@ export default class Curve extends PhetioObject {
 
     this._numberOfDiscontinuitiesProperty = new NumberProperty( 0, {
       numberType: 'Integer',
-      isValidValue: value => value >= 0,
-      tandem: options.tandem.createTandem( 'numberOfDiscontinuitiesProperty' ),
-      phetioReadOnly: true
+      isValidValue: value => value >= 0
+      // Do not instrument. State is restored via phetioStateSetEmitter below.
     } );
     this.numberOfDiscontinuitiesProperty = this._numberOfDiscontinuitiesProperty;
 
     this._numberOfCuspsProperty = new NumberProperty( 0, {
       numberType: 'Integer',
-      isValidValue: value => value >= 0,
-      tandem: options.tandem.createTandem( 'numberOfCuspsProperty' ),
-      phetioReadOnly: true
+      isValidValue: value => value >= 0
+      // Do not instrument. State is restored via phetioStateSetEmitter below.
     } );
     this.numberOfCuspsProperty = this._numberOfCuspsProperty;
 
@@ -179,6 +178,10 @@ export default class Curve extends PhetioObject {
 
     // Update the number of discontinuities and cusps in one pass through the points.
     this.curveChangedEmitter.addListener( () => this.updateDiscontinuitiesAndCusps() );
+
+    // When PhET-iO state is restored, update the number of discontinuities and cusps.
+    // We do not want to make those Properties stateful because of how confusing the data is.
+    phetioStateSetEmitter.addListener( () => this.updateDiscontinuitiesAndCusps() );
   }
 
   /**
