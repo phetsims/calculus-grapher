@@ -78,9 +78,9 @@ addToMapIfDefined( 'a11y_screen_advanced_screenSummary_interactionHint', 'a11y.s
 addToMapIfDefined( 'a11y_screen_lab_screenButtonsHelpText', 'a11y.screen.lab.screenButtonsHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_screen_lab_screenSummary_playArea', 'a11y.screen.lab.screenSummary.playAreaStringProperty' );
 addToMapIfDefined( 'a11y_screen_lab_screenSummary_interactionHint', 'a11y.screen.lab.screenSummary.interactionHintStringProperty' );
-addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' );
-addToMapIfDefined( 'a11y_headings_explorationToolControls', 'a11y.headings.explorationToolControlsStringProperty' );
-addToMapIfDefined( 'a11y_headings_explorationTools', 'a11y.headings.explorationToolsStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_accessibleHeading', 'a11y.controlPanel.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_checkboxGroup_accessibleHeading', 'a11y.checkboxGroup.accessibleHeadingStringProperty' );
+addToMapIfDefined( 'a11y_explorationTools_accessibleHeading', 'a11y.explorationTools.accessibleHeadingStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleHelpTextCollapsed', 'a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_zero', 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.zeroStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_positive', 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.positiveStringProperty' );
@@ -402,13 +402,17 @@ const CalculusGrapherFluent = {
         }
       }
     },
-    _comment_3: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"headings"} ),
-    _comment_4: new FluentComment( {"comment":"Accessible Headings","associatedKey":"headings"} ),
-    _comment_5: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"headings"} ),
-    headings: {
-      curveManipulationSettingsAndControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_curveManipulationSettingsAndControls', _.get( CalculusGrapherStrings, 'a11y.headings.curveManipulationSettingsAndControlsStringProperty' ) ),
-      explorationToolControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_explorationToolControls', _.get( CalculusGrapherStrings, 'a11y.headings.explorationToolControlsStringProperty' ) ),
-      explorationToolsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_headings_explorationTools', _.get( CalculusGrapherStrings, 'a11y.headings.explorationToolsStringProperty' ) )
+    _comment_3: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"controlPanel"} ),
+    _comment_4: new FluentComment( {"comment":"Accessible Headings","associatedKey":"controlPanel"} ),
+    _comment_5: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"controlPanel"} ),
+    controlPanel: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.controlPanel.accessibleHeadingStringProperty' ) )
+    },
+    checkboxGroup: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_checkboxGroup_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.checkboxGroup.accessibleHeadingStringProperty' ) )
+    },
+    explorationTools: {
+      accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_explorationTools_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.explorationTools.accessibleHeadingStringProperty' ) )
     },
     _comment_6: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"slopeOfTangentAccordionBox"} ),
     _comment_7: new FluentComment( {"comment":"Accordion Boxes","associatedKey":"slopeOfTangentAccordionBox"} ),

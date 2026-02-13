@@ -121,10 +121,14 @@ a11y:
   # Accessible Headings
   #=======================================================================================================
 
-  headings:
-    curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
-    explorationToolControls:              Exploration Tool Controls
-    explorationTools:                     Exploration Tools
+  controlPanel:
+    accessibleHeading: Curve Manipulation Settings and Controls
+
+  checkboxGroup:
+    accessibleHeading: Exploration Tool Controls
+
+  explorationTools:
+    accessibleHeading: Exploration Tools
 
   #=======================================================================================================
   # Accordion Boxes

@@ -188,14 +188,18 @@
         }
       }
     },
-    "headings": {
-      "curveManipulationSettingsAndControls": {
+    "controlPanel": {
+      "accessibleHeading": {
         "value": "Curve Manipulation Settings and Controls"
-      },
-      "explorationToolControls": {
+      }
+    },
+    "checkboxGroup": {
+      "accessibleHeading": {
         "value": "Exploration Tool Controls"
-      },
-      "explorationTools": {
+      }
+    },
+    "explorationTools": {
+      "accessibleHeading": {
         "value": "Exploration Tools"
       }
     },

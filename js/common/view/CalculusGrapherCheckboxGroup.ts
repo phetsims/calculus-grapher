@@ -43,7 +43,7 @@ export default class CalculusGrapherCheckboxGroup extends VBox {
       children: [ referenceLineCheckbox, gridCheckbox ],
       align: 'left',
       spacing: 10,
-      accessibleHeading: CalculusGrapherFluent.a11y.headings.explorationToolControlsStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.checkboxGroup.accessibleHeadingStringProperty,
       tandem: tandem
     } );
   }

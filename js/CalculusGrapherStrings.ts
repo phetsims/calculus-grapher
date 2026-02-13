@@ -107,10 +107,14 @@ type StringsType = {
         }
       }
     };
-    'headings': {
-      'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
-      'explorationToolControlsStringProperty': LocalizedStringProperty;
-      'explorationToolsStringProperty': LocalizedStringProperty;
+    'controlPanel': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+    };
+    'checkboxGroup': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+    };
+    'explorationTools': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
     };
     'slopeOfTangentAccordionBox': {
       'accessibleHelpTextCollapsedStringProperty': LocalizedStringProperty;

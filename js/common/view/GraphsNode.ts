@@ -184,7 +184,7 @@ export default class GraphsNode extends Node {
 
     // Parent for scrubbers, to maintain rendering order. Also functions as a core description heading.
     this.scrubberNodesParent = new Node( {
-      accessibleHeading: CalculusGrapherFluent.a11y.headings.explorationToolsStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.explorationTools.accessibleHeadingStringProperty,
       children: [ this.referenceLineNode ],
       excludeInvisibleChildrenFromBounds: true
     } );
