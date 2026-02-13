@@ -41,7 +41,7 @@ The most significant (confusing) differences are:
 
 * Graph is described as Graph Area.
 * Original Graph is described as Primary Graph Area.
-* Original Curve is described as Primary Curve, f(x), or f(t).
+* Original Curve is described as Primary Curve or f.
 * Curve Manipulation Mode is described as Curve Manipulation Shape.
 * Triangle curve manipulation mode is Tent shape.
 
