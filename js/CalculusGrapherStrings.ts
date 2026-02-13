@@ -459,7 +459,7 @@ type StringsType = {
         'xPhraseStringProperty': LocalizedStringProperty;
         'integralPhrase': {
           'integralValueStringProperty': LocalizedStringProperty;
-          'integralHiddenStringProperty': LocalizedStringProperty;
+          'hiddenStringProperty': LocalizedStringProperty;
         };
         'areaPhrase': {
           'zeroStringProperty': LocalizedStringProperty;

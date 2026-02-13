@@ -11,7 +11,6 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -60,7 +59,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
         () => {
           const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
           const integralPoint = areaUnderCurveScrubber.integralCurvePointProperty.value;
-          const x = toFixed( integralPoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+          const x = toFixedNumber( integralPoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
           const y = toFixedNumber( integralPoint.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
 
           let string: string;
@@ -74,7 +73,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
           else if ( y > 0 ) {
             // positive
             string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.format( {
-              absoluteValue: Math.abs( y ),
+              absoluteArea: Math.abs( y ),
               variable: variable,
               x: x
             } );
@@ -82,7 +81,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
           else {
             // negative
             string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.format( {
-              absoluteValue: Math.abs( y ),
+              absoluteArea: Math.abs( y ),
               variable: variable,
               x: x
             } );

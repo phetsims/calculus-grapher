@@ -134,15 +134,15 @@ a11y:
     accessibleHelpTextCollapsed: Explore slope of line tangent to f at {$variable} coordinate of Tangent tool.
     accessibleParagraph:
       zero:     At {$variable} equals {$x}, slope of line tangent to f is zero.
-      positive: At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteValue}.
-      negative: At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteValue}.
+      positive: At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteSlope}.
+      negative: At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteSlope}.
 
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: Explore net signed area under f curve between {$variable} equals 0 and current {$variable} coordinate of Area Under Curve tool.
     accessibleParagraph:
       zero:     Net signed area under f curve is zero between {$variable} equals 0 and {$x}.
-      positive: Net signed area under f curve is positive {$absoluteValue} between {$variable} equals 0 and {$x}.
-      negative: Net signed area under f curve is negative {$absoluteValue} between {$variable} equals 0 and {$x}.
+      positive: Net signed area under f curve is positive {$absoluteArea} between {$variable} equals 0 and {$x}.
+      negative: Net signed area under f curve is negative {$absoluteArea} between {$variable} equals 0 and {$x}.
 
   #=======================================================================================================
   # Buttons
@@ -472,8 +472,8 @@ a11y:
       xPhrase: at {$variable} equals {$value}
       slopePhrase:
         zero:     slope is zero
-        positive: slope is positive {$absoluteValue}
-        negative: slope is negative {$absoluteValue}
+        positive: slope is positive {$absoluteSlope}
+        negative: slope is negative {$absoluteSlope}
         hidden:   f curve hidden
       derivativePhrase:
         derivativeValue: derivative at {$variable} is {$value}
@@ -500,6 +500,6 @@ a11y:
         hidden:        integral curve hidden
       areaPhrase:
         zero:     net signed area is zero under f
-        positive: net signed area is positive {$absoluteValue} under f
-        negative: net signed area is negative {$absoluteValue} under f
+        positive: net signed area is positive {$absoluteArea} under f
+        negative: net signed area is negative {$absoluteArea} under f
         hidden:   f curve hidden

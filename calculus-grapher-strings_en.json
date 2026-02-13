@@ -208,10 +208,10 @@
           "value": "At {$variable} equals {$x}, slope of line tangent to f is zero."
         },
         "positive": {
-          "value": "At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteValue}."
+          "value": "At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteSlope}."
         },
         "negative": {
-          "value": "At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteValue}."
+          "value": "At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteSlope}."
         }
       }
     },
@@ -224,10 +224,10 @@
           "value": "Net signed area under f curve is zero between {$variable} equals 0 and {$x}."
         },
         "positive": {
-          "value": "Net signed area under f curve is positive {$absoluteValue} between {$variable} equals 0 and {$x}."
+          "value": "Net signed area under f curve is positive {$absoluteArea} between {$variable} equals 0 and {$x}."
         },
         "negative": {
-          "value": "Net signed area under f curve is negative {$absoluteValue} between {$variable} equals 0 and {$x}."
+          "value": "Net signed area under f curve is negative {$absoluteArea} between {$variable} equals 0 and {$x}."
         }
       }
     },
@@ -873,10 +873,10 @@
             "value": "slope is zero"
           },
           "positive": {
-            "value": "slope is positive {$absoluteValue}"
+            "value": "slope is positive {$absoluteSlope}"
           },
           "negative": {
-            "value": "slope is negative {$absoluteValue}"
+            "value": "slope is negative {$absoluteSlope}"
           },
           "hidden": {
             "value": "f curve hidden"
@@ -910,7 +910,7 @@
           "integralValue": {
             "value": "integral up to {$variable} is {$value}"
           },
-          "integralHidden": {
+          "hidden": {
             "value": "integral curve hidden"
           }
         },
@@ -919,10 +919,10 @@
             "value": "net signed area is zero under f"
           },
           "positive": {
-            "value": "net signed area is positive {$absoluteValue} under f"
+            "value": "net signed area is positive {$absoluteArea} under f"
           },
           "negative": {
-            "value": "net signed area is negative {$absoluteValue} under f"
+            "value": "net signed area is negative {$absoluteArea} under f"
           },
           "hidden": {
             "value": "f curve hidden"

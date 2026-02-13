@@ -53,7 +53,7 @@ export default class TangentScrubberDescriber {
     let slopePhrase: string;
     if ( this.primaryCurveLayerVisibleProperty.value ) {
       affirm( !this.tangentScrubber.originalCurvePointProperty.value.isDiscontinuous, 'Tangent tool does not support discontinuities in primary curve.' );
-      const slope = this.tangentScrubber.derivativeCurvePointProperty.value.y;
+      const slope = toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
       if ( slope === 0 ) {
         // zero
         slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.zeroStringProperty.value;
@@ -61,13 +61,13 @@ export default class TangentScrubberDescriber {
       else if ( slope > 0 ) {
         // positive
         slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.positive.format( {
-          absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
+          absoluteSlope: Math.abs( slope )
         } );
       }
       else {
         // negative
         slopePhrase = CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.slopePhrase.negative.format( {
-          absoluteValue: toFixedNumber( Math.abs( slope ), CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS )
+          absoluteSlope: Math.abs( slope )
         } );
       }
     }

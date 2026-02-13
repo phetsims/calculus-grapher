@@ -59,7 +59,7 @@ export default class AreaUnderCurveScrubberDescriber {
     }
     else {
       // hidden
-      integralPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.integralPhrase.integralHiddenStringProperty.value;
+      integralPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.integralPhrase.hiddenStringProperty.value;
     }
     return integralPhrase;
   }
@@ -71,7 +71,7 @@ export default class AreaUnderCurveScrubberDescriber {
   private getAreaPhrase(): string {
     let areaPhrase: string;
     if ( this.primaryCurveLayerVisibleProperty.value ) {
-      const area = this.areaUnderCurveScrubber.integralCurvePointProperty.value.y;
+      const area = toFixedNumber( this.areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
       if ( area === 0 ) {
         // zero
         areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.zeroStringProperty.value;
@@ -79,13 +79,13 @@ export default class AreaUnderCurveScrubberDescriber {
       else if ( area > 0 ) {
         // positive
         areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.positive.format( {
-          absoluteValue: toFixedNumber( Math.abs( area ), CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
+          absoluteArea: Math.abs( area )
         } );
       }
       else {
         // negative
         areaPhrase = CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.areaPhrase.negative.format( {
-          absoluteValue: toFixedNumber( Math.abs( area ), CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS )
+          absoluteArea: Math.abs( area )
         } );
       }
     }

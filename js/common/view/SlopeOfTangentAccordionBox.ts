@@ -11,7 +11,6 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -56,7 +55,7 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
         () => {
           const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
           const derivativePoint = tangentScrubber.derivativeCurvePointProperty.value;
-          const x = toFixed( derivativePoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+          const x = toFixedNumber( derivativePoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
           const y = toFixedNumber( derivativePoint.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
 
           let string: string;
@@ -70,7 +69,7 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
           else if ( y > 0 ) {
             // positive
             string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.positive.format( {
-              absoluteValue: Math.abs( y ),
+              absoluteSlope: Math.abs( y ),
               variable: variable,
               x: x
             } );
@@ -78,7 +77,7 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
           else {
             // negative
             string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.negative.format( {
-              absoluteValue: Math.abs( y ),
+              absoluteSlope: Math.abs( y ),
               variable: variable,
               x: x
             } );
