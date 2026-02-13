@@ -190,7 +190,7 @@
     },
     "slopeOfTangentAccordionBox": {
       "accessibleHelpTextCollapsed": {
-        "value": "Explore slope of line tangent to f at {$variable} coordinate of Tangent tool."
+        "value": "Explore slope of line tangent to f curve at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
         "zero": {
@@ -283,7 +283,7 @@
         "value": "Show f of {$variable}"
       },
       "accessibleHelpText": {
-        "value": "Show or hide f of {$variable} concurrent with prediction curve."
+        "value": "Show or hide f of {$variable} concurrent with predict curve."
       },
       "accessibleContextResponseChecked": {
         "value": "f of {$variable} shown."
@@ -444,7 +444,7 @@
           "value": "Last manipulation removed from f and derived curves."
         },
         "predictCurve": {
-          "value": "Last manipulation removed from prediction curve only."
+          "value": "Last manipulation removed from predict curve only."
         }
       }
     },
@@ -508,7 +508,7 @@
           "value": "Predict"
         },
         "accessibleHelpText": {
-          "value": "Manipulate prediction curve to predict graph of f based on other graphs."
+          "value": "Manipulate predict curve to predict graph of f based on other graphs."
         }
       }
     },

@@ -122,7 +122,7 @@ a11y:
   #=======================================================================================================
 
   slopeOfTangentAccordionBox:
-    accessibleHelpTextCollapsed: Explore slope of line tangent to f at {$variable} coordinate of Tangent tool.
+    accessibleHelpTextCollapsed: Explore slope of line tangent to f curve at {$variable} coordinate of Tangent tool.
     accessibleParagraph:
       zero:     At {$variable} equals {$x}, slope of line tangent to f is zero.
       positive: At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteSlope}.
