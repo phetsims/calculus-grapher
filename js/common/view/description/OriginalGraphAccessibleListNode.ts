@@ -15,6 +15,8 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import TransformedCurve from '../../model/TransformedCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
+const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode;
+
 export default class OriginalGraphAccessibleListNode extends GraphAccessibleListNode {
 
   public constructor( originalCurve: TransformedCurve,
@@ -44,10 +46,10 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty,
-      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.hiddenStringProperty,
+      ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndDifferentiableStringProperty,
+      ...ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
+      ...ACCESSIBLE_LIST_STRINGS.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
+      ACCESSIBLE_LIST_STRINGS.primaryCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
       originalCurve.numberOfDiscontinuitiesProperty,
@@ -64,15 +66,15 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
           const numberOfCusps = originalCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndDifferentiableStringProperty.value;
+            string = ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndDifferentiableStringProperty.value;
           }
           else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
-            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.continuousAndNotDifferentiable.format( {
+            string = ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndNotDifferentiable.format( {
               numberOfCusps: numberOfCusps
             } );
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.discontinuousAndNotDifferentiable.format( {
+            string = ACCESSIBLE_LIST_STRINGS.primaryCurve.discontinuousAndNotDifferentiable.format( {
               numberOfDiscontinuities: numberOfDiscontinuities,
               numberOfCusps: numberOfCusps
             } );
@@ -80,7 +82,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.primaryCurve.hiddenStringProperty.value;
+          string = ACCESSIBLE_LIST_STRINGS.primaryCurve.hiddenStringProperty.value;
         }
         return string;
       } );
@@ -100,10 +102,10 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty,
-      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.hiddenStringProperty,
+      ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndDifferentiableStringProperty,
+      ...ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
+      ...ACCESSIBLE_LIST_STRINGS.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
+      ACCESSIBLE_LIST_STRINGS.predictCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
       predictCurve.numberOfDiscontinuitiesProperty,
@@ -122,15 +124,15 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
           const numberOfCusps = predictCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndDifferentiableStringProperty.value;
+            string = ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndDifferentiableStringProperty.value;
           }
           else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
-            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.continuousAndNotDifferentiable.format( {
+            string = ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndNotDifferentiable.format( {
               numberOfCusps: numberOfCusps
             } );
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.discontinuousAndNotDifferentiable.format( {
+            string = ACCESSIBLE_LIST_STRINGS.predictCurve.discontinuousAndNotDifferentiable.format( {
               numberOfDiscontinuities: numberOfDiscontinuities,
               numberOfCusps: numberOfCusps
             } );
@@ -138,7 +140,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleListNode.predictCurve.hiddenStringProperty.value;
+          string = ACCESSIBLE_LIST_STRINGS.predictCurve.hiddenStringProperty.value;
         }
         return string;
       } );

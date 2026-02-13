@@ -13,15 +13,17 @@ import CalculusGrapherModel from '../../common/model/CalculusGrapherModel.js';
 import CalculusGrapherScreenSummaryContent from '../../common/view/description/CalculusGrapherScreenSummaryContent.js';
 import GraphsNode from '../../common/view/GraphsNode.js';
 
+const SCREEN_SUMMARY_STRINGS = CalculusGrapherFluent.a11y.screen.advanced.screenSummary;
+
 export default class AdvancedScreenSummaryContent extends CalculusGrapherScreenSummaryContent {
 
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     super( model, graphsNode, {
-      playAreaContent: CalculusGrapherFluent.a11y.screen.advanced.screenSummary.playArea.createProperty( {
+      playAreaContent: SCREEN_SUMMARY_STRINGS.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      interactionHintContent: CalculusGrapherFluent.a11y.screen.advanced.screenSummary.interactionHintStringProperty
+      interactionHintContent: SCREEN_SUMMARY_STRINGS.interactionHintStringProperty
     } );
   }
 }

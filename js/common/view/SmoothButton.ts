@@ -16,6 +16,8 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.smoothButton;
+
 export default class SmoothButton extends TextPushButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
@@ -34,14 +36,14 @@ export default class SmoothButton extends TextPushButton {
       layoutOptions: {
         stretch: true
       },
-      accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
+      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
-        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponse.predictCurveStringProperty,
-        CalculusGrapherFluent.a11y.smoothButton.accessibleContextResponse.allCurvesStringProperty
-      ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponseAllCurvesString ) =>
-        predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponseAllCurvesString ),
+        ACCESSIBLE_STRINGS.accessibleContextResponse.predictCurveStringProperty,
+        ACCESSIBLE_STRINGS.accessibleContextResponse.allCurvesStringProperty
+      ], ( predictEnabled, predictCurveString, allCurvesString ) =>
+        predictEnabled ? predictCurveString : allCurvesString ),
       tandem: tandem
     } );
   }

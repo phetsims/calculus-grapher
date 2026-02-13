@@ -20,6 +20,8 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.shapeWidthSlider;
+
 const WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
 const NUMBER_OF_TICKS = 9;
 affirm( NUMBER_OF_TICKS % 2 === 1, 'must have an odd number of ticks for there to be a center tick' );
@@ -51,8 +53,8 @@ export default class CurveManipulationWidthSlider extends HSlider {
       // snap to ticks
       constrainValue: ( value: number ) => findClosestTick( tickValues, value ),
 
-      accessibleName: CalculusGrapherFluent.a11y.shapeWidthSlider.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.shapeWidthSlider.accessibleHelpText.createProperty( {
+      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
         min: curveManipulationWidthProperty.range.min,
         max: curveManipulationWidthProperty.range.max

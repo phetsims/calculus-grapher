@@ -15,6 +15,8 @@ import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../..
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.yZoomButtonGroup;
+
 type SelfOptions = EmptySelfOptions;
 
 export type YZoomButtonGroupOptions = SelfOptions &
@@ -39,15 +41,15 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
         stroke: 'black'
       },
       zoomInButtonOptions: {
-        accessibleHelpText: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty,
-        accessibleContextResponse: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomInButton.accessibleContextResponse.createProperty( {
+        accessibleHelpText: ACCESSIBLE_STRINGS.zoomInButton.accessibleHelpTextStringProperty,
+        accessibleContextResponse: ACCESSIBLE_STRINGS.zoomInButton.accessibleContextResponse.createProperty( {
           min: yMinProperty,
           max: yMaxProperty
         } )
       },
       zoomOutButtonOptions: {
-        accessibleHelpText: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty,
-        accessibleContextResponse: CalculusGrapherFluent.a11y.yZoomButtonGroup.zoomOutButton.accessibleContextResponse.createProperty( {
+        accessibleHelpText: ACCESSIBLE_STRINGS.zoomOutButton.accessibleHelpTextStringProperty,
+        accessibleContextResponse: ACCESSIBLE_STRINGS.zoomOutButton.accessibleContextResponse.createProperty( {
           min: yMinProperty,
           max: yMaxProperty
         } )

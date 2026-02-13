@@ -12,6 +12,8 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CurveManipulator from '../../model/CurveManipulator.js';
 
+const ACCESSIBLE_OBJECT_RESPONSE_STRINGS = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse;
+
 export default class CurveManipulatorDescriber {
 
   private readonly curveManipulator: CurveManipulator;
@@ -28,13 +30,13 @@ export default class CurveManipulatorDescriber {
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
     if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
-      response = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse.focusedGrabbed.format( {
+      response = ACCESSIBLE_OBJECT_RESPONSE_STRINGS.focusedGrabbed.format( {
         x: xDescription,
         y: yDescription
       } );
     }
     else {
-      response = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse.focusedReleased.format( {
+      response = ACCESSIBLE_OBJECT_RESPONSE_STRINGS.focusedReleased.format( {
         x: xDescription,
         y: yDescription
       } );
@@ -50,13 +52,13 @@ export default class CurveManipulatorDescriber {
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
     if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' || !isFromPDOM ) {
-      response = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse.movedGrabbed.format( {
+      response = ACCESSIBLE_OBJECT_RESPONSE_STRINGS.movedGrabbed.format( {
         x: xDescription,
         y: yDescription
       } );
     }
     else {
-      response = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse.movedReleased.format( {
+      response = ACCESSIBLE_OBJECT_RESPONSE_STRINGS.movedReleased.format( {
         x: xDescription,
         y: yDescription
       } );
@@ -72,13 +74,13 @@ export default class CurveManipulatorDescriber {
     const xDescription = toFixedNumber( this.curveManipulator.positionProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
     const yDescription = toFixedNumber( this.curveManipulator.positionProperty.value.y, CalculusGrapherConstants.Y_DESCRIPTION_DECIMALS );
     if ( this.curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
-      response = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse.grabbed.format( {
+      response = ACCESSIBLE_OBJECT_RESPONSE_STRINGS.grabbed.format( {
         x: xDescription,
         y: yDescription
       } );
     }
     else {
-      response = CalculusGrapherFluent.a11y.curveManipulator.defaults.accessibleObjectResponse.released.format( {
+      response = ACCESSIBLE_OBJECT_RESPONSE_STRINGS.released.format( {
         x: xDescription,
         y: yDescription
       } );

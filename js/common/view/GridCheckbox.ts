@@ -15,6 +15,8 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.gridCheckbox;
+
 export default class GridCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>, tandem: Tandem ) {
@@ -22,10 +24,10 @@ export default class GridCheckbox extends Checkbox {
     super( scrubberVisibleProperty, new GridIcon(), combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         isDisposable: false,
-        accessibleName: CalculusGrapherFluent.a11y.gridCheckbox.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.gridCheckbox.accessibleHelpTextStringProperty,
-        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.gridCheckbox.accessibleContextResponseCheckedStringProperty,
-        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.gridCheckbox.accessibleContextResponseUncheckedStringProperty,
+        accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+        accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+        accessibleContextResponseChecked: ACCESSIBLE_STRINGS.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: ACCESSIBLE_STRINGS.accessibleContextResponseUncheckedStringProperty,
         tandem: tandem
       } ) );
   }

@@ -27,6 +27,8 @@ import ReferenceLine from '../model/ReferenceLine.js';
 import ReferenceLineDescriber from './description/ReferenceLineDescriber.js';
 import ScrubberNode from './ScrubberNode.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.referenceLine;
+
 // number of decimal places shown for the x value, dragging snaps to this interval
 const X_DECIMAL_PLACES = 1;
 
@@ -51,8 +53,8 @@ export default class ReferenceLineNode extends ScrubberNode {
       // See https://github.com/phetsims/calculus-grapher/issues/281#issuecomment-1472217525
       phetioHandleNodeVisiblePropertyInstrumented: false,
 
-      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.referenceLine.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.referenceLine.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: ACCESSIBLE_STRINGS.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     } );

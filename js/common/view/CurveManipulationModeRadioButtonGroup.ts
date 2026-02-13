@@ -20,6 +20,8 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.shapesRadioButtonGroup;
+
 export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
 
   public constructor( curveManipulationModeProperty: Property<CurveManipulationMode>,
@@ -51,8 +53,8 @@ export default class CurveManipulationModeRadioButtonGroup extends RectangularRa
           selectedLineWidth: 2
         }
       },
-      accessibleName: CalculusGrapherFluent.a11y.shapesRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.shapesRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
       tandem: tandem,
 
       // These options are a bit of a hack to implement a 2x2 grid.

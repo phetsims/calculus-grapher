@@ -21,6 +21,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.tangentCheckbox;
+
 export default class TangentCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>,
@@ -45,9 +47,9 @@ export default class TangentCheckbox extends Checkbox {
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         isDisposable: false,
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
-        accessibleHelpText: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleHelpTextStringProperty,
-        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleContextResponseCheckedStringProperty,
-        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.tangentCheckbox.accessibleContextResponseUncheckedStringProperty,
+        accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+        accessibleContextResponseChecked: ACCESSIBLE_STRINGS.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: ACCESSIBLE_STRINGS.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

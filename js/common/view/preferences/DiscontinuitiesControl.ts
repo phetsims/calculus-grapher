@@ -22,6 +22,8 @@ import CalculusGrapherColors from '../../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import { ConnectDiscontinuities } from '../../CalculusGrapherQueryParameters.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup;
+
 export default class DiscontinuitiesControl extends PreferencesControl {
 
   public constructor( connectDiscontinuitiesProperty: Property<ConnectDiscontinuities>, tandem: Tandem ) {
@@ -61,8 +63,8 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         createNode: () => new DiscontinuitiesRadioButtonLabel( 'noLine' ),
         tandemName: 'noLineRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleHelpTextStringProperty
+          accessibleName: ACCESSIBLE_STRINGS.noLineRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: ACCESSIBLE_STRINGS.noLineRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -70,8 +72,8 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         createNode: () => new DiscontinuitiesRadioButtonLabel( 'dashedLine' ),
         tandemName: 'dashedLineRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty
+          accessibleName: ACCESSIBLE_STRINGS.dashedLineRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: ACCESSIBLE_STRINGS.dashedLineRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -87,7 +89,7 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         },
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

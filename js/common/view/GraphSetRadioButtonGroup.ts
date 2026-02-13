@@ -21,6 +21,8 @@ import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.graphSetRadioButtonGroup;
+
 export type GraphSetRadioButtonGroupItem = RectangularRadioButtonGroupItem<GraphSet>;
 
 export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGroup<GraphSet> {
@@ -38,8 +40,8 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
         yMargin: 10,
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleName: CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty,
+      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }

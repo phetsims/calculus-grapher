@@ -19,6 +19,8 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.eraserButton;
+
 export default class CurveEraserButton extends EraserButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
@@ -34,14 +36,14 @@ export default class CurveEraserButton extends EraserButton {
       },
       iconWidth: 16,
       xMargin: 10,
-      accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
-      accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
+      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
-        CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponse.predictCurveStringProperty,
-        CalculusGrapherFluent.a11y.eraserButton.accessibleContextResponse.primaryCurveStringProperty
-      ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
-        predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
+        ACCESSIBLE_STRINGS.accessibleContextResponse.predictCurveStringProperty,
+        ACCESSIBLE_STRINGS.accessibleContextResponse.primaryCurveStringProperty
+      ], ( predictEnabled, predictCurveString, primaryCurveString ) =>
+        predictEnabled ? predictCurveString : primaryCurveString ),
       tandem: tandem
     } );
   }

@@ -21,6 +21,8 @@ import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import AreaUnderCurveScrubberDescriber from './description/AreaUnderCurveScrubberDescriber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.areaUnderCurveTool;
+
 type SelfOptions = EmptySelfOptions;
 
 type AreaUnderCurveScrubberNodeOptions = SelfOptions &
@@ -40,8 +42,8 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
       // ScrubberNodeOptions
       handleColor: areaUnderCurveScrubber.colorProperty,
       lineStroke: areaUnderCurveScrubber.colorProperty,
-      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: ACCESSIBLE_STRINGS.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     }, providedOptions );

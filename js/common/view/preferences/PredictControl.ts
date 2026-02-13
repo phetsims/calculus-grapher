@@ -21,6 +21,8 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.predictToggleSwitch;
+
 export default class PredictControl extends PreferencesControl {
 
   public constructor( predictPreferenceEnabledProperty: Property<boolean>, tandem: Tandem ) {
@@ -39,7 +41,7 @@ export default class PredictControl extends PreferencesControl {
 
     const toggleSwitch = new ToggleSwitch( predictPreferenceEnabledProperty, false, true,
       combineOptions<ToggleSwitchOptions>( {}, PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS, {
-        accessibleHelpText: CalculusGrapherFluent.a11y.predictToggleSwitch.accessibleHelpText.createProperty( {
+        accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpText.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
         tandem: tandem.createTandem( 'toggleSwitch' ),

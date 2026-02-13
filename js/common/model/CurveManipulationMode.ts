@@ -18,6 +18,8 @@ import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
+const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.shapesRadioButtonGroup;
+
 export default class CurveManipulationMode extends EnumerationValue {
 
   // Prefix used for tandems related to a CurveManipulationMode
@@ -32,38 +34,38 @@ export default class CurveManipulationMode extends EnumerationValue {
 
   // Enumeration values
   public static readonly HILL = new CurveManipulationMode( 'hill',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.hillRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty );
+    ACCESSIBLE_STRINGS.hillRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.hillRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly TRIANGLE = new CurveManipulationMode( 'triangle',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty );
+    ACCESSIBLE_STRINGS.triangleRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.triangleRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly PEDESTAL = new CurveManipulationMode( 'pedestal',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty );
+    ACCESSIBLE_STRINGS.pedestalRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.pedestalRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly PARABOLA = new CurveManipulationMode( 'parabola',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty );
+    ACCESSIBLE_STRINGS.parabolaRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.parabolaRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly SINUSOID = new CurveManipulationMode( 'sinusoid',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty );
+    ACCESSIBLE_STRINGS.sinusoidRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.sinusoidRadioButton.accessibleHelpTextStringProperty );
 
   public static readonly FREEFORM = new CurveManipulationMode( 'freeform',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty,
+    ACCESSIBLE_STRINGS.freeformRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.freeformRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly TILT = new CurveManipulationMode( 'tilt',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty,
+    ACCESSIBLE_STRINGS.tiltRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.tiltRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly SHIFT = new CurveManipulationMode( 'shift',
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.shapesRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty,
+    ACCESSIBLE_STRINGS.shiftRadioButton.accessibleNameStringProperty,
+    ACCESSIBLE_STRINGS.shiftRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly enumeration = new Enumeration( CurveManipulationMode );
