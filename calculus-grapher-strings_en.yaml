@@ -132,7 +132,10 @@ a11y:
 
   slopeOfTangentAccordionBox:
     accessibleHelpTextCollapsed: Explore slope of line tangent to f at {$variable} coordinate of Tangent tool.
-    accessibleParagraph:         At {$variable} equals {$x}, slope of line tangent to f is {$derivativeValue}.
+    accessibleParagraph:
+      zero:     At {$variable} equals {$x}, slope of line tangent to f is zero.
+      positive: At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteValue}.
+      negative: At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteValue}.
 
   netSignedAreaAccordionBox:
     accessibleHelpTextCollapsed: Explore net signed area under f curve between {$variable} equals 0 and current {$variable} coordinate of Area Under Curve tool.

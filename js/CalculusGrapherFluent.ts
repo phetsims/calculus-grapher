@@ -82,7 +82,9 @@ addToMapIfDefined( 'a11y_headings_curveManipulationSettingsAndControls', 'a11y.h
 addToMapIfDefined( 'a11y_headings_explorationToolControls', 'a11y.headings.explorationToolControlsStringProperty' );
 addToMapIfDefined( 'a11y_headings_explorationTools', 'a11y.headings.explorationToolsStringProperty' );
 addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleHelpTextCollapsed', 'a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty' );
-addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph', 'a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty' );
+addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_zero', 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.zeroStringProperty' );
+addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_positive', 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.positiveStringProperty' );
+addToMapIfDefined( 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_negative', 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.negativeStringProperty' );
 addToMapIfDefined( 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' );
 addToMapIfDefined( 'a11y_netSignedAreaAccordionBox_accessibleParagraph_zero', 'a11y.netSignedAreaAccordionBox.accessibleParagraph.zeroStringProperty' );
 addToMapIfDefined( 'a11y_netSignedAreaAccordionBox_accessibleParagraph_positive', 'a11y.netSignedAreaAccordionBox.accessibleParagraph.positiveStringProperty' );
@@ -413,7 +415,11 @@ const CalculusGrapherFluent = {
     _comment_8: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"slopeOfTangentAccordionBox"} ),
     slopeOfTangentAccordionBox: {
       accessibleHelpTextCollapsed: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleHelpTextCollapsed', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsedStringProperty' ), [{"name":"variable"}] ),
-      accessibleParagraph: new FluentPattern<{ derivativeValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleParagraph', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleParagraphStringProperty' ), [{"name":"derivativeValue"},{"name":"variable"},{"name":"x"}] )
+      accessibleParagraph: {
+        zero: new FluentPattern<{ variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_zero', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.zeroStringProperty' ), [{"name":"variable"},{"name":"x"}] ),
+        positive: new FluentPattern<{ absoluteValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_positive', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.positiveStringProperty' ), [{"name":"absoluteValue"},{"name":"variable"},{"name":"x"}] ),
+        negative: new FluentPattern<{ absoluteValue: FluentVariable, variable: FluentVariable, x: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_slopeOfTangentAccordionBox_accessibleParagraph_negative', _.get( CalculusGrapherStrings, 'a11y.slopeOfTangentAccordionBox.accessibleParagraph.negativeStringProperty' ), [{"name":"absoluteValue"},{"name":"variable"},{"name":"x"}] )
+      }
     },
     netSignedAreaAccordionBox: {
       accessibleHelpTextCollapsed: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_netSignedAreaAccordionBox_accessibleHelpTextCollapsed', _.get( CalculusGrapherStrings, 'a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsedStringProperty' ), [{"name":"variable"}] ),

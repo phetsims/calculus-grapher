@@ -204,7 +204,15 @@
         "value": "Explore slope of line tangent to f at {$variable} coordinate of Tangent tool."
       },
       "accessibleParagraph": {
-        "value": "At {$variable} equals {$x}, slope of line tangent to f is {$derivativeValue}."
+        "zero": {
+          "value": "At {$variable} equals {$x}, slope of line tangent to f is zero."
+        },
+        "positive": {
+          "value": "At {$variable} equals {$x}, slope of line tangent to f is positive {$absoluteValue}."
+        },
+        "negative": {
+          "value": "At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteValue}."
+        }
       }
     },
     "netSignedAreaAccordionBox": {

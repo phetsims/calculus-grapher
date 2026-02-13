@@ -58,29 +58,33 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       } ),
       contentAccessibleParagraph: DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
         () => {
+          const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
+          const integralPoint = areaUnderCurveScrubber.integralCurvePointProperty.value;
+          const x = toFixed( integralPoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+          const y = toFixedNumber( integralPoint.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
+
           let string: string;
-          const integralValue = toFixedNumber( areaUnderCurveScrubber.integralCurvePointProperty.value.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
-          if ( integralValue === 0 ) {
+          if ( y === 0 ) {
             // zero
             string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.format( {
-              variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-              x: toFixed( areaUnderCurveScrubber.integralCurvePointProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+              variable: variable,
+              x: x
             } );
           }
-          else if ( integralValue > 0 ) {
+          else if ( y > 0 ) {
             // positive
             string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.format( {
-              absoluteValue: Math.abs( integralValue ),
-              variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-              x: toFixed( areaUnderCurveScrubber.integralCurvePointProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+              absoluteValue: Math.abs( y ),
+              variable: variable,
+              x: x
             } );
           }
           else {
             // negative
             string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.format( {
-              absoluteValue: Math.abs( integralValue ),
-              variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-              x: toFixed( areaUnderCurveScrubber.integralCurvePointProperty.value.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
+              absoluteValue: Math.abs( y ),
+              variable: variable,
+              x: x
             } );
           }
           return string;

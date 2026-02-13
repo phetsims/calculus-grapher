@@ -9,7 +9,9 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -30,6 +32,15 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       providedOptions: SlopeOfTangentAccordionBoxOptions ) {
 
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
+    const accessibleParagraphDependencies = _.uniq( [
+      ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.zero.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.positive.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.negative.getDependentProperties(),
+      tangentScrubber.derivativeCurvePointProperty,
+      CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    ] );
+
     const options = optionize<SlopeOfTangentAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
@@ -41,12 +52,39 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      contentAccessibleParagraph: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.createProperty( {
-        derivativeValue: new DerivedProperty( [ tangentScrubber.derivativeCurvePointProperty ],
-          derivativeCurvePoint => toFixedNumber( derivativeCurvePoint.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS ) ),
-        variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-        x: new DerivedProperty( [ tangentScrubber.xProperty ], x => toFixedNumber( x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS ) )
-      } )
+      contentAccessibleParagraph: DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
+        () => {
+          const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
+          const derivativePoint = tangentScrubber.derivativeCurvePointProperty.value;
+          const x = toFixed( derivativePoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+          const y = toFixedNumber( derivativePoint.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
+
+          let string: string;
+          if ( y === 0 ) {
+            // zero
+            string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.zero.format( {
+              variable: variable,
+              x: x
+            } );
+          }
+          else if ( y > 0 ) {
+            // positive
+            string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.positive.format( {
+              absoluteValue: Math.abs( y ),
+              variable: variable,
+              x: x
+            } );
+          }
+          else {
+            // negative
+            string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.negative.format( {
+              absoluteValue: Math.abs( y ),
+              variable: variable,
+              x: x
+            } );
+          }
+          return string;
+        } )
     }, providedOptions );
 
     super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherFluent.barometer.slopeOfTangentStringProperty,
