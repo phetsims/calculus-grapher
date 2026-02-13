@@ -881,7 +881,7 @@
         "value": "Area Under Curve Tool"
       },
       "accessibleHelpText": {
-        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between\ncumulative net signed area under f from left and coordinates of dot on integral curve. Area is\nbounded by {$variable} axis and f curve. Vertical line passes through all graphs at same\n{$variable} value. Information provides current {$variable} value, y coordinate of dot on\nintegral curve, and total net signed area under f curve."
+        "value": "Move vertical line horizontally to change {$variable} value and explore relationship between\ncumulative net signed area under f up to current {$variable} value. Shaded area is bounded by\n{$variable} axis and f curve. Vertical line passes through all graphs at same {$variable} value.\nInformation provides current {$variable} value, value of integral up to {$variable}, and\nnet signed area under f curve."
       },
       "accessibleObjectResponse": {
         "pattern": {
