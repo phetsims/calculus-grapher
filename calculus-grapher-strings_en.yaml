@@ -151,7 +151,7 @@ a11y:
     accessibleName:     Smooth
     accessibleHelpText: Smooth sharp corners and discontinuities on curve in Primary Graph Area.
     accessibleContextResponse:
-      allCurves:    All curves smoothed.
+      allCurves:    f and derived curves smoothed.
       predictCurve: Prediction curve only smoothed.
 
   eraserButton:
@@ -317,7 +317,7 @@ a11y:
       accessibleHelpText: Add up to 3 and a half periods to curve.
     freeformRadioButton:
       accessibleName:     Freeform
-      accessibleHelpText: Freely draw curve with discontinuities likely.
+      accessibleHelpText: Freely draw curve. Discontinuities likely.
     tiltRadioButton:
       accessibleName:     Tilt
       accessibleHelpText: Tilt curve diagonally while pinned at left edge of horizontal axis.

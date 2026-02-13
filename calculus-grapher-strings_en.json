@@ -232,7 +232,7 @@
       },
       "accessibleContextResponse": {
         "allCurves": {
-          "value": "All curves smoothed."
+          "value": "f and derived curves smoothed."
         },
         "predictCurve": {
           "value": "Prediction curve only smoothed."
@@ -588,7 +588,7 @@
           "value": "Freeform"
         },
         "accessibleHelpText": {
-          "value": "Freely draw curve with discontinuities likely."
+          "value": "Freely draw curve. Discontinuities likely."
         }
       },
       "tiltRadioButton": {
