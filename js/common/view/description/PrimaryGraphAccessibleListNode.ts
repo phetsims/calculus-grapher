@@ -12,13 +12,14 @@ import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
-import TransformedCurve from '../../model/TransformedCurve.js';
+import OriginalCurve from '../../model/OriginalCurve.js';
+import PredictCurve from '../../model/PredictCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
 export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListNode {
 
-  public constructor( originalCurve: TransformedCurve,
-                      predictCurve: TransformedCurve,
+  public constructor( originalCurve: OriginalCurve,
+                      predictCurve: PredictCurve,
                       originalCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
@@ -38,7 +39,7 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
    * Gets the bullet list item that describes the primary curve.
    */
   private static getPrimaryCurveListItem(
-    originalCurve: TransformedCurve,
+    originalCurve: OriginalCurve,
     originalCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
@@ -94,7 +95,7 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
   /**
    * Gets the bullet list item that describes the predict curve.
    */
-  private static getPredictCurveListItem( predictCurve: TransformedCurve,
+  private static getPredictCurveListItem( predictCurve: PredictCurve,
                                           predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
                                           predictEnabledProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 

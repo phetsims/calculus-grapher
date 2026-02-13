@@ -32,6 +32,8 @@ import GraphType from './GraphType.js';
 import IntegralCurve from './IntegralCurve.js';
 import LabeledLine from './LabeledLine.js';
 import LabeledPoint from './LabeledPoint.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
 import ReferenceLine from './ReferenceLine.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 import TransformedCurve from './TransformedCurve.js';
@@ -81,13 +83,13 @@ export default class CalculusGrapherModel implements TModel {
   // The curve that appears as f(x) or f(t), depending on the 'Variable' preference setting.
   // The user can manipulate this curve by clicking of click-dragging in the graph.
   // The decision to call it the 'original' curve is documented in https://github.com/phetsims/calculus-grapher/issues/119
-  public readonly originalCurve: TransformedCurve;
+  public readonly originalCurve: OriginalCurve;
 
   // The curve that appears when the user has turned on the 'Predict' preference setting, and has selected the
   // Predict radio button that appears in the control panel. This curve can also be manipulated by the user.
   // Its purpose is to facilitate predicting what originalCurve looks like, based on seeing one or more of the
   // derived curves.
-  public readonly predictCurve: TransformedCurve;
+  public readonly predictCurve: PredictCurve;
 
   // These curves are derived, not manipulated by the user.
   public readonly derivativeCurve: DerivativeCurve;
@@ -168,17 +170,9 @@ export default class CalculusGrapherModel implements TModel {
 
     const curvesTandem = options.tandem.createTandem( 'curves' );
 
-    this.originalCurve = new TransformedCurve( {
-      // OriginalCurve is always instrumented, because it should always be present.
-      tandem: curvesTandem.createTandem( 'originalCurve' ),
-      phetioDocumentation: 'The curve that corresponds to the original function, f(x) or f(t)'
-    } );
+    this.originalCurve = new OriginalCurve( curvesTandem.createTandem( 'originalCurve' ) );
 
-    this.predictCurve = new TransformedCurve( {
-      // PredictCurve is always instrumented, because it should always be present.
-      tandem: curvesTandem.createTandem( 'predictCurve' ),
-      phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the original function'
-    } );
+    this.predictCurve = new PredictCurve( curvesTandem.createTandem( 'predictCurve' ) );
 
     this.interactiveCurveProperty = new DerivedProperty( [ this.predictEnabledProperty ],
       predictEnabled => predictEnabled ? this.predictCurve : this.originalCurve

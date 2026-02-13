@@ -1,0 +1,23 @@
+// Copyright 2026, University of Colorado Boulder
+
+/**
+ * OriginalCurve is the f curve. This class is provided mainly for type checking.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
+ */
+
+import Tandem from '../../../../tandem/js/Tandem.js';
+import calculusGrapher from '../../calculusGrapher.js';
+import TransformedCurve from './TransformedCurve.js';
+
+export default class OriginalCurve extends TransformedCurve {
+
+  public constructor( tandem: Tandem ) {
+    super( {
+      tandem: tandem,
+      phetioDocumentation: 'The curve that corresponds to the original function, f(x) or f(t)'
+    } );
+  }
+}
+
+calculusGrapher.register( 'OriginalCurve', OriginalCurve );
