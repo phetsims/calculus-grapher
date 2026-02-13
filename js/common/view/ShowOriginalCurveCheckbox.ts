@@ -80,7 +80,7 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
       yMargin: POINTER_AREA_DILATION,
       rectangleOptions: {
         cornerRadius: 2,
-        fill: CalculusGrapherColors.originalChartBackgroundFillProperty
+        fill: CalculusGrapherColors.primaryGraphBackgroundFillProperty
       },
       visibleProperty: DerivedProperty.and( [ predictEnabledProperty, CalculusGrapherPreferences.hasShowOriginalCurveCheckboxProperty ], {
         tandem: tandem.createTandem( 'visibleProperty' ),

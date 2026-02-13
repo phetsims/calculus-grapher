@@ -122,8 +122,8 @@ export default class OriginalGraphNode extends GraphNode {
       // In addition to fill and stroke, make the chartRectangle interactive for accessibility.
       chartRectangleOptions: {
         cursor: 'pointer', // Press anywhere in the chartRectangle manipulate curve.
-        fill: CalculusGrapherColors.originalChartBackgroundFillProperty,
-        stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
+        fill: CalculusGrapherColors.primaryGraphBackgroundFillProperty,
+        stroke: CalculusGrapherColors.primaryGraphBackgroundStrokeProperty
       },
       accessibleHeading: CalculusGrapherFluent.a11y.graphArea.primary.accessibleHeadingStringProperty,
       curveVisibilityToggleButtonOptions: {
@@ -269,7 +269,7 @@ export default class OriginalGraphNode extends GraphNode {
       fill: new DerivedProperty( [
         predictEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
-        CalculusGrapherColors.originalCurveStrokeProperty
+        CalculusGrapherColors.primaryCurveStrokeProperty
       ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
         predictEnabled ? predictCurveStroke : originalCurveStroke )
     } );

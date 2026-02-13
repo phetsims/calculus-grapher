@@ -62,7 +62,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
         new LabeledPoint( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
           label: label,
-          pointColor: CalculusGrapherColors.originalCurveStrokeProperty.value,
+          pointColor: CalculusGrapherColors.primaryCurveStrokeProperty.value,
           tandem: parentTandem.createTandem( `${label}Point` )
         } ) );
   }

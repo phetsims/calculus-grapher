@@ -173,7 +173,7 @@ export default class CalculusGrapherScreenIconFactory {
       .lineTo( triangleWidth / 2, -triangleHeight )
       .lineTo( triangleWidth, 0 );
     const originalCurveNode = new Path( triangleShape, {
-      stroke: CalculusGrapherColors.originalCurveStrokeProperty,
+      stroke: CalculusGrapherColors.primaryCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 
@@ -230,7 +230,7 @@ export default class CalculusGrapherScreenIconFactory {
     } );
 
     const originalCurveNode = new Path( createOriginalShape(), {
-      stroke: CalculusGrapherColors.originalCurveStrokeProperty,
+      stroke: CalculusGrapherColors.primaryCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
 

@@ -189,7 +189,7 @@ export default class CalculusGrapherModel implements TModel {
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
 
-    this.originalCurveManipulator = new CurveManipulator( CalculusGrapherColors.originalCurveStrokeProperty, {
+    this.originalCurveManipulator = new CurveManipulator( CalculusGrapherColors.primaryCurveStrokeProperty, {
       tandem: this.toolsTandem.createTandem( 'originalCurveManipulator' ),
       phetioDocumentation: 'Manipulator for the original curve.'
     } );

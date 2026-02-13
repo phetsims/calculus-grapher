@@ -154,8 +154,8 @@ export default class GraphNode extends Node {
       // SelfOptions
       createCurveNode: true,
       chartRectangleOptions: {
-        fill: CalculusGrapherColors.defaultChartBackgroundFillProperty,
-        stroke: CalculusGrapherColors.defaultChartBackgroundStrokeProperty
+        fill: CalculusGrapherColors.defaultGraphBackgroundFillProperty,
+        stroke: CalculusGrapherColors.defaultGraphBackgroundStrokeProperty
       },
 
       // NodeOptions

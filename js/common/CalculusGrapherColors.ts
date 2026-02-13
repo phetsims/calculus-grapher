@@ -40,23 +40,23 @@ export default class CalculusGrapherColors {
     default: 'white'
   } );
 
-  // Fill for the background of the original Graph
-  public static readonly originalChartBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundFill', {
+  // Fill for the background of the Primary Graph
+  public static readonly primaryGraphBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'primaryGraphBackgroundFill', {
     default: 'white'
   } );
 
-  // Stroke for the background of Original Graph
-  public static readonly originalChartBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'originalChartBackgroundStroke', {
+  // Stroke for the background of Primary Graph
+  public static readonly primaryGraphBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'primaryGraphBackgroundStroke', {
     default: 'black'
   } );
 
   // Fill for the background of all Graphs (besides Original)
-  public static readonly defaultChartBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundFill', {
+  public static readonly defaultGraphBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'defaultGraphBackgroundFill', {
     default: SCREEN_BACKGROUND_COLOR
   } );
 
   // Stroke for the background of all Graphs (besides Original)
-  public static readonly defaultChartBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'defaultChartBackgroundStroke', {
+  public static readonly defaultGraphBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'defaultGraphBackgroundStroke', {
     default: 'rgba( 0, 0, 0, 0.4 )'
   } );
 
@@ -70,11 +70,11 @@ export default class CalculusGrapherColors {
     default: Color.grayColor( 230 )
   } );
 
-  // Stroke for the original curve
-  public static readonly originalCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'originalCurveStroke', {
+  // Stroke for the primary curve
+  public static readonly primaryCurveStrokeProperty = new ProfileColorProperty( calculusGrapher, 'primaryCurveStroke', {
     default: Color.BLUE
   }, {
-    tandem: tandem.createTandem( 'originalCurveStrokeProperty' )
+    tandem: tandem.createTandem( 'primaryCurveStrokeProperty' )
   } );
 
   // Stroke for the predict curve
@@ -123,12 +123,12 @@ export default class CalculusGrapherColors {
       phetioDocumentation: 'Color for negative area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
     } );
 
-  // fill for the cueing arrows on the original graph
+  // fill for the cueing arrows on the primary graph
   public static readonly cueingArrowsFillProperty = new ProfileColorProperty( calculusGrapher, 'cueingArrowsFill', {
     default: Color.ORANGE
   } );
 
-  // fill for the cueing arrows on the original graph
+  // fill for the cueing arrows on the primary graph
   public static readonly cueingArrowsStrokeProperty = new ProfileColorProperty( calculusGrapher, 'cueingArrowsStroke', {
     default: 'rgb( 100, 100, 100 )'
   } );

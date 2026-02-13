@@ -26,7 +26,7 @@ export default class CurveManipulationControls extends VBox {
     const curveManipulationStrokeProperty = new DerivedProperty( [
         predictEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
-        CalculusGrapherColors.originalCurveStrokeProperty
+        CalculusGrapherColors.primaryCurveStrokeProperty
       ],
       ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
         predictEnabled ? predictCurveStroke : originalCurveStroke );
