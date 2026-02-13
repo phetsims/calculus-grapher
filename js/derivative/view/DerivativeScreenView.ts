@@ -51,8 +51,8 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     // Center slopeOfTangentAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
     Multilink.multilink( [ this.graphsNode.boundsProperty, slopeOfTangentAccordionBox.boundsProperty ],
       () => {
-        const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
-        slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
+        const toggleButtonLeft = this.graphsNode.x + this.graphsNode.getCurveVisibilityToggleButtonXOffset();
+        slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( toggleButtonLeft - this.layoutBounds.left ) / 2;
         slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
       } );
 

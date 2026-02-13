@@ -52,8 +52,8 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     // Center netSignedAreaAccordionBox in the negative space to the left of graphNode, top-aligned with graphNode.y.
     Multilink.multilink( [ this.graphsNode.boundsProperty, netSignedAreaAccordionBox.boundsProperty ],
       () => {
-        const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
-        netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
+        const toggleButtonLeft = this.graphsNode.x + this.graphsNode.getCurveVisibilityToggleButtonXOffset();
+        netSignedAreaAccordionBox.centerX = this.layoutBounds.left + ( toggleButtonLeft - this.layoutBounds.left ) / 2;
         netSignedAreaAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
       } );
 

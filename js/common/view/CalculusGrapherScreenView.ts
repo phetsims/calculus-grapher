@@ -126,8 +126,8 @@ export default class CalculusGrapherScreenView extends ScreenView {
       // dynamically so that GraphSetsAnimation doesn't cause tiny shifts in y.
       graphSetRadioButtonGroup.centerY = this.graphsNode.centerY;
       this.graphsNode.boundsProperty.link( () => {
-        const eyeToggleButtonLeft = this.graphsNode.x + this.graphsNode.getEyeToggleButtonXOffset();
-        graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( eyeToggleButtonLeft - this.layoutBounds.left ) / 2;
+        const toggleButtonLeft = this.graphsNode.x + this.graphsNode.getCurveVisibilityToggleButtonXOffset();
+        graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( toggleButtonLeft - this.layoutBounds.left ) / 2;
       } );
     }
 

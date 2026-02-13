@@ -35,7 +35,7 @@ export default class IntegralGraphNode extends GraphNode {
 
     const options = optionize<IntegralGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.graphArea.integral.accessibleHeadingStringProperty,
-      eyeToggleButtonOptions: {
+      curveVisibilityToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOn.integralStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOff.integralStringProperty
       },
@@ -64,7 +64,7 @@ export default class IntegralGraphNode extends GraphNode {
     this.pdomOrder = [
       accessibleListNode,
       this.yZoomButtonGroup,
-      this.eyeToggleButton
+      this.curveVisibilityToggleButton
     ];
   }
 }

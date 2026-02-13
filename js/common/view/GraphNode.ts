@@ -38,7 +38,6 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -102,8 +101,8 @@ type SelfOptions = {
   // Label that appears in the upper-left corner of the graph. Doubles as the graph name and the label for the vertical axis.
   labelNode?: Node;
 
-  // Propagated to eyeToggleButton.
-  eyeToggleButtonOptions?: PickRequired<EyeToggleButtonOptions, 'accessibleNameOn' | 'accessibleNameOff'>;
+  // Propagated to curveVisibilityToggleButton.
+  curveVisibilityToggleButtonOptions?: StrictOmit<CurveVisibilityToggleButtonOptions, 'tandem'>;
 
   // Propagated to yZoomButtonGroup.
   yZoomButtonGroupOptions?: PickRequired<YZoomButtonGroupOptions, 'zoomInButtonOptions' | 'zoomOutButtonOptions'>;
@@ -143,14 +142,14 @@ export default class GraphNode extends Node {
 
   // For setting pdomOrder in subclasses.
   protected readonly yZoomButtonGroup?: Node;
-  protected readonly eyeToggleButton: Node;
+  protected readonly curveVisibilityToggleButton: Node;
 
   protected constructor( graphType: GraphType,
                          curve: Curve,
                          gridVisibleProperty: TReadOnlyProperty<boolean>,
                          providedOptions: GraphNodeOptions ) {
 
-    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'eyeToggleButtonOptions' | 'yZoomButtonGroupOptions'>, NodeOptions>()( {
+    const options = optionize<GraphNodeOptions, StrictOmit<SelfOptions, 'labelNode' | 'curveVisibilityToggleButtonOptions' | 'yZoomButtonGroupOptions'>, NodeOptions>()( {
 
       // SelfOptions
       createCurveNode: true,
@@ -204,7 +203,7 @@ export default class GraphNode extends Node {
       phetioFeatured: true,
       phetioDocumentation: 'Controls whether the graph\'s curve layer is visible. The curve layer contains the plots ' +
                            'for any curves, optional tangent line and point, and optional area-under-curve plot and point. ' +
-                           'The value of this Property can be toggled by pressing eyeToggleButton.'
+                           'The value of this Property can be toggled by pressing curveVisibilityToggleButton.'
     } );
     this.curveLayerVisibleProperty = this._curveLayerVisibleProperty;
 
@@ -266,10 +265,10 @@ export default class GraphNode extends Node {
     } );
 
     // Create toggle button that controls the visibility of this.curveLayer.
-    this.eyeToggleButton = new CurveVisibilityToggleButton( this._curveLayerVisibleProperty,
+    this.curveVisibilityToggleButton = new CurveVisibilityToggleButton( this._curveLayerVisibleProperty,
       combineOptions<CurveVisibilityToggleButtonOptions>( {
-        tandem: options.tandem.createTandem( 'eyeToggleButton' )
-      }, options.eyeToggleButtonOptions ) );
+        tandem: options.tandem.createTandem( 'curveVisibilityToggleButton' )
+      }, options.curveVisibilityToggleButtonOptions ) );
 
     // Optional zoom buttons for the y-axis.
     if ( this.yZoomLevelProperty ) {
@@ -286,8 +285,8 @@ export default class GraphNode extends Node {
       const rightNode = ticksParentVisible ? ticksParent : this.chartRectangle;
 
       // EyeToggleButton at bottom-left of chart rectangle
-      this.eyeToggleButton.right = rightNode.left - BUTTON_SPACING;
-      this.eyeToggleButton.bottom = this.chartRectangle.bottom;
+      this.curveVisibilityToggleButton.right = rightNode.left - BUTTON_SPACING;
+      this.curveVisibilityToggleButton.bottom = this.chartRectangle.bottom;
 
       // yZoomButtonGroup at left-center of chart rectangle
       if ( this.yZoomButtonGroup ) {
@@ -326,7 +325,7 @@ export default class GraphNode extends Node {
       horizontalAxisText,
       labelNode,
       this.curveLayer,
-      this.eyeToggleButton
+      this.curveVisibilityToggleButton
     ];
     this.yZoomButtonGroup && children.push( this.yZoomButtonGroup );
     this.children = children;
@@ -380,10 +379,11 @@ export default class GraphNode extends Node {
   }
 
   /**
-   * Gets the offset of the EyeToggleButton from the left edge of the ChartRectangle. This is used for dynamic layout.
+   * Gets the offset of the CurveVisibilityToggleButton from the left edge of the ChartRectangle.
+   * This is used for dynamic layout.
    */
-  public getEyeToggleButtonXOffset(): number {
-    return this.eyeToggleButton.x - this.x;
+  public getCurveVisibilityToggleButtonXOffset(): number {
+    return this.curveVisibilityToggleButton.x - this.x;
   }
 
   /**

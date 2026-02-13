@@ -35,7 +35,7 @@ export default class DerivativeGraphNode extends GraphNode {
 
     const options = optionize<DerivativeGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
       accessibleHeading: CalculusGrapherFluent.a11y.graphArea.derivative.accessibleHeadingStringProperty,
-      eyeToggleButtonOptions: {
+      curveVisibilityToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOn.derivativeStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOff.derivativeStringProperty
       },
@@ -64,7 +64,7 @@ export default class DerivativeGraphNode extends GraphNode {
     this.pdomOrder = [
       accessibleListNode,
       this.yZoomButtonGroup,
-      this.eyeToggleButton
+      this.curveVisibilityToggleButton
     ];
   }
 }

@@ -126,7 +126,7 @@ export default class OriginalGraphNode extends GraphNode {
         stroke: CalculusGrapherColors.originalChartBackgroundStrokeProperty
       },
       accessibleHeading: CalculusGrapherFluent.a11y.graphArea.primary.accessibleHeadingStringProperty,
-      eyeToggleButtonOptions: {
+      curveVisibilityToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOn.primaryStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOff.primaryStringProperty
       }
@@ -338,7 +338,7 @@ export default class OriginalGraphNode extends GraphNode {
       this.originalCurveManipulatorNode,
       this.predictCurveManipulatorNode,
       showOriginalCurveCheckbox,
-      this.eyeToggleButton
+      this.curveVisibilityToggleButton
     ];
   }
 
