@@ -9,16 +9,18 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
+import CurvePoint from '../model/CurvePoint.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
-import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,12 +43,65 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      contentAccessibleParagraph: TangentScrubberDescriber.getSlopeOfTangentAccessibleParagraph( tangentScrubber.derivativeCurvePointProperty )
+      contentAccessibleParagraph: getContentAccessibleParagraph( tangentScrubber.derivativeCurvePointProperty )
     }, providedOptions );
 
     super( tangentScrubber.derivativeCurvePointProperty, CalculusGrapherFluent.barometer.slopeOfTangentStringProperty,
       tangentScrubber.visibleProperty, predictEnabledProperty, options );
   }
+}
+
+/**
+ * Gets the accessible paragraph that describes the content for this accordion box.
+ */
+function getContentAccessibleParagraph( derivativeCurvePointProperty: TReadOnlyProperty<CurvePoint> ): TReadOnlyProperty<string> {
+
+  // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
+  const accessibleParagraphDependencies = _.uniq( [
+
+    // Possible description strings.
+    ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.zero.getDependentProperties(),
+    ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.positive.getDependentProperties(),
+    ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.negative.getDependentProperties(),
+
+    // Values to fill in the above descriptions.
+    derivativeCurvePointProperty,
+    CalculusGrapherSymbols.accessibleVariableSymbolProperty
+  ] );
+
+  return DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
+    () => {
+      const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
+      const derivativePoint = derivativeCurvePointProperty.value;
+      const x = toFixedNumber( derivativePoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+      const y = toFixedNumber( derivativePoint.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
+
+      let string: string;
+      if ( y === 0 ) {
+        // zero
+        string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.zero.format( {
+          variable: variable,
+          x: x
+        } );
+      }
+      else if ( y > 0 ) {
+        // positive
+        string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.positive.format( {
+          absoluteSlope: Math.abs( y ),
+          variable: variable,
+          x: x
+        } );
+      }
+      else {
+        // negative
+        string = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.negative.format( {
+          absoluteSlope: Math.abs( y ),
+          variable: variable,
+          x: x
+        } );
+      }
+      return string;
+    } );
 }
 
 calculusGrapher.register( 'SlopeOfTangentAccordionBox', SlopeOfTangentAccordionBox );

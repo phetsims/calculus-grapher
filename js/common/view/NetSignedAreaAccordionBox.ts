@@ -9,7 +9,9 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -17,8 +19,8 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
+import CurvePoint from '../model/CurvePoint.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
-import AreaUnderCurveScrubberDescriber from './description/AreaUnderCurveScrubberDescriber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -45,12 +47,65 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      contentAccessibleParagraph: AreaUnderCurveScrubberDescriber.getNetSignedAreaAccessibleParagraph( areaUnderCurveScrubber.integralCurvePointProperty )
+      contentAccessibleParagraph: getContentAccessibleParagraph( areaUnderCurveScrubber.integralCurvePointProperty )
     }, providedOptions );
 
     super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherFluent.barometer.netSignedAreaStringProperty,
       areaUnderCurveScrubber.visibleProperty, predictEnabledProperty, options );
   }
+}
+
+/**
+ * Gets the accessible paragraph that describes the content for this accordion box.
+ */
+function getContentAccessibleParagraph( integralCurveProperty: TReadOnlyProperty<CurvePoint> ): TReadOnlyProperty<string> {
+
+  // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
+  const accessibleParagraphDependencies = _.uniq( [
+
+    // Possible description strings.
+    ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.getDependentProperties(),
+    ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.getDependentProperties(),
+    ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.getDependentProperties(),
+
+    // Values to fill in the above descriptions.
+    integralCurveProperty,
+    CalculusGrapherSymbols.accessibleVariableSymbolProperty
+  ] );
+
+  return DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
+    () => {
+      const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
+      const integralPoint = integralCurveProperty.value;
+      const x = toFixedNumber( integralPoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
+      const y = toFixedNumber( integralPoint.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
+
+      let string: string;
+      if ( y === 0 ) {
+        // zero
+        string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.format( {
+          variable: variable,
+          x: x
+        } );
+      }
+      else if ( y > 0 ) {
+        // positive
+        string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.format( {
+          absoluteArea: Math.abs( y ),
+          variable: variable,
+          x: x
+        } );
+      }
+      else {
+        // negative
+        string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.format( {
+          absoluteArea: Math.abs( y ),
+          variable: variable,
+          x: x
+        } );
+      }
+      return string;
+    } );
 }
 
 calculusGrapher.register( 'NetSignedAreaAccordionBox', NetSignedAreaAccordionBox );
