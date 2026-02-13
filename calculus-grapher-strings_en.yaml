@@ -168,7 +168,7 @@ a11y:
 
   showOriginalCurveCheckbox:
     accessibleName:                     Show f of {$variable}
-    accessibleHelpText:                 Show or hide f of {$variable} concurrent with prediction curve.
+    accessibleHelpText:                 Show or hide f of {$variable} concurrent with predict curve.
     accessibleContextResponseChecked:   f of {$variable} shown.
     accessibleContextResponseUnchecked: f of {$variable} hidden.
 
@@ -254,7 +254,7 @@ a11y:
     accessibleHelpText: Undo most recent curve manipulation.
     accessibleContextResponse:
       primaryCurve: Last manipulation removed from f and derived curves.
-      predictCurve: Last manipulation removed from prediction curve only.
+      predictCurve: Last manipulation removed from predict curve only.
 
   # Zooms the y-axis of a graph, and the accessibleName is specific to the graph.
   yZoomButtonGroup:
@@ -286,7 +286,7 @@ a11y:
       accessibleHelpText: Manipulate f curve in Primary Graph Area.
     predictCurveRadioButton:
       accessibleName:     Predict
-      accessibleHelpText: Manipulate prediction curve to predict graph of f based on other graphs.
+      accessibleHelpText: Manipulate predict curve to predict graph of f based on other graphs.
 
   # Select the shape to add to the curve in the primary graph area.
   shapesRadioButtonGroup:
