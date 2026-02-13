@@ -9,9 +9,7 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -20,6 +18,7 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
+import AreaUnderCurveScrubberDescriber from './description/AreaUnderCurveScrubberDescriber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -36,15 +35,6 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       [ areaUnderCurveScrubber.integralCurvePointProperty, areaUnderCurveScrubber.positiveFillProperty, areaUnderCurveScrubber.negativeFillProperty ],
       ( curvePoint, positiveFill, negativeFill ) => ( curvePoint.y > 0 ) ? positiveFill : negativeFill );
 
-    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
-    const accessibleParagraphDependencies = _.uniq( [
-      ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.getDependentProperties(),
-      areaUnderCurveScrubber.integralCurvePointProperty,
-      CalculusGrapherSymbols.accessibleVariableSymbolProperty
-    ] );
-
     const options = optionize<NetSignedAreaAccordionBoxOptions, SelfOptions, BarometerAccordionBoxOptions>()( {
 
       // BarometerAccordionBoxOptions
@@ -55,39 +45,7 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      contentAccessibleParagraph: DerivedStringProperty.deriveAny( accessibleParagraphDependencies,
-        () => {
-          const variable = CalculusGrapherSymbols.accessibleVariableSymbolProperty.value;
-          const integralPoint = areaUnderCurveScrubber.integralCurvePointProperty.value;
-          const x = toFixedNumber( integralPoint.x, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS );
-          const y = toFixedNumber( integralPoint.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS );
-
-          let string: string;
-          if ( y === 0 ) {
-            // zero
-            string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.format( {
-              variable: variable,
-              x: x
-            } );
-          }
-          else if ( y > 0 ) {
-            // positive
-            string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.format( {
-              absoluteArea: Math.abs( y ),
-              variable: variable,
-              x: x
-            } );
-          }
-          else {
-            // negative
-            string = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.format( {
-              absoluteArea: Math.abs( y ),
-              variable: variable,
-              x: x
-            } );
-          }
-          return string;
-        } )
+      contentAccessibleParagraph: AreaUnderCurveScrubberDescriber.getNetSignedAreaAccessibleParagraph( areaUnderCurveScrubber.integralCurvePointProperty )
     }, providedOptions );
 
     super( areaUnderCurveScrubber.integralCurvePointProperty, CalculusGrapherFluent.barometer.netSignedAreaStringProperty,
