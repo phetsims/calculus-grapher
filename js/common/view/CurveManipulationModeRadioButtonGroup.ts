@@ -17,19 +17,19 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
-export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationMode> {
+export default class CurveManipulationModeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationType> {
 
-  public constructor( curveManipulationModeProperty: Property<CurveManipulationMode>,
+  public constructor( curveManipulationModeProperty: Property<CurveManipulationType>,
                       curveManipulationStroke: TColor,
                       tandem: Tandem ) {
 
     const validModes = curveManipulationModeProperty.validValues!;
     affirm( validModes, 'validModes should be defined' );
 
-    const items: RectangularRadioButtonGroupItem<CurveManipulationMode>[] = validModes.map( mode => {
+    const items: RectangularRadioButtonGroupItem<CurveManipulationType>[] = validModes.map( mode => {
       return {
         value: mode,
         createNode: () => new CurveManipulationIconNode( mode, curveManipulationStroke ),

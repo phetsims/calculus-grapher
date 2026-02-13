@@ -91,7 +91,7 @@ CalculusGrapherModel - the top-level model class
 GraphType - Types for identifying the types of graphs available, and sets of those graphs. GraphSet - GraphSet is an
 ordered set of GraphType
 
-CurveManipulationMode - Enumeration of the possible 'modes' of manipulating OriginalCurve, such as Parabola, Triangle,
+CurveManipulationType - Enumeration of the possible 'modes' of manipulating OriginalCurve, such as Parabola, Triangle,
 etc. CurveManipulationProperties - Track the Curve Width and the Curve Mode CurvePoint - A point tracking the x, y and
 pointType of a curve. CurvePoint are never disposed but merely mutated. Curve - A collection of CurvePoints. Intended to
 be sub-classed
@@ -135,7 +135,7 @@ CurvePoints are updated when a user manipulates the CurvePoints through a method
 `TransformedCurve` is mainly responsible for:
 
 - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
-  affected by the CurveManipulationMode and the 'width' of the curve-manipulation.
+  affected by the CurveManipulationType and the 'width' of the curve-manipulation.
 - Implementing smoothing and undoing the curve
 - Saving the curve
 - Resetting all the points of the curve

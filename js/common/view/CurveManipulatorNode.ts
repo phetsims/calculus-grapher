@@ -20,7 +20,7 @@ import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulatorDragListener from './CurveManipulatorDragListener.js';
@@ -40,7 +40,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
 
   public constructor( curveManipulator: CurveManipulator,
                       transformedCurve: TransformedCurve,
-                      curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
+                      curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationType>,
                       curveManipulationWidthProperty: TReadOnlyProperty<number>,
                       chartTransform: ChartTransform,
                       visibleProperty: TReadOnlyProperty<boolean>,

@@ -23,8 +23,8 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
-import CurveManipulationMode from './CurveManipulationMode.js';
 import CurveManipulationProperties from './CurveManipulationProperties.js';
+import CurveManipulationType from './CurveManipulationType.js';
 import CurveManipulator from './CurveManipulator.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import GraphSet from './GraphSet.js';
@@ -48,7 +48,7 @@ type SelfOptions = {
   graphSet?: GraphSet;
 
   // Identifies the curve manipulation modes that are supported by the screen associated with this model.
-  curveManipulationModeChoices?: CurveManipulationMode[];
+  curveManipulationModeChoices?: CurveManipulationType[];
 
   // Should the model create a TangentScrubber?
   hasTangentScrubber?: boolean;
@@ -121,7 +121,7 @@ export default class CalculusGrapherModel implements TModel {
 
       // SelfOptions
       graphSet: providedOptions.graphSets[ 0 ],
-      curveManipulationModeChoices: CurveManipulationMode.enumeration.values,
+      curveManipulationModeChoices: CurveManipulationType.enumeration.values,
       hasTangentScrubber: false,
       hasAreaUnderCurveScrubber: false
     }, providedOptions );

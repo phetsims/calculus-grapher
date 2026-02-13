@@ -13,7 +13,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AreaUnderCurveScrubber from '../../common/model/AreaUnderCurveScrubber.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
-import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
+import CurveManipulationType from '../../common/model/CurveManipulationType.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -29,10 +29,10 @@ export default class IntegralModel extends CalculusGrapherModel {
 
       // CalculusGrapherModelOptions
       curveManipulationModeChoices: [
-        CurveManipulationMode.HILL,
-        CurveManipulationMode.PEDESTAL,
-        CurveManipulationMode.TILT,
-        CurveManipulationMode.SHIFT
+        CurveManipulationType.HILL,
+        CurveManipulationType.PEDESTAL,
+        CurveManipulationType.TILT,
+        CurveManipulationType.SHIFT
       ],
       hasAreaUnderCurveScrubber: true
     }, providedOptions );

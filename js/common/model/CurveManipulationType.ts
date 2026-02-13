@@ -1,9 +1,9 @@
 // Copyright 2020-2026, University of Colorado Boulder
 
 /**
- * CurveManipulationMode is an enumeration of the possible 'modes' for manipulating curves.
+ * CurveManipulationType is an enumeration of the possible ways that curves can be manipulated.
  *
- * When the user drags on a TransformedCurve, the curve is manipulated based on the current CurveManipulationMode,
+ * When the user drags on a TransformedCurve, the curve is manipulated based on the current CurveManipulationType,
  * allowing the user to create custom curves. The documentation in this file is not exhaustive and does not describe
  * the algorithms for responses to curve user-manipulation. Please also see TransformedCurve.js
  *
@@ -18,9 +18,9 @@ import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
-export default class CurveManipulationMode extends EnumerationValue {
+export default class CurveManipulationType extends EnumerationValue {
 
-  // Prefix used for tandems related to a CurveManipulationMode
+  // Prefix used for tandems related to a CurveManipulationType
   public readonly tandemPrefix: string;
 
   // For core description
@@ -31,42 +31,42 @@ export default class CurveManipulationMode extends EnumerationValue {
   public readonly hasAdjustableWidth: boolean;
 
   // Enumeration values
-  public static readonly HILL = new CurveManipulationMode( 'hill',
+  public static readonly HILL = new CurveManipulationType( 'hill',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty );
 
-  public static readonly TRIANGLE = new CurveManipulationMode( 'triangle',
+  public static readonly TRIANGLE = new CurveManipulationType( 'triangle',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty );
 
-  public static readonly PEDESTAL = new CurveManipulationMode( 'pedestal',
+  public static readonly PEDESTAL = new CurveManipulationType( 'pedestal',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty );
 
-  public static readonly PARABOLA = new CurveManipulationMode( 'parabola',
+  public static readonly PARABOLA = new CurveManipulationType( 'parabola',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty );
 
-  public static readonly SINUSOID = new CurveManipulationMode( 'sinusoid',
+  public static readonly SINUSOID = new CurveManipulationType( 'sinusoid',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty );
 
-  public static readonly FREEFORM = new CurveManipulationMode( 'freeform',
+  public static readonly FREEFORM = new CurveManipulationType( 'freeform',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty,
     false );
 
-  public static readonly TILT = new CurveManipulationMode( 'tilt',
+  public static readonly TILT = new CurveManipulationType( 'tilt',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty,
     false );
 
-  public static readonly SHIFT = new CurveManipulationMode( 'shift',
+  public static readonly SHIFT = new CurveManipulationType( 'shift',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty,
     false );
 
-  public static readonly enumeration = new Enumeration( CurveManipulationMode );
+  public static readonly enumeration = new Enumeration( CurveManipulationType );
 
   public constructor( tandemPrefix: string,
                       accessibleNameProperty: TReadOnlyProperty<string>,
@@ -80,4 +80,4 @@ export default class CurveManipulationMode extends EnumerationValue {
   }
 }
 
-calculusGrapher.register( 'CurveManipulationMode', CurveManipulationMode );
+calculusGrapher.register( 'CurveManipulationType', CurveManipulationType );

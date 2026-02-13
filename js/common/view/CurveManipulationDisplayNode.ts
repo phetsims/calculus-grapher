@@ -16,8 +16,8 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
+import CurveManipulationType from '../model/CurveManipulationType.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 import CurveNode from './CurveNode.js';
@@ -77,34 +77,34 @@ export default class CurveManipulationDisplayNode extends Node {
 
         curve.reset();
 
-        if ( mode === CurveManipulationMode.HILL ) {
+        if ( mode === CurveManipulationType.HILL ) {
           curve.hill( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationMode.TRIANGLE ) {
+        else if ( mode === CurveManipulationType.TRIANGLE ) {
           curve.triangle( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationMode.PEDESTAL ) {
+        else if ( mode === CurveManipulationType.PEDESTAL ) {
           curve.pedestal( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationMode.PARABOLA ) {
+        else if ( mode === CurveManipulationType.PARABOLA ) {
           curve.parabola( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationMode.SINUSOID ) {
+        else if ( mode === CurveManipulationType.SINUSOID ) {
           curve.sinusoid( width, xCenter, -yMax );
         }
-        else if ( mode === CurveManipulationMode.FREEFORM ) {
+        else if ( mode === CurveManipulationType.FREEFORM ) {
           CurveManipulationIconNode.freeformIconCurve( curve, 2 * yMax );
           curve.shift( 0, -yMax );
         }
-        else if ( mode === CurveManipulationMode.TILT ) {
+        else if ( mode === CurveManipulationType.TILT ) {
           curve.tilt( xMax, 2 * yMax );
           curve.shift( 0, -yMax );
         }
-        else if ( mode === CurveManipulationMode.SHIFT ) {
+        else if ( mode === CurveManipulationType.SHIFT ) {
           curve.shift( xMax, yMin );
         }
         else {

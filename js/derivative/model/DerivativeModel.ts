@@ -12,7 +12,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherModel, { CalculusGrapherModelOptions } from '../../common/model/CalculusGrapherModel.js';
-import CurveManipulationMode from '../../common/model/CurveManipulationMode.js';
+import CurveManipulationType from '../../common/model/CurveManipulationType.js';
 import TangentScrubber from '../../common/model/TangentScrubber.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -29,10 +29,10 @@ export default class DerivativeModel extends CalculusGrapherModel {
 
       // CalculusGrapherModelOptions
       curveManipulationModeChoices: [
-        CurveManipulationMode.HILL,
-        CurveManipulationMode.PEDESTAL,
-        CurveManipulationMode.TILT,
-        CurveManipulationMode.SHIFT
+        CurveManipulationType.HILL,
+        CurveManipulationType.PEDESTAL,
+        CurveManipulationType.TILT,
+        CurveManipulationType.SHIFT
       ],
       hasTangentScrubber: true
     }, providedOptions );

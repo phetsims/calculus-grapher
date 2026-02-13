@@ -18,7 +18,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CurveManipulationMode from '../model/CurveManipulationMode.js';
+import CurveManipulationType from '../model/CurveManipulationType.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 
@@ -31,13 +31,13 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
   public constructor( curveManipulatorNode: CurveManipulatorNode,
                       transformedCurve: TransformedCurve,
                       chartTransform: ChartTransform,
-                      curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationMode>,
+                      curveManipulationModeProperty: TReadOnlyProperty<CurveManipulationType>,
                       curveManipulationWidthProperty: TReadOnlyProperty<number>,
                       tandem: Tandem ) {
 
     // Variables to keep track of old model positions associated with the dragListener.
     // Set them to null as no drag event has occurred yet.
-    // These are relevant only for CurveManipulationMode.FREEFORM.
+    // These are relevant only for CurveManipulationType.FREEFORM.
     let penultimatePosition: Vector2 | null = null; // second to last position
     let antepenultimatePosition: Vector2 | null = null; // third to last position
 
@@ -53,7 +53,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       }
 
       if ( !isEventFromPDOM || curveManipulator.keyboardModeProperty.value === 'grabbed' ) {
-        if ( curveManipulationModeProperty.value === CurveManipulationMode.FREEFORM ) {
+        if ( curveManipulationModeProperty.value === CurveManipulationType.FREEFORM ) {
 
           // Do not update the curve model if the drag points in (FREEFORM mode) are too close to each another,
           // to prevent noise in the derivative (see https://github.com/phetsims/calculus-grapher/issues/297 )

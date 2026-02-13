@@ -12,7 +12,7 @@
  *   - Erasing the curve by setting points to y=0
  *   - Smoothing the curve
  *   - Implementing the response algorithms that are used when the user drags on the TransformedCurve. The response is
- *     affected by the CurveManipulationMode and the 'width' of the curve-manipulation. The algorithms for curve
+ *     affected by the CurveManipulationType and the 'width' of the curve-manipulation. The algorithms for curve
  *     manipulation response were adapted and improved from the flash implementation of Calculus Grapher. The methods
  *     associated with the various CurveManipulationModes are
  *     - HILL -> hill
@@ -49,7 +49,7 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve, { CurveOptions } from './Curve.js';
-import CurveManipulationMode from './CurveManipulationMode.js';
+import CurveManipulationType from './CurveManipulationType.js';
 import CurvePoint from './CurvePoint.js';
 
 // constants
@@ -223,39 +223,39 @@ export default class TransformedCurve extends Curve {
    * @param mode
    * @param width
    * @param position - position of the curve manipulator, in model coordinates
-   * @param [penultimatePosition] - last position, in model coordinates, relevant only for CurveManipulationMode.FREEFORM
-   * @param [antepenultimatePosition] - before last position, in model coordinates, relevant only for CurveManipulationMode.FREEFORM
+   * @param [penultimatePosition] - last position, in model coordinates, relevant only for CurveManipulationType.FREEFORM
+   * @param [antepenultimatePosition] - before last position, in model coordinates, relevant only for CurveManipulationType.FREEFORM
    */
-  public manipulateCurve( mode: CurveManipulationMode,
+  public manipulateCurve( mode: CurveManipulationType,
                           width: number,
                           position: Vector2,
                           penultimatePosition?: Vector2 | null,
                           antepenultimatePosition?: Vector2 | null ): void {
 
-    if ( mode === CurveManipulationMode.HILL ) {
+    if ( mode === CurveManipulationType.HILL ) {
       this.hill( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.TRIANGLE ) {
+    else if ( mode === CurveManipulationType.TRIANGLE ) {
       this.triangle( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.PEDESTAL ) {
+    else if ( mode === CurveManipulationType.PEDESTAL ) {
       this.pedestal( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.PARABOLA ) {
+    else if ( mode === CurveManipulationType.PARABOLA ) {
       this.parabola( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.SINUSOID ) {
+    else if ( mode === CurveManipulationType.SINUSOID ) {
       this.sinusoid( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.FREEFORM ) {
+    else if ( mode === CurveManipulationType.FREEFORM ) {
       affirm( penultimatePosition !== undefined && antepenultimatePosition !== undefined,
-        'penultimatePosition and antepenultimatePosition must be defined for CurveManipulationMode.FREEFORM' );
+        'penultimatePosition and antepenultimatePosition must be defined for CurveManipulationType.FREEFORM' );
       this.freeform( position, penultimatePosition, antepenultimatePosition );
     }
-    else if ( mode === CurveManipulationMode.TILT ) {
+    else if ( mode === CurveManipulationType.TILT ) {
       this.tilt( position.x, position.y );
     }
-    else if ( mode === CurveManipulationMode.SHIFT ) {
+    else if ( mode === CurveManipulationType.SHIFT ) {
       this.shift( position.x, position.y );
     }
     else {
@@ -267,7 +267,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the HILL CurveManipulationMode.
+   * Implements the HILL CurveManipulationType.
    * Creates a smooth, continuous, and differentiable bell-shaped curve, to the passed-in peak.
    * If you call this method, you are responsible for calling curveChangedEmitter.emit().
    */
@@ -286,7 +286,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the TRIANGLE CurveManipulationMode.
+   * Implements the TRIANGLE CurveManipulationType.
    * Creates a triangle-shaped peak that is non-differentiable where it intersects with the rest of the Curve.
    * If you call this method, you are responsible for calling curveChangedEmitter.emit().
    */
@@ -314,7 +314,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the PEDESTAL CurveManipulationMode.
+   * Implements the PEDESTAL CurveManipulationType.
    * Creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    * If you call this method, you are responsible for setting calling curveChangedEmitter.emit().
    */
@@ -362,7 +362,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the PARABOLA CurveManipulationMode.
+   * Implements the PARABOLA CurveManipulationType.
    * Creates a quadratic that is non-differentiable where it intersects with the rest of the Curve.
    * If you call this method, you are responsible for setting curveChangedEmitter.emit().
    */
@@ -387,7 +387,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the SINUSOID CurveManipulationMode.
+   * Implements the SINUSOID CurveManipulationType.
    * Creates a sinusoidal wave with a varying amplitude based on the drag-position.
    * If you call this method, you are responsible for calling curveChangedEmitter.emit().
    */
@@ -492,7 +492,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the FREEFORM CurveManipulationMode.
+   * Implements the FREEFORM CurveManipulationType.
    * Allows the user to drag Points in the Curve to any desired position to create custom but smooth shapes.
    * This method will update the curve with the new position value. It attempts to create a smooth curve
    * between position and antepenultimatePosition. The main goal of the freeform method is to create a
@@ -678,7 +678,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the TILT CurveManipulationMode.
+   * Implements the TILT CurveManipulationType.
    * Tilts the curve to the specified drag position, in model coordinates.
    * If you call this method, you are responsible for calling curveChangedEmitter.emit().
    * @param x - x-coordinate of the drag position
@@ -711,7 +711,7 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Implements the SHIFT CurveManipulationMode.
+   * Implements the SHIFT CurveManipulationType.
    * Shifts the curve to the specified drag position, in model coordinates.
    * If you call this method, you are responsible for calling curveChangedEmitter.emit().
    * @param x - x-coordinate of the drag position

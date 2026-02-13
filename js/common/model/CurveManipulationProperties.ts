@@ -3,7 +3,7 @@
 /**
  * CurveManipulationProperties is responsible for
  *  - Keeping track of the (shared) current mode associated with curves. When the user drags a TransformedCurve, the curve is
- *    manipulated based on the current CurveManipulationMode, allowing the user to create custom curves.
+ *    manipulated based on the current CurveManipulationType, allowing the user to create custom curves.
  *  - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
  *     and SINUSOID, and the value is interpreted differently for each response algorithm to curve user-manipulation.
  *
@@ -18,7 +18,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
-import CurveManipulationMode from './CurveManipulationMode.js';
+import CurveManipulationType from './CurveManipulationType.js';
 
 // Constants
 const CURVE_MANIPULATION_WIDTH_RANGE = CalculusGrapherConstants.CURVE_MANIPULATION_WIDTH_RANGE;
@@ -30,20 +30,20 @@ type CurveManipulationPropertiesOptions = SelfOptions & PickRequired<PhetioObjec
 export default class CurveManipulationProperties {
 
   // The 'mode' that user is in for manipulating curves.
-  public readonly modeProperty: EnumerationProperty<CurveManipulationMode>;
+  public readonly modeProperty: EnumerationProperty<CurveManipulationType>;
 
   // The width of the curve-manipulation. This only applies to some CurveManipulationModes
   // and the value is interpreted differently for each response algorithm to curve
   // user-manipulation.
   public readonly widthProperty: NumberProperty;
 
-  public constructor( curveManipulationModeChoices: CurveManipulationMode[],
+  public constructor( curveManipulationModeChoices: CurveManipulationType[],
                       providedOptions: CurveManipulationPropertiesOptions ) {
 
     const options = providedOptions;
 
     // Initial mode of the simulation
-    const initialMode = CurveManipulationMode.HILL;
+    const initialMode = CurveManipulationType.HILL;
 
     affirm( curveManipulationModeChoices.includes( initialMode ),
       `curveManipulationModeChoices must include initial value: ${initialMode}` );
