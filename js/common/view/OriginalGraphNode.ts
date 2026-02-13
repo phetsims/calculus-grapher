@@ -47,7 +47,7 @@ import CueingArrowsNode from './CueingArrowsNode.js';
 import CurveManipulatorKeyboardCueNode from './CurveManipulatorKeyboardCueNode.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 import CurveNode from './CurveNode.js';
-import OriginalGraphAccessibleListNode from './description/OriginalGraphAccessibleListNode.js';
+import PrimaryGraphAccessibleListNode from './description/PrimaryGraphAccessibleListNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
@@ -327,7 +327,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
 
     // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new OriginalGraphAccessibleListNode( model.originalCurve, model.predictCurve,
+    const accessibleListNode = new PrimaryGraphAccessibleListNode( model.originalCurve, model.predictCurve,
       this.originalCurveVisibleProperty, this.predictCurveVisibleProperty,
       model.predictEnabledProperty, model.gridVisibleProperty );
     this.addChild( accessibleListNode );

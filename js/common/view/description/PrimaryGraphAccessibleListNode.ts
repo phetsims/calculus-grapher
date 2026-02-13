@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * OriginalGraphAccessibleListNode is the accessible list that describes the original graph,
+ * PrimaryGraphAccessibleListNode is the accessible list that describes the original graph,
  * which is (confusingly) known as the "primary graph" for core description.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -15,7 +15,7 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import TransformedCurve from '../../model/TransformedCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-export default class OriginalGraphAccessibleListNode extends GraphAccessibleListNode {
+export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListNode {
 
   public constructor( originalCurve: TransformedCurve,
                       predictCurve: TransformedCurve,
@@ -25,8 +25,8 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      OriginalGraphAccessibleListNode.getPrimaryCurveListItem( originalCurve, originalCurveVisibleProperty ),
-      OriginalGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
+      PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( originalCurve, originalCurveVisibleProperty ),
+      PrimaryGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
       GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAccessibleListNode.getValuesListItem()
     ];
@@ -152,4 +152,4 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
   }
 }
 
-calculusGrapher.register( 'OriginalGraphAccessibleListNode', OriginalGraphAccessibleListNode );
+calculusGrapher.register( 'PrimaryGraphAccessibleListNode', PrimaryGraphAccessibleListNode );
