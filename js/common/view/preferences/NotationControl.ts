@@ -24,8 +24,6 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import GraphType from '../../model/GraphType.js';
 import GraphTypeLabelNode from '../GraphTypeLabelNode.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.notationRadioButtonGroup;
-
 export default class NotationControl extends PreferencesControl {
 
   public constructor( derivativeNotationProperty: StringUnionProperty<DerivativeNotation>, tandem: Tandem ) {
@@ -66,10 +64,10 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
           new StringUnionProperty( 'lagrange', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: 'lagrangeRadioButton',
         options: {
-          accessibleName: ACCESSIBLE_STRINGS.lagrangeRadioButton.accessibleName.createProperty( {
+          accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } ),
-          accessibleHelpText: ACCESSIBLE_STRINGS.lagrangeRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -78,10 +76,10 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
           new StringUnionProperty( 'leibniz', { validValues: DerivativeNotationValues } ), radioButtonTandem ),
         tandemName: 'leibnizRadioButton',
         options: {
-          accessibleName: ACCESSIBLE_STRINGS.leibnizRadioButton.accessibleName.createProperty( {
+          accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } ),
-          accessibleHelpText: ACCESSIBLE_STRINGS.leibnizRadioButton.accessibleHelpText.createProperty( {
+          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpText.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } )
         }
@@ -95,7 +93,7 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
       radioButtonOptions: {
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

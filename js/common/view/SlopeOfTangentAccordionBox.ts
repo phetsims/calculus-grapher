@@ -20,8 +20,6 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox;
-
 type SelfOptions = EmptySelfOptions;
 
 type SlopeOfTangentAccordionBoxOptions = SelfOptions & PickRequired<BarometerAccordionBoxOptions, 'tandem'>;
@@ -40,10 +38,10 @@ export default class SlopeOfTangentAccordionBox extends BarometerAccordionBox {
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.SLOPE_OF_TANGENT_MODEL_RANGE
       },
-      accessibleHelpTextCollapsed: ACCESSIBLE_STRINGS.accessibleHelpTextCollapsed.createProperty( {
+      accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      barNodeAccessibleParagraphStringProperty: ACCESSIBLE_STRINGS.accessibleParagraph.createProperty( {
+      barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.createProperty( {
         derivativeValue: new DerivedProperty( [ tangentScrubber.derivativeCurvePointProperty ],
           derivativeCurvePoint => toFixedNumber( derivativeCurvePoint.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS ) ),
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,

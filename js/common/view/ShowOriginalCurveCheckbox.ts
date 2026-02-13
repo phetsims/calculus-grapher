@@ -30,8 +30,6 @@ import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.showOriginalCurveCheckbox;
-
 const POINTER_AREA_DILATION = 6;
 
 export default class ShowOriginalCurveCheckbox extends BackgroundNode {
@@ -58,16 +56,16 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
         touchAreaYDilation: POINTER_AREA_DILATION,
         mouseAreaXDilation: POINTER_AREA_DILATION,
         mouseAreaYDilation: POINTER_AREA_DILATION,
-        accessibleName: ACCESSIBLE_STRINGS.accessibleName.createProperty( {
+        accessibleName: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleName.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
-        accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpText.createProperty( {
+        accessibleHelpText: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleHelpText.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
-        accessibleContextResponseChecked: ACCESSIBLE_STRINGS.accessibleContextResponseChecked.createProperty( {
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseChecked.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
-        accessibleContextResponseUnchecked: ACCESSIBLE_STRINGS.accessibleContextResponseUnchecked.createProperty( {
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseUnchecked.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
         tandem: tandem,

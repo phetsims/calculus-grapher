@@ -20,8 +20,6 @@ import CurveEraserButton from './CurveEraserButton.js';
 import SmoothButton from './SmoothButton.js';
 import UndoButton from './UndoButton.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.curveActionsButtonGroup;
-
 export default class CurvePushButtonGroup extends VBox {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
@@ -54,8 +52,8 @@ export default class CurvePushButtonGroup extends VBox {
 
     super( {
       isDisposable: false,
-      accessibleHeading: ACCESSIBLE_STRINGS.accessibleHeadingStringProperty,
-      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.curveActionsButtonGroup.accessibleHeadingStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveActionsButtonGroup.accessibleHelpTextStringProperty,
       children: children,
       spacing: 8,
       tandem: tandem

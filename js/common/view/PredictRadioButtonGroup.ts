@@ -22,8 +22,6 @@ import GraphType from '../model/GraphType.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import { LabelColorIcon } from './LabelColorIcon.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.predictRadioButtonGroup;
-
 export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup<boolean> {
 
   public constructor( predictSelectedProperty: Property<boolean>, tandem: Tandem ) {
@@ -39,10 +37,10 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.originalCurveStrokeProperty ),
         tandemName: 'originalCurveRadioButton',
         options: {
-          accessibleName: ACCESSIBLE_STRINGS.originalCurveRadioButton.accessibleName.createProperty( {
+          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } ),
-          accessibleHelpText: ACCESSIBLE_STRINGS.originalCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -57,8 +55,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         },
         tandemName: 'predictCurveRadioButton',
         options: {
-          accessibleName: ACCESSIBLE_STRINGS.predictCurveRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: ACCESSIBLE_STRINGS.predictCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty,
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -74,8 +72,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         yMargin: 10,
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
-      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }

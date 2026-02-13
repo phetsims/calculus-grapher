@@ -13,14 +13,12 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList;
-
 export default class GraphAccessibleListNode extends AccessibleListNode {
 
   protected constructor( listItems: AccessibleListItem[] ) {
 
     super( listItems, {
-      leadingParagraphStringProperty: ACCESSIBLE_LIST_STRINGS.leadingParagraphStringProperty
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList.leadingParagraphStringProperty
     } );
   }
 
@@ -29,7 +27,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
    */
   protected static getCoordinateGridListItem( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
     return {
-      stringProperty: ACCESSIBLE_LIST_STRINGS.coordinateGridShownStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList.coordinateGridShownStringProperty,
       visibleProperty: gridLinesVisibleProperty
     };
   }
@@ -39,7 +37,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
    */
   protected static getValuesListItem(): AccessibleListItem {
     return {
-      stringProperty: ACCESSIBLE_LIST_STRINGS.valuesLabeledOnAxesStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList.valuesLabeledOnAxesStringProperty,
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     };
   }

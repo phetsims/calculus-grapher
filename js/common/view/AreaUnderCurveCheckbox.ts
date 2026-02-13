@@ -21,8 +21,6 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.areaUnderCurveCheckbox;
-
 export default class AreaUnderCurveCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>,
@@ -47,10 +45,10 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         isDisposable: false,
         enabledProperty: DerivedProperty.not( predictEnabledProperty ),
-        accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
-        accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
-        accessibleContextResponseChecked: ACCESSIBLE_STRINGS.accessibleContextResponseCheckedStringProperty,
-        accessibleContextResponseUnchecked: ACCESSIBLE_STRINGS.accessibleContextResponseUncheckedStringProperty,
+        accessibleName: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleHelpTextStringProperty,
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.areaUnderCurveCheckbox.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

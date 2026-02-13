@@ -17,8 +17,6 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.undoButton;
-
 export default class UndoButton extends ReturnButton {
 
   public constructor( interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>,
@@ -30,12 +28,12 @@ export default class UndoButton extends ReturnButton {
       listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
       iconOptions: { height: 13 },
-      accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
-      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+      accessibleName: CalculusGrapherFluent.a11y.undoButton.accessibleNameStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
         predictEnabledProperty,
-        ACCESSIBLE_STRINGS.accessibleContextResponse.predictCurveStringProperty,
-        ACCESSIBLE_STRINGS.accessibleContextResponse.primaryCurveStringProperty
+        CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.predictCurveStringProperty,
+        CalculusGrapherFluent.a11y.undoButton.accessibleContextResponse.primaryCurveStringProperty
       ], ( predictEnabled, accessibleContextResponsePredictCurve, accessibleContextResponsePrimaryCurve ) =>
         predictEnabled ? accessibleContextResponsePredictCurve : accessibleContextResponsePrimaryCurve ),
       tandem: tandem

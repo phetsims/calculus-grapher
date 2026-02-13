@@ -20,8 +20,6 @@ import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
 import BarometerAccordionBox, { BarometerAccordionBoxOptions } from './BarometerAccordionBox.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.netSignedAreaAccordionBox;
-
 type SelfOptions = EmptySelfOptions;
 
 type NetSignedAreaAccordionBoxOptions = SelfOptions & PickRequired<BarometerAccordionBoxOptions, 'tandem'>;
@@ -44,10 +42,10 @@ export default class NetSignedAreaAccordionBox extends BarometerAccordionBox {
       chartTransformOptions: {
         modelYRange: CalculusGrapherConstants.NET_SIGNED_AREA_MODEL_RANGE
       },
-      accessibleHelpTextCollapsed: ACCESSIBLE_STRINGS.accessibleHelpTextCollapsed.createProperty( {
+      accessibleHelpTextCollapsed: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleHelpTextCollapsed.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      barNodeAccessibleParagraphStringProperty: ACCESSIBLE_STRINGS.accessibleParagraph.createProperty( {
+      barNodeAccessibleParagraphStringProperty: CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.createProperty( {
         integralValue: new DerivedProperty( [ areaUnderCurveScrubber.integralCurvePointProperty ],
           integralCurvePoint => toFixedNumber( integralCurvePoint.y, CalculusGrapherConstants.AREA_DESCRIPTION_DECIMALS ) ),
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty,

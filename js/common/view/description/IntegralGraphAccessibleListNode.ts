@@ -14,8 +14,6 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.integral.accessibleList;
-
 export default class IntegralGraphAccessibleListNode extends GraphAccessibleListNode {
 
   public constructor( integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
@@ -39,8 +37,8 @@ export default class IntegralGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      ...ACCESSIBLE_LIST_STRINGS.continuous.getDependentProperties(),
-      ACCESSIBLE_LIST_STRINGS.hiddenStringProperty,
+      ...CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.continuous.getDependentProperties(),
+      CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
       CalculusGrapherSymbols.accessibleVariableSymbolProperty,
@@ -51,13 +49,13 @@ export default class IntegralGraphAccessibleListNode extends GraphAccessibleList
       () => {
         let string: string;
         if ( integralCurveVisibleProperty.value ) {
-          string = ACCESSIBLE_LIST_STRINGS.continuous.format( {
+          string = CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.continuous.format( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
           } );
         }
         else {
           // Hidden
-          string = ACCESSIBLE_LIST_STRINGS.hiddenStringProperty.value;
+          string = CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.hiddenStringProperty.value;
         }
         return string;
       } );

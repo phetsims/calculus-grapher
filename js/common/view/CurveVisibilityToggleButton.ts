@@ -15,8 +15,6 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.curveVisibilityToggleButton;
-
 type SelfOptions = EmptySelfOptions;
 
 export type CurveVisibilityToggleButtonOptions = SelfOptions &
@@ -31,9 +29,9 @@ export default class CurveVisibilityToggleButton extends EyeToggleButton {
       baseColor: new DerivedProperty( [ curvesVisibleProperty ], visible => visible ? 'white' : PhetColorScheme.BUTTON_YELLOW ),
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
-      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
-      accessibleContextResponseOn: ACCESSIBLE_STRINGS.accessibleContextResponseOnStringProperty,
-      accessibleContextResponseOff: ACCESSIBLE_STRINGS.accessibleContextResponseOffStringProperty
+      accessibleHelpText: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleHelpTextStringProperty,
+      accessibleContextResponseOn: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleContextResponseOnStringProperty,
+      accessibleContextResponseOff: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleContextResponseOffStringProperty
     }, providedOptions );
 
     super( curvesVisibleProperty, options );

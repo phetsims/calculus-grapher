@@ -21,8 +21,6 @@ import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import { FunctionVariable } from '../../CalculusGrapherQueryParameters.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.variableRadioButtonGroup;
-
 export default class VariableControl extends PreferencesControl {
 
   public constructor( functionVariableProperty: StringUnionProperty<FunctionVariable>, tandem: Tandem ) {
@@ -63,7 +61,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         tandemName: 'xRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.symbol.xStringProperty,
-          accessibleHelpText: ACCESSIBLE_STRINGS.xRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.xRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -72,7 +70,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         tandemName: 'tRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.symbol.tStringProperty,
-          accessibleHelpText: ACCESSIBLE_STRINGS.tRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.tRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
@@ -84,7 +82,7 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
       radioButtonOptions: {
         phetioVisiblePropertyInstrumented: false
       },
-      accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
+      accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.accessibleHelpTextStringProperty,
       phetioVisiblePropertyInstrumented: false,
       tandem: tandem
     } );

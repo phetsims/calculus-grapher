@@ -18,8 +18,6 @@ import TangentScrubber from '../model/TangentScrubber.js';
 import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.tangentTool;
-
 type SelfOptions = EmptySelfOptions;
 
 export type TangentScrubberNodeOptions = SelfOptions &
@@ -39,8 +37,8 @@ export default class TangentScrubberNode extends ScrubberNode {
       // ScrubberNodeOptions
       handleColor: tangentScrubber.colorProperty,
       lineStroke: tangentScrubber.colorProperty,
-      handleAccessibleNameProperty: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
-      handleAccessibleHelpTextProperty: ACCESSIBLE_STRINGS.accessibleHelpText.createProperty( {
+      handleAccessibleNameProperty: CalculusGrapherFluent.a11y.tangentTool.accessibleNameStringProperty,
+      handleAccessibleHelpTextProperty: CalculusGrapherFluent.a11y.tangentTool.accessibleHelpText.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     }, providedOptions );

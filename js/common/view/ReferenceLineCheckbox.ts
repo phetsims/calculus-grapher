@@ -18,8 +18,6 @@ import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 
-const ACCESSIBLE_STRINGS = CalculusGrapherFluent.a11y.referenceLineCheckbox;
-
 export default class ReferenceLineCheckbox extends Checkbox {
 
   public constructor( scrubberVisibleProperty: Property<boolean>, tandem: Tandem ) {
@@ -41,10 +39,10 @@ export default class ReferenceLineCheckbox extends Checkbox {
     super( scrubberVisibleProperty, box, combineOptions<CheckboxOptions>(
       {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         isDisposable: false,
-        accessibleName: ACCESSIBLE_STRINGS.accessibleNameStringProperty,
-        accessibleHelpText: ACCESSIBLE_STRINGS.accessibleHelpTextStringProperty,
-        accessibleContextResponseChecked: ACCESSIBLE_STRINGS.accessibleContextResponseCheckedStringProperty,
-        accessibleContextResponseUnchecked: ACCESSIBLE_STRINGS.accessibleContextResponseUncheckedStringProperty,
+        accessibleName: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleHelpTextStringProperty,
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseCheckedStringProperty,
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.referenceLineCheckbox.accessibleContextResponseUncheckedStringProperty,
         phetioDisplayOnlyPropertyInstrumented: true,
         tandem: tandem
       } ) );

@@ -14,8 +14,6 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import DerivativeCurve from '../../model/DerivativeCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList;
-
 export default class DerivativeGraphAccessibleListNode extends GraphAccessibleListNode {
 
   public constructor( derivativeCurve: DerivativeCurve,
@@ -42,9 +40,9 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      ...ACCESSIBLE_LIST_STRINGS.discontinuousAndNotDifferentiable.getDependentProperties(),
-      ACCESSIBLE_LIST_STRINGS.continuousAndDifferentiableStringProperty,
-      ACCESSIBLE_LIST_STRINGS.hiddenStringProperty,
+      ...CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.continuousAndDifferentiableStringProperty,
+      CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
       derivativeCurve.numberOfDiscontinuitiesProperty,
@@ -58,17 +56,17 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
         if ( derivativeCurveVisibleProperty.value ) {
           const numberOfDiscontinuities = derivativeCurve.numberOfDiscontinuitiesProperty.value;
           if ( numberOfDiscontinuities === 0 ) {
-            string = ACCESSIBLE_LIST_STRINGS.continuousAndDifferentiableStringProperty.value;
+            string = CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.continuousAndDifferentiableStringProperty.value;
           }
           else {
-            string = ACCESSIBLE_LIST_STRINGS.discontinuousAndNotDifferentiable.format( {
+            string = CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.discontinuousAndNotDifferentiable.format( {
               numberOfDiscontinuities: numberOfDiscontinuities
             } );
           }
         }
         else {
           // Hidden
-          string = ACCESSIBLE_LIST_STRINGS.hiddenStringProperty.value;
+          string = CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.hiddenStringProperty.value;
         }
         return string;
       } );

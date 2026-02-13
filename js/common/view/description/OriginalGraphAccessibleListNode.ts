@@ -15,8 +15,6 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import TransformedCurve from '../../model/TransformedCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
-const ACCESSIBLE_LIST_STRINGS = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList;
-
 export default class OriginalGraphAccessibleListNode extends GraphAccessibleListNode {
 
   public constructor( originalCurve: TransformedCurve,
@@ -46,10 +44,10 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndDifferentiableStringProperty,
-      ...ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
-      ...ACCESSIBLE_LIST_STRINGS.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      ACCESSIBLE_LIST_STRINGS.primaryCurve.hiddenStringProperty,
+      CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty,
+      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
       originalCurve.numberOfDiscontinuitiesProperty,
@@ -66,15 +64,15 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
           const numberOfCusps = originalCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndDifferentiableStringProperty.value;
+            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty.value;
           }
           else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
-            string = ACCESSIBLE_LIST_STRINGS.primaryCurve.continuousAndNotDifferentiable.format( {
+            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndNotDifferentiable.format( {
               numberOfCusps: numberOfCusps
             } );
           }
           else {
-            string = ACCESSIBLE_LIST_STRINGS.primaryCurve.discontinuousAndNotDifferentiable.format( {
+            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.discontinuousAndNotDifferentiable.format( {
               numberOfDiscontinuities: numberOfDiscontinuities,
               numberOfCusps: numberOfCusps
             } );
@@ -82,7 +80,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
         }
         else {
           // Hidden
-          string = ACCESSIBLE_LIST_STRINGS.primaryCurve.hiddenStringProperty.value;
+          string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.hiddenStringProperty.value;
         }
         return string;
       } );
@@ -102,10 +100,10 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Possible description strings.
-      ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndDifferentiableStringProperty,
-      ...ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
-      ...ACCESSIBLE_LIST_STRINGS.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      ACCESSIBLE_LIST_STRINGS.predictCurve.hiddenStringProperty,
+      CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.continuousAndDifferentiableStringProperty,
+      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
       predictCurve.numberOfDiscontinuitiesProperty,
@@ -124,15 +122,15 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
           const numberOfCusps = predictCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndDifferentiableStringProperty.value;
+            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.continuousAndDifferentiableStringProperty.value;
           }
           else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
-            string = ACCESSIBLE_LIST_STRINGS.predictCurve.continuousAndNotDifferentiable.format( {
+            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.continuousAndNotDifferentiable.format( {
               numberOfCusps: numberOfCusps
             } );
           }
           else {
-            string = ACCESSIBLE_LIST_STRINGS.predictCurve.discontinuousAndNotDifferentiable.format( {
+            string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.discontinuousAndNotDifferentiable.format( {
               numberOfDiscontinuities: numberOfDiscontinuities,
               numberOfCusps: numberOfCusps
             } );
@@ -140,7 +138,7 @@ export default class OriginalGraphAccessibleListNode extends GraphAccessibleList
         }
         else {
           // Hidden
-          string = ACCESSIBLE_LIST_STRINGS.predictCurve.hiddenStringProperty.value;
+          string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.hiddenStringProperty.value;
         }
         return string;
       } );
