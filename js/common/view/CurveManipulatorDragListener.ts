@@ -22,7 +22,7 @@ import CurveManipulationType from '../model/CurveManipulationType.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 
-// Minimum x distance between drag points when drawing in FREEFORM mode.
+// Minimum x distance between drag points when drawing with FREEFORM.
 // See https://github.com/phetsims/calculus-grapher/issues/297
 const FREEFORM_MIN_DX = 0.1;
 
@@ -75,7 +75,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
             curveManipulator.positionProperty.value = modelPosition;
           }
         }
-        else { // For any mode other than FREEFORM...
+        else { // For any CurveManipulationType other than FREEFORM...
 
           // Update the curve.
           transformedCurve.manipulateCurve(

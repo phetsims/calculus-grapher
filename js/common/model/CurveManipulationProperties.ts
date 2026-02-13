@@ -2,7 +2,7 @@
 
 /**
  * CurveManipulationProperties is responsible for
- *  - Keeping track of the (shared) current mode associated with curves. When the user drags a TransformedCurve, the curve is
+ *  - Keeping track of the (shared) CurveManipulationType. When the user drags a TransformedCurve, the curve is
  *    manipulated based on the current CurveManipulationType, allowing the user to create custom curves.
  *  - Keeping track of the 'width' of the curve-manipulation. This only applies to HILL, TRIANGLE, PEDESTAL, PARABOLA,
  *     and SINUSOID, and the value is interpreted differently for each response algorithm to curve user-manipulation.
@@ -12,7 +12,6 @@
 
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -37,19 +36,13 @@ export default class CurveManipulationProperties {
   // user-manipulation.
   public readonly widthProperty: NumberProperty;
 
-  public constructor( curveManipulationModeChoices: CurveManipulationType[],
+  public constructor( curveManipulationTypeValues: CurveManipulationType[],
                       providedOptions: CurveManipulationPropertiesOptions ) {
 
     const options = providedOptions;
 
-    // Initial mode of the simulation
-    const initialMode = CurveManipulationType.HILL;
-
-    affirm( curveManipulationModeChoices.includes( initialMode ),
-      `curveManipulationModeChoices must include initial value: ${initialMode}` );
-
-    this.curveManipulationTypeProperty = new EnumerationProperty( initialMode, {
-      validValues: curveManipulationModeChoices,
+    this.curveManipulationTypeProperty = new EnumerationProperty( CurveManipulationType.HILL, {
+      validValues: curveManipulationTypeValues,
       tandem: options.tandem.createTandem( 'curveManipulationTypeProperty' ),
       phetioDocumentation: 'Determines how the curve will be modified (manipulated) when the student interacts with it. ' +
                            'Applies to the interactive (original and predict) curves only.',
@@ -60,9 +53,8 @@ export default class CurveManipulationProperties {
       range: CURVE_MANIPULATION_WIDTH_RANGE,
       tandem: options.tandem.createTandem( 'widthProperty' ),
       phetioDocumentation: 'Determines how wide the change is when modifying (manipulating) a curve.' +
-                           'Note that is not applicable to all manipulation modes. ' +
-                           'If a width slider is not shown for the selected manipulation mode, ' +
-                           'then width is irrelevant for that mode.'
+                           'Note that is not applicable to all curve manipulation types. ' +
+                           'If a width slider is not shown, then width is irrelevant.'
     } );
   }
 

@@ -29,7 +29,7 @@ export default class CurveManipulationWidthControl extends VBox {
 
     const slider = new CurveManipulationWidthSlider( curveManipulationProperties.widthProperty, {
       visibleProperty: new DerivedProperty( [ curveManipulationProperties.curveManipulationTypeProperty ],
-        mode => mode.hasAdjustableWidth ),
+        curveManipulationType => curveManipulationType.hasAdjustableWidth ),
       tandem: tandem.createTandem( 'slider' )
     } );
 

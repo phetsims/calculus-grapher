@@ -105,7 +105,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The pedestal mode creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
+   * CurveManipulationType.PEDESTAL creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
    * The rounded corners are set by a constant called edgeSlopeFactor.
    * A larger value creates a wider edge.
    * https://github.com/phetsims/calculus-grapher/issues/75
@@ -117,7 +117,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum tilting (slope) of curves relative to the horizontal. Used for Tilt in Curve Manipulation Mode
+   * The maximum tilting (slope) of curves relative to the horizontal. Used for CurveManipulationType.Tilt.
    * See https://github.com/phetsims/calculus-grapher/issues/26
    */
   maxTilt: {

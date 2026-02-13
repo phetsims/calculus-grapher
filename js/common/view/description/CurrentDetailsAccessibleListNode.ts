@@ -105,18 +105,18 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const leadingParagraphStringProperty = DerivedStringProperty.deriveAny( leadingParagraphDependencies,
       () => {
 
-        const mode = model.curveManipulationProperties.curveManipulationTypeProperty.value;
+        const curveManipulationType = model.curveManipulationProperties.curveManipulationTypeProperty.value;
 
-        if ( mode.hasAdjustableWidth ) {
+        if ( curveManipulationType.hasAdjustableWidth ) {
           return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
-            curveManipulationType: mode.accessibleNameProperty.value,
+            curveManipulationType: curveManipulationType.accessibleNameProperty.value,
             width: toFixedNumber( model.curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
             curveSentence: curvesSentenceStringProperty.value
           } );
         }
         else {
           return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.format( {
-            curveManipulationType: mode.accessibleNameProperty.value,
+            curveManipulationType: curveManipulationType.accessibleNameProperty.value,
             curveSentence: curvesSentenceStringProperty.value
           } );
         }

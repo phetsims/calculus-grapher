@@ -62,7 +62,6 @@ export default class CalculusGrapherControlPanel extends Panel {
     const predictRadioButtonGroup = new PredictRadioButtonGroup( predictSelectedProperty,
       options.tandem.createTandem( 'predictRadioButtonGroup' ) );
 
-    // create controls associated with curve manipulation (slider and display) as well as curve mode buttons
     const curveManipulationControls = new CurveManipulationControls( curveManipulationProperties,
       predictEnabledProperty, options.tandem.createTandem( 'curveManipulationControls' ) );
 

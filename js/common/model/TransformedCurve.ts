@@ -217,49 +217,49 @@ export default class TransformedCurve extends Curve {
   }
 
   /**
-   * Modifies the points based on the curveManipulationMode and selected width.
+   * Modifies the points based on the curveManipulationType and selected width.
    * Calls curveChangedEmitter.emit() to notify listeners that the curve has changed.
    *
-   * @param mode
+   * @param curveManipulationType
    * @param width
    * @param position - position of the curve manipulator, in model coordinates
    * @param [penultimatePosition] - last position, in model coordinates, relevant only for CurveManipulationType.FREEFORM
    * @param [antepenultimatePosition] - before last position, in model coordinates, relevant only for CurveManipulationType.FREEFORM
    */
-  public manipulateCurve( mode: CurveManipulationType,
+  public manipulateCurve( curveManipulationType: CurveManipulationType,
                           width: number,
                           position: Vector2,
                           penultimatePosition?: Vector2 | null,
                           antepenultimatePosition?: Vector2 | null ): void {
 
-    if ( mode === CurveManipulationType.HILL ) {
+    if ( curveManipulationType === CurveManipulationType.HILL ) {
       this.hill( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationType.TRIANGLE ) {
+    else if ( curveManipulationType === CurveManipulationType.TRIANGLE ) {
       this.triangle( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationType.PEDESTAL ) {
+    else if ( curveManipulationType === CurveManipulationType.PEDESTAL ) {
       this.pedestal( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationType.PARABOLA ) {
+    else if ( curveManipulationType === CurveManipulationType.PARABOLA ) {
       this.parabola( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationType.SINUSOID ) {
+    else if ( curveManipulationType === CurveManipulationType.SINUSOID ) {
       this.sinusoid( width, position.x, position.y );
     }
-    else if ( mode === CurveManipulationType.FREEFORM ) {
+    else if ( curveManipulationType === CurveManipulationType.FREEFORM ) {
       affirm( penultimatePosition !== undefined && antepenultimatePosition !== undefined,
         'penultimatePosition and antepenultimatePosition must be defined for CurveManipulationType.FREEFORM' );
       this.freeform( position, penultimatePosition, antepenultimatePosition );
     }
-    else if ( mode === CurveManipulationType.TILT ) {
+    else if ( curveManipulationType === CurveManipulationType.TILT ) {
       this.tilt( position.x, position.y );
     }
-    else if ( mode === CurveManipulationType.SHIFT ) {
+    else if ( curveManipulationType === CurveManipulationType.SHIFT ) {
       this.shift( position.x, position.y );
     }
     else {
-      throw new Error( `unsupported mode: ${mode}` );
+      throw new Error( `unsupported curveManipulationType: ${curveManipulationType}` );
     }
 
     // Notify that the curve has changed.
@@ -728,7 +728,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Sets the y-value of points between position1 and position2 using a linear interpolation.
-   * This method is used for FREEFORM mode.
+   * This method is used for CurveManipulationType.FREEFORM.
    */
   private interpolate( x1: number, y1: number, x2: number, y2: number ): void {
 
@@ -756,7 +756,7 @@ export default class TransformedCurve extends Curve {
 
   /**
    * Are the y-values zero (or nearly zero) for the points between xMin and xMax.
-   * This method is used for SINUSOID mode.
+   * This method is used for CurveManipulationType.SINUSOID.
    */
   private isRegionZero( xMin: number, xMax: number ): boolean {
     affirm( xMin <= xMax, 'xMin must be less than xMax' );

@@ -47,7 +47,7 @@ const ALIGN_BOX_OPTIONS = {
 
 export default class CurveManipulationIconNode extends AlignBox {
 
-  public constructor( mode: CurveManipulationType, stroke: TColor ) {
+  public constructor( curveManipulationType: CurveManipulationType, stroke: TColor ) {
 
     // Chart transform for the graph, the height and Y range will be updated later.
     const chartTransform = new ChartTransform( CHART_TRANSFORM_OPTIONS );
@@ -75,20 +75,20 @@ export default class CurveManipulationIconNode extends AlignBox {
     // For all width-related modes except SINUSOID
     const width = 0.5 * xLength;
 
-    // Create the icon for the mode.
-    if ( mode === CurveManipulationType.HILL ) {
+    // Create the icon for the curve manipulation type.
+    if ( curveManipulationType === CurveManipulationType.HILL ) {
       solidCurve.hill( width, xCenter, yMax );
     }
-    else if ( mode === CurveManipulationType.TRIANGLE ) {
+    else if ( curveManipulationType === CurveManipulationType.TRIANGLE ) {
       solidCurve.triangle( width, xCenter, yMax );
     }
-    else if ( mode === CurveManipulationType.PEDESTAL ) {
+    else if ( curveManipulationType === CurveManipulationType.PEDESTAL ) {
       solidCurve.pedestal( width, xCenter, yMax );
     }
-    else if ( mode === CurveManipulationType.PARABOLA ) {
+    else if ( curveManipulationType === CurveManipulationType.PARABOLA ) {
       solidCurve.parabola( width, xCenter, yMax );
     }
-    else if ( mode === CurveManipulationType.SINUSOID ) {
+    else if ( curveManipulationType === CurveManipulationType.SINUSOID ) {
 
       // Ad hoc variables to create sine function
       const sinusoidWidth =
@@ -97,10 +97,10 @@ export default class CurveManipulationIconNode extends AlignBox {
       solidCurve.sinusoid( sinusoidWidth, xLength / 4, y );
       solidCurve.shift( xMin, yCenter );
     }
-    else if ( mode === CurveManipulationType.FREEFORM ) {
+    else if ( curveManipulationType === CurveManipulationType.FREEFORM ) {
       CurveManipulationIconNode.freeformIconCurve( solidCurve, yMax );
     }
-    else if ( mode === CurveManipulationType.TILT ) {
+    else if ( curveManipulationType === CurveManipulationType.TILT ) {
 
       const y = 0.5 * yMax;
       solidCurve.tilt( xMax, y );
@@ -112,7 +112,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       dashedCurve.save();
       dashedCurve.shift( xMin, yCenter );
     }
-    else if ( mode === CurveManipulationType.SHIFT ) {
+    else if ( curveManipulationType === CurveManipulationType.SHIFT ) {
 
       const yOffset = 0.25 * yMax;
       solidCurve.shift( xMax, yMax - yOffset );
@@ -120,7 +120,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       dashedCurve.shift( xMax, yMin + yOffset );
     }
     else {
-      throw new Error( `unsupported mode: ${mode}` );
+      throw new Error( `unsupported curveManipulationType: ${curveManipulationType}` );
     }
 
     // Create the solid curve node.
@@ -146,7 +146,7 @@ export default class CurveManipulationIconNode extends AlignBox {
       children.push( dashedCurveNode );
     }
 
-    if ( mode === CurveManipulationType.FREEFORM ) {
+    if ( curveManipulationType === CurveManipulationType.FREEFORM ) {
 
       // Scale down in the x dimension, so that we have room to add pencil icon. This makes the stroke with a
       // little inconsistent in x vs y dimensions, but looks OK for an icon. More importantly, we want the
@@ -172,7 +172,7 @@ export default class CurveManipulationIconNode extends AlignBox {
   }
 
   /**
-   * Sets the y-values of a curve to a shape that is used in the FREEFORM mode icon and display.
+   * Sets the y-values of a curve to a shape that is used in CurveManipulationType.FREEFORM icon and display.
    * The shape of this curve was chosen such that a pencil icon could be placed at the rightmost point.
    * @param curve
    * @param yMin - the minimum y-value for the curve

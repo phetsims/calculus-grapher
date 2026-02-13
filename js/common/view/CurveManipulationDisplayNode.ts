@@ -1,7 +1,7 @@
 // Copyright 2022-2026, University of Colorado Boulder
 
 /**
- * Scenery Node that displays a representation of curve mode being manipulated by slider
+ * Scenery Node that displays a representation of CurveManipulationType being manipulated by a width slider.
  *
  * @author Martin Veillette
  */
@@ -73,42 +73,42 @@ export default class CurveManipulationDisplayNode extends Node {
 
     Multilink.multilink(
       [ curveManipulationProperties.curveManipulationTypeProperty, curveManipulationProperties.widthProperty ],
-      ( mode, width ) => {
+      ( curveManipulationType, width ) => {
 
         curve.reset();
 
-        if ( mode === CurveManipulationType.HILL ) {
+        if ( curveManipulationType === CurveManipulationType.HILL ) {
           curve.hill( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationType.TRIANGLE ) {
+        else if ( curveManipulationType === CurveManipulationType.TRIANGLE ) {
           curve.triangle( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationType.PEDESTAL ) {
+        else if ( curveManipulationType === CurveManipulationType.PEDESTAL ) {
           curve.pedestal( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationType.PARABOLA ) {
+        else if ( curveManipulationType === CurveManipulationType.PARABOLA ) {
           curve.parabola( width, xCenter, yMax );
           curve.shift( 0, -yMax / 2 );
         }
-        else if ( mode === CurveManipulationType.SINUSOID ) {
+        else if ( curveManipulationType === CurveManipulationType.SINUSOID ) {
           curve.sinusoid( width, xCenter, -yMax );
         }
-        else if ( mode === CurveManipulationType.FREEFORM ) {
+        else if ( curveManipulationType === CurveManipulationType.FREEFORM ) {
           CurveManipulationIconNode.freeformIconCurve( curve, 2 * yMax );
           curve.shift( 0, -yMax );
         }
-        else if ( mode === CurveManipulationType.TILT ) {
+        else if ( curveManipulationType === CurveManipulationType.TILT ) {
           curve.tilt( xMax, 2 * yMax );
           curve.shift( 0, -yMax );
         }
-        else if ( mode === CurveManipulationType.SHIFT ) {
+        else if ( curveManipulationType === CurveManipulationType.SHIFT ) {
           curve.shift( xMax, yMin );
         }
         else {
-          throw new Error( `unsupported mode: ${mode}` );
+          throw new Error( `unsupported curveManipulationType: ${curveManipulationType}` );
         }
 
         curve.curveChangedEmitter.emit();
