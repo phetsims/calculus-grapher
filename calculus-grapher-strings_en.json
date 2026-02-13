@@ -412,7 +412,7 @@
           "value": "f and derived curves smoothed."
         },
         "predictCurve": {
-          "value": "Prediction curve only smoothed."
+          "value": "Predict curve only smoothed."
         }
       }
     },

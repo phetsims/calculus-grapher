@@ -240,7 +240,7 @@ a11y:
     accessibleHelpText: Smooth sharp corners and discontinuities on curve in Primary Graph Area.
     accessibleContextResponse:
       allCurves:    f and derived curves smoothed.
-      predictCurve: Prediction curve only smoothed.
+      predictCurve: Predict curve only smoothed.
 
   eraserButton:
     accessibleName:     Erase Curve Manipulations
