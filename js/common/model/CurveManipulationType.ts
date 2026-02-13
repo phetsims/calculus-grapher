@@ -30,11 +30,11 @@ export default class CurveManipulationType extends EnumerationValue {
   // Determines visibility of the width slider
   public readonly hasAdjustableWidth: boolean;
 
-  // Enumeration values
   public static readonly HILL = new CurveManipulationType( 'hill',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty );
 
+  // Note: TRIANGLE is described as 'Tent' for core description.
   public static readonly TRIANGLE = new CurveManipulationType( 'triangle',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty,
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty );
