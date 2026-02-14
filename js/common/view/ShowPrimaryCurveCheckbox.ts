@@ -82,7 +82,7 @@ export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
         cornerRadius: 2,
         fill: CalculusGrapherColors.primaryGraphBackgroundFillProperty
       },
-      visibleProperty: DerivedProperty.and( [ predictEnabledProperty, CalculusGrapherPreferences.hasShowOriginalCurveCheckboxProperty ], {
+      visibleProperty: DerivedProperty.and( [ predictEnabledProperty, CalculusGrapherPreferences.hasShowPrimaryCurveCheckboxProperty ], {
         tandem: tandem.createTandem( 'visibleProperty' ),
         phetioValueType: BooleanIO
       } )

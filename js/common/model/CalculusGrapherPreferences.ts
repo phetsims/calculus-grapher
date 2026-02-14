@@ -62,8 +62,8 @@ export default class CalculusGrapherPreferences {
   } );
 
   // This preference does not have a control in the Preferences dialog. It is provided for PhET-iO clients.
-  public static readonly hasShowOriginalCurveCheckboxProperty = new BooleanProperty( CalculusGrapherQueryParameters.hasShowOriginalCurveCheckbox, {
-    tandem: Tandem.PREFERENCES.createTandem( 'hasShowOriginalCurveCheckboxProperty' ),
+  public static readonly hasShowPrimaryCurveCheckboxProperty = new BooleanProperty( CalculusGrapherQueryParameters.hasShowPrimaryCurveCheckboxProperty, {
+    tandem: Tandem.PREFERENCES.createTandem( 'hasShowPrimaryCurveCheckboxProperty' ),
     phetioFeatured: true,
     phetioDocumentation: 'Setting this to false will permanently hide the "Show f(x)" checkbox, which is ' +
                          'displayed on the f(x) graph when the Predict radio button is selected.'
