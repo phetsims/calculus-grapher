@@ -32,8 +32,8 @@ import GraphType from './GraphType.js';
 import IntegralCurve from './IntegralCurve.js';
 import LabeledLine from './LabeledLine.js';
 import LabeledPoint from './LabeledPoint.js';
-import OriginalCurve from './OriginalCurve.js';
 import PredictCurve from './PredictCurve.js';
+import PrimaryCurve from './PrimaryCurve.js';
 import ReferenceLine from './ReferenceLine.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 import TransformedCurve from './TransformedCurve.js';
@@ -84,7 +84,7 @@ export default class CalculusGrapherModel implements TModel {
   // The user can manipulate this curve by clicking of click-dragging in the graph.
   // The decision to call it 'original' curve is documented in https://github.com/phetsims/calculus-grapher/issues/119
   // The decision to rename it 'primary' curve is documented in https://github.com/phetsims/calculus-grapher/issues/378
-  public readonly primaryCurve: OriginalCurve;
+  public readonly primaryCurve: PrimaryCurve;
 
   // The curve that appears when the user has turned on the 'Predict' preference setting, and has selected the
   // Predict radio button that appears in the control panel. This curve can also be manipulated by the user.
@@ -171,7 +171,7 @@ export default class CalculusGrapherModel implements TModel {
 
     const curvesTandem = options.tandem.createTandem( 'curves' );
 
-    this.primaryCurve = new OriginalCurve( curvesTandem.createTandem( 'primaryCurve' ) );
+    this.primaryCurve = new PrimaryCurve( curvesTandem.createTandem( 'primaryCurve' ) );
 
     this.predictCurve = new PredictCurve( curvesTandem.createTandem( 'predictCurve' ) );
 

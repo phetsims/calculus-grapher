@@ -18,8 +18,8 @@ import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
-import OriginalCurve from './OriginalCurve.js';
 import PredictCurve from './PredictCurve.js';
+import PrimaryCurve from './PrimaryCurve.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -32,7 +32,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
   public readonly lineColorProperty: ColorProperty;
 
   public constructor( integralCurve: IntegralCurve,
-                      primaryCurve: OriginalCurve,
+                      primaryCurve: PrimaryCurve,
                       predictCurve: PredictCurve,
                       derivativeCurve: DerivativeCurve,
                       secondDerivativeCurve: SecondDerivativeCurve,
@@ -57,7 +57,7 @@ export default class LabeledLine extends LabeledAncillaryTool {
    */
   public static createLabeledLines( numberOfTools: number,
                                     integralCurve: IntegralCurve,
-                                    primaryCurve: OriginalCurve,
+                                    primaryCurve: PrimaryCurve,
                                     predictCurve: PredictCurve,
                                     derivativeCurve: DerivativeCurve,
                                     secondDerivativeCurve: SecondDerivativeCurve,

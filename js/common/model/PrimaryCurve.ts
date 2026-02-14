@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * OriginalCurve is the f curve. This class is provided mainly for type checking.
+ * PrimaryCurve is the f curve. This class is provided mainly for type checking.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -10,7 +10,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurve from './TransformedCurve.js';
 
-export default class OriginalCurve extends TransformedCurve {
+export default class PrimaryCurve extends TransformedCurve {
 
   public constructor( tandem: Tandem ) {
     super( {
@@ -20,4 +20,4 @@ export default class OriginalCurve extends TransformedCurve {
   }
 }
 
-calculusGrapher.register( 'OriginalCurve', OriginalCurve );
+calculusGrapher.register( 'PrimaryCurve', PrimaryCurve );

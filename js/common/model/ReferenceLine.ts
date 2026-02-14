@@ -15,8 +15,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
-import OriginalCurve from './OriginalCurve.js';
 import PredictCurve from './PredictCurve.js';
+import PrimaryCurve from './PrimaryCurve.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 export default class ReferenceLine extends AncillaryTool {
@@ -28,7 +28,7 @@ export default class ReferenceLine extends AncillaryTool {
   public readonly lineColorProperty: ProfileColorProperty;
 
   public constructor( integralCurve: IntegralCurve,
-                      primaryCurve: OriginalCurve,
+                      primaryCurve: PrimaryCurve,
                       predictedCurve: PredictCurve,
                       derivativeCurve: DerivativeCurve,
                       secondDerivativeCurve: SecondDerivativeCurve,

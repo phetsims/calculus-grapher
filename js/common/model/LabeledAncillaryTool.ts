@@ -16,8 +16,8 @@ import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
-import OriginalCurve from './OriginalCurve.js';
 import PredictCurve from './PredictCurve.js';
+import PrimaryCurve from './PrimaryCurve.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = {
@@ -33,7 +33,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
 
   protected constructor(
     integralCurve: IntegralCurve,
-    primaryCurve: OriginalCurve,
+    primaryCurve: PrimaryCurve,
     predictCurve: PredictCurve,
     derivativeCurve: DerivativeCurve,
     secondDerivativeCurve: SecondDerivativeCurve,

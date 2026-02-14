@@ -16,18 +16,18 @@
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
-import OriginalCurve from './OriginalCurve.js';
+import PrimaryCurve from './PrimaryCurve.js';
 
 export default class SecondDerivativeCurve extends Curve {
 
   // Reference to the primaryCurve that was passed-in.
-  private readonly primaryCurve: OriginalCurve;
+  private readonly primaryCurve: PrimaryCurve;
 
   /**
    * @param primaryCurve - the curve to differentiate to get the values of this SecondDerivative
    * @param tandem
    */
-  public constructor( primaryCurve: OriginalCurve, tandem: Tandem ) {
+  public constructor( primaryCurve: PrimaryCurve, tandem: Tandem ) {
 
     super( {
 

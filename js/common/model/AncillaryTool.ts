@@ -31,8 +31,8 @@ import Curve from './Curve.js';
 import CurvePoint from './CurvePoint.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
-import OriginalCurve from './OriginalCurve.js';
 import PredictCurve from './PredictCurve.js';
+import PrimaryCurve from './PrimaryCurve.js';
 import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = {
@@ -77,7 +77,7 @@ export default class AncillaryTool extends PhetioObject {
   private readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
 
   protected constructor( integralCurve: IntegralCurve,
-                         primaryCurve: OriginalCurve,
+                         primaryCurve: PrimaryCurve,
                          predictCurve: PredictCurve,
                          derivativeCurve: DerivativeCurve,
                          secondDerivativeCurve: SecondDerivativeCurve,

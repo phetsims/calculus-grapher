@@ -12,13 +12,13 @@ import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
-import OriginalCurve from '../../model/OriginalCurve.js';
 import PredictCurve from '../../model/PredictCurve.js';
+import PrimaryCurve from '../../model/PrimaryCurve.js';
 import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
 export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListNode {
 
-  public constructor( primaryCurve: OriginalCurve,
+  public constructor( primaryCurve: PrimaryCurve,
                       predictCurve: PredictCurve,
                       primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
@@ -39,7 +39,7 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
    * Gets the bullet list item that describes the primary curve.
    */
   private static getPrimaryCurveListItem(
-    primaryCurve: OriginalCurve,
+    primaryCurve: PrimaryCurve,
     primaryCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
