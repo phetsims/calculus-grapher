@@ -16,12 +16,12 @@ The reader is encouraged to read the model document before proceeding:
 
 * Graph (Graph Area for core description) - It consists of a coordinate plane with horizontal and vertical axes, with tick marks with optional grid lines.
   and tick labels. A graph includes one or multiple curves which shows how a function behaves as its input (x) changes.
-* Original Graph - It refers to the graph that contains the f(x) function. It is the only graph whose curve(s) can be
-  user manipulated. The original graph includes the original curve and, optionally, the predict curve.
+* Primary Graph - It refers to the graph that contains the f(x) function. It is the only graph whose curve(s) can be
+  user manipulated. The primary graph includes the primary curve and, optionally, the predict curve.
 * Curve - A curve is a complete parametrization of the shape of a mathematical function on a graph. All model curves are
   composed of closely-spaced curve points. In Calculus Grapher, a model curve is a complete representation of a
   mathematical function.
-* Original Curve - It refers to the curve on the original graph that represents the f(x) function. It can be manipulated
+* Primary Curve - It refers to the curve on the primary graph that represents the f(x) function. It can be manipulated
   by the user.
 * Predict Curve - It is a curve that is generated based on a user's input. It allows the user to attempt to predict the
   function f(x). It is set to be invisible by default.
@@ -108,8 +108,7 @@ CalculusGrapherPreferences - Sim-specific preferences, accessed via the Preferen
 ### Curve Hierarchy
 
 `Curve` is the base-class for a single 'curve' that appears in the 'Calculus Grapher' simulation. It provides
-functionality that is common to all types of curves, which are 'integral', 'original', 'derivative' and '
-secondDerivative' curves, and is intended to be sub-classed for type-specific features.
+functionality that is common to all curves and is intended to be subclassed.
 
 Curves are modeled by segmenting the curve into a large number of evenly spaced CurvePoints and map out the y-values of
 the shape and curvature of the `Curve`. Adjacent CurvePoints are considered to be close enough for derivative and
@@ -120,7 +119,7 @@ emit to signal that its CurvePoints have changed in any form.
 that consists of the types: 'smooth', 'cusp', and 'discontinuous'. CurvePoint can save the previous state of a point
 into a stack that can be restored for undo operations.
 
-`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates. For originalCurve, the
+`TransformedCurve` is a subtype for the main curve that the user interacts with and manipulates. For PrimaryCurve, the
 CurvePoints are updated when a user manipulates the CurvePoints through a method on `TransformedCurve`.
 
 `TransformedCurve` is mainly responsible for:
@@ -132,13 +131,13 @@ CurvePoints are updated when a user manipulates the CurvePoints through a method
 - Resetting all the points of the curve
 
 `DerivativeCurve` and `SecondDerivativeCurve` are `Curve` subtypes whose main responsibilities are to observe when the
-originalCurve changes by listening to the AXON/emitter on the originalCurve and differentiates it and update
+PrimaryCurve changes by listening to the AXON/emitter on the PrimaryCurve and differentiates it and update
 the `CurvePoint`s of the first and second derivative. The derivatives are computed by considering the slope of the
 secant lines from both sides of every point.
 
 `IntegralCurve` is a `Curve` subtype for the curve that represents the integral of the `TransformedCurve`. The
-TransformedCurve is referenced as the originalCurve of the IntegralCurve. IntegralCurve's main responsibility is to
-observe when the originalCurve changes and integrate it and update the
+TransformedCurve is referenced as the PrimaryCurve of the IntegralCurve. IntegralCurve's main responsibility is to
+observe when the PrimaryCurve changes and integrate it and update the
 `CurvePoint`s of the Integral. The implementation of the integral uses a trapezoidal Riemann sum to approximate
 integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule for background.
 
@@ -148,7 +147,7 @@ AncillaryTool is the model base class associated with an x value on the graph. I
 quantities associated with the x value:
 
 - the integral of f(x)
-- the original function f(x)
+- the primary function f(x)
 - the prediction of function f(x)
 - the derivative of f(x)
 - the second derivative of f(x)
