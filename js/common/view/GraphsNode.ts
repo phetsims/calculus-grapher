@@ -40,7 +40,7 @@ import GraphNode from './GraphNode.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import IntegralGraphNode from './IntegralGraphNode.js';
 import LabeledLinesNode from './LabeledLinesNode.js';
-import OriginalGraphNode from './OriginalGraphNode.js';
+import PrimaryGraphNode from './PrimaryGraphNode.js';
 import ReferenceLineNode from './ReferenceLineNode.js';
 import SecondDerivativeGraphNode from './SecondDerivativeGraphNode.js';
 import TangentScrubberNode from './TangentScrubberNode.js';
@@ -54,7 +54,7 @@ type GraphsNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'> & Pic
 export default class GraphsNode extends Node {
 
   // Always present, because the student interacts with curves in this graph.
-  public readonly primaryGraphNode: OriginalGraphNode;
+  public readonly primaryGraphNode: PrimaryGraphNode;
 
   // These GraphNodes will be conditionally created, based on whether they appear in model.graphSets.
   public readonly integralGraphNode?: IntegralGraphNode;
@@ -106,7 +106,7 @@ export default class GraphsNode extends Node {
     }
 
     // Primary graph is always present.
-    this.primaryGraphNode = new OriginalGraphNode( model, {
+    this.primaryGraphNode = new PrimaryGraphNode( model, {
       chartRectangleHeight: this.chartRectangleHeight,
       tandem: options.tandem.createTandem( 'primaryGraphNode' )
     } );

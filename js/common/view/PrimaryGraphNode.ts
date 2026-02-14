@@ -1,13 +1,13 @@
 // Copyright 2022-2026, University of Colorado Boulder
 
 /**
- * OriginalGraphNode is the view representation of a Primary Graph, which includes two curves
+ * PrimaryGraphNode is the view representation of a Primary Graph, which includes two curves
  *  that can be user-manipulated as well as cueing arrows.
  * Labeled Points (only visible/accessible through PhET-IO) are also added to this graph
- * OriginalGraphNode extends GraphNode.
- * However, the zoom Button of GraphNode is set to be invisible in the OriginalGraphNode
+ * PrimaryGraphNode extends GraphNode.
+ * However, the zoom Button of GraphNode is set to be invisible in the PrimaryGraphNode
  *
- * The public methods of OriginalGraphNode allow a client to add
+ * The public methods of PrimaryGraphNode allow a client to add
  * - a ScrubberNode
  * - a TangentArrowNode
  * - an AreaUnderCurvePlot
@@ -60,7 +60,7 @@ type SelfOptions = EmptySelfOptions;
 
 type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'chartRectangleHeight' | 'tandem'>;
 
-export default class OriginalGraphNode extends GraphNode {
+export default class PrimaryGraphNode extends GraphNode {
 
   // Node for the primary curve f(x), which is interactive
   private readonly primaryCurveNode: CurveNode;
@@ -335,7 +335,7 @@ export default class OriginalGraphNode extends GraphNode {
     this.addChild( accessibleListNode );
 
     // Focus order
-    affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
+    affirm( !this.yZoomButtonGroup, 'PrimaryGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
       accessibleListNode,
       this.primaryCurveManipulator,
@@ -353,7 +353,7 @@ export default class OriginalGraphNode extends GraphNode {
   }
 
   /**
-   * Adds a double-headed tangent arrow to OriginalGraphNode.
+   * Adds a double-headed tangent arrow to PrimaryGraphNode.
    */
   public addTangentArrowNode( tangentScrubber: TangentScrubber, visibleProperty: TReadOnlyProperty<boolean> ): TangentArrowNode {
     const tangentArrowNode = new TangentArrowNode( tangentScrubber, this.chartTransform, {
@@ -365,7 +365,7 @@ export default class OriginalGraphNode extends GraphNode {
   }
 
   /**
-   * Adds a plot to OriginalGraphNode that shows the area under the curve.
+   * Adds a plot to PrimaryGraphNode that shows the area under the curve.
    */
   public addAreaUnderCurvePlot( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                                 visibleProperty: TReadOnlyProperty<boolean> ): AreaUnderCurvePlot {
@@ -380,4 +380,4 @@ export default class OriginalGraphNode extends GraphNode {
   }
 }
 
-calculusGrapher.register( 'OriginalGraphNode', OriginalGraphNode );
+calculusGrapher.register( 'PrimaryGraphNode', PrimaryGraphNode );
