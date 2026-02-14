@@ -1,7 +1,7 @@
 // Copyright 2023-2026, University of Colorado Boulder
 
 /**
- * ShowOriginalCurveCheckbox is the checkbox labeled 'Show f(x)' that appears in the upper-right corner
+ * ShowPrimaryCurveCheckbox is the checkbox labeled 'Show f(x)' that appears in the upper-right corner
  * of the original graph when the 'Predict' radio button is selected.
  *
  * Note that this is actually a subclass of BackgroundNode. It's made to look like a Checkbox in the PhET-iO API,
@@ -32,7 +32,7 @@ import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 
 const POINTER_AREA_DILATION = 6;
 
-export default class ShowOriginalCurveCheckbox extends BackgroundNode {
+export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
 
   public constructor( showOriginalCurveProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
@@ -91,4 +91,4 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
   }
 }
 
-calculusGrapher.register( 'ShowOriginalCurveCheckbox', ShowOriginalCurveCheckbox );
+calculusGrapher.register( 'ShowPrimaryCurveCheckbox', ShowPrimaryCurveCheckbox );

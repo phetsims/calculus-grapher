@@ -51,7 +51,7 @@ import PrimaryGraphAccessibleListNode from './description/PrimaryGraphAccessible
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
-import ShowOriginalCurveCheckbox from './ShowOriginalCurveCheckbox.js';
+import ShowPrimaryCurveCheckbox from './ShowPrimaryCurveCheckbox.js';
 import TangentArrowNode from './TangentArrowNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -137,18 +137,18 @@ export default class OriginalGraphNode extends GraphNode {
     this._showOriginalCurveProperty = new BooleanProperty( false, {
       tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
       phetioDocumentation: 'Controls whether the original curve is visible while the Predict radio button is selected.' +
-                           'The value of this Property can be changed by toggling showOriginalCurveCheckbox.',
+                           'The value of this Property can be changed by toggling showPrimaryCurveCheckbox.',
       phetioFeatured: true
     } );
     this.showOriginalCurveProperty = this._showOriginalCurveProperty;
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
-    const showOriginalCurveCheckbox = new ShowOriginalCurveCheckbox( this._showOriginalCurveProperty,
-      predictEnabledProperty, options.tandem.createTandem( 'showOriginalCurveCheckbox' ) );
-    showOriginalCurveCheckbox.boundsProperty.link( () => {
-      showOriginalCurveCheckbox.right =
+    const showPrimaryCurveCheckbox = new ShowPrimaryCurveCheckbox( this._showOriginalCurveProperty,
+      predictEnabledProperty, options.tandem.createTandem( 'showPrimaryCurveCheckbox' ) );
+    showPrimaryCurveCheckbox.boundsProperty.link( () => {
+      showPrimaryCurveCheckbox.right =
         this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
-      showOriginalCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
+      showPrimaryCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
     // Interactive f(x) 'original' curve
@@ -281,7 +281,7 @@ export default class OriginalGraphNode extends GraphNode {
     highlightRectangle.moveToBack();
     this.addChild( labeledPointsNode );
     this.addChild( manipulatorsLayer );
-    this.addChild( showOriginalCurveCheckbox );
+    this.addChild( showPrimaryCurveCheckbox );
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => {
@@ -338,7 +338,7 @@ export default class OriginalGraphNode extends GraphNode {
       accessibleListNode,
       this.primaryCurveManipulator,
       this.predictCurveManipulatorNode,
-      showOriginalCurveCheckbox,
+      showPrimaryCurveCheckbox,
       this.curveVisibilityToggleButton
     ];
   }
