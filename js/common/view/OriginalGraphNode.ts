@@ -13,7 +13,9 @@
  * - an AreaUnderCurvePlot
  *
  * The decision to use the names 'original curve' and 'original graph' is documented in
- * https://github.com/phetsims/calculus-grapher/issues/119
+ * https://github.com/phetsims/calculus-grapher/issues/119.
+ * The decision to rename to 'primary curve' and 'primary graph' is documented in
+ * https://github.com/phetsims/calculus-grapher/issues/378.
  *
  * @author Martin Veillette
  * @author Brandon Li
@@ -60,13 +62,13 @@ type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'ch
 
 export default class OriginalGraphNode extends GraphNode {
 
-  // Node for the original curve f(x), which is interactive
-  private readonly originalCurveNode: CurveNode;
+  // Node for the primary curve f(x), which is interactive
+  private readonly primaryCurveNode: CurveNode;
 
   // Node for the predict curve, which is interactive
   private readonly predictCurveNode: CurveNode;
 
-  // Indicates if the original curve is visible while in 'Predict' mode.
+  // Indicates if the primary curve is visible while in 'Predict' mode.
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly _showPrimaryCurveProperty: Property<boolean>;
   public readonly showPrimaryCurveProperty: TReadOnlyProperty<boolean>;
@@ -87,7 +89,7 @@ export default class OriginalGraphNode extends GraphNode {
       gridVisibleProperty,
       labeledPoints,
       labeledPointsLinkableElement,
-      originalCurve,
+      primaryCurve,
       primaryCurveManipulator,
       predictCurve,
       predictCurveManipulator,
@@ -117,7 +119,7 @@ export default class OriginalGraphNode extends GraphNode {
 
       // GraphNodeOptions
       labelNode: labelNode,
-      createCurveNode: false, // We'll be creating our own Node for model.originalCurve.
+      createCurveNode: false, // We'll be creating our own Node for model.primaryCurve.
 
       // In addition to fill and stroke, make the chartRectangle interactive for accessibility.
       chartRectangleOptions: {
@@ -132,7 +134,7 @@ export default class OriginalGraphNode extends GraphNode {
       }
     }, providedOptions );
 
-    super( graphType, originalCurve, gridVisibleProperty, options );
+    super( graphType, primaryCurve, gridVisibleProperty, options );
 
     this._showPrimaryCurveProperty = new BooleanProperty( false, {
       tandem: providedOptions.tandem.createTandem( 'showPrimaryCurveProperty' ),
@@ -153,7 +155,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Interactive f(x) 'primary' curve
     const primaryCurveNodeTandem = providedOptions.tandem.createTandem( 'primaryCurveNode' );
-    this.originalCurveNode = new CurveNode( originalCurve, this.chartTransform, {
+    this.primaryCurveNode = new CurveNode( primaryCurve, this.chartTransform, {
       stroke: graphType.strokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
       continuousLinePlotOptions: {
@@ -185,15 +187,15 @@ export default class OriginalGraphNode extends GraphNode {
     // Original curve manipulator
     this.primaryCurveManipulator = new CurveManipulatorNode(
       primaryCurveManipulator,
-      originalCurve,
+      primaryCurve,
       curveManipulationProperties.curveManipulationTypeProperty,
       curveManipulationProperties.widthProperty,
       this.chartTransform,
-      new DerivedProperty( [ predictEnabledProperty, this.originalCurveNode.inputEnabledProperty ],
+      new DerivedProperty( [ predictEnabledProperty, this.primaryCurveNode.inputEnabledProperty ],
         ( predictEnabled, inputEnabled ) => !predictEnabled && inputEnabled ),
       {
-        // Child of originalCurveNode in PhET-iO tree.
-        tandem: this.originalCurveNode.tandem.createTandem( 'manipulatorNode' ),
+        // Child of primaryCurveNode in PhET-iO tree.
+        tandem: this.primaryCurveNode.tandem.createTandem( 'manipulatorNode' ),
         accessibleName: CalculusGrapherFluent.a11y.curveManipulator.primary.accessibleNameStringProperty,
         accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.primary.accessibleHelpTextStringProperty
       } );
@@ -217,7 +219,7 @@ export default class OriginalGraphNode extends GraphNode {
     const originalCueingArrowsNode = new CueingArrowsNode( this.primaryCurveManipulator, this.chartTransform, {
       // Child of primaryCurveManipulatorNode in PhET-iO tree.
       tandem: this.primaryCurveManipulator.tandem.createTandem( 'cueingArrowsNode' ),
-      phetioDocumentation: 'Cueing arrows for the original curve, visible until the user moves the curve manipulator.'
+      phetioDocumentation: 'Cueing arrows for the primary curve, visible until the user moves the curve manipulator.'
     } );
     const predictCueingArrowsNode = new CueingArrowsNode( this.predictCurveManipulatorNode, this.chartTransform, {
       // Child of predictCurveManipulatorNode in PhET-iO tree.
@@ -270,12 +272,12 @@ export default class OriginalGraphNode extends GraphNode {
         predictEnabledProperty,
         CalculusGrapherColors.predictCurveStrokeProperty,
         CalculusGrapherColors.primaryCurveStrokeProperty
-      ], ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
-        predictEnabled ? predictCurveStroke : originalCurveStroke )
+      ], ( predictEnabled, predictCurveStroke, primaryCurveStroke ) =>
+        predictEnabled ? predictCurveStroke : primaryCurveStroke )
     } );
 
     // Rendering order - see superclass GraphNode for additional children.
-    this.curveLayer.addChild( this.originalCurveNode );
+    this.curveLayer.addChild( this.primaryCurveNode );
     this.curveLayer.addChild( this.predictCurveNode );
     this.addChild( highlightRectangle );
     highlightRectangle.moveToBack();
@@ -300,7 +302,7 @@ export default class OriginalGraphNode extends GraphNode {
       this.curveLayerVisibleProperty,
       predictEnabledProperty,
       this.predictCurveNode.inputEnabledProperty,
-      this.originalCurveNode.inputEnabledProperty
+      this.primaryCurveNode.inputEnabledProperty
     ], ( curveLayerVisible, predictEnabled, predictInputEnabled, originalInputEnabled ) => {
       if ( curveLayerVisible && predictEnabled && predictInputEnabled ) {
         // Predict curve can be edited.
@@ -321,13 +323,13 @@ export default class OriginalGraphNode extends GraphNode {
         this.showPrimaryCurveProperty,
         model.predictEnabledProperty
       ],
-      ( originalCurveLayerVisible, showPrimaryCurve, predictEnabled ) =>
-        originalCurveLayerVisible && ( showPrimaryCurve || !predictEnabled ) );
+      ( primaryCurveLayerVisible, showPrimaryCurve, predictEnabled ) =>
+        primaryCurveLayerVisible && ( showPrimaryCurve || !predictEnabled ) );
 
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
 
     // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new PrimaryGraphAccessibleListNode( model.originalCurve, model.predictCurve,
+    const accessibleListNode = new PrimaryGraphAccessibleListNode( model.primaryCurve, model.predictCurve,
       this.primaryCurveVisibleProperty, this.predictCurveVisibleProperty,
       model.predictEnabledProperty, model.gridVisibleProperty );
     this.addChild( accessibleListNode );
@@ -344,7 +346,7 @@ export default class OriginalGraphNode extends GraphNode {
   }
 
   public override reset(): void {
-    this.originalCurveNode.reset();
+    this.primaryCurveNode.reset();
     this.predictCurveNode.reset();
     this._showPrimaryCurveProperty.reset();
     super.reset();

@@ -77,7 +77,7 @@ export default class AncillaryTool extends PhetioObject {
   private readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
 
   protected constructor( integralCurve: IntegralCurve,
-                         originalCurve: OriginalCurve,
+                         primaryCurve: OriginalCurve,
                          predictCurve: PredictCurve,
                          derivativeCurve: DerivativeCurve,
                          secondDerivativeCurve: SecondDerivativeCurve,
@@ -113,7 +113,7 @@ export default class AncillaryTool extends PhetioObject {
 
     // The CurvePoint at xProperty for each curve.
     this.integralCurvePointProperty = createCurvePointProperty( integralCurve, this.xProperty );
-    this.primaryCurvePointProperty = createCurvePointProperty( originalCurve, this.xProperty );
+    this.primaryCurvePointProperty = createCurvePointProperty( primaryCurve, this.xProperty );
     this.predictCurvePointProperty = createCurvePointProperty( predictCurve, this.xProperty );
     this.derivativeCurvePointProperty = createCurvePointProperty( derivativeCurve, this.xProperty );
     this.secondDerivativeCurvePointProperty = createCurvePointProperty( secondDerivativeCurve, this.xProperty );
@@ -148,7 +148,7 @@ export default class AncillaryTool extends PhetioObject {
     // to re-inspect the CurvePoint values. We need to do this because CurvePoint instances are mutated as a curve is
     // manipulated, and the value of these Properties will therefore not change.
     const integralCurveListener = () => this.integralCurvePointProperty.notifyListenersStatic();
-    const originalCurveListener = () => this.primaryCurvePointProperty.notifyListenersStatic();
+    const primaryCurveListener = () => this.primaryCurvePointProperty.notifyListenersStatic();
     const predictCurveListener = () => this.predictCurvePointProperty.notifyListenersStatic();
     const derivativeCurveListener = () => this.derivativeCurvePointProperty.notifyListenersStatic();
     const secondDerivativeCurveListener = () => this.secondDerivativeCurvePointProperty.notifyListenersStatic();
@@ -159,14 +159,14 @@ export default class AncillaryTool extends PhetioObject {
 
         // Attach listeners
         integralCurve.curveChangedEmitter.addListener( integralCurveListener );
-        originalCurve.curveChangedEmitter.addListener( originalCurveListener );
+        primaryCurve.curveChangedEmitter.addListener( primaryCurveListener );
         predictCurve.curveChangedEmitter.addListener( predictCurveListener );
         derivativeCurve.curveChangedEmitter.addListener( derivativeCurveListener );
         secondDerivativeCurve.curveChangedEmitter.addListener( secondDerivativeCurveListener );
 
         // Update immediately by calling listeners.
         integralCurveListener();
-        originalCurveListener();
+        primaryCurveListener();
         predictCurveListener();
         derivativeCurveListener();
         secondDerivativeCurveListener();
@@ -175,8 +175,8 @@ export default class AncillaryTool extends PhetioObject {
         if ( integralCurve.curveChangedEmitter.hasListener( integralCurveListener ) ) {
           integralCurve.curveChangedEmitter.removeListener( integralCurveListener );
         }
-        if ( originalCurve.curveChangedEmitter.hasListener( originalCurveListener ) ) {
-          originalCurve.curveChangedEmitter.removeListener( originalCurveListener );
+        if ( primaryCurve.curveChangedEmitter.hasListener( primaryCurveListener ) ) {
+          primaryCurve.curveChangedEmitter.removeListener( primaryCurveListener );
         }
         if ( predictCurve.curveChangedEmitter.hasListener( predictCurveListener ) ) {
           predictCurve.curveChangedEmitter.removeListener( predictCurveListener );

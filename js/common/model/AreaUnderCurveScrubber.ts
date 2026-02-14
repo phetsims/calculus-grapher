@@ -34,13 +34,13 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
 
   public constructor(
     integralCurve: IntegralCurve,
-    originalCurve: OriginalCurve,
+    primaryCurve: OriginalCurve,
     predictedCurve: PredictCurve,
     derivativeCurve: DerivativeCurve,
     secondDerivativeCurve: SecondDerivativeCurve,
     tandem: Tandem ) {
 
-    super( integralCurve, originalCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {
+    super( integralCurve, primaryCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {
 
       // Close to zero, but not at zero, so that the scrubber is noticeable.
       // See https://github.com/phetsims/calculus-grapher/issues/207#issuecomment-1434759100

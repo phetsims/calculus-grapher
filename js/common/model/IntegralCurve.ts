@@ -1,11 +1,11 @@
 // Copyright 2020-2025, University of Colorado Boulder
 
 /**
- * IntegralCurve is a Curve subclass for the curve that represents the integral of originalCurve.
+ * IntegralCurve is a Curve subclass for the curve that represents the integral of primaryCurve.
  * IntegralCurve's main responsibility is to observe when the Curve changes and integrate it and update the
  * Points of the Integral. For a general background on integration, see https://en.wikipedia.org/wiki/Integral. Our
  * version uses a trapezoidal Riemann sum to approximate integrals. See https://en.wikipedia.org/wiki/Trapezoidal_rule
- * for background. Since the originalCurve exists at all Points, the Integral is also finite at all points.
+ * for background. Since the primaryCurve exists at all Points, the Integral is also finite at all points.
  *
  * Like Curve, IntegralCurve is created at the start and persists for the lifetime of the simulation. Links are left
  * as-is and IntegralCurves are never disposed.
@@ -22,35 +22,35 @@ import OriginalCurve from './OriginalCurve.js';
 
 export default class IntegralCurve extends Curve {
 
-  // Reference to the originalCurve that was passed-in.
-  private readonly originalCurve: OriginalCurve;
+  // Reference to the primaryCurve that was passed-in.
+  private readonly primaryCurve: OriginalCurve;
 
   /**
-   * @param originalCurve - the curve to integrate to get the values of this IntegralCurve.
+   * @param primaryCurve - the curve to integrate to get the values of this IntegralCurve.
    * @param tandem
    */
-  public constructor( originalCurve: OriginalCurve, tandem: Tandem ) {
+  public constructor( primaryCurve: OriginalCurve, tandem: Tandem ) {
 
     super( {
 
       // CurveOptions
-      xRange: originalCurve.xRange,
-      numberOfPoints: originalCurve.numberOfPoints,
+      xRange: primaryCurve.xRange,
+      numberOfPoints: primaryCurve.numberOfPoints,
       tandem: tandem
     } );
 
-    this.originalCurve = originalCurve;
+    this.primaryCurve = primaryCurve;
 
-    // Observes when the originalCurve changes and update this curve to represent the integral of the originalCurve.
+    // Observes when the primaryCurve changes and update this curve to represent the integral of the primaryCurve.
     // Listener is never removed since IntegralCurves are never disposed.
-    originalCurve.curveChangedEmitter.addListener( this.updateIntegral.bind( this ) );
+    primaryCurve.curveChangedEmitter.addListener( this.updateIntegral.bind( this ) );
 
-    // Makes the initial call to update the integral to match the originalCurve upon initialization.
+    // Makes the initial call to update the integral to match the primaryCurve upon initialization.
     this.updateIntegral();
   }
 
   /**
-   * Updates the y-values of the IntegralCurve to represent the integral of the originalCurve.
+   * Updates the y-values of the IntegralCurve to represent the integral of the primaryCurve.
    *
    * The integral is approximated by performing a Riemann Sum.  A left Riemann Sum is used
    * to determine the area from a series of rectangles to approximate the area under a curve. The left Riemann Sum
@@ -59,10 +59,10 @@ export default class IntegralCurve extends Curve {
    */
   private updateIntegral(): void {
 
-    // Loop through each adjacent pair of points on the original curve.
-    for ( let index = 1; index < this.originalCurve.points.length; index++ ) {
-      const point = this.originalCurve.points[ index ];
-      const previousPoint = this.originalCurve.points[ index - 1 ];
+    // Loop through each adjacent pair of points on the primary curve.
+    for ( let index = 1; index < this.primaryCurve.points.length; index++ ) {
+      const point = this.primaryCurve.points[ index ];
+      const previousPoint = this.primaryCurve.points[ index - 1 ];
 
       affirm( point.isFinite && previousPoint.isFinite, 'non-finite point or previousPoint' );
 

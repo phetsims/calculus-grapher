@@ -2,7 +2,7 @@
 
 /**
  * TangentScrubber is the model element for the tangent scrubber. It can be moved horizontally to position the
- * tangent line on the original curve.
+ * tangent line on the primary curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -25,13 +25,13 @@ export default class TangentScrubber extends AncillaryTool {
   public readonly colorProperty: ProfileColorProperty;
 
   public constructor( integralCurve: IntegralCurve,
-                      originalCurve: OriginalCurve,
+                      primaryCurve: OriginalCurve,
                       predictCurve: PredictCurve,
                       derivativeCurve: DerivativeCurve,
                       secondDerivativeCurve: SecondDerivativeCurve,
                       tandem: Tandem ) {
 
-    super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
+    super( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
       x: Math.floor( CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3 ),
 
       // Do not feature these Properties in Studio, because they are not relevant for tangent,

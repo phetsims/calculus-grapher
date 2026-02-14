@@ -34,7 +34,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
   public readonly pointColorProperty: ColorProperty;
 
   public constructor( integralCurve: IntegralCurve,
-                      originalCurve: OriginalCurve,
+                      primaryCurve: OriginalCurve,
                       predictCurve: PredictCurve,
                       derivativeCurve: DerivativeCurve,
                       secondDerivativeCurve: SecondDerivativeCurve,
@@ -46,7 +46,7 @@ export default class LabeledPoint extends LabeledAncillaryTool {
       visible: CalculusGrapherQueryParameters.labeledPointsVisible
     }, providedOptions );
 
-    super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
+    super( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
 
     this.pointColorProperty = new ColorProperty( options.pointColor, {
       tandem: options.tandem.createTandem( 'pointColorProperty' )
@@ -59,14 +59,14 @@ export default class LabeledPoint extends LabeledAncillaryTool {
    */
   public static createLabeledPoints( numberOfTools: number,
                                      integralCurve: IntegralCurve,
-                                     originalCurve: OriginalCurve,
+                                     primaryCurve: OriginalCurve,
                                      predictCurve: PredictCurve,
                                      derivativeCurve: DerivativeCurve,
                                      secondDerivativeCurve: SecondDerivativeCurve,
                                      parentTandem: Tandem ): LabeledPoint[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>
-        new LabeledPoint( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
+        new LabeledPoint( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
           x: x,
           label: label,
           pointColor: CalculusGrapherColors.primaryCurveStrokeProperty.value,

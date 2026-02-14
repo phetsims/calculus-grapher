@@ -33,7 +33,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
 
   protected constructor(
     integralCurve: IntegralCurve,
-    originalCurve: OriginalCurve,
+    primaryCurve: OriginalCurve,
     predictCurve: PredictCurve,
     derivativeCurve: DerivativeCurve,
     secondDerivativeCurve: SecondDerivativeCurve,
@@ -41,7 +41,7 @@ export default class LabeledAncillaryTool extends AncillaryTool {
 
     const options = providedOptions;
 
-    super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
+    super( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
 
     this.stringProperty = new StringProperty( options.label, {
       tandem: options.tandem.createTandem( Text.STRING_PROPERTY_TANDEM_NAME )

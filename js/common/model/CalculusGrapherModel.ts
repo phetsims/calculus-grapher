@@ -82,12 +82,13 @@ export default class CalculusGrapherModel implements TModel {
 
   // The curve that appears as f(x) or f(t), depending on the 'Variable' preference setting.
   // The user can manipulate this curve by clicking of click-dragging in the graph.
-  // The decision to call it the 'original' curve is documented in https://github.com/phetsims/calculus-grapher/issues/119
-  public readonly originalCurve: OriginalCurve;
+  // The decision to call it 'original' curve is documented in https://github.com/phetsims/calculus-grapher/issues/119
+  // The decision to rename it 'primary' curve is documented in https://github.com/phetsims/calculus-grapher/issues/378
+  public readonly primaryCurve: OriginalCurve;
 
   // The curve that appears when the user has turned on the 'Predict' preference setting, and has selected the
   // Predict radio button that appears in the control panel. This curve can also be manipulated by the user.
-  // Its purpose is to facilitate predicting what originalCurve looks like, based on seeing one or more of the
+  // Its purpose is to facilitate predicting what primaryCurve looks like, based on seeing one or more of the
   // derived curves.
   public readonly predictCurve: PredictCurve;
 
@@ -96,7 +97,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly integralCurve: IntegralCurve;
   public readonly secondDerivativeCurve: SecondDerivativeCurve;
 
-  // Indicates which curve (originalCurve or predictCurve) is being modified by the user.
+  // Indicates which curve (primaryCurve or predictCurve) is being modified by the user.
   public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
 
   // Model elements for the various tools
@@ -170,12 +171,12 @@ export default class CalculusGrapherModel implements TModel {
 
     const curvesTandem = options.tandem.createTandem( 'curves' );
 
-    this.originalCurve = new OriginalCurve( curvesTandem.createTandem( 'primaryCurve' ) );
+    this.primaryCurve = new OriginalCurve( curvesTandem.createTandem( 'primaryCurve' ) );
 
     this.predictCurve = new PredictCurve( curvesTandem.createTandem( 'predictCurve' ) );
 
     this.interactiveCurveProperty = new DerivedProperty( [ this.predictEnabledProperty ],
-      predictEnabled => predictEnabled ? this.predictCurve : this.originalCurve
+      predictEnabled => predictEnabled ? this.predictCurve : this.primaryCurve
     );
 
     // If graphSets includes graphType, then create a tandem, otherwise opt out.
@@ -183,9 +184,9 @@ export default class CalculusGrapherModel implements TModel {
       return GraphSet.includes( this.graphSets, graphType ) ? curvesTandem.createTandem( graphType.tandemNamePrefix ) : Tandem.OPT_OUT;
     };
 
-    this.derivativeCurve = new DerivativeCurve( this.originalCurve, createCurveTandem( GraphType.DERIVATIVE ) );
-    this.secondDerivativeCurve = new SecondDerivativeCurve( this.originalCurve, createCurveTandem( GraphType.SECOND_DERIVATIVE ) );
-    this.integralCurve = new IntegralCurve( this.originalCurve, createCurveTandem( GraphType.INTEGRAL ) );
+    this.derivativeCurve = new DerivativeCurve( this.primaryCurve, createCurveTandem( GraphType.DERIVATIVE ) );
+    this.secondDerivativeCurve = new SecondDerivativeCurve( this.primaryCurve, createCurveTandem( GraphType.SECOND_DERIVATIVE ) );
+    this.integralCurve = new IntegralCurve( this.primaryCurve, createCurveTandem( GraphType.INTEGRAL ) );
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
 
@@ -202,7 +203,7 @@ export default class CalculusGrapherModel implements TModel {
     this.activeCurveManipulatorProperty = new DerivedProperty( [ this.predictEnabledProperty ],
       predictEnabled => predictEnabled ? this.predictCurveManipulator : this.primaryCurveManipulator );
 
-    this.referenceLine = new ReferenceLine( this.integralCurve, this.originalCurve, this.predictCurve,
+    this.referenceLine = new ReferenceLine( this.integralCurve, this.primaryCurve, this.predictCurve,
       this.derivativeCurve, this.secondDerivativeCurve, this.toolsTandem.createTandem( 'referenceLine' ) );
 
     // This exists so that we have something we can link to from the view.
@@ -216,7 +217,7 @@ export default class CalculusGrapherModel implements TModel {
     this.labeledPoints = LabeledPoint.createLabeledPoints(
       CalculusGrapherConstants.NUMBER_OF_LABELED_POINTS,
       this.integralCurve,
-      this.originalCurve,
+      this.primaryCurve,
       this.predictCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
@@ -234,7 +235,7 @@ export default class CalculusGrapherModel implements TModel {
     this.labeledLines = LabeledLine.createLabeledLines(
       CalculusGrapherConstants.NUMBER_OF_LABELED_LINES,
       this.integralCurve,
-      this.originalCurve,
+      this.primaryCurve,
       this.predictCurve,
       this.derivativeCurve,
       this.secondDerivativeCurve,
@@ -246,7 +247,7 @@ export default class CalculusGrapherModel implements TModel {
    */
   public reset(): void {
     this.graphSetProperty.reset();
-    this.originalCurve.reset();
+    this.primaryCurve.reset();
     this.predictCurve.reset();
     this.curveManipulationProperties.reset();
     this.predictSelectedProperty.reset();

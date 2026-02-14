@@ -2,9 +2,9 @@
 
 /**
  * SecondDerivative is a Curve subclass for a curve that represents the second derivative of a Curve.
- * It is used to evaluate the second derivative of the originalCurve.
+ * It is used to evaluate the second derivative of the primaryCurve.
  *
- * SecondDerivatives' main responsibility is to observe when the originalCurve changes and differentiates it and update
+ * SecondDerivatives' main responsibility is to observe when the primaryCurve changes and differentiates it and update
  * the Points of the second derivative.
  *
  * Like Curve, SecondDerivative is created at the start and persists for the lifetime of the simulation. Links
@@ -20,31 +20,31 @@ import OriginalCurve from './OriginalCurve.js';
 
 export default class SecondDerivativeCurve extends Curve {
 
-  // Reference to the originalCurve that was passed-in.
-  private readonly originalCurve: OriginalCurve;
+  // Reference to the primaryCurve that was passed-in.
+  private readonly primaryCurve: OriginalCurve;
 
   /**
-   * @param originalCurve - the curve to differentiate to get the values of this SecondDerivative
+   * @param primaryCurve - the curve to differentiate to get the values of this SecondDerivative
    * @param tandem
    */
-  public constructor( originalCurve: OriginalCurve, tandem: Tandem ) {
+  public constructor( primaryCurve: OriginalCurve, tandem: Tandem ) {
 
     super( {
 
       // CurveOptions
       isDisposable: false,
-      xRange: originalCurve.xRange,
-      numberOfPoints: originalCurve.numberOfPoints,
+      xRange: primaryCurve.xRange,
+      numberOfPoints: primaryCurve.numberOfPoints,
       tandem: tandem
     } );
 
-    this.originalCurve = originalCurve;
+    this.primaryCurve = primaryCurve;
 
-    // Observes when the 'base' Curve changes and update this curve to represent the second derivative of the 'base' Curve.
+    // Observes when the 'base' Curve changes and update this curve to represent the second derivative of the primaryCurve.
     // Listener is never removed since SecondDerivative is never disposed.
-    originalCurve.curveChangedEmitter.addListener( this.updateSecondDerivative.bind( this ) );
+    primaryCurve.curveChangedEmitter.addListener( this.updateSecondDerivative.bind( this ) );
 
-    // Makes the initial call to updateSecondDerivative() to match the 'base' Curve upon initialization.
+    // Makes the initial call to updateSecondDerivative() to match the primaryCurve upon initialization.
     this.updateSecondDerivative();
   }
 
@@ -61,22 +61,22 @@ export default class SecondDerivativeCurve extends Curve {
   private updateSecondDerivative(): void {
 
     // Convenience variables
-    const originalPoints = this.originalCurve.points;
-    const length = originalPoints.length;
+    const primaryPoints = this.primaryCurve.points;
+    const length = primaryPoints.length;
 
     for ( let index = 0; index < length; index++ ) {
 
       // Is the original point smooth?
-      const isOriginalPointSmooth = originalPoints[ index ].pointType === 'smooth';
+      const isOriginalPointSmooth = primaryPoints[ index ].pointType === 'smooth';
 
       // The point type is the same as the original point, unless the original point is not smooth, in which case it must be discontinuous
       this.points[ index ].pointType = isOriginalPointSmooth ? 'smooth' : 'discontinuous';
 
       // We exclude the first and last point. They will be dealt with later
       if ( index !== 0 && index !== length - 1 ) {
-        const previousPoint = originalPoints[ index - 1 ];
-        const point = originalPoints[ index ];
-        const nextPoint = originalPoints[ index + 1 ];
+        const previousPoint = primaryPoints[ index - 1 ];
+        const point = primaryPoints[ index ];
+        const nextPoint = primaryPoints[ index + 1 ];
 
         // Determine the second derivative using the naive assumption that all original points are smooth. We will handle exceptions later
         this.points[ index ].y = ( point.getSlope( nextPoint ) - point.getSlope( previousPoint ) ) / this.deltaX;
@@ -84,8 +84,8 @@ export default class SecondDerivativeCurve extends Curve {
     }
 
     // Handle the y value of the first and last point
-    this.points[ 0 ].y = ( originalPoints[ 1 ].pointType === 'smooth' ) ? this.points[ 1 ].y : 0;
-    this.points[ length - 1 ].y = ( originalPoints[ length - 2 ].pointType === 'smooth' ) ? this.points[ length - 2 ].y : 0;
+    this.points[ 0 ].y = ( primaryPoints[ 1 ].pointType === 'smooth' ) ? this.points[ 1 ].y : 0;
+    this.points[ length - 1 ].y = ( primaryPoints[ length - 2 ].pointType === 'smooth' ) ? this.points[ length - 2 ].y : 0;
 
 
     // Reiterate over points but this time taking into account the point type

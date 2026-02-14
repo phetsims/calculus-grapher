@@ -1,7 +1,7 @@
 // Copyright 2025-2026, University of Colorado Boulder
 
 /**
- * CurveManipulator is the model for a draggable point used to manipulate the original curve.
+ * CurveManipulator is the model for a draggable point used to manipulate the primary curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

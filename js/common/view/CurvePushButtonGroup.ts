@@ -2,7 +2,7 @@
 
 /**
  * CurvePushButtonGroup allow the user to manipulate the curve by pressing buttons that
- * smooth, undo, and erase the original curve
+ * smooth, undo, and erase the primary curve
  *
  * @author Martin Veillette
  * @author Chris Malley (PixelZoom, Inc.)

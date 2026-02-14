@@ -34,9 +34,9 @@ const LINE_WIDTH = 2; // lineWidth value for Paths
 const STANDARD_DEVIATION = 6; // of the Gaussian curve and its derivative
 
 /**
- * Creates a Gaussian shape for the original curve.
+ * Creates a Gaussian shape for the primary curve.
  */
-function createOriginalShape(): Shape {
+function createPrimaryShape(): Shape {
 
   // Gaussian coefficients, see https://en.wikipedia.org/wiki/Gaussian_function
   const a = -CURVE_HEIGHT; // sign is flipped for scenery view coordinate frame
@@ -60,8 +60,8 @@ function createOriginalShape(): Shape {
 }
 
 /**
- * Creates a derivative-of-Gaussian shape for the original curve.
- * The implementation is similar to createOriginalShape, but with a yFactor and different y computation.
+ * Creates a derivative-of-Gaussian shape for the primary curve.
+ * The implementation is similar to createPrimaryShape, but with a yFactor and different y computation.
  */
 function createDerivativeShape(): Shape {
 
@@ -167,12 +167,12 @@ export default class CalculusGrapherScreenIconFactory {
     const triangleHeight = 15;
     const discontinuityPointRadius = 2;
 
-    // Original curve, a triangle rendered with the color of the original curve
+    // Original curve, a triangle rendered with the color of the primary curve
     const triangleShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( triangleWidth / 2, -triangleHeight )
       .lineTo( triangleWidth, 0 );
-    const originalCurveNode = new Path( triangleShape, {
+    const primaryCurveNode = new Path( triangleShape, {
       stroke: CalculusGrapherColors.primaryCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -208,7 +208,7 @@ export default class CalculusGrapherScreenIconFactory {
 
     // Original curve above the derivative curve
     const iconNode = new VBox( {
-      children: [ originalCurveNode, derivativeCurveNode ],
+      children: [ primaryCurveNode, derivativeCurveNode ],
       spacing: 8
     } );
 
@@ -229,7 +229,7 @@ export default class CalculusGrapherScreenIconFactory {
       lineWidth: LINE_WIDTH
     } );
 
-    const originalCurveNode = new Path( createOriginalShape(), {
+    const primaryCurveNode = new Path( createPrimaryShape(), {
       stroke: CalculusGrapherColors.primaryCurveStrokeProperty,
       lineWidth: LINE_WIDTH
     } );
@@ -241,7 +241,7 @@ export default class CalculusGrapherScreenIconFactory {
 
     // Vertical layout of the 3 curves
     const iconNode = new VBox( {
-      children: [ integralCurveNode, originalCurveNode, derivativeCurveNode ],
+      children: [ integralCurveNode, primaryCurveNode, derivativeCurveNode ],
       spacing: 6
     } );
     return new ScreenIcon( iconNode, {

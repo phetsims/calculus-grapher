@@ -1,7 +1,7 @@
 // Copyright 2022-2026, University of Colorado Boulder
 
 /**
- * TangentArrowNode is a double-headed arrow that represents the tangent of the original curve at a point.
+ * TangentArrowNode is a double-headed arrow that represents the tangent of the primary curve at a point.
  * It updates its angle and position, based on the tangentScrubber model.
  *
  *  @author Martin Veillette

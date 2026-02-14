@@ -28,13 +28,13 @@ export default class ReferenceLine extends AncillaryTool {
   public readonly lineColorProperty: ProfileColorProperty;
 
   public constructor( integralCurve: IntegralCurve,
-                      originalCurve: OriginalCurve,
+                      primaryCurve: OriginalCurve,
                       predictedCurve: PredictCurve,
                       derivativeCurve: DerivativeCurve,
                       secondDerivativeCurve: SecondDerivativeCurve,
                       tandem: Tandem ) {
 
-    super( integralCurve, originalCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {
+    super( integralCurve, primaryCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {
 
       // A bit right of center, see https://github.com/phetsims/calculus-grapher/issues/248
       x: ( CalculusGrapherConstants.CURVE_X_RANGE.min + 0.55 * CalculusGrapherConstants.CURVE_X_RANGE.getLength() ),

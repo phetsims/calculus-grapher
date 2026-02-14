@@ -24,7 +24,7 @@
  *     - TILT -> tilt
  *     - SHIFT -> shift
  *
- * We should note that the TransformedCurve class is the basis of the original curve, and, therefore,
+ * We should note that the TransformedCurve class is the basis of the primary curve, and, therefore,
  * its first, and second derivative will be evaluated. As a result, much effort was spent creating curve manipulations
  * that yields unusually smooth curves for which their first and second derivatives are themselves smooth.
  *
@@ -85,7 +85,7 @@ export default class TransformedCurve extends Curve {
 
     // To make the sim acceptably responsive, the value of pointsProperty (an array of CurvePoint) typically does not
     // change. Instead, the CurvePoints are mutated in place, and curveChangedEmitter.emit is called when the mutation
-    // is completed. An exception to this occurs in PhET-iO brand for originalCurve.pointsProperty and
+    // is completed. An exception to this occurs in PhET-iO brand for primaryCurve.pointsProperty and
     // predictCurve.pointsProperty. The value will change when using the 'Set Value' control in Studio, or the value
     // is set via the 'setValue' PhET-iO API call. And in that case, we need to explicitly call curveChangedEmitter.emit.
     // See:

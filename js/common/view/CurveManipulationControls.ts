@@ -28,8 +28,8 @@ export default class CurveManipulationControls extends VBox {
         CalculusGrapherColors.predictCurveStrokeProperty,
         CalculusGrapherColors.primaryCurveStrokeProperty
       ],
-      ( predictEnabled, predictCurveStroke, originalCurveStroke ) =>
-        predictEnabled ? predictCurveStroke : originalCurveStroke );
+      ( predictEnabled, predictCurveStroke, primaryCurveStroke ) =>
+        predictEnabled ? predictCurveStroke : primaryCurveStroke );
 
     // Control that shows the width, with slider for modes that support adjustable width.
     const widthControl = new CurveManipulationWidthControl( curveManipulationProperties,
