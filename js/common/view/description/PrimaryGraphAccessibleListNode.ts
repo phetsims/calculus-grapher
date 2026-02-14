@@ -45,13 +45,13 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
 
-      // Possible description strings.
+      // Description choices.
       CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty,
       ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
       CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.hiddenStringProperty,
 
-      // Values to fill in the above descriptions.
+      // Values used in the above descriptions.
       primaryCurve.numberOfDiscontinuitiesProperty,
       primaryCurve.numberOfCuspsProperty,
       primaryCurveVisibleProperty
@@ -102,13 +102,13 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
 
-      // Possible description strings.
+      // Description choices.
       CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.continuousAndDifferentiableStringProperty,
       ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
       CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.predictCurve.hiddenStringProperty,
 
-      // Values to fill in the above descriptions.
+      // Values used in the above descriptions.
       predictCurve.numberOfDiscontinuitiesProperty,
       predictCurve.numberOfCuspsProperty,
       predictCurveVisibleProperty

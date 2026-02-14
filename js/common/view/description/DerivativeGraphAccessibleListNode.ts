@@ -39,12 +39,12 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
 
-      // Possible description strings.
+      // Description choices.
       ...CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
       CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.continuousAndDifferentiableStringProperty,
       CalculusGrapherFluent.a11y.graphArea.derivative.accessibleList.hiddenStringProperty,
 
-      // Values to fill in the above descriptions.
+      // Values used in the above descriptions.
       derivativeCurve.numberOfDiscontinuitiesProperty,
       derivativeCurve.numberOfCuspsProperty,
       derivativeCurveVisibleProperty

@@ -92,11 +92,11 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const leadingParagraphDependencies = _.uniq( [
 
-      // Possible description strings.
+      // Description choices.
       ...CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.getDependentProperties(),
       ...CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.getDependentProperties(),
 
-      // Values to fill in the above descriptions.
+      // Values used in the above descriptions.
       model.curveManipulationProperties.curveManipulationTypeProperty,
       model.curveManipulationProperties.widthProperty,
       curvesSentenceStringProperty

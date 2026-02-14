@@ -63,12 +63,12 @@ function getContentAccessibleParagraph( integralCurveProperty: TReadOnlyProperty
   // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
   const accessibleParagraphDependencies = _.uniq( [
 
-    // Possible description strings.
+    // Description choices.
     ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.zero.getDependentProperties(),
     ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.positive.getDependentProperties(),
     ...CalculusGrapherFluent.a11y.netSignedAreaAccordionBox.accessibleParagraph.negative.getDependentProperties(),
 
-    // Values to fill in the above descriptions.
+    // Values used in the above descriptions.
     integralCurveProperty,
     CalculusGrapherSymbols.accessibleVariableSymbolProperty
   ] );

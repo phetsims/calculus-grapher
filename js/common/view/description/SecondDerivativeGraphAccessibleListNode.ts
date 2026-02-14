@@ -39,12 +39,12 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAccess
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
 
-      // Possible description strings.
+      // Description choices.
       ...CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
       CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty,
       CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.hiddenStringProperty,
 
-      // Values to fill in the above descriptions.
+      // Values used in the above descriptions.
       secondDerivativeCurve.numberOfDiscontinuitiesProperty,
       secondDerivativeCurve.numberOfCuspsProperty,
       secondDerivativeCurveVisibleProperty

@@ -59,12 +59,12 @@ function getContentAccessibleParagraph( derivativeCurvePointProperty: TReadOnlyP
   // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
   const accessibleParagraphDependencies = _.uniq( [
 
-    // Possible description strings.
+    // Description choices.
     ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.zero.getDependentProperties(),
     ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.positive.getDependentProperties(),
     ...CalculusGrapherFluent.a11y.slopeOfTangentAccordionBox.accessibleParagraph.negative.getDependentProperties(),
 
-    // Values to fill in the above descriptions.
+    // Values used in the above descriptions.
     derivativeCurvePointProperty,
     CalculusGrapherSymbols.accessibleVariableSymbolProperty
   ] );
