@@ -42,7 +42,7 @@ type SelfOptions = {
   // So that subclasses can customize which Properties are featured in Studio.
   // See https://github.com/phetsims/calculus-grapher/issues/225
   yIntegralPropertyFeatured?: boolean;
-  yOriginalPropertyFeatured?: boolean;
+  yPrimaryPropertyFeatured?: boolean;
   yPredictPropertyFeatured?: boolean;
   yDerivativePropertyFeatured?: boolean;
   ySecondDerivativePropertyFeatured?: boolean;
@@ -71,10 +71,10 @@ export default class AncillaryTool extends PhetioObject {
   // CurvePoints for each curve at the location of xProperty.
   // These are of type ReadOnlyProperty in case we want to link to them via addLinkedElement in subclasses.
   protected readonly yIntegralProperty: ReadOnlyProperty<number | null>;
-  protected readonly yOriginalProperty: ReadOnlyProperty<number | null>;
-  protected readonly yPredictProperty: ReadOnlyProperty<number | null>;
+  private readonly yPrimaryProperty: ReadOnlyProperty<number | null>;
+  private readonly yPredictProperty: ReadOnlyProperty<number | null>;
   protected readonly yDerivativeProperty: ReadOnlyProperty<number | null>;
-  protected readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
+  private readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
 
   protected constructor( integralCurve: IntegralCurve,
                          originalCurve: OriginalCurve,
@@ -88,7 +88,7 @@ export default class AncillaryTool extends PhetioObject {
       // SelfOptions
       visible: false,
       yIntegralPropertyFeatured: true,
-      yOriginalPropertyFeatured: true,
+      yPrimaryPropertyFeatured: true,
       yPredictPropertyFeatured: true,
       yDerivativePropertyFeatured: true,
       ySecondDerivativePropertyFeatured: true,
@@ -126,9 +126,9 @@ export default class AncillaryTool extends PhetioObject {
       phetioFeatured: options.yIntegralPropertyFeatured,
       phetioDocumentation: 'yIntegralProperty is the area under the curve.'
     } );
-    this.yOriginalProperty = createYProperty( this.primaryCurvePointProperty, {
-      tandem: options.tandem.createTandem( 'yOriginalProperty' ),
-      phetioFeatured: options.yOriginalPropertyFeatured
+    this.yPrimaryProperty = createYProperty( this.primaryCurvePointProperty, {
+      tandem: options.tandem.createTandem( 'yPrimaryProperty' ),
+      phetioFeatured: options.yPrimaryPropertyFeatured
     } );
     this.yPredictProperty = createYProperty( this.predictCurvePointProperty, {
       tandem: options.tandem.createTandem( 'yPredictProperty' ),
