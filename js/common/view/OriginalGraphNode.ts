@@ -71,8 +71,8 @@ export default class OriginalGraphNode extends GraphNode {
   private readonly _showOriginalCurveProperty: Property<boolean>;
   public readonly showOriginalCurveProperty: TReadOnlyProperty<boolean>;
 
-  // Manipulators for original and predict curves.
-  private readonly originalCurveManipulatorNode: CurveManipulatorNode;
+  // Manipulators for primary and predict curves.
+  private readonly primaryCurveManipulator: CurveManipulatorNode;
   private readonly predictCurveManipulatorNode: CurveManipulatorNode;
 
   // For core description
@@ -88,7 +88,7 @@ export default class OriginalGraphNode extends GraphNode {
       labeledPoints,
       labeledPointsLinkableElement,
       originalCurve,
-      originalCurveManipulator,
+      primaryCurveManipulator,
       predictCurve,
       predictCurveManipulator,
       predictEnabledProperty
@@ -183,8 +183,8 @@ export default class OriginalGraphNode extends GraphNode {
     } );
 
     // Original curve manipulator
-    this.originalCurveManipulatorNode = new CurveManipulatorNode(
-      originalCurveManipulator,
+    this.primaryCurveManipulator = new CurveManipulatorNode(
+      primaryCurveManipulator,
       originalCurve,
       curveManipulationProperties.curveManipulationTypeProperty,
       curveManipulationProperties.widthProperty,
@@ -214,9 +214,9 @@ export default class OriginalGraphNode extends GraphNode {
       } );
 
     // Cueing arrows for the original and predict curve manipulators.
-    const originalCueingArrowsNode = new CueingArrowsNode( this.originalCurveManipulatorNode, this.chartTransform, {
-      // Child of originalCurveManipulatorNode in PhET-iO tree.
-      tandem: this.originalCurveManipulatorNode.tandem.createTandem( 'cueingArrowsNode' ),
+    const originalCueingArrowsNode = new CueingArrowsNode( this.primaryCurveManipulator, this.chartTransform, {
+      // Child of primaryCurveManipulatorNode in PhET-iO tree.
+      tandem: this.primaryCurveManipulator.tandem.createTandem( 'cueingArrowsNode' ),
       phetioDocumentation: 'Cueing arrows for the original curve, visible until the user moves the curve manipulator.'
     } );
     const predictCueingArrowsNode = new CueingArrowsNode( this.predictCurveManipulatorNode, this.chartTransform, {
@@ -227,12 +227,12 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Keyboard cues (popups) for toggling the manipulators between modes. Each manipulator has its own popup
     // because they have different colors, so it might not be obvious that they behave similarly.
-    const originalKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.originalCurveManipulatorNode );
+    const originalKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.primaryCurveManipulator );
     const predictKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.predictCurveManipulatorNode );
 
     // Center the keyboard cues below their manipulators.
     const keyboardCueYOffset = 10;
-    this.originalCurveManipulatorNode.boundsProperty.link( bounds => {
+    this.primaryCurveManipulator.boundsProperty.link( bounds => {
       originalKeyboardCueNode.centerX = bounds.centerX;
       originalKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
     } );
@@ -244,7 +244,7 @@ export default class OriginalGraphNode extends GraphNode {
     // Put everything related to curve manipulation in a layer to simplify controlling visibility.
     const manipulatorsLayer = new Node( {
       children: [
-        this.originalCurveManipulatorNode,
+        this.primaryCurveManipulator,
         this.predictCurveManipulatorNode,
         originalCueingArrowsNode,
         predictCueingArrowsNode,
@@ -290,7 +290,7 @@ export default class OriginalGraphNode extends GraphNode {
           this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
         }
         else {
-          this.originalCurveManipulatorNode.forwardPressListenerEvent( event );
+          this.primaryCurveManipulator.forwardPressListenerEvent( event );
         }
       }
     } ) );
@@ -336,7 +336,7 @@ export default class OriginalGraphNode extends GraphNode {
     affirm( !this.yZoomButtonGroup, 'OriginalGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
       accessibleListNode,
-      this.originalCurveManipulatorNode,
+      this.primaryCurveManipulator,
       this.predictCurveManipulatorNode,
       showOriginalCurveCheckbox,
       this.curveVisibilityToggleButton

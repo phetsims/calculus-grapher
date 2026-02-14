@@ -100,7 +100,7 @@ export default class CalculusGrapherModel implements TModel {
   public readonly interactiveCurveProperty: TReadOnlyProperty<TransformedCurve>;
 
   // Model elements for the various tools
-  public readonly originalCurveManipulator: CurveManipulator;
+  public readonly primaryCurveManipulator: CurveManipulator;
   public readonly predictCurveManipulator: CurveManipulator;
   public readonly activeCurveManipulatorProperty: TReadOnlyProperty<CurveManipulator>;
   public readonly referenceLine: ReferenceLine;
@@ -189,9 +189,9 @@ export default class CalculusGrapherModel implements TModel {
 
     this.toolsTandem = options.tandem.createTandem( 'tools' );
 
-    this.originalCurveManipulator = new CurveManipulator( CalculusGrapherColors.primaryCurveStrokeProperty, {
-      tandem: this.toolsTandem.createTandem( 'originalCurveManipulator' ),
-      phetioDocumentation: 'Manipulator for the original curve.'
+    this.primaryCurveManipulator = new CurveManipulator( CalculusGrapherColors.primaryCurveStrokeProperty, {
+      tandem: this.toolsTandem.createTandem( 'primaryCurveManipulator' ),
+      phetioDocumentation: 'Manipulator for the primary curve.'
     } );
 
     this.predictCurveManipulator = new CurveManipulator( CalculusGrapherColors.predictCurveStrokeProperty, {
@@ -200,7 +200,7 @@ export default class CalculusGrapherModel implements TModel {
     } );
 
     this.activeCurveManipulatorProperty = new DerivedProperty( [ this.predictEnabledProperty ],
-      predictEnabled => predictEnabled ? this.predictCurveManipulator : this.originalCurveManipulator );
+      predictEnabled => predictEnabled ? this.predictCurveManipulator : this.primaryCurveManipulator );
 
     this.referenceLine = new ReferenceLine( this.integralCurve, this.originalCurve, this.predictCurve,
       this.derivativeCurve, this.secondDerivativeCurve, this.toolsTandem.createTandem( 'referenceLine' ) );
@@ -253,7 +253,7 @@ export default class CalculusGrapherModel implements TModel {
     this.gridVisibleProperty.reset();
 
     // Reset tools
-    this.originalCurveManipulator.reset();
+    this.primaryCurveManipulator.reset();
     this.predictCurveManipulator.reset();
     this.referenceLine.reset();
     // Do not reset this.labeledPoints, because they are configured only via PhET-iO.
