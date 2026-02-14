@@ -58,7 +58,7 @@ import TangentArrowNode from './TangentArrowNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type OriginalGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'chartRectangleHeight' | 'tandem'>;
+type PrimaryGraphNodeOptions = SelfOptions & PickRequired<GraphNodeOptions, 'chartRectangleHeight' | 'tandem'>;
 
 export default class PrimaryGraphNode extends GraphNode {
 
@@ -81,7 +81,7 @@ export default class PrimaryGraphNode extends GraphNode {
   public readonly primaryCurveVisibleProperty: TReadOnlyProperty<boolean>;
   public readonly predictCurveVisibleProperty: TReadOnlyProperty<boolean>;
 
-  public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
+  public constructor( model: CalculusGrapherModel, providedOptions: PrimaryGraphNodeOptions ) {
 
     // Destructure fields from the model into local constants to improve readability.
     const {
@@ -115,7 +115,7 @@ export default class PrimaryGraphNode extends GraphNode {
       tandem: labelNodeTandem
     } );
 
-    const options = optionize<OriginalGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
+    const options = optionize<PrimaryGraphNodeOptions, SelfOptions, GraphNodeOptions>()( {
 
       // GraphNodeOptions
       labelNode: labelNode,
