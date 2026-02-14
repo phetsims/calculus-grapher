@@ -25,7 +25,7 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
   public constructor( tandem: Tandem ) {
 
     const graphSets: GraphSet[] = [
-      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ] )
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.PRIMARY ] )
     ];
 
     const createModel = () => new IntegralModel( {

@@ -25,7 +25,7 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
   public constructor( tandem: Tandem ) {
 
     const graphSets: GraphSet[] = [
-      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ] )
+      new GraphSet( [ GraphType.PRIMARY, GraphType.DERIVATIVE ] )
     ];
 
     const createModel = () => new DerivativeModel( {

@@ -26,7 +26,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
 
   public constructor( predictSelectedProperty: Property<boolean>, tandem: Tandem ) {
 
-    const primaryCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
+    const primaryCurveLabelNode = new GraphTypeLabelNode( GraphType.PRIMARY );
 
     // To give the labels the same effective size
     const alignGroup = new AlignGroup();

@@ -112,8 +112,8 @@ function getLabelNode( graphType: GraphType,
   if ( graphType === GraphType.INTEGRAL ) {
     return getIntegral( variableStringProperty, fontSizeOptions );
   }
-  else if ( graphType === GraphType.ORIGINAL ) {
-    return getOriginal( variableStringProperty, fontSizeOptions );
+  else if ( graphType === GraphType.PRIMARY ) {
+    return getPrimary( variableStringProperty, fontSizeOptions );
   }
   else if ( graphType === GraphType.DERIVATIVE ) {
     return getDerivative( derivativeNotation, variableStringProperty, fontSizeOptions );
@@ -154,7 +154,7 @@ function getPrimeLabel( variableStringProperty: TReadOnlyProperty<string>, prime
 /**
  * label for f(x)
  */
-function getOriginal( variableStringProperty: TReadOnlyProperty<string>, fontSizeOptions: FontSizeOptions ): Node {
+function getPrimary( variableStringProperty: TReadOnlyProperty<string>, fontSizeOptions: FontSizeOptions ): Node {
   return getPrimeLabel( variableStringProperty, '', fontSizeOptions );
 }
 

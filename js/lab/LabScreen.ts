@@ -29,13 +29,13 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
 
     // In the order that they will appear in radio buttons
     const graphSets: GraphSet[] = [
-      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.PRIMARY, GraphType.DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet0' ),
-        phetioDocumentation: 'Choosing this GraphSet shows the integral, original, and derivative graphs.'
+        phetioDocumentation: 'Choosing this GraphSet shows the integral, primary, and derivative graphs.'
       } ),
-      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ], {
+      new GraphSet( [ GraphType.PRIMARY, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet1' ),
-        phetioDocumentation: 'Choosing this GraphSet shows the original, derivative, and second derivative graphs.'
+        phetioDocumentation: 'Choosing this GraphSet shows the primary, derivative, and second derivative graphs.'
       } )
     ];
 

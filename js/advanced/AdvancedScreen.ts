@@ -30,13 +30,13 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
 
     // In the order that they will appear in radio buttons
     const graphSets: GraphSet[] = [
-      new GraphSet( [ GraphType.INTEGRAL, GraphType.ORIGINAL ], {
+      new GraphSet( [ GraphType.INTEGRAL, GraphType.PRIMARY ], {
         tandem: modelTandem.createTandem( 'graphSet0' ),
-        phetioDocumentation: 'Choosing this GraphSet shows the integral and original graphs.'
+        phetioDocumentation: 'Choosing this GraphSet shows the integral and primary graphs.'
       } ),
-      new GraphSet( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ], {
+      new GraphSet( [ GraphType.PRIMARY, GraphType.DERIVATIVE ], {
         tandem: modelTandem.createTandem( 'graphSet1' ),
-        phetioDocumentation: 'Choosing this GraphSet shows the original and derivative graphs.'
+        phetioDocumentation: 'Choosing this GraphSet shows the primary and derivative graphs.'
       } )
     ];
 

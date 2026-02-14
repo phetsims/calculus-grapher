@@ -45,7 +45,7 @@ export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
           maxWidth: 100,
           tandem: tandem.createTandem( 'showText' )
         } ),
-        new GraphTypeLabelNode( GraphType.ORIGINAL )
+        new GraphTypeLabelNode( GraphType.PRIMARY )
       ],
       spacing: 5
     } );

@@ -39,21 +39,21 @@ export default class ReferenceLineDescriber {
     let response: string;
     const graphSet = this.graphSetProperty.value;
 
-    if ( graphSet.matches( [ GraphType.ORIGINAL, GraphType.DERIVATIVE ] ) ) {
+    if ( graphSet.matches( [ GraphType.PRIMARY, GraphType.DERIVATIVE ] ) ) {
       response = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.patterns.primaryDerivative.format( {
         xPhrase: this.getXPhrase(),
         primaryPhrase: this.getPrimaryPhrase(),
         derivativePhrase: this.getDerivativePhrase()
       } );
     }
-    else if ( graphSet.matches( [ GraphType.INTEGRAL, GraphType.ORIGINAL ] ) ) {
+    else if ( graphSet.matches( [ GraphType.INTEGRAL, GraphType.PRIMARY ] ) ) {
       response = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.patterns.integralPrimary.format( {
         xPhrase: this.getXPhrase(),
         integralPhrase: this.getIntegralPhrase(),
         primaryPhrase: this.getPrimaryPhrase()
       } );
     }
-    else if ( graphSet.matches( [ GraphType.INTEGRAL, GraphType.ORIGINAL, GraphType.DERIVATIVE ] ) ) {
+    else if ( graphSet.matches( [ GraphType.INTEGRAL, GraphType.PRIMARY, GraphType.DERIVATIVE ] ) ) {
       response = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.patterns.integralPrimaryDerivative.format( {
         xPhrase: this.getXPhrase(),
         integralPhrase: this.getIntegralPhrase(),
@@ -62,7 +62,7 @@ export default class ReferenceLineDescriber {
       } );
     }
     else {
-      affirm( graphSet.matches( [ GraphType.ORIGINAL, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ] ) );
+      affirm( graphSet.matches( [ GraphType.PRIMARY, GraphType.DERIVATIVE, GraphType.SECOND_DERIVATIVE ] ) );
       response = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.patterns.primaryDerivativeSecondDerivative.format( {
         xPhrase: this.getXPhrase(),
         primaryPhrase: this.getPrimaryPhrase(),

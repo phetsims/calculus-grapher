@@ -94,7 +94,7 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabledProperty
     } = model;
 
-    const graphType = GraphType.ORIGINAL;
+    const graphType = GraphType.PRIMARY;
 
     // Label that toggles between 'Predict f(x)' and 'f(x)'
     const labelNodeTandem = providedOptions.tandem.createTandem( 'labelNode' );
