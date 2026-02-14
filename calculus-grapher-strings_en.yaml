@@ -168,7 +168,7 @@ a11y:
     accessibleContextResponseChecked:   Coordinate grid shown.
     accessibleContextResponseUnchecked: Coordinate grid hidden.
 
-  showOriginalCurveCheckbox:
+  showPrimaryCurveCheckbox:
     accessibleName:                     Show f of {$variable}
     accessibleHelpText:                 Show or hide f of {$variable} concurrent with predict curve.
     accessibleContextResponseChecked:   f of {$variable} shown.
@@ -283,7 +283,7 @@ a11y:
   predictRadioButtonGroup:
     accessibleName:     Curve to Manipulate
     accessibleHelpText: Choose curve to manipulate in Primary Graph Area.
-    originalCurveRadioButton:
+    primaryCurveRadioButton:
       accessibleName:     f of {$variable}
       accessibleHelpText: Manipulate f curve in Primary Graph Area.
     predictCurveRadioButton:

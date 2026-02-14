@@ -37,10 +37,10 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
         createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.primaryCurveStrokeProperty ),
         tandemName: 'originalCurveRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleName.createProperty( {
+          accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } ),
-          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.originalCurveRadioButton.accessibleHelpTextStringProperty
+          accessibleHelpText: CalculusGrapherFluent.a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleHelpTextStringProperty
         }
       },
       {

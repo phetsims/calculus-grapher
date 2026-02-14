@@ -278,7 +278,7 @@
         "value": "Coordinate grid hidden."
       }
     },
-    "showOriginalCurveCheckbox": {
+    "showPrimaryCurveCheckbox": {
       "accessibleName": {
         "value": "Show f of {$variable}"
       },
@@ -495,7 +495,7 @@
       "accessibleHelpText": {
         "value": "Choose curve to manipulate in Primary Graph Area."
       },
-      "originalCurveRadioButton": {
+      "primaryCurveRadioButton": {
         "accessibleName": {
           "value": "f of {$variable}"
         },

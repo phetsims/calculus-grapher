@@ -56,16 +56,16 @@ export default class ShowOriginalCurveCheckbox extends BackgroundNode {
         touchAreaYDilation: POINTER_AREA_DILATION,
         mouseAreaXDilation: POINTER_AREA_DILATION,
         mouseAreaYDilation: POINTER_AREA_DILATION,
-        accessibleName: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleName.createProperty( {
+        accessibleName: CalculusGrapherFluent.a11y.showPrimaryCurveCheckbox.accessibleName.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
-        accessibleHelpText: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleHelpText.createProperty( {
+        accessibleHelpText: CalculusGrapherFluent.a11y.showPrimaryCurveCheckbox.accessibleHelpText.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
-        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseChecked.createProperty( {
+        accessibleContextResponseChecked: CalculusGrapherFluent.a11y.showPrimaryCurveCheckbox.accessibleContextResponseChecked.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
-        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.showOriginalCurveCheckbox.accessibleContextResponseUnchecked.createProperty( {
+        accessibleContextResponseUnchecked: CalculusGrapherFluent.a11y.showPrimaryCurveCheckbox.accessibleContextResponseUnchecked.createProperty( {
           variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
         } ),
         tandem: tandem,
