@@ -1,4 +1,4 @@
-// Copyright 2020-2024, University of Colorado Boulder
+// Copyright 2020-2026, University of Colorado Boulder
 
 /**
  * DerivativeCurve is a Curve subclass for a curve that represents the derivative of a Curve. It is used

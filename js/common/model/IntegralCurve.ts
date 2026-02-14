@@ -1,4 +1,4 @@
-// Copyright 2020-2025, University of Colorado Boulder
+// Copyright 2020-2026, University of Colorado Boulder
 
 /**
  * IntegralCurve is a Curve subclass for the curve that represents the integral of primaryCurve.
