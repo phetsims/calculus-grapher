@@ -154,7 +154,7 @@ quantities associated with the x value:
 
 - All of the above quantities are derived from their associated curve. For performance reason, the quantities above are
   updated solely when its associated tool is visible. Many tools such as the Area Under Curve tool, Tangent tool,
-  Reference Line tool, as well as the PhET-IO tools, Labeled Points and Labeled Lines, extend the AncillaryTool class.
+  Reference Line tool, as well as the PhET-iO tools, Labeled Points and Labeled Lines, extend the AncillaryTool class.
 
 ## PhET-iO
 
