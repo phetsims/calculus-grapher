@@ -41,12 +41,12 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       } );
     }
 
-    // Original Curve. All screens include this description.
-    const originalCurveVisibleProperty = graphsNode.originalGraphNode.originalCurveVisibleProperty;
-    visibleProperties.push( originalCurveVisibleProperty );
+    // Primary Curve. All screens include this description.
+    const primaryCurveVisibleProperty = graphsNode.originalGraphNode.primaryCurveVisibleProperty;
+    visibleProperties.push( primaryCurveVisibleProperty );
     listItems.push( {
       stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty,
-      visibleProperty: originalCurveVisibleProperty
+      visibleProperty: primaryCurveVisibleProperty
     } );
 
     // Predict Curve. All screens include this description.

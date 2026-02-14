@@ -76,7 +76,7 @@ export default class OriginalGraphNode extends GraphNode {
   private readonly predictCurveManipulatorNode: CurveManipulatorNode;
 
   // For core description
-  public readonly originalCurveVisibleProperty: TReadOnlyProperty<boolean>;
+  public readonly primaryCurveVisibleProperty: TReadOnlyProperty<boolean>;
   public readonly predictCurveVisibleProperty: TReadOnlyProperty<boolean>;
 
   public constructor( model: CalculusGrapherModel, providedOptions: OriginalGraphNodeOptions ) {
@@ -316,7 +316,7 @@ export default class OriginalGraphNode extends GraphNode {
       }
     } );
 
-    this.originalCurveVisibleProperty = new DerivedProperty( [
+    this.primaryCurveVisibleProperty = new DerivedProperty( [
         this.curveLayerVisibleProperty,
         this.showPrimaryCurveProperty,
         model.predictEnabledProperty
@@ -328,7 +328,7 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Add AccessibleListNode to describe the graph.
     const accessibleListNode = new PrimaryGraphAccessibleListNode( model.originalCurve, model.predictCurve,
-      this.originalCurveVisibleProperty, this.predictCurveVisibleProperty,
+      this.primaryCurveVisibleProperty, this.predictCurveVisibleProperty,
       model.predictEnabledProperty, model.gridVisibleProperty );
     this.addChild( accessibleListNode );
 

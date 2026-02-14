@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * PrimaryGraphAccessibleListNode is the accessible list that describes the original graph,
+ * PrimaryGraphAccessibleListNode is the accessible list that describes the Primary graph,
  * which is (confusingly) known as the "primary graph" for core description.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -18,15 +18,15 @@ import GraphAccessibleListNode from './GraphAccessibleListNode.js';
 
 export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListNode {
 
-  public constructor( originalCurve: OriginalCurve,
+  public constructor( primaryCurve: OriginalCurve,
                       predictCurve: PredictCurve,
-                      originalCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( originalCurve, originalCurveVisibleProperty ),
+      PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty ),
       PrimaryGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
       GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAccessibleListNode.getValuesListItem()
@@ -39,8 +39,8 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
    * Gets the bullet list item that describes the primary curve.
    */
   private static getPrimaryCurveListItem(
-    originalCurve: OriginalCurve,
-    originalCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+    primaryCurve: OriginalCurve,
+    primaryCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
@@ -52,18 +52,18 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
       CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.hiddenStringProperty,
 
       // Values to fill in the above descriptions.
-      originalCurve.numberOfDiscontinuitiesProperty,
-      originalCurve.numberOfCuspsProperty,
-      originalCurveVisibleProperty
+      primaryCurve.numberOfDiscontinuitiesProperty,
+      primaryCurve.numberOfCuspsProperty,
+      primaryCurveVisibleProperty
     ] );
 
     const stringProperty = DerivedStringProperty.deriveAny( dependencies,
       () => {
         let string: string;
 
-        if ( originalCurveVisibleProperty.value ) {
-          const numberOfDiscontinuities = originalCurve.numberOfDiscontinuitiesProperty.value;
-          const numberOfCusps = originalCurve.numberOfCuspsProperty.value;
+        if ( primaryCurveVisibleProperty.value ) {
+          const numberOfDiscontinuities = primaryCurve.numberOfDiscontinuitiesProperty.value;
+          const numberOfCusps = primaryCurve.numberOfCuspsProperty.value;
 
           if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
             string = CalculusGrapherFluent.a11y.graphArea.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty.value;
