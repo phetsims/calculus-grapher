@@ -22,7 +22,7 @@ export default class ReferenceLineDescriber {
   public constructor( private readonly referenceLine: ReferenceLine,
                       private readonly graphSetProperty: TReadOnlyProperty<GraphSet>,
                       private readonly predictEnabledProperty: TReadOnlyProperty<boolean>,
-                      private readonly showOriginalCurveProperty: TReadOnlyProperty<boolean>,
+                      private readonly showPrimaryCurveProperty: TReadOnlyProperty<boolean>,
                       private readonly primaryCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       private readonly integralCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       private readonly derivativeCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
@@ -137,7 +137,7 @@ export default class ReferenceLineDescriber {
    */
   private getPrimaryCurvePhrase(): string {
     let primaryCurvePhrase: string;
-    if ( this.primaryCurveLayerVisibleProperty.value && ( !this.predictEnabledProperty.value || this.showOriginalCurveProperty.value ) ) {
+    if ( this.primaryCurveLayerVisibleProperty.value && ( !this.predictEnabledProperty.value || this.showPrimaryCurveProperty.value ) ) {
       const point = this.referenceLine.originalCurvePointProperty.value;
       if ( point.isDiscontinuous ) {
         // undefined

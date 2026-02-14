@@ -157,7 +157,7 @@ export default class GraphsNode extends Node {
       model.referenceLine,
       model.graphSetProperty,
       model.predictEnabledProperty,
-      this.originalGraphNode.showOriginalCurveProperty,
+      this.originalGraphNode.showPrimaryCurveProperty,
       this.originalGraphNode.curveLayerVisibleProperty,
       this.integralGraphNode ? this.integralGraphNode.curveLayerVisibleProperty : new Property( false ),
       this.derivativeGraphNode ? this.derivativeGraphNode.curveLayerVisibleProperty : new Property( false ),

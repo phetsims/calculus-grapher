@@ -68,8 +68,8 @@ export default class OriginalGraphNode extends GraphNode {
 
   // Indicates if the original curve is visible while in 'Predict' mode.
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
-  private readonly _showOriginalCurveProperty: Property<boolean>;
-  public readonly showOriginalCurveProperty: TReadOnlyProperty<boolean>;
+  private readonly _showPrimaryCurveProperty: Property<boolean>;
+  public readonly showPrimaryCurveProperty: TReadOnlyProperty<boolean>;
 
   // Manipulators for primary and predict curves.
   private readonly primaryCurveManipulator: CurveManipulatorNode;
@@ -134,16 +134,16 @@ export default class OriginalGraphNode extends GraphNode {
 
     super( graphType, originalCurve, gridVisibleProperty, options );
 
-    this._showOriginalCurveProperty = new BooleanProperty( false, {
-      tandem: providedOptions.tandem.createTandem( 'showOriginalCurveProperty' ),
-      phetioDocumentation: 'Controls whether the original curve is visible while the Predict radio button is selected.' +
+    this._showPrimaryCurveProperty = new BooleanProperty( false, {
+      tandem: providedOptions.tandem.createTandem( 'showPrimaryCurveProperty' ),
+      phetioDocumentation: 'Controls whether the primary curve is visible while the Predict radio button is selected.' +
                            'The value of this Property can be changed by toggling showPrimaryCurveCheckbox.',
       phetioFeatured: true
     } );
-    this.showOriginalCurveProperty = this._showOriginalCurveProperty;
+    this.showPrimaryCurveProperty = this._showPrimaryCurveProperty;
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
-    const showPrimaryCurveCheckbox = new ShowPrimaryCurveCheckbox( this._showOriginalCurveProperty,
+    const showPrimaryCurveCheckbox = new ShowPrimaryCurveCheckbox( this._showPrimaryCurveProperty,
       predictEnabledProperty, options.tandem.createTandem( 'showPrimaryCurveCheckbox' ) );
     showPrimaryCurveCheckbox.boundsProperty.link( () => {
       showPrimaryCurveCheckbox.right =
@@ -162,8 +162,8 @@ export default class OriginalGraphNode extends GraphNode {
       plotBoundsMethod: CalculusGrapherConstants.PLOT_BOUNDS_METHOD, // see https://github.com/phetsims/calculus-grapher/issues/210
       plotBounds: this.getChartRectangleBounds(), // see https://github.com/phetsims/calculus-grapher/issues/259
       visibleProperty: new DerivedProperty(
-        [ predictEnabledProperty, this.showOriginalCurveProperty ],
-        ( predictEnabled, showOriginalCurve ) => !predictEnabled || showOriginalCurve, {
+        [ predictEnabledProperty, this.showPrimaryCurveProperty ],
+        ( predictEnabled, showPrimaryCurve ) => !predictEnabled || showPrimaryCurve, {
           tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } ),
@@ -318,11 +318,11 @@ export default class OriginalGraphNode extends GraphNode {
 
     this.originalCurveVisibleProperty = new DerivedProperty( [
         this.curveLayerVisibleProperty,
-        this.showOriginalCurveProperty,
+        this.showPrimaryCurveProperty,
         model.predictEnabledProperty
       ],
-      ( originalCurveLayerVisible, showOriginalCurve, predictEnabled ) =>
-        originalCurveLayerVisible && ( showOriginalCurve || !predictEnabled ) );
+      ( originalCurveLayerVisible, showPrimaryCurve, predictEnabled ) =>
+        originalCurveLayerVisible && ( showPrimaryCurve || !predictEnabled ) );
 
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
 
@@ -346,7 +346,7 @@ export default class OriginalGraphNode extends GraphNode {
   public override reset(): void {
     this.originalCurveNode.reset();
     this.predictCurveNode.reset();
-    this._showOriginalCurveProperty.reset();
+    this._showPrimaryCurveProperty.reset();
     super.reset();
   }
 

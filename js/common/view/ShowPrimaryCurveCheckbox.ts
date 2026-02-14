@@ -34,7 +34,7 @@ const POINTER_AREA_DILATION = 6;
 
 export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
 
-  public constructor( showOriginalCurveProperty: Property<boolean>,
+  public constructor( showPrimaryCurveProperty: Property<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
                       tandem: Tandem ) {
 
@@ -50,7 +50,7 @@ export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
       spacing: 5
     } );
 
-    const checkbox = new Checkbox( showOriginalCurveProperty, checkboxContent,
+    const checkbox = new Checkbox( showPrimaryCurveProperty, checkboxContent,
       combineOptions<CheckboxOptions>( {}, CalculusGrapherConstants.CHECKBOX_OPTIONS, {
         touchAreaXDilation: POINTER_AREA_DILATION,
         touchAreaYDilation: POINTER_AREA_DILATION,
@@ -70,7 +70,7 @@ export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
         } ),
         tandem: tandem,
 
-        // because 'showOriginalCurveCheckbox.visibleProperty' is the tandem name for BackgroundNode's visibleProperty
+        // because 'showPrimaryCurveCheckbox.visibleProperty' is the tandem name for BackgroundNode's visibleProperty
         phetioVisiblePropertyInstrumented: false
       } ) );
 
