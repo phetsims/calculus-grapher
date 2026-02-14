@@ -1,7 +1,7 @@
 // Copyright 2022-2026, University of Colorado Boulder
 
 /**
- * OriginalGraphNode is the view representation of an Original Graph, which includes two curves
+ * OriginalGraphNode is the view representation of a Primary Graph, which includes two curves
  *  that can be user-manipulated as well as cueing arrows.
  * Labeled Points (only visible/accessible through PhET-IO) are also added to this graph
  * OriginalGraphNode extends GraphNode.
@@ -184,7 +184,7 @@ export default class OriginalGraphNode extends GraphNode {
       phetioInputEnabledPropertyInstrumented: true
     } );
 
-    // Original curve manipulator
+    // Primary curve manipulator
     this.primaryCurveManipulator = new CurveManipulatorNode(
       primaryCurveManipulator,
       primaryCurve,
@@ -215,8 +215,8 @@ export default class OriginalGraphNode extends GraphNode {
         accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.predict.accessibleHelpTextStringProperty
       } );
 
-    // Cueing arrows for the original and predict curve manipulators.
-    const originalCueingArrowsNode = new CueingArrowsNode( this.primaryCurveManipulator, this.chartTransform, {
+    // Cueing arrows for the primary and predict curve manipulators.
+    const primaryCueingArrowsNode = new CueingArrowsNode( this.primaryCurveManipulator, this.chartTransform, {
       // Child of primaryCurveManipulatorNode in PhET-iO tree.
       tandem: this.primaryCurveManipulator.tandem.createTandem( 'cueingArrowsNode' ),
       phetioDocumentation: 'Cueing arrows for the primary curve, visible until the user moves the curve manipulator.'
@@ -229,14 +229,14 @@ export default class OriginalGraphNode extends GraphNode {
 
     // Keyboard cues (popups) for toggling the manipulators between modes. Each manipulator has its own popup
     // because they have different colors, so it might not be obvious that they behave similarly.
-    const originalKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.primaryCurveManipulator );
+    const primaryKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.primaryCurveManipulator );
     const predictKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.predictCurveManipulatorNode );
 
     // Center the keyboard cues below their manipulators.
     const keyboardCueYOffset = 10;
     this.primaryCurveManipulator.boundsProperty.link( bounds => {
-      originalKeyboardCueNode.centerX = bounds.centerX;
-      originalKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
+      primaryKeyboardCueNode.centerX = bounds.centerX;
+      primaryKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
     } );
     this.predictCurveManipulatorNode.boundsProperty.link( bounds => {
       predictKeyboardCueNode.centerX = bounds.centerX;
@@ -248,9 +248,9 @@ export default class OriginalGraphNode extends GraphNode {
       children: [
         this.primaryCurveManipulator,
         this.predictCurveManipulatorNode,
-        originalCueingArrowsNode,
+        primaryCueingArrowsNode,
         predictCueingArrowsNode,
-        originalKeyboardCueNode,
+        primaryKeyboardCueNode,
         predictKeyboardCueNode
       ],
       visibleProperty: this.curveLayerVisibleProperty
@@ -303,13 +303,13 @@ export default class OriginalGraphNode extends GraphNode {
       predictEnabledProperty,
       this.predictCurveNode.inputEnabledProperty,
       this.primaryCurveNode.inputEnabledProperty
-    ], ( curveLayerVisible, predictEnabled, predictInputEnabled, originalInputEnabled ) => {
+    ], ( curveLayerVisible, predictEnabled, predictInputEnabled, primaryInputEnabled ) => {
       if ( curveLayerVisible && predictEnabled && predictInputEnabled ) {
         // Predict curve can be edited.
         this.chartRectangle.cursor = 'pointer';
       }
-      else if ( curveLayerVisible && !predictEnabled && originalInputEnabled ) {
-        // Original curve can be edited.
+      else if ( curveLayerVisible && !predictEnabled && primaryInputEnabled ) {
+        // Primary curve can be edited.
         this.chartRectangle.cursor = 'pointer';
       }
       else {

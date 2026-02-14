@@ -1,7 +1,7 @@
 // Copyright 2022-2026, University of Colorado Boulder
 
 /**
- * PredictRadioButtonGroup is the radio button group for choosing either the original or predict curve.
+ * PredictRadioButtonGroup is the radio button group for choosing either the primary or predict curve.
  * The group is visible only if the Predict preference is turned on, which shows UI features related to Predict.
  *
  * @author Chris Malley (PixelZoom, Inc.)

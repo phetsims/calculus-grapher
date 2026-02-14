@@ -66,11 +66,11 @@ export default class SecondDerivativeCurve extends Curve {
 
     for ( let index = 0; index < length; index++ ) {
 
-      // Is the original point smooth?
-      const isOriginalPointSmooth = primaryPoints[ index ].pointType === 'smooth';
+      // Is the primary point smooth?
+      const isPrimaryPointSmooth = primaryPoints[ index ].pointType === 'smooth';
 
-      // The point type is the same as the original point, unless the original point is not smooth, in which case it must be discontinuous
-      this.points[ index ].pointType = isOriginalPointSmooth ? 'smooth' : 'discontinuous';
+      // The point type is the same as the primary point, unless the primary point is not smooth, in which case it must be discontinuous
+      this.points[ index ].pointType = isPrimaryPointSmooth ? 'smooth' : 'discontinuous';
 
       // We exclude the first and last point. They will be dealt with later
       if ( index !== 0 && index !== length - 1 ) {
@@ -78,7 +78,7 @@ export default class SecondDerivativeCurve extends Curve {
         const point = primaryPoints[ index ];
         const nextPoint = primaryPoints[ index + 1 ];
 
-        // Determine the second derivative using the naive assumption that all original points are smooth. We will handle exceptions later
+        // Determine the second derivative using the naive assumption that all primary points are smooth. We will handle exceptions later
         this.points[ index ].y = ( point.getSlope( nextPoint ) - point.getSlope( previousPoint ) ) / this.deltaX;
       }
     }

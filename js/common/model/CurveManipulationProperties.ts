@@ -45,7 +45,7 @@ export default class CurveManipulationProperties {
       validValues: curveManipulationTypeValues,
       tandem: options.tandem.createTandem( 'curveManipulationTypeProperty' ),
       phetioDocumentation: 'Determines how the curve will be modified (manipulated) when the student interacts with it. ' +
-                           'Applies to the interactive (original and predict) curves only.',
+                           'Applies to the interactive (primary and predict) curves only.',
       phetioFeatured: true
     } );
 

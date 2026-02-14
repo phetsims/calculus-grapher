@@ -50,12 +50,12 @@ export default class CalculusGrapherColors {
     default: 'black'
   } );
 
-  // Fill for the background of all Graphs (besides Original)
+  // Fill for the background of all Graphs (except primary)
   public static readonly defaultGraphBackgroundFillProperty = new ProfileColorProperty( calculusGrapher, 'defaultGraphBackgroundFill', {
     default: SCREEN_BACKGROUND_COLOR
   } );
 
-  // Stroke for the background of all Graphs (besides Original)
+  // Stroke for the background of all Graphs (except primary)
   public static readonly defaultGraphBackgroundStrokeProperty = new ProfileColorProperty( calculusGrapher, 'defaultGraphBackgroundStroke', {
     default: 'rgba( 0, 0, 0, 0.4 )'
   } );

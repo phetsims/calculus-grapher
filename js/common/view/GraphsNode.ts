@@ -272,7 +272,7 @@ export default class GraphsNode extends Node {
     this.scrubberNodesParent.addChild( tangentScrubberNode );
     tangentScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 
-    // Add the double-headed tangent arrow at the tangent point on the original graph.
+    // Add the double-headed tangent arrow at the tangent point on the primary graph.
     this.primaryGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
 
     // Plot a point on the derivative graph, to show the point that corresponds to the slope of the tangent.
@@ -310,7 +310,7 @@ export default class GraphsNode extends Node {
     this.scrubberNodesParent.addChild( areaUnderCurveScrubberNode );
     areaUnderCurveScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 
-    // Add a plot of the area under the curve on the original graph.
+    // Add a plot of the area under the curve on the primary graph.
     this.primaryGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
 
     // Plot a point on the integral graph, to show the point that corresponds to the area under the curve.

@@ -4,7 +4,7 @@
  * AncillaryTool is the model base class associated with an x value on the graph.
  * It keeps track of the following quantities associated with the x value:
  *  - the integral of f(x)
- *  - the original function f(x)
+ *  - the primary function f(x)
  *  - the prediction of f(x)
  *  - the derivative of f(x)
  *  - the second derivative of f(x)

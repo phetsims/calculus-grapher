@@ -73,7 +73,7 @@ export default class CalculusGrapherModel implements TModel {
   // Whether the 'Predict' radio button is selected
   public readonly predictSelectedProperty: Property<boolean>;
 
-  // Whether the 'Predict' feature is enabled for the original graph.
+  // Whether the 'Predict' feature is enabled for the primary graph.
   // The Predict preferences must be turned on, and the Predict radio button must be selected.
   public readonly predictEnabledProperty: TReadOnlyProperty<boolean>;
 

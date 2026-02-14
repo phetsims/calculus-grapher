@@ -2,7 +2,7 @@
 
 /**
  * ShowPrimaryCurveCheckbox is the checkbox labeled 'Show f(x)' that appears in the upper-right corner
- * of the original graph when the 'Predict' radio button is selected.
+ * of the primary graph when the 'Predict' radio button is selected.
  *
  * Note that this is actually a subclass of BackgroundNode. It's made to look like a Checkbox in the PhET-iO API,
  * with the BackgroundNode not part of the API.

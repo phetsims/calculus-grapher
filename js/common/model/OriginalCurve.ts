@@ -15,7 +15,7 @@ export default class OriginalCurve extends TransformedCurve {
   public constructor( tandem: Tandem ) {
     super( {
       tandem: tandem,
-      phetioDocumentation: 'The curve that corresponds to the original function, f(x) or f(t)'
+      phetioDocumentation: 'The curve that corresponds to the primary function, f(x) or f(t)'
     } );
   }
 }

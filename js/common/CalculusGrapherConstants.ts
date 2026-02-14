@@ -26,7 +26,7 @@ const CURVE_X_LENGTH = CURVE_X_RANGE.getLength();
 // See CalculusGrapherConstants.TYPICAL_Y documentation below.
 const TYPICAL_Y = 0.1 * CURVE_X_LENGTH;
 
-// Typical area of original graph, used to set a scale of 'Net Signed Area' barometer
+// Typical area of primary graph, used to set a scale of 'Net Signed Area' barometer
 const TYPICAL_AREA = CURVE_X_LENGTH * TYPICAL_Y;
 
 export default class CalculusGrapherConstants {

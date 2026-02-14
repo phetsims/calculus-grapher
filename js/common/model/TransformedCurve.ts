@@ -2,7 +2,7 @@
 
 /**
  * TransformedCurve is a Curve subclass for a curve that the user interacts with and manipulates, which then
- * triggers a change in the CurvePoints. It is used for f(x) (the 'original' curve) and the 'Predict' curve.
+ * triggers a change in the CurvePoints. It is used for f(x) (the primary curve) and the 'Predict' curve.
  *
  * TransformedCurve is mainly responsible for:
  *

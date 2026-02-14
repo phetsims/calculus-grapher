@@ -4,7 +4,7 @@
  * DerivativeCurve is a Curve subclass for a curve that represents the derivative of a Curve. It is used
  * to evaluate the first derivative of the primary curve.
  *
- * DerivativeCurves' main responsibility is to observe when the original Curve changes and differentiates it and update
+ * DerivativeCurves' main responsibility is to observe when the primary curve changes and differentiates it and update
  * the Points of the derivative. Derivatives are computed by considering the slope of the secant lines from both sides
  * of every point. For a general background on differentiation, see
  * https://en.wikipedia.org/wiki/Derivative#Rigorous_definition.
@@ -62,7 +62,7 @@ export default class DerivativeCurve extends Curve {
    * is incorrect. Instead, for points at the edge of discontinuities, we use the value of the slope that is available.
    *
    * The point type of the derivative is updated. The point type is "promoted", which means that 'cusp' and 'discontinuous'
-   * type in the primary curve becomes discontinuity in the derivative, but 'smooth' original point remains 'smooth'.
+   * type in the primary curve becomes discontinuity in the derivative, but 'smooth' primary point remains 'smooth'.
    */
   private updateDerivative(): void {
 

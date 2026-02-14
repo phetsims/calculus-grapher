@@ -15,7 +15,7 @@ export default class PredictCurve extends TransformedCurve {
   public constructor( tandem: Tandem ) {
     super( {
       tandem: tandem,
-      phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the original function'
+      phetioDocumentation: 'The curve that corresponds to the student\'s prediction of the primary function'
     } );
   }
 }

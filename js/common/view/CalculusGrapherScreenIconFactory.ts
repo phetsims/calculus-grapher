@@ -167,7 +167,7 @@ export default class CalculusGrapherScreenIconFactory {
     const triangleHeight = 15;
     const discontinuityPointRadius = 2;
 
-    // Original curve, a triangle rendered with the color of the primary curve
+    // A triangle rendered with the color of the primary curve
     const triangleShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( triangleWidth / 2, -triangleHeight )
@@ -206,7 +206,7 @@ export default class CalculusGrapherScreenIconFactory {
       children: [ leftLine, rightLine, leftDiscontinuityPoint, rightDiscontinuityPoint ]
     } );
 
-    // Original curve above the derivative curve
+    // Primary curve above the derivative curve
     const iconNode = new VBox( {
       children: [ primaryCurveNode, derivativeCurveNode ],
       spacing: 8
