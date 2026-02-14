@@ -26,7 +26,7 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
 
   public constructor( predictSelectedProperty: Property<boolean>, tandem: Tandem ) {
 
-    const originalCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
+    const primaryCurveLabelNode = new GraphTypeLabelNode( GraphType.ORIGINAL );
 
     // To give the labels the same effective size
     const alignGroup = new AlignGroup();
@@ -34,8 +34,8 @@ export default class PredictRadioButtonGroup extends RectangularRadioButtonGroup
     const rectangularRadioButtonGroupItems: RectangularRadioButtonGroupItem<boolean>[] = [
       {
         value: false,
-        createNode: () => new LabelColorIcon( originalCurveLabelNode, alignGroup, CalculusGrapherColors.primaryCurveStrokeProperty ),
-        tandemName: 'originalCurveRadioButton',
+        createNode: () => new LabelColorIcon( primaryCurveLabelNode, alignGroup, CalculusGrapherColors.primaryCurveStrokeProperty ),
+        tandemName: 'primaryCurveRadioButton',
         options: {
           accessibleName: CalculusGrapherFluent.a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
