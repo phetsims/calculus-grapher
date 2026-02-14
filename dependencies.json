@@ -1,11 +1,11 @@
 {
-  "comment": "# calculus-grapher 1.1.0-dev.10 Sun Feb 08 2026 11:59:21 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.1.0-dev.11 Fri Feb 13 2026 17:25:53 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "1a4637cfff70e7e8b0844dc43848a86ae89b4cf5",
     "branch": "main"
   },
   "axon": {
-    "sha": "abaa3500c5e494fe72de09ca3eb90c6883fba3d0",
+    "sha": "cafe03f85ec180e5918d69c8846f8f5973a3d4cc",
     "branch": "main"
   },
   "bamboo": {
@@ -17,7 +17,7 @@
     "branch": "main"
   },
   "calculus-grapher": {
-    "sha": "039357220a2937823c1deb4575fc7879316268eb",
+    "sha": "b9275834661c3965afc26dd9af94ff388c36f6f8",
     "branch": "main"
   },
   "chipper": {
@@ -29,7 +29,7 @@
     "branch": "main"
   },
   "joist": {
-    "sha": "443c05277c8a29c4eb5ee32729e6b656c670428b",
+    "sha": "e31e2d17062c03738ea63bf731d419cb185742ac",
     "branch": "main"
   },
   "kite": {
@@ -37,7 +37,7 @@
     "branch": "main"
   },
   "perennial-alias": {
-    "sha": "fccce1e098f7f655390f27671f25887e63d37e33",
+    "sha": "109a3565292c450d083e4251862549508239b542",
     "branch": "main"
   },
   "phet-core": {
@@ -49,7 +49,7 @@
     "branch": "main"
   },
   "phet-io-sim-specific": {
-    "sha": "efacb54684ea0609ec03bdd19120847017faad31",
+    "sha": "d2a01bca071383bd2e83baf04d5c7d7c3ef01269",
     "branch": "main"
   },
   "phet-io-wrappers": {
@@ -69,11 +69,11 @@
     "branch": "main"
   },
   "scenery": {
-    "sha": "1af22b946a0e7e04d3b80f3676f1a027430a4fc4",
+    "sha": "589e4b1e8dd29cf144d78b8c558b63c2d4d59dfb",
     "branch": "main"
   },
   "scenery-phet": {
-    "sha": "46f9c4da83614b90750167cf714a2c5b60ec91b3",
+    "sha": "ce964ba4aff7acb94da9b4351c5ea60e0aa62bb5",
     "branch": "main"
   },
   "sherpa": {
@@ -85,7 +85,7 @@
     "branch": "main"
   },
   "sun": {
-    "sha": "c8d99daec6526be633b862d7ba12a135d58abee3",
+    "sha": "7cb4af38fd139eaf875374378cf5e62cdb62e8f0",
     "branch": "main"
   },
   "tambo": {
