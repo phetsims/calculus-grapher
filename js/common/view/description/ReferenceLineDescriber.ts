@@ -138,7 +138,7 @@ export default class ReferenceLineDescriber {
   private getPrimaryCurvePhrase(): string {
     let primaryCurvePhrase: string;
     if ( this.primaryCurveLayerVisibleProperty.value && ( !this.predictEnabledProperty.value || this.showPrimaryCurveProperty.value ) ) {
-      const point = this.referenceLine.originalCurvePointProperty.value;
+      const point = this.referenceLine.primaryCurvePointProperty.value;
       if ( point.isDiscontinuous ) {
         // undefined
         primaryCurvePhrase = CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.primaryPhrase.primaryUndefined.format( {

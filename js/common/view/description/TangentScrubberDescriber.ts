@@ -52,7 +52,7 @@ export default class TangentScrubberDescriber {
   private getSlopePhrase(): string {
     let slopePhrase: string;
     if ( this.primaryCurveLayerVisibleProperty.value ) {
-      affirm( !this.tangentScrubber.originalCurvePointProperty.value.isDiscontinuous, 'Tangent tool does not support discontinuities in primary curve.' );
+      affirm( !this.tangentScrubber.primaryCurvePointProperty.value.isDiscontinuous, 'Tangent tool does not support discontinuities in primary curve.' );
       const slope = toFixedNumber( this.tangentScrubber.derivativeCurvePointProperty.value.y, CalculusGrapherConstants.SLOPE_DESCRIPTION_DECIMALS );
       if ( slope === 0 ) {
         // zero

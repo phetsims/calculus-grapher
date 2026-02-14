@@ -43,7 +43,7 @@ export default class LabeledPointNode extends Node {
       pickable: false, // optimization, see https://github.com/phetsims/calculus-grapher/issues/210
       visibleProperty: new DerivedProperty(
         [ labeledPoint.visibleProperty, curveLayerVisibleProperty, predictEnabledProperty,
-          labeledPoint.originalCurvePointProperty ],
+          labeledPoint.primaryCurvePointProperty ],
         ( labeledPointVisible, curveLayerVisible, predictEnabled, point ) =>
           labeledPointVisible && curveLayerVisible && !predictEnabled && chartTransform.modelXRange.contains( point.x ) && chartTransform.modelYRange.contains( point.y ), {
           tandem: providedOptions.tandem.createTandem( 'visibleProperty' ),
@@ -52,7 +52,7 @@ export default class LabeledPointNode extends Node {
     }, providedOptions );
 
     // point that is plotted on the curve
-    const plottedPoint = new PlottedPoint( labeledPoint.originalCurvePointProperty, chartTransform, {
+    const plottedPoint = new PlottedPoint( labeledPoint.primaryCurvePointProperty, chartTransform, {
       fill: labeledPoint.pointColorProperty
     } );
 

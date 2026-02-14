@@ -63,7 +63,7 @@ export default class AncillaryTool extends PhetioObject {
   // CurvePoints for each curve at the location of xProperty.
   // These are of type ReadOnlyProperty so that we can call notifyListenersStatic.
   public readonly integralCurvePointProperty: ReadOnlyProperty<CurvePoint>;
-  public readonly originalCurvePointProperty: ReadOnlyProperty<CurvePoint>;
+  public readonly primaryCurvePointProperty: ReadOnlyProperty<CurvePoint>;
   public readonly predictCurvePointProperty: ReadOnlyProperty<CurvePoint>;
   public readonly derivativeCurvePointProperty: ReadOnlyProperty<CurvePoint>;
   public readonly secondDerivativeCurvePointProperty: ReadOnlyProperty<CurvePoint>;
@@ -113,7 +113,7 @@ export default class AncillaryTool extends PhetioObject {
 
     // The CurvePoint at xProperty for each curve.
     this.integralCurvePointProperty = createCurvePointProperty( integralCurve, this.xProperty );
-    this.originalCurvePointProperty = createCurvePointProperty( originalCurve, this.xProperty );
+    this.primaryCurvePointProperty = createCurvePointProperty( originalCurve, this.xProperty );
     this.predictCurvePointProperty = createCurvePointProperty( predictCurve, this.xProperty );
     this.derivativeCurvePointProperty = createCurvePointProperty( derivativeCurve, this.xProperty );
     this.secondDerivativeCurvePointProperty = createCurvePointProperty( secondDerivativeCurve, this.xProperty );
@@ -126,7 +126,7 @@ export default class AncillaryTool extends PhetioObject {
       phetioFeatured: options.yIntegralPropertyFeatured,
       phetioDocumentation: 'yIntegralProperty is the area under the curve.'
     } );
-    this.yOriginalProperty = createYProperty( this.originalCurvePointProperty, {
+    this.yOriginalProperty = createYProperty( this.primaryCurvePointProperty, {
       tandem: options.tandem.createTandem( 'yOriginalProperty' ),
       phetioFeatured: options.yOriginalPropertyFeatured
     } );
@@ -148,7 +148,7 @@ export default class AncillaryTool extends PhetioObject {
     // to re-inspect the CurvePoint values. We need to do this because CurvePoint instances are mutated as a curve is
     // manipulated, and the value of these Properties will therefore not change.
     const integralCurveListener = () => this.integralCurvePointProperty.notifyListenersStatic();
-    const originalCurveListener = () => this.originalCurvePointProperty.notifyListenersStatic();
+    const originalCurveListener = () => this.primaryCurvePointProperty.notifyListenersStatic();
     const predictCurveListener = () => this.predictCurvePointProperty.notifyListenersStatic();
     const derivativeCurveListener = () => this.derivativeCurvePointProperty.notifyListenersStatic();
     const secondDerivativeCurveListener = () => this.secondDerivativeCurvePointProperty.notifyListenersStatic();
