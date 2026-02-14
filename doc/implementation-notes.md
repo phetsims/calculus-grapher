@@ -36,12 +36,6 @@ The reader is encouraged to read the model document before proceeding:
 * Labeled Point - a feature that is available only via PhET-iO, which allows you to place a point on the f(x) curve at
   an arbitrary x location. and label that point.
 
-⚠️ _Terminology Alert!_ Core Description, introduced in version 1.1, uses different terms for some things.
-The most significant (confusing) differences are:
-
-* Original Graph is described as Primary Graph Area.
-* Original Curve is described as Primary Curve or f.
-
 ## General Considerations
 
 This section describes how this sim addresses implementation considerations that are typically encountered in PhET sims.
