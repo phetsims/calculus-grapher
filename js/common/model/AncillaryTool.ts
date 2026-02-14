@@ -29,6 +29,11 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import CurvePoint from './CurvePoint.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import IntegralCurve from './IntegralCurve.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = {
   x: number; // Initial value of xProperty
@@ -71,11 +76,11 @@ export default class AncillaryTool extends PhetioObject {
   protected readonly yDerivativeProperty: ReadOnlyProperty<number | null>;
   protected readonly ySecondDerivativeProperty: ReadOnlyProperty<number | null>;
 
-  protected constructor( integralCurve: Curve,
-                         originalCurve: Curve,
-                         predictCurve: Curve,
-                         derivativeCurve: Curve,
-                         secondDerivativeCurve: Curve,
+  protected constructor( integralCurve: IntegralCurve,
+                         originalCurve: OriginalCurve,
+                         predictCurve: PredictCurve,
+                         derivativeCurve: DerivativeCurve,
+                         secondDerivativeCurve: SecondDerivativeCurve,
                          providedOptions: AncillaryToolOptions ) {
 
     const options = optionize<AncillaryToolOptions, SelfOptions, PhetioObjectOptions>()( {

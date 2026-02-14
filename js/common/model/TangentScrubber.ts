@@ -13,18 +13,22 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from './AncillaryTool.js';
-import Curve from './Curve.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import IntegralCurve from './IntegralCurve.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 export default class TangentScrubber extends AncillaryTool {
 
   // See phetioDocumentation for addLinkedElement( this.colorProperty ) below
   public readonly colorProperty: ProfileColorProperty;
 
-  public constructor( integralCurve: Curve,
-                      originalCurve: Curve,
-                      predictCurve: Curve,
-                      derivativeCurve: Curve,
-                      secondDerivativeCurve: Curve,
+  public constructor( integralCurve: IntegralCurve,
+                      originalCurve: OriginalCurve,
+                      predictCurve: PredictCurve,
+                      derivativeCurve: DerivativeCurve,
+                      secondDerivativeCurve: SecondDerivativeCurve,
                       tandem: Tandem ) {
 
     super( integralCurve, originalCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {

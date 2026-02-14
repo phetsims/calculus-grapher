@@ -15,8 +15,12 @@ import ColorProperty from '../../../../scenery/js/util/ColorProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import Curve from './Curve.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import IntegralCurve from './IntegralCurve.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -27,11 +31,11 @@ export default class LabeledLine extends LabeledAncillaryTool {
   // Color for displaying the vertical line
   public readonly lineColorProperty: ColorProperty;
 
-  public constructor( integralCurve: Curve,
-                      originalCurve: Curve,
-                      predictCurve: Curve,
-                      derivativeCurve: Curve,
-                      secondDerivativeCurve: Curve,
+  public constructor( integralCurve: IntegralCurve,
+                      originalCurve: OriginalCurve,
+                      predictCurve: PredictCurve,
+                      derivativeCurve: DerivativeCurve,
+                      secondDerivativeCurve: SecondDerivativeCurve,
                       providedOptions: LabeledLineOptions ) {
 
     const options = optionize<LabeledLineOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
@@ -51,9 +55,12 @@ export default class LabeledLine extends LabeledAncillaryTool {
    * Creates a specified number of LabeledLine instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createLabeledLines( numberOfTools: number, integralCurve: Curve,
-                                    originalCurve: Curve, predictCurve: Curve,
-                                    derivativeCurve: Curve, secondDerivativeCurve: Curve,
+  public static createLabeledLines( numberOfTools: number,
+                                    integralCurve: IntegralCurve,
+                                    originalCurve: OriginalCurve,
+                                    predictCurve: PredictCurve,
+                                    derivativeCurve: DerivativeCurve,
+                                    secondDerivativeCurve: SecondDerivativeCurve,
                                     parentTandem: Tandem ): LabeledLine[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>

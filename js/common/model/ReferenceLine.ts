@@ -13,7 +13,11 @@ import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from './AncillaryTool.js';
-import Curve from './Curve.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import IntegralCurve from './IntegralCurve.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 export default class ReferenceLine extends AncillaryTool {
 
@@ -23,11 +27,11 @@ export default class ReferenceLine extends AncillaryTool {
   // Color for the vertical line
   public readonly lineColorProperty: ProfileColorProperty;
 
-  public constructor( integralCurve: Curve,
-                      originalCurve: Curve,
-                      predictedCurve: Curve,
-                      derivativeCurve: Curve,
-                      secondDerivativeCurve: Curve,
+  public constructor( integralCurve: IntegralCurve,
+                      originalCurve: OriginalCurve,
+                      predictedCurve: PredictCurve,
+                      derivativeCurve: DerivativeCurve,
+                      secondDerivativeCurve: SecondDerivativeCurve,
                       tandem: Tandem ) {
 
     super( integralCurve, originalCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {

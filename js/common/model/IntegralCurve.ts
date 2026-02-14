@@ -13,21 +13,23 @@
  * @author Brandon Li
  * @author Martin Veillette
  */
+
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
-import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import OriginalCurve from './OriginalCurve.js';
 
 export default class IntegralCurve extends Curve {
 
   // Reference to the originalCurve that was passed-in.
-  private readonly originalCurve: Curve;
+  private readonly originalCurve: OriginalCurve;
 
   /**
    * @param originalCurve - the curve to integrate to get the values of this IntegralCurve.
    * @param tandem
    */
-  public constructor( originalCurve: Curve, tandem: Tandem ) {
+  public constructor( originalCurve: OriginalCurve, tandem: Tandem ) {
 
     super( {
 

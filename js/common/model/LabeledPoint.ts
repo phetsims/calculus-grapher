@@ -15,8 +15,12 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
-import Curve from './Curve.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import IntegralCurve from './IntegralCurve.js';
 import LabeledAncillaryTool, { LabeledAncillaryToolOptions } from './LabeledAncillaryTool.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = {
   pointColor: Color;
@@ -29,11 +33,11 @@ export default class LabeledPoint extends LabeledAncillaryTool {
   // Color to be used for displaying the point
   public readonly pointColorProperty: ColorProperty;
 
-  public constructor( integralCurve: Curve,
-                      originalCurve: Curve,
-                      predictCurve: Curve,
-                      derivativeCurve: Curve,
-                      secondDerivativeCurve: Curve,
+  public constructor( integralCurve: IntegralCurve,
+                      originalCurve: OriginalCurve,
+                      predictCurve: PredictCurve,
+                      derivativeCurve: DerivativeCurve,
+                      secondDerivativeCurve: SecondDerivativeCurve,
                       providedOptions: LabeledPointOptions ) {
 
     const options = optionize<LabeledPointOptions, SelfOptions, LabeledAncillaryToolOptions>()( {
@@ -53,9 +57,12 @@ export default class LabeledPoint extends LabeledAncillaryTool {
    * Creates a specified number of LabeledPoint instances, with evenly spaced initialCoordinates,
    * and alphabetically-ordered tandem names.
    */
-  public static createLabeledPoints( numberOfTools: number, integralCurve: Curve,
-                                     originalCurve: Curve, predictCurve: Curve,
-                                     derivativeCurve: Curve, secondDerivativeCurve: Curve,
+  public static createLabeledPoints( numberOfTools: number,
+                                     integralCurve: IntegralCurve,
+                                     originalCurve: OriginalCurve,
+                                     predictCurve: PredictCurve,
+                                     derivativeCurve: DerivativeCurve,
+                                     secondDerivativeCurve: SecondDerivativeCurve,
                                      parentTandem: Tandem ): LabeledPoint[] {
     return LabeledAncillaryTool.createLabeledAncillaryTools( numberOfTools,
       ( x: number, label: string ) =>

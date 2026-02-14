@@ -14,7 +14,11 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
-import Curve from './Curve.js';
+import DerivativeCurve from './DerivativeCurve.js';
+import IntegralCurve from './IntegralCurve.js';
+import OriginalCurve from './OriginalCurve.js';
+import PredictCurve from './PredictCurve.js';
+import SecondDerivativeCurve from './SecondDerivativeCurve.js';
 
 type SelfOptions = {
   label: string;
@@ -28,11 +32,11 @@ export default class LabeledAncillaryTool extends AncillaryTool {
   public readonly stringProperty: Property<string>;
 
   protected constructor(
-    integralCurve: Curve,
-    originalCurve: Curve,
-    predictCurve: Curve,
-    derivativeCurve: Curve,
-    secondDerivativeCurve: Curve,
+    integralCurve: IntegralCurve,
+    originalCurve: OriginalCurve,
+    predictCurve: PredictCurve,
+    derivativeCurve: DerivativeCurve,
+    secondDerivativeCurve: SecondDerivativeCurve,
     providedOptions: LabeledAncillaryToolOptions ) {
 
     const options = providedOptions;
