@@ -53,8 +53,8 @@ type GraphsNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'children'> & Pic
 
 export default class GraphsNode extends Node {
 
-  // An OriginalGraphNode is always present, because the student interacts with curves in the graph.
-  public readonly originalGraphNode: OriginalGraphNode;
+  // Always present, because the student interacts with curves in this graph.
+  public readonly primaryGraphNode: OriginalGraphNode;
 
   // These GraphNodes will be conditionally created, based on whether they appear in model.graphSets.
   public readonly integralGraphNode?: IntegralGraphNode;
@@ -105,12 +105,12 @@ export default class GraphsNode extends Node {
       this.graphNodes.push( this.integralGraphNode );
     }
 
-    // OriginalGraphNode is always present.
-    this.originalGraphNode = new OriginalGraphNode( model, {
+    // Primary graph is always present.
+    this.primaryGraphNode = new OriginalGraphNode( model, {
       chartRectangleHeight: this.chartRectangleHeight,
-      tandem: options.tandem.createTandem( 'originalGraphNode' )
+      tandem: options.tandem.createTandem( 'primaryGraphNode' )
     } );
-    this.graphNodes.push( this.originalGraphNode );
+    this.graphNodes.push( this.primaryGraphNode );
 
     // Optional derivative graph
     if ( GraphSet.includes( model.graphSets, GraphType.DERIVATIVE ) ) {
@@ -157,15 +157,15 @@ export default class GraphsNode extends Node {
       model.referenceLine,
       model.graphSetProperty,
       model.predictEnabledProperty,
-      this.originalGraphNode.showPrimaryCurveProperty,
-      this.originalGraphNode.curveLayerVisibleProperty,
+      this.primaryGraphNode.showPrimaryCurveProperty,
+      this.primaryGraphNode.curveLayerVisibleProperty,
       this.integralGraphNode ? this.integralGraphNode.curveLayerVisibleProperty : new Property( false ),
       this.derivativeGraphNode ? this.derivativeGraphNode.curveLayerVisibleProperty : new Property( false ),
       this.secondDerivativeGraphNode ? this.secondDerivativeGraphNode.curveLayerVisibleProperty : new Property( false ) );
 
     // Reference Line, length adjusted depending on whether values are visible.
     this.referenceLineNode = new ReferenceLineNode( model.referenceLine, referenceLineDescriber,
-      this.originalGraphNode.chartTransform, options.tandem.createTandem( 'referenceLineNode' ) );
+      this.primaryGraphNode.chartTransform, options.tandem.createTandem( 'referenceLineNode' ) );
     CalculusGrapherPreferences.valuesVisibleProperty.link( () => {
       const top = this.getChartRectanglesTop() - ( CalculusGrapherPreferences.valuesVisibleProperty.value ? 10 : 0 );
       const bottom = this.getChartRectanglesBottom() + 26;  // long enough to avoid overlapping other scrubbers
@@ -174,7 +174,7 @@ export default class GraphsNode extends Node {
 
     // Labeled Lines
     const labeledLinesNode = new LabeledLinesNode( model.labeledLines, model.labeledLinesLinkableElement,
-      this.originalGraphNode.chartTransform, {
+      this.primaryGraphNode.chartTransform, {
         labeledLineOptions: {
           lineTop: this.getChartRectanglesTop() - 13,
           lineBottom: this.getChartRectanglesBottom()
@@ -259,11 +259,11 @@ export default class GraphsNode extends Node {
       } );
 
     const tangentScrubberDescriber = new TangentScrubberDescriber( tangentScrubber,
-      this.originalGraphNode.curveLayerVisibleProperty, derivativeGraphNode.curveLayerVisibleProperty );
+      this.primaryGraphNode.curveLayerVisibleProperty, derivativeGraphNode.curveLayerVisibleProperty );
 
     // Add the scrubber
     const tangentScrubberNode = new TangentScrubberNode( tangentScrubber, tangentScrubberDescriber,
-      this.originalGraphNode.chartTransform, {
+      this.primaryGraphNode.chartTransform, {
         lineTop: this.getChartRectanglesTop(),
         lineBottom: this.getChartRectanglesBottom(),
         visibleProperty: tangentVisibleProperty,
@@ -273,7 +273,7 @@ export default class GraphsNode extends Node {
     tangentScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 
     // Add the double-headed tangent arrow at the tangent point on the original graph.
-    this.originalGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
+    this.primaryGraphNode.addTangentArrowNode( tangentScrubber, tangentVisibleProperty );
 
     // Plot a point on the derivative graph, to show the point that corresponds to the slope of the tangent.
     this.addPlottedPoint( tangentScrubber, tangentVisibleProperty, derivativeGraphNode,
@@ -297,11 +297,11 @@ export default class GraphsNode extends Node {
       } );
 
     const areaUnderCurveScrubberDescriber = new AreaUnderCurveScrubberDescriber( areaUnderCurveScrubber,
-      integralGraphNode.curveLayerVisibleProperty, this.originalGraphNode.curveLayerVisibleProperty );
+      integralGraphNode.curveLayerVisibleProperty, this.primaryGraphNode.curveLayerVisibleProperty );
 
     // Add the scrubber
     const areaUnderCurveScrubberNode = new AreaUnderCurveScrubberNode( areaUnderCurveScrubber, areaUnderCurveScrubberDescriber,
-      this.originalGraphNode.chartTransform, {
+      this.primaryGraphNode.chartTransform, {
         lineTop: this.getChartRectanglesTop(),
         lineBottom: this.getChartRectanglesBottom(),
         visibleProperty: areaUnderCurveVisibleProperty,
@@ -311,7 +311,7 @@ export default class GraphsNode extends Node {
     areaUnderCurveScrubberNode.moveToBack(); // so that it is rendered behind the reference line.
 
     // Add a plot of the area under the curve on the original graph.
-    this.originalGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
+    this.primaryGraphNode.addAreaUnderCurvePlot( areaUnderCurveScrubber, areaUnderCurveVisibleProperty );
 
     // Plot a point on the integral graph, to show the point that corresponds to the area under the curve.
     this.addPlottedPoint( areaUnderCurveScrubber, areaUnderCurveVisibleProperty, integralGraphNode,

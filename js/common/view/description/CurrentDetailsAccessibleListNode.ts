@@ -42,7 +42,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     }
 
     // Primary Curve. All screens include this description.
-    const primaryCurveVisibleProperty = graphsNode.originalGraphNode.primaryCurveVisibleProperty;
+    const primaryCurveVisibleProperty = graphsNode.primaryGraphNode.primaryCurveVisibleProperty;
     visibleProperties.push( primaryCurveVisibleProperty );
     listItems.push( {
       stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty,
@@ -50,7 +50,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     } );
 
     // Predict Curve. All screens include this description.
-    const predictCurveVisibleProperty = graphsNode.originalGraphNode.predictCurveVisibleProperty;
+    const predictCurveVisibleProperty = graphsNode.primaryGraphNode.predictCurveVisibleProperty;
     visibleProperties.push( predictCurveVisibleProperty );
     listItems.push( {
       stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.predictStringProperty,

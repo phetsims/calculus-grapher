@@ -53,7 +53,7 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
       () => {
         const toggleButtonLeft = this.graphsNode.x + this.graphsNode.getCurveVisibilityToggleButtonXOffset();
         slopeOfTangentAccordionBox.centerX = this.layoutBounds.left + ( toggleButtonLeft - this.layoutBounds.left ) / 2;
-        slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.originalGraphNode.y;
+        slopeOfTangentAccordionBox.top = this.graphsNode.y + this.graphsNode.primaryGraphNode.y;
       } );
 
     // Add 'Tangent' checkbox to the top of the checkbox group.
