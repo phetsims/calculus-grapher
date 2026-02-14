@@ -170,7 +170,7 @@ export default class CalculusGrapherModel implements TModel {
 
     const curvesTandem = options.tandem.createTandem( 'curves' );
 
-    this.originalCurve = new OriginalCurve( curvesTandem.createTandem( 'originalCurve' ) );
+    this.originalCurve = new OriginalCurve( curvesTandem.createTandem( 'primaryCurve' ) );
 
     this.predictCurve = new PredictCurve( curvesTandem.createTandem( 'predictCurve' ) );
 

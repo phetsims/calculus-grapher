@@ -151,8 +151,8 @@ export default class OriginalGraphNode extends GraphNode {
       showPrimaryCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
-    // Interactive f(x) 'original' curve
-    const originalCurveNodeTandem = providedOptions.tandem.createTandem( 'originalCurveNode' );
+    // Interactive f(x) 'primary' curve
+    const primaryCurveNodeTandem = providedOptions.tandem.createTandem( 'primaryCurveNode' );
     this.originalCurveNode = new CurveNode( originalCurve, this.chartTransform, {
       stroke: graphType.strokeProperty,
       discontinuousPointsFill: options.chartRectangleOptions.fill!,
@@ -164,10 +164,10 @@ export default class OriginalGraphNode extends GraphNode {
       visibleProperty: new DerivedProperty(
         [ predictEnabledProperty, this.showPrimaryCurveProperty ],
         ( predictEnabled, showPrimaryCurve ) => !predictEnabled || showPrimaryCurve, {
-          tandem: originalCurveNodeTandem.createTandem( 'visibleProperty' ),
+          tandem: primaryCurveNodeTandem.createTandem( 'visibleProperty' ),
           phetioValueType: BooleanIO
         } ),
-      tandem: originalCurveNodeTandem,
+      tandem: primaryCurveNodeTandem,
       phetioInputEnabledPropertyInstrumented: true
     } );
 
