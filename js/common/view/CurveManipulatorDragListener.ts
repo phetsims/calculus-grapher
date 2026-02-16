@@ -94,6 +94,18 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       }
     };
 
+    const start = ( isFromPDOM: boolean ) => {
+      // Save the current values of the CurvePoints for the next undo() call.
+      // This must be called once at the start of dragging (and not on each micro drag-position change).
+      transformedCurve.save();
+
+      // Set the previous last positions to null, since it is a new drag.
+      antepenultimatePosition = null;
+      penultimatePosition = null;
+
+      update( isFromPDOM, curveManipulator.positionProperty.value );
+    };
+
     super( {
 
       // Synthesize a ModelViewTransform2 from the ChartTransform.
@@ -120,18 +132,7 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
         shiftDragSpeed: 30
       },
 
-      start: ( event, listener ) => {
-
-        // Save the current values of the CurvePoints for the next undo() call.
-        // This must be called once at the start of dragging (and not on each micro drag-position change).
-        transformedCurve.save();
-
-        // Set the previous last positions to null, since it is a new drag.
-        antepenultimatePosition = null;
-        penultimatePosition = null;
-
-        update( event.isFromPDOM(), curveManipulator.positionProperty.value );
-      },
+      start: ( event, listener ) => start( event.isFromPDOM() ),
 
       drag: ( event, listener ) => update( event.isFromPDOM(), curveManipulator.positionProperty.value ),
 
@@ -143,10 +144,10 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
       tandem: tandem
     } );
 
-    // When the curve is grabbed using the keyboard, immediately update the curve at the manipulator's current position.
+    // When the curve is grabbed using the keyboard, treat this as the start of a drag.
     curveManipulator.keyboardModeProperty.link( keyboardMode => {
       if ( keyboardMode === 'grabbed' ) {
-        update( true, curveManipulator.positionProperty.value );
+        start( true /* isFromPDOM */ );
       }
     } );
   }
