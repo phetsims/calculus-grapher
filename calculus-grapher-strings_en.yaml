@@ -64,7 +64,7 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and a 
-                         non-interactive curve representing the derivative of f. You can choose a Curve Manipulation Type
+                         derived non interactive curve representing the derivative of f. You can choose a Curve Manipulation Type
                          to modify the curve in different ways in the Primary Graph Area at any point. There are 
                          Exploration Tools allowing flexible investigation of all curves with {$variable} coordinates aligned.
         interactionHint: |-
@@ -77,7 +77,7 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and a
-                         non interactive curve representing the integral of f. You can choose a Curve Manipulation Type to
+                         derived non interactive curve representing the integral of f. You can choose a Curve Manipulation Type to
                          modify the curve in different ways in the Primary Graph Area at any point. There are Exploration
                          Tools allowing flexible investigation of all curves with {$variable} coordinates aligned.
         interactionHint: |-
@@ -93,7 +93,7 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and
-                         non interactive curves in other Graph Areas. You can choose a Curve Manipulation Type to
+                         derived non interactive curves in other Graph Areas. You can choose a Curve Manipulation Type to
                          modify the curve in different ways in the Primary Graph Area at any point. You can change
                          which set of two Graph Areas are viewable: Integral and Primary or Primary and Derivative.
                          There are Exploration Tools allowing flexible investigation of all viewable curves with
@@ -110,7 +110,7 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and
-                         non interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type to
+                         derived non interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type to
                          modify the curve in different ways in the Primary Graph Area at any point. You can change 
                          which set of three Graph Areas are viewable: Integral, Primary, and Derivative, or Primary,
                          Derivative, and Second Derivative. There are Exploration Tools allowing flexible investigation
