@@ -180,7 +180,7 @@ a11y:
 
   graphAreas:
 
-    # Defaults for all graph areas
+    # Defaults for all graph areas.
     defaults:
       accessibleList:
         leadingParagraph:    Right now,
@@ -258,7 +258,7 @@ a11y:
       primaryCurve: Last manipulation removed from f and derived curves.
       predictCurve: Last manipulation removed from predict curve only.
 
-  # Zooms the y-axis of a graph, and the accessibleName is specific to the graph.
+  # Zooms the y-axis of a graph. accessibleName is specific to the graph.
   yZoomButtonGroup:
     zoomInButton:
       accessibleName:
@@ -279,7 +279,7 @@ a11y:
   # Radio Buttons
   #=======================================================================================================
 
-  # Switch between f(x) and Predict curves
+  # Select whether to manipulate f(x) or Predict curve.
   predictRadioButtonGroup:
     accessibleName:     Curve to Manipulate
     accessibleHelpText: Choose curve to manipulate in Primary Graph Area.
@@ -336,7 +336,7 @@ a11y:
       accessibleName:     Primary, Derivative, and Second Derivative Graph Areas
       accessibleHelpText: Explore Primary at top, Derivative in center, Second Derivative at bottom.
 
-  # Variable control in Preferences > Simulation
+  # Preferences > Simulation > Variable
   variableRadioButtonGroup:
     accessibleHelpText: Choose variable for horizontal axis.
     xRadioButton:
@@ -344,7 +344,7 @@ a11y:
     tRadioButton:
       accessibleHelpText: Label horizontal axis with t.
 
-  # Notation control in Preferences > Simulation
+  # Preferences > Simulation > Notation
   notationRadioButtonGroup:
     accessibleHelpText: Choose derivative notation.
     lagrangeRadioButton:
@@ -354,7 +354,7 @@ a11y:
       accessibleName:     Leibniz, d f over d {$variable}
       accessibleHelpText: Show derivative as ratio of change in y with respect to {$variable}.
 
-  # Discontinuities control in Preferences > Simulation
+  # Preferences > Simulation > Discontinuities
   discontinuitiesRadioButtonGroup:
     accessibleHelpText: Choose how to display discontinuities in curves.
     noLineRadioButton:
@@ -376,7 +376,7 @@ a11y:
   # Switches
   #=======================================================================================================
 
-  # Predict control in Preferences > Simulation
+  # Preferences > Simulation > Predict
   predictToggleSwitch:
     accessibleHelpText: Adds a mode that allows you to predict f of {$variable}.
 
@@ -384,7 +384,7 @@ a11y:
   # Toggle Buttons
   #=======================================================================================================
 
-  # Controls visibility of curves on a graph, and the accessible name is specific to the graph.
+  # Controls visibility of curves on a graph. accessible name is specific to the graph.
   curveVisibilityToggleButton:
     accessibleNameOn:
       integral:         Hide Integral Curve
@@ -410,7 +410,7 @@ a11y:
 
   curveManipulators:
 
-    # Defaults for all curve manipulators
+    # Defaults for all curve manipulators.
     defaults:
       accessibleObjectResponse:
         focusedReleased: 'at {$x} {$y}, off curve'
@@ -420,12 +420,12 @@ a11y:
         movedReleased:   'at {$x} {$y}'
         movedGrabbed:    'at {$x} {$y}, curve modified'
 
-    # Curve manipulator for the primary curve
+    # Curve manipulator for the primary curve.
     primary:
       accessibleName:     f Curve Manipulator
       accessibleHelpText: Manipulate f curve to explore changes to all graphs. Use keyboard shortcuts if needed.
 
-    # Curve manipulator for the predict curve
+    # Curve manipulator for the predict curve.
     predict:
       accessibleName:     Predict Curve Manipulator
       accessibleHelpText: Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed.
@@ -445,7 +445,8 @@ a11y:
         integralPrimaryDerivative:         '{$xPhrase}, {$integralPhrase}, {$primaryPhrase}, {$derivativePhrase}'
         primaryDerivativeSecondDerivative: '{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}'
 
-      # Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.*
+      # These phrases are substituted into referenceLineTool.accessibleObjectResponse.patterns.*
+      # Key names match the placeholder names in the patterns above.
       xPhrase: at {$variable} equals {$value}
       primaryPhrase:
         predictAndPrimary: '{$predictPhrase}, {$primaryPhrase}'
@@ -480,7 +481,8 @@ a11y:
       # Pattern with phrase placeholders that define the general form of the response.
       pattern: '{$xPhrase}, {$slopePhrase}, {$derivativePhrase}'
 
-      # Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern
+      # These phrases are substituted into tangentTool.accessibleObjectResponse.pattern.
+      # Key names match the placeholder names in that pattern.
       xPhrase: at {$variable} equals {$value}
       slopePhrase:
         zero:     slope is zero
@@ -505,7 +507,8 @@ a11y:
       # Pattern with phrase placeholders that define the general form of the response.
       pattern: '{$xPhrase}, {$integralPhrase}, {$areaPhrase}'
 
-      # Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern
+      # These phrases are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern.
+      # Key names match the placeholder names in that pattern.
       xPhrase: at {$variable} equals {$value}
       integralPhrase:
         integralValue: integral up to {$variable} is {$value}

@@ -315,7 +315,7 @@ const CalculusGrapherFluent = {
     netSignedAreaStringProperty: _.get( CalculusGrapherStrings, 'barometer.netSignedAreaStringProperty' ),
     slopeOfTangentStringProperty: _.get( CalculusGrapherStrings, 'barometer.slopeOfTangentStringProperty' )
   },
-  _comment_0: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predict"} ),
+  _comment_0: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
   predictStringProperty: _.get( CalculusGrapherStrings, 'predictStringProperty' ),
   showStringProperty: _.get( CalculusGrapherStrings, 'showStringProperty' ),
   predictPreferenceStringProperty: _.get( CalculusGrapherStrings, 'predictPreferenceStringProperty' ),
@@ -335,12 +335,12 @@ const CalculusGrapherFluent = {
   explorationToolsStringProperty: _.get( CalculusGrapherStrings, 'explorationToolsStringProperty' ),
   a11y: {
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"screens"} ),
-    _comment_1: new FluentComment( {"comment":"Screen Summaries","associatedKey":"screens"} ),
+    _comment_1: new FluentComment( {"comment":"Screens (screen summaries & screen buttons)","associatedKey":"screens"} ),
     _comment_2: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"screens"} ),
     screens: {
       _comment_0: new FluentComment( {"comment":"Defaults for all screens","associatedKey":"defaults"} ),
-      _comment_1: new FluentComment( {"comment":"Defaults for all graph areas","associatedKey":"defaults"} ),
-      _comment_2: new FluentComment( {"comment":"Defaults for all curve manipulators","associatedKey":"defaults"} ),
+      _comment_1: new FluentComment( {"comment":"Defaults for all graph areas.","associatedKey":"defaults"} ),
+      _comment_2: new FluentComment( {"comment":"Defaults for all curve manipulators.","associatedKey":"defaults"} ),
       defaults: {
         screenSummary: {
           currentDetails: {
@@ -353,9 +353,9 @@ const CalculusGrapherFluent = {
               }
             },
             accessibleList: {
-              _comment_0: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+              _comment_0: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
               primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_primary', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty' ) ),
-              _comment_1: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predict"} ),
+              _comment_1: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
               predictStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_predict', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.predictStringProperty' ) ),
               _comment_2: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
               integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_integral', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.integralStringProperty' ) ),
@@ -460,8 +460,8 @@ const CalculusGrapherFluent = {
     _comment_12: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"graphAreas"} ),
     graphAreas: {
       _comment_0: new FluentComment( {"comment":"Defaults for all screens","associatedKey":"defaults"} ),
-      _comment_1: new FluentComment( {"comment":"Defaults for all graph areas","associatedKey":"defaults"} ),
-      _comment_2: new FluentComment( {"comment":"Defaults for all curve manipulators","associatedKey":"defaults"} ),
+      _comment_1: new FluentComment( {"comment":"Defaults for all graph areas.","associatedKey":"defaults"} ),
+      _comment_2: new FluentComment( {"comment":"Defaults for all curve manipulators.","associatedKey":"defaults"} ),
       defaults: {
         accessibleList: {
           leadingParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_defaults_accessibleList_leadingParagraph', _.get( CalculusGrapherStrings, 'a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty' ) ),
@@ -469,7 +469,7 @@ const CalculusGrapherFluent = {
           valuesLabeledOnAxesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_defaults_accessibleList_valuesLabeledOnAxes', _.get( CalculusGrapherStrings, 'a11y.graphAreas.defaults.accessibleList.valuesLabeledOnAxesStringProperty' ) )
         }
       },
-      _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+      _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
       primary: {
         accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_primary_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphAreas.primary.accessibleHeadingStringProperty' ) ),
         accessibleList: {
@@ -551,7 +551,7 @@ const CalculusGrapherFluent = {
         predictCurveStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_undoButton_accessibleContextResponse_predictCurve', _.get( CalculusGrapherStrings, 'a11y.undoButton.accessibleContextResponse.predictCurveStringProperty' ) )
       }
     },
-    _comment_20: new FluentComment( {"comment":"Zooms the y-axis of a graph, and the accessibleName is specific to the graph.","associatedKey":"yZoomButtonGroup"} ),
+    _comment_20: new FluentComment( {"comment":"Zooms the y-axis of a graph. accessibleName is specific to the graph.","associatedKey":"yZoomButtonGroup"} ),
     yZoomButtonGroup: {
       zoomInButton: {
         accessibleName: {
@@ -579,7 +579,7 @@ const CalculusGrapherFluent = {
     _comment_21: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
     _comment_22: new FluentComment( {"comment":"Radio Buttons","associatedKey":"predictRadioButtonGroup"} ),
     _comment_23: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
-    _comment_24: new FluentComment( {"comment":"Switch between f(x) and Predict curves","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_24: new FluentComment( {"comment":"Select whether to manipulate f(x) or Predict curve.","associatedKey":"predictRadioButtonGroup"} ),
     predictRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -650,7 +650,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_primaryDerivativeSecondDerivativeRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_27: new FluentComment( {"comment":"Variable control in Preferences > Simulation","associatedKey":"variableRadioButtonGroup"} ),
+    _comment_27: new FluentComment( {"comment":"Preferences > Simulation > Variable","associatedKey":"variableRadioButtonGroup"} ),
     variableRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_variableRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.variableRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       xRadioButton: {
@@ -660,7 +660,7 @@ const CalculusGrapherFluent = {
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_variableRadioButtonGroup_tRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.variableRadioButtonGroup.tRadioButton.accessibleHelpTextStringProperty' ) )
       }
     },
-    _comment_28: new FluentComment( {"comment":"Notation control in Preferences > Simulation","associatedKey":"notationRadioButtonGroup"} ),
+    _comment_28: new FluentComment( {"comment":"Preferences > Simulation > Notation","associatedKey":"notationRadioButtonGroup"} ),
     notationRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_notationRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.notationRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       lagrangeRadioButton: {
@@ -672,7 +672,7 @@ const CalculusGrapherFluent = {
         accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_notationRadioButtonGroup_leibnizRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
       }
     },
-    _comment_29: new FluentComment( {"comment":"Discontinuities control in Preferences > Simulation","associatedKey":"discontinuitiesRadioButtonGroup"} ),
+    _comment_29: new FluentComment( {"comment":"Preferences > Simulation > Discontinuities","associatedKey":"discontinuitiesRadioButtonGroup"} ),
     discontinuitiesRadioButtonGroup: {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_discontinuitiesRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.discontinuitiesRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       noLineRadioButton: {
@@ -694,19 +694,19 @@ const CalculusGrapherFluent = {
     _comment_33: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
     _comment_34: new FluentComment( {"comment":"Switches","associatedKey":"predictToggleSwitch"} ),
     _comment_35: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictToggleSwitch"} ),
-    _comment_36: new FluentComment( {"comment":"Predict control in Preferences > Simulation","associatedKey":"predictToggleSwitch"} ),
+    _comment_36: new FluentComment( {"comment":"Preferences > Simulation > Predict","associatedKey":"predictToggleSwitch"} ),
     predictToggleSwitch: {
       accessibleHelpText: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_predictToggleSwitch_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictToggleSwitch.accessibleHelpTextStringProperty' ), [{"name":"variable"}] )
     },
     _comment_37: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveVisibilityToggleButton"} ),
     _comment_38: new FluentComment( {"comment":"Toggle Buttons","associatedKey":"curveVisibilityToggleButton"} ),
     _comment_39: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveVisibilityToggleButton"} ),
-    _comment_40: new FluentComment( {"comment":"Controls visibility of curves on a graph, and the accessible name is specific to the graph.","associatedKey":"curveVisibilityToggleButton"} ),
+    _comment_40: new FluentComment( {"comment":"Controls visibility of curves on a graph. accessible name is specific to the graph.","associatedKey":"curveVisibilityToggleButton"} ),
     curveVisibilityToggleButton: {
       accessibleNameOn: {
         _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_integral', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.integralStringProperty' ) ),
-        _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+        _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
         primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_primary', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.primaryStringProperty' ) ),
         _comment_2: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
         derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_derivative', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.derivativeStringProperty' ) ),
@@ -715,7 +715,7 @@ const CalculusGrapherFluent = {
       accessibleNameOff: {
         _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_integral', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.integralStringProperty' ) ),
-        _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+        _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
         primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_primary', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.primaryStringProperty' ) ),
         _comment_2: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
         derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_derivative', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.derivativeStringProperty' ) ),
@@ -734,8 +734,8 @@ const CalculusGrapherFluent = {
     },
     curveManipulators: {
       _comment_0: new FluentComment( {"comment":"Defaults for all screens","associatedKey":"defaults"} ),
-      _comment_1: new FluentComment( {"comment":"Defaults for all graph areas","associatedKey":"defaults"} ),
-      _comment_2: new FluentComment( {"comment":"Defaults for all curve manipulators","associatedKey":"defaults"} ),
+      _comment_1: new FluentComment( {"comment":"Defaults for all graph areas.","associatedKey":"defaults"} ),
+      _comment_2: new FluentComment( {"comment":"Defaults for all curve manipulators.","associatedKey":"defaults"} ),
       defaults: {
         accessibleObjectResponse: {
           focusedReleased: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleObjectResponse_focusedReleased', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleObjectResponse.focusedReleasedStringProperty' ), [{"name":"x"},{"name":"y"}] ),
@@ -746,12 +746,12 @@ const CalculusGrapherFluent = {
           movedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleObjectResponse_movedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleObjectResponse.movedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] )
         }
       },
-      _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve","associatedKey":"primary"} ),
+      _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
       primary: {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_primary_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.primary.accessibleNameStringProperty' ) ),
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_primary_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.primary.accessibleHelpTextStringProperty' ) )
       },
-      _comment_4: new FluentComment( {"comment":"Curve manipulator for the predict curve","associatedKey":"predict"} ),
+      _comment_4: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
       predict: {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_predict_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.predict.accessibleNameStringProperty' ) ),
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_predict_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.predict.accessibleHelpTextStringProperty' ) )
@@ -769,9 +769,12 @@ const CalculusGrapherFluent = {
           integralPrimaryDerivative: new FluentPattern<{ derivativePhrase: FluentVariable, integralPhrase: FluentVariable, primaryPhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleObjectResponse_patterns_integralPrimaryDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleObjectResponse.patterns.integralPrimaryDerivativeStringProperty' ), [{"name":"derivativePhrase"},{"name":"integralPhrase"},{"name":"primaryPhrase"},{"name":"xPhrase"}] ),
           primaryDerivativeSecondDerivative: new FluentPattern<{ derivativePhrase: FluentVariable, primaryPhrase: FluentVariable, secondDerivativePhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleObjectResponse_patterns_primaryDerivativeSecondDerivative', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleObjectResponse.patterns.primaryDerivativeSecondDerivativeStringProperty' ), [{"name":"derivativePhrase"},{"name":"primaryPhrase"},{"name":"secondDerivativePhrase"},{"name":"xPhrase"}] )
         },
-        _comment_1: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.*","associatedKey":"xPhrase"} ),
-        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
-        _comment_3: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
+        _comment_1: new FluentComment( {"comment":"These phrases are substituted into referenceLineTool.accessibleObjectResponse.patterns.*","associatedKey":"xPhrase"} ),
+        _comment_2: new FluentComment( {"comment":"Key names match the placeholder names in the patterns above.","associatedKey":"xPhrase"} ),
+        _comment_3: new FluentComment( {"comment":"These phrases are substituted into tangentTool.accessibleObjectResponse.pattern.","associatedKey":"xPhrase"} ),
+        _comment_4: new FluentComment( {"comment":"Key names match the placeholder names in that pattern.","associatedKey":"xPhrase"} ),
+        _comment_5: new FluentComment( {"comment":"These phrases are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern.","associatedKey":"xPhrase"} ),
+        _comment_6: new FluentComment( {"comment":"Key names match the placeholder names in that pattern.","associatedKey":"xPhrase"} ),
         xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleObjectResponse_xPhrase', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleObjectResponse.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
         primaryPhrase: {
           predictAndPrimary: new FluentPattern<{ predictPhrase: FluentVariable, primaryPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_referenceLine_accessibleObjectResponse_primaryPhrase_predictAndPrimary', _.get( CalculusGrapherStrings, 'a11y.referenceLine.accessibleObjectResponse.primaryPhrase.predictAndPrimaryStringProperty' ), [{"name":"predictPhrase"},{"name":"primaryPhrase"}] ),
@@ -806,9 +809,12 @@ const CalculusGrapherFluent = {
         _comment_0: new FluentComment( {"comment":"Pattern with phrase placeholders that define the general form of the response.","associatedKey":"pattern"} ),
         _comment_1: new FluentComment( {"comment":"Pattern with phrase placeholders that define the general form of the response.","associatedKey":"pattern"} ),
         pattern: new FluentPattern<{ derivativePhrase: FluentVariable, slopePhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_pattern', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.patternStringProperty' ), [{"name":"derivativePhrase"},{"name":"slopePhrase"},{"name":"xPhrase"}] ),
-        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.*","associatedKey":"xPhrase"} ),
-        _comment_3: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
-        _comment_4: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
+        _comment_2: new FluentComment( {"comment":"These phrases are substituted into referenceLineTool.accessibleObjectResponse.patterns.*","associatedKey":"xPhrase"} ),
+        _comment_3: new FluentComment( {"comment":"Key names match the placeholder names in the patterns above.","associatedKey":"xPhrase"} ),
+        _comment_4: new FluentComment( {"comment":"These phrases are substituted into tangentTool.accessibleObjectResponse.pattern.","associatedKey":"xPhrase"} ),
+        _comment_5: new FluentComment( {"comment":"Key names match the placeholder names in that pattern.","associatedKey":"xPhrase"} ),
+        _comment_6: new FluentComment( {"comment":"These phrases are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern.","associatedKey":"xPhrase"} ),
+        _comment_7: new FluentComment( {"comment":"Key names match the placeholder names in that pattern.","associatedKey":"xPhrase"} ),
         xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_xPhrase', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
         slopePhrase: {
           zeroStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_tangentTool_accessibleObjectResponse_slopePhrase_zero', _.get( CalculusGrapherStrings, 'a11y.tangentTool.accessibleObjectResponse.slopePhrase.zeroStringProperty' ) ),
@@ -830,9 +836,12 @@ const CalculusGrapherFluent = {
         _comment_0: new FluentComment( {"comment":"Pattern with phrase placeholders that define the general form of the response.","associatedKey":"pattern"} ),
         _comment_1: new FluentComment( {"comment":"Pattern with phrase placeholders that define the general form of the response.","associatedKey":"pattern"} ),
         pattern: new FluentPattern<{ areaPhrase: FluentVariable, integralPhrase: FluentVariable, xPhrase: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_pattern', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.patternStringProperty' ), [{"name":"areaPhrase"},{"name":"integralPhrase"},{"name":"xPhrase"}] ),
-        _comment_2: new FluentComment( {"comment":"Phrases that are substituted into referenceLineTool.accessibleObjectResponse.patterns.*","associatedKey":"xPhrase"} ),
-        _comment_3: new FluentComment( {"comment":"Phrases that are substituted into tangentTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
-        _comment_4: new FluentComment( {"comment":"Phrases that are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern","associatedKey":"xPhrase"} ),
+        _comment_2: new FluentComment( {"comment":"These phrases are substituted into referenceLineTool.accessibleObjectResponse.patterns.*","associatedKey":"xPhrase"} ),
+        _comment_3: new FluentComment( {"comment":"Key names match the placeholder names in the patterns above.","associatedKey":"xPhrase"} ),
+        _comment_4: new FluentComment( {"comment":"These phrases are substituted into tangentTool.accessibleObjectResponse.pattern.","associatedKey":"xPhrase"} ),
+        _comment_5: new FluentComment( {"comment":"Key names match the placeholder names in that pattern.","associatedKey":"xPhrase"} ),
+        _comment_6: new FluentComment( {"comment":"These phrases are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern.","associatedKey":"xPhrase"} ),
+        _comment_7: new FluentComment( {"comment":"Key names match the placeholder names in that pattern.","associatedKey":"xPhrase"} ),
         xPhrase: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_xPhrase', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.xPhraseStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
         integralPhrase: {
           integralValue: new FluentPattern<{ value: FluentVariable, variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_areaUnderCurveTool_accessibleObjectResponse_integralPhrase_integralValue', _.get( CalculusGrapherStrings, 'a11y.areaUnderCurveTool.accessibleObjectResponse.integralPhrase.integralValueStringProperty' ), [{"name":"value"},{"name":"variable"}] ),
