@@ -36,7 +36,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       const integralCurveVisibleProperty = graphsNode.integralGraphNode.integralCurveVisibleProperty;
       visibleProperties.push( integralCurveVisibleProperty );
       listItems.push( {
-        stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.integralStringProperty,
+        stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.integralStringProperty,
         visibleProperty: integralCurveVisibleProperty
       } );
     }
@@ -45,7 +45,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const primaryCurveVisibleProperty = graphsNode.primaryGraphNode.primaryCurveVisibleProperty;
     visibleProperties.push( primaryCurveVisibleProperty );
     listItems.push( {
-      stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty,
       visibleProperty: primaryCurveVisibleProperty
     } );
 
@@ -53,7 +53,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const predictCurveVisibleProperty = graphsNode.primaryGraphNode.predictCurveVisibleProperty;
     visibleProperties.push( predictCurveVisibleProperty );
     listItems.push( {
-      stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.predictStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.predictStringProperty,
       visibleProperty: predictCurveVisibleProperty
     } );
 
@@ -62,7 +62,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       const derivativeCurveVisibleProperty = graphsNode.derivativeGraphNode.derivativeCurveVisibleProperty;
       visibleProperties.push( derivativeCurveVisibleProperty );
       listItems.push( {
-        stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.derivativeStringProperty,
+        stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.derivativeStringProperty,
         visibleProperty: derivativeCurveVisibleProperty
       } );
     }
@@ -72,7 +72,7 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       const secondDerivativeCurveVisibleProperty = graphsNode.secondDerivativeGraphNode.secondDerivativeCurveVisibleProperty;
       visibleProperties.push( secondDerivativeCurveVisibleProperty );
       listItems.push( {
-        stringProperty: CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.accessibleList.secondDerivativeStringProperty,
+        stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.secondDerivativeStringProperty,
         visibleProperty: secondDerivativeCurveVisibleProperty
       } );
     }
@@ -83,8 +83,8 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     // Value for the {$curveSentence} parameter in the leading paragraph.
     const curvesSentenceStringProperty = new DerivedStringProperty( [
         someCurveVisibleProperty,
-        CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty,
-        CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.allCurvesHiddenStringProperty
+        CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty,
+        CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.allCurvesHiddenStringProperty
       ],
       ( someCurveVisible, curvesShownString, allCurvesHiddenString ) => someCurveVisible ? curvesShownString : allCurvesHiddenString
     );
@@ -93,8 +93,8 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
     const leadingParagraphDependencies = _.uniq( [
 
       // Description choices.
-      ...CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.getDependentProperties(),
 
       // Values used in the above descriptions.
       model.curveManipulationProperties.curveManipulationTypeProperty,
@@ -108,14 +108,14 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
         const curveManipulationType = model.curveManipulationProperties.curveManipulationTypeProperty.value;
 
         if ( curveManipulationType.hasAdjustableWidth ) {
-          return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
+          return CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
             curveManipulationType: curveManipulationType.accessibleNameProperty.value,
             width: toFixedNumber( model.curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
             curveSentence: curvesSentenceStringProperty.value
           } );
         }
         else {
-          return CalculusGrapherFluent.a11y.screen.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.format( {
+          return CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.format( {
             curveManipulationType: curveManipulationType.accessibleNameProperty.value,
             curveSentence: curvesSentenceStringProperty.value
           } );

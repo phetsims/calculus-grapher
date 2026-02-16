@@ -55,7 +55,7 @@ type StringsType = {
   };
   'explorationToolsStringProperty': LocalizedStringProperty;
   'a11y': {
-    'screen': {
+    'screens': {
       'defaults': {
         'screenSummary': {
           'currentDetails': {
@@ -155,7 +155,7 @@ type StringsType = {
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
-    'graphArea': {
+    'graphAreas': {
       'defaults': {
         'accessibleList': {
           'leadingParagraphStringProperty': LocalizedStringProperty;
@@ -381,7 +381,7 @@ type StringsType = {
     'explorationTools': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
     };
-    'curveManipulator': {
+    'curveManipulators': {
       'defaults': {
         'accessibleObjectResponse': {
           'focusedReleasedStringProperty': LocalizedStringProperty;

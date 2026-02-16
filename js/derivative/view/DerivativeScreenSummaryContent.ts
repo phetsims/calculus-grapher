@@ -18,10 +18,10 @@ export default class DerivativeScreenSummaryContent extends CalculusGrapherScree
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     super( model, graphsNode, {
-      playAreaContent: CalculusGrapherFluent.a11y.screen.derivative.screenSummary.playArea.createProperty( {
+      playAreaContent: CalculusGrapherFluent.a11y.screens.derivative.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      interactionHintContent: CalculusGrapherFluent.a11y.screen.derivative.screenSummary.interactionHintStringProperty
+      interactionHintContent: CalculusGrapherFluent.a11y.screens.derivative.screenSummary.interactionHintStringProperty
     } );
   }
 }

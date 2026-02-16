@@ -38,7 +38,7 @@ a11y:
   # Screen Summaries
   #=======================================================================================================
 
-  screen:
+  screens:
 
     # Defaults for all screens
     defaults:
@@ -178,7 +178,7 @@ a11y:
   # Graph Areas
   #=======================================================================================================
 
-  graphArea:
+  graphAreas:
 
     # Defaults for all graph areas
     defaults:
@@ -408,7 +408,7 @@ a11y:
   explorationTools:
     accessibleHeading: Exploration Tools
 
-  curveManipulator:
+  curveManipulators:
 
     # Defaults for all curve manipulators
     defaults:

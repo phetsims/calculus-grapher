@@ -40,9 +40,9 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAccess
     const dependencies = _.uniq( [
 
       // Description choices.
-      ...CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty,
-      CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.hiddenStringProperty,
+      ...CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
+      CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty,
+      CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty,
 
       // Values used in the above descriptions.
       secondDerivativeCurve.numberOfDiscontinuitiesProperty,
@@ -56,17 +56,17 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAccess
         if ( secondDerivativeCurveVisibleProperty.value ) {
           const numberOfDiscontinuities = secondDerivativeCurve.numberOfDiscontinuitiesProperty.value;
           if ( numberOfDiscontinuities === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty.value;
+            string = CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty.value;
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.format( {
+            string = CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.format( {
               numberOfDiscontinuities: numberOfDiscontinuities
             } );
           }
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphArea.secondDerivative.accessibleList.hiddenStringProperty.value;
+          string = CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty.value;
         }
         return string;
       } );

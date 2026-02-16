@@ -92,7 +92,7 @@
     "value": "Exploration Tools"
   },
   "a11y": {
-    "screen": {
+    "screens": {
       "defaults": {
         "screenSummary": {
           "currentDetails": {
@@ -292,7 +292,7 @@
         "value": "f of {$variable} hidden."
       }
     },
-    "graphArea": {
+    "graphAreas": {
       "defaults": {
         "accessibleList": {
           "leadingParagraph": {
@@ -738,7 +738,7 @@
         "value": "Exploration Tools"
       }
     },
-    "curveManipulator": {
+    "curveManipulators": {
       "defaults": {
         "accessibleObjectResponse": {
           "focusedReleased": {

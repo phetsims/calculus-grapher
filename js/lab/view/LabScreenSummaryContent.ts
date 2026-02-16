@@ -18,10 +18,10 @@ export default class LabScreenSummaryContent extends CalculusGrapherScreenSummar
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     super( model, graphsNode, {
-      playAreaContent: CalculusGrapherFluent.a11y.screen.lab.screenSummary.playArea.createProperty( {
+      playAreaContent: CalculusGrapherFluent.a11y.screens.lab.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      interactionHintContent: CalculusGrapherFluent.a11y.screen.lab.screenSummary.interactionHintStringProperty
+      interactionHintContent: CalculusGrapherFluent.a11y.screens.lab.screenSummary.interactionHintStringProperty
     } );
   }
 }

@@ -127,7 +127,7 @@ export default class PrimaryGraphNode extends GraphNode {
         fill: CalculusGrapherColors.primaryGraphBackgroundFillProperty,
         stroke: CalculusGrapherColors.primaryGraphBackgroundStrokeProperty
       },
-      accessibleHeading: CalculusGrapherFluent.a11y.graphArea.primary.accessibleHeadingStringProperty,
+      accessibleHeading: CalculusGrapherFluent.a11y.graphAreas.primary.accessibleHeadingStringProperty,
       curveVisibilityToggleButtonOptions: {
         accessibleNameOn: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOn.primaryStringProperty,
         accessibleNameOff: CalculusGrapherFluent.a11y.curveVisibilityToggleButton.accessibleNameOff.primaryStringProperty
@@ -196,8 +196,8 @@ export default class PrimaryGraphNode extends GraphNode {
       {
         // Child of primaryCurveNode in PhET-iO tree.
         tandem: this.primaryCurveNode.tandem.createTandem( 'manipulatorNode' ),
-        accessibleName: CalculusGrapherFluent.a11y.curveManipulator.primary.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.primary.accessibleHelpTextStringProperty
+        accessibleName: CalculusGrapherFluent.a11y.curveManipulators.primary.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulators.primary.accessibleHelpTextStringProperty
       } );
 
     // Predict curve manipulator
@@ -211,8 +211,8 @@ export default class PrimaryGraphNode extends GraphNode {
       {
         // Child of predictCurveNode in PhET-iO tree.
         tandem: this.predictCurveNode.tandem.createTandem( 'manipulatorNode' ),
-        accessibleName: CalculusGrapherFluent.a11y.curveManipulator.predict.accessibleNameStringProperty,
-        accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulator.predict.accessibleHelpTextStringProperty
+        accessibleName: CalculusGrapherFluent.a11y.curveManipulators.predict.accessibleNameStringProperty,
+        accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulators.predict.accessibleHelpTextStringProperty
       } );
 
     // Cueing arrows for the primary and predict curve manipulators.

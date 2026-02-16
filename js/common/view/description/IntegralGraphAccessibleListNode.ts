@@ -37,8 +37,8 @@ export default class IntegralGraphAccessibleListNode extends GraphAccessibleList
     const dependencies = _.uniq( [
 
       // Description choices.
-      ...CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.continuous.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.hiddenStringProperty,
+      ...CalculusGrapherFluent.a11y.graphAreas.integral.accessibleList.continuous.getDependentProperties(),
+      CalculusGrapherFluent.a11y.graphAreas.integral.accessibleList.hiddenStringProperty,
 
       // Values used in the above descriptions.
       CalculusGrapherSymbols.accessibleVariableSymbolProperty,
@@ -49,13 +49,13 @@ export default class IntegralGraphAccessibleListNode extends GraphAccessibleList
       () => {
         let string: string;
         if ( integralCurveVisibleProperty.value ) {
-          string = CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.continuous.format( {
+          string = CalculusGrapherFluent.a11y.graphAreas.integral.accessibleList.continuous.format( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
           } );
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphArea.integral.accessibleList.hiddenStringProperty.value;
+          string = CalculusGrapherFluent.a11y.graphAreas.integral.accessibleList.hiddenStringProperty.value;
         }
         return string;
       } );

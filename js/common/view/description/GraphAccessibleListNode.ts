@@ -18,7 +18,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
   protected constructor( listItems: AccessibleListItem[] ) {
 
     super( listItems, {
-      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList.leadingParagraphStringProperty
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty
     } );
   }
 
@@ -27,7 +27,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
    */
   protected static getCoordinateGridListItem( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
     return {
-      stringProperty: CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList.coordinateGridShownStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.coordinateGridShownStringProperty,
       visibleProperty: gridLinesVisibleProperty
     };
   }
@@ -37,7 +37,7 @@ export default class GraphAccessibleListNode extends AccessibleListNode {
    */
   protected static getValuesListItem(): AccessibleListItem {
     return {
-      stringProperty: CalculusGrapherFluent.a11y.graphArea.defaults.accessibleList.valuesLabeledOnAxesStringProperty,
+      stringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.valuesLabeledOnAxesStringProperty,
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
     };
   }

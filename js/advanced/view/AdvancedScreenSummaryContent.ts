@@ -18,10 +18,10 @@ export default class AdvancedScreenSummaryContent extends CalculusGrapherScreenS
   public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
 
     super( model, graphsNode, {
-      playAreaContent: CalculusGrapherFluent.a11y.screen.advanced.screenSummary.playArea.createProperty( {
+      playAreaContent: CalculusGrapherFluent.a11y.screens.advanced.screenSummary.playArea.createProperty( {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } ),
-      interactionHintContent: CalculusGrapherFluent.a11y.screen.advanced.screenSummary.interactionHintStringProperty
+      interactionHintContent: CalculusGrapherFluent.a11y.screens.advanced.screenSummary.interactionHintStringProperty
     } );
   }
 }
