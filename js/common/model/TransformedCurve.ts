@@ -653,7 +653,6 @@ export default class TransformedCurve extends Curve {
 
       // We need to consider the case where the drag has turned, which can occur only if antepenultimatePosition exists
       // and the lastPoint is between the closestPoint and the nextToLastPoint
-
       if ( antepenultimatePosition ) {
 
         // Point associated with the last drag event
