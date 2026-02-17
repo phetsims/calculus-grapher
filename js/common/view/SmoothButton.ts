@@ -34,6 +34,8 @@ export default class SmoothButton extends TextPushButton {
       layoutOptions: {
         stretch: true
       },
+      touchAreaXDilation: 4,
+      touchAreaYDilation: 4,
       accessibleName: CalculusGrapherFluent.a11y.smoothButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.smoothButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [

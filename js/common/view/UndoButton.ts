@@ -27,6 +27,8 @@ export default class UndoButton extends ReturnButton {
       isDisposable: false,
       listener: () => interactiveCurveProperty.value.undo(),
       yMargin: 6,
+      touchAreaXDilation: 4,
+      touchAreaYDilation: 4,
       iconOptions: { height: 13 },
       accessibleName: CalculusGrapherFluent.a11y.undoButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.undoButton.accessibleHelpTextStringProperty,

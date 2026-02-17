@@ -35,7 +35,7 @@ export default class CurvePushButtonGroup extends VBox {
 
     // Put the eraser and undo buttons side by side
     const hBox = new HBox( {
-      spacing: 8,
+      spacing: 12,
       stretch: true,
       children: [ undoButton, eraserButton ]
     } );
@@ -55,7 +55,7 @@ export default class CurvePushButtonGroup extends VBox {
       accessibleHeading: CalculusGrapherFluent.a11y.curveActionsButtonGroup.accessibleHeadingStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.curveActionsButtonGroup.accessibleHelpTextStringProperty,
       children: children,
-      spacing: 8,
+      spacing: 12,
       tandem: tandem
     } );
   }

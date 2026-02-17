@@ -34,6 +34,8 @@ export default class CurveEraserButton extends EraserButton {
       },
       iconWidth: 16,
       xMargin: 10,
+      touchAreaXDilation: 4,
+      touchAreaYDilation: 4,
       accessibleName: CalculusGrapherFluent.a11y.eraserButton.accessibleNameStringProperty,
       accessibleHelpText: CalculusGrapherFluent.a11y.eraserButton.accessibleHelpTextStringProperty,
       accessibleContextResponse: new DerivedStringProperty( [
