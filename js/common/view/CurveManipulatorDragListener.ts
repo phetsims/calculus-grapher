@@ -78,6 +78,9 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
 
       drag: ( event, listener ) => this.update( event.isFromPDOM() ),
 
+      // Add an accessibleObjectResponse at the end of the drag cycle. We considered adding an accessibleObjectResponse
+      // whenever the manipulator is moved, but decided against it. There is no additional benefit for keyboard input.
+      // And for mouse/touch input, certain screen readers do not behave well during press-and-hold interactions.
       end: ( event, listener ) => {
         // Fuzzing does not provide an event.
         event && curveManipulatorNode.doAccessibleObjectResponseMoved( event.isFromPDOM() );
