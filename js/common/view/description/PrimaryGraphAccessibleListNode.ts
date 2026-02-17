@@ -7,6 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
@@ -23,10 +24,11 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
                       primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      showPrimaryCurveProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty ),
+      PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty, predictEnabledProperty, showPrimaryCurveProperty ),
       PrimaryGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
       GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAccessibleListNode.getValuesListItem()
@@ -40,7 +42,9 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
    */
   private static getPrimaryCurveListItem(
     primaryCurve: PrimaryCurve,
-    primaryCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+    primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
+    predictEnabledProperty: TReadOnlyProperty<boolean>,
+    showPrimaryCurveProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
@@ -88,7 +92,9 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
       } );
 
     return {
-      stringProperty: stringProperty
+      stringProperty: stringProperty,
+      visibleProperty: new DerivedProperty( [ predictEnabledProperty, showPrimaryCurveProperty ],
+        ( predictEnabled, showPrimaryCurve ) => !predictEnabled || showPrimaryCurve )
     };
   }
 

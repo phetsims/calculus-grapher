@@ -331,7 +331,7 @@ export default class PrimaryGraphNode extends GraphNode {
     // Add AccessibleListNode to describe the graph.
     const accessibleListNode = new PrimaryGraphAccessibleListNode( model.primaryCurve, model.predictCurve,
       this.primaryCurveVisibleProperty, this.predictCurveVisibleProperty,
-      model.predictEnabledProperty, model.gridVisibleProperty );
+      model.predictEnabledProperty, this.showPrimaryCurveProperty, model.gridVisibleProperty );
     this.addChild( accessibleListNode );
 
     // Focus order
