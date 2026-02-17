@@ -22,7 +22,7 @@ const credits: CreditsData = {
   leadDesign: 'Amanda McGarry, Catherine Carter',
   softwareDevelopment: 'Martin Veillette, Chris Malley (PixelZoom, Inc.), Brandon Li',
   team: 'Michael Dubson, Ariel Paul, Kathy Perkins, Taliesin Smith',
-  qualityAssurance: 'Jaron Droder, Emily Miller, Matthew Moore, Liam Mulhall, Valentina Pérez, Nancy Salpepi, Kathryn Woessner'
+  qualityAssurance: 'Jaron Droder, Emily Miller, Liam Mulhall, Nancy Salpepi, Kathryn Woessner'
 };
 
 // Launch the 'Calculus Grapher' simulation.
