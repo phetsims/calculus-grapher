@@ -79,12 +79,20 @@ of the most important classes and their relationships.
 
 CalculusGrapherModel - the top-level model class
 
-GraphType - Types for identifying the types of graphs available, and sets of those graphs. GraphSet - GraphSet is an
+GraphType - Types for identifying the types of graphs available, and sets of those graphs.
+
+GraphSet - GraphSet is an
 ordered set of GraphType
 
 CurveManipulationType - Enumeration of the possible 'modes' of manipulating PrimaryCurve, such as Parabola, Triangle,
-etc. CurveManipulationProperties - Track the Curve Width and the Curve Mode CurvePoint - A point tracking the x, y and
-pointType of a curve. CurvePoint are never disposed but merely mutated. Curve - A collection of CurvePoints. Intended to
+etc. 
+
+CurveManipulationProperties - Track the Curve Width and the Curve Mode.
+
+CurvePoint - A point tracking the x, y and
+pointType of a curve. CurvePoint are never disposed but merely mutated.
+
+Curve - A collection of CurvePoints. Intended to
 be sub-classed
 
 - TransformedCurve - A Curve that can be manipulated by user transformation. Extends Curve.
