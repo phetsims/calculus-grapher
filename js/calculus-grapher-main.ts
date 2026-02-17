@@ -21,8 +21,8 @@ import LabScreen from './lab/LabScreen.js';
 const credits: CreditsData = {
   leadDesign: 'Amanda McGarry',
   softwareDevelopment: 'Martin Veillette, Chris Malley (PixelZoom, Inc.), Brandon Li',
-  team: 'Catherine Carter, Michael Dubson, Ariel Paul, Kathy Perkins',
-  qualityAssurance: 'Jaron Droder, Emily Miller, Liam Mulhall, Nancy Salpepi, Kathryn Woessner'
+  team: 'Catherine Carter, Michael Dubson, Ariel Paul, Kathy Perkins, Taliesin Smith',
+  qualityAssurance: 'Jaron Droder, Emily Miller, Matthew Moore, Liam Mulhall, Valentina Pérez, Nancy Salpepi, Kathryn Woessner'
 };
 
 // Launch the 'Calculus Grapher' simulation.
