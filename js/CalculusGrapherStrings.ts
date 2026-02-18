@@ -168,14 +168,16 @@ type StringsType = {
         'accessibleList': {
           'primaryCurve': {
             'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-            'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
-            'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+            'hasDiscontinuitiesStringProperty': LocalizedStringProperty;
+            'hasCuspsStringProperty': LocalizedStringProperty;
+            'hasDiscontinuitiesAndCuspsStringProperty': LocalizedStringProperty;
             'hiddenStringProperty': LocalizedStringProperty;
           };
           'predictCurve': {
             'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-            'continuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
-            'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+            'hasDiscontinuitiesStringProperty': LocalizedStringProperty;
+            'hasCuspsStringProperty': LocalizedStringProperty;
+            'hasDiscontinuitiesAndCuspsStringProperty': LocalizedStringProperty;
             'hiddenStringProperty': LocalizedStringProperty;
           }
         }
@@ -190,16 +192,16 @@ type StringsType = {
       'derivative': {
         'accessibleHeadingStringProperty': LocalizedStringProperty;
         'accessibleList': {
-          'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-          'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'continuousStringProperty': LocalizedStringProperty;
+          'discontinuousStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
         }
       };
       'secondDerivative': {
         'accessibleHeadingStringProperty': LocalizedStringProperty;
         'accessibleList': {
-          'continuousAndDifferentiableStringProperty': LocalizedStringProperty;
-          'discontinuousAndNotDifferentiableStringProperty': LocalizedStringProperty;
+          'continuousStringProperty': LocalizedStringProperty;
+          'discontinuousStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;
         }
       }

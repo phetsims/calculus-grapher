@@ -36,37 +36,38 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAccess
     secondDerivativeCurve: SecondDerivativeCurve,
     secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
-    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
-    const dependencies = _.uniq( [
+    const stringProperty = new DerivedStringProperty( [
 
-      // Description choices.
-      ...CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty,
-      CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty,
+        // Description choices.
+        CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.continuousStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.discontinuousStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty,
 
-      // Values used in the above descriptions.
-      secondDerivativeCurve.numberOfDiscontinuitiesProperty,
-      secondDerivativeCurve.numberOfCuspsProperty,
-      secondDerivativeCurveVisibleProperty
-    ] );
-
-    const stringProperty = DerivedStringProperty.deriveAny( dependencies,
-      () => {
+        // Values used to select one of the above descriptions.
+        secondDerivativeCurve.numberOfDiscontinuousPointsProperty,
+        secondDerivativeCurveVisibleProperty
+      ],
+      (
+        continuousString,
+        discontinuousString,
+        hiddenString,
+        numberOfDiscontinuousPoints,
+        secondDerivativeCurveVisible
+      ) => {
         let string: string;
-        if ( secondDerivativeCurveVisibleProperty.value ) {
-          const numberOfDiscontinuities = secondDerivativeCurve.numberOfDiscontinuitiesProperty.value;
-          if ( numberOfDiscontinuities === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.continuousAndDifferentiableStringProperty.value;
+        if ( secondDerivativeCurveVisible ) {
+          if ( numberOfDiscontinuousPoints === 0 ) {
+            // Continuous and differentiable.
+            string = continuousString;
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.discontinuousAndNotDifferentiable.format( {
-              numberOfDiscontinuities: numberOfDiscontinuities
-            } );
+            // Not differentiable at one or more discontinuities.
+            string = discontinuousString;
           }
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty.value;
+          string = hiddenString;
         }
         return string;
       } );

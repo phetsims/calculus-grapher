@@ -315,11 +315,14 @@
             "continuousAndDifferentiable": {
               "value": "f is continuous and differentiable at all points."
             },
-            "continuousAndNotDifferentiable": {
-              "value": "f is continuous but not differentiable at {$numberOfCusps} cusps."
+            "hasDiscontinuities": {
+              "value": "f is not differentiable at one or more discontinuities."
             },
-            "discontinuousAndNotDifferentiable": {
-              "value": "f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
+            "hasCusps": {
+              "value": "f is continuous but not differentiable at one or more cusps."
+            },
+            "hasDiscontinuitiesAndCusps": {
+              "value": "f is not differentiable at one or more discontinuities and one or more cusps."
             },
             "hidden": {
               "value": "f curve hidden."
@@ -329,11 +332,14 @@
             "continuousAndDifferentiable": {
               "value": "Predict f is continuous and differentiable at all points."
             },
-            "continuousAndNotDifferentiable": {
-              "value": "Predict f is continuous but not differentiable at {$numberOfCusps} cusps."
+            "hasDiscontinuities": {
+              "value": "Predict f is not differentiable at one or more discontinuities."
             },
-            "discontinuousAndNotDifferentiable": {
-              "value": "Predict f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps."
+            "hasCusps": {
+              "value": "Predict f is continuous but not differentiable at one or more cusps."
+            },
+            "hasDiscontinuitiesAndCusps": {
+              "value": "Predict f is not differentiable at one or more discontinuities and one or more cusps."
             },
             "hidden": {
               "value": "Predict f curve hidden."
@@ -359,11 +365,11 @@
           "value": "Derivative Graph Area"
         },
         "accessibleList": {
-          "continuousAndDifferentiable": {
+          "continuous": {
             "value": "Derivative curve is continuous and differentiable at all points."
           },
-          "discontinuousAndNotDifferentiable": {
-            "value": "Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities."
+          "discontinuous": {
+            "value": "Derivative curve is not differentiable at one or more discontinuities."
           },
           "hidden": {
             "value": "Derivative curve hidden."
@@ -375,11 +381,11 @@
           "value": "Second Derivative Graph Area"
         },
         "accessibleList": {
-          "continuousAndDifferentiable": {
+          "continuous": {
             "value": "Second derivative curve is continuous and differentiable at all points."
           },
-          "discontinuousAndNotDifferentiable": {
-            "value": "Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities."
+          "discontinuous": {
+            "value": "Second derivative curve is not differentiable at one or more discontinuities."
           },
           "hidden": {
             "value": "Second derivative curve hidden."

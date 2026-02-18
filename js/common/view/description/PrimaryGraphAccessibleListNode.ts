@@ -10,6 +10,7 @@
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
+import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
@@ -46,47 +47,54 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
     predictEnabledProperty: TReadOnlyProperty<boolean>,
     showPrimaryCurveProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
-    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
-    const dependencies = _.uniq( [
+    const stringProperty = new DerivedStringProperty( [
 
-      // Description choices.
-      CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty,
-      ...CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.continuousAndNotDifferentiable.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hiddenStringProperty,
+        // Description choices.
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hasDiscontinuitiesStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hasCuspsStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hasDiscontinuitiesAndCuspsStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hiddenStringProperty,
 
-      // Values used in the above descriptions.
-      primaryCurve.numberOfDiscontinuitiesProperty,
-      primaryCurve.numberOfCuspsProperty,
-      primaryCurveVisibleProperty
-    ] );
-
-    const stringProperty = DerivedStringProperty.deriveAny( dependencies,
-      () => {
+        // Values used to select one of the above descriptions.
+        primaryCurve.numberOfDiscontinuousPointsProperty,
+        primaryCurve.numberOfCuspPointsProperty,
+        primaryCurveVisibleProperty
+      ],
+      (
+        continuousAndDifferentiableString,
+        hasDiscontinuities,
+        hasCuspsString,
+        hasDiscontinuitiesAndCusps,
+        hiddenString,
+        numberOfDiscontinuousPoints,
+        numberOfCuspPoints,
+        primaryCurveVisible
+      ) => {
         let string: string;
 
-        if ( primaryCurveVisibleProperty.value ) {
-          const numberOfDiscontinuities = primaryCurve.numberOfDiscontinuitiesProperty.value;
-          const numberOfCusps = primaryCurve.numberOfCuspsProperty.value;
-
-          if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.continuousAndDifferentiableStringProperty.value;
+        if ( primaryCurveVisible ) {
+          if ( numberOfDiscontinuousPoints === 0 && numberOfCuspPoints === 0 ) {
+            // Continuous and differentiable.
+            string = continuousAndDifferentiableString;
           }
-          else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
-            string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.continuousAndNotDifferentiable.format( {
-              numberOfCusps: numberOfCusps
-            } );
+          else if ( numberOfDiscontinuousPoints > 0 && numberOfCuspPoints === 0 ) {
+            // Not differentiable at one or more discontinuities.
+            string = hasDiscontinuities;
+          }
+          else if ( numberOfDiscontinuousPoints === 0 && numberOfCuspPoints > 0 ) {
+            // Continuous but not differentiable at one or more cusps.
+            string = hasCuspsString;
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.discontinuousAndNotDifferentiable.format( {
-              numberOfDiscontinuities: numberOfDiscontinuities,
-              numberOfCusps: numberOfCusps
-            } );
+            // Not differentiable at one or more discontinuities and one or more cusps.
+            affirm( numberOfDiscontinuousPoints > 0 && numberOfCuspPoints > 0 );
+            string = hasDiscontinuitiesAndCusps;
           }
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hiddenStringProperty.value;
+          string = hiddenString;
         }
         return string;
       } );
@@ -105,49 +113,57 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
                                           predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
                                           predictEnabledProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
-    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
-    const dependencies = _.uniq( [
+    const primaryCurveStringProperty = new DerivedStringProperty( [
 
-      // Description choices.
-      CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.continuousAndDifferentiableStringProperty,
-      ...CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.continuousAndNotDifferentiable.getDependentProperties(),
-      ...CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hiddenStringProperty,
+        // Description choices.
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.continuousAndDifferentiableStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hasDiscontinuitiesStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hasCuspsStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hasDiscontinuitiesAndCuspsStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hiddenStringProperty,
 
-      // Values used in the above descriptions.
-      predictCurve.numberOfDiscontinuitiesProperty,
-      predictCurve.numberOfCuspsProperty,
-      predictCurveVisibleProperty
-    ] );
-
-    const primaryCurveStringProperty = DerivedStringProperty.deriveAny( dependencies,
-      () => {
+        // Values used in the above descriptions.
+        predictCurve.numberOfDiscontinuousPointsProperty,
+        predictCurve.numberOfCuspPointsProperty,
+        predictCurveVisibleProperty,
+        predictEnabledProperty
+      ],
+      (
+        continuousAndDifferentiableString,
+        hasDiscontinuities,
+        hasCuspsString,
+        hasDiscontinuitiesAndCusps,
+        hiddenString,
+        numberOfDiscontinuousPoints,
+        numberOfCuspPoints,
+        predictCurveVisible,
+        predictEnabled
+      ) => {
 
         let string: string;
 
-        if ( predictCurveVisibleProperty.value && predictEnabledProperty.value ) {
-
-          const numberOfDiscontinuities = predictCurve.numberOfDiscontinuitiesProperty.value;
-          const numberOfCusps = predictCurve.numberOfCuspsProperty.value;
-
-          if ( numberOfDiscontinuities === 0 && numberOfCusps === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.continuousAndDifferentiableStringProperty.value;
+        if ( predictCurveVisible && predictEnabled ) {
+          if ( numberOfDiscontinuousPoints === 0 && numberOfCuspPoints === 0 ) {
+            // Continuous and differentiable.
+            string = continuousAndDifferentiableString;
           }
-          else if ( numberOfDiscontinuities === 0 && numberOfCusps > 0 ) {
-            string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.continuousAndNotDifferentiable.format( {
-              numberOfCusps: numberOfCusps
-            } );
+          else if ( numberOfDiscontinuousPoints > 0 && numberOfCuspPoints === 0 ) {
+            // Not differentiable at one or more discontinuities.
+            string = hasDiscontinuities;
+          }
+          else if ( numberOfDiscontinuousPoints === 0 && numberOfCuspPoints > 0 ) {
+            // Continuous but not differentiable at one or more cusps.
+            string = hasCuspsString;
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.discontinuousAndNotDifferentiable.format( {
-              numberOfDiscontinuities: numberOfDiscontinuities,
-              numberOfCusps: numberOfCusps
-            } );
+            // Not differentiable at one or more discontinuities and one or more cusps.
+            affirm( numberOfDiscontinuousPoints > 0 && numberOfCuspPoints > 0 );
+            string = hasDiscontinuitiesAndCusps;
           }
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hiddenStringProperty.value;
+          string = hiddenString;
         }
         return string;
       } );

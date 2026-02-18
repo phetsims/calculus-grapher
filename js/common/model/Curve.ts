@@ -79,13 +79,13 @@ export default class Curve extends PhetioObject {
 
   // Number of points in pointsProperty with type 'discontinuous'.
   // Used exclusively for core description.
-  public readonly numberOfDiscontinuitiesProperty: TReadOnlyProperty<number>;
-  private readonly _numberOfDiscontinuitiesProperty: Property<number>;
+  public readonly numberOfDiscontinuousPointsProperty: TReadOnlyProperty<number>;
+  private readonly _numberOfDiscontinuousPointsProperty: Property<number>;
 
   // Number of points in pointsProperty with type 'cusp'.
   // Used exclusively for core description.
-  public readonly numberOfCuspsProperty: TReadOnlyProperty<number>;
-  private readonly _numberOfCuspsProperty: Property<number>;
+  public readonly numberOfCuspPointsProperty: TReadOnlyProperty<number>;
+  private readonly _numberOfCuspPointsProperty: Property<number>;
 
   // Range of the x-axis
   public readonly xRange: Range;
@@ -159,29 +159,31 @@ export default class Curve extends PhetioObject {
     // See https://github.com/phetsims/calculus-grapher/issues/19
     this.curveChangedEmitter = new Emitter();
 
-    this._numberOfDiscontinuitiesProperty = new NumberProperty( 0, {
+    this._numberOfDiscontinuousPointsProperty = new NumberProperty( 0, {
       numberType: 'Integer',
       isValidValue: value => value >= 0
       // Do not instrument. State is restored via phetioStateSetEmitter below.
     } );
-    this.numberOfDiscontinuitiesProperty = this._numberOfDiscontinuitiesProperty;
+    this.numberOfDiscontinuousPointsProperty = this._numberOfDiscontinuousPointsProperty;
 
-    this._numberOfCuspsProperty = new NumberProperty( 0, {
+    this._numberOfCuspPointsProperty = new NumberProperty( 0, {
       numberType: 'Integer',
       isValidValue: value => value >= 0
       // Do not instrument. State is restored via phetioStateSetEmitter below.
     } );
-    this.numberOfCuspsProperty = this._numberOfCuspsProperty;
+    this.numberOfCuspPointsProperty = this._numberOfCuspPointsProperty;
 
-    // Initialize _numberOfDiscontinuitiesProperty and _numberOfCuspsProperty.
-    this.updateDiscontinuitiesAndCusps();
+    // Initialize _numberOfDiscontinuousPointsProperty and _numberOfCuspPointsProperty.
+    this.updatePointCounts();
 
-    // Update the number of discontinuities and cusps in one pass through the points.
-    this.curveChangedEmitter.addListener( () => this.updateDiscontinuitiesAndCusps() );
+    // Update the counts of 'discontinuous' and 'cusp' points.
+    this.curveChangedEmitter.addListener( () => this.updatePointCounts() );
 
-    // When PhET-iO state is restored, update the number of discontinuities and cusps.
-    // We do not want to make those Properties stateful because of how confusing the data is.
-    phetioStateSetEmitter.addListener( () => this.updateDiscontinuitiesAndCusps() );
+    // When PhET-iO state is restored, update the number of 'discontinuous' and 'cusp' points.
+    // We do not want to make those Properties stateful because how those values translate to the actual
+    // number of discontinuities and cusps is unclear and very likely buggy.
+    // See https://github.com/phetsims/calculus-grapher/issues/376.
+    phetioStateSetEmitter.addListener( () => this.updatePointCounts() );
   }
 
   /**
@@ -224,46 +226,24 @@ export default class Curve extends PhetioObject {
   }
 
   /**
-   * Updates the counts of discontinuities and cusps in one pass through the points.
-   *
-   * WORKAROUND for https://github.com/phetsims/calculus-grapher/issues/376.
-   * Points of pointType 'discontinuous' and 'cusp' are supposed to be designated in pairs. But that is not always
-   * the case due to problems with TransformedCurve freeform and triangle methods. So this algorithm looks for both
-   * pairs and lone points of those types.
+   * Updates the counts of 'discontinuous' and 'cusp' points in one pass through the points.
    */
-  private updateDiscontinuitiesAndCusps(): void {
+  private updatePointCounts(): void {
 
-    let numberOfDiscontinuities = 0;
-    let numberOfCusps = 0;
-    const points = this.pointsProperty.value;
-    const lastIndex = points.length - 1;
+    let discontinuousCount = 0;
+    let cuspCount = 0;
 
-    for ( let i = 0; i < lastIndex; /* i will be incremented in the loop */ ) {
-      if ( points[ i ].pointType === 'discontinuous' ) {
-        numberOfDiscontinuities++;
-        if ( i < lastIndex && points[ i + 1 ].pointType === 'discontinuous' ) {
-          i += 2; // skip the paired point
-        }
-        else {
-          i += 1;
-        }
+    this.pointsProperty.value.forEach( point => {
+      if ( point.pointType === 'discontinuous' ) {
+        discontinuousCount++;
       }
-      else if ( points[ i ].pointType === 'cusp' ) {
-        numberOfCusps++;
-        if ( i < lastIndex && points[ i + 1 ].pointType === 'cusp' ) {
-          i += 2; // skip the paired point
-        }
-        else {
-          i += 1;
-        }
+      else if ( point.pointType === 'cusp' ) {
+        cuspCount++;
       }
-      else {
-        i++;
-      }
-    }
+    } );
 
-    this._numberOfDiscontinuitiesProperty.value = numberOfDiscontinuities;
-    this._numberOfCuspsProperty.value = numberOfCusps;
+    this._numberOfDiscontinuousPointsProperty.value = discontinuousCount;
+    this._numberOfCuspPointsProperty.value = cuspCount;
   }
 }
 

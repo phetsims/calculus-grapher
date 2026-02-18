@@ -191,15 +191,17 @@ a11y:
       accessibleHeading: Primary Graph Area
       accessibleList:
         primaryCurve:
-          continuousAndDifferentiable:       f is continuous and differentiable at all points.
-          continuousAndNotDifferentiable:    f is continuous but not differentiable at {$numberOfCusps} cusps.
-          discontinuousAndNotDifferentiable: f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
-          hidden:                            f curve hidden.
+          continuousAndDifferentiable: f is continuous and differentiable at all points.
+          hasDiscontinuities:          f is not differentiable at one or more discontinuities.
+          hasCusps:                    f is continuous but not differentiable at one or more cusps.
+          hasDiscontinuitiesAndCusps:  f is not differentiable at one or more discontinuities and one or more cusps.
+          hidden:                      f curve hidden.
         predictCurve:
-          continuousAndDifferentiable:       Predict f is continuous and differentiable at all points.
-          continuousAndNotDifferentiable:    Predict f is continuous but not differentiable at {$numberOfCusps} cusps.
-          discontinuousAndNotDifferentiable: Predict f is not differentiable at {$numberOfDiscontinuities} discontinuities and {$numberOfCusps} cusps.
-          hidden:                            Predict f curve hidden.
+          continuousAndDifferentiable: Predict f is continuous and differentiable at all points.
+          hasDiscontinuities:          Predict f is not differentiable at one or more discontinuities.
+          hasCusps:                    Predict f is continuous but not differentiable at one or more cusps.
+          hasDiscontinuitiesAndCusps:  Predict f is not differentiable at one or more discontinuities and one or more cusps.
+          hidden:                      Predict f curve hidden.
 
     integral:
       accessibleHeading: Integral Graph Area
@@ -210,16 +212,16 @@ a11y:
     derivative:
       accessibleHeading: Derivative Graph Area
       accessibleList:
-        continuousAndDifferentiable:       Derivative curve is continuous and differentiable at all points.
-        discontinuousAndNotDifferentiable: Derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities.
-        hidden:                            Derivative curve hidden.
+        continuous:    Derivative curve is continuous and differentiable at all points.
+        discontinuous: Derivative curve is not differentiable at one or more discontinuities.
+        hidden:        Derivative curve hidden.
 
     secondDerivative:
       accessibleHeading: Second Derivative Graph Area
       accessibleList:
-        continuousAndDifferentiable:       Second derivative curve is continuous and differentiable at all points.
-        discontinuousAndNotDifferentiable: Second derivative curve is not differentiable at {$numberOfDiscontinuities} discontinuities.
-        hidden:                            Second derivative curve hidden.
+        continuous:    Second derivative curve is continuous and differentiable at all points.
+        discontinuous: Second derivative curve is not differentiable at one or more discontinuities.
+        hidden:        Second derivative curve hidden.
 
   #=======================================================================================================
   # Panels

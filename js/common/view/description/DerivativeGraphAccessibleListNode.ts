@@ -36,37 +36,38 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
     derivativeCurve: DerivativeCurve,
     derivativeCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
-    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
-    const dependencies = _.uniq( [
+    const stringProperty = new DerivedStringProperty( [
 
-      // Description choices.
-      ...CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.discontinuousAndNotDifferentiable.getDependentProperties(),
-      CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.continuousAndDifferentiableStringProperty,
-      CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.hiddenStringProperty,
+        // Description choices.
+        CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.continuousStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.discontinuousStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.hiddenStringProperty,
 
-      // Values used in the above descriptions.
-      derivativeCurve.numberOfDiscontinuitiesProperty,
-      derivativeCurve.numberOfCuspsProperty,
-      derivativeCurveVisibleProperty
-    ] );
-
-    const stringProperty = DerivedStringProperty.deriveAny( dependencies,
-      () => {
+        // Values used to select one of the above descriptions.
+        derivativeCurve.numberOfDiscontinuousPointsProperty,
+        derivativeCurveVisibleProperty
+      ],
+      (
+        continuousString,
+        discontinuousString,
+        hiddenString,
+        numberOfDiscontinuousPoints,
+        derivativeCurveVisible
+      ) => {
         let string: string;
-        if ( derivativeCurveVisibleProperty.value ) {
-          const numberOfDiscontinuities = derivativeCurve.numberOfDiscontinuitiesProperty.value;
-          if ( numberOfDiscontinuities === 0 ) {
-            string = CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.continuousAndDifferentiableStringProperty.value;
+        if ( derivativeCurveVisible ) {
+          if ( numberOfDiscontinuousPoints === 0 ) {
+            // Continuous and differentiable.
+            string = continuousString;
           }
           else {
-            string = CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.discontinuousAndNotDifferentiable.format( {
-              numberOfDiscontinuities: numberOfDiscontinuities
-            } );
+            // Not differentiable at one or more discontinuities.
+            string = discontinuousString;
           }
         }
         else {
           // Hidden
-          string = CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.hiddenStringProperty.value;
+          string = hiddenString;
         }
         return string;
       } );
