@@ -705,7 +705,7 @@ const CalculusGrapherFluent = {
     _comment_37: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveVisibilityToggleButton"} ),
     _comment_38: new FluentComment( {"comment":"Toggle Buttons","associatedKey":"curveVisibilityToggleButton"} ),
     _comment_39: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveVisibilityToggleButton"} ),
-    _comment_40: new FluentComment( {"comment":"Controls visibility of curves on a graph. accessible name is specific to the graph.","associatedKey":"curveVisibilityToggleButton"} ),
+    _comment_40: new FluentComment( {"comment":"Controls visibility of curves on a graph. accessibleName is specific to the graph.","associatedKey":"curveVisibilityToggleButton"} ),
     curveVisibilityToggleButton: {
       accessibleNameOn: {
         _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),

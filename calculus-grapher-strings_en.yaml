@@ -386,7 +386,7 @@ a11y:
   # Toggle Buttons
   #=======================================================================================================
 
-  # Controls visibility of curves on a graph. accessible name is specific to the graph.
+  # Controls visibility of curves on a graph. accessibleName is specific to the graph.
   curveVisibilityToggleButton:
     accessibleNameOn:
       integral:         Hide Integral Curve
