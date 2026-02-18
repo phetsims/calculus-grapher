@@ -21,7 +21,7 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
   public static readonly HOTKEY_DATA = new HotkeyData( {
     keys: [ 'space', 'enter' ],
     repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
+    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
   public constructor( curveManipulatorNode: CurveManipulatorNode, tandem: Tandem ) {

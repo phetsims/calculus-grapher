@@ -52,10 +52,10 @@ addToMapIfDefined( 'show', 'showStringProperty' );
 addToMapIfDefined( 'predictPreference', 'predictPreferenceStringProperty' );
 addToMapIfDefined( 'valuesPreferenceDescription', 'valuesPreferenceDescriptionStringProperty' );
 addToMapIfDefined( 'referenceLine', 'referenceLineStringProperty' );
-addToMapIfDefined( 'curveManipulator_keyboardHelpHeading', 'curveManipulator.keyboardHelpHeadingStringProperty' );
-addToMapIfDefined( 'curveManipulator_keyboardHelpLabel', 'curveManipulator.keyboardHelpLabelStringProperty' );
-addToMapIfDefined( 'curveManipulator_keyboardCue', 'curveManipulator.keyboardCueStringProperty' );
-addToMapIfDefined( 'explorationTools', 'explorationToolsStringProperty' );
+addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardHelpHeading', 'keyboardHelp.curveManipulator.keyboardHelpHeadingStringProperty' );
+addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardHelpLabel', 'keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty' );
+addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardCue', 'keyboardHelp.curveManipulator.keyboardCueStringProperty' );
+addToMapIfDefined( 'keyboardHelp_explorationTools', 'keyboardHelp.explorationToolsStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_widthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_noWidthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_curveSentence_curvesShown', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty' );
@@ -325,16 +325,18 @@ const CalculusGrapherFluent = {
   predictPreferenceDescriptionStringProperty: _.get( CalculusGrapherStrings, 'predictPreferenceDescriptionStringProperty' ),
   _comment_1: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
   referenceLineStringProperty: _.get( CalculusGrapherStrings, 'referenceLineStringProperty' ),
-  curveManipulator: {
-    keyboardHelpHeadingStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardHelpHeadingStringProperty' ),
-    keyboardHelpLabelStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardHelpLabelStringProperty' ),
-    keyboardCueStringProperty: _.get( CalculusGrapherStrings, 'curveManipulator.keyboardCueStringProperty' )
+  keyboardHelp: {
+    curveManipulator: {
+      keyboardHelpHeadingStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardHelpHeadingStringProperty' ),
+      keyboardHelpLabelStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty' ),
+      keyboardCueStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardCueStringProperty' )
+    },
+    _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"explorationTools"} ),
+    _comment_1: new FluentComment( {"comment":"Tools","associatedKey":"explorationTools"} ),
+    _comment_2: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"explorationTools"} ),
+    _comment_3: new FluentComment( {"comment":"Heading for all tools.","associatedKey":"explorationTools"} ),
+    explorationToolsStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.explorationToolsStringProperty' )
   },
-  _comment_2: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"explorationTools"} ),
-  _comment_3: new FluentComment( {"comment":"Tools","associatedKey":"explorationTools"} ),
-  _comment_4: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"explorationTools"} ),
-  _comment_5: new FluentComment( {"comment":"Heading for all tools.","associatedKey":"explorationTools"} ),
-  explorationToolsStringProperty: _.get( CalculusGrapherStrings, 'explorationToolsStringProperty' ),
   a11y: {
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"screens"} ),
     _comment_1: new FluentComment( {"comment":"Screens (screen summaries & screen buttons)","associatedKey":"screens"} ),

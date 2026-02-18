@@ -60,7 +60,7 @@ export default class ExplorationToolControlsKeyboardHelpSection extends Keyboard
       KeyboardHelpSectionRow.fromHotkeyData( END_HOTKEY_DATA )
     ];
 
-    super( CalculusGrapherFluent.explorationToolsStringProperty, rows, {
+    super( CalculusGrapherFluent.keyboardHelp.explorationToolsStringProperty, rows, {
       isDisposable: false,
       textMaxWidth: 300
     } );

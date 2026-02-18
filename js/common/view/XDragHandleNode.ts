@@ -59,7 +59,7 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
   public static readonly HOTKEY_DATA = new HotkeyData( {
     keys: [ 'home', 'end' ],
     repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.curveManipulator.keyboardHelpLabelStringProperty
+    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty
   } );
 
   public constructor( xProperty: TRangedProperty,

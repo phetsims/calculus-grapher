@@ -26,11 +26,13 @@ valuesPreferenceDescription:  >-
                               Signed Area".
 predictPreferenceDescription: Adds a mode that allows you to predict f of {{variable}}.
 referenceLine:                Reference<br>Line
-curveManipulator:
-  keyboardHelpHeading: Curve Manipulator
-  keyboardHelpLabel:   Grab or release curve
-  keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
-explorationTools:             Exploration Tools
+
+keyboardHelp:
+  curveManipulator:
+    keyboardHelpHeading: Curve Manipulator
+    keyboardHelpLabel:   Grab or release curve
+    keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
+  explorationTools:             Exploration Tools
 
 a11y:
 
