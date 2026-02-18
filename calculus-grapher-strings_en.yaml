@@ -32,7 +32,7 @@ keyboardHelp:
     keyboardHelpHeading: Curve Manipulator
     keyboardHelpLabel:   Grab or release curve
     keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
-  explorationTools:             Exploration Tools
+  explorationTools: Exploration Tools
 
 a11y:
 
