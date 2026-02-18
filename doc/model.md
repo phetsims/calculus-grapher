@@ -12,7 +12,7 @@ Graphing functions: The simulation allows students to manipulate a function. The
 the graph to see how the function changes as well as change the curve mode.
 
 Tangent Tool: Students can graph the derivative of a function and see how the derivative changes as they modify the
-original function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that
+primary function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that
 point. The tool displays the slope of the tangent line and allows users to drag the point along the curve to observe how
 the tangent line changes as the point moves.
 
@@ -73,7 +73,7 @@ A finite difference method is used to determine the derivative. To illustrate no
 circles appear at the non-differential points for the derivative.
 
 The "Tangent" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled
-scrubber at the bottom of the graphs, (2) a tangent arrow on the original graph, and (3) the "Slope of Tangent"
+scrubber at the bottom of the graphs, (2) a tangent arrow on the primary graph, and (3) the "Slope of Tangent"
 accordion box with a barometer of the value of the tangent. The user can move the horizontal position of scrubber to
 change the x-position of the tangent arrow.
 
@@ -83,7 +83,7 @@ At the top of the _Integral_ screen, one finds the definite integral of f(x). Un
 function f(x) is displayed. The definite integral is calculated numerically through a trapezoidal Riemann sum.
 
 The "Area Under Curve" checkbox below the control panel triggers the visibility of three components: (1) a
-user-controlled scrubber at the bottom of the graphs, (2) an area plot on the original graph, and (3) the "Net Signed
+user-controlled scrubber at the bottom of the graphs, (2) an area plot on the primary graph, and (3) the "Net Signed
 Area" accordion box with a barometer indicating the value of the area under the curve. The user can move the horizontal
 position of scrubber to change the upper bound of the area under the curve.
 
@@ -92,7 +92,7 @@ position of scrubber to change the upper bound of the area under the curve.
 The _Advanced_ screen includes two main features not found on the previous screens. A set of two rectangular buttons are
 added to the left of the graphs. It allows the user to toggle between the derivative and the integral graphs.
 
-A "Smooth" button is added to the control panel that smooths the original function f(x) by performing a local average of
+A "Smooth" button is added to the control panel that smooths the primary function f(x) by performing a local average of
 the function. The "Smooth" button can be pressed multiple times to further smooth the function.
 
 The choice of functions has been expanded to include triangular, parabolic, sinusoidal and free-form functions.
@@ -103,7 +103,7 @@ The _Lab_ screen includes all the features from the _Advanced_ screen, and adds 
 
 ## Curve Manipulation Modes
 
-A user can manipulate the original function through a set of curve manipulation modes. There are eight curve
+A user can manipulate the primary function through a set of curve manipulation modes. There are eight curve
 manipulation modes in this simulation. The curve manipulation modes are:
 
 - HILL: A bell-shaped curve represented by a gaussian function. The width of the curve is related to the standard
