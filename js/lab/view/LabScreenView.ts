@@ -29,10 +29,10 @@ export default class LabScreenView extends CalculusGrapherScreenView {
     // Play Area focus order
     affirm( this.graphSetRadioButtonGroup, 'LabScreenView requires a graphSetRadioButtonGroup.' );
     this.pdomPlayAreaNode.pdomOrder = [
-      this.graphSetRadioButtonGroup,
       this.graphsNode,
       this.rightVBox,
-      this.graphsNode.scrubberNodesParent
+      this.graphsNode.scrubberNodesParent,
+      this.graphSetRadioButtonGroup
     ];
 
     // Control Area focus order
