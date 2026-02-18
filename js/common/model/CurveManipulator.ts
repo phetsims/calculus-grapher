@@ -64,7 +64,8 @@ export default class CurveManipulator extends PhetioObject {
 
     this.positionProperty = new Vector2Property( DEFAULT_POSITION, {
       tandem: options.tandem.createTandem( 'positionProperty' ),
-      phetioFeatured: true
+      phetioFeatured: true,
+      phetioDocumentation: 'Position of the manipulator. If you set the position, make sure it is inside the bounds of the graph.'
     } );
 
     this.keyboardModeProperty = new StringUnionProperty( 'released', {
