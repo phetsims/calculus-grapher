@@ -4,7 +4,7 @@
  * LabelColorIcon is an icon that consists of a label with a horizontal-colored line below it.
  * It is used on radio button to indicate a graph or curve, and its associated stroke color.
  *
- * @author Chris Malley (PixelZoom, Inc,)
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
