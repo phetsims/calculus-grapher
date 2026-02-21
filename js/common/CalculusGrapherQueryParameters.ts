@@ -13,12 +13,6 @@ import { QueryStringMachine } from '../../../query-string-machine/js/QueryString
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherConstants from './CalculusGrapherConstants.js';
 
-// TODO REVIEW: I couldn't find relevant documentation on the correct approach for this, but it feels like these
-//  valid values belong more to the preferences than to the query parameters.
-//  Mainly because they are a *preference* you can change via query parameter.
-//  So declaring them here seems out of place.
-//  Feel free to ignore. https://github.com/phetsims/calculus-grapher/issues/366
-
 export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ] as const;
 export type ConnectDiscontinuities = ( typeof ConnectDiscontinuitiesValues )[ number ];
 
