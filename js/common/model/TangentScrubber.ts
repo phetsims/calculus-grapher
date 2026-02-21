@@ -11,7 +11,6 @@ import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProper
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
@@ -33,8 +32,8 @@ export default class TangentScrubber extends AncillaryTool {
 
     super( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
 
-      // TODO REVIEW: Document why x is min + length/3. It's the /3 which is not clear. https://github.com/phetsims/calculus-grapher/issues/366
-      x: Math.floor( CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3 ),
+      // Initial x-coordinate, in model coordinates.
+      x: 3,
 
       // Do not feature these Properties in Studio, because they are not relevant for tangent,
       // see https://github.com/phetsims/calculus-grapher/issues/225
