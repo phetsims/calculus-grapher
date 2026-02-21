@@ -27,8 +27,7 @@ export default class CalculusGrapherPreferences {
     validValues: FunctionVariableValues,
     tandem: Tandem.PREFERENCES.createTandem( 'functionVariableProperty' ),
     phetioFeatured: true,
-    // TODO REVIEW: This 'the' should be title cased like other phteioDocumentations on this file https://github.com/phetsims/calculus-grapher/issues/366
-    phetioDocumentation: 'the variable used in functions'
+    phetioDocumentation: 'The variable used in functions'
   } );
 
   // Property for the 'Notation' preference
@@ -36,8 +35,7 @@ export default class CalculusGrapherPreferences {
     validValues: DerivativeNotationValues,
     tandem: Tandem.PREFERENCES.createTandem( 'derivativeNotationProperty' ),
     phetioFeatured: true,
-    // TODO REVIEW: This 'the' should be title cased like other phteioDocumentations on this file https://github.com/phetsims/calculus-grapher/issues/366
-    phetioDocumentation: 'the notation used for functions'
+    phetioDocumentation: 'The notation used for functions'
   } );
 
   // Property for the 'Discontinuities' preference
