@@ -1,10 +1,13 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * // TODO REVIEW: All over in the documentation and code these are called Ancilliary Tools, not Exploration Tools.
- *      Consider renaming or relating the two names in this doc. https://github.com/phetsims/calculus-grapher/issues/366
- * ExplorationToolControlsKeyboardHelpSection is the keyboard-help section that describes how to interact with the
- * exploration tools (Reference Line, Tangent, Area Under Curve).
+ * ExplorationToolControlsKeyboardHelpSection is the keyboard-help section that describes how to interact with what
+ * core description refers to as "Exploration Tools", which include Reference Line, Tangent, and Area Under Curve.
+ *
+ * A note about "Exploration Tools" versus "Ancillary Tools": For core description, those specific tools are described
+ * as Exploration Tools, so it makes sense to name this class similarly. AncillaryTool is a more general subclass.
+ * And while these "Exploration Tools" are implemented as subclasses of AncillaryTool, they are not the only
+ * subclasses of AncillaryTool.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
