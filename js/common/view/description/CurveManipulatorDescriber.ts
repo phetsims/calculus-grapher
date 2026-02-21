@@ -16,7 +16,6 @@ export default class CurveManipulatorDescriber {
 
   private readonly curveManipulator: CurveManipulator;
 
-  // TODO REVIEW: Other constructors define the class fields in the params. Maybe do the same here. https://github.com/phetsims/calculus-grapher/issues/366
   public constructor( curveManipulator: CurveManipulator ) {
     this.curveManipulator = curveManipulator;
   }
