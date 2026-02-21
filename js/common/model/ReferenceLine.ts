@@ -11,7 +11,6 @@ import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProper
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
@@ -37,7 +36,7 @@ export default class ReferenceLine extends AncillaryTool {
     super( integralCurve, primaryCurve, predictedCurve, derivativeCurve, secondDerivativeCurve, {
 
       // A bit right of center, see https://github.com/phetsims/calculus-grapher/issues/248
-      x: ( CalculusGrapherConstants.CURVE_X_RANGE.min + 0.55 * CalculusGrapherConstants.CURVE_X_RANGE.getLength() ),
+      x: 5.5,
       tandem: tandem
     } );
 

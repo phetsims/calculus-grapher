@@ -13,7 +13,6 @@ import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProper
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
-import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
@@ -44,7 +43,7 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
 
       // Close to zero, but not at zero, so that the scrubber is noticeable.
       // See https://github.com/phetsims/calculus-grapher/issues/207#issuecomment-1434759100
-      x: CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 50,
+      x: 0.2,
 
       // Do not feature these Properties in Studio, because they are not relevant for area-under-curve,
       // see https://github.com/phetsims/calculus-grapher/issues/225
