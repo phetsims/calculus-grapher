@@ -19,8 +19,13 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 // Specify HotkeyData for each KeyboardHelpSectionRow, so that we can use KeyboardHelpSectionRow.fromHotkeyData
 // which creates both the visual interface and core description.
 
-// TODO REVIEW: Only left and right arrows are listed but you can also move with A and D.
-//  Either update the HotkeyData, the KeyboardListener, or document why A and D are not included here. https://github.com/phetsims/calculus-grapher/issues/366
+// Because tools are implemented using scenery DragListener, A and D keys also behave like arrowLeft and arrowRight,
+// respectively. But it was a conscious design decision to NOT specify them here because the keyboard help would be
+// very odd and potentially confusing -- WASD is a well-known convention, but AD is not. And while it would be
+// nice to support the full set of arrow and WASD keys, that proved to be complicated with the existing DragListener
+// implementation, so we decided against it. We also considered reimplementing the tools as subclasses of AccessibleSlider
+// so that all arrow keys and WASD keys would then be supported. But that would involve major changes to the PhET-iO API,
+// and major migration problems, so again we decided against it.
 const MOVE_HOTKEY_DATA = new HotkeyData( {
   keys: [ 'arrowLeft', 'arrowRight' ],
   repoName: calculusGrapher.name,
