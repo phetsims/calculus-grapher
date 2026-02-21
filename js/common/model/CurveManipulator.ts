@@ -87,7 +87,6 @@ export default class CurveManipulator extends PhetioObject {
       phetioDocumentation: 'Whether this manipulator has been moved.'
     } );
 
-    // TODO REVIEW: This position parameter is not used. https://github.com/phetsims/calculus-grapher/issues/366
     this.positionProperty.lazyLink( position => {
       if ( !isSettingPhetioStateProperty.value ) {
         this.wasMovedProperty.value = true;
