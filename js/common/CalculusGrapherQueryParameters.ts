@@ -82,8 +82,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   // private - for internal use only
   //====================================================================================================================
 
-  // TODO REVIEW: Is there a particular reason to why 1251 points were chosen as the default?
-  //  It says that the number should be above 400, but I didn’t find anything on why specifically 1251. https://github.com/phetsims/calculus-grapher/issues/366
   /**
    * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
    * the more faithful is the reproduction of a curve. For values less than 400 points, oddities
@@ -92,6 +90,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   numberOfPoints: {
     type: 'number',
     isValidValue: value => value > 0,
+    // This value was arrived at by experimenting and provides a nice tradeoff between smoothness of the curve and performance.
     defaultValue: 1251
   },
 
