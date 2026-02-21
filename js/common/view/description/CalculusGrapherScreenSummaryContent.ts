@@ -12,7 +12,7 @@ import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optioni
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
-import CalculusGrapherModel from '../../model/CalculusGrapherModel.js';
+import CurveManipulationProperties from '../../model/CurveManipulationProperties.js';
 import GraphsNode from '../GraphsNode.js';
 import CurrentDetailsAccessibleListNode from './CurrentDetailsAccessibleListNode.js';
 
@@ -23,11 +23,13 @@ type CalculusGrapherScreenSummaryContentOptions = SelfOptions &
 
 export default class CalculusGrapherScreenSummaryContent extends ScreenSummaryContent {
 
-  protected constructor( model: CalculusGrapherModel, graphsNode: GraphsNode, providedOptions: CalculusGrapherScreenSummaryContentOptions ) {
+  protected constructor( curveManipulationProperties: CurveManipulationProperties,
+                         graphsNode: GraphsNode,
+                         providedOptions: CalculusGrapherScreenSummaryContentOptions ) {
 
     const options = optionize<CalculusGrapherScreenSummaryContentOptions, SelfOptions, ScreenSummaryContentOptions>()( {
       controlAreaContent: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.controlAreaStringProperty,
-      currentDetailsContent: new CurrentDetailsAccessibleListNode( model, graphsNode )
+      currentDetailsContent: new CurrentDetailsAccessibleListNode( curveManipulationProperties, graphsNode )
     }, providedOptions );
 
     super( options );

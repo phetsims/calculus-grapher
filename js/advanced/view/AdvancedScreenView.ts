@@ -41,7 +41,7 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
     ];
 
     // screenSummaryContent cannot be set via options because it depends on the existence of this.graphsNode.
-    this.setScreenSummaryContent( new AdvancedScreenSummaryContent( model, this.graphsNode ) );
+    this.setScreenSummaryContent( new AdvancedScreenSummaryContent( model.curveManipulationProperties, this.graphsNode ) );
   }
 }
 

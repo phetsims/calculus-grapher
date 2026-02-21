@@ -14,17 +14,12 @@ import AccessibleListNode, { AccessibleListItem } from '../../../../../scenery-p
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
-import CalculusGrapherModel from '../../model/CalculusGrapherModel.js';
+import CurveManipulationProperties from '../../model/CurveManipulationProperties.js';
 import GraphsNode from '../GraphsNode.js';
 
 export default class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
-  // TODO REVIEW: Would it be worth it to limit the API here now that changes have settled? https://github.com/phetsims/calculus-grapher/issues/366
-  // I hate the coupling here that results from passing in the entire model and graphNode. But these core descriptions
-  // have changed so many times, and they need access to so many things buried in the model and view, that it was
-  // not worth the cost of reducing the coupling. So if you find yourself adding new code that reaches into model
-  // or graphsNode, think twice about whether it's appropriate or necessary.
-  public constructor( model: CalculusGrapherModel, graphsNode: GraphsNode ) {
+  public constructor( curveManipulationProperties: CurveManipulationProperties, graphsNode: GraphsNode ) {
 
     // visible Properties for each curve that is relevant for this description.
     const visibleProperties: TReadOnlyProperty<boolean>[] = [];
@@ -98,20 +93,20 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
       ...CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.getDependentProperties(),
 
       // Values used in the above descriptions.
-      model.curveManipulationProperties.curveManipulationTypeProperty,
-      model.curveManipulationProperties.widthProperty,
+      curveManipulationProperties.curveManipulationTypeProperty,
+      curveManipulationProperties.widthProperty,
       curvesSentenceStringProperty
     ] );
 
     const leadingParagraphStringProperty = DerivedStringProperty.deriveAny( leadingParagraphDependencies,
       () => {
 
-        const curveManipulationType = model.curveManipulationProperties.curveManipulationTypeProperty.value;
+        const curveManipulationType = curveManipulationProperties.curveManipulationTypeProperty.value;
 
         if ( curveManipulationType.hasAdjustableWidth ) {
           return CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
             curveManipulationType: curveManipulationType.accessibleNameProperty.value,
-            width: toFixedNumber( model.curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
+            width: toFixedNumber( curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
             curveSentence: curvesSentenceStringProperty.value
           } );
         }

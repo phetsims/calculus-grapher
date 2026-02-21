@@ -81,7 +81,7 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     ];
 
     // screenSummaryContent cannot be set via options because it depends on the existence of this.graphsNode.
-    this.setScreenSummaryContent( new IntegralScreenSummaryContent( model, this.graphsNode ) );
+    this.setScreenSummaryContent( new IntegralScreenSummaryContent( model.curveManipulationProperties, this.graphsNode ) );
   }
 
   public override reset(): void {

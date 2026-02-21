@@ -41,7 +41,7 @@ export default class LabScreenView extends CalculusGrapherScreenView {
     ];
 
     // screenSummaryContent cannot be set via options because it depends on the existence of this.graphsNode.
-    this.setScreenSummaryContent( new LabScreenSummaryContent( model, this.graphsNode ) );
+    this.setScreenSummaryContent( new LabScreenSummaryContent( model.curveManipulationProperties, this.graphsNode ) );
   }
 }
 
