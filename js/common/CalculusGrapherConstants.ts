@@ -90,7 +90,10 @@ export default class CalculusGrapherConstants {
 
   public static readonly PREFERENCES_DESCRIPTION_LINE_WRAP = 325;
 
+
   public static readonly CHECKBOX_OPTIONS: CheckboxOptions = {
+    // TODO REVIEW: height is being assigned to boxWidth...
+    //  It would be better to have an empirical value in this case instead of creating a dummy new Text. https://github.com/phetsims/calculus-grapher/issues/366
     boxWidth: new Text( 'A', { font: CalculusGrapherConstants.CONTROL_FONT } ).height,
     touchAreaXDilation: 6,
     touchAreaYDilation: 3,

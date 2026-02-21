@@ -1,6 +1,8 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
+ * // TODO REVIEW: A previous commit changed "original" to "primary" and made this comment
+ *      documentation more confusing than the original confusion. Update. https://github.com/phetsims/calculus-grapher/issues/366
  * PrimaryGraphAccessibleListNode is the accessible list that describes the Primary graph,
  * which is (confusingly) known as the "primary graph" for core description.
  *

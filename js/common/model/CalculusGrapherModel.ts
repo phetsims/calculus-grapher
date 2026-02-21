@@ -50,9 +50,12 @@ type SelfOptions = {
   // Identifies the curve manipulation modes that are supported by the screen associated with this model.
   curveManipulationModeChoices?: CurveManipulationType[];
 
+
+  // TODO REVIEW: It seems that this boolean option is not used anywhere. Delete. https://github.com/phetsims/calculus-grapher/issues/366
   // Should the model create a TangentScrubber?
   hasTangentScrubber?: boolean;
 
+  // TODO REVIEW: It seems that this boolean option is not used anywhere. Delete. https://github.com/phetsims/calculus-grapher/issues/366
   // Should the model create an AreaUnderCurveScrubber?
   hasAreaUnderCurveScrubber?: boolean;
 };

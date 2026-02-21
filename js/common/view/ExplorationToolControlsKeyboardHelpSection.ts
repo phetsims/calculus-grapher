@@ -1,6 +1,8 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
+ * // TODO REVIEW: All over in the documentation and code these are called Ancilliary Tools, not Exploration Tools.
+ *      Consider renaming or relating the two names in this doc. https://github.com/phetsims/calculus-grapher/issues/366
  * ExplorationToolControlsKeyboardHelpSection is the keyboard-help section that describes how to interact with the
  * exploration tools (Reference Line, Tangent, Area Under Curve).
  *
@@ -17,6 +19,8 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 // Specify HotkeyData for each KeyboardHelpSectionRow, so that we can use KeyboardHelpSectionRow.fromHotkeyData
 // which creates both the visual interface and core description.
 
+// TODO REVIEW: Only left and right arrows are listed but you can also move with A and D.
+//  Either update the HotkeyData, the KeyboardListener, or document why A and D are not included here. https://github.com/phetsims/calculus-grapher/issues/366
 const MOVE_HOTKEY_DATA = new HotkeyData( {
   keys: [ 'arrowLeft', 'arrowRight' ],
   repoName: calculusGrapher.name,

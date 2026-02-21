@@ -3,6 +3,7 @@
 /**
  * AncillaryTool is the model base class associated with an x value on the graph.
  * It keeps track of the following quantities associated with the x value:
+ *  TODO REVIEW: Since it's definite integral it'd be more correct to specify that it goes from 0 to x. https://github.com/phetsims/calculus-grapher/issues/366
  *  - the integral of f(x)
  *  - the primary function f(x)
  *  - the prediction of f(x)

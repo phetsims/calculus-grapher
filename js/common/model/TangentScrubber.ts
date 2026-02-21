@@ -32,6 +32,8 @@ export default class TangentScrubber extends AncillaryTool {
                       tandem: Tandem ) {
 
     super( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, {
+
+      // TODO REVIEW: Document why x is min + length/3. It's the /3 which is not clear. https://github.com/phetsims/calculus-grapher/issues/366
       x: Math.floor( CalculusGrapherConstants.CURVE_X_RANGE.min + CalculusGrapherConstants.CURVE_X_RANGE.getLength() / 3 ),
 
       // Do not feature these Properties in Studio, because they are not relevant for tangent,

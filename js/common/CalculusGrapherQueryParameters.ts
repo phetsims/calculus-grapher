@@ -13,6 +13,12 @@ import { QueryStringMachine } from '../../../query-string-machine/js/QueryString
 import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherConstants from './CalculusGrapherConstants.js';
 
+// TODO REVIEW: I couldn't find relevant documentation on the correct approach for this, but it feels like these
+//  valid values belong more to the preferences than to the query parameters.
+//  Mainly because they are a *preference* you can change via query parameter.
+//  So declaring them here seems out of place.
+//  Feel free to ignore. https://github.com/phetsims/calculus-grapher/issues/366
+
 export const ConnectDiscontinuitiesValues = [ 'noLine', 'dashedLine' ] as const;
 export type ConnectDiscontinuities = ( typeof ConnectDiscontinuitiesValues )[ number ];
 
@@ -82,6 +88,8 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   // private - for internal use only
   //====================================================================================================================
 
+  // TODO REVIEW: Is there a particular reason to why 1251 points were chosen as the default?
+  //  It says that the number should be above 400, but I didn’t find anything on why specifically 1251. https://github.com/phetsims/calculus-grapher/issues/366
   /**
    * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
    * the more faithful is the reproduction of a curve. For values less than 400 points, oddities

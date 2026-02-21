@@ -19,6 +19,7 @@ import GraphsNode from '../GraphsNode.js';
 
 export default class CurrentDetailsAccessibleListNode extends AccessibleListNode {
 
+  // TODO REVIEW: Would it be worth it to limit the API here now that changes have settled? https://github.com/phetsims/calculus-grapher/issues/366
   // I hate the coupling here that results from passing in the entire model and graphNode. But these core descriptions
   // have changed so many times, and they need access to so many things buried in the model and view, that it was
   // not worth the cost of reducing the coupling. So if you find yourself adding new code that reaches into model
