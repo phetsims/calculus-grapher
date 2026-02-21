@@ -92,8 +92,9 @@ export default class CalculusGrapherConstants {
 
 
   public static readonly CHECKBOX_OPTIONS: CheckboxOptions = {
-    // TODO REVIEW: height is being assigned to boxWidth...
-    //  It would be better to have an empirical value in this case instead of creating a dummy new Text. https://github.com/phetsims/calculus-grapher/issues/366
+    // This is the standard way of ensuring that the checkbox height matches the font height, a PhET requirement.
+    // CheckboxOptions boxWidth should really be named something like boxSideLength, since that is the standard term
+    // for a square. As is, WebStorm flags this as a warning that "height should probably not be assigned to boxWidth".
     boxWidth: new Text( 'A', { font: CalculusGrapherConstants.CONTROL_FONT } ).height,
     touchAreaXDilation: 6,
     touchAreaYDilation: 3,
