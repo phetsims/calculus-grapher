@@ -15,7 +15,6 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 export default class GraphType extends EnumerationValue {
 
-  // TODO REVIEW: If it's easy to refactor, I would move this property to the view instead of model? https://github.com/phetsims/calculus-grapher/issues/366
   // Stroke for the graph's curve
   public readonly strokeProperty: ProfileColorProperty;
 
