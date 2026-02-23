@@ -69,13 +69,14 @@ export default class DerivativeScreenView extends CalculusGrapherScreenView {
     affirm( !this.graphSetRadioButtonGroup, 'DerivativeScreenView is not expected to have a graphSetRadioButtonGroup.' );
     this.pdomPlayAreaNode.pdomOrder = [
       this.graphsNode,
-      this.rightVBox,
+      this.controlPanel,
       this.graphsNode.scrubberNodesParent,
       slopeOfTangentAccordionBox
     ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [
+      this.checkboxGroup,
       this.resetAllButton
     ];
 

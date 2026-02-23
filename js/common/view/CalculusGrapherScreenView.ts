@@ -42,15 +42,13 @@ export default class CalculusGrapherScreenView extends ScreenView {
   // Node responsible for displaying all graphs and their decorations
   public readonly graphsNode: GraphsNode;
 
-  // The checkbox group that appears below the control panel
-  protected readonly checkboxGroup: CalculusGrapherCheckboxGroup;
-
   // Instead of adding children directly to the ScreenView, add them to this parent Node.
   protected readonly screenViewRootNode: Node;
 
   // For setting pdomOrder in subclasses
+  protected readonly controlPanel: Node;
+  protected readonly checkboxGroup: Node;
   protected readonly resetAllButton: Node;
-  protected readonly rightVBox: Node;
   protected readonly graphSetRadioButtonGroup?: Node;
 
   protected constructor( model: CalculusGrapherModel, providedOptions: CalculusGrapherScreenViewOptions ) {
@@ -71,14 +69,14 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     this.model = model;
 
-    const resetAllButton = new ResetAllButton( {
+    this.resetAllButton = new ResetAllButton( {
       right: this.layoutBounds.right - CalculusGrapherConstants.SCREEN_VIEW_X_MARGIN,
       bottom: this.layoutBounds.bottom - CalculusGrapherConstants.SCREEN_VIEW_Y_MARGIN,
       listener: () => this.reset(),
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    const controlPanel = new CalculusGrapherControlPanel(
+    this.controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
       model.predictSelectedProperty,
       model.predictEnabledProperty,
@@ -92,7 +90,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.referenceLine.visibleProperty, options.tandem.createTandem( 'checkboxGroup' ) );
 
     const rightVBox = new VBox( {
-      children: [ controlPanel, this.checkboxGroup ],
+      children: [ this.controlPanel, this.checkboxGroup ],
       spacing: 20,
       align: 'left'
     } );
@@ -113,7 +111,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const children: Node[] = [
       this.graphsNode,
       rightVBox,
-      resetAllButton
+      this.resetAllButton
     ];
 
     if ( options.graphSetRadioButtonGroupItems.length > 0 ) {
@@ -130,9 +128,6 @@ export default class CalculusGrapherScreenView extends ScreenView {
         graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( toggleButtonLeft - this.layoutBounds.left ) / 2;
       } );
     }
-
-    this.rightVBox = rightVBox;
-    this.resetAllButton = resetAllButton;
 
     this.screenViewRootNode = new Node( {
       children: children
