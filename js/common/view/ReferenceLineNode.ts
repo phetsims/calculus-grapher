@@ -28,7 +28,7 @@ import ReferenceLineDescriber from './description/ReferenceLineDescriber.js';
 import ScrubberNode from './ScrubberNode.js';
 
 // number of decimal places shown for the x value, dragging snaps to this interval
-const X_DECIMAL_PLACES = 1;
+const X_DECIMAL_PLACES = 2;
 
 export default class ReferenceLineNode extends ScrubberNode {
 
