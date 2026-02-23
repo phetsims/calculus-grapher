@@ -61,7 +61,7 @@ export default class ExplorationToolControlsKeyboardHelpSection extends Keyboard
       KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA )
     ];
 
-    super( CalculusGrapherFluent.keyboardHelp.explorationToolsStringProperty, rows, {
+    super( CalculusGrapherFluent.keyboardHelp.explorationTools.headingStringProperty, rows, {
       isDisposable: false,
       textMaxWidth: 300
     } );

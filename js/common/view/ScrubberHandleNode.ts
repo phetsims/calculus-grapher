@@ -117,7 +117,8 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
     } );
 
     // Keyboard listener for keyboard shortcuts.
-    this.addInputListener( new ScrubberKeyboardListener( xProperty, positionProperty, options.tandem.createTandem( 'keyboardListener' ) ) );
+    this.addInputListener( new ScrubberKeyboardListener( scrubberNode, xProperty, positionProperty,
+      options.tandem.createTandem( 'keyboardListener' ) ) );
   }
 
   /**

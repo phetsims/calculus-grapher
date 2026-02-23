@@ -18,6 +18,8 @@ import SoundClipPlayer from '../../../../tambo/js/sound-generators/SoundClipPlay
 import generalBoundaryBoop_mp3 from '../../../../tambo/sounds/generalBoundaryBoop_mp3.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import ScrubberNode from './ScrubberNode.js';
 
 // Same as Slider min and max defaults.
 const MAX_SOUND_PLAYER = sharedSoundPlayers.get( 'generalBoundaryBoop' );
@@ -31,6 +33,8 @@ const MIN_SOUND_PLAYER = new SoundClipPlayer( generalBoundaryBoop_mp3, {
 
 export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
 
+  private readonly scrubberNode: ScrubberNode;
+
   public static readonly HOME_HOTKEY_DATA = new HotkeyData( {
     keys: [ 'home' ],
     repoName: calculusGrapher.name,
@@ -43,26 +47,68 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
     keyboardHelpDialogLabelStringProperty: SceneryPhetFluent.keyboardHelpDialog.jumpToMaximumStringProperty
   } );
 
-  public constructor( xProperty: TRangedProperty, positionProperty: Property<Vector2>, tandem: Tandem ) {
+  public static readonly CHECK_VALUES_HOTKEY_DATA = new HotkeyData( {
+    keys: [ 'alt+c' ],
+    repoName: calculusGrapher.name,
+    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.explorationTools.checkValuesStringProperty
+  } );
+
+  public constructor( scrubberNode: ScrubberNode,
+                      xProperty: TRangedProperty,
+                      positionProperty: Property<Vector2>,
+                      tandem: Tandem ) {
     super( {
       tandem: tandem,
-      keyStringProperties: HotkeyData.combineKeyStringProperties(
-        [ ScrubberKeyboardListener.HOME_HOTKEY_DATA, ScrubberKeyboardListener.END_HOTKEY_DATA ] ),
+      keyStringProperties: HotkeyData.combineKeyStringProperties( [
+        ScrubberKeyboardListener.HOME_HOTKEY_DATA,
+        ScrubberKeyboardListener.END_HOTKEY_DATA,
+        ScrubberKeyboardListener.CHECK_VALUES_HOTKEY_DATA
+      ] ),
 
-      // Set both xProperty and positionProperty so that drag listener stays in sync.
       fire: ( event, keysPressed, listener ) => {
         if ( keysPressed === 'home' ) {
-          xProperty.value = xProperty.range.min;
-          positionProperty.value = new Vector2( xProperty.range.min, positionProperty.value.y );
-          MIN_SOUND_PLAYER.play();
+          this.home( xProperty, positionProperty );
         }
-        else {
-          xProperty.value = xProperty.range.max;
-          positionProperty.value = new Vector2( xProperty.range.max, positionProperty.value.y );
-          MAX_SOUND_PLAYER.play();
+        else if ( keysPressed === 'end' ) {
+          this.end( xProperty, positionProperty );
+        }
+        else if ( keysPressed === 'alt+c' ) {
+          this.checkValues();
         }
       }
     } );
+
+    this.scrubberNode = scrubberNode;
+  }
+
+  /**
+   * Handles the home key, which moves the scrubber to the minimum value.
+   */
+  private home( xProperty: TRangedProperty, positionProperty: Property<Vector2> ): void {
+
+    // Set both xProperty and positionProperty so that drag listener stays in sync.
+    xProperty.value = xProperty.range.min;
+    positionProperty.value = new Vector2( xProperty.range.min, positionProperty.value.y );
+    MIN_SOUND_PLAYER.play();
+  }
+
+  /**
+   * Handles the end key, which moves the scrubber to the maximum value.
+   */
+  private end( xProperty: TRangedProperty, positionProperty: Property<Vector2> ): void {
+
+    // Set both xProperty and positionProperty so that drag listener stays in sync.
+    xProperty.value = xProperty.range.max;
+    positionProperty.value = new Vector2( xProperty.range.max, positionProperty.value.y );
+    MAX_SOUND_PLAYER.play();
+  }
+
+  /**
+   * Handles alt+c (or option+c on macOS) which provides a description of the current values,
+   * the same as when the scrubber gets focus.
+   */
+  private checkValues(): void {
+    this.scrubberNode.doAccessibleObjectResponse();
   }
 }
 

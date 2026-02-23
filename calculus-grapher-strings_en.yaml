@@ -29,10 +29,12 @@ referenceLine:                Reference<br>Line
 
 keyboardHelp:
   curveManipulator:
-    keyboardHelpHeading: Curve Manipulator
-    keyboardHelpLabel:   Grab or release curve
-    keyboardCue:         to <b>Grab</b> or <b>Release</b> curve
-  explorationTools: Exploration Tools
+    heading:            Curve Manipulator
+    grabOrReleaseCurve: Grab or release curve
+    keyboardCue:        to <b>Grab</b> or <b>Release</b> curve
+  explorationTools:
+    heading:     Exploration Tools
+    checkValues: Check values
 
 a11y:
 

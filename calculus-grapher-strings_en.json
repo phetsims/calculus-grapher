@@ -79,10 +79,10 @@
   },
   "keyboardHelp": {
     "curveManipulator": {
-      "keyboardHelpHeading": {
+      "heading": {
         "value": "Curve Manipulator"
       },
-      "keyboardHelpLabel": {
+      "grabOrReleaseCurve": {
         "value": "Grab or release curve"
       },
       "keyboardCue": {
@@ -90,7 +90,12 @@
       }
     },
     "explorationTools": {
-      "value": "Exploration Tools"
+      "heading": {
+        "value": "Exploration Tools"
+      },
+      "checkValues": {
+        "value": "Check values"
+      }
     }
   },
   "a11y": {

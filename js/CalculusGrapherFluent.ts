@@ -52,10 +52,11 @@ addToMapIfDefined( 'show', 'showStringProperty' );
 addToMapIfDefined( 'predictPreference', 'predictPreferenceStringProperty' );
 addToMapIfDefined( 'valuesPreferenceDescription', 'valuesPreferenceDescriptionStringProperty' );
 addToMapIfDefined( 'referenceLine', 'referenceLineStringProperty' );
-addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardHelpHeading', 'keyboardHelp.curveManipulator.keyboardHelpHeadingStringProperty' );
-addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardHelpLabel', 'keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty' );
+addToMapIfDefined( 'keyboardHelp_curveManipulator_heading', 'keyboardHelp.curveManipulator.headingStringProperty' );
+addToMapIfDefined( 'keyboardHelp_curveManipulator_grabOrReleaseCurve', 'keyboardHelp.curveManipulator.grabOrReleaseCurveStringProperty' );
 addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardCue', 'keyboardHelp.curveManipulator.keyboardCueStringProperty' );
-addToMapIfDefined( 'keyboardHelp_explorationTools', 'keyboardHelp.explorationToolsStringProperty' );
+addToMapIfDefined( 'keyboardHelp_explorationTools_heading', 'keyboardHelp.explorationTools.headingStringProperty' );
+addToMapIfDefined( 'keyboardHelp_explorationTools_checkValues', 'keyboardHelp.explorationTools.checkValuesStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_widthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_noWidthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_curveSentence_curvesShown', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty' );
@@ -327,15 +328,18 @@ const CalculusGrapherFluent = {
   referenceLineStringProperty: _.get( CalculusGrapherStrings, 'referenceLineStringProperty' ),
   keyboardHelp: {
     curveManipulator: {
-      keyboardHelpHeadingStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardHelpHeadingStringProperty' ),
-      keyboardHelpLabelStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty' ),
+      headingStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.headingStringProperty' ),
+      grabOrReleaseCurveStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.grabOrReleaseCurveStringProperty' ),
       keyboardCueStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardCueStringProperty' )
     },
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"explorationTools"} ),
     _comment_1: new FluentComment( {"comment":"Tools","associatedKey":"explorationTools"} ),
     _comment_2: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"explorationTools"} ),
     _comment_3: new FluentComment( {"comment":"Heading for all tools.","associatedKey":"explorationTools"} ),
-    explorationToolsStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.explorationToolsStringProperty' )
+    explorationTools: {
+      headingStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.explorationTools.headingStringProperty' ),
+      checkValuesStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.explorationTools.checkValuesStringProperty' )
+    }
   },
   a11y: {
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"screens"} ),

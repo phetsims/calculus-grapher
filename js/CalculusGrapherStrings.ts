@@ -50,11 +50,14 @@ type StringsType = {
   'referenceLineStringProperty': LocalizedStringProperty;
   'keyboardHelp': {
     'curveManipulator': {
-      'keyboardHelpHeadingStringProperty': LocalizedStringProperty;
-      'keyboardHelpLabelStringProperty': LocalizedStringProperty;
+      'headingStringProperty': LocalizedStringProperty;
+      'grabOrReleaseCurveStringProperty': LocalizedStringProperty;
       'keyboardCueStringProperty': LocalizedStringProperty;
     };
-    'explorationToolsStringProperty': LocalizedStringProperty;
+    'explorationTools': {
+      'headingStringProperty': LocalizedStringProperty;
+      'checkValuesStringProperty': LocalizedStringProperty;
+    }
   };
   'a11y': {
     'screens': {
