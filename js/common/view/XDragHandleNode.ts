@@ -118,8 +118,9 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
       dragBoundsProperty: dragBoundsProperty,
 
       keyboardDragListenerOptions: {
-        dragSpeed: 300, // in view coordinates per second
-        shiftDragSpeed: 75
+        dragDelta: chartTransform.modelToViewDeltaX( 0.1 ),
+        shiftDragDelta: chartTransform.modelToViewDeltaX( 0.01 ),
+        moveOnHoldInterval: 50
       },
 
       drag: ( event, listener ) => {
