@@ -228,11 +228,10 @@ a11y:
         hidden:        Second derivative curve hidden.
 
   #=======================================================================================================
-  # Panels
+  # Headings (standalone)
   #=======================================================================================================
 
-  controlPanel:
-    accessibleHeading: Curve Manipulation Settings and Controls
+  curveManipulationSettingsAndControls: Curve Manipulation Settings and Controls
 
   #=======================================================================================================
   # Push Buttons

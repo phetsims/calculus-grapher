@@ -211,9 +211,7 @@ type StringsType = {
         }
       }
     };
-    'controlPanel': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-    };
+    'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
     'curveActionsButtonGroup': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;

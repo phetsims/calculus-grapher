@@ -328,6 +328,16 @@ export default class GraphsNode extends Node {
     const plottedPoint = graphNode.addPlottedPoint( curvePointProperty, fill, visibleProperty, tandemName );
     plottedPoint.addLinkedElement( ancillaryTool );
   }
+
+  // For pdomOrder
+  public getPrimaryCurveManipulatorNode(): Node {
+    return this.primaryGraphNode.getPrimaryCurveManipulatorNode();
+  }
+
+  // For pdomOrder
+  public getPredictCurveManipulatorNode(): Node {
+    return this.primaryGraphNode.getPredictCurveManipulatorNode();
+  }
 }
 
 calculusGrapher.register( 'GraphsNode', GraphsNode );

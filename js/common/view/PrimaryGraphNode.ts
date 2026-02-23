@@ -74,7 +74,7 @@ export default class PrimaryGraphNode extends GraphNode {
   public readonly showPrimaryCurveProperty: TReadOnlyProperty<boolean>;
 
   // Manipulators for primary and predict curves.
-  private readonly primaryCurveManipulator: CurveManipulatorNode;
+  private readonly primaryCurveManipulatorNode: CurveManipulatorNode;
   private readonly predictCurveManipulatorNode: CurveManipulatorNode;
 
   // For core description
@@ -185,7 +185,7 @@ export default class PrimaryGraphNode extends GraphNode {
     } );
 
     // Primary curve manipulator
-    this.primaryCurveManipulator = new CurveManipulatorNode(
+    this.primaryCurveManipulatorNode = new CurveManipulatorNode(
       primaryCurveManipulator,
       primaryCurve,
       curveManipulationProperties.curveManipulationTypeProperty,
@@ -216,9 +216,9 @@ export default class PrimaryGraphNode extends GraphNode {
       } );
 
     // Cueing arrows for the primary and predict curve manipulators.
-    const primaryCueingArrowsNode = new CueingArrowsNode( this.primaryCurveManipulator, this.chartTransform, {
+    const primaryCueingArrowsNode = new CueingArrowsNode( this.primaryCurveManipulatorNode, this.chartTransform, {
       // Child of primaryCurveManipulatorNode in PhET-iO tree.
-      tandem: this.primaryCurveManipulator.tandem.createTandem( 'cueingArrowsNode' ),
+      tandem: this.primaryCurveManipulatorNode.tandem.createTandem( 'cueingArrowsNode' ),
       phetioDocumentation: 'Cueing arrows for the primary curve, visible until the user moves the curve manipulator.'
     } );
     const predictCueingArrowsNode = new CueingArrowsNode( this.predictCurveManipulatorNode, this.chartTransform, {
@@ -229,12 +229,12 @@ export default class PrimaryGraphNode extends GraphNode {
 
     // Keyboard cues (popups) for toggling the manipulators between modes. Each manipulator has its own popup
     // because they have different colors, so it might not be obvious that they behave similarly.
-    const primaryKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.primaryCurveManipulator );
+    const primaryKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.primaryCurveManipulatorNode );
     const predictKeyboardCueNode = new CurveManipulatorKeyboardCueNode( this.predictCurveManipulatorNode );
 
     // Center the keyboard cues below their manipulators.
     const keyboardCueYOffset = 10;
-    this.primaryCurveManipulator.boundsProperty.link( bounds => {
+    this.primaryCurveManipulatorNode.boundsProperty.link( bounds => {
       primaryKeyboardCueNode.centerX = bounds.centerX;
       primaryKeyboardCueNode.top = bounds.bottom + keyboardCueYOffset;
     } );
@@ -246,7 +246,7 @@ export default class PrimaryGraphNode extends GraphNode {
     // Put everything related to curve manipulation in a layer to simplify controlling visibility.
     const manipulatorsLayer = new Node( {
       children: [
-        this.primaryCurveManipulator,
+        this.primaryCurveManipulatorNode,
         this.predictCurveManipulatorNode,
         primaryCueingArrowsNode,
         predictCueingArrowsNode,
@@ -292,7 +292,7 @@ export default class PrimaryGraphNode extends GraphNode {
           this.predictCurveManipulatorNode.forwardPressListenerEvent( event );
         }
         else {
-          this.primaryCurveManipulator.forwardPressListenerEvent( event );
+          this.primaryCurveManipulatorNode.forwardPressListenerEvent( event );
         }
       }
     } ) );
@@ -338,8 +338,6 @@ export default class PrimaryGraphNode extends GraphNode {
     affirm( !this.yZoomButtonGroup, 'PrimaryGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
       accessibleListNode,
-      this.primaryCurveManipulator,
-      this.predictCurveManipulatorNode,
       showPrimaryCurveCheckbox,
       this.curveVisibilityToggleButton
     ];
@@ -377,6 +375,16 @@ export default class PrimaryGraphNode extends GraphNode {
     this.curveLayer.addChild( areaUnderCurvePlot );
     areaUnderCurvePlot.moveToBack();
     return areaUnderCurvePlot;
+  }
+
+  // For pdomOrder
+  public getPrimaryCurveManipulatorNode(): Node {
+    return this.primaryCurveManipulatorNode;
+  }
+
+  // For pdomOrder
+  public getPredictCurveManipulatorNode(): Node {
+    return this.predictCurveManipulatorNode;
   }
 }
 

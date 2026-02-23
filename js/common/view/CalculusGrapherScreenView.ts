@@ -17,6 +17,7 @@ import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.j
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
@@ -46,7 +47,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   protected readonly screenViewRootNode: Node;
 
   // For setting pdomOrder in subclasses
-  protected readonly controlPanel: Node;
+  protected readonly curveManipulationControlsAndSettingsHeading: Node;
   protected readonly checkboxGroup: Node;
   protected readonly resetAllButton: Node;
   protected readonly graphSetRadioButtonGroup?: Node;
@@ -76,7 +77,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
-    this.controlPanel = new CalculusGrapherControlPanel(
+    const controlPanel = new CalculusGrapherControlPanel(
       model.curveManipulationProperties,
       model.predictSelectedProperty,
       model.predictEnabledProperty,
@@ -90,7 +91,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       model.referenceLine.visibleProperty, options.tandem.createTandem( 'checkboxGroup' ) );
 
     const rightVBox = new VBox( {
-      children: [ this.controlPanel, this.checkboxGroup ],
+      children: [ controlPanel, this.checkboxGroup ],
       spacing: 20,
       align: 'left'
     } );
@@ -101,6 +102,17 @@ export default class CalculusGrapherScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'graphsNode' )
     } );
 
+    // Put everything having to do with curve manipulation under a heading for core description.
+    // See https://github.com/phetsims/calculus-grapher/issues/387
+    this.curveManipulationControlsAndSettingsHeading = new Node( {
+      pdomOrder: [
+        this.graphsNode.getPrimaryCurveManipulatorNode(),
+        this.graphsNode.getPredictCurveManipulatorNode(),
+        controlPanel
+      ],
+      accessibleHeading: CalculusGrapherFluent.a11y.curveManipulationSettingsAndControlsStringProperty
+    } );
+
     // Put control panel in the negative space to the right of the ChartRectangles, top-aligned with graphsNode.y.
     rightVBox.boundsProperty.link( () => {
       const chartRectangleRight = this.graphsNode.x + CalculusGrapherConstants.CHART_RECTANGLE_WIDTH;
@@ -109,6 +121,10 @@ export default class CalculusGrapherScreenView extends ScreenView {
     } );
 
     const children: Node[] = [
+
+      // Accessible headings can be put anywhere in rendering order because they have no children. Put them first.
+      this.curveManipulationControlsAndSettingsHeading,
+
       this.graphsNode,
       rightVBox,
       this.resetAllButton
