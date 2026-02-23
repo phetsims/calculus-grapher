@@ -1,7 +1,7 @@
 // Copyright 2023-2026, University of Colorado Boulder
 
 /**
- * XDragHandleNode is a spherical drag handle for controlling the x-coordinate of something's position.
+ * ScrubberHandleNode is a spherical drag handle for scrubbers, dragged horizontally to adjust the x-coordinate.
  * It's used by ReferenceLineNode and ScrubberNode for adjusting the x-coordinate of those ancillary tools.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -54,7 +54,7 @@ type SelfOptions = {
 type XDragHandleNodeOptions = SelfOptions &
   PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem' | 'phetioVisiblePropertyInstrumented' | 'accessibleName' | 'accessibleHelpText'>;
 
-export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphereNode ) {
+export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedSphereNode ) {
 
   public static readonly HOTKEY_DATA = new HotkeyData( {
     keys: [ 'home', 'end' ],
@@ -140,7 +140,7 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
     // Home/End keyboard listener to move the drag handle to min and max x-coordinates.
     this.addInputListener( new KeyboardListener( {
       tandem: options.tandem.createTandem( 'homeEndKeyboardListener' ),
-      keyStringProperties: HotkeyData.combineKeyStringProperties( [ XDragHandleNode.HOTKEY_DATA ] ),
+      keyStringProperties: HotkeyData.combineKeyStringProperties( [ ScrubberHandleNode.HOTKEY_DATA ] ),
 
       // Set both xProperty and positionProperty so that drag listener stays in sync.
       fire: ( event, keysPressed, listener ) => {
@@ -168,4 +168,4 @@ export default class XDragHandleNode extends InteractiveHighlighting( ShadedSphe
   }
 }
 
-calculusGrapher.register( 'XDragHandleNode', XDragHandleNode );
+calculusGrapher.register( 'ScrubberHandleNode', ScrubberHandleNode );

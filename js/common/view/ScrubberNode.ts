@@ -18,7 +18,7 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import AncillaryTool from '../model/AncillaryTool.js';
-import XDragHandleNode from './XDragHandleNode.js';
+import ScrubberHandleNode from './ScrubberHandleNode.js';
 
 type SelfOptions = {
   handleColor?: TColor; // color of the scrubber's handle
@@ -81,7 +81,7 @@ export default abstract class ScrubberNode extends Node {
     } );
 
     // Draggable handle, for translating x
-    const handleNode = new XDragHandleNode( scrubber.xProperty, chartTransform, this, {
+    const handleNode = new ScrubberHandleNode( scrubber.xProperty, chartTransform, this, {
       yModel: chartTransform.modelYRange.min,
       mainColor: options.handleColor,
       accessibleName: options.handleAccessibleNameProperty,
@@ -134,7 +134,7 @@ export default abstract class ScrubberNode extends Node {
       stroke: lineStroke ? lineStroke : handleColor
     } );
 
-    const handleIcon = XDragHandleNode.createIcon( handleColor );
+    const handleIcon = ScrubberHandleNode.createIcon( handleColor );
 
     return new VBox( {
       children: [ line, handleIcon ]
