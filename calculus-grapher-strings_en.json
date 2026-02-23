@@ -151,7 +151,7 @@
             "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a \nderived non interactive curve representing the derivative of f. You can choose a Curve Manipulation Type\nto modify the curve in different ways in the Primary Graph Area at any point. There are \nExploration Tools allowing flexible investigation of all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto investigate steepness of f curve at different points."
+            "value": "CGet started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.\nUse Exploration Tools to investigate steepness of f curve at different points."
           }
         }
       },
@@ -164,7 +164,7 @@
             "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a\nderived non interactive curve representing the integral of f. You can choose a Curve Manipulation Type to\nmodify the curve in different ways in the Primary Graph Area at any point. There are Exploration\nTools allowing flexible investigation of all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto investigate net signed area under f curve bounded by horizontal axis and f of {$variable}\nstarting from left."
+            "value": "Get started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.\nUse Exploration Tools to investigate net signed area under f curve bounded by horizontal axis \nand f of {$variable} starting from left."
           }
         }
       },
@@ -177,7 +177,7 @@
             "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nderived non interactive curves in other Graph Areas. You can choose a Curve Manipulation Type to\nmodify the curve in different ways in the Primary Graph Area at any point. You can change\nwhich set of two Graph Areas are viewable: Integral and Primary or Primary and Derivative.\nThere are Exploration Tools allowing flexible investigation of all viewable curves with\n{$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto explore relationships between graphs in viewable graph set."
+            "value": "Get started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.\nUse Exploration Tools to explore relationships between graphs in viewable graph set."
           }
         }
       },
@@ -290,7 +290,7 @@
         "value": "Show f of {$variable}"
       },
       "accessibleHelpText": {
-        "value": "Show or hide f of {$variable} concurrent with predict curve."
+        "value": "Show or hide f of {$variable} to compare your predicted shape to shape of f of {$variable}."
       },
       "accessibleContextResponseChecked": {
         "value": "f of {$variable} shown."

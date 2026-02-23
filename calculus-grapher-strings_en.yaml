@@ -176,7 +176,7 @@ a11y:
 
   showPrimaryCurveCheckbox:
     accessibleName:                     Show f of {$variable}
-    accessibleHelpText:                 Show or hide f of {$variable} concurrent with predict curve.
+    accessibleHelpText:                 Show or hide f of {$variable} to compare your predicted shape to shape of f of {$variable}.
     accessibleContextResponseChecked:   f of {$variable} shown.
     accessibleContextResponseUnchecked: f of {$variable} hidden.
 
