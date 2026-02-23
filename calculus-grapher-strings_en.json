@@ -234,7 +234,7 @@
     },
     "tangentCheckbox": {
       "accessibleHelpText": {
-        "value": "Add or remove Tangent Tool."
+        "value": "Add or remove Tangent Tool to make connections between graphs."
       },
       "accessibleContextResponseChecked": {
         "value": "Tangent Tool added."
@@ -248,7 +248,7 @@
         "value": "Reference Line"
       },
       "accessibleHelpText": {
-        "value": "Add or remove Reference Line."
+        "value": "Add or remove vertical Reference Line to align {$variable} coordinates on all graphs."
       },
       "accessibleContextResponseChecked": {
         "value": "Reference Line added."

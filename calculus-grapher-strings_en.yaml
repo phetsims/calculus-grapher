@@ -152,13 +152,13 @@ a11y:
     accessibleHeading: Exploration Tool Controls
 
   tangentCheckbox:
-    accessibleHelpText:                 Add or remove Tangent Tool.
+    accessibleHelpText:                 Add or remove Tangent Tool to make connections between graphs.
     accessibleContextResponseChecked:   Tangent Tool added.
     accessibleContextResponseUnchecked: Tangent Tool removed.
 
   referenceLineCheckbox:
     accessibleName:                     Reference Line
-    accessibleHelpText:                 Add or remove Reference Line.
+    accessibleHelpText:                 Add or remove vertical Reference Line to align {$variable} coordinates on all graphs.
     accessibleContextResponseChecked:   Reference Line added.
     accessibleContextResponseUnchecked: Reference Line removed.
 
