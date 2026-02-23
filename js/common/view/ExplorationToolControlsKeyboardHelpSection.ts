@@ -58,7 +58,10 @@ export default class ExplorationToolControlsKeyboardHelpSection extends Keyboard
       KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.HOME_HOTKEY_DATA ),
 
       // Jump to maximum
-      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA )
+      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA ),
+
+      // Check values
+      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.CHECK_VALUES_HOTKEY_DATA )
     ];
 
     super( CalculusGrapherFluent.keyboardHelp.explorationTools.headingStringProperty, rows, {
