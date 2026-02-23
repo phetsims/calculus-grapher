@@ -31,12 +31,12 @@ export default class LabScreenView extends CalculusGrapherScreenView {
     this.pdomPlayAreaNode.pdomOrder = [
       this.graphsNode,
       this.rightVBox,
-      this.graphsNode.scrubberNodesParent,
-      this.graphSetRadioButtonGroup
+      this.graphsNode.scrubberNodesParent
     ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [
+      this.graphSetRadioButtonGroup,
       this.resetAllButton
     ];
 
