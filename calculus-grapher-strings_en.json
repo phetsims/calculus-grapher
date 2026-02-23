@@ -777,7 +777,7 @@
           "value": "f Curve Manipulator"
         },
         "accessibleHelpText": {
-          "value": "Manipulate f curve to explore changes to all graphs. Use keyboard shortcuts if needed."
+          "value": "Grab manipulator to modify f curve in any direction and explore changes to all graphs.\nUse keyboard shortcuts if needed."
         }
       },
       "predict": {
@@ -785,7 +785,7 @@
           "value": "Predict Curve Manipulator"
         },
         "accessibleHelpText": {
-          "value": "Manipulate curve to predict graph of f based on other curves. Use keyboard shortcuts if needed."
+          "value": "Grab manipulator to predict graph of f based on other curves. Use keyboard shortcuts if needed."
         }
       }
     },
