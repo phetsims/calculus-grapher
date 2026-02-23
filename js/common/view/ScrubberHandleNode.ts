@@ -17,8 +17,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
-import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ScrubberDragListener from './ScrubberDragListener.js';
@@ -87,15 +85,6 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
     // Keyboard listener for keyboard shortcuts.
     this.addInputListener( new ScrubberKeyboardListener( scrubberNode, xProperty, positionProperty,
       options.tandem.createTandem( 'keyboardListener' ) ) );
-  }
-
-  /**
-   * Creates an icon for the drag handle.
-   */
-  public static createIcon( color: TColor, radius = CalculusGrapherConstants.SCRUBBER_RADIUS ): Node {
-    return new ShadedSphereNode( 2 * radius, {
-      mainColor: color
-    } );
   }
 }
 

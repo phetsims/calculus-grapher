@@ -12,11 +12,13 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ScrubberHandleNode from './ScrubberHandleNode.js';
 
@@ -134,7 +136,9 @@ export default abstract class ScrubberNode extends Node {
       stroke: lineStroke ? lineStroke : handleColor
     } );
 
-    const handleIcon = ScrubberHandleNode.createIcon( handleColor );
+    const handleIcon = new ShadedSphereNode( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, {
+      mainColor: handleColor
+    } );
 
     return new VBox( {
       children: [ line, handleIcon ]
