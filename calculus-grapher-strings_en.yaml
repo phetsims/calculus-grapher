@@ -302,8 +302,8 @@ a11y:
       accessibleName:     Hill
       accessibleHelpText: Add smooth hill to curve.
     triangleRadioButton:
-      accessibleName:     Tent
-      accessibleHelpText: Add rigid tent shape to curve.
+      accessibleName:     Triangle
+      accessibleHelpText: Add rigid triangle shape to curve.
     pedestalRadioButton:
       accessibleName:     Pedestal
       accessibleHelpText: Add pedestal with smooth corners to curve.

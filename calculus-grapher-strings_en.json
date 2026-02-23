@@ -537,10 +537,10 @@
       },
       "triangleRadioButton": {
         "accessibleName": {
-          "value": "Tent"
+          "value": "Triangle"
         },
         "accessibleHelpText": {
-          "value": "Add rigid tent shape to curve."
+          "value": "Add rigid triangle shape to curve."
         }
       },
       "pedestalRadioButton": {
