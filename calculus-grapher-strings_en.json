@@ -138,7 +138,7 @@
             }
           },
           "controlArea": {
-            "value": "Reset the sim to start over."
+            "value": "You can add Exploration Tools to the graph areas to promote making connections between values on each graph.\nReset the sim to start over."
           }
         }
       },
@@ -190,7 +190,7 @@
             "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and\nderived non interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type to\nmodify the curve in different ways in the Primary Graph Area at any point. You can change \nwhich set of three Graph Areas are viewable: Integral, Primary, and Derivative, or Primary,\nDerivative, and Second Derivative. There are Exploration Tools allowing flexible investigation\nof all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "Choose Curve Manipulation Type to modify curve in Primary Graph Area. Use Exploration Tools\nto explore relationships between graphs in viewable graph set."
+            "value": "Get started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.\nUse Exploration Tools to explore relationships between graphs in viewable graph set."
           }
         }
       }
