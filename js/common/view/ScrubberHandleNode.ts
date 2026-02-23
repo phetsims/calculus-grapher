@@ -2,7 +2,7 @@
 
 /**
  * ScrubberHandleNode is a spherical drag handle for scrubbers, dragged horizontally to adjust the x-coordinate.
- * It's used by ReferenceLineNode and ScrubberNode for adjusting the x-coordinate of those ancillary tools.
+ * Use by Reference Line, Tangent, and Area Under Curve scrubbers.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -20,27 +20,12 @@ import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibilit
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
-import KeyboardListener from '../../../../scenery/js/listeners/KeyboardListener.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
-import sharedSoundPlayers from '../../../../tambo/js/sharedSoundPlayers.js';
-import SoundClipPlayer from '../../../../tambo/js/sound-generators/SoundClipPlayer.js';
-import generalBoundaryBoop_mp3 from '../../../../tambo/sounds/generalBoundaryBoop_mp3.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
+import { ScrubberKeyboardListener } from './ScrubberKeyboardListener.js';
 import ScrubberNode from './ScrubberNode.js';
-
-// Same as Slider min and max defaults.
-const MAX_SOUND_PLAYER = sharedSoundPlayers.get( 'generalBoundaryBoop' );
-const MIN_SOUND_PLAYER = new SoundClipPlayer( generalBoundaryBoop_mp3, {
-  soundClipOptions: {
-    initialOutputLevel: 0.2,
-    initialPlaybackRate: 1 / Math.pow( 2, 1 / 6 ) // a major second lower
-  },
-  soundManagerOptions: { categoryName: 'user-interface' }
-} );
 
 type SelfOptions = {
 
@@ -55,12 +40,6 @@ type XDragHandleNodeOptions = SelfOptions &
   PickRequired<ShadedSphereNodeOptions, 'mainColor' | 'tandem' | 'phetioVisiblePropertyInstrumented' | 'accessibleName' | 'accessibleHelpText'>;
 
 export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedSphereNode ) {
-
-  public static readonly HOTKEY_DATA = new HotkeyData( {
-    keys: [ 'home', 'end' ],
-    repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.curveManipulator.keyboardHelpLabelStringProperty
-  } );
 
   public constructor( xProperty: TRangedProperty,
                       chartTransform: ChartTransform,
@@ -137,25 +116,8 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
       this.x = chartTransform.modelToViewX( x );
     } );
 
-    // Home/End keyboard listener to move the drag handle to min and max x-coordinates.
-    this.addInputListener( new KeyboardListener( {
-      tandem: options.tandem.createTandem( 'homeEndKeyboardListener' ),
-      keyStringProperties: HotkeyData.combineKeyStringProperties( [ ScrubberHandleNode.HOTKEY_DATA ] ),
-
-      // Set both xProperty and positionProperty so that drag listener stays in sync.
-      fire: ( event, keysPressed, listener ) => {
-        if ( keysPressed === 'home' ) {
-          xProperty.value = xProperty.range.min;
-          positionProperty.value = new Vector2( xProperty.range.min, positionProperty.value.y );
-          MIN_SOUND_PLAYER.play();
-        }
-        else {
-          xProperty.value = xProperty.range.max;
-          positionProperty.value = new Vector2( xProperty.range.max, positionProperty.value.y );
-          MAX_SOUND_PLAYER.play();
-        }
-      }
-    } ) );
+    // Keyboard listener for keyboard shortcuts.
+    this.addInputListener( new ScrubberKeyboardListener( xProperty, positionProperty, options.tandem.createTandem( 'keyboardListener' ) ) );
   }
 
   /**

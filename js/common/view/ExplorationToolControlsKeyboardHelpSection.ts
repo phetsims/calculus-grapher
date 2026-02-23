@@ -18,6 +18,7 @@ import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js'
 import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import { ScrubberKeyboardListener } from './ScrubberKeyboardListener.js';
 
 // Specify HotkeyData for each KeyboardHelpSectionRow, so that we can use KeyboardHelpSectionRow.fromHotkeyData
 // which creates both the visual interface and core description.
@@ -41,18 +42,6 @@ const MOVE_SLOWER_HOTKEY_DATA = new HotkeyData( {
   keyboardHelpDialogLabelStringProperty: SceneryPhetFluent.keyboardHelpDialog.moveSlowerStringProperty
 } );
 
-const HOME_HOTKEY_DATA = new HotkeyData( {
-  keys: [ 'home' ],
-  repoName: calculusGrapher.name,
-  keyboardHelpDialogLabelStringProperty: SceneryPhetFluent.keyboardHelpDialog.jumpToMinimumStringProperty
-} );
-
-const END_HOTKEY_DATA = new HotkeyData( {
-  keys: [ 'end' ],
-  repoName: calculusGrapher.name,
-  keyboardHelpDialogLabelStringProperty: SceneryPhetFluent.keyboardHelpDialog.jumpToMaximumStringProperty
-} );
-
 export default class ExplorationToolControlsKeyboardHelpSection extends KeyboardHelpSection {
 
   public constructor() {
@@ -66,10 +55,10 @@ export default class ExplorationToolControlsKeyboardHelpSection extends Keyboard
       KeyboardHelpSectionRow.fromHotkeyData( MOVE_SLOWER_HOTKEY_DATA ),
 
       // Jump to minimum
-      KeyboardHelpSectionRow.fromHotkeyData( HOME_HOTKEY_DATA ),
+      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.HOME_HOTKEY_DATA ),
 
       // Jump to maximum
-      KeyboardHelpSectionRow.fromHotkeyData( END_HOTKEY_DATA )
+      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA )
     ];
 
     super( CalculusGrapherFluent.keyboardHelp.explorationToolsStringProperty, rows, {
