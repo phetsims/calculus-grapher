@@ -74,7 +74,7 @@ a11y:
                          to modify the curve in different ways in the Primary Graph Area at any point. There are 
                          Exploration Tools allowing flexible investigation of all curves with {$variable} coordinates aligned.
         interactionHint: |-
-                         CGet started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.
+                         Get started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.
                          Use Exploration Tools to investigate steepness of f curve at different points.
 
     # Integral screen

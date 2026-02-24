@@ -151,7 +151,7 @@
             "value": "There is an interactive curve in the Primary Graph Area representing the graph of f and a \nderived non interactive curve representing the derivative of f. You can choose a Curve Manipulation Type\nto modify the curve in different ways in the Primary Graph Area at any point. There are \nExploration Tools allowing flexible investigation of all curves with {$variable} coordinates aligned."
           },
           "interactionHint": {
-            "value": "CGet started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.\nUse Exploration Tools to investigate steepness of f curve at different points."
+            "value": "Get started by finding the Curve Manipulator. Grab manipulator to modify curve in any direction.\nUse Exploration Tools to investigate steepness of f curve at different points."
           }
         }
       },
