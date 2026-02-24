@@ -105,7 +105,7 @@
           "currentDetails": {
             "leadingParagraph": {
               "widthPattern": {
-                "value": "Right now, Curve Manipulation Type is {$curveManipulationType} with width {$width}. {$curveSentence}"
+                "value": "Right now, Curve Manipulation Type is {$curveManipulationType} with width of {$width}. {$curveSentence}"
               },
               "noWidthPattern": {
                 "value": "Right now, Curve Manipulation Type is {$curveManipulationType}. {$curveSentence}"

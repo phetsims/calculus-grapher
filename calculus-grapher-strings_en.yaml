@@ -49,7 +49,7 @@ a11y:
       screenSummary:
         currentDetails:
           leadingParagraph:
-            widthPattern:   'Right now, Curve Manipulation Type is {$curveManipulationType} with width {$width}. {$curveSentence}'
+            widthPattern: 'Right now, Curve Manipulation Type is {$curveManipulationType} with width of {$width}. {$curveSentence}'
             noWidthPattern: 'Right now, Curve Manipulation Type is {$curveManipulationType}. {$curveSentence}'
             curveSentence:
               curvesShown:     'Curves shown are:'
