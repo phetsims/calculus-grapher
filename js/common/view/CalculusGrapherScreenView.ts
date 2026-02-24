@@ -108,6 +108,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
       pdomOrder: [
         this.graphsNode.getPrimaryCurveManipulatorNode(),
         this.graphsNode.getPredictCurveManipulatorNode(),
+        this.graphsNode.getShowPrimaryCurveCheckbox(),
         controlPanel
       ],
       accessibleHeading: CalculusGrapherFluent.a11y.curveManipulationSettingsAndControlsStringProperty

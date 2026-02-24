@@ -68,6 +68,8 @@ export default class PrimaryGraphNode extends GraphNode {
   // Node for the predict curve, which is interactive
   private readonly predictCurveNode: CurveNode;
 
+  private readonly showPrimaryCurveCheckbox: ShowPrimaryCurveCheckbox;
+
   // Indicates if the primary curve is visible while in 'Predict' mode.
   // This Property is controlled by the 'Show f(x)' checkbox that is visible when the 'Predict' radio button is selected.
   private readonly _showPrimaryCurveProperty: Property<boolean>;
@@ -145,12 +147,12 @@ export default class PrimaryGraphNode extends GraphNode {
     this.showPrimaryCurveProperty = this._showPrimaryCurveProperty;
 
     // 'Show f(x)' checkbox, in upper-right corner of the chartRectangle
-    const showPrimaryCurveCheckbox = new ShowPrimaryCurveCheckbox( this._showPrimaryCurveProperty,
+    this.showPrimaryCurveCheckbox = new ShowPrimaryCurveCheckbox( this._showPrimaryCurveProperty,
       predictEnabledProperty, options.tandem.createTandem( 'showPrimaryCurveCheckbox' ) );
-    showPrimaryCurveCheckbox.boundsProperty.link( () => {
-      showPrimaryCurveCheckbox.right =
+    this.showPrimaryCurveCheckbox.boundsProperty.link( () => {
+      this.showPrimaryCurveCheckbox.right =
         this.chartTransform.modelToViewX( CalculusGrapherConstants.CURVE_X_RANGE.getMax() ) - CalculusGrapherConstants.GRAPH_X_MARGIN;
-      showPrimaryCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
+      this.showPrimaryCurveCheckbox.top = CalculusGrapherConstants.GRAPH_Y_MARGIN;
     } );
 
     // Interactive f(x) 'primary' curve
@@ -283,7 +285,7 @@ export default class PrimaryGraphNode extends GraphNode {
     highlightRectangle.moveToBack();
     this.addChild( labeledPointsNode );
     this.addChild( manipulatorsLayer );
-    this.addChild( showPrimaryCurveCheckbox );
+    this.addChild( this.showPrimaryCurveCheckbox );
 
     // Press anywhere in the chartRectangle to move curveManipulator and begin manipulating the curve at that point.
     this.chartRectangle.addInputListener( SoundDragListener.createForwardingListener( event => {
@@ -335,10 +337,11 @@ export default class PrimaryGraphNode extends GraphNode {
     this.addChild( accessibleListNode );
 
     // Focus order
+    // Note that primaryCurveManipulatorNode, predictCurveManipulatorNode, and showPrimaryCurveCheckbox are
+    // added to the pdomOrder for the "Curve Manipulation Settings and Controls" heading in CalculusGrapherScreenView.
     affirm( !this.yZoomButtonGroup, 'PrimaryGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
       accessibleListNode,
-      showPrimaryCurveCheckbox,
       this.curveVisibilityToggleButton
     ];
   }
@@ -385,6 +388,11 @@ export default class PrimaryGraphNode extends GraphNode {
   // For pdomOrder
   public getPredictCurveManipulatorNode(): Node {
     return this.predictCurveManipulatorNode;
+  }
+
+  // For pdomOrder
+  public getShowPrimaryCurveCheckbox(): Node {
+    return this.showPrimaryCurveCheckbox;
   }
 }
 

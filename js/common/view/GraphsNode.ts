@@ -338,6 +338,11 @@ export default class GraphsNode extends Node {
   public getPredictCurveManipulatorNode(): Node {
     return this.primaryGraphNode.getPredictCurveManipulatorNode();
   }
+
+  // For pdomOrder
+  public getShowPrimaryCurveCheckbox(): Node {
+    return this.primaryGraphNode.getShowPrimaryCurveCheckbox();
+  }
 }
 
 calculusGrapher.register( 'GraphsNode', GraphsNode );
