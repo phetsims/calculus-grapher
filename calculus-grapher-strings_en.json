@@ -121,19 +121,19 @@
             },
             "accessibleList": {
               "primary": {
-                "value": "f"
+                "value": "f, in Primary Graph Area"
               },
               "predict": {
-                "value": "Predict f"
+                "value": "Predict f, in Primary Graph Area"
               },
               "integral": {
-                "value": "Integral"
+                "value": "Integral, in Integral Graph Area"
               },
               "derivative": {
-                "value": "Derivative"
+                "value": "Derivative, in Derivative Graph Area"
               },
               "secondDerivative": {
-                "value": "Second Derivative"
+                "value": "Second Derivative, in Second Derivative Graph Area"
               }
             }
           },

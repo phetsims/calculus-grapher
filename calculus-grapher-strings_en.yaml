@@ -55,11 +55,11 @@ a11y:
               curvesShown:     'Curves shown are:'
               allCurvesHidden: 'All curves hidden.'
           accessibleList:
-            primary:          f
-            predict:          Predict f
-            integral:         Integral
-            derivative:       Derivative
-            secondDerivative: Second Derivative
+            primary:          f, in Primary Graph Area
+            predict:          Predict f, in Primary Graph Area
+            integral:         Integral, in Integral Graph Area
+            derivative:       Derivative, in Derivative Graph Area
+            secondDerivative: Second Derivative, in Second Derivative Graph Area
         controlArea: |-
                      You can add Exploration Tools to the graph areas to promote making connections between values on each graph.
                      Reset the sim to start over.
