@@ -30,8 +30,8 @@ export default class AdvancedScreenView extends CalculusGrapherScreenView {
     affirm( this.graphSetRadioButtonGroup, 'AdvancedScreenView requires a graphSetRadioButtonGroup.' );
     this.pdomPlayAreaNode.pdomOrder = [
       this.curveManipulationControlsAndSettingsHeading,
-      this.graphsNode,
-      this.graphsNode.scrubberNodesParent
+      this.graphsNode.scrubberNodesParent,
+      this.graphsNode
     ];
 
     // Control Area focus order
