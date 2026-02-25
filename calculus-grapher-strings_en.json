@@ -770,6 +770,14 @@
           "movedGrabbed": {
             "value": "{$x} {$y}, curve modified"
           }
+        },
+        "accessibleRoleDescription": {
+          "grabbed": {
+            "value": "movable"
+          },
+          "release": {
+            "value": "movable button"
+          }
         }
       },
       "primary": {

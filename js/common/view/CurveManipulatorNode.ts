@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Shape from '../../../../kite/js/Shape.js';
@@ -20,6 +21,7 @@ import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -51,7 +53,14 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
         isDisposable: false,
         visibleProperty: visibleProperty,
         cursor: 'pointer',
-        children: [ new TargetNode( 12, curveManipulator.color ) ]
+        children: [ new TargetNode( 12, curveManipulator.color ) ],
+        accessibleRoleDescription: new DerivedStringProperty( [
+            curveManipulator.keyboardModeProperty,
+            CalculusGrapherFluent.a11y.curveManipulators.defaults.accessibleRoleDescription.grabbedStringProperty,
+            CalculusGrapherFluent.a11y.curveManipulators.defaults.accessibleRoleDescription.releaseStringProperty
+          ],
+          ( keyboardMode, grabbedString, releaseString ) => keyboardMode === 'grabbed' ? grabbedString : releaseString
+        )
       }, providedOptions );
 
     super( options );

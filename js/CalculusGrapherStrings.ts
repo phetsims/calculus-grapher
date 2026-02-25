@@ -395,6 +395,10 @@ type StringsType = {
           'releasedStringProperty': LocalizedStringProperty;
           'movedReleasedStringProperty': LocalizedStringProperty;
           'movedGrabbedStringProperty': LocalizedStringProperty;
+        };
+        'accessibleRoleDescription': {
+          'grabbedStringProperty': LocalizedStringProperty;
+          'releaseStringProperty': LocalizedStringProperty;
         }
       };
       'primary': {
