@@ -431,13 +431,15 @@ a11y:
     primary:
       accessibleName:     f Curve Manipulator
       accessibleHelpText: |-
-                          Grab manipulator to modify f curve in any direction and explore changes to all graphs.
-                          Use keyboard shortcuts if needed.
+                          Move curve manipulator in any direction to set location, then space to grab and dynamically
+                          manipulate curve using chosen Curve Manipulation Type.
 
     # Curve manipulator for the predict curve.
     predict:
       accessibleName:     Predict Curve Manipulator
-      accessibleHelpText: Grab manipulator to predict graph of f based on other curves. Use keyboard shortcuts if needed.
+      accessibleHelpText: |-
+                          Move predict curve manipulator in any direction to set location, then space to grab and 
+                          dynamically manipulate curve using chosen Curve Manipulation Type.
 
   # Reference Line
   referenceLine:
