@@ -56,7 +56,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
         children: [ new TargetNode( 12, curveManipulator.color ) ],
 
         // From the design document:
-        // The aria-role-description of “movable button” is custom rather than a known and commonly-used descriptor
+        // The ariaRoleDescription of “movable button” is custom rather than a known and commonly-used descriptor
         // for screen reader users. The reason for adding a custom description is to hopefully provide a more explicit
         // understanding that the Curve Manipulator can be moved, even when off the curve. The interaction itself of
         // the Curve Manipulator is unusual in that it’s a two-step process of grabbing the curve using the Space bar.
@@ -66,7 +66,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
         // accessibleName and accessibleHelpText was challenging, so the hope is that the combination of the name,
         // help text, and role-description will clarify the interaction pattern. The word “button” conveys the
         // meaning that you press it (which grabs the curve), while “movable” conveys the button can move around
-        // before pressing it. Changing the aria-role-description to “movable” only after it is grabbed conveys the
+        // before pressing it. Changing the ariaRoleDescription to “movable” only after it is grabbed conveys the
         // manipulator is movable but on the curve.
         accessibleRoleDescription: new DerivedStringProperty( [
             curveManipulator.keyboardModeProperty,
