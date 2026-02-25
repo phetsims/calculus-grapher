@@ -193,6 +193,7 @@ a11y:
         coordinateGridShown: Coordinate grid shown.
         valuesLabeledOnAxes: Values labeled on axes.
 
+    # Primary Graph Area
     primary:
       accessibleHeading: Primary Graph Area
       accessibleList:
@@ -209,12 +210,14 @@ a11y:
           hasDiscontinuitiesAndCusps:  Predict f is not differentiable at one or more discontinuities and one or more cusps.
           hidden:                      Predict f curve hidden.
 
+    # Integral Graph Area
     integral:
       accessibleHeading: Integral Graph Area
       accessibleList:
         continuous: Integral curve is continuous and represents definite integral from zero to {$variable} for f of {$variable}.
         hidden:     Integral curve hidden.
 
+    # Derivative Graph Area
     derivative:
       accessibleHeading: Derivative Graph Area
       accessibleList:
@@ -222,6 +225,7 @@ a11y:
         discontinuous: Derivative curve is not differentiable at one or more discontinuities.
         hidden:        Derivative curve hidden.
 
+    # Second Derivative Graph Area
     secondDerivative:
       accessibleHeading: Second Derivative Graph Area
       accessibleList:
@@ -286,7 +290,7 @@ a11y:
   # Radio Buttons
   #=======================================================================================================
 
-  # Select whether to manipulate f(x) or Predict curve.
+  # Selects whether to manipulate f(x) or Predict curve.
   predictRadioButtonGroup:
     accessibleName:     Curve to Manipulate
     accessibleHelpText: Choose which curve is manipulable in Primary Graph Area.
@@ -297,7 +301,7 @@ a11y:
       accessibleName:            Predict
       accessibleContextResponse: Predict curve ready to manipulate.
 
-  # Select the type of manipulation to be applied to the curve in the primary graph area.
+  # Selects the type of manipulation to be applied to the curve in the primary graph area.
   curveManipulationTypeRadioButtonGroup:
     accessibleName:     Curve Manipulation Type
     accessibleHelpText: |-
@@ -320,7 +324,7 @@ a11y:
     shiftRadioButton:
       accessibleName: Vertical Shift Up or Down
 
-  # Select the set of graphs that are visible.
+  # Selects the set of graphs that are visible.
   graphSetRadioButtonGroup:
     accessibleName:     Viewable Graph Set
     accessibleHelpText: Choose which set of Graph Areas to investigate and find relationships.
