@@ -17,6 +17,7 @@ import Enumeration from '../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
+import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 
 export default class CurveManipulationType extends EnumerationValue {
 
@@ -25,56 +26,49 @@ export default class CurveManipulationType extends EnumerationValue {
 
   // For core description
   public readonly accessibleNameProperty: TReadOnlyProperty<string>;
-  public readonly radioButtonAccessibleHelpTextProperty: TReadOnlyProperty<string>;
 
   // Determines visibility of the width slider
   public readonly hasAdjustableWidth: boolean;
 
   public static readonly HILL = new CurveManipulationType( 'hill',
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty );
 
   public static readonly TRIANGLE = new CurveManipulationType( 'triangle',
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.triangleRadioButton.accessibleName.createProperty( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    } ) );
 
   public static readonly PEDESTAL = new CurveManipulationType( 'pedestal',
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.pedestalRadioButton.accessibleNameStringProperty );
 
   public static readonly PARABOLA = new CurveManipulationType( 'parabola',
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.parabolaRadioButton.accessibleName.createProperty( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    } ) );
 
   public static readonly SINUSOID = new CurveManipulationType( 'sinusoid',
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleHelpTextStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.sinusoidRadioButton.accessibleNameStringProperty );
 
   public static readonly FREEFORM = new CurveManipulationType( 'freeform',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.freeformRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly TILT = new CurveManipulationType( 'tilt',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.tiltRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly SHIFT = new CurveManipulationType( 'shift',
     CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty,
-    CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleHelpTextStringProperty,
     false );
 
   public static readonly enumeration = new Enumeration( CurveManipulationType );
 
   public constructor( tandemPrefix: string,
                       accessibleNameProperty: TReadOnlyProperty<string>,
-                      radioButtonAccessibleHelpTextProperty: TReadOnlyProperty<string>,
                       hasAdjustableWidth = true ) {
     super();
     this.tandemPrefix = tandemPrefix;
     this.accessibleNameProperty = accessibleNameProperty;
-    this.radioButtonAccessibleHelpTextProperty = radioButtonAccessibleHelpTextProperty;
     this.hasAdjustableWidth = hasAdjustableWidth;
   }
 }

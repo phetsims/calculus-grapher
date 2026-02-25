@@ -528,70 +528,46 @@
         "value": "Curve Manipulation Type"
       },
       "accessibleHelpText": {
-        "value": "Choose how to manipulate curve in Primary Graph Area."
+        "value": "Choose curve modification type for Curve Manipulator, then change curve in Primary Graph Area.\nFind Curve Manipulator under Curve Manipulator and Settings."
       },
       "hillRadioButton": {
         "accessibleName": {
-          "value": "Hill"
-        },
-        "accessibleHelpText": {
-          "value": "Add smooth hill to curve."
+          "value": "Smooth Hill"
         }
       },
       "triangleRadioButton": {
         "accessibleName": {
-          "value": "Triangle"
-        },
-        "accessibleHelpText": {
-          "value": "Add rigid triangle shape to curve."
+          "value": "Rigid V with Corners on {$variable} Axis"
         }
       },
       "pedestalRadioButton": {
         "accessibleName": {
-          "value": "Pedestal"
-        },
-        "accessibleHelpText": {
-          "value": "Add pedestal with smooth corners to curve."
+          "value": "Pedestal with Smooth Corners"
         }
       },
       "parabolaRadioButton": {
         "accessibleName": {
-          "value": "Parabola"
-        },
-        "accessibleHelpText": {
-          "value": "Add parabolic shape bounded by horizontal axis to curve."
+          "value": "Parabola with Corners on {$variable} Axis"
         }
       },
       "sinusoidRadioButton": {
         "accessibleName": {
           "value": "Sinusoid"
-        },
-        "accessibleHelpText": {
-          "value": "Add up to 3 and a half periods to curve."
         }
       },
       "freeformRadioButton": {
         "accessibleName": {
-          "value": "Freeform"
-        },
-        "accessibleHelpText": {
-          "value": "Freely draw curve. Discontinuities likely."
+          "value": "Freeform, Discontinuities Likely"
         }
       },
       "tiltRadioButton": {
         "accessibleName": {
-          "value": "Tilt"
-        },
-        "accessibleHelpText": {
-          "value": "Tilt curve diagonally while pinned at left edge of horizontal axis."
+          "value": "Diagonal Tilt Pinned at Left Edge"
         }
       },
       "shiftRadioButton": {
         "accessibleName": {
-          "value": "Shift"
-        },
-        "accessibleHelpText": {
-          "value": "Shift entire curve up or down."
+          "value": "Vertical Shift Up or Down"
         }
       }
     },

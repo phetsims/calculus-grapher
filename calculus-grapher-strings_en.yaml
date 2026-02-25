@@ -300,31 +300,25 @@ a11y:
   # Select the type of manipulation to be applied to the curve in the primary graph area.
   curveManipulationTypeRadioButtonGroup:
     accessibleName:     Curve Manipulation Type
-    accessibleHelpText: Choose how to manipulate curve in Primary Graph Area.
+    accessibleHelpText: |-
+                        Choose curve modification type for Curve Manipulator, then change curve in Primary Graph Area.
+                        Find Curve Manipulator under Curve Manipulator and Settings.
     hillRadioButton:
-      accessibleName:     Hill
-      accessibleHelpText: Add smooth hill to curve.
+      accessibleName: Smooth Hill
     triangleRadioButton:
-      accessibleName:     Triangle
-      accessibleHelpText: Add rigid triangle shape to curve.
+      accessibleName: Rigid V with Corners on {$variable} Axis
     pedestalRadioButton:
-      accessibleName:     Pedestal
-      accessibleHelpText: Add pedestal with smooth corners to curve.
+      accessibleName: Pedestal with Smooth Corners
     parabolaRadioButton:
-      accessibleName:     Parabola
-      accessibleHelpText: Add parabolic shape bounded by horizontal axis to curve.
+      accessibleName: Parabola with Corners on {$variable} Axis
     sinusoidRadioButton:
-      accessibleName:     Sinusoid
-      accessibleHelpText: Add up to 3 and a half periods to curve.
+      accessibleName: Sinusoid
     freeformRadioButton:
-      accessibleName:     Freeform
-      accessibleHelpText: Freely draw curve. Discontinuities likely.
+      accessibleName: Freeform, Discontinuities Likely
     tiltRadioButton:
-      accessibleName:     Tilt
-      accessibleHelpText: Tilt curve diagonally while pinned at left edge of horizontal axis.
+      accessibleName: Diagonal Tilt Pinned at Left Edge
     shiftRadioButton:
-      accessibleName:     Shift
-      accessibleHelpText: Shift entire curve up or down.
+      accessibleName: Vertical Shift Up or Down
 
   # Select the set of graphs that are visible.
   graphSetRadioButtonGroup:
