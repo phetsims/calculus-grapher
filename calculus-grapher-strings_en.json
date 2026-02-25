@@ -510,16 +510,16 @@
         "accessibleName": {
           "value": "f of {$variable}"
         },
-        "accessibleHelpText": {
-          "value": "Manipulate f curve in Primary Graph Area."
+        "accessibleContextResponse": {
+          "value": "f curve ready to manipulate."
         }
       },
       "predictCurveRadioButton": {
         "accessibleName": {
           "value": "Predict"
         },
-        "accessibleHelpText": {
-          "value": "Manipulate predict curve to predict graph of f based on other graphs."
+        "accessibleContextResponse": {
+          "value": "Predict curve ready to manipulate."
         }
       }
     },

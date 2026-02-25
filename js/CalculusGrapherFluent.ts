@@ -160,9 +160,9 @@ addToMapIfDefined( 'a11y_yZoomButtonGroup_zoomOutButton_accessibleContextRespons
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_accessibleName', 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_accessibleHelpText', 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_primaryCurveRadioButton_accessibleName', 'a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_predictRadioButtonGroup_primaryCurveRadioButton_accessibleHelpText', 'a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_predictRadioButtonGroup_primaryCurveRadioButton_accessibleContextResponse', 'a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleContextResponseStringProperty' );
 addToMapIfDefined( 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleName', 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleContextResponse', 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleContextResponseStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_accessibleHelpText', 'a11y.curveManipulationTypeRadioButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulationTypeRadioButtonGroup_hillRadioButton_accessibleName', 'a11y.curveManipulationTypeRadioButtonGroup.hillRadioButton.accessibleNameStringProperty' );
@@ -595,11 +595,11 @@ const CalculusGrapherFluent = {
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
       primaryCurveRadioButton: {
         accessibleName: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_primaryCurveRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleNameStringProperty' ), [{"name":"variable"}] ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_primaryCurveRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleContextResponseStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_primaryCurveRadioButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.primaryCurveRadioButton.accessibleContextResponseStringProperty' ) )
       },
       predictCurveRadioButton: {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleNameStringProperty' ) ),
-        accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleHelpTextStringProperty' ) )
+        accessibleContextResponseStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleContextResponseStringProperty' ) )
       }
     },
     _comment_25: new FluentComment( {"comment":"Select the type of manipulation to be applied to the curve in the primary graph area.","associatedKey":"curveManipulationTypeRadioButtonGroup"} ),

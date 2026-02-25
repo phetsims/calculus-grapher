@@ -265,11 +265,11 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'primaryCurveRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
       'predictCurveRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       }
     };
     'curveManipulationTypeRadioButtonGroup': {
