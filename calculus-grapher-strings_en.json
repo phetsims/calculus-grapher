@@ -400,8 +400,8 @@
         }
       }
     },
-    "curveManipulationSettingsAndControls": {
-      "value": "Curve Manipulation Settings and Controls"
+    "curveManipulatorAndSettings": {
+      "value": "Curve Manipulator and Settings"
     },
     "curveActionsButtonGroup": {
       "accessibleHeading": {

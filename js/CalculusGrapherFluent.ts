@@ -132,7 +132,7 @@ addToMapIfDefined( 'a11y_graphAreas_secondDerivative_accessibleHeading', 'a11y.g
 addToMapIfDefined( 'a11y_graphAreas_secondDerivative_accessibleList_continuous', 'a11y.graphAreas.secondDerivative.accessibleList.continuousStringProperty' );
 addToMapIfDefined( 'a11y_graphAreas_secondDerivative_accessibleList_discontinuous', 'a11y.graphAreas.secondDerivative.accessibleList.discontinuousStringProperty' );
 addToMapIfDefined( 'a11y_graphAreas_secondDerivative_accessibleList_hidden', 'a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulationSettingsAndControls', 'a11y.curveManipulationSettingsAndControlsStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulatorAndSettings', 'a11y.curveManipulatorAndSettingsStringProperty' );
 addToMapIfDefined( 'a11y_curveActionsButtonGroup_accessibleHeading', 'a11y.curveActionsButtonGroup.accessibleHeadingStringProperty' );
 addToMapIfDefined( 'a11y_curveActionsButtonGroup_accessibleHelpText', 'a11y.curveActionsButtonGroup.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_smoothButton_accessibleName', 'a11y.smoothButton.accessibleNameStringProperty' );
@@ -523,10 +523,10 @@ const CalculusGrapherFluent = {
         }
       }
     },
-    _comment_13: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulationSettingsAndControls"} ),
-    _comment_14: new FluentComment( {"comment":"Headings (standalone)","associatedKey":"curveManipulationSettingsAndControls"} ),
-    _comment_15: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulationSettingsAndControls"} ),
-    curveManipulationSettingsAndControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationSettingsAndControls', _.get( CalculusGrapherStrings, 'a11y.curveManipulationSettingsAndControlsStringProperty' ) ),
+    _comment_13: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulatorAndSettings"} ),
+    _comment_14: new FluentComment( {"comment":"Headings (standalone)","associatedKey":"curveManipulatorAndSettings"} ),
+    _comment_15: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulatorAndSettings"} ),
+    curveManipulatorAndSettingsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulatorAndSettings', _.get( CalculusGrapherStrings, 'a11y.curveManipulatorAndSettingsStringProperty' ) ),
     _comment_16: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveActionsButtonGroup"} ),
     _comment_17: new FluentComment( {"comment":"Push Buttons","associatedKey":"curveActionsButtonGroup"} ),
     _comment_18: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveActionsButtonGroup"} ),

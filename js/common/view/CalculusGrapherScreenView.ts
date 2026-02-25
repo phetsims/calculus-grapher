@@ -47,7 +47,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
   protected readonly screenViewRootNode: Node;
 
   // For setting pdomOrder in subclasses
-  protected readonly curveManipulationControlsAndSettingsHeading: Node;
+  protected readonly curveManipulatorAndSettingsHeading: Node;
   protected readonly checkboxGroup: Node;
   protected readonly resetAllButton: Node;
   protected readonly graphSetRadioButtonGroup?: Node;
@@ -104,14 +104,14 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
     // Put everything having to do with curve manipulation under a heading for core description.
     // See https://github.com/phetsims/calculus-grapher/issues/387
-    this.curveManipulationControlsAndSettingsHeading = new Node( {
+    this.curveManipulatorAndSettingsHeading = new Node( {
       pdomOrder: [
         this.graphsNode.getPrimaryCurveManipulatorNode(),
         this.graphsNode.getPredictCurveManipulatorNode(),
         this.graphsNode.getShowPrimaryCurveCheckbox(),
         controlPanel
       ],
-      accessibleHeading: CalculusGrapherFluent.a11y.curveManipulationSettingsAndControlsStringProperty
+      accessibleHeading: CalculusGrapherFluent.a11y.curveManipulatorAndSettingsStringProperty
     } );
 
     // Put control panel in the negative space to the right of the ChartRectangles, top-aligned with graphsNode.y.
@@ -124,7 +124,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
     const children: Node[] = [
 
       // Accessible headings can be put anywhere in rendering order because they have no children. Put them first.
-      this.curveManipulationControlsAndSettingsHeading,
+      this.curveManipulatorAndSettingsHeading,
 
       this.graphsNode,
       rightVBox,

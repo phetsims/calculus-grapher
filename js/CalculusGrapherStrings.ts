@@ -211,7 +211,7 @@ type StringsType = {
         }
       }
     };
-    'curveManipulationSettingsAndControlsStringProperty': LocalizedStringProperty;
+    'curveManipulatorAndSettingsStringProperty': LocalizedStringProperty;
     'curveActionsButtonGroup': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
