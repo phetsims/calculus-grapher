@@ -283,12 +283,14 @@ const CalculusGrapherFluent = {
   },
   screen: {
     _comment_0: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+    _comment_1: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
     derivativeStringProperty: _.get( CalculusGrapherStrings, 'screen.derivativeStringProperty' ),
-    _comment_1: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+    _comment_2: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+    _comment_3: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
     integralStringProperty: _.get( CalculusGrapherStrings, 'screen.integralStringProperty' ),
-    _comment_2: new FluentComment( {"comment":"Advanced screen","associatedKey":"advanced"} ),
+    _comment_4: new FluentComment( {"comment":"Advanced screen","associatedKey":"advanced"} ),
     advancedStringProperty: _.get( CalculusGrapherStrings, 'screen.advancedStringProperty' ),
-    _comment_3: new FluentComment( {"comment":"Lab screen","associatedKey":"lab"} ),
+    _comment_5: new FluentComment( {"comment":"Lab screen","associatedKey":"lab"} ),
     labStringProperty: _.get( CalculusGrapherStrings, 'screen.labStringProperty' )
   },
   smoothStringProperty: _.get( CalculusGrapherStrings, 'smoothStringProperty' ),
@@ -355,14 +357,18 @@ const CalculusGrapherFluent = {
               }
             },
             accessibleList: {
-              _comment_0: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
+              _comment_0: new FluentComment( {"comment":"Primary Graph Area","associatedKey":"primary"} ),
+              _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
               primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_primary', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty' ) ),
-              _comment_1: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
+              _comment_2: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
               predictStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_predict', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.predictStringProperty' ) ),
-              _comment_2: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+              _comment_3: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+              _comment_4: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
               integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_integral', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.integralStringProperty' ) ),
-              _comment_3: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+              _comment_5: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+              _comment_6: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
               derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_derivative', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.derivativeStringProperty' ) ),
+              _comment_7: new FluentComment( {"comment":"Second Derivative Graph Area","associatedKey":"secondDerivative"} ),
               secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_defaults_screenSummary_currentDetails_accessibleList_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.screens.defaults.screenSummary.currentDetails.accessibleList.secondDerivativeStringProperty' ) )
             }
           },
@@ -370,6 +376,7 @@ const CalculusGrapherFluent = {
         }
       },
       _comment_3: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+      _comment_4: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
       derivative: {
         screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_derivative_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.screens.derivative.screenButtonsHelpTextStringProperty' ) ),
         screenSummary: {
@@ -377,7 +384,8 @@ const CalculusGrapherFluent = {
           interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_derivative_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.screens.derivative.screenSummary.interactionHintStringProperty' ) )
         }
       },
-      _comment_4: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+      _comment_5: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+      _comment_6: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
       integral: {
         screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_integral_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.screens.integral.screenButtonsHelpTextStringProperty' ) ),
         screenSummary: {
@@ -385,7 +393,7 @@ const CalculusGrapherFluent = {
           interactionHint: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_screens_integral_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.screens.integral.screenSummary.interactionHintStringProperty' ), [{"name":"variable"}] )
         }
       },
-      _comment_5: new FluentComment( {"comment":"Advanced screen","associatedKey":"advanced"} ),
+      _comment_7: new FluentComment( {"comment":"Advanced screen","associatedKey":"advanced"} ),
       advanced: {
         screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_advanced_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.screens.advanced.screenButtonsHelpTextStringProperty' ) ),
         screenSummary: {
@@ -393,7 +401,7 @@ const CalculusGrapherFluent = {
           interactionHintStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_advanced_screenSummary_interactionHint', _.get( CalculusGrapherStrings, 'a11y.screens.advanced.screenSummary.interactionHintStringProperty' ) )
         }
       },
-      _comment_6: new FluentComment( {"comment":"Lab screen","associatedKey":"lab"} ),
+      _comment_8: new FluentComment( {"comment":"Lab screen","associatedKey":"lab"} ),
       lab: {
         screenButtonsHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_screens_lab_screenButtonsHelpText', _.get( CalculusGrapherStrings, 'a11y.screens.lab.screenButtonsHelpTextStringProperty' ) ),
         screenSummary: {
@@ -471,7 +479,8 @@ const CalculusGrapherFluent = {
           valuesLabeledOnAxesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_defaults_accessibleList_valuesLabeledOnAxes', _.get( CalculusGrapherStrings, 'a11y.graphAreas.defaults.accessibleList.valuesLabeledOnAxesStringProperty' ) )
         }
       },
-      _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
+      _comment_3: new FluentComment( {"comment":"Primary Graph Area","associatedKey":"primary"} ),
+      _comment_4: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
       primary: {
         accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_primary_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphAreas.primary.accessibleHeadingStringProperty' ) ),
         accessibleList: {
@@ -491,7 +500,8 @@ const CalculusGrapherFluent = {
           }
         }
       },
-      _comment_4: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+      _comment_5: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+      _comment_6: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
       integral: {
         accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_integral_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphAreas.integral.accessibleHeadingStringProperty' ) ),
         accessibleList: {
@@ -499,7 +509,8 @@ const CalculusGrapherFluent = {
           hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_integral_accessibleList_hidden', _.get( CalculusGrapherStrings, 'a11y.graphAreas.integral.accessibleList.hiddenStringProperty' ) )
         }
       },
-      _comment_5: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+      _comment_7: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+      _comment_8: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
       derivative: {
         accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_derivative_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphAreas.derivative.accessibleHeadingStringProperty' ) ),
         accessibleList: {
@@ -508,6 +519,7 @@ const CalculusGrapherFluent = {
           hiddenStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_derivative_accessibleList_hidden', _.get( CalculusGrapherStrings, 'a11y.graphAreas.derivative.accessibleList.hiddenStringProperty' ) )
         }
       },
+      _comment_9: new FluentComment( {"comment":"Second Derivative Graph Area","associatedKey":"secondDerivative"} ),
       secondDerivative: {
         accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphAreas_secondDerivative_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.graphAreas.secondDerivative.accessibleHeadingStringProperty' ) ),
         accessibleList: {
@@ -558,9 +570,12 @@ const CalculusGrapherFluent = {
       zoomInButton: {
         accessibleName: {
           _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+          _comment_1: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
           integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleName_integral', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleName.integralStringProperty' ) ),
-          _comment_1: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+          _comment_2: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+          _comment_3: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
           derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleName_derivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleName.derivativeStringProperty' ) ),
+          _comment_4: new FluentComment( {"comment":"Second Derivative Graph Area","associatedKey":"secondDerivative"} ),
           secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleName_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleName.secondDerivativeStringProperty' ) )
         },
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomInButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomInButton.accessibleHelpTextStringProperty' ) ),
@@ -569,9 +584,12 @@ const CalculusGrapherFluent = {
       zoomOutButton: {
         accessibleName: {
           _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+          _comment_1: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
           integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleName_integral', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleName.integralStringProperty' ) ),
-          _comment_1: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+          _comment_2: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+          _comment_3: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
           derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleName_derivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleName.derivativeStringProperty' ) ),
+          _comment_4: new FluentComment( {"comment":"Second Derivative Graph Area","associatedKey":"secondDerivative"} ),
           secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleName_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleName.secondDerivativeStringProperty' ) )
         },
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_yZoomButtonGroup_zoomOutButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.yZoomButtonGroup.zoomOutButton.accessibleHelpTextStringProperty' ) ),
@@ -581,7 +599,7 @@ const CalculusGrapherFluent = {
     _comment_21: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
     _comment_22: new FluentComment( {"comment":"Radio Buttons","associatedKey":"predictRadioButtonGroup"} ),
     _comment_23: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"predictRadioButtonGroup"} ),
-    _comment_24: new FluentComment( {"comment":"Select whether to manipulate f(x) or Predict curve.","associatedKey":"predictRadioButtonGroup"} ),
+    _comment_24: new FluentComment( {"comment":"Selects whether to manipulate f(x) or Predict curve.","associatedKey":"predictRadioButtonGroup"} ),
     predictRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -594,7 +612,7 @@ const CalculusGrapherFluent = {
         accessibleContextResponseStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_predictRadioButtonGroup_predictCurveRadioButton_accessibleContextResponse', _.get( CalculusGrapherStrings, 'a11y.predictRadioButtonGroup.predictCurveRadioButton.accessibleContextResponseStringProperty' ) )
       }
     },
-    _comment_25: new FluentComment( {"comment":"Select the type of manipulation to be applied to the curve in the primary graph area.","associatedKey":"curveManipulationTypeRadioButtonGroup"} ),
+    _comment_25: new FluentComment( {"comment":"Selects the type of manipulation to be applied to the curve in the primary graph area.","associatedKey":"curveManipulationTypeRadioButtonGroup"} ),
     curveManipulationTypeRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -623,7 +641,7 @@ const CalculusGrapherFluent = {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationTypeRadioButtonGroup_shiftRadioButton_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulationTypeRadioButtonGroup.shiftRadioButton.accessibleNameStringProperty' ) )
       }
     },
-    _comment_26: new FluentComment( {"comment":"Select the set of graphs that are visible.","associatedKey":"graphSetRadioButtonGroup"} ),
+    _comment_26: new FluentComment( {"comment":"Selects the set of graphs that are visible.","associatedKey":"graphSetRadioButtonGroup"} ),
     graphSetRadioButtonGroup: {
       accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_accessibleName', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.accessibleNameStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_graphSetRadioButtonGroup_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.graphSetRadioButtonGroup.accessibleHelpTextStringProperty' ) ),
@@ -699,20 +717,28 @@ const CalculusGrapherFluent = {
     curveVisibilityToggleButton: {
       accessibleNameOn: {
         _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+        _comment_1: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_integral', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.integralStringProperty' ) ),
-        _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
+        _comment_2: new FluentComment( {"comment":"Primary Graph Area","associatedKey":"primary"} ),
+        _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
         primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_primary', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.primaryStringProperty' ) ),
-        _comment_2: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+        _comment_4: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+        _comment_5: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
         derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_derivative', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.derivativeStringProperty' ) ),
+        _comment_6: new FluentComment( {"comment":"Second Derivative Graph Area","associatedKey":"secondDerivative"} ),
         secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOn_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOn.secondDerivativeStringProperty' ) )
       },
       accessibleNameOff: {
         _comment_0: new FluentComment( {"comment":"Integral screen","associatedKey":"integral"} ),
+        _comment_1: new FluentComment( {"comment":"Integral Graph Area","associatedKey":"integral"} ),
         integralStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_integral', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.integralStringProperty' ) ),
-        _comment_1: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
+        _comment_2: new FluentComment( {"comment":"Primary Graph Area","associatedKey":"primary"} ),
+        _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
         primaryStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_primary', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.primaryStringProperty' ) ),
-        _comment_2: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+        _comment_4: new FluentComment( {"comment":"Derivative screen","associatedKey":"derivative"} ),
+        _comment_5: new FluentComment( {"comment":"Derivative Graph Area","associatedKey":"derivative"} ),
         derivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_derivative', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.derivativeStringProperty' ) ),
+        _comment_6: new FluentComment( {"comment":"Second Derivative Graph Area","associatedKey":"secondDerivative"} ),
         secondDerivativeStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleNameOff_secondDerivative', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleNameOff.secondDerivativeStringProperty' ) )
       },
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveVisibilityToggleButton_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveVisibilityToggleButton.accessibleHelpTextStringProperty' ) ),
@@ -744,12 +770,13 @@ const CalculusGrapherFluent = {
           movableButtonStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleRoleDescription_movableButton', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleRoleDescription.movableButtonStringProperty' ) )
         }
       },
-      _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
+      _comment_3: new FluentComment( {"comment":"Primary Graph Area","associatedKey":"primary"} ),
+      _comment_4: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),
       primary: {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_primary_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.primary.accessibleNameStringProperty' ) ),
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_primary_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.primary.accessibleHelpTextStringProperty' ) )
       },
-      _comment_4: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
+      _comment_5: new FluentComment( {"comment":"Curve manipulator for the predict curve.","associatedKey":"predict"} ),
       predict: {
         accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_predict_accessibleName', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.predict.accessibleNameStringProperty' ) ),
         accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_predict_accessibleHelpText', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.predict.accessibleHelpTextStringProperty' ) )

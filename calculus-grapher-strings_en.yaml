@@ -49,7 +49,7 @@ a11y:
       screenSummary:
         currentDetails:
           leadingParagraph:
-            widthPattern: 'Right now, Curve Manipulation Type is {$curveManipulationType} with width of {$width}. {$curveSentence}'
+            widthPattern:   'Right now, Curve Manipulation Type is {$curveManipulationType} with width of {$width}. {$curveSentence}'
             noWidthPattern: 'Right now, Curve Manipulation Type is {$curveManipulationType}. {$curveSentence}'
             curveSentence:
               curvesShown:     'Curves shown are:'
@@ -116,8 +116,8 @@ a11y:
       screenSummary:
         playArea:        |-
                          There is an interactive curve in the Primary Graph Area representing the graph of f and
-                         derived non interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type to
-                         modify the curve in different ways in the Primary Graph Area at any point. You can change 
+                         derived non interactive curves in other Graphs Areas. You can choose a Curve Manipulation Type
+                         to modify the curve in different ways in the Primary Graph Area at any point. You can change 
                          which set of three Graph Areas are viewable: Integral, Primary, and Derivative, or Primary,
                          Derivative, and Second Derivative. There are Exploration Tools allowing flexible investigation
                          of all curves with {$variable} coordinates aligned.
@@ -137,7 +137,9 @@ a11y:
       negative: At {$variable} equals {$x}, slope of line tangent to f is negative {$absoluteSlope}.
 
   netSignedAreaAccordionBox:
-    accessibleHelpTextCollapsed: Explore net signed area under f curve between {$variable} equals 0 and current {$variable} coordinate of Area Under Curve tool.
+    accessibleHelpTextCollapsed: |-
+                                 Explore net signed area under f curve between {$variable} equals 0 and current
+                                 {$variable} coordinate of Area Under Curve tool.
     accessibleParagraph:
       zero:     Net signed area under f curve is zero between {$variable} equals 0 and {$x}.
       positive: Net signed area under f curve is positive {$absoluteArea} between {$variable} equals 0 and {$x}.
