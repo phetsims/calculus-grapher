@@ -420,12 +420,12 @@ a11y:
     # Defaults for all curve manipulators.
     defaults:
       accessibleObjectResponse:
-        focusedReleased: 'at {$x} {$y}, off curve'
-        focusedGrabbed:  'at {$x} {$y}, grabbed'
-        grabbed:         'grabbed at {$x} {$y}, curve modified'
-        released:        'released at {$x} {$y}, off curve'
-        movedReleased: '{$x} {$y}'
-        movedGrabbed:  '{$x} {$y}, curve modified'
+        focusedReleased: 'at {$x}, {$y}, off curve'
+        focusedGrabbed:  'at {$x}, {$y}, grabbed'
+        grabbed:         'grabbed at {$x}, {$y}, curve modified'
+        released:        'released at {$x}, {$y}, off curve'
+        movedReleased:   '{$x}, {$y}'
+        movedGrabbed:    '{$x}, {$y}, curve modified'
       accessibleRoleDescription:
         grabbed: movable
         release: movable button

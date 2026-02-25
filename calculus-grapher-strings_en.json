@@ -753,22 +753,22 @@
       "defaults": {
         "accessibleObjectResponse": {
           "focusedReleased": {
-            "value": "at {$x} {$y}, off curve"
+            "value": "at {$x}, {$y}, off curve"
           },
           "focusedGrabbed": {
-            "value": "at {$x} {$y}, grabbed"
+            "value": "at {$x}, {$y}, grabbed"
           },
           "grabbed": {
-            "value": "grabbed at {$x} {$y}, curve modified"
+            "value": "grabbed at {$x}, {$y}, curve modified"
           },
           "released": {
-            "value": "released at {$x} {$y}, off curve"
+            "value": "released at {$x}, {$y}, off curve"
           },
           "movedReleased": {
-            "value": "{$x} {$y}"
+            "value": "{$x}, {$y}"
           },
           "movedGrabbed": {
-            "value": "{$x} {$y}, curve modified"
+            "value": "{$x}, {$y}, curve modified"
           }
         },
         "accessibleRoleDescription": {
