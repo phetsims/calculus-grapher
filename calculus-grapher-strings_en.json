@@ -765,10 +765,10 @@
             "value": "released at {$x} {$y}, off curve"
           },
           "movedReleased": {
-            "value": "at {$x} {$y}"
+            "value": "{$x} {$y}"
           },
           "movedGrabbed": {
-            "value": "at {$x} {$y}, curve modified"
+            "value": "{$x} {$y}, curve modified"
           }
         }
       },

@@ -424,8 +424,8 @@ a11y:
         focusedGrabbed:  'at {$x} {$y}, grabbed'
         grabbed:         'grabbed at {$x} {$y}, curve modified'
         released:        'released at {$x} {$y}, off curve'
-        movedReleased:   'at {$x} {$y}'
-        movedGrabbed:    'at {$x} {$y}, curve modified'
+        movedReleased: '{$x} {$y}'
+        movedGrabbed:  '{$x} {$y}, curve modified'
 
     # Curve manipulator for the primary curve.
     primary:
