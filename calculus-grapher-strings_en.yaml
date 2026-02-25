@@ -289,7 +289,7 @@ a11y:
   # Select whether to manipulate f(x) or Predict curve.
   predictRadioButtonGroup:
     accessibleName:     Curve to Manipulate
-    accessibleHelpText: Choose curve to manipulate in Primary Graph Area.
+    accessibleHelpText: Choose which curve is manipulatible in Primary Graph Area.
     primaryCurveRadioButton:
       accessibleName:     f of {$variable}
       accessibleHelpText: Manipulate f curve in Primary Graph Area.

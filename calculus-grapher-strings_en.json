@@ -504,7 +504,7 @@
         "value": "Curve to Manipulate"
       },
       "accessibleHelpText": {
-        "value": "Choose curve to manipulate in Primary Graph Area."
+        "value": "Choose which curve is manipulatible in Primary Graph Area."
       },
       "primaryCurveRadioButton": {
         "accessibleName": {
