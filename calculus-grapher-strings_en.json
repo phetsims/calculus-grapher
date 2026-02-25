@@ -748,10 +748,10 @@
           }
         },
         "accessibleRoleDescription": {
-          "grabbed": {
+          "movable": {
             "value": "movable"
           },
-          "release": {
+          "movableButton": {
             "value": "movable button"
           }
         }

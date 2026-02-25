@@ -389,8 +389,8 @@ type StringsType = {
           'movedGrabbedStringProperty': LocalizedStringProperty;
         };
         'accessibleRoleDescription': {
-          'grabbedStringProperty': LocalizedStringProperty;
-          'releaseStringProperty': LocalizedStringProperty;
+          'movableStringProperty': LocalizedStringProperty;
+          'movableButtonStringProperty': LocalizedStringProperty;
         }
       };
       'primary': {

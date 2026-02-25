@@ -217,8 +217,8 @@ addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleObjectResponse_gra
 addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleObjectResponse_released', 'a11y.curveManipulators.defaults.accessibleObjectResponse.releasedStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleObjectResponse_movedReleased', 'a11y.curveManipulators.defaults.accessibleObjectResponse.movedReleasedStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleObjectResponse_movedGrabbed', 'a11y.curveManipulators.defaults.accessibleObjectResponse.movedGrabbedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleRoleDescription_grabbed', 'a11y.curveManipulators.defaults.accessibleRoleDescription.grabbedStringProperty' );
-addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleRoleDescription_release', 'a11y.curveManipulators.defaults.accessibleRoleDescription.releaseStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleRoleDescription_movable', 'a11y.curveManipulators.defaults.accessibleRoleDescription.movableStringProperty' );
+addToMapIfDefined( 'a11y_curveManipulators_defaults_accessibleRoleDescription_movableButton', 'a11y.curveManipulators.defaults.accessibleRoleDescription.movableButtonStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_primary_accessibleName', 'a11y.curveManipulators.primary.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_primary_accessibleHelpText', 'a11y.curveManipulators.primary.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_predict_accessibleName', 'a11y.curveManipulators.predict.accessibleNameStringProperty' );
@@ -740,8 +740,8 @@ const CalculusGrapherFluent = {
           movedGrabbed: new FluentPattern<{ x: FluentVariable, y: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleObjectResponse_movedGrabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleObjectResponse.movedGrabbedStringProperty' ), [{"name":"x"},{"name":"y"}] )
         },
         accessibleRoleDescription: {
-          grabbedStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleRoleDescription_grabbed', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleRoleDescription.grabbedStringProperty' ) ),
-          releaseStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleRoleDescription_release', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleRoleDescription.releaseStringProperty' ) )
+          movableStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleRoleDescription_movable', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleRoleDescription.movableStringProperty' ) ),
+          movableButtonStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulators_defaults_accessibleRoleDescription_movableButton', _.get( CalculusGrapherStrings, 'a11y.curveManipulators.defaults.accessibleRoleDescription.movableButtonStringProperty' ) )
         }
       },
       _comment_3: new FluentComment( {"comment":"Curve manipulator for the primary curve.","associatedKey":"primary"} ),

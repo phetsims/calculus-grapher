@@ -421,8 +421,8 @@ a11y:
         movedReleased:   '{$x}, {$y}'
         movedGrabbed:    '{$x}, {$y}, curve modified'
       accessibleRoleDescription:
-        grabbed: movable
-        release: movable button
+        movable:       movable
+        movableButton: movable button
 
     # Curve manipulator for the primary curve.
     primary:
