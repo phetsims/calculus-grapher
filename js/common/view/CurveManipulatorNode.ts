@@ -73,7 +73,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
             CalculusGrapherFluent.a11y.curveManipulators.defaults.accessibleRoleDescription.movableStringProperty,
             CalculusGrapherFluent.a11y.curveManipulators.defaults.accessibleRoleDescription.movableButtonStringProperty
           ],
-          ( keyboardMode, movableString, movableButton ) => keyboardMode === 'grabbed' ? movableString : movableButton
+          ( keyboardMode, movableString, movableButtonString ) => keyboardMode === 'grabbed' ? movableString : movableButtonString
         )
       }, providedOptions );
 
