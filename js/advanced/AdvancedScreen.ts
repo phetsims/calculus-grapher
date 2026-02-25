@@ -44,10 +44,10 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
         CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleHelpTextStringProperty ),
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryRadioButton.accessibleContextResponseStringProperty ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.DERIVATIVE, labelAlignGroup,
         CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeRadioButton.accessibleHelpTextStringProperty )
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeRadioButton.accessibleContextResponseStringProperty )
     ];
 
     const createModel = () => new AdvancedModel( {

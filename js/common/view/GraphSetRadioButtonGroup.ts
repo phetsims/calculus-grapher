@@ -51,7 +51,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
                             graphType: GraphType,
                             labelAlignGroup: AlignGroup,
                             accessibleNameProperty: TReadOnlyProperty<string>,
-                            accessibleHelpTextProperty: TReadOnlyProperty<string> ): GraphSetRadioButtonGroupItem {
+                            accessibleContextResponseProperty: TReadOnlyProperty<string> ): GraphSetRadioButtonGroupItem {
     affirm( graphSet.includes( graphType ), 'graphSet should include graphType' );
     return {
       createNode: () => new LabelColorIcon( new GraphTypeLabelNode( graphType ), labelAlignGroup, graphType.strokeProperty ),
@@ -59,7 +59,7 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
       tandemName: `${graphType.tandemNamePrefix}RadioButton`,
       options: {
         accessibleName: accessibleNameProperty,
-        accessibleHelpText: accessibleHelpTextProperty
+        accessibleContextResponse: accessibleContextResponseProperty
       }
     };
   }

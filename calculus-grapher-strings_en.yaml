@@ -331,17 +331,17 @@ a11y:
     accessibleName:     Viewable Graph Set
     accessibleHelpText: Choose which set of Graph Areas to investigate and find relationships.
     integralPrimaryRadioButton:
-      accessibleName:     Integral and Primary Graph Areas
-      accessibleHelpText: Explore Integral at top, Primary at bottom.
+      accessibleName:            Integral and Primary Graph Areas
+      accessibleContextResponse: Primary Graph Area below Integral.
     primaryDerivativeRadioButton:
-      accessibleName:     Primary and Derivative Graph Areas
-      accessibleHelpText: Explore Primary at top, Derivative at bottom.
+      accessibleName:            Primary and Derivative Graph Areas
+      accessibleContextResponse: Primary Graph Area above Derivative.
     integralPrimaryDerivativeRadioButton:
-      accessibleName:     Integral, Primary, and Derivative Graph Areas
-      accessibleHelpText: Explore Integral at top, Primary in center, Derivative at bottom.
+      accessibleName:            Integral, Primary, and Derivative Graph Areas
+      accessibleContextResponse: Primary Graph Area between Integral and Derivative
     primaryDerivativeSecondDerivativeRadioButton:
-      accessibleName:     Primary, Derivative, and Second Derivative Graph Areas
-      accessibleHelpText: Explore Primary at top, Derivative in center, Second Derivative at bottom.
+      accessibleName:            Primary, Derivative, and Second Derivative Graph Areas
+      accessibleContextResponse: Primary Graph Area above Derivative and Second Derivative
 
   # Preferences > Simulation > Variable
   variableRadioButtonGroup:

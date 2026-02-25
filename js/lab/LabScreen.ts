@@ -43,10 +43,10 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     const graphSetRadioButtonGroupItems = [
       GraphSetRadioButtonGroup.createItem( graphSets[ 0 ], GraphType.INTEGRAL, labelAlignGroup,
         CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryDerivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryDerivativeRadioButton.accessibleHelpTextStringProperty ),
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.integralPrimaryDerivativeRadioButton.accessibleContextResponseStringProperty ),
       GraphSetRadioButtonGroup.createItem( graphSets[ 1 ], GraphType.SECOND_DERIVATIVE, labelAlignGroup,
         CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleNameStringProperty,
-        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleHelpTextStringProperty )
+        CalculusGrapherFluent.a11y.graphSetRadioButtonGroup.primaryDerivativeSecondDerivativeRadioButton.accessibleContextResponseStringProperty )
     ];
 
     const createModel = () => new LabModel( {

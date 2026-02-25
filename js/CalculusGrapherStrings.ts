@@ -313,19 +313,19 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'integralPrimaryRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
       'primaryDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
       'integralPrimaryDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
       'primaryDerivativeSecondDerivativeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       }
     };
     'variableRadioButtonGroup': {

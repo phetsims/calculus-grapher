@@ -606,32 +606,32 @@
         "accessibleName": {
           "value": "Integral and Primary Graph Areas"
         },
-        "accessibleHelpText": {
-          "value": "Explore Integral at top, Primary at bottom."
+        "accessibleContextResponse": {
+          "value": "Primary Graph Area below Integral."
         }
       },
       "primaryDerivativeRadioButton": {
         "accessibleName": {
           "value": "Primary and Derivative Graph Areas"
         },
-        "accessibleHelpText": {
-          "value": "Explore Primary at top, Derivative at bottom."
+        "accessibleContextResponse": {
+          "value": "Primary Graph Area above Derivative."
         }
       },
       "integralPrimaryDerivativeRadioButton": {
         "accessibleName": {
           "value": "Integral, Primary, and Derivative Graph Areas"
         },
-        "accessibleHelpText": {
-          "value": "Explore Integral at top, Primary in center, Derivative at bottom."
+        "accessibleContextResponse": {
+          "value": "Primary Graph Area between Integral and Derivative"
         }
       },
       "primaryDerivativeSecondDerivativeRadioButton": {
         "accessibleName": {
           "value": "Primary, Derivative, and Second Derivative Graph Areas"
         },
-        "accessibleHelpText": {
-          "value": "Explore Primary at top, Derivative in center, Second Derivative at bottom."
+        "accessibleContextResponse": {
+          "value": "Primary Graph Area above Derivative and Second Derivative"
         }
       }
     },
