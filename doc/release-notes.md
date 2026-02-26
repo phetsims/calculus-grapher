@@ -32,7 +32,7 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 ## 1.1 (in progress)
 
 ### New Features
-* Alternative Input (including modification of curves via keyboard input)
+* Alternative Input (including manipulation of curves via keyboard input)
 * Interactive Highlights: see _Preferences > Visual > Interactive Highlights_
 * Basic Sound
 * Core Description
