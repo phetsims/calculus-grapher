@@ -32,12 +32,10 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 ## 1.1 (in progress)
 
 ### New Features
-* Alternative Input
+* Alternative Input (including modification of curves via keyboard input)
 * Interactive Highlights: see _Preferences > Visual > Interactive Highlights_
 * Basic Sound
 * Core Description
-* Curve manipulation now supports mouse, touch, and keyboard input. In addition to pressing anywhere in the graph to modify _f_ or the Predict curve,
-the user interface now includes a "curve manipulator" that can be dragged to modify a curve.
 
 ## 1.0 (2023-04-17)
 
