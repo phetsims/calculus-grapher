@@ -8,7 +8,8 @@
  */
 
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
-import AccessibleListNode, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';

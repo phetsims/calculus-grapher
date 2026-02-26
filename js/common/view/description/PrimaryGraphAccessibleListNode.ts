@@ -10,7 +10,7 @@ import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
-import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import PredictCurve from '../../model/PredictCurve.js';
