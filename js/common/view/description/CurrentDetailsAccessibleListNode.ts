@@ -10,15 +10,15 @@ import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
-import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
-import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CurveManipulationProperties from '../../model/CurveManipulationProperties.js';
 import GraphsNode from '../GraphsNode.js';
 
-export default class CurrentDetailsAccessibleListNode extends AccessibleListNode {
+export default class CurrentDetailsAccessibleListNode extends Node {
 
   public constructor( curveManipulationProperties: CurveManipulationProperties, graphsNode: GraphsNode ) {
 
@@ -119,8 +119,11 @@ export default class CurrentDetailsAccessibleListNode extends AccessibleListNode
         }
       } );
 
-    super( listItems, {
-      leadingParagraphStringProperty: leadingParagraphStringProperty
+    super( {
+      accessibleTemplate: AccessibleList.createTemplate( {
+        listItems: listItems,
+        leadingParagraphStringProperty: leadingParagraphStringProperty
+      } )
     } );
   }
 }
