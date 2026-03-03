@@ -616,13 +616,13 @@
         "value": "Choose variable for horizontal axis."
       },
       "xRadioButton": {
-        "accessibleHelpText": {
-          "value": "Label horizontal axis with x."
+        "accessibleContextResponse": {
+          "value": "Horizontal axis labeled with x."
         }
       },
       "tRadioButton": {
-        "accessibleHelpText": {
-          "value": "Label horizontal axis with t."
+        "accessibleContextResponse": {
+          "value": "Horizontal axis labeled with t."
         }
       }
     },
@@ -634,16 +634,16 @@
         "accessibleName": {
           "value": "Lagrange, f prime of {$variable}"
         },
-        "accessibleHelpText": {
-          "value": "Use apostrophes for derivatives."
+        "accessibleContextResponse": {
+          "value": "Derivative notation uses f prime and f double prime."
         }
       },
       "leibnizRadioButton": {
         "accessibleName": {
           "value": "Leibniz, d f over d {$variable}"
         },
-        "accessibleHelpText": {
-          "value": "Show derivative as ratio of change in y with respect to {$variable}."
+        "accessibleContextResponse": {
+          "value": "Derivative notation shows ratio of change in y with respect to {$variable}."
         }
       }
     },
@@ -653,18 +653,12 @@
       },
       "noLineRadioButton": {
         "accessibleName": {
-          "value": "No Line"
-        },
-        "accessibleHelpText": {
-          "value": "Leave gap between discontinuities."
+          "value": "No Line Connecting Discontinuities"
         }
       },
       "dashedLineRadioButton": {
         "accessibleName": {
-          "value": "Dashed Line"
-        },
-        "accessibleHelpText": {
-          "value": "Connect discontinuities with dashed line."
+          "value": "Dashed Line Connecting Discontinuities"
         }
       }
     },

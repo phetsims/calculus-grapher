@@ -323,32 +323,30 @@ type StringsType = {
     'variableRadioButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'xRadioButton': {
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
       'tRadioButton': {
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       }
     };
     'notationRadioButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'lagrangeRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
       'leibnizRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
       }
     };
     'discontinuitiesRadioButtonGroup': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'noLineRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
       'dashedLineRadioButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
-        'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
     };
     'shapeWidthSlider': {

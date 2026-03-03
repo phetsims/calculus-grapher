@@ -60,10 +60,8 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.xStringProperty, radioButtonTandem ),
         tandemName: 'xRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.symbol.xStringProperty
-
-          // TODO: accessibleHelpText is not supported for radio buttons, see https://github.com/phetsims/calculus-grapher/issues/385
-          // accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.xRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.symbol.xStringProperty,
+          accessibleContextResponse: CalculusGrapherFluent.a11y.variableRadioButtonGroup.xRadioButton.accessibleContextResponseStringProperty
         }
       },
       {
@@ -71,10 +69,8 @@ class VariableRadioButtonGroup extends AquaRadioButtonGroup<FunctionVariable> {
         createNode: radioButtonTandem => new VariableRadioButtonText( CalculusGrapherSymbols.tStringProperty, radioButtonTandem ),
         tandemName: 'tRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.symbol.tStringProperty
-
-          // TODO: accessibleHelpText is not supported for radio buttons, see https://github.com/phetsims/calculus-grapher/issues/385
-          // accessibleHelpText: CalculusGrapherFluent.a11y.variableRadioButtonGroup.tRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.symbol.tStringProperty,
+          accessibleContextResponse: CalculusGrapherFluent.a11y.variableRadioButtonGroup.tRadioButton.accessibleContextResponseStringProperty
         }
       }
     ];

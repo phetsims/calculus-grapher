@@ -347,29 +347,27 @@ a11y:
   variableRadioButtonGroup:
     accessibleHelpText: Choose variable for horizontal axis.
     xRadioButton:
-      accessibleHelpText: Label horizontal axis with x.
+      accessibleContextResponse: Horizontal axis labeled with x.
     tRadioButton:
-      accessibleHelpText: Label horizontal axis with t.
+      accessibleContextResponse: Horizontal axis labeled with t.
 
   # Preferences > Simulation > Notation
   notationRadioButtonGroup:
     accessibleHelpText: Choose derivative notation.
     lagrangeRadioButton:
-      accessibleName:     Lagrange, f prime of {$variable}
-      accessibleHelpText: Use apostrophes for derivatives.
+      accessibleName:            Lagrange, f prime of {$variable}
+      accessibleContextResponse: Derivative notation uses f prime and f double prime.
     leibnizRadioButton:
-      accessibleName:     Leibniz, d f over d {$variable}
-      accessibleHelpText: Show derivative as ratio of change in y with respect to {$variable}.
+      accessibleName:            Leibniz, d f over d {$variable}
+      accessibleContextResponse: Derivative notation shows ratio of change in y with respect to {$variable}.
 
   # Preferences > Simulation > Discontinuities
   discontinuitiesRadioButtonGroup:
     accessibleHelpText: Choose how to display discontinuities in curves.
     noLineRadioButton:
-      accessibleName:     No Line
-      accessibleHelpText: Leave gap between discontinuities.
+      accessibleName: No Line Connecting Discontinuities
     dashedLineRadioButton:
-      accessibleName:     Dashed Line
-      accessibleHelpText: Connect discontinuities with dashed line.
+      accessibleName: Dashed Line Connecting Discontinuities
 
   #=======================================================================================================
   # Sliders
