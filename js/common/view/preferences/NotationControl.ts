@@ -66,8 +66,10 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         options: {
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-          } ),
-          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
+          } )
+
+          // TODO: accessibleHelpText is not supported for radio buttons, see https://github.com/phetsims/calculus-grapher/issues/385
+          // accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.lagrangeRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -78,10 +80,12 @@ class NotationRadioButtonGroup extends AquaRadioButtonGroup<DerivativeNotation> 
         options: {
           accessibleName: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleName.createProperty( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
-          } ),
-          accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpText.createProperty( {
-            variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
           } )
+
+          // TODO: accessibleHelpText is not supported for radio buttons, see https://github.com/phetsims/calculus-grapher/issues/385
+          // accessibleHelpText: CalculusGrapherFluent.a11y.notationRadioButtonGroup.leibnizRadioButton.accessibleHelpText.createProperty( {
+          //   variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+          // } )
         }
       }
     ];

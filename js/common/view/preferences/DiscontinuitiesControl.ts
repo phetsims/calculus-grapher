@@ -61,8 +61,10 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         createNode: () => new DiscontinuitiesRadioButtonLabel( 'noLine' ),
         tandemName: 'noLineRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleNameStringProperty
+
+          // TODO: accessibleHelpText is not supported for radio buttons, see https://github.com/phetsims/calculus-grapher/issues/385
+          // accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.noLineRadioButton.accessibleHelpTextStringProperty
         }
       },
       {
@@ -70,8 +72,10 @@ class DiscontinuitiesRadioButtonGroup extends RectangularRadioButtonGroup<Connec
         createNode: () => new DiscontinuitiesRadioButtonLabel( 'dashedLine' ),
         tandemName: 'dashedLineRadioButton',
         options: {
-          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleNameStringProperty,
-          accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty
+          accessibleName: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleNameStringProperty
+          
+          // TODO: accessibleHelpText is not supported for radio buttons, see https://github.com/phetsims/calculus-grapher/issues/385
+          // accessibleHelpText: CalculusGrapherFluent.a11y.discontinuitiesRadioButtonGroup.dashedLineRadioButton.accessibleHelpTextStringProperty
         }
       }
     ];
