@@ -132,7 +132,9 @@ export default abstract class ScrubberNode extends Node {
    * Adds an object response when the scrubber gets focused or is moved.
    */
   public doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse() );
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse(), {
+      interruptible: true // see https://github.com/phetsims/calculus-grapher/issues/390
+    } );
   }
 
   /**
