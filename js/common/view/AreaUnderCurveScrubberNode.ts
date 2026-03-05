@@ -18,7 +18,7 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../model/AreaUnderCurveScrubber.js';
-import AreaUnderCurveScrubberDescriber from './description/AreaUnderCurveScrubberDescriber.js';
+import AreaUnderCurveToolDescriber from './description/AreaUnderCurveToolDescriber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -28,10 +28,10 @@ type AreaUnderCurveScrubberNodeOptions = SelfOptions &
 
 export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
-  private readonly describer: AreaUnderCurveScrubberDescriber;
+  private readonly describer: AreaUnderCurveToolDescriber;
 
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
-                      describer: AreaUnderCurveScrubberDescriber,
+                      describer: AreaUnderCurveToolDescriber,
                       chartTransform: ChartTransform,
                       providedOptions: AreaUnderCurveScrubberNodeOptions ) {
 

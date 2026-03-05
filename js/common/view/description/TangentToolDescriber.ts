@@ -1,7 +1,10 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * TangentScrubberDescriber creates accessible responses for the Tangent Tool (aka scrubber).
+ * TangentToolDescriber creates accessible responses for the Tangent Tool.
+ *
+ * In code and PhET-iO API, this is referred to as a "scrubber".  But "tool" is used here
+ * to align with core-description terminology.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -16,8 +19,7 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import TangentScrubber from '../../model/TangentScrubber.js';
 import ExplorationToolDescriber from './ExplorationToolDescriber.js';
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/389 rename TangentToolDescriber
-export default class TangentScrubberDescriber extends ExplorationToolDescriber {
+export default class TangentToolDescriber extends ExplorationToolDescriber {
 
   public constructor( private readonly tangentScrubber: TangentScrubber,
                       private readonly primaryCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
@@ -94,4 +96,4 @@ export default class TangentScrubberDescriber extends ExplorationToolDescriber {
   }
 }
 
-calculusGrapher.register( 'TangentScrubberDescriber', TangentScrubberDescriber );
+calculusGrapher.register( 'TangentToolDescriber', TangentToolDescriber );

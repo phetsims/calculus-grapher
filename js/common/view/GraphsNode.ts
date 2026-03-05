@@ -33,9 +33,9 @@ import GraphType from '../model/GraphType.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
 import DerivativeGraphNode from './DerivativeGraphNode.js';
-import AreaUnderCurveScrubberDescriber from './description/AreaUnderCurveScrubberDescriber.js';
+import AreaUnderCurveToolDescriber from './description/AreaUnderCurveToolDescriber.js';
 import ReferenceLineDescriber from './description/ReferenceLineDescriber.js';
-import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
+import TangentToolDescriber from './description/TangentToolDescriber.js';
 import GraphNode from './GraphNode.js';
 import GraphSetsAnimator from './GraphSetsAnimator.js';
 import IntegralGraphNode from './IntegralGraphNode.js';
@@ -258,7 +258,7 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
-    const tangentScrubberDescriber = new TangentScrubberDescriber( tangentScrubber,
+    const tangentScrubberDescriber = new TangentToolDescriber( tangentScrubber,
       this.primaryGraphNode.curveLayerVisibleProperty, derivativeGraphNode.curveLayerVisibleProperty );
 
     // Add the scrubber
@@ -296,7 +296,7 @@ export default class GraphsNode extends Node {
         // No PhET-iO instrumentation because this is more complicated than is useful for clients.
       } );
 
-    const areaUnderCurveScrubberDescriber = new AreaUnderCurveScrubberDescriber( areaUnderCurveScrubber,
+    const areaUnderCurveScrubberDescriber = new AreaUnderCurveToolDescriber( areaUnderCurveScrubber,
       integralGraphNode.curveLayerVisibleProperty, this.primaryGraphNode.curveLayerVisibleProperty );
 
     // Add the scrubber

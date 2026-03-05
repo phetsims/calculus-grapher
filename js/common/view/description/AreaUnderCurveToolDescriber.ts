@@ -1,7 +1,10 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * AreaUnderCurveScrubberDescriber creates accessible responses for the Area Under Curve Tool (aka scrubber).
+ * AreaUnderCurveToolDescriber creates accessible responses for the Area Under Curve Tool.
+ *
+ * In code and PhET-iO API, this is referred to as a "scrubber".  But "tool" is used here
+ * to align with core-description terminology.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,8 +18,7 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../../model/AreaUnderCurveScrubber.js';
 import ExplorationToolDescriber from './ExplorationToolDescriber.js';
 
-//TODO https://github.com/phetsims/calculus-grapher/issues/389 rename AreaUnderCurveToolDescriber
-export default class AreaUnderCurveScrubberDescriber extends ExplorationToolDescriber {
+export default class AreaUnderCurveToolDescriber extends ExplorationToolDescriber {
 
   public constructor( private readonly areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       private readonly integralCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
@@ -90,4 +92,4 @@ export default class AreaUnderCurveScrubberDescriber extends ExplorationToolDesc
   }
 }
 
-calculusGrapher.register( 'AreaUnderCurveScrubberDescriber', AreaUnderCurveScrubberDescriber );
+calculusGrapher.register( 'AreaUnderCurveToolDescriber', AreaUnderCurveToolDescriber );

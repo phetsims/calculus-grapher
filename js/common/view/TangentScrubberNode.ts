@@ -15,7 +15,7 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 import TangentScrubber from '../model/TangentScrubber.js';
-import TangentScrubberDescriber from './description/TangentScrubberDescriber.js';
+import TangentToolDescriber from './description/TangentToolDescriber.js';
 import ScrubberNode, { ScrubberNodeOptions } from './ScrubberNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -25,10 +25,10 @@ export type TangentScrubberNodeOptions = SelfOptions &
 
 export default class TangentScrubberNode extends ScrubberNode {
 
-  private readonly describer: TangentScrubberDescriber;
+  private readonly describer: TangentToolDescriber;
 
   public constructor( tangentScrubber: TangentScrubber,
-                      describer: TangentScrubberDescriber,
+                      describer: TangentToolDescriber,
                       chartTransform: ChartTransform,
                       providedOptions: TangentScrubberNodeOptions ) {
 

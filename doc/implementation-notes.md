@@ -28,7 +28,7 @@ The reader is encouraged to read the model document before proceeding:
 * Plot - In Calculus Grapher, a plot is defined as a representation of a portion of a curve. The curve of a graph may be
   composed of several plots to represent separate elements of the curve, such as the discontinuous points, discontinuity
   lines, continuous portion of the curve, etc. This is based on the PhET library bamboo.
-* Scrubber - a tool with a sphere-shaped handle, which can be dragged to place the tool at an arbitrary x location
+* Scrubber (Exploration Tool for core description) - a tool with a sphere-shaped handle, which can be dragged to place the tool at an arbitrary x location
 * Reference Line scrubber - the scrubber with a black handle, which lets you place a vertical "reference line" at an
   arbitrary x location.
 * Labeled Line - a feature that is available only via PhET-iO, which allows you to place a vertical line at an arbitrary
