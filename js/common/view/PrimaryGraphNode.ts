@@ -49,7 +49,7 @@ import CueingArrowsNode from './CueingArrowsNode.js';
 import CurveManipulatorKeyboardCueNode from './CurveManipulatorKeyboardCueNode.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 import CurveNode from './CurveNode.js';
-import PrimaryGraphAreaAccessibleListNode from './description/PrimaryGraphAreaAccessibleListNode.js';
+import PrimaryGraphAreaDescriber from './description/PrimaryGraphAreaDescriber.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 import GraphTypeLabelNode from './GraphTypeLabelNode.js';
 import LabeledPointsNode from './LabeledPointsNode.js';
@@ -331,7 +331,7 @@ export default class PrimaryGraphNode extends GraphNode {
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
 
     // Describe the graph.
-    const describer = new PrimaryGraphAreaAccessibleListNode( model.primaryCurve, model.predictCurve,
+    const describer = new PrimaryGraphAreaDescriber( model.primaryCurve, model.predictCurve,
       this.primaryCurveVisibleProperty, this.predictCurveVisibleProperty,
       model.predictEnabledProperty, this.showPrimaryCurveProperty, model.gridVisibleProperty );
     this.setAccessibleTemplate( describer.getAccessibleTemplate() );

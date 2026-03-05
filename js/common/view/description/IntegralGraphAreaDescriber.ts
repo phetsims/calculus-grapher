@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * IntegralGraphAreaAccessibleListNode is the accessible list that describes the Integral Graph.
+ * IntegralGraphAreaDescriber is the accessible list that describes the Integral Graph.
  *
  * Note most of the code and PhET-iO API use the term "Integral Graph", while core description uses
  * "Integral Graph Area". Since this code is specific to core description, we use that terminology herein.
@@ -18,7 +18,7 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import GraphAreaDescriber from './GraphAreaDescriber.js';
 
-export default class IntegralGraphAreaAccessibleListNode extends GraphAreaDescriber {
+export default class IntegralGraphAreaDescriber extends GraphAreaDescriber {
 
   public constructor( private readonly integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
@@ -78,4 +78,4 @@ export default class IntegralGraphAreaAccessibleListNode extends GraphAreaDescri
 
 }
 
-calculusGrapher.register( 'IntegralGraphAreaAccessibleListNode', IntegralGraphAreaAccessibleListNode );
+calculusGrapher.register( 'IntegralGraphAreaDescriber', IntegralGraphAreaDescriber );

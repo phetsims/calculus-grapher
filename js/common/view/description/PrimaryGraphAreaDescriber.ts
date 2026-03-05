@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * PrimaryGraphAreaAccessibleListNode is the accessible list that describes the Primary Graph Area.
+ * PrimaryGraphAreaDescriber is the accessible list that describes the Primary Graph Area.
  *
  * Note most of the code and PhET-iO API use the term "Primary Graph", while core description uses
  * "Primary Graph Area". Since this code is specific to core description, we use that terminology herein.
@@ -21,7 +21,7 @@ import PredictCurve from '../../model/PredictCurve.js';
 import PrimaryCurve from '../../model/PrimaryCurve.js';
 import GraphAreaDescriber from './GraphAreaDescriber.js';
 
-export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaDescriber {
+export default class PrimaryGraphAreaDescriber extends GraphAreaDescriber {
 
   public constructor( private readonly primaryCurve: PrimaryCurve,
                       private readonly predictCurve: PredictCurve,
@@ -179,4 +179,4 @@ export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaDescrib
   }
 }
 
-calculusGrapher.register( 'PrimaryGraphAreaAccessibleListNode', PrimaryGraphAreaAccessibleListNode );
+calculusGrapher.register( 'PrimaryGraphAreaDescriber', PrimaryGraphAreaDescriber );

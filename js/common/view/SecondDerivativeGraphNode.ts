@@ -16,7 +16,7 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import SecondDerivativeCurve from '../model/SecondDerivativeCurve.js';
-import SecondDerivativeGraphAreaAccessibleListNode from './description/SecondDerivativeGraphAreaAccessibleListNode.js';
+import SecondDerivativeGraphAreaDescriber from './description/SecondDerivativeGraphAreaDescriber.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -56,7 +56,7 @@ export default class SecondDerivativeGraphNode extends GraphNode {
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.SECOND_DERIVATIVE ) && curveLayerVisible );
 
     // Describe the graph.
-    const describer = new SecondDerivativeGraphAreaAccessibleListNode( secondDerivativeCurve, this.secondDerivativeCurveVisibleProperty, gridVisibleProperty );
+    const describer = new SecondDerivativeGraphAreaDescriber( secondDerivativeCurve, this.secondDerivativeCurveVisibleProperty, gridVisibleProperty );
     this.setAccessibleTemplate( describer.getAccessibleTemplate() );
 
     affirm( this.yZoomButtonGroup, 'SecondDerivativeGraphNode requires a yZoomButtonGroup.' );
