@@ -91,7 +91,10 @@ export default class ReferenceLineNode extends ScrubberNode {
    * Creates an icon for the reference line.
    */
   public static override createIcon(): Node {
-    return ScrubberNode.createIcon( CalculusGrapherColors.referenceLineHandleColorProperty, CalculusGrapherColors.referenceLineStrokeProperty );
+    return ScrubberNode.createIcon( {
+      handleColor: CalculusGrapherColors.referenceLineHandleColorProperty,
+      lineStroke: CalculusGrapherColors.referenceLineStrokeProperty
+    } );
   }
 }
 calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );

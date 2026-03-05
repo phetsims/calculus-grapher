@@ -46,6 +46,12 @@ export type ScrubberNodeOptions = SelfOptions &
   PickOptional<NodeOptions, 'pickable'> &
   PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
+// Options for the createIcon method.
+type CreateIconOptions = {
+  handleColor: TColor;
+  lineStroke: TColor;
+};
+
 export default abstract class ScrubberNode extends Node {
 
   // vertical line displayed by the scrubber
@@ -140,14 +146,14 @@ export default abstract class ScrubberNode extends Node {
   /**
    * Creates an icon for a scrubber.
    */
-  public static createIcon( handleColor: TColor, lineStroke?: TColor ): Node {
-
-    const line = new Line( 0, 0, 0, 11, {
-      stroke: lineStroke ? lineStroke : handleColor
-    } );
+  public static createIcon( options: CreateIconOptions ): Node {
 
     const handleIcon = new ShadedSphereNode( 2 * CalculusGrapherConstants.SCRUBBER_RADIUS, {
-      mainColor: handleColor
+      mainColor: options.handleColor
+    } );
+
+    const line = new Line( 0, 0, 0, 11, {
+      stroke: options.lineStroke
     } );
 
     return new VBox( {

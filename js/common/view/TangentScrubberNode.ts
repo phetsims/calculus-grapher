@@ -45,10 +45,13 @@ export default class TangentScrubberNode extends ScrubberNode {
   }
 
   /**
-   * Creates an icon for the tangent scrubber.
+   * Creates an icon for this type of scrubber.
    */
   public static override createIcon(): Node {
-    return ScrubberNode.createIcon( CalculusGrapherColors.derivativeCurveStrokeProperty );
+    return ScrubberNode.createIcon( {
+      handleColor: CalculusGrapherColors.derivativeCurveStrokeProperty,
+      lineStroke: CalculusGrapherColors.derivativeCurveStrokeProperty
+    } );
   }
 }
 

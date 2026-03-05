@@ -63,10 +63,13 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
   }
 
   /**
-   * Creates an icon for the area-under-curve scrubber.
+   * Creates an icon for this type of scrubber.
    */
   public static override createIcon(): Node {
-    return ScrubberNode.createIcon( CalculusGrapherColors.integralCurveStrokeProperty );
+    return ScrubberNode.createIcon( {
+      handleColor: CalculusGrapherColors.integralCurveStrokeProperty,
+      lineStroke: CalculusGrapherColors.integralCurveStrokeProperty
+    } );
   }
 }
 
