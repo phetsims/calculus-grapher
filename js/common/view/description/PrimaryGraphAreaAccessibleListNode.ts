@@ -19,9 +19,9 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import PredictCurve from '../../model/PredictCurve.js';
 import PrimaryCurve from '../../model/PrimaryCurve.js';
-import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
+import GraphAreaDescriber from './GraphAreaDescriber.js';
 
-export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
+export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaDescriber {
 
   public constructor( private readonly primaryCurve: PrimaryCurve,
                       private readonly predictCurve: PredictCurve,

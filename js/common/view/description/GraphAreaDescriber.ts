@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * GraphAreaAccessibleListNode is the base class for accessible lists that describe Graph Areas.
+ * GraphAreaDescriber is the base class for accessible lists that describe Graph Areas.
  * It handles the parts of the accessible list that are common to all Graph Areas.
  *
  * Note most of the code and PhET-iO API use the term "Graph", while core description uses "Graph Area".
@@ -17,7 +17,7 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
-export default abstract class GraphAreaAccessibleListNode {
+export default abstract class GraphAreaDescriber {
 
   private readonly gridVisibleProperty: TReadOnlyProperty<boolean>;
 
@@ -51,4 +51,4 @@ export default abstract class GraphAreaAccessibleListNode {
   }
 }
 
-calculusGrapher.register( 'GraphAreaAccessibleListNode', GraphAreaAccessibleListNode );
+calculusGrapher.register( 'GraphAreaDescriber', GraphAreaDescriber );

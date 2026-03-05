@@ -16,9 +16,9 @@ import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessib
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import SecondDerivativeCurve from '../../model/SecondDerivativeCurve.js';
-import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
+import GraphAreaDescriber from './GraphAreaDescriber.js';
 
-export default class SecondDerivativeGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
+export default class SecondDerivativeGraphAreaAccessibleListNode extends GraphAreaDescriber {
 
   public constructor( private readonly secondDerivativeCurve: SecondDerivativeCurve,
                       private readonly secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,

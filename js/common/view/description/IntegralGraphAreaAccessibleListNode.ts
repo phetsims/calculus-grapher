@@ -16,9 +16,9 @@ import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessib
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
-import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
+import GraphAreaDescriber from './GraphAreaDescriber.js';
 
-export default class IntegralGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
+export default class IntegralGraphAreaAccessibleListNode extends GraphAreaDescriber {
 
   public constructor( private readonly integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
