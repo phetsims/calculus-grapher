@@ -16,7 +16,7 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import DerivativeCurve from '../model/DerivativeCurve.js';
 import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
-import DerivativeGraphAccessibleListNode from './description/DerivativeGraphAccessibleListNode.js';
+import DerivativeGraphAreaAccessibleListNode from './description/DerivativeGraphAreaAccessibleListNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -56,7 +56,7 @@ export default class DerivativeGraphNode extends GraphNode {
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.DERIVATIVE ) && curveLayerVisible );
 
     // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new DerivativeGraphAccessibleListNode( derivativeCurve, this.derivativeCurveVisibleProperty, gridVisibleProperty );
+    const accessibleListNode = new DerivativeGraphAreaAccessibleListNode( derivativeCurve, this.derivativeCurveVisibleProperty, gridVisibleProperty );
     this.addChild( accessibleListNode );
 
     // Focus order.

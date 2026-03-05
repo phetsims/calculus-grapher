@@ -1,7 +1,10 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * IntegralGraphAccessibleListNode is the accessible list that describes the Integral Graph.
+ * IntegralGraphAreaAccessibleListNode is the accessible list that describes the Integral Graph.
+ *
+ * Note most of the code and PhET-iO API use the term "Integral Graph", while core description uses
+ * "Integral Graph Area". Since this code is specific to core description, we use that terminology herein.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -14,13 +17,13 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
-export default class IntegralGraphAccessibleListNode extends GraphAreaAccessibleListNode {
+export default class IntegralGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
 
   public constructor( integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      IntegralGraphAccessibleListNode.getIntegralCurveListItem( integralCurveVisibleProperty ),
+      IntegralGraphAreaAccessibleListNode.getIntegralCurveListItem( integralCurveVisibleProperty ),
       GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAreaAccessibleListNode.getValuesListItem()
     ];
@@ -67,4 +70,4 @@ export default class IntegralGraphAccessibleListNode extends GraphAreaAccessible
 
 }
 
-calculusGrapher.register( 'IntegralGraphAccessibleListNode', IntegralGraphAccessibleListNode );
+calculusGrapher.register( 'IntegralGraphAreaAccessibleListNode', IntegralGraphAreaAccessibleListNode );

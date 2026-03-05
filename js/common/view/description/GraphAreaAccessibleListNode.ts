@@ -4,6 +4,9 @@
  * GraphAreaAccessibleListNode is the base class for accessible lists that describe Graph Areas.
  * It handles the parts of the accessible list that are common to all Graph Areas.
  *
+ * Note most of the code and PhET-iO API use the term "Graph", while core description uses "Graph Area".
+ * Since this code is specific to core description, we use that terminology herein.
+ *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 

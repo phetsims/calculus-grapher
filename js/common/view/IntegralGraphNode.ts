@@ -16,7 +16,7 @@ import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import GraphSet from '../model/GraphSet.js';
 import GraphType from '../model/GraphType.js';
 import IntegralCurve from '../model/IntegralCurve.js';
-import IntegralGraphAccessibleListNode from './description/IntegralGraphAccessibleListNode.js';
+import IntegralGraphAreaAccessibleListNode from './description/IntegralGraphAreaAccessibleListNode.js';
 import GraphNode, { GraphNodeOptions } from './GraphNode.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -56,7 +56,7 @@ export default class IntegralGraphNode extends GraphNode {
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.INTEGRAL ) && curveLayerVisible );
 
     // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new IntegralGraphAccessibleListNode( this.integralCurveVisibleProperty, gridVisibleProperty );
+    const accessibleListNode = new IntegralGraphAreaAccessibleListNode( this.integralCurveVisibleProperty, gridVisibleProperty );
     this.addChild( accessibleListNode );
 
     // Focus order.

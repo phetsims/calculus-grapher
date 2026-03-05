@@ -1,7 +1,10 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * SecondDerivativeGraphAccessibleListNode is the accessible list that describes the Second Derivative Graph Area.
+ * DerivativeGraphAreaAccessibleListNode is the accessible list that describes the Derivative Graph Area.
+ *
+ * Note most of the code and PhET-iO API use the term "Derivative Graph", while core description uses
+ * "Derivative Graph Area". Since this code is specific to core description, we use that terminology herein.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -11,17 +14,17 @@ import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
-import SecondDerivativeCurve from '../../model/SecondDerivativeCurve.js';
+import DerivativeCurve from '../../model/DerivativeCurve.js';
 import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
-export default class SecondDerivativeGraphAccessibleListNode extends GraphAreaAccessibleListNode {
+export default class DerivativeGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
 
-  public constructor( secondDerivativeCurve: SecondDerivativeCurve,
-                      secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,
+  public constructor( derivativeCurve: DerivativeCurve,
+                      derivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      SecondDerivativeGraphAccessibleListNode.getSecondDerivativeCurveListItem( secondDerivativeCurve, secondDerivativeCurveVisibleProperty ),
+      DerivativeGraphAreaAccessibleListNode.getDerivativeCurveListItem( derivativeCurve, derivativeCurveVisibleProperty ),
       GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAreaAccessibleListNode.getValuesListItem()
     ];
@@ -30,32 +33,32 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAreaAc
   }
 
   /**
-   * Gets the list item that describes the second derivative curve.
+   * Gets the list item that describes the derivative curve.
    */
-  private static getSecondDerivativeCurveListItem(
-    secondDerivativeCurve: SecondDerivativeCurve,
-    secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  private static getDerivativeCurveListItem(
+    derivativeCurve: DerivativeCurve,
+    derivativeCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
 
     const stringProperty = new DerivedStringProperty( [
 
         // Description choices.
-        CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.continuousStringProperty,
-        CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.discontinuousStringProperty,
-        CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.continuousStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.discontinuousStringProperty,
+        CalculusGrapherFluent.a11y.graphAreas.derivative.accessibleList.hiddenStringProperty,
 
         // Values used to select one of the above descriptions.
-        secondDerivativeCurve.numberOfDiscontinuousPointsProperty,
-        secondDerivativeCurveVisibleProperty
+        derivativeCurve.numberOfDiscontinuousPointsProperty,
+        derivativeCurveVisibleProperty
       ],
       (
         continuousString,
         discontinuousString,
         hiddenString,
         numberOfDiscontinuousPoints,
-        secondDerivativeCurveVisible
+        derivativeCurveVisible
       ) => {
         let string: string;
-        if ( secondDerivativeCurveVisible ) {
+        if ( derivativeCurveVisible ) {
           if ( numberOfDiscontinuousPoints === 0 ) {
             // Continuous and differentiable.
             string = continuousString;
@@ -76,7 +79,6 @@ export default class SecondDerivativeGraphAccessibleListNode extends GraphAreaAc
       stringProperty: stringProperty
     };
   }
-
 }
 
-calculusGrapher.register( 'SecondDerivativeGraphAccessibleListNode', SecondDerivativeGraphAccessibleListNode );
+calculusGrapher.register( 'DerivativeGraphAreaAccessibleListNode', DerivativeGraphAreaAccessibleListNode );

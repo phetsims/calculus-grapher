@@ -1,7 +1,10 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * PrimaryGraphAccessibleListNode is the accessible list that describes the Primary Graph Area.
+ * PrimaryGraphAreaAccessibleListNode is the accessible list that describes the Primary Graph Area.
+ *
+ * Note most of the code and PhET-iO API use the term "Primary Graph", while core description uses
+ * "Primary Graph Area". Since this code is specific to core description, we use that terminology herein.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -17,7 +20,7 @@ import PredictCurve from '../../model/PredictCurve.js';
 import PrimaryCurve from '../../model/PrimaryCurve.js';
 import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
-export default class PrimaryGraphAccessibleListNode extends GraphAreaAccessibleListNode {
+export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
 
   public constructor( primaryCurve: PrimaryCurve,
                       predictCurve: PredictCurve,
@@ -28,8 +31,8 @@ export default class PrimaryGraphAccessibleListNode extends GraphAreaAccessibleL
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
-      PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty, predictEnabledProperty, showPrimaryCurveProperty ),
-      PrimaryGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
+      PrimaryGraphAreaAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty, predictEnabledProperty, showPrimaryCurveProperty ),
+      PrimaryGraphAreaAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
       GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
       GraphAreaAccessibleListNode.getValuesListItem()
     ];
@@ -174,4 +177,4 @@ export default class PrimaryGraphAccessibleListNode extends GraphAreaAccessibleL
   }
 }
 
-calculusGrapher.register( 'PrimaryGraphAccessibleListNode', PrimaryGraphAccessibleListNode );
+calculusGrapher.register( 'PrimaryGraphAreaAccessibleListNode', PrimaryGraphAreaAccessibleListNode );
