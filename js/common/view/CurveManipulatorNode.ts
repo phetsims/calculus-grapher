@@ -140,7 +140,9 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
    * Adds an accessible object response that describes the manipulator when it is moved.
    */
   public doAccessibleObjectResponseMoved( isFromDOM: boolean ): void {
-    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseMoved( isFromDOM ) );
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseMoved( isFromDOM ), {
+      interruptible: true // see https://github.com/phetsims/calculus-grapher/issues/390
+    } );
   }
 
   /**
