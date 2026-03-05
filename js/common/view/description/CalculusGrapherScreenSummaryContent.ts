@@ -7,14 +7,20 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
+import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
 import ScreenSummaryContent, { ScreenSummaryContentOptions } from '../../../../../joist/js/ScreenSummaryContent.js';
 import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
+import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
+import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CurveManipulationProperties from '../../model/CurveManipulationProperties.js';
 import GraphsNode from '../GraphsNode.js';
-import CurrentDetailsAccessibleListNode from './CurrentDetailsAccessibleListNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -29,10 +35,123 @@ export default class CalculusGrapherScreenSummaryContent extends ScreenSummaryCo
 
     const options = optionize<CalculusGrapherScreenSummaryContentOptions, SelfOptions, ScreenSummaryContentOptions>()( {
       controlAreaContent: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.controlAreaStringProperty,
-      currentDetailsContent: new CurrentDetailsAccessibleListNode( curveManipulationProperties, graphsNode )
+      currentDetailsContent: new CurrentDetailsNode( curveManipulationProperties, graphsNode )
     }, providedOptions );
 
     super( options );
+  }
+}
+
+/**
+ * CurrentDetailsNode is the 'current details' part of the screen summary, shared by all screens.
+ */
+class CurrentDetailsNode extends Node {
+
+  public constructor( curveManipulationProperties: CurveManipulationProperties, graphsNode: GraphsNode ) {
+
+    // visible Properties for each curve that is relevant for this description.
+    const visibleProperties: TReadOnlyProperty<boolean>[] = [];
+
+    // Ordered items for the accessible list.
+    const listItems: AccessibleListItem[] = [];
+
+    // Integral Curve. Only screens with an integral include this description.
+    if ( graphsNode.integralGraphNode ) {
+      const integralCurveVisibleProperty = graphsNode.integralGraphNode.integralCurveVisibleProperty;
+      visibleProperties.push( integralCurveVisibleProperty );
+      listItems.push( {
+        stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.integralStringProperty,
+        visibleProperty: integralCurveVisibleProperty
+      } );
+    }
+
+    // Primary Curve. All screens include this description.
+    const primaryCurveVisibleProperty = graphsNode.primaryGraphNode.primaryCurveVisibleProperty;
+    visibleProperties.push( primaryCurveVisibleProperty );
+    listItems.push( {
+      stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.primaryStringProperty,
+      visibleProperty: primaryCurveVisibleProperty
+    } );
+
+    // Predict Curve. All screens include this description.
+    const predictCurveVisibleProperty = graphsNode.primaryGraphNode.predictCurveVisibleProperty;
+    visibleProperties.push( predictCurveVisibleProperty );
+    listItems.push( {
+      stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.predictStringProperty,
+      visibleProperty: predictCurveVisibleProperty
+    } );
+
+    // Derivative Curve. Only screens that with a derivative include this description.
+    if ( graphsNode.derivativeGraphNode ) {
+      const derivativeCurveVisibleProperty = graphsNode.derivativeGraphNode.derivativeCurveVisibleProperty;
+      visibleProperties.push( derivativeCurveVisibleProperty );
+      listItems.push( {
+        stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.derivativeStringProperty,
+        visibleProperty: derivativeCurveVisibleProperty
+      } );
+    }
+
+    // Second Derivative Curve. Only screens with a second derivative include this description.
+    if ( graphsNode.secondDerivativeGraphNode ) {
+      const secondDerivativeCurveVisibleProperty = graphsNode.secondDerivativeGraphNode.secondDerivativeCurveVisibleProperty;
+      visibleProperties.push( secondDerivativeCurveVisibleProperty );
+      listItems.push( {
+        stringProperty: CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.accessibleList.secondDerivativeStringProperty,
+        visibleProperty: secondDerivativeCurveVisibleProperty
+      } );
+    }
+
+    // True if at least one curve is visible.
+    const someCurveVisibleProperty = DerivedProperty.or( visibleProperties );
+
+    // Value for the {$curveSentence} parameter in the leading paragraph.
+    const curvesSentenceStringProperty = new DerivedStringProperty( [
+        someCurveVisibleProperty,
+        CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty,
+        CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.allCurvesHiddenStringProperty
+      ],
+      ( someCurveVisible, curvesShownString, allCurvesHiddenString ) => someCurveVisible ? curvesShownString : allCurvesHiddenString
+    );
+
+    // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
+    const leadingParagraphDependencies = _.uniq( [
+
+      // Description choices.
+      ...CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.getDependentProperties(),
+      ...CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.getDependentProperties(),
+
+      // Values used in the above descriptions.
+      curveManipulationProperties.curveManipulationTypeProperty,
+      curveManipulationProperties.widthProperty,
+      curvesSentenceStringProperty
+    ] );
+
+    const leadingParagraphStringProperty = DerivedStringProperty.deriveAny( leadingParagraphDependencies,
+      () => {
+
+        const curveManipulationType = curveManipulationProperties.curveManipulationTypeProperty.value;
+
+        if ( curveManipulationType.hasAdjustableWidth ) {
+          return CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPattern.format( {
+            curveManipulationType: curveManipulationType.accessibleNameProperty.value,
+            width: toFixedNumber( curveManipulationProperties.widthProperty.value, CalculusGrapherConstants.WIDTH_DESCRIPTION_DECIMALS ),
+            curveSentence: curvesSentenceStringProperty.value
+          } );
+        }
+        else {
+          return CalculusGrapherFluent.a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPattern.format( {
+            curveManipulationType: curveManipulationType.accessibleNameProperty.value,
+            curveSentence: curvesSentenceStringProperty.value
+          } );
+        }
+      } );
+
+    super( {
+      accessibleTemplate: AccessibleList.createTemplate( {
+        leadingParagraphStringProperty: leadingParagraphStringProperty,
+        listItems: listItems
+      } )
+    } );
   }
 }
 
