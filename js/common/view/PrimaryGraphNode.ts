@@ -330,18 +330,17 @@ export default class PrimaryGraphNode extends GraphNode {
 
     this.predictCurveVisibleProperty = DerivedProperty.and( [ this.curveLayerVisibleProperty, model.predictEnabledProperty ] );
 
-    // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new PrimaryGraphAreaAccessibleListNode( model.primaryCurve, model.predictCurve,
+    // Describe the graph.
+    const describer = new PrimaryGraphAreaAccessibleListNode( model.primaryCurve, model.predictCurve,
       this.primaryCurveVisibleProperty, this.predictCurveVisibleProperty,
       model.predictEnabledProperty, this.showPrimaryCurveProperty, model.gridVisibleProperty );
-    this.addChild( accessibleListNode );
+    this.setAccessibleTemplate( describer.getAccessibleTemplate() );
 
     // Focus order
     // Note that primaryCurveManipulatorNode, predictCurveManipulatorNode, and showPrimaryCurveCheckbox are
     // added to the pdomOrder for the "Curve Manipulation Settings and Controls" heading in CalculusGrapherScreenView.
     affirm( !this.yZoomButtonGroup, 'PrimaryGraphNode is not expected to have a yZoomButtonGroup.' );
     this.pdomOrder = [
-      accessibleListNode,
       this.curveVisibilityToggleButton
     ];
   }

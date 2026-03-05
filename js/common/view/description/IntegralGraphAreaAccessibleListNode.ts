@@ -11,7 +11,8 @@
 
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
-import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -19,22 +20,29 @@ import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
 export default class IntegralGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
 
-  public constructor( integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
+  public constructor( private readonly integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
+    super( gridVisibleProperty );
+  }
 
-    const listItems: AccessibleListItem[] = [
-      IntegralGraphAreaAccessibleListNode.getIntegralCurveListItem( integralCurveVisibleProperty ),
-      GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
-      GraphAreaAccessibleListNode.getValuesListItem()
-    ];
-
-    super( listItems );
+  /**
+   * Gets the accessible template that describes the graph area.
+   */
+  public override getAccessibleTemplate(): TReadOnlyProperty<AccessibleTemplateValue> {
+    return AccessibleList.createTemplate( {
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
+      listItems: [
+        this.getIntegralCurveListItem(),
+        this.getCoordinateGridListItem(),
+        this.getValuesListItem()
+      ]
+    } );
   }
 
   /**
    * Gets the list item that describes the integral curve.
    */
-  private static getIntegralCurveListItem( integralCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  private getIntegralCurveListItem(): AccessibleListItem {
 
     // _.uniq is needed to prevent duplicate dependencies because FluentPatterns share dependent Properties.
     const dependencies = _.uniq( [
@@ -45,13 +53,13 @@ export default class IntegralGraphAreaAccessibleListNode extends GraphAreaAccess
 
       // Values used in the above descriptions.
       CalculusGrapherSymbols.accessibleVariableSymbolProperty,
-      integralCurveVisibleProperty
+      this.integralCurveVisibleProperty
     ] );
 
     const stringProperty = DerivedStringProperty.deriveAny( dependencies,
       () => {
         let string: string;
-        if ( integralCurveVisibleProperty.value ) {
+        if ( this.integralCurveVisibleProperty.value ) {
           string = CalculusGrapherFluent.a11y.graphAreas.integral.accessibleList.continuous.format( {
             variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value
           } );

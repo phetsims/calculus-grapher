@@ -11,7 +11,8 @@
 
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
-import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import SecondDerivativeCurve from '../../model/SecondDerivativeCurve.js';
@@ -19,25 +20,30 @@ import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
 export default class SecondDerivativeGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
 
-  public constructor( secondDerivativeCurve: SecondDerivativeCurve,
-                      secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,
+  public constructor( private readonly secondDerivativeCurve: SecondDerivativeCurve,
+                      private readonly secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
+    super( gridVisibleProperty );
+  }
 
-    const listItems: AccessibleListItem[] = [
-      SecondDerivativeGraphAreaAccessibleListNode.getSecondDerivativeCurveListItem( secondDerivativeCurve, secondDerivativeCurveVisibleProperty ),
-      GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
-      GraphAreaAccessibleListNode.getValuesListItem()
-    ];
-
-    super( listItems );
+  /**
+   * Gets the accessible template that describes the graph area.
+   */
+  public override getAccessibleTemplate(): TReadOnlyProperty<AccessibleTemplateValue> {
+    return AccessibleList.createTemplate( {
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
+      listItems: [
+        this.getSecondDerivativeCurveListItem(),
+        this.getCoordinateGridListItem(),
+        this.getValuesListItem()
+      ]
+    } );
   }
 
   /**
    * Gets the list item that describes the second derivative curve.
    */
-  private static getSecondDerivativeCurveListItem(
-    secondDerivativeCurve: SecondDerivativeCurve,
-    secondDerivativeCurveVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  private getSecondDerivativeCurveListItem(): AccessibleListItem {
 
     const stringProperty = new DerivedStringProperty( [
 
@@ -47,8 +53,8 @@ export default class SecondDerivativeGraphAreaAccessibleListNode extends GraphAr
         CalculusGrapherFluent.a11y.graphAreas.secondDerivative.accessibleList.hiddenStringProperty,
 
         // Values used to select one of the above descriptions.
-        secondDerivativeCurve.numberOfDiscontinuousPointsProperty,
-        secondDerivativeCurveVisibleProperty
+        this.secondDerivativeCurve.numberOfDiscontinuousPointsProperty,
+        this.secondDerivativeCurveVisibleProperty
       ],
       (
         continuousString,

@@ -55,14 +55,13 @@ export default class DerivativeGraphNode extends GraphNode {
       [ graphSetProperty, this.curveLayerVisibleProperty ],
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.DERIVATIVE ) && curveLayerVisible );
 
-    // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new DerivativeGraphAreaAccessibleListNode( derivativeCurve, this.derivativeCurveVisibleProperty, gridVisibleProperty );
-    this.addChild( accessibleListNode );
+    // Describe the graph.
+    const describer = new DerivativeGraphAreaAccessibleListNode( derivativeCurve, this.derivativeCurveVisibleProperty, gridVisibleProperty );
+    this.setAccessibleTemplate( describer.getAccessibleTemplate() );
 
     // Focus order.
     affirm( this.yZoomButtonGroup, 'DerivativeGraphNode requires a yZoomButtonGroup.' );
     this.pdomOrder = [
-      accessibleListNode,
       this.yZoomButtonGroup,
       this.curveVisibilityToggleButton
     ];

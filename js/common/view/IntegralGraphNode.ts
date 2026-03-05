@@ -55,14 +55,13 @@ export default class IntegralGraphNode extends GraphNode {
       [ graphSetProperty, this.curveLayerVisibleProperty ],
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.INTEGRAL ) && curveLayerVisible );
 
-    // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new IntegralGraphAreaAccessibleListNode( this.integralCurveVisibleProperty, gridVisibleProperty );
-    this.addChild( accessibleListNode );
+    // Describe the graph.
+    const describer = new IntegralGraphAreaAccessibleListNode( this.integralCurveVisibleProperty, gridVisibleProperty );
+    this.setAccessibleTemplate( describer.getAccessibleTemplate() );
 
     // Focus order.
     affirm( this.yZoomButtonGroup, 'IntegralGraphNode requires a yZoomButtonGroup.' );
     this.pdomOrder = [
-      accessibleListNode,
       this.yZoomButtonGroup,
       this.curveVisibilityToggleButton
     ];

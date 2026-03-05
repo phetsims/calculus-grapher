@@ -55,13 +55,12 @@ export default class SecondDerivativeGraphNode extends GraphNode {
       [ graphSetProperty, this.curveLayerVisibleProperty ],
       ( graphSet, curveLayerVisible ) => graphSet.includes( GraphType.SECOND_DERIVATIVE ) && curveLayerVisible );
 
-    // Add AccessibleListNode to describe the graph.
-    const accessibleListNode = new SecondDerivativeGraphAreaAccessibleListNode( secondDerivativeCurve, this.secondDerivativeCurveVisibleProperty, gridVisibleProperty );
-    this.addChild( accessibleListNode );
+    // Describe the graph.
+    const describer = new SecondDerivativeGraphAreaAccessibleListNode( secondDerivativeCurve, this.secondDerivativeCurveVisibleProperty, gridVisibleProperty );
+    this.setAccessibleTemplate( describer.getAccessibleTemplate() );
 
     affirm( this.yZoomButtonGroup, 'SecondDerivativeGraphNode requires a yZoomButtonGroup.' );
     this.pdomOrder = [
-      accessibleListNode,
       this.yZoomButtonGroup,
       this.curveVisibilityToggleButton
     ];

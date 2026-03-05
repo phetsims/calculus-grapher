@@ -13,7 +13,8 @@ import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
-import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import PredictCurve from '../../model/PredictCurve.js';
@@ -22,32 +23,35 @@ import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
 export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessibleListNode {
 
-  public constructor( primaryCurve: PrimaryCurve,
-                      predictCurve: PredictCurve,
-                      primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
-                      predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
-                      predictEnabledProperty: TReadOnlyProperty<boolean>,
-                      showPrimaryCurveProperty: TReadOnlyProperty<boolean>,
+  public constructor( private readonly primaryCurve: PrimaryCurve,
+                      private readonly predictCurve: PredictCurve,
+                      private readonly primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      private readonly predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
+                      private readonly predictEnabledProperty: TReadOnlyProperty<boolean>,
+                      private readonly showPrimaryCurveProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
+    super( gridVisibleProperty );
+  }
 
-    const listItems: AccessibleListItem[] = [
-      PrimaryGraphAreaAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty, predictEnabledProperty, showPrimaryCurveProperty ),
-      PrimaryGraphAreaAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
-      GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
-      GraphAreaAccessibleListNode.getValuesListItem()
-    ];
-
-    super( listItems );
+  /**
+   * Gets the accessible template that describes the graph area.
+   */
+  public override getAccessibleTemplate(): TReadOnlyProperty<AccessibleTemplateValue> {
+    return AccessibleList.createTemplate( {
+      leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
+      listItems: [
+        this.getPrimaryCurveListItem(),
+        this.getPredictCurveListItem(),
+        this.getCoordinateGridListItem(),
+        this.getValuesListItem()
+      ]
+    } );
   }
 
   /**
    * Gets the bullet list item that describes the primary curve.
    */
-  private static getPrimaryCurveListItem(
-    primaryCurve: PrimaryCurve,
-    primaryCurveVisibleProperty: TReadOnlyProperty<boolean>,
-    predictEnabledProperty: TReadOnlyProperty<boolean>,
-    showPrimaryCurveProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  private getPrimaryCurveListItem(): AccessibleListItem {
 
     const stringProperty = new DerivedStringProperty( [
 
@@ -59,9 +63,9 @@ export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessi
         CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.primaryCurve.hiddenStringProperty,
 
         // Values used to select one of the above descriptions.
-        primaryCurve.numberOfDiscontinuousPointsProperty,
-        primaryCurve.numberOfCuspPointsProperty,
-        primaryCurveVisibleProperty
+        this.primaryCurve.numberOfDiscontinuousPointsProperty,
+        this.primaryCurve.numberOfCuspPointsProperty,
+        this.primaryCurveVisibleProperty
       ],
       (
         continuousAndDifferentiableString,
@@ -103,7 +107,7 @@ export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessi
 
     return {
       stringProperty: stringProperty,
-      visibleProperty: new DerivedProperty( [ predictEnabledProperty, showPrimaryCurveProperty ],
+      visibleProperty: new DerivedProperty( [ this.predictEnabledProperty, this.showPrimaryCurveProperty ],
         ( predictEnabled, showPrimaryCurve ) => !predictEnabled || showPrimaryCurve )
     };
   }
@@ -111,9 +115,7 @@ export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessi
   /**
    * Gets the bullet list item that describes the predict curve.
    */
-  private static getPredictCurveListItem( predictCurve: PredictCurve,
-                                          predictCurveVisibleProperty: TReadOnlyProperty<boolean>,
-                                          predictEnabledProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  private getPredictCurveListItem(): AccessibleListItem {
 
     const primaryCurveStringProperty = new DerivedStringProperty( [
 
@@ -125,10 +127,10 @@ export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessi
         CalculusGrapherFluent.a11y.graphAreas.primary.accessibleList.predictCurve.hiddenStringProperty,
 
         // Values used in the above descriptions.
-        predictCurve.numberOfDiscontinuousPointsProperty,
-        predictCurve.numberOfCuspPointsProperty,
-        predictCurveVisibleProperty,
-        predictEnabledProperty
+        this.predictCurve.numberOfDiscontinuousPointsProperty,
+        this.predictCurve.numberOfCuspPointsProperty,
+        this.predictCurveVisibleProperty,
+        this.predictEnabledProperty
       ],
       (
         continuousAndDifferentiableString,
@@ -172,7 +174,7 @@ export default class PrimaryGraphAreaAccessibleListNode extends GraphAreaAccessi
 
     return {
       stringProperty: primaryCurveStringProperty,
-      visibleProperty: predictEnabledProperty
+      visibleProperty: this.predictEnabledProperty
     };
   }
 }

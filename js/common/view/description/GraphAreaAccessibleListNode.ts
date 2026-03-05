@@ -11,38 +11,39 @@
  */
 
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
-import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
-import Node from '../../../../../scenery/js/nodes/Node.js';
+import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
-export default class GraphAreaAccessibleListNode extends Node {
+export default abstract class GraphAreaAccessibleListNode {
 
-  protected constructor( listItems: AccessibleListItem[] ) {
+  private readonly gridVisibleProperty: TReadOnlyProperty<boolean>;
 
-    super( {
-      accessibleTemplate: AccessibleList.createTemplate( {
-        leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
-        listItems: listItems
-      } )
-    } );
+  protected constructor( gridVisibleProperty: TReadOnlyProperty<boolean> ) {
+    this.gridVisibleProperty = gridVisibleProperty;
   }
+
+  /**
+   * Gets the accessible template that describes the graph area.
+   */
+  public abstract getAccessibleTemplate(): TReadOnlyProperty<AccessibleTemplateValue>;
 
   /**
    * Gets the list item that describes the coordinate grid.
    */
-  protected static getCoordinateGridListItem( gridLinesVisibleProperty: TReadOnlyProperty<boolean> ): AccessibleListItem {
+  protected getCoordinateGridListItem(): AccessibleListItem {
     return {
       stringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.coordinateGridShownStringProperty,
-      visibleProperty: gridLinesVisibleProperty
+      visibleProperty: this.gridVisibleProperty
     };
   }
 
   /**
    * Gets the list item that describes the values on the axes.
    */
-  protected static getValuesListItem(): AccessibleListItem {
+  protected getValuesListItem(): AccessibleListItem {
     return {
       stringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.valuesLabeledOnAxesStringProperty,
       visibleProperty: CalculusGrapherPreferences.valuesVisibleProperty
