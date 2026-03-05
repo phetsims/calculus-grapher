@@ -18,7 +18,7 @@ export default abstract class ExplorationToolDescriber {
 
   private readonly tool: AncillaryTool;
 
-  public constructor( tool: AncillaryTool ) {
+  protected constructor( tool: AncillaryTool ) {
     this.tool = tool;
   }
 
