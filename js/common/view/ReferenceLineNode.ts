@@ -32,14 +32,12 @@ const X_DECIMAL_PLACES = 2;
 
 export default class ReferenceLineNode extends ScrubberNode {
 
-  private readonly describer: ReferenceLineDescriber;
-
   public constructor( referenceLine: ReferenceLine,
                       describer: ReferenceLineDescriber,
                       chartTransform: ChartTransform,
                       tandem: Tandem ) {
 
-    super( referenceLine, chartTransform, {
+    super( referenceLine, describer, chartTransform, {
       handleColor: referenceLine.handleColorProperty,
       lineStroke: referenceLine.lineColorProperty,
       lineDash: [], // solid line
@@ -56,8 +54,6 @@ export default class ReferenceLineNode extends ScrubberNode {
         variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
       } )
     } );
-
-    this.describer = describer;
 
     // See https://github.com/phetsims/calculus-grapher/issues/305
     const xDisplayProperty = new DerivedProperty( [ referenceLine.xProperty ],
@@ -89,13 +85,6 @@ export default class ReferenceLineNode extends ScrubberNode {
     Multilink.multilink( [ this.line.boundsProperty, numberDisplay.boundsProperty ], () => {
       numberDisplay.centerBottom = this.line.centerTop;
     } );
-  }
-
-  /**
-   * Adds an accessible object response that describes the reference line and what it intersects.
-   */
-  public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse() );
   }
 
   /**

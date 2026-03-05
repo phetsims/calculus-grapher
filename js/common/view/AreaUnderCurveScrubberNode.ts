@@ -28,8 +28,6 @@ type AreaUnderCurveScrubberNodeOptions = SelfOptions &
 
 export default class AreaUnderCurveScrubberNode extends ScrubberNode {
 
-  private readonly describer: AreaUnderCurveToolDescriber;
-
   public constructor( areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       describer: AreaUnderCurveToolDescriber,
                       chartTransform: ChartTransform,
@@ -46,9 +44,7 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
       } )
     }, providedOptions );
 
-    super( areaUnderCurveScrubber, chartTransform, options );
-
-    this.describer = describer;
+    super( areaUnderCurveScrubber, describer, chartTransform, options );
 
     // Horizontal 'accumulation line' that extends from x=0 to the drag handle's position
     const accumulationLine = new Line( 0, 0, this.handleNode.centerX, 0, {
@@ -64,13 +60,6 @@ export default class AreaUnderCurveScrubberNode extends ScrubberNode {
       accumulationLine.x2 = this.handleNode.centerX;
       accumulationLine.centerY = this.handleNode.centerY;
     } );
-  }
-
-  /**
-   * Adds an accessible object response that describes the Area Under Curve scrubber and what it intersects.
-   */
-  public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse() );
   }
 
   /**

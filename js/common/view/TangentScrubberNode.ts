@@ -25,8 +25,6 @@ export type TangentScrubberNodeOptions = SelfOptions &
 
 export default class TangentScrubberNode extends ScrubberNode {
 
-  private readonly describer: TangentToolDescriber;
-
   public constructor( tangentScrubber: TangentScrubber,
                       describer: TangentToolDescriber,
                       chartTransform: ChartTransform,
@@ -43,16 +41,7 @@ export default class TangentScrubberNode extends ScrubberNode {
       } )
     }, providedOptions );
 
-    super( tangentScrubber, chartTransform, options );
-
-    this.describer = describer;
-  }
-
-  /**
-   * Adds an accessible object response that describes the tangent scrubber and what it intersects.
-   */
-  public override doAccessibleObjectResponse(): void {
-    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse() );
+    super( tangentScrubber, describer, chartTransform, options );
   }
 
   /**

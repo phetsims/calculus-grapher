@@ -20,6 +20,7 @@ import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from '../model/AncillaryTool.js';
+import ExplorationToolDescriber from './description/ExplorationToolDescriber.js';
 import ScrubberHandleNode from './ScrubberHandleNode.js';
 
 type SelfOptions = {
@@ -53,7 +54,10 @@ export default abstract class ScrubberNode extends Node {
   // spherical handle for dragging the scrubber
   protected readonly handleNode: Node;
 
+  private readonly describer: ExplorationToolDescriber;
+
   protected constructor( scrubber: AncillaryTool,
+                         describer: ExplorationToolDescriber,
                          chartTransform: ChartTransform,
                          providedOptions: ScrubberNodeOptions ) {
 
@@ -73,6 +77,8 @@ export default abstract class ScrubberNode extends Node {
     }, providedOptions );
 
     super( options );
+
+    this.describer = describer;
 
     // vertical line
     const line = new Line( 0, options.lineTop, 0, options.lineBottom, {
@@ -125,7 +131,9 @@ export default abstract class ScrubberNode extends Node {
   /**
    * Adds an object response when the scrubber gets focused or is moved.
    */
-  public abstract doAccessibleObjectResponse(): void;
+  public doAccessibleObjectResponse(): void {
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse() );
+  }
 
   /**
    * Creates an icon for a scrubber.
