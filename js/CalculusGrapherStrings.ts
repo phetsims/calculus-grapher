@@ -373,9 +373,6 @@ type StringsType = {
       'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
       'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
     };
-    'explorationTools': {
-      'accessibleHeadingStringProperty': LocalizedStringProperty;
-    };
     'curveManipulators': {
       'defaults': {
         'accessibleObjectResponse': {
@@ -400,6 +397,16 @@ type StringsType = {
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       }
     };
+    'explorationTools': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleObjectResponse': {
+        'xPhrase': {
+          'minStringProperty': LocalizedStringProperty;
+          'maxStringProperty': LocalizedStringProperty;
+          'otherStringProperty': LocalizedStringProperty;
+        }
+      }
+    };
     'referenceLine': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
@@ -410,7 +417,6 @@ type StringsType = {
           'integralPrimaryDerivativeStringProperty': LocalizedStringProperty;
           'primaryDerivativeSecondDerivativeStringProperty': LocalizedStringProperty;
         };
-        'xPhraseStringProperty': LocalizedStringProperty;
         'primaryPhrase': {
           'predictAndPrimaryStringProperty': LocalizedStringProperty;
           'predictUndefinedStringProperty': LocalizedStringProperty;
@@ -441,7 +447,6 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponse': {
         'patternStringProperty': LocalizedStringProperty;
-        'xPhraseStringProperty': LocalizedStringProperty;
         'slopePhrase': {
           'zeroStringProperty': LocalizedStringProperty;
           'positiveStringProperty': LocalizedStringProperty;
@@ -459,7 +464,6 @@ type StringsType = {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponse': {
         'patternStringProperty': LocalizedStringProperty;
-        'xPhraseStringProperty': LocalizedStringProperty;
         'integralPhrase': {
           'integralValueStringProperty': LocalizedStringProperty;
           'hiddenStringProperty': LocalizedStringProperty;

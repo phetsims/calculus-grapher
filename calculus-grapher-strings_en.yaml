@@ -409,10 +409,6 @@ a11y:
   # Tools
   #=======================================================================================================
 
-  # Heading for all tools.
-  explorationTools:
-    accessibleHeading: Exploration Tools
-
   curveManipulators:
 
     # Defaults for all curve manipulators.
@@ -442,6 +438,16 @@ a11y:
                           Move predict curve manipulator in any direction to set location, then space to grab and 
                           dynamically manipulate curve using chosen Curve Manipulation Type.
 
+  # For all tools
+  explorationTools:
+    accessibleHeading: Exploration Tools
+    accessibleObjectResponse:
+      # Used in patterns that have a {$xPhrase} placeholder.
+      xPhrase:
+        min:   at {$variable} min, {$variable} equals {$value}
+        max:   at {$variable} max, {$variable} equals {$value}
+        other: at {$variable} equals {$value}
+
   # Reference Line
   referenceLine:
     accessibleName:     Reference Line
@@ -459,7 +465,6 @@ a11y:
 
       # These phrases are substituted into referenceLineTool.accessibleObjectResponse.patterns.*
       # Key names match the placeholder names in the patterns above.
-      xPhrase: at {$variable} equals {$value}
       primaryPhrase:
         predictAndPrimary: '{$predictPhrase}, {$primaryPhrase}'
         predictUndefined:  predict f of {$variable} is undefined
@@ -495,7 +500,6 @@ a11y:
 
       # These phrases are substituted into tangentTool.accessibleObjectResponse.pattern.
       # Key names match the placeholder names in that pattern.
-      xPhrase: at {$variable} equals {$value}
       slopePhrase:
         zero:     slope is zero
         positive: slope is positive {$absoluteSlope}
@@ -521,7 +525,6 @@ a11y:
 
       # These phrases are substituted into areaUnderCurveTool.accessibleObjectResponse.pattern.
       # Key names match the placeholder names in that pattern.
-      xPhrase: at {$variable} equals {$value}
       integralPhrase:
         integralValue: integral up to {$variable} is {$value}
         hidden:        integral curve hidden

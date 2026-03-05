@@ -16,8 +16,9 @@ import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import GraphSet from '../../model/GraphSet.js';
 import GraphType from '../../model/GraphType.js';
 import ReferenceLine from '../../model/ReferenceLine.js';
+import ExplorationToolDescriber from './ExplorationToolDescriber.js';
 
-export default class ReferenceLineDescriber {
+export default class ReferenceLineDescriber extends ExplorationToolDescriber {
 
   public constructor( private readonly referenceLine: ReferenceLine,
                       private readonly graphSetProperty: TReadOnlyProperty<GraphSet>,
@@ -29,12 +30,13 @@ export default class ReferenceLineDescriber {
                       private readonly secondDerivativeCurveLayerVisibleProperty: TReadOnlyProperty<boolean>
   ) {
     // All fields are defined and initialized via constructor params.
+    super( referenceLine );
   }
 
   /**
-   * Gets the accessible object response that describes the scrubber's position and what its vertical line intersects.
+   * Gets the accessible object response that describes the tool's position and what its vertical line intersects.
    */
-  public getAccessibleObjectResponse(): string {
+  public override getAccessibleObjectResponse(): string {
 
     let response: string;
     const graphSet = this.graphSetProperty.value;
@@ -75,17 +77,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's position along the horizontal axis.
-   */
-  private getXPhrase(): string {
-    return CalculusGrapherFluent.a11y.referenceLine.accessibleObjectResponse.xPhrase.format( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-      value: toFixedNumber( this.referenceLine.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
-    } );
-  }
-
-  /**
-   * Gets the phrase that describes the scrubber's intersection with the primary graph, which may be showing
+   * Gets the phrase that describes the tool's intersection with the primary graph, which may be showing
    * the primary curve, the predict curve, both, or neither.
    */
   private getPrimaryPhrase(): string {
@@ -103,7 +95,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's intersection with the predict curve.
+   * Gets the phrase that describes the tool's intersection with the predict curve.
    * The predict curve is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getPredictCurvePhrase(): string {
@@ -132,7 +124,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's intersection with the primary curve.
+   * Gets the phrase that describes the tool's intersection with the primary curve.
    * The primary curve is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getPrimaryCurvePhrase(): string {
@@ -161,7 +153,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's intersection with the integral graph.
+   * Gets the phrase that describes the tool's intersection with the integral graph.
    * The integral is described as a y-value or hidden.
    */
   private getIntegralPhrase(): string {
@@ -181,7 +173,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's intersection with the derivative graph.
+   * Gets the phrase that describes the tool's intersection with the derivative graph.
    * The derivative is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getDerivativePhrase(): string {
@@ -210,7 +202,7 @@ export default class ReferenceLineDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's intersection with the second derivative graph.
+   * Gets the phrase that describes the tool's intersection with the second derivative graph.
    * The second derivative is described as undefined (if there is a discontinuity), a y-value, or hidden.
    */
   private getSecondDerivativePhrase(): string {

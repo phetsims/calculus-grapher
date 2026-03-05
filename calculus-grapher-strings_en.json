@@ -714,11 +714,6 @@
         "value": "Curve shown."
       }
     },
-    "explorationTools": {
-      "accessibleHeading": {
-        "value": "Exploration Tools"
-      }
-    },
     "curveManipulators": {
       "defaults": {
         "accessibleObjectResponse": {
@@ -767,6 +762,24 @@
         }
       }
     },
+    "explorationTools": {
+      "accessibleHeading": {
+        "value": "Exploration Tools"
+      },
+      "accessibleObjectResponse": {
+        "xPhrase": {
+          "min": {
+            "value": "at {$variable} min, {$variable} equals {$value}"
+          },
+          "max": {
+            "value": "at {$variable} max, {$variable} equals {$value}"
+          },
+          "other": {
+            "value": "at {$variable} equals {$value}"
+          }
+        }
+      }
+    },
     "referenceLine": {
       "accessibleName": {
         "value": "Reference Line"
@@ -788,9 +801,6 @@
           "primaryDerivativeSecondDerivative": {
             "value": "{$xPhrase}, {$primaryPhrase}, {$derivativePhrase}, {$secondDerivativePhrase}"
           }
-        },
-        "xPhrase": {
-          "value": "at {$variable} equals {$value}"
         },
         "primaryPhrase": {
           "predictAndPrimary": {
@@ -858,9 +868,6 @@
         "pattern": {
           "value": "{$xPhrase}, {$slopePhrase}, {$derivativePhrase}"
         },
-        "xPhrase": {
-          "value": "at {$variable} equals {$value}"
-        },
         "slopePhrase": {
           "zero": {
             "value": "slope is zero"
@@ -895,9 +902,6 @@
       "accessibleObjectResponse": {
         "pattern": {
           "value": "{$xPhrase}, {$integralPhrase}, {$areaPhrase}"
-        },
-        "xPhrase": {
-          "value": "at {$variable} equals {$value}"
         },
         "integralPhrase": {
           "integralValue": {

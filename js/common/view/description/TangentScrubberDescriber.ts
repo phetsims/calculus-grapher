@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * TangentScrubberDescriber creates accessible responses for the Tangent scrubber.
+ * TangentScrubberDescriber creates accessible responses for the Tangent Tool (aka scrubber).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -14,34 +14,27 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import TangentScrubber from '../../model/TangentScrubber.js';
+import ExplorationToolDescriber from './ExplorationToolDescriber.js';
 
-export default class TangentScrubberDescriber {
+//TODO https://github.com/phetsims/calculus-grapher/issues/389 rename TangentToolDescriber
+export default class TangentScrubberDescriber extends ExplorationToolDescriber {
 
   public constructor( private readonly tangentScrubber: TangentScrubber,
                       private readonly primaryCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       private readonly derivativeCurveLayerVisibleProperty: TReadOnlyProperty<boolean>
   ) {
     // All fields are defined and initialized via constructor params.
+    super( tangentScrubber );
   }
 
   /**
-   * Gets the accessible object response that describes the scrubber's position and what its vertical line intersects.
+   * Gets the accessible object response that describes the tool's x-coordinate and what its vertical line intersects.
    */
-  public getAccessibleObjectResponse(): string {
+  public override getAccessibleObjectResponse(): string {
     return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.pattern.format( {
       xPhrase: this.getXPhrase(),
       slopePhrase: this.getSlopePhrase(),
       derivativePhrase: this.getDerivativePhrase()
-    } );
-  }
-
-  /**
-   * Gets the phrase that describes the scrubber's position along the horizontal axis.
-   */
-  private getXPhrase(): string {
-    return CalculusGrapherFluent.a11y.tangentTool.accessibleObjectResponse.xPhrase.format( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-      value: toFixedNumber( this.tangentScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
     } );
   }
 
@@ -79,7 +72,7 @@ export default class TangentScrubberDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's intersection with the derivative graph.
+   * Gets the phrase that describes the tool's intersection with the derivative graph.
    * The derivative is described as a y-value or hidden.
    */
   private getDerivativePhrase(): string {

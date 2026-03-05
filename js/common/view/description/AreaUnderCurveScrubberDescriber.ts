@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * AreaUnderCurveScrubberDescriber creates accessible responses for the Area Under Curve scrubber.
+ * AreaUnderCurveScrubberDescriber creates accessible responses for the Area Under Curve Tool (aka scrubber).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -13,20 +13,23 @@ import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
 import AreaUnderCurveScrubber from '../../model/AreaUnderCurveScrubber.js';
+import ExplorationToolDescriber from './ExplorationToolDescriber.js';
 
-export default class AreaUnderCurveScrubberDescriber {
+//TODO https://github.com/phetsims/calculus-grapher/issues/389 rename AreaUnderCurveToolDescriber
+export default class AreaUnderCurveScrubberDescriber extends ExplorationToolDescriber {
 
   public constructor( private readonly areaUnderCurveScrubber: AreaUnderCurveScrubber,
                       private readonly integralCurveLayerVisibleProperty: TReadOnlyProperty<boolean>,
                       private readonly primaryCurveLayerVisibleProperty: TReadOnlyProperty<boolean>
   ) {
     // All fields are defined and initialized via constructor params.
+    super( areaUnderCurveScrubber );
   }
 
   /**
-   * Gets the accessible object response that describes the scrubber's position and what its vertical line intersects.
+   * Gets the accessible object response that describes the tool's x-coordinate and what its vertical line intersects.
    */
-  public getAccessibleObjectResponse(): string {
+  public override getAccessibleObjectResponse(): string {
     return CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.pattern.format( {
       xPhrase: this.getXPhrase(),
       integralPhrase: this.getIntegralPhrase(),
@@ -35,17 +38,7 @@ export default class AreaUnderCurveScrubberDescriber {
   }
 
   /**
-   * Gets the phrase that describes the scrubber's position along the horizontal axis.
-   */
-  private getXPhrase(): string {
-    return CalculusGrapherFluent.a11y.areaUnderCurveTool.accessibleObjectResponse.xPhrase.format( {
-      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty.value,
-      value: toFixedNumber( this.areaUnderCurveScrubber.xProperty.value, CalculusGrapherConstants.X_DESCRIPTION_DECIMALS )
-    } );
-  }
-
-  /**
-   * Gets the phrase that describes the scrubber's intersection with the integral graph.
+   * Gets the phrase that describes the tool's intersection with the integral graph.
    * The integral is described as a y-value or hidden.
    */
   private getIntegralPhrase(): string {
@@ -65,7 +58,7 @@ export default class AreaUnderCurveScrubberDescriber {
   }
 
   /**
-   * Gets the phrase that describes the area under the primary curve from 0 to the scrubber's position.
+   * Gets the phrase that describes the area under the primary curve from 0 to the tool's x-coordinate.
    * Area is described as zero, positive, negative, or hidden.
    */
   private getAreaPhrase(): string {
