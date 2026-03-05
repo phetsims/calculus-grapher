@@ -121,8 +121,8 @@ export default class CurrentDetailsAccessibleListNode extends Node {
 
     super( {
       accessibleTemplate: AccessibleList.createTemplate( {
-        listItems: listItems,
-        leadingParagraphStringProperty: leadingParagraphStringProperty
+        leadingParagraphStringProperty: leadingParagraphStringProperty,
+        listItems: listItems
       } )
     } );
   }

@@ -23,8 +23,8 @@ export default class GraphAreaAccessibleListNode extends Node {
 
     super( {
       accessibleTemplate: AccessibleList.createTemplate( {
-        listItems: listItems,
-        leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty
+        leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
+        listItems: listItems
       } )
     } );
   }
