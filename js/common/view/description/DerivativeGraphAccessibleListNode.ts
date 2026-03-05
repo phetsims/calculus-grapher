@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * DerivativeGraphAccessibleListNode is the accessible list that describes the derivative graph.
+ * DerivativeGraphAccessibleListNode is the accessible list that describes the Derivative Graph Area.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -12,9 +12,9 @@ import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import DerivativeCurve from '../../model/DerivativeCurve.js';
-import GraphAccessibleListNode from './GraphAccessibleListNode.js';
+import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
-export default class DerivativeGraphAccessibleListNode extends GraphAccessibleListNode {
+export default class DerivativeGraphAccessibleListNode extends GraphAreaAccessibleListNode {
 
   public constructor( derivativeCurve: DerivativeCurve,
                       derivativeCurveVisibleProperty: TReadOnlyProperty<boolean>,
@@ -22,8 +22,8 @@ export default class DerivativeGraphAccessibleListNode extends GraphAccessibleLi
 
     const listItems: AccessibleListItem[] = [
       DerivativeGraphAccessibleListNode.getDerivativeCurveListItem( derivativeCurve, derivativeCurveVisibleProperty ),
-      GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
-      GraphAccessibleListNode.getValuesListItem()
+      GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
+      GraphAreaAccessibleListNode.getValuesListItem()
     ];
 
     super( listItems );

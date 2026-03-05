@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * IntegralGraphAccessibleListNode is the accessible list that describes the integral graph.
+ * IntegralGraphAccessibleListNode is the accessible list that describes the Integral Graph.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -12,17 +12,17 @@ import { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility
 import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
-import GraphAccessibleListNode from './GraphAccessibleListNode.js';
+import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
-export default class IntegralGraphAccessibleListNode extends GraphAccessibleListNode {
+export default class IntegralGraphAccessibleListNode extends GraphAreaAccessibleListNode {
 
   public constructor( integralCurveVisibleProperty: TReadOnlyProperty<boolean>,
                       gridVisibleProperty: TReadOnlyProperty<boolean> ) {
 
     const listItems: AccessibleListItem[] = [
       IntegralGraphAccessibleListNode.getIntegralCurveListItem( integralCurveVisibleProperty ),
-      GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
-      GraphAccessibleListNode.getValuesListItem()
+      GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
+      GraphAreaAccessibleListNode.getValuesListItem()
     ];
 
     super( listItems );

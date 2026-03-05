@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * PrimaryGraphAccessibleListNode is the accessible list that describes the Primary graph.
+ * PrimaryGraphAccessibleListNode is the accessible list that describes the Primary Graph Area.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,9 +15,9 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import PredictCurve from '../../model/PredictCurve.js';
 import PrimaryCurve from '../../model/PrimaryCurve.js';
-import GraphAccessibleListNode from './GraphAccessibleListNode.js';
+import GraphAreaAccessibleListNode from './GraphAreaAccessibleListNode.js';
 
-export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListNode {
+export default class PrimaryGraphAccessibleListNode extends GraphAreaAccessibleListNode {
 
   public constructor( primaryCurve: PrimaryCurve,
                       predictCurve: PredictCurve,
@@ -30,8 +30,8 @@ export default class PrimaryGraphAccessibleListNode extends GraphAccessibleListN
     const listItems: AccessibleListItem[] = [
       PrimaryGraphAccessibleListNode.getPrimaryCurveListItem( primaryCurve, primaryCurveVisibleProperty, predictEnabledProperty, showPrimaryCurveProperty ),
       PrimaryGraphAccessibleListNode.getPredictCurveListItem( predictCurve, predictCurveVisibleProperty, predictEnabledProperty ),
-      GraphAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
-      GraphAccessibleListNode.getValuesListItem()
+      GraphAreaAccessibleListNode.getCoordinateGridListItem( gridVisibleProperty ),
+      GraphAreaAccessibleListNode.getValuesListItem()
     ];
 
     super( listItems );

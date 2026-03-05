@@ -1,8 +1,8 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * GraphAccessibleListNode is the base class for accessible lists that describe graphs.
- * It handles the parts of the accessible list that are common to all graphs.
+ * GraphAreaAccessibleListNode is the base class for accessible lists that describe Graph Areas.
+ * It handles the parts of the accessible list that are common to all Graph Areas.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -14,7 +14,7 @@ import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 
-export default class GraphAccessibleListNode extends Node {
+export default class GraphAreaAccessibleListNode extends Node {
 
   protected constructor( listItems: AccessibleListItem[] ) {
 
@@ -47,4 +47,4 @@ export default class GraphAccessibleListNode extends Node {
   }
 }
 
-calculusGrapher.register( 'GraphAccessibleListNode', GraphAccessibleListNode );
+calculusGrapher.register( 'GraphAreaAccessibleListNode', GraphAreaAccessibleListNode );
