@@ -43,7 +43,7 @@ export default class CalculusGrapherScreenSummaryContent extends ScreenSummaryCo
 }
 
 /**
- * CurrentDetailsNode is the 'current details' part of the screen summary, shared by all screens.
+ * CurrentDetailsNode is the 'current details' section of the screen summary, shared by all screens.
  */
 class CurrentDetailsNode extends Node {
 
