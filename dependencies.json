@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.1.0-dev.14 Fri Feb 27 2026 11:58:13 GMT-0700 (Mountain Standard Time)",
+  "comment": "# calculus-grapher 1.1.0-dev.15 Fri Mar 06 2026 10:30:39 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "4fa534de08d265643688965bf233cb73326c3cb7",
     "branch": "main"
@@ -17,11 +17,11 @@
     "branch": "main"
   },
   "calculus-grapher": {
-    "sha": "50c4e86983451b988d693a5b31810eacba981e51",
+    "sha": "4298fe03c1bc990532d5e17d10661632114bf055",
     "branch": "main"
   },
   "chipper": {
-    "sha": "b6731ad51f0cb658e3aa79c4e1fdda335e6e2b35",
+    "sha": "36f2001eaf84141e05b9eb95ee490ac996e78955",
     "branch": "main"
   },
   "dot": {
@@ -29,7 +29,7 @@
     "branch": "main"
   },
   "joist": {
-    "sha": "362881cae85f06dd9e5e9b9133693d9458f98eec",
+    "sha": "735b4e7c70ae1667e657888431852b371f24714b",
     "branch": "main"
   },
   "kite": {
@@ -37,7 +37,7 @@
     "branch": "main"
   },
   "perennial-alias": {
-    "sha": "70915be1e4928aa725b693317101960168c48272",
+    "sha": "c48d300e5e40af97395345af5f139c6690446d85",
     "branch": "main"
   },
   "phet-core": {
@@ -49,11 +49,11 @@
     "branch": "main"
   },
   "phet-io-sim-specific": {
-    "sha": "0ac2fdd2223ea9e97c2bed161450442f8b09acc2",
+    "sha": "bc0442458896f22ec32e8bd6d705dfc6063b3564",
     "branch": "main"
   },
   "phet-io-wrappers": {
-    "sha": "253f6105238d9e638335a1f76c37f3d7e7759f00",
+    "sha": "0326b411245913ed731cbe110f9fa330a6ba85fb",
     "branch": "main"
   },
   "phetcommon": {
@@ -61,7 +61,7 @@
     "branch": "main"
   },
   "phetmarks": {
-    "sha": "92a48d5d5294f506f5eb5a5524cacdd49631723a",
+    "sha": "1307c90dac6bede112959377a096ae6c0286a888",
     "branch": "main"
   },
   "query-string-machine": {
@@ -69,11 +69,11 @@
     "branch": "main"
   },
   "scenery": {
-    "sha": "091ecd443eaadd424589d1af136f4de9d3dd4327",
+    "sha": "58d8edc545a58d648ca6969242237c2b4cc42d3a",
     "branch": "main"
   },
   "scenery-phet": {
-    "sha": "6ed26432698495ed7a7c3f6623e84d31bc851067",
+    "sha": "1da4a5db1fce18564d2ef24e85e1ce8695d8d5cc",
     "branch": "main"
   },
   "sherpa": {
@@ -85,7 +85,7 @@
     "branch": "main"
   },
   "sun": {
-    "sha": "b20f38f6f384857019f70099ea2be072b2dbeddc",
+    "sha": "f1c02523cc439e0f1d49fd6097b0dafadbb48267",
     "branch": "main"
   },
   "tambo": {
