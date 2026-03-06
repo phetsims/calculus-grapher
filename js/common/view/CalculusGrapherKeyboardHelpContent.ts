@@ -10,7 +10,7 @@ import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboar
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulatorKeyboardHelpSection from './CurveManipulatorKeyboardHelpSection.js';
-import ExplorationToolControlsKeyboardHelpSection from './ExplorationToolControlsKeyboardHelpSection.js';
+import ExplorationToolsKeyboardHelpSection from './ExplorationToolsKeyboardHelpSection.js';
 
 export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
@@ -22,8 +22,8 @@ export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboar
       // Curve Manipulator
       new CurveManipulatorKeyboardHelpSection(),
 
-      // Exploration Tool Controls
-      new ExplorationToolControlsKeyboardHelpSection()
+      // Exploration Tools
+      new ExplorationToolsKeyboardHelpSection()
     ];
 
     // Sections in the right column.

@@ -1,7 +1,7 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * ExplorationToolControlsKeyboardHelpSection is the keyboard-help section that describes how to interact with what
+ * ExplorationToolsKeyboardHelpSection is the keyboard-help section that describes how to interact with what
  * core description refers to as "Exploration Tools", which include Reference Line, Tangent, and Area Under Curve.
  *
  * A note about "Exploration Tools" versus "Ancillary Tools": For core description, those specific tools are described
@@ -42,7 +42,7 @@ const MOVE_SLOWER_HOTKEY_DATA = new HotkeyData( {
   keyboardHelpDialogLabelStringProperty: SceneryPhetFluent.keyboardHelpDialog.moveSlowerStringProperty
 } );
 
-export default class ExplorationToolControlsKeyboardHelpSection extends KeyboardHelpSection {
+export default class ExplorationToolsKeyboardHelpSection extends KeyboardHelpSection {
 
   public constructor() {
 
@@ -71,4 +71,4 @@ export default class ExplorationToolControlsKeyboardHelpSection extends Keyboard
   }
 }
 
-calculusGrapher.register( 'ExplorationToolControlsKeyboardHelpSection', ExplorationToolControlsKeyboardHelpSection );
+calculusGrapher.register( 'ExplorationToolsKeyboardHelpSection', ExplorationToolsKeyboardHelpSection );
