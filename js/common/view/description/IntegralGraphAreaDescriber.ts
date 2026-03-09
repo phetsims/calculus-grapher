@@ -29,7 +29,7 @@ export default class IntegralGraphAreaDescriber extends GraphAreaDescriber {
    * Gets the accessible template that describes the graph area.
    */
   public override getAccessibleTemplate(): TReadOnlyProperty<AccessibleTemplateValue> {
-    return AccessibleList.createTemplate( {
+    return AccessibleList.createTemplateProperty( {
       leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
       listItems: [
         this.getIntegralCurveListItem(),

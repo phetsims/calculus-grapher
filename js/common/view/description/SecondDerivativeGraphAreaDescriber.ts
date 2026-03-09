@@ -30,7 +30,7 @@ export default class SecondDerivativeGraphAreaDescriber extends GraphAreaDescrib
    * Gets the accessible template that describes the graph area.
    */
   public override getAccessibleTemplate(): TReadOnlyProperty<AccessibleTemplateValue> {
-    return AccessibleList.createTemplate( {
+    return AccessibleList.createTemplateProperty( {
       leadingParagraphStringProperty: CalculusGrapherFluent.a11y.graphAreas.defaults.accessibleList.leadingParagraphStringProperty,
       listItems: [
         this.getSecondDerivativeCurveListItem(),

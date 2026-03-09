@@ -147,7 +147,7 @@ class CurrentDetailsNode extends Node {
       } );
 
     super( {
-      accessibleTemplate: AccessibleList.createTemplate( {
+      accessibleTemplate: AccessibleList.createTemplateProperty( {
         leadingParagraphStringProperty: leadingParagraphStringProperty,
         listItems: listItems
       } )
