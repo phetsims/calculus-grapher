@@ -153,14 +153,16 @@ export default class CalculusGrapherColors {
 
   // Color of the primary curve manipulator
   public static readonly primaryCurveManipulatorColorProperty = new ProfileColorProperty( calculusGrapher, 'primaryCurveManipulatorColor', {
-    default: CalculusGrapherColors.primaryCurveStrokeProperty.colorProfileMap.default
+    // See https://github.com/phetsims/calculus-grapher/issues/393
+    default: Color.toColor( CalculusGrapherColors.primaryCurveStrokeProperty.colorProfileMap.default ).withAlpha( 0.55 )
   }, {
     tandem: tandem.createTandem( 'primaryCurveManipulatorColorProperty' )
   } );
 
   // Color of the predict curve manipulator
   public static readonly predictCurveManipulatorColorProperty = new ProfileColorProperty( calculusGrapher, 'predictCurveManipulatorColor', {
-    default: CalculusGrapherColors.predictCurveStrokeProperty.colorProfileMap.default
+    // See https://github.com/phetsims/calculus-grapher/issues/393
+    default: Color.toColor( CalculusGrapherColors.predictCurveStrokeProperty.colorProfileMap.default ).withAlpha( 0.55 )
   }, {
     tandem: tandem.createTandem( 'predictCurveManipulatorColorProperty' )
   } );
