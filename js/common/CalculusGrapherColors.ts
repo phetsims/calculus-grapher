@@ -150,6 +150,20 @@ export default class CalculusGrapherColors {
     phetioDocumentation: 'Color of the handle for moving the reference line',
     phetioValueType: Color.ColorIO
   } );
+
+  // Color of the primary curve manipulator
+  public static readonly primaryCurveManipulatorColorProperty = new ProfileColorProperty( calculusGrapher, 'primaryCurveManipulatorColor', {
+    default: CalculusGrapherColors.primaryCurveStrokeProperty.colorProfileMap.default
+  }, {
+    tandem: tandem.createTandem( 'primaryCurveManipulatorColorProperty' )
+  } );
+
+  // Color of the predict curve manipulator
+  public static readonly predictCurveManipulatorColorProperty = new ProfileColorProperty( calculusGrapher, 'predictCurveManipulatorColor', {
+    default: CalculusGrapherColors.predictCurveStrokeProperty.colorProfileMap.default
+  }, {
+    tandem: tandem.createTandem( 'predictCurveManipulatorColorProperty' )
+  } );
 }
 
 calculusGrapher.register( 'CalculusGrapherColors', CalculusGrapherColors );
