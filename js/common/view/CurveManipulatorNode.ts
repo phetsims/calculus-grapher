@@ -17,8 +17,8 @@ import { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSpher
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import { PressListenerEvent } from '../../../../scenery/js/listeners/PressListener.js';
-import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
@@ -153,26 +153,19 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
   }
 }
 
-class TargetNode extends Node {
+class TargetNode extends Path {
 
   public constructor( radius: number, color: TColor ) {
-    super( {
-      children: [
-        new Circle( {
-          radius: radius,
-          stroke: color,
-          lineWidth: 1
-        } ),
-        new Circle( {
-          radius: radius / 2,
-          stroke: color,
-          lineWidth: 1
-        } ),
-        new Circle( {
-          radius: radius / 8,
-          fill: color
-        } )
-      ]
+
+    // Three concentric circles
+    const shape = new Shape()
+      .circle( 0, 0, radius )
+      .circle( 0, 0, radius / 2 )
+      .circle( 0, 0, radius / 8 );
+
+    super( shape, {
+      stroke: color,
+      lineWidth: 1
     } );
   }
 }
