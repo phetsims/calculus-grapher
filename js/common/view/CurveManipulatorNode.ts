@@ -48,7 +48,7 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
                       visibleProperty: TReadOnlyProperty<boolean>,
                       providedOptions: CurveManipulatorNodeOptions ) {
 
-    const options = optionize4<ShadedSphereNodeOptions, SelfOptions, ShadedSphereNodeOptions>()(
+    const options = optionize4<CurveManipulatorNodeOptions, SelfOptions, ShadedSphereNodeOptions>()(
       {}, AccessibleDraggableOptions, {
         isDisposable: false,
         visibleProperty: visibleProperty,
