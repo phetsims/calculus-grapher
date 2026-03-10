@@ -160,8 +160,8 @@ class TargetNode extends Path {
     // Three concentric circles
     const shape = new Shape()
       .circle( 0, 0, radius )
-      .circle( 0, 0, radius / 2 )
-      .circle( 0, 0, radius / 8 );
+      .newSubpath().circle( 0, 0, radius / 2 )
+      .newSubpath().circle( 0, 0, radius / 8 );
 
     super( shape, {
       stroke: color,
