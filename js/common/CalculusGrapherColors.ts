@@ -13,7 +13,6 @@ import Color from '../../../scenery/js/util/Color.js';
 import ProfileColorProperty from '../../../scenery/js/util/ProfileColorProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import calculusGrapher from '../calculusGrapher.js';
-import CalculusGrapherQueryParameters from './CalculusGrapherQueryParameters.js';
 
 const tandem = Tandem.COLORS;
 
@@ -109,7 +108,7 @@ export default class CalculusGrapherColors {
 
   // Fill for the integral curve (when the area is positive)
   public static readonly integralPositiveFillProperty = new DerivedProperty( [ CalculusGrapherColors.integralCurveStrokeProperty ],
-    integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.integralPositiveFillAlpha ), {
+    integralCurveStroke => integralCurveStroke.withAlpha( 0.25 ), {
       tandem: tandem.createTandem( 'integralPositiveFillProperty' ),
       phetioValueType: Color.ColorIO,
       phetioDocumentation: 'Color for positive area in the integral graph, and the bar in the "Net Signed Area" accordion box.'
@@ -117,7 +116,7 @@ export default class CalculusGrapherColors {
 
   // Fill for the integral curve (when the area is negative)
   public static readonly integralNegativeFillProperty = new DerivedProperty( [ CalculusGrapherColors.integralCurveStrokeProperty ],
-    integralCurveStroke => integralCurveStroke.withAlpha( CalculusGrapherQueryParameters.integralNegativeFillAlpha ), {
+    integralCurveStroke => integralCurveStroke.withAlpha( 0.55 ), {
       tandem: tandem.createTandem( 'integralNegativeFillProperty' ),
       phetioValueType: Color.ColorIO,
       phetioDocumentation: 'Color for negative area in the integral graph, and the bar in the "Net Signed Area" accordion box.'

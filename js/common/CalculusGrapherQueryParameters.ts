@@ -29,7 +29,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   //====================================================================================================================
 
   // Initial value of the 'Variable' preference.
-  // The function variable to be used throughout the simulation
   functionVariable: {
     type: 'string',
     defaultValue: 'x',
@@ -38,7 +37,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   // Initial value of the 'Notation' preference.
-  // The derivative notation to be used throughout the simulation
   derivativeNotation: {
     type: 'string',
     defaultValue: 'lagrange',
@@ -47,7 +45,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   // Initial value of the 'Discontinuities' preference.
-  // Whether to connect discontinuities with nothing or a dashed line
   connectDiscontinuities: {
     type: 'string',
     defaultValue: 'noLine',
@@ -56,7 +53,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   // Initial value of the 'Values' preference.
-  // Shows numerical values wherever they appear in the sim: tick labels, tangent-line slope, etc.
+  // Shows numerical values wherever they appear in the visual UI: tick labels, tangent-line slope, etc.
   valuesVisible: {
     type: 'boolean',
     defaultValue: false,
@@ -64,7 +61,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   // Initial value of the 'Predict' preference.
-  // Determines whether features related to the predict curve are shown in the UI.
   predict: {
     type: 'boolean',
     defaultValue: false,
@@ -83,9 +79,9 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   //====================================================================================================================
 
   /**
-   * The Curves for 'Calculus Grapher' are discretized into equally spaced points. The higher the numberOfPoints
-   * the more faithful is the reproduction of a curve. For values less than 400 points, oddities
-   * are apparent for the underTheCurveTool and tangentTool (see https://github.com/phetsims/calculus-grapher/issues/176)
+   * Curves are discretized into equally spaced points. The higher the numberOfPoints the more faithful is the
+   * reproduction of a curve. For values less than 400 points, oddities are visible for the Area Under Curve tool
+   * and Tangent tool. See https://github.com/phetsims/calculus-grapher/issues/176
    */
   numberOfPoints: {
     type: 'number',
@@ -95,9 +91,9 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The smooth algorithm for 'Calculus Grapher' uses a procedure described in https://en.wikipedia.org/wiki/Kernel_smoother.
-   * using a Gaussian kernel. The value below is the standard deviation of the Gaussian function kernel.
-   * The larger the standard deviation is, the smoother the function.
+   * The smooth algorithm uses a Gaussian kernel procedure described in https://en.wikipedia.org/wiki/Kernel_smoother.
+   * The value below is the standard deviation of the Gaussian kernel. The larger the standard deviation is,
+   * the smoother the function.
    */
   smoothingStandardDeviation: {
     type: 'number',
@@ -107,8 +103,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
   /**
    * CurveManipulationType.PEDESTAL creates a smooth and continuous trapezoidal-shaped curve with rounded corners.
-   * The rounded corners are set by a constant called edgeSlopeFactor.
-   * A larger value creates a wider edge.
+   * The rounded corners are set by a constant called edgeSlopeFactor. A larger value creates a wider edge.
    * https://github.com/phetsims/calculus-grapher/issues/75
    */
   edgeSlopeFactor: {
@@ -118,7 +113,9 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum tilt (slope) of curves relative to the horizontal. Used for CurveManipulationType.TILT.
+   * CurveManipulationType.TILT tilts the curve relative to the horizontal axis, anchored at x=0. To prevent problems
+   * with having an infinite slope, we set a maximum tilt (slope). The default value strikes a balance between the curve
+   * manipulator getting disconnected from the curve, and the curve becoming visually lost as it approaches the y-axis.
    * See https://github.com/phetsims/calculus-grapher/issues/26 for motivation.
    * See https://github.com/phetsims/calculus-grapher/issues/392 for defaultValue change.
    */
@@ -150,22 +147,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   labeledPointsVisible: {
     type: 'boolean',
     defaultValue: false
-  },
-
-  // Alpha for CalculusGrapherColors.integralPositiveFillProperty, so that PhET designer can fine-tune
-  // See https://github.com/phetsims/calculus-grapher/issues/166
-  integralPositiveFillAlpha: {
-    type: 'number',
-    isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
-    defaultValue: 0.25
-  },
-
-  // Alpha for CalculusGrapherColors.integralPositiveFillProperty, so that PhET designer can fine-tune
-  // See https://github.com/phetsims/calculus-grapher/issues/166
-  integralNegativeFillAlpha: {
-    type: 'number',
-    isValidValue: alpha => ( alpha > 0 && alpha <= 1 ),
-    defaultValue: 0.55
   },
 
   // Enables the arrows that cue the user to drag the curve.
