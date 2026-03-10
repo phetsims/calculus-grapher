@@ -118,7 +118,7 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
   },
 
   /**
-   * The maximum tilting (slope) of curves relative to the horizontal. Used for CurveManipulationType.Tilt.
+   * The maximum tilt (slope) of curves relative to the horizontal. Used for CurveManipulationType.TILT.
    * See https://github.com/phetsims/calculus-grapher/issues/26 for motivation.
    * See https://github.com/phetsims/calculus-grapher/issues/392 for value change.
    */
