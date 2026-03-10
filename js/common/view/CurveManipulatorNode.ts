@@ -153,6 +153,9 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
   }
 }
 
+/**
+ * TargetNode implements the look for the curve manipulator.
+ */
 class TargetNode extends Path {
 
   public constructor( radius: number, color: TColor ) {
