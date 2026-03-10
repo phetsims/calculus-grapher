@@ -119,12 +119,13 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 
   /**
    * The maximum tilting (slope) of curves relative to the horizontal. Used for CurveManipulationType.Tilt.
-   * See https://github.com/phetsims/calculus-grapher/issues/26
+   * See https://github.com/phetsims/calculus-grapher/issues/26 for motivation.
+   * See https://github.com/phetsims/calculus-grapher/issues/392 for value change.
    */
   maxTilt: {
     type: 'number',
     isValidValue: value => value > 0,
-    defaultValue: 3
+    defaultValue: 25
   },
 
   // Shows all the curve points as circles in a scatter plot.
