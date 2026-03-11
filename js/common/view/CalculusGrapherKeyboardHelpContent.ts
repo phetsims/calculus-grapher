@@ -23,7 +23,7 @@ export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboar
       // Curve Manipulator
       new CurveManipulatorKeyboardHelpSection(),
 
-      // Exploration Tools
+      // Exploration Tools section, title is screen-specific
       new ExplorationToolsKeyboardHelpSection( explorationToolsTitleStringProperty )
     ];
 
