@@ -16,10 +16,10 @@ import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
 import GraphType from '../common/model/GraphType.js';
-import CalculusGrapherKeyboardHelpContent from '../common/view/CalculusGrapherKeyboardHelpContent.js';
 import CalculusGrapherScreenIconFactory from '../common/view/CalculusGrapherScreenIconFactory.js';
 import GraphSetRadioButtonGroup from '../common/view/GraphSetRadioButtonGroup.js';
 import AdvancedModel from './model/AdvancedModel.js';
+import AdvancedKeyboardHelpContent from './view/AdvancedKeyboardHelpContent.js';
 import AdvancedScreenView from './view/AdvancedScreenView.js';
 
 export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreenView> {
@@ -65,8 +65,7 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
       name: CalculusGrapherFluent.screen.advancedStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createAdvancedScreenIcon(),
-      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(
-        CalculusGrapherFluent.keyboardHelp.referenceLineStringProperty ),
+      createKeyboardHelpNode: () => new AdvancedKeyboardHelpContent(),
       screenButtonsHelpText: CalculusGrapherFluent.a11y.screens.advanced.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );

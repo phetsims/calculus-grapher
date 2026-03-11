@@ -1,7 +1,7 @@
 // Copyright 2025-2026, University of Colorado Boulder
 
 /**
- * CalculusGrapherKeyboardHelpContent is the content for the keyboard-help dialog in all screens.
+ * CalculusGrapherKeyboardHelpContent is the base class for content in the keyboard-help dialog.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,7 +15,7 @@ import ExplorationToolsKeyboardHelpSection from './ExplorationToolsKeyboardHelpS
 
 export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
-  public constructor( explorationToolsTitleStringProperty: TReadOnlyProperty<string> ) {
+  protected constructor( explorationToolsTitleStringProperty: TReadOnlyProperty<string> ) {
 
     // Sections in the left column.
     const leftSections = [
