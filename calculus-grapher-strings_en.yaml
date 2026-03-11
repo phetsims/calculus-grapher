@@ -27,14 +27,15 @@ valuesPreferenceDescription:  >-
 predictPreferenceDescription: Adds a mode that allows you to predict f of {{variable}}.
 referenceLine:                Reference<br>Line
 
+curveManipulatorKeyboardCue:  to <b>Grab</b> or <b>Release</b> curve
+
 keyboardHelp:
-  curveManipulator:
-    heading:            Curve Manipulator
-    grabOrReleaseCurve: Grab or release curve
-    keyboardCue:        to <b>Grab</b> or <b>Release</b> curve
-  explorationTools:
-    heading:     Exploration Tools
-    checkValues: Check values
+  curveManipulator:                  Curve Manipulator
+  grabOrReleaseCurve:                Grab or release curve
+  tangentToolOrReferenceLine:        Tangent Tool or Reference Line
+  areaUnderCurveToolOrReferenceLine: Area Under Curve Tool or Reference Line
+  referenceLine:                     Reference Line
+  readValues:                        With screen reader enabled, read values
 
 a11y:
 

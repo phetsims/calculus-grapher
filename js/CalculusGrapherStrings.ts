@@ -48,16 +48,14 @@ type StringsType = {
   'valuesPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'predictPreferenceDescriptionStringProperty': LocalizedStringProperty;
   'referenceLineStringProperty': LocalizedStringProperty;
+  'curveManipulatorKeyboardCueStringProperty': LocalizedStringProperty;
   'keyboardHelp': {
-    'curveManipulator': {
-      'headingStringProperty': LocalizedStringProperty;
-      'grabOrReleaseCurveStringProperty': LocalizedStringProperty;
-      'keyboardCueStringProperty': LocalizedStringProperty;
-    };
-    'explorationTools': {
-      'headingStringProperty': LocalizedStringProperty;
-      'checkValuesStringProperty': LocalizedStringProperty;
-    }
+    'curveManipulatorStringProperty': LocalizedStringProperty;
+    'grabOrReleaseCurveStringProperty': LocalizedStringProperty;
+    'tangentToolOrReferenceLineStringProperty': LocalizedStringProperty;
+    'areaUnderCurveToolOrReferenceLineStringProperty': LocalizedStringProperty;
+    'referenceLineStringProperty': LocalizedStringProperty;
+    'readValuesStringProperty': LocalizedStringProperty;
   };
   'a11y': {
     'screens': {

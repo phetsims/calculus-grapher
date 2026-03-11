@@ -40,8 +40,7 @@ export default class CurveManipulatorKeyboardHelpSection extends KeyboardHelpSec
       } )
     ];
 
-    // 'Curve Handle' title
-    super( CalculusGrapherFluent.keyboardHelp.curveManipulator.headingStringProperty, rows, {
+    super( CalculusGrapherFluent.keyboardHelp.curveManipulatorStringProperty, rows, {
       isDisposable: false,
       textMaxWidth: 300
     } );

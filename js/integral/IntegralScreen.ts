@@ -41,7 +41,8 @@ export default class IntegralScreen extends Screen<IntegralModel, IntegralScreen
       name: CalculusGrapherFluent.screen.integralStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createIntegralScreenIcon(),
-      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
+      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(
+        CalculusGrapherFluent.keyboardHelp.areaUnderCurveToolOrReferenceLineStringProperty ),
       screenButtonsHelpText: CalculusGrapherFluent.a11y.screens.integral.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );

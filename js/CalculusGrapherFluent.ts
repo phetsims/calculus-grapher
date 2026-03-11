@@ -52,11 +52,13 @@ addToMapIfDefined( 'show', 'showStringProperty' );
 addToMapIfDefined( 'predictPreference', 'predictPreferenceStringProperty' );
 addToMapIfDefined( 'valuesPreferenceDescription', 'valuesPreferenceDescriptionStringProperty' );
 addToMapIfDefined( 'referenceLine', 'referenceLineStringProperty' );
-addToMapIfDefined( 'keyboardHelp_curveManipulator_heading', 'keyboardHelp.curveManipulator.headingStringProperty' );
-addToMapIfDefined( 'keyboardHelp_curveManipulator_grabOrReleaseCurve', 'keyboardHelp.curveManipulator.grabOrReleaseCurveStringProperty' );
-addToMapIfDefined( 'keyboardHelp_curveManipulator_keyboardCue', 'keyboardHelp.curveManipulator.keyboardCueStringProperty' );
-addToMapIfDefined( 'keyboardHelp_explorationTools_heading', 'keyboardHelp.explorationTools.headingStringProperty' );
-addToMapIfDefined( 'keyboardHelp_explorationTools_checkValues', 'keyboardHelp.explorationTools.checkValuesStringProperty' );
+addToMapIfDefined( 'curveManipulatorKeyboardCue', 'curveManipulatorKeyboardCueStringProperty' );
+addToMapIfDefined( 'keyboardHelp_curveManipulator', 'keyboardHelp.curveManipulatorStringProperty' );
+addToMapIfDefined( 'keyboardHelp_grabOrReleaseCurve', 'keyboardHelp.grabOrReleaseCurveStringProperty' );
+addToMapIfDefined( 'keyboardHelp_tangentToolOrReferenceLine', 'keyboardHelp.tangentToolOrReferenceLineStringProperty' );
+addToMapIfDefined( 'keyboardHelp_areaUnderCurveToolOrReferenceLine', 'keyboardHelp.areaUnderCurveToolOrReferenceLineStringProperty' );
+addToMapIfDefined( 'keyboardHelp_referenceLine', 'keyboardHelp.referenceLineStringProperty' );
+addToMapIfDefined( 'keyboardHelp_readValues', 'keyboardHelp.readValuesStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_widthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_noWidthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_curveSentence_curvesShown', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty' );
@@ -320,17 +322,15 @@ const CalculusGrapherFluent = {
   predictPreferenceDescriptionStringProperty: _.get( CalculusGrapherStrings, 'predictPreferenceDescriptionStringProperty' ),
   _comment_1: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
   referenceLineStringProperty: _.get( CalculusGrapherStrings, 'referenceLineStringProperty' ),
+  curveManipulatorKeyboardCueStringProperty: _.get( CalculusGrapherStrings, 'curveManipulatorKeyboardCueStringProperty' ),
   keyboardHelp: {
-    curveManipulator: {
-      headingStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.headingStringProperty' ),
-      grabOrReleaseCurveStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.grabOrReleaseCurveStringProperty' ),
-      keyboardCueStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulator.keyboardCueStringProperty' )
-    },
-    _comment_0: new FluentComment( {"comment":"For all tools","associatedKey":"explorationTools"} ),
-    explorationTools: {
-      headingStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.explorationTools.headingStringProperty' ),
-      checkValuesStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.explorationTools.checkValuesStringProperty' )
-    }
+    curveManipulatorStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.curveManipulatorStringProperty' ),
+    grabOrReleaseCurveStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.grabOrReleaseCurveStringProperty' ),
+    tangentToolOrReferenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.tangentToolOrReferenceLineStringProperty' ),
+    areaUnderCurveToolOrReferenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.areaUnderCurveToolOrReferenceLineStringProperty' ),
+    _comment_0: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
+    referenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.referenceLineStringProperty' ),
+    readValuesStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.readValuesStringProperty' )
   },
   a11y: {
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"screens"} ),

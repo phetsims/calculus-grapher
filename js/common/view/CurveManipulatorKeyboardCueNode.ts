@@ -20,7 +20,7 @@ export default class CurveManipulatorKeyboardCueNode extends KeyboardCueNode {
 
     super( {
       createKeyNode: TextKeyNode.space,
-      stringProperty: CalculusGrapherFluent.keyboardHelp.curveManipulator.keyboardCueStringProperty,
+      stringProperty: CalculusGrapherFluent.curveManipulatorKeyboardCueStringProperty,
       visibleProperty: DerivedProperty.and( [
         curveManipulatorNode.visibleProperty,
         curveManipulatorNode.focusedProperty,

@@ -50,7 +50,7 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
   public static readonly CHECK_VALUES_HOTKEY_DATA = new HotkeyData( {
     keys: [ 'alt+c' ],
     repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.explorationTools.checkValuesStringProperty
+    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.readValuesStringProperty
   } );
 
   public constructor( scrubberNode: ScrubberNode,

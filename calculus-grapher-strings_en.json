@@ -77,25 +77,27 @@
   "referenceLine": {
     "value": "Reference<br>Line"
   },
+  "curveManipulatorKeyboardCue": {
+    "value": "to <b>Grab</b> or <b>Release</b> curve"
+  },
   "keyboardHelp": {
     "curveManipulator": {
-      "heading": {
-        "value": "Curve Manipulator"
-      },
-      "grabOrReleaseCurve": {
-        "value": "Grab or release curve"
-      },
-      "keyboardCue": {
-        "value": "to <b>Grab</b> or <b>Release</b> curve"
-      }
+      "value": "Curve Manipulator"
     },
-    "explorationTools": {
-      "heading": {
-        "value": "Exploration Tools"
-      },
-      "checkValues": {
-        "value": "Check values"
-      }
+    "grabOrReleaseCurve": {
+      "value": "Grab or release curve"
+    },
+    "tangentToolOrReferenceLine": {
+      "value": "Tangent Tool or Reference Line"
+    },
+    "areaUnderCurveToolOrReferenceLine": {
+      "value": "Area Under Curve Tool or Reference Line"
+    },
+    "referenceLine": {
+      "value": "Reference Line"
+    },
+    "readValues": {
+      "value": "With screen reader enabled, read values"
     }
   },
   "a11y": {

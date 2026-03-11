@@ -41,7 +41,8 @@ export default class DerivativeScreen extends Screen<DerivativeModel, Derivative
       name: CalculusGrapherFluent.screen.derivativeStringProperty,
       backgroundColorProperty: CalculusGrapherColors.screenBackgroundColorProperty,
       homeScreenIcon: CalculusGrapherScreenIconFactory.createDerivativeScreenIcon(),
-      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(),
+      createKeyboardHelpNode: () => new CalculusGrapherKeyboardHelpContent(
+        CalculusGrapherFluent.keyboardHelp.tangentToolOrReferenceLineStringProperty ),
       screenButtonsHelpText: CalculusGrapherFluent.a11y.screens.derivative.screenButtonsHelpTextStringProperty,
       tandem: tandem
     } );

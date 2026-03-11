@@ -12,12 +12,12 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import { ScrubberKeyboardListener } from './ScrubberKeyboardListener.js';
 
 // Specify HotkeyData for each KeyboardHelpSectionRow, so that we can use KeyboardHelpSectionRow.fromHotkeyData
@@ -44,7 +44,7 @@ const MOVE_SLOWER_HOTKEY_DATA = new HotkeyData( {
 
 export default class ExplorationToolsKeyboardHelpSection extends KeyboardHelpSection {
 
-  public constructor() {
+  public constructor( titleStringProperty: TReadOnlyProperty<string> ) {
 
     const rows = [
 
@@ -61,10 +61,16 @@ export default class ExplorationToolsKeyboardHelpSection extends KeyboardHelpSec
       KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA ),
 
       // Check values
-      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.CHECK_VALUES_HOTKEY_DATA )
+      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.CHECK_VALUES_HOTKEY_DATA, {
+        labelWithIconOptions: {
+          labelOptions: {
+            lineWrap: 225
+          }
+        }
+      } )
     ];
 
-    super( CalculusGrapherFluent.keyboardHelp.explorationTools.headingStringProperty, rows, {
+    super( titleStringProperty, rows, {
       isDisposable: false,
       textMaxWidth: 300
     } );

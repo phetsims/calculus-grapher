@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -14,7 +15,7 @@ import ExplorationToolsKeyboardHelpSection from './ExplorationToolsKeyboardHelpS
 
 export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
-  public constructor() {
+  public constructor( explorationToolsTitleStringProperty: TReadOnlyProperty<string> ) {
 
     // Sections in the left column.
     const leftSections = [
@@ -23,7 +24,7 @@ export default class CalculusGrapherKeyboardHelpContent extends TwoColumnKeyboar
       new CurveManipulatorKeyboardHelpSection(),
 
       // Exploration Tools
-      new ExplorationToolsKeyboardHelpSection()
+      new ExplorationToolsKeyboardHelpSection( explorationToolsTitleStringProperty )
     ];
 
     // Sections in the right column.
