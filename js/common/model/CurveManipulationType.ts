@@ -24,7 +24,7 @@ export default class CurveManipulationType extends EnumerationValue {
   // Prefix used for tandems related to a CurveManipulationType
   public readonly tandemPrefix: string;
 
-  // For core description
+  // Accessible name, used for radio buttons and screenSummary 'current details'.
   public readonly accessibleNameProperty: TReadOnlyProperty<string>;
 
   // Determines visibility of the width slider
