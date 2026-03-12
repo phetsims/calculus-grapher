@@ -301,6 +301,32 @@
         "value": "f of {$variable} hidden."
       }
     },
+    "curveManipulationType": {
+      "hill": {
+        "value": "Smooth Hill"
+      },
+      "triangle": {
+        "value": "Rigid V with Corners on {$variable} Axis"
+      },
+      "pedestal": {
+        "value": "Pedestal with Smooth Corners"
+      },
+      "parabola": {
+        "value": "Parabola with Corners on {$variable} Axis"
+      },
+      "sinusoid": {
+        "value": "Sinusoid"
+      },
+      "freeform": {
+        "value": "Freeform, Discontinuities Likely"
+      },
+      "tilt": {
+        "value": "Diagonal Tilt Pinned at Left Edge"
+      },
+      "shift": {
+        "value": "Vertical Shift Up or Down"
+      }
+    },
     "graphAreas": {
       "defaults": {
         "accessibleList": {
@@ -531,46 +557,6 @@
       },
       "accessibleHelpText": {
         "value": "Choose curve modification type for Curve Manipulator, then change curve in Primary Graph Area.\nFind Curve Manipulator under Curve Manipulator and Settings."
-      },
-      "hillRadioButton": {
-        "accessibleName": {
-          "value": "Smooth Hill"
-        }
-      },
-      "triangleRadioButton": {
-        "accessibleName": {
-          "value": "Rigid V with Corners on {$variable} Axis"
-        }
-      },
-      "pedestalRadioButton": {
-        "accessibleName": {
-          "value": "Pedestal with Smooth Corners"
-        }
-      },
-      "parabolaRadioButton": {
-        "accessibleName": {
-          "value": "Parabola with Corners on {$variable} Axis"
-        }
-      },
-      "sinusoidRadioButton": {
-        "accessibleName": {
-          "value": "Sinusoid"
-        }
-      },
-      "freeformRadioButton": {
-        "accessibleName": {
-          "value": "Freeform, Discontinuities Likely"
-        }
-      },
-      "tiltRadioButton": {
-        "accessibleName": {
-          "value": "Diagonal Tilt Pinned at Left Edge"
-        }
-      },
-      "shiftRadioButton": {
-        "accessibleName": {
-          "value": "Vertical Shift Up or Down"
-        }
       }
     },
     "graphSetRadioButtonGroup": {

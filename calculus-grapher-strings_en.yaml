@@ -184,6 +184,21 @@ a11y:
     accessibleContextResponseUnchecked: f of {$variable} hidden.
 
   #=======================================================================================================
+  # Curve Manipulation Types
+  #=======================================================================================================
+
+  # Values for the {$curveManipulationType} parameter in screen summaries, and the accessibleName of radio buttons.
+  curveManipulationType:
+    hill:     Smooth Hill
+    triangle: Rigid V with Corners on {$variable} Axis
+    pedestal: Pedestal with Smooth Corners
+    parabola: Parabola with Corners on {$variable} Axis
+    sinusoid: Sinusoid
+    freeform: Freeform, Discontinuities Likely
+    tilt:     Diagonal Tilt Pinned at Left Edge
+    shift:    Vertical Shift Up or Down
+  
+  #=======================================================================================================
   # Graph Areas
   #=======================================================================================================
 
@@ -310,22 +325,6 @@ a11y:
     accessibleHelpText: |-
                         Choose curve modification type for Curve Manipulator, then change curve in Primary Graph Area.
                         Find Curve Manipulator under Curve Manipulator and Settings.
-    hillRadioButton:
-      accessibleName: Smooth Hill
-    triangleRadioButton:
-      accessibleName: Rigid V with Corners on {$variable} Axis
-    pedestalRadioButton:
-      accessibleName: Pedestal with Smooth Corners
-    parabolaRadioButton:
-      accessibleName: Parabola with Corners on {$variable} Axis
-    sinusoidRadioButton:
-      accessibleName: Sinusoid
-    freeformRadioButton:
-      accessibleName: Freeform, Discontinuities Likely
-    tiltRadioButton:
-      accessibleName: Diagonal Tilt Pinned at Left Edge
-    shiftRadioButton:
-      accessibleName: Vertical Shift Up or Down
 
   # Selects the set of graphs that are visible.
   graphSetRadioButtonGroup:

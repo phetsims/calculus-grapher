@@ -158,6 +158,16 @@ type StringsType = {
       'accessibleContextResponseCheckedStringProperty': LocalizedStringProperty;
       'accessibleContextResponseUncheckedStringProperty': LocalizedStringProperty;
     };
+    'curveManipulationType': {
+      'hillStringProperty': LocalizedStringProperty;
+      'triangleStringProperty': LocalizedStringProperty;
+      'pedestalStringProperty': LocalizedStringProperty;
+      'parabolaStringProperty': LocalizedStringProperty;
+      'sinusoidStringProperty': LocalizedStringProperty;
+      'freeformStringProperty': LocalizedStringProperty;
+      'tiltStringProperty': LocalizedStringProperty;
+      'shiftStringProperty': LocalizedStringProperty;
+    };
     'graphAreas': {
       'defaults': {
         'accessibleList': {
@@ -273,30 +283,6 @@ type StringsType = {
     'curveManipulationTypeRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'hillRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'triangleRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'pedestalRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'parabolaRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'sinusoidRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'freeformRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'tiltRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      };
-      'shiftRadioButton': {
-        'accessibleNameStringProperty': LocalizedStringProperty;
-      }
     };
     'graphSetRadioButtonGroup': {
       'accessibleNameStringProperty': LocalizedStringProperty;
