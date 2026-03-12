@@ -21,9 +21,7 @@ barometer.slopeOfTangent:     Slope of<br>Tangent
 predict:                      Predict
 show:                         Show
 predictPreference:            Predict
-valuesPreferenceDescription:  >-
-                              Shows values on graph axes, reference line, "Slope of Tangent", and "Net
-                              Signed Area".
+valuesPreferenceDescription: Shows values on graph axes, reference line, "Slope of Tangent", and "Net Signed Area".
 predictPreferenceDescription: Adds a mode that allows you to predict f of {{variable}}.
 referenceLine:                Reference<br>Line
 
