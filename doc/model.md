@@ -69,8 +69,9 @@ At the top of the _Derivative_ screen, one finds the function f(x). Underneath t
 derivative is rendered. The visibility of the curve on each graph is controlled via an eye toggle button, on the
 left-hand side of each graph.
 
-A finite difference method is used to determine the derivative. To illustrate non-differential points in f(x), open
-circles appear at the non-differential points for the derivative.
+A finite difference method is used to determine the derivative. To support implicit scaffolding, this screen does not
+allow non-differentiable points to occur on f(x). Visit the Advanced or Lab screen for opportunities to explore
+non-differentiable points.
 
 The "Tangent" checkbox below the control panel triggers the visibility of three components: (1) a user-controlled
 scrubber at the bottom of the graphs, (2) a tangent arrow on the primary graph, and (3) the "Slope of Tangent"
