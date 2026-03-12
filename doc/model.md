@@ -9,7 +9,7 @@ The Calculus Grapher simulation is designed to help students visualize and under
 relating to graphs of functions, derivatives, and integrals. The main functionalities of the simulation include:
 
 Graphing functions: The simulation allows students to manipulate a function. These include the ability to drag points on
-the graph to see how the function changes as well as change the curve mode.
+the graph to see how the function changes, as well as change the curve manipulation type.
 
 Tangent Tool: Students can graph the derivative of a function and see how the derivative changes as they modify the
 primary function. With the tangent tool, users can select a point on the curve and visualize the tangent line at that
@@ -34,8 +34,8 @@ A control panel, on the right-hand side, houses the drawing tools and viewing op
 that controls the width of the curve. Sliding to the right makes the curve wider and sliding to the left makes it
 narrower.
 
-Radio buttons allow the user to pick from a variety of "curve manipulation mode" functions (See below for more details
-on each mode). Once the user selects a portion of the graph, the function will update itself with the appropriate
+Radio buttons allow the user to pick from a variety of "curve manipulation type" functions (See below for more details
+on each type). Once the user selects a portion of the graph, the function will update itself with the appropriate
 function.
 
 Undo and Eraser buttons appear under the vertical radio buttons. The _Undo_ button, represented by a back arrow, erases
@@ -101,10 +101,10 @@ The choice of functions has been expanded to include triangular, parabolic, sinu
 
 The _Lab_ screen includes all the features from the _Advanced_ screen, and adds a third graph on the screen.
 
-## Curve Manipulation Modes
+## Curve Manipulation Types
 
-A user can manipulate the primary function through a set of curve manipulation modes. There are eight curve
-manipulation modes in this simulation. The curve manipulation modes are:
+A user can manipulate the primary function through a set of curve manipulation types. There are eight curve manipulation
+types in this simulation:
 
 - HILL: A bell-shaped curve represented by a gaussian function. The width of the curve is related to the standard
   deviation.
@@ -126,7 +126,7 @@ of the jump are labeled as discontinuous. Similarly, points are labeled cusp poi
 We leverage the point type to determine which points should be linked to yield the appearance of a smooth curve and
 which points should not be linked but appear as circles (say to represent discontinuities). Curve manipulations are
 handled by a set of functions that update the curve points based on user input. The point type is assessed based on the
-type of curve mode that is being manipulated.
+curve manipulation type that is being applied.
 
 Mathematically, the integral curve is calculated as a left Riemann sum based on the points in the f(x) curve. The point
 type metadata of the integral curve is based on the metadata of a point of the f(x) curve, but where cusp points are
