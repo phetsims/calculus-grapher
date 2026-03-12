@@ -69,7 +69,7 @@
     "value": "Predict"
   },
   "valuesPreferenceDescription": {
-    "value": "Shows values on graph axes, reference line, \"Slope of Tangent\", and \"Net Signed Area\"."
+    "value": "Shows values on graph axes, Reference Line, \"Slope of Tangent\", and \"Net Signed Area\"."
   },
   "predictPreferenceDescription": {
     "value": "Adds a mode that allows you to predict f of {{variable}}."
