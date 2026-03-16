@@ -31,7 +31,9 @@ export default class CurveManipulationType extends EnumerationValue {
   public readonly hasAdjustableWidth: boolean;
 
   public static readonly HILL = new CurveManipulationType( 'hill',
-    CalculusGrapherFluent.a11y.curveManipulationType.hillStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationType.hill.createProperty( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    } ) );
 
   public static readonly TRIANGLE = new CurveManipulationType( 'triangle',
     CalculusGrapherFluent.a11y.curveManipulationType.triangle.createProperty( {

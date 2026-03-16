@@ -300,16 +300,16 @@
     },
     "curveManipulationType": {
       "hill": {
-        "value": "Smooth Hill"
+        "value": "Hill with Smooth Transitions to f of {$variable}"
       },
       "triangle": {
-        "value": "Rigid V with Corners on f of {$variable}"
+        "value": "Rigid V with Sharp Transitions to f of {$variable}"
       },
       "pedestal": {
-        "value": "Pedestal with Smooth Corners on f of {$variable}"
+        "value": "Pedestal with Smooth Transitions to f of {$variable}"
       },
       "parabola": {
-        "value": "Parabola with Corners on f of {$variable}"
+        "value": "Parabola with Smooth Transitions to f of {$variable}"
       },
       "sinusoid": {
         "value": "Sinusoid"

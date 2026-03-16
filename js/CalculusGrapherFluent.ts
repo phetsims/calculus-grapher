@@ -463,7 +463,7 @@ const CalculusGrapherFluent = {
     _comment_12: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"curveManipulationType"} ),
     _comment_13: new FluentComment( {"comment":"Values for the {$curveManipulationType} parameter in screen summaries, and the accessibleName of radio buttons.","associatedKey":"curveManipulationType"} ),
     curveManipulationType: {
-      hillStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationType_hill', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.hillStringProperty' ) ),
+      hill: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_hill', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.hillStringProperty' ), [{"name":"variable"}] ),
       triangle: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_triangle', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.triangleStringProperty' ), [{"name":"variable"}] ),
       pedestal: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_pedestal', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.pedestalStringProperty' ), [{"name":"variable"}] ),
       parabola: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_parabola', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.parabolaStringProperty' ), [{"name":"variable"}] ),
