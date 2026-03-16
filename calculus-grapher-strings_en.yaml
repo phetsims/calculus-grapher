@@ -187,9 +187,9 @@ a11y:
   # Values for the {$curveManipulationType} parameter in screen summaries, and the accessibleName of radio buttons.
   curveManipulationType:
     hill:     Smooth Hill
-    triangle: Rigid V with Corners on {$variable} Axis
+    triangle: Rigid V with Corners on f of {$variable}
     pedestal: Pedestal with Smooth Corners
-    parabola: Parabola with Corners on {$variable} Axis
+    parabola: Parabola with Corners on f of {$variable}
     sinusoid: Sinusoid
     freeform: Freeform, Discontinuities Likely
     tilt:     Diagonal Tilt Pinned at Left Edge

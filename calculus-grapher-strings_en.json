@@ -303,13 +303,13 @@
         "value": "Smooth Hill"
       },
       "triangle": {
-        "value": "Rigid V with Corners on {$variable} Axis"
+        "value": "Rigid V with Corners on f of {$variable}"
       },
       "pedestal": {
         "value": "Pedestal with Smooth Corners"
       },
       "parabola": {
-        "value": "Parabola with Corners on {$variable} Axis"
+        "value": "Parabola with Corners on f of {$variable}"
       },
       "sinusoid": {
         "value": "Sinusoid"
