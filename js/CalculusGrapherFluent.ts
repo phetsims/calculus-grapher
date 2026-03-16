@@ -58,7 +58,6 @@ addToMapIfDefined( 'keyboardHelp_grabOrReleaseCurve', 'keyboardHelp.grabOrReleas
 addToMapIfDefined( 'keyboardHelp_tangentToolOrReferenceLine', 'keyboardHelp.tangentToolOrReferenceLineStringProperty' );
 addToMapIfDefined( 'keyboardHelp_areaUnderCurveToolOrReferenceLine', 'keyboardHelp.areaUnderCurveToolOrReferenceLineStringProperty' );
 addToMapIfDefined( 'keyboardHelp_referenceLine', 'keyboardHelp.referenceLineStringProperty' );
-addToMapIfDefined( 'keyboardHelp_readValues', 'keyboardHelp.readValuesStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_widthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.widthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_noWidthPattern', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.noWidthPatternStringProperty' );
 addToMapIfDefined( 'a11y_screens_defaults_screenSummary_currentDetails_leadingParagraph_curveSentence_curvesShown', 'a11y.screens.defaults.screenSummary.currentDetails.leadingParagraph.curveSentence.curvesShownStringProperty' );
@@ -329,8 +328,7 @@ const CalculusGrapherFluent = {
     tangentToolOrReferenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.tangentToolOrReferenceLineStringProperty' ),
     areaUnderCurveToolOrReferenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.areaUnderCurveToolOrReferenceLineStringProperty' ),
     _comment_0: new FluentComment( {"comment":"Reference Line","associatedKey":"referenceLine"} ),
-    referenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.referenceLineStringProperty' ),
-    readValuesStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.readValuesStringProperty' )
+    referenceLineStringProperty: _.get( CalculusGrapherStrings, 'keyboardHelp.referenceLineStringProperty' )
   },
   a11y: {
     _comment_0: new FluentComment( {"comment":"=======================================================================================================","associatedKey":"screens"} ),

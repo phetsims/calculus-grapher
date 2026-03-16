@@ -18,7 +18,6 @@ import SoundClipPlayer from '../../../../tambo/js/sound-generators/SoundClipPlay
 import generalBoundaryBoop_mp3 from '../../../../tambo/sounds/generalBoundaryBoop_mp3.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import calculusGrapher from '../../calculusGrapher.js';
-import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import ScrubberNode from './ScrubberNode.js';
 
 // Same as Slider min and max defaults.
@@ -47,12 +46,6 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
     keyboardHelpDialogLabelStringProperty: SceneryPhetFluent.keyboardHelpDialog.jumpToMaximumStringProperty
   } );
 
-  public static readonly CHECK_VALUES_HOTKEY_DATA = new HotkeyData( {
-    keys: [ 'alt+c' ],
-    repoName: calculusGrapher.name,
-    keyboardHelpDialogLabelStringProperty: CalculusGrapherFluent.keyboardHelp.readValuesStringProperty
-  } );
-
   public constructor( scrubberNode: ScrubberNode,
                       xProperty: TRangedProperty,
                       positionProperty: Property<Vector2>,
@@ -61,8 +54,7 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
       tandem: tandem,
       keyStringProperties: HotkeyData.combineKeyStringProperties( [
         ScrubberKeyboardListener.HOME_HOTKEY_DATA,
-        ScrubberKeyboardListener.END_HOTKEY_DATA,
-        ScrubberKeyboardListener.CHECK_VALUES_HOTKEY_DATA
+        ScrubberKeyboardListener.END_HOTKEY_DATA
       ] ),
 
       fire: ( event, keysPressed, listener ) => {
@@ -71,9 +63,6 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
         }
         else if ( keysPressed === 'end' ) {
           this.end( xProperty, positionProperty );
-        }
-        else if ( keysPressed === 'alt+c' ) {
-          this.checkValues();
         }
       }
     } );
@@ -102,14 +91,6 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
     xProperty.value = xProperty.range.max;
     positionProperty.value = new Vector2( xProperty.range.max, positionProperty.value.y );
     MAX_SOUND_PLAYER.play();
-    this.scrubberNode.doAccessibleObjectResponse();
-  }
-
-  /**
-   * Handles alt+c (or option+c on macOS) which provides a description of the current values,
-   * the same as when the scrubber gets focus.
-   */
-  private checkValues(): void {
     this.scrubberNode.doAccessibleObjectResponse();
   }
 }

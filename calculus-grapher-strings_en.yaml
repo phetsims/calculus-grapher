@@ -33,7 +33,6 @@ keyboardHelp:
   tangentToolOrReferenceLine:        Tangent Tool or Reference Line
   areaUnderCurveToolOrReferenceLine: Area Under Curve Tool or Reference Line
   referenceLine:                     Reference Line
-  readValues:                        With screen reader enabled, read values
 
 a11y:
 

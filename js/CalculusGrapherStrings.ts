@@ -55,7 +55,6 @@ type StringsType = {
     'tangentToolOrReferenceLineStringProperty': LocalizedStringProperty;
     'areaUnderCurveToolOrReferenceLineStringProperty': LocalizedStringProperty;
     'referenceLineStringProperty': LocalizedStringProperty;
-    'readValuesStringProperty': LocalizedStringProperty;
   };
   'a11y': {
     'screens': {

@@ -95,9 +95,6 @@
     },
     "referenceLine": {
       "value": "Reference Line"
-    },
-    "readValues": {
-      "value": "With screen reader enabled, read values"
     }
   },
   "a11y": {

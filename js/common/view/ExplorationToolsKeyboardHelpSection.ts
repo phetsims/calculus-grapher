@@ -58,16 +58,7 @@ export default class ExplorationToolsKeyboardHelpSection extends KeyboardHelpSec
       KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.HOME_HOTKEY_DATA ),
 
       // Jump to maximum
-      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA ),
-
-      // Check values
-      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.CHECK_VALUES_HOTKEY_DATA, {
-        labelWithIconOptions: {
-          labelOptions: {
-            lineWrap: 225
-          }
-        }
-      } )
+      KeyboardHelpSectionRow.fromHotkeyData( ScrubberKeyboardListener.END_HOTKEY_DATA )
     ];
 
     super( titleStringProperty, rows, {
