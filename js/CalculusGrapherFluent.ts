@@ -465,7 +465,7 @@ const CalculusGrapherFluent = {
     curveManipulationType: {
       hillStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationType_hill', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.hillStringProperty' ) ),
       triangle: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_triangle', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.triangleStringProperty' ), [{"name":"variable"}] ),
-      pedestalStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationType_pedestal', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.pedestalStringProperty' ) ),
+      pedestal: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_pedestal', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.pedestalStringProperty' ), [{"name":"variable"}] ),
       parabola: new FluentPattern<{ variable: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_curveManipulationType_parabola', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.parabolaStringProperty' ), [{"name":"variable"}] ),
       sinusoidStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationType_sinusoid', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.sinusoidStringProperty' ) ),
       freeformStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_curveManipulationType_freeform', _.get( CalculusGrapherStrings, 'a11y.curveManipulationType.freeformStringProperty' ) ),

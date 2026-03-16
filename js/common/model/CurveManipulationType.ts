@@ -39,7 +39,9 @@ export default class CurveManipulationType extends EnumerationValue {
     } ) );
 
   public static readonly PEDESTAL = new CurveManipulationType( 'pedestal',
-    CalculusGrapherFluent.a11y.curveManipulationType.pedestalStringProperty );
+    CalculusGrapherFluent.a11y.curveManipulationType.pedestal.createProperty( {
+      variable: CalculusGrapherSymbols.accessibleVariableSymbolProperty
+    } ) );
 
   public static readonly PARABOLA = new CurveManipulationType( 'parabola',
     CalculusGrapherFluent.a11y.curveManipulationType.parabola.createProperty( {

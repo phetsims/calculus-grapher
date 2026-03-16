@@ -188,7 +188,7 @@ a11y:
   curveManipulationType:
     hill:     Smooth Hill
     triangle: Rigid V with Corners on f of {$variable}
-    pedestal: Pedestal with Smooth Corners
+    pedestal: Pedestal with Smooth Corners on f of {$variable}
     parabola: Parabola with Corners on f of {$variable}
     sinusoid: Sinusoid
     freeform: Freeform, Discontinuities Likely
