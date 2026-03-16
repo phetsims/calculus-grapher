@@ -20,6 +20,15 @@ import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulationIconNode from './CurveManipulationIconNode.js';
 
+// Consistent order of radio buttons for all screens. There was a better way to do this, but it was thwarted by
+// changes to the PhET-iO API. See https://github.com/phetsims/calculus-grapher/issues/400
+const RADIO_BUTTONS_ORDER = [
+  CurveManipulationType.HILL, CurveManipulationType.PEDESTAL,
+  CurveManipulationType.TRIANGLE, CurveManipulationType.PARABOLA,
+  CurveManipulationType.SINUSOID, CurveManipulationType.FREEFORM,
+  CurveManipulationType.TILT, CurveManipulationType.SHIFT
+];
+
 export default class CurveManipulationTypeRadioButtonGroup extends RectangularRadioButtonGroup<CurveManipulationType> {
 
   public constructor( curveManipulationModeProperty: Property<CurveManipulationType>,
@@ -29,15 +38,18 @@ export default class CurveManipulationTypeRadioButtonGroup extends RectangularRa
     const validModes = curveManipulationModeProperty.validValues!;
     affirm( validModes, 'validModes should be defined' );
 
-    const items: RectangularRadioButtonGroupItem<CurveManipulationType>[] = validModes.map( curveManipulationType => {
-      return {
-        value: curveManipulationType,
-        createNode: () => new CurveManipulationIconNode( curveManipulationType, curveManipulationStroke ),
-        tandemName: `${curveManipulationType.tandemPrefix}RadioButton`,
-        options: {
-          accessibleName: curveManipulationType.accessibleNameProperty
-        }
-      };
+    const items: RectangularRadioButtonGroupItem<CurveManipulationType>[] = [];
+    RADIO_BUTTONS_ORDER.forEach( curveManipulationType => {
+      if ( validModes.includes( curveManipulationType ) ) {
+        items.push( {
+          value: curveManipulationType,
+          createNode: () => new CurveManipulationIconNode( curveManipulationType, curveManipulationStroke ),
+          tandemName: `${curveManipulationType.tandemPrefix}RadioButton`,
+          options: {
+            accessibleName: curveManipulationType.accessibleNameProperty
+          }
+        } );
+      }
     } );
 
     const options: RectangularRadioButtonGroupOptions = {
