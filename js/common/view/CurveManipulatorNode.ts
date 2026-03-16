@@ -141,7 +141,8 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
    */
   public doAccessibleObjectResponseMoved( isFromDOM: boolean ): void {
     this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseMoved( isFromDOM ), {
-      interruptible: true // see https://github.com/phetsims/calculus-grapher/issues/390
+      interruptible: true, // see https://github.com/phetsims/calculus-grapher/issues/390
+      alertDelay: 1000 // ms, see https://github.com/phetsims/calculus-grapher/issues/390#issuecomment-4068266165
     } );
   }
 

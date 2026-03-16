@@ -139,7 +139,8 @@ export default abstract class ScrubberNode extends Node {
    */
   public doAccessibleObjectResponse(): void {
     this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse(), {
-      interruptible: true // see https://github.com/phetsims/calculus-grapher/issues/390
+      interruptible: true, // see https://github.com/phetsims/calculus-grapher/issues/390
+      alertDelay: 1000 // ms, see https://github.com/phetsims/calculus-grapher/issues/390#issuecomment-4068266165
     } );
   }
 
