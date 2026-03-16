@@ -309,7 +309,7 @@
         "value": "Pedestal with Smooth Transitions to f of {$variable}"
       },
       "parabola": {
-        "value": "Parabola with Smooth Transitions to f of {$variable}"
+        "value": "Parabola with Sharp Transitions to f of {$variable}"
       },
       "sinusoid": {
         "value": "Sinusoid"
