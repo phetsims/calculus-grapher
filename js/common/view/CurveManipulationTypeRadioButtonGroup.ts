@@ -66,14 +66,15 @@ export default class CurveManipulationTypeRadioButtonGroup extends RectangularRa
       accessibleHelpText: CalculusGrapherFluent.a11y.curveManipulationTypeRadioButtonGroup.accessibleHelpTextStringProperty,
       tandem: tandem,
 
-      // These options are a bit of a hack to implement a 2x2 grid.
-      // Values were set empirically to make the vertical and horizontal spacing look the same.
-      // See https://github.com/phetsims/calculus-grapher/issues/351.
+      // RectangularRadioButtonGroup does not support grid layout. These options are a bit of a hack to implement
+      // a 2x2 grid. Values were set empirically to make the vertical and horizontal spacing look the same.
+      // See https://github.com/phetsims/calculus-grapher/issues/351 and https://github.com/phetsims/calculus-grapher/issues/401.
       orientation: 'horizontal',
-      preferredWidth: 148,
+      preferredWidth: 155,
       widthSizable: false,
+      justify: 'center',
+      spacing: 5,
       wrap: true,
-      spacing: 0,
       lineSpacing: 4
     };
 
