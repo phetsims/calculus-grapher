@@ -34,7 +34,7 @@ const TRANSFORMED_CURVE_OPTIONS = {
   xRange: CalculusGrapherConstants.CURVE_X_RANGE,
 
   // Curves for icons are not instrumented. If you decide to instrument in the future, be aware that instrumenting
-  // has performance implications, and it's not sufficient to simply add a tandem here. Proceed with caution!
+  // has performance implications, and it's not advised to simply add a tandem here. Proceed with caution!
   tandem: Tandem.OPT_OUT
 };
 
