@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "536e892d48a24233041dbfbf09893676a0f5cde8",
+    "sha": "335bce4a56cc94dd2a4c28547b0be369552eecdd",
     "branch": "1.0"
   },
   "chipper": {
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "6b7abd9594fb6a9a60d356edadefd7c0003ec1ec",
+    "sha": "af2c2680e6772cf8616eca893e3636f363810bfc",
     "branch": "HEAD"
   },
   "kite": {
