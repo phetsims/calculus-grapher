@@ -9,8 +9,6 @@
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Range from '../../../../dot/js/Range.js';
-import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
-import AlignBox from '../../../../scenery/js/layout/nodes/AlignBox.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Color from '../../../../scenery/js/util/Color.js';
@@ -40,12 +38,7 @@ const TRANSFORMED_CURVE_OPTIONS = {
   tandem: Tandem.OPT_OUT
 };
 
-// To make all icons have the same effective size, for all screens.
-const ALIGN_BOX_OPTIONS = {
-  group: new AlignGroup()
-};
-
-export default class CurveManipulationIconNode extends AlignBox {
+export default class CurveManipulationIconNode extends Node {
 
   public constructor( curveManipulationType: CurveManipulationType, stroke: TColor ) {
 
@@ -164,18 +157,15 @@ export default class CurveManipulationIconNode extends AlignBox {
       children.push( pencilNode );
     }
 
-    const node = new Node( {
+    super( {
       children: children
     } );
-
-    super( node, ALIGN_BOX_OPTIONS );
   }
 
   /**
    * Sets the y-values of a curve to a shape that is used in CurveManipulationType.FREEFORM icon and display.
    * The shape of this curve was chosen such that a pencil icon could be placed at the rightmost point.
    * @param curve
-   * @param yMin - the minimum y-value for the curve
    * @param yMax - the maximum y-value for the curve
    */
   public static freeformIconCurve( curve: TransformedCurve, yMax: number ): void {
