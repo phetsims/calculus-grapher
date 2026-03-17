@@ -139,7 +139,7 @@ export default class CalculusGrapherScreenView extends ScreenView {
 
       // Center graphSetRadioButtonGroup in the negative space to the left of graphNode. We're only adjusting centerX
       // dynamically so that GraphSetsAnimation doesn't cause tiny shifts in y.
-      graphSetRadioButtonGroup.centerY = this.graphsNode.centerY;
+      graphSetRadioButtonGroup.centerY = this.layoutBounds.centerY;
       this.graphsNode.boundsProperty.link( () => {
         const toggleButtonLeft = this.graphsNode.x + this.graphsNode.getCurveVisibilityToggleButtonXOffset();
         graphSetRadioButtonGroup.centerX = this.layoutBounds.left + ( toggleButtonLeft - this.layoutBounds.left ) / 2;
