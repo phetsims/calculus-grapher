@@ -29,10 +29,8 @@ export default class DerivativeModel extends CalculusGrapherModel {
 
       // CalculusGrapherModelOptions
       curveManipulationModeChoices: [
-        CurveManipulationType.HILL,
-        CurveManipulationType.PEDESTAL,
-        CurveManipulationType.TILT,
-        CurveManipulationType.SHIFT
+        CurveManipulationType.HILL, CurveManipulationType.PEDESTAL,
+        CurveManipulationType.TILT, CurveManipulationType.SHIFT
       ],
       hasTangentScrubber: true
     }, providedOptions );
