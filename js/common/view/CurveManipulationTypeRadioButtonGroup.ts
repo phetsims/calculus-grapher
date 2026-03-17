@@ -75,7 +75,7 @@ export default class CurveManipulationTypeRadioButtonGroup extends RectangularRa
       justify: 'center',
       spacing: 5,
       wrap: true,
-      lineSpacing: 4
+      lineSpacing: 5
     };
 
     super( curveManipulationModeProperty, items, options );

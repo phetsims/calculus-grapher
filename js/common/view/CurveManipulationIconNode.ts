@@ -8,9 +8,8 @@
 
 import ChartRectangle from '../../../../bamboo/js/ChartRectangle.js';
 import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
+import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Range from '../../../../dot/js/Range.js';
-import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
-import AlignBox from '../../../../scenery/js/layout/nodes/AlignBox.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Color from '../../../../scenery/js/util/Color.js';
@@ -40,12 +39,11 @@ const TRANSFORMED_CURVE_OPTIONS = {
   tandem: Tandem.OPT_OUT
 };
 
-// To make all icons have the same effective size, for all screens.
-const ALIGN_BOX_OPTIONS = {
-  group: new AlignGroup()
-};
+// To make all icons have the same size. The usual approach of using an AlignGroup did not work for this case because
+// RectangularRadioButtonGroup does not support grid layout. See https://github.com/phetsims/calculus-grapher/issues/401.
+const MAX_ICON_SIZE = new Dimension2( 50, 30 );
 
-export default class CurveManipulationIconNode extends AlignBox {
+export default class CurveManipulationIconNode extends Node {
 
   public constructor( curveManipulationType: CurveManipulationType, stroke: TColor ) {
 
@@ -164,11 +162,11 @@ export default class CurveManipulationIconNode extends AlignBox {
       children.push( pencilNode );
     }
 
-    const node = new Node( {
-      children: children
+    super( {
+      children: children,
+      maxWidth: MAX_ICON_SIZE.width,
+      maxHeight: MAX_ICON_SIZE.height
     } );
-
-    super( node, ALIGN_BOX_OPTIONS );
   }
 
   /**
