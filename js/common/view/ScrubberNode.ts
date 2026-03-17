@@ -153,7 +153,7 @@ export default abstract class ScrubberNode extends Node {
       mainColor: options.handleColor
     } );
 
-    const line = new Line( 0, 0, 0, 11, {
+    const line = new Line( 0, 0, 0, 16, {
       stroke: options.lineStroke
     } );
 
