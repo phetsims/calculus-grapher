@@ -15,6 +15,7 @@ import Shape from '../../../../kite/js/Shape.js';
 import { optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
+import isResettingAllProperty from '../../../../scenery-phet/js/isResettingAllProperty.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
 import calculusGrapher from '../../calculusGrapher.js';
@@ -80,6 +81,12 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
     // As xProperty changes, translate this Node.
     xProperty.link( x => {
       this.x = chartTransform.modelToViewX( x );
+
+      // If xProperty changed due to resetAll, we also need to keep positionProperty in sync.
+      // See https://github.com/phetsims/calculus-grapher/issues/402.
+      if ( isResettingAllProperty.value ) {
+        positionProperty.value = new Vector2( xProperty.value, positionProperty.value.y );
+      }
     } );
 
     // Keyboard listener for keyboard shortcuts.
