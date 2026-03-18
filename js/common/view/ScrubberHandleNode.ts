@@ -85,7 +85,7 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
       // If xProperty changed due to resetAll, we also need to keep positionProperty in sync.
       // See https://github.com/phetsims/calculus-grapher/issues/402.
       if ( isResettingAllProperty.value ) {
-        positionProperty.value = new Vector2( xProperty.value, positionProperty.value.y );
+        positionProperty.value = new Vector2( x, positionProperty.value.y );
       }
     } );
 
