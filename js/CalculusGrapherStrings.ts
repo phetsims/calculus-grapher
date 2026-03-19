@@ -464,6 +464,4 @@ type StringsType = {
 
 const CalculusGrapherStrings = getStringModule( 'CALCULUS_GRAPHER' ) as StringsType;
 
-calculusGrapher.register( 'CalculusGrapherStrings', CalculusGrapherStrings );
-
 export default CalculusGrapherStrings;

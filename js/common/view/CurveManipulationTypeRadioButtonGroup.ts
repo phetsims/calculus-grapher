@@ -14,7 +14,6 @@ import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem, RectangularRadioButtonGroupOptions } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
@@ -81,5 +80,3 @@ export default class CurveManipulationTypeRadioButtonGroup extends RectangularRa
     super( curveManipulationModeProperty, items, options );
   }
 }
-
-calculusGrapher.register( 'CurveManipulationTypeRadioButtonGroup', CurveManipulationTypeRadioButtonGroup );

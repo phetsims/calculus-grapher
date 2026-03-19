@@ -13,7 +13,6 @@
 
 import VBox from '../../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherPreferences from '../../model/CalculusGrapherPreferences.js';
 import DiscontinuitiesControl from './DiscontinuitiesControl.js';
 import NotationControl from './NotationControl.js';
@@ -58,5 +57,3 @@ export default class CalculusGrapherSimulationPreferencesNode extends VBox {
     } );
   }
 }
-
-calculusGrapher.register( 'CalculusGrapherSimulationPreferencesNode', CalculusGrapherSimulationPreferencesNode );

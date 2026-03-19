@@ -10,7 +10,6 @@
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import LabModel from '../model/LabModel.js';
 import LabScreenSummaryContent from './LabScreenSummaryContent.js';
@@ -45,5 +44,3 @@ export default class LabScreenView extends CalculusGrapherScreenView {
     this.setScreenSummaryContent( new LabScreenSummaryContent( model.curveManipulationProperties, this.graphsNode ) );
   }
 }
-
-calculusGrapher.register( 'LabScreenView', LabScreenView );

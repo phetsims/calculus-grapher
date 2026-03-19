@@ -15,7 +15,6 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationType from './CurveManipulationType.js';
 
@@ -64,4 +63,3 @@ export default class CurveManipulationProperties {
   }
 
 }
-calculusGrapher.register( 'CurveManipulationProperties', CurveManipulationProperties );

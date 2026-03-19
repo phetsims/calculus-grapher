@@ -13,7 +13,6 @@ import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import DerivativeCurve from '../../model/DerivativeCurve.js';
 import GraphAreaDescriber from './GraphAreaDescriber.js';
@@ -86,5 +85,3 @@ export default class DerivativeGraphAreaDescriber extends GraphAreaDescriber {
     };
   }
 }
-
-calculusGrapher.register( 'DerivativeGraphAreaDescriber', DerivativeGraphAreaDescriber );

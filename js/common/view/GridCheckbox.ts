@@ -11,7 +11,6 @@ import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import GridIcon from '../../../../scenery-phet/js/GridIcon.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 
@@ -30,5 +29,3 @@ export default class GridCheckbox extends Checkbox {
       } ) );
   }
 }
-
-calculusGrapher.register( 'GridCheckbox', GridCheckbox );

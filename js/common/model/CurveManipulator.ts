@@ -16,7 +16,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 // The default position is at the center of the graph.
@@ -101,5 +100,3 @@ export default class CurveManipulator extends PhetioObject {
     this.wasMovedProperty.reset();
   }
 }
-
-calculusGrapher.register( 'CurveManipulator', CurveManipulator );

@@ -15,7 +15,6 @@ import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import type { AccessibleTemplateValue } from '../../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import PredictCurve from '../../model/PredictCurve.js';
 import PrimaryCurve from '../../model/PrimaryCurve.js';
@@ -178,5 +177,3 @@ export default class PrimaryGraphAreaDescriber extends GraphAreaDescriber {
     };
   }
 }
-
-calculusGrapher.register( 'PrimaryGraphAreaDescriber', PrimaryGraphAreaDescriber );

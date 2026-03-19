@@ -18,7 +18,6 @@ import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibilit
 import isResettingAllProperty from '../../../../scenery-phet/js/isResettingAllProperty.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ScrubberDragListener from './ScrubberDragListener.js';
 import { ScrubberKeyboardListener } from './ScrubberKeyboardListener.js';
@@ -94,5 +93,3 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
       options.tandem.createTandem( 'keyboardListener' ) ) );
   }
 }
-
-calculusGrapher.register( 'ScrubberHandleNode', ScrubberHandleNode );

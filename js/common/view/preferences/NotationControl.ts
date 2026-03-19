@@ -16,7 +16,6 @@ import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import AquaRadioButtonGroup, { AquaRadioButtonGroupItem } from '../../../../../sun/js/AquaRadioButtonGroup.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import { DerivativeNotation, DerivativeNotationValues } from '../../CalculusGrapherQueryParameters.js';
@@ -131,5 +130,3 @@ class NotationRadioButtonLabel extends HBox {
     } );
   }
 }
-
-calculusGrapher.register( 'NotationControl', NotationControl );

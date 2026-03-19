@@ -10,7 +10,6 @@
 import Enumeration from '../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
 import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProperty.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 
 export default class GraphType extends EnumerationValue {
@@ -38,5 +37,3 @@ export default class GraphType extends EnumerationValue {
     this.tandemNamePrefix = tandemNamePrefix;
   }
 }
-
-calculusGrapher.register( 'GraphType', GraphType );

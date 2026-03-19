@@ -9,7 +9,6 @@
 
 import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import AncillaryTool from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
@@ -52,5 +51,3 @@ export default class ReferenceLine extends AncillaryTool {
     } );
   }
 }
-
-calculusGrapher.register( 'ReferenceLine', ReferenceLine );

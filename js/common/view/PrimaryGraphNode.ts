@@ -36,7 +36,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -394,5 +393,3 @@ export default class PrimaryGraphNode extends GraphNode {
     return this.showPrimaryCurveCheckbox;
   }
 }
-
-calculusGrapher.register( 'PrimaryGraphNode', PrimaryGraphNode );

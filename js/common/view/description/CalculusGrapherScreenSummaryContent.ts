@@ -16,7 +16,6 @@ import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optioni
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import AccessibleList, { AccessibleListItem } from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CurveManipulationProperties from '../../model/CurveManipulationProperties.js';
@@ -154,5 +153,3 @@ class CurrentDetailsNode extends Node {
     } );
   }
 }
-
-calculusGrapher.register( 'CalculusGrapherScreenSummaryContent', CalculusGrapherScreenSummaryContent );

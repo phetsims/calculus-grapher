@@ -7,7 +7,6 @@
  */
 
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CurveManipulator from '../../model/CurveManipulator.js';
@@ -86,5 +85,3 @@ export default class CurveManipulatorDescriber {
     return response;
   }
 }
-
-calculusGrapher.register( 'CurveManipulatorDescriber', CurveManipulatorDescriber );

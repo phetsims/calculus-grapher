@@ -21,7 +21,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -90,5 +89,3 @@ export default class ShowPrimaryCurveCheckbox extends BackgroundNode {
     } );
   }
 }
-
-calculusGrapher.register( 'ShowPrimaryCurveCheckbox', ShowPrimaryCurveCheckbox );

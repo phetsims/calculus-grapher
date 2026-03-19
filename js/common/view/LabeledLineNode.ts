@@ -16,7 +16,6 @@ import Line from '../../../../scenery/js/nodes/Line.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import LabeledLine from '../model/LabeledLine.js';
 
@@ -88,5 +87,3 @@ export default class LabeledLineNode extends Node {
     } );
   }
 }
-
-calculusGrapher.register( 'LabeledLineNode', LabeledLineNode );

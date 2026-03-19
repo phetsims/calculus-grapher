@@ -12,7 +12,6 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import AreaUnderCurveCheckbox from '../../common/view/AreaUnderCurveCheckbox.js';
 import CalculusGrapherScreenView, { CalculusGrapherScreenViewOptions } from '../../common/view/CalculusGrapherScreenView.js';
 import NetSignedAreaAccordionBox from '../../common/view/NetSignedAreaAccordionBox.js';
@@ -90,5 +89,3 @@ export default class IntegralScreenView extends CalculusGrapherScreenView {
     super.reset();
   }
 }
-
-calculusGrapher.register( 'IntegralScreenView', IntegralScreenView );

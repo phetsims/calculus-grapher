@@ -38,7 +38,6 @@ import Color from '../../../../scenery/js/util/Color.js';
 import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProperty.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import TPaint from '../../../../scenery/js/util/TPaint.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
 import Curve from '../model/Curve.js';
@@ -271,5 +270,3 @@ export default class CurveNode extends Node {
     return this.curve.points.map( point => point.getVector() );
   }
 }
-
-calculusGrapher.register( 'CurveNode', CurveNode );

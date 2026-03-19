@@ -16,7 +16,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import VBox, { VBoxOptions } from '../../../../scenery/js/layout/nodes/VBox.js';
 import { NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
@@ -70,5 +69,3 @@ export default class CueingArrowsNode extends VBox {
     } );
   }
 }
-
-calculusGrapher.register( 'CueingArrowsNode', CueingArrowsNode );

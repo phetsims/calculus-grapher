@@ -12,7 +12,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode, { ArrowNodeOptions } from '../../../../scenery-phet/js/ArrowNode.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import TangentScrubber from '../model/TangentScrubber.js';
 
 type SelfOptions = {
@@ -94,5 +93,3 @@ export default class TangentArrowNode extends ArrowNode {
     this.addLinkedElement( tangentScrubber );
   }
 }
-
-calculusGrapher.register( 'TangentArrowNode', TangentArrowNode );

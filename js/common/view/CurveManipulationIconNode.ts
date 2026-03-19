@@ -16,7 +16,6 @@ import Color from '../../../../scenery/js/util/Color.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import pencilAltSolidShape from '../../../../sherpa/js/fontawesome-5/pencilAltSolidShape.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
@@ -188,5 +187,3 @@ export default class CurveManipulationIconNode extends Node {
     curve.pedestal( width, xMin + 4 * xLength / 5, yMax );
   }
 }
-
-calculusGrapher.register( 'CurveManipulationIconNode', CurveManipulationIconNode );

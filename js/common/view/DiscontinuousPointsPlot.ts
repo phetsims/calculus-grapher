@@ -20,7 +20,6 @@ import Circle, { CircleOptions } from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import { PathOptions } from '../../../../scenery/js/nodes/Path.js';
 import TPaint from '../../../../scenery/js/util/TPaint.js';
-import calculusGrapher from '../../calculusGrapher.js';
 
 // These are specific to Calculus Grapher and not appropriate if migrated to bamboo.
 const RADIUS = 2.5;
@@ -129,5 +128,3 @@ export default class DiscontinuousPointsPlot extends Node {
     super.dispose();
   }
 }
-
-calculusGrapher.register( 'DiscontinuousPointsPlot', DiscontinuousPointsPlot );

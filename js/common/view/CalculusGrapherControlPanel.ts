@@ -15,7 +15,6 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
@@ -80,4 +79,3 @@ export default class CalculusGrapherControlPanel extends Panel {
     super( contentNode, options );
   }
 }
-calculusGrapher.register( 'CalculusGrapherControlPanel', CalculusGrapherControlPanel );

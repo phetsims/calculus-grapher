@@ -94,5 +94,3 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
     this.scrubberNode.doAccessibleObjectResponse();
   }
 }
-
-calculusGrapher.register( 'ScrubberKeyboardListener', ScrubberKeyboardListener );

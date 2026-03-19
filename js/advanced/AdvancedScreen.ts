@@ -11,7 +11,6 @@
 import Screen from '../../../joist/js/Screen.js';
 import AlignGroup from '../../../scenery/js/layout/constraints/AlignGroup.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
@@ -71,5 +70,3 @@ export default class AdvancedScreen extends Screen<AdvancedModel, AdvancedScreen
     } );
   }
 }
-
-calculusGrapher.register( 'AdvancedScreen', AdvancedScreen );

@@ -15,7 +15,6 @@
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Enumeration from '../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../phet-core/js/EnumerationValue.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
 
@@ -76,5 +75,3 @@ export default class CurveManipulationType extends EnumerationValue {
     this.hasAdjustableWidth = hasAdjustableWidth;
   }
 }
-
-calculusGrapher.register( 'CurveManipulationType', CurveManipulationType );

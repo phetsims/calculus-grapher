@@ -19,7 +19,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from './CalculusGrapherPreferences.js';
@@ -261,4 +260,3 @@ export default class CalculusGrapherModel implements TModel {
     // Do not reset this.labeledLines, because they are configured only via PhET-iO.
   }
 }
-calculusGrapher.register( 'CalculusGrapherModel', CalculusGrapherModel );

@@ -11,7 +11,6 @@ import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import ProfileColorProperty from '../../../../scenery/js/util/ProfileColorProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import AncillaryTool from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
@@ -74,5 +73,3 @@ export default class AreaUnderCurveScrubber extends AncillaryTool {
     } );
   }
 }
-
-calculusGrapher.register( 'AreaUnderCurveScrubber', AreaUnderCurveScrubber );

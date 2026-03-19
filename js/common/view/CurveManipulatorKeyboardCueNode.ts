@@ -10,7 +10,6 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import KeyboardCueNode from '../../../../scenery-phet/js/accessibility/nodes/KeyboardCueNode.js';
 import TextKeyNode from '../../../../scenery-phet/js/keyboard/TextKeyNode.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulatorNode from './CurveManipulatorNode.js';
 
@@ -35,5 +34,3 @@ export default class CurveManipulatorKeyboardCueNode extends KeyboardCueNode {
     } );
   }
 }
-
-calculusGrapher.register( 'CurveManipulatorKeyboardCueNode', CurveManipulatorKeyboardCueNode );

@@ -18,7 +18,6 @@ import HSeparator from '../../../../scenery/js/layout/nodes/HSeparator.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import { DerivativeNotation } from '../CalculusGrapherQueryParameters.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -369,5 +368,3 @@ function getFractionLabel( numeratorStringProperty: TReadOnlyProperty<string>,
 
   return vBox;
 }
-
-calculusGrapher.register( 'GraphTypeLabelNode', GraphTypeLabelNode );

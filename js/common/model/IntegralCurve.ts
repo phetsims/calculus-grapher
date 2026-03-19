@@ -16,7 +16,6 @@
 
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
 import PrimaryCurve from './PrimaryCurve.js';
 
@@ -84,5 +83,3 @@ export default class IntegralCurve extends Curve {
     this.curveChangedEmitter.emit();
   }
 }
-
-calculusGrapher.register( 'IntegralCurve', IntegralCurve );

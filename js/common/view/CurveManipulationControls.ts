@@ -11,7 +11,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
 import CurveManipulationTypeRadioButtonGroup from './CurveManipulationTypeRadioButtonGroup.js';
@@ -50,5 +49,3 @@ export default class CurveManipulationControls extends VBox {
     } );
   }
 }
-
-calculusGrapher.register( 'CurveManipulationControls', CurveManipulationControls );

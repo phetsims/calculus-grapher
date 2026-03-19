@@ -14,7 +14,6 @@ import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import { PathBoundsMethod } from '../../../scenery/js/nodes/Path.js';
 import Text from '../../../scenery/js/nodes/Text.js';
 import { CheckboxOptions } from '../../../sun/js/Checkbox.js';
-import calculusGrapher from '../calculusGrapher.js';
 
 // CAREFUL: Although there was a deliberate effort to scale other quantities based on
 // CURVE_X_RANGE, changing the CURVE_X_RANGE should lead to manual changes
@@ -124,5 +123,3 @@ export default class CalculusGrapherConstants {
   public static readonly AREA_DESCRIPTION_DECIMALS = 2;
   public static readonly WIDTH_DESCRIPTION_DECIMALS = 1;
 }
-
-calculusGrapher.register( 'CalculusGrapherConstants', CalculusGrapherConstants );

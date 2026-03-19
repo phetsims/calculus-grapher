@@ -7,7 +7,6 @@
  */
 
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import TransformedCurve from './TransformedCurve.js';
 
 export default class PrimaryCurve extends TransformedCurve {
@@ -19,5 +18,3 @@ export default class PrimaryCurve extends TransformedCurve {
     } );
   }
 }
-
-calculusGrapher.register( 'PrimaryCurve', PrimaryCurve );

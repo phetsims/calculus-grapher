@@ -17,7 +17,6 @@
 import Property from '../../../../axon/js/Property.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import GridCheckbox from './GridCheckbox.js';
 import ReferenceLineCheckbox from './ReferenceLineCheckbox.js';
@@ -48,5 +47,3 @@ export default class CalculusGrapherCheckboxGroup extends VBox {
     } );
   }
 }
-
-calculusGrapher.register( 'CalculusGrapherCheckboxGroup', CalculusGrapherCheckboxGroup );

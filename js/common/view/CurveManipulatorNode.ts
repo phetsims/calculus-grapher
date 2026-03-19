@@ -20,7 +20,6 @@ import { PressListenerEvent } from '../../../../scenery/js/listeners/PressListen
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulator from '../model/CurveManipulator.js';
@@ -176,5 +175,3 @@ class TargetNode extends Path {
     } );
   }
 }
-
-calculusGrapher.register( 'CurveManipulatorNode', CurveManipulatorNode );

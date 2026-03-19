@@ -17,7 +17,6 @@ import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -97,4 +96,3 @@ export default class ReferenceLineNode extends ScrubberNode {
     } );
   }
 }
-calculusGrapher.register( 'ReferenceLineNode', ReferenceLineNode );

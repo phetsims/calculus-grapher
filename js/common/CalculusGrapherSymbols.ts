@@ -12,7 +12,6 @@
 
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import MathSymbolFont from '../../../scenery-phet/js/MathSymbolFont.js';
-import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherPreferences from './model/CalculusGrapherPreferences.js';
 
@@ -44,5 +43,3 @@ export default class CalculusGrapherSymbols {
     [ CalculusGrapherPreferences.functionVariableProperty, CalculusGrapherFluent.symbol.xStringProperty, CalculusGrapherFluent.symbol.tStringProperty ],
     ( functionVariable, xString, tString ) => functionVariable === 'x' ? xString : tString );
 }
-
-calculusGrapher.register( 'CalculusGrapherSymbols', CalculusGrapherSymbols );

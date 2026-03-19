@@ -13,7 +13,6 @@ import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CurveManipulationProperties from '../model/CurveManipulationProperties.js';
@@ -116,5 +115,3 @@ export default class CurveManipulationDisplayNode extends Node {
     );
   }
 }
-
-calculusGrapher.register( 'CurveManipulationDisplayNode', CurveManipulationDisplayNode );

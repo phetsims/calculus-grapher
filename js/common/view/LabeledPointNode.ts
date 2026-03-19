@@ -19,7 +19,6 @@ import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import LabeledPoint from '../model/LabeledPoint.js';
 import PlottedPoint from './PlottedPoint.js';
@@ -99,4 +98,3 @@ export default class LabeledPointNode extends Node {
     this.addLinkedElement( labeledPoint );
   }
 }
-calculusGrapher.register( 'LabeledPointNode', LabeledPointNode );

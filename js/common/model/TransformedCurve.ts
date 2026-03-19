@@ -45,7 +45,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import Curve, { CurveOptions } from './Curve.js';
@@ -846,5 +845,3 @@ function createMollifierFunction( width: number ): MathFunction {
   affirm( width > 0, 'width must be positive' );
   return x => ( Math.abs( x ) < width / 2 ) ? Math.exp( 1 / ( ( x / ( width / 2 ) ) ** 2 - 1 ) ) : 0;
 }
-
-calculusGrapher.register( 'TransformedCurve', TransformedCurve );

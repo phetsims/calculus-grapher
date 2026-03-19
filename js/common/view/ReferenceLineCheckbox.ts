@@ -12,7 +12,6 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../common/CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -51,5 +50,3 @@ export default class ReferenceLineCheckbox extends Checkbox {
       } ) );
   }
 }
-
-calculusGrapher.register( 'ReferenceLineCheckbox', ReferenceLineCheckbox );

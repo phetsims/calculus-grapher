@@ -33,7 +33,6 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import phetioStateSetEmitter from '../../../../tandem/js/phetioStateSetEmitter.js';
 import ArrayIO from '../../../../tandem/js/types/ArrayIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import CurvePoint from './CurvePoint.js';
@@ -261,5 +260,3 @@ function isValidPoints( initialPoints: CurvePoint[], points: CurvePoint[] ): boo
   }
   return isValid;
 }
-
-calculusGrapher.register( 'Curve', Curve );

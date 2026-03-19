@@ -17,7 +17,6 @@ import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool from '../model/AncillaryTool.js';
 import ExplorationToolDescriber from './description/ExplorationToolDescriber.js';
@@ -162,5 +161,3 @@ export default abstract class ScrubberNode extends Node {
     } );
   }
 }
-
-calculusGrapher.register( 'ScrubberNode', ScrubberNode );

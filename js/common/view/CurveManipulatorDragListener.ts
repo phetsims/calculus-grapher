@@ -17,7 +17,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CurveManipulationType from '../model/CurveManipulationType.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -177,5 +176,3 @@ export default class CurveManipulatorDragListener extends SoundRichDragListener 
     }
   }
 }
-
-calculusGrapher.register( 'CurveManipulatorDragListener', CurveManipulatorDragListener );

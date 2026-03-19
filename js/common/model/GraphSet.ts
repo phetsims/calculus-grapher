@@ -16,7 +16,6 @@ import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioO
 import Tandem from '../../../../tandem/js/Tandem.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import GraphType from './GraphType.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -84,5 +83,3 @@ export default class GraphSet extends PhetioObject {
     documentation: 'An ordered set of graphs, to be displayed together in the user interface'
   } );
 }
-
-calculusGrapher.register( 'GraphSet', GraphSet );

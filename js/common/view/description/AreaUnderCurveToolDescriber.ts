@@ -11,7 +11,6 @@
 
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -91,5 +90,3 @@ export default class AreaUnderCurveToolDescriber extends ExplorationToolDescribe
     return areaPhrase;
   }
 }
-
-calculusGrapher.register( 'AreaUnderCurveToolDescriber', AreaUnderCurveToolDescriber );

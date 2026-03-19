@@ -860,5 +860,3 @@ const CalculusGrapherFluent = {
 };
 
 export default CalculusGrapherFluent;
-
-calculusGrapher.register('CalculusGrapherFluent', CalculusGrapherFluent);

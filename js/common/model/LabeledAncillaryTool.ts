@@ -11,7 +11,6 @@ import Property from '../../../../axon/js/Property.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AncillaryTool, { AncillaryToolOptions } from './AncillaryTool.js';
 import DerivativeCurve from './DerivativeCurve.js';
@@ -82,5 +81,3 @@ export default class LabeledAncillaryTool extends AncillaryTool {
     return tools;
   }
 }
-
-calculusGrapher.register( 'LabeledAncillaryTool', LabeledAncillaryTool );

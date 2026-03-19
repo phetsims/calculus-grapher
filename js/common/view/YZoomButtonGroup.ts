@@ -12,7 +12,6 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PlusMinusZoomButtonGroup, { PlusMinusZoomButtonGroupOptions } from '../../../../scenery-phet/js/PlusMinusZoomButtonGroup.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -60,5 +59,3 @@ export default class YZoomButtonGroup extends PlusMinusZoomButtonGroup {
     super( yZoomLevelProperty, options );
   }
 }
-
-calculusGrapher.register( 'YZoomButtonGroup', YZoomButtonGroup );

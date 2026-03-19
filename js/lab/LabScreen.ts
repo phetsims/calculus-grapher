@@ -10,7 +10,6 @@
 import Screen from '../../../joist/js/Screen.js';
 import AlignGroup from '../../../scenery/js/layout/constraints/AlignGroup.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-import calculusGrapher from '../calculusGrapher.js';
 import CalculusGrapherFluent from '../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../common/CalculusGrapherColors.js';
 import GraphSet from '../common/model/GraphSet.js';
@@ -69,5 +68,3 @@ export default class LabScreen extends Screen<LabModel, LabScreenView> {
     } );
   }
 }
-
-calculusGrapher.register( 'LabScreen', LabScreen );

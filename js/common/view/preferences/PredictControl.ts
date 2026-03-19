@@ -16,7 +16,6 @@ import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import ToggleSwitch, { ToggleSwitchOptions } from '../../../../../sun/js/ToggleSwitch.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -71,5 +70,3 @@ export default class PredictControl extends PreferencesControl {
     } );
   }
 }
-
-calculusGrapher.register( 'PredictControl', PredictControl );

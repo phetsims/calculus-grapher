@@ -16,7 +16,6 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherModel from '../model/CalculusGrapherModel.js';
@@ -165,5 +164,3 @@ export default class CalculusGrapherScreenView extends ScreenView {
     super.step( dt );
   }
 }
-
-calculusGrapher.register( 'CalculusGrapherScreenView', CalculusGrapherScreenView );

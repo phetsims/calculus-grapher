@@ -13,7 +13,6 @@ import ChartTransform from '../../../../bamboo/js/ChartTransform.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import LabeledPoint from '../model/LabeledPoint.js';
 import LabeledPointNode from './LabeledPointNode.js';
 
@@ -48,5 +47,3 @@ export default class LabeledPointsNode extends Node {
     } );
   }
 }
-
-calculusGrapher.register( 'LabeledPointsNode', LabeledPointsNode );

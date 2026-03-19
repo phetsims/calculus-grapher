@@ -15,7 +15,6 @@ import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import HSlider, { HSliderOptions } from '../../../../sun/js/HSlider.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../CalculusGrapherSymbols.js';
@@ -81,5 +80,3 @@ function findClosestTick( tickValues: number[], value: number ): number {
   tickValues.sort( ( a, b ) => Math.abs( value - a ) - Math.abs( value - b ) );
   return tickValues[ 0 ];
 }
-
-calculusGrapher.register( 'CurveManipulationWidthSlider', CurveManipulationWidthSlider );

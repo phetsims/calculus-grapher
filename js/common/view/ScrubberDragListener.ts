@@ -16,7 +16,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import ScrubberNode from './ScrubberNode.js';
 
 export default class ScrubberDragListener extends SoundRichDragListener {
@@ -73,5 +72,3 @@ export default class ScrubberDragListener extends SoundRichDragListener {
     } );
   }
 }
-
-calculusGrapher.register( 'ScrubberDragListener', ScrubberDragListener );

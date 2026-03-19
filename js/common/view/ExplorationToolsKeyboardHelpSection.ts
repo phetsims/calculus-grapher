@@ -67,5 +67,3 @@ export default class ExplorationToolsKeyboardHelpSection extends KeyboardHelpSec
     } );
   }
 }
-
-calculusGrapher.register( 'ExplorationToolsKeyboardHelpSection', ExplorationToolsKeyboardHelpSection );

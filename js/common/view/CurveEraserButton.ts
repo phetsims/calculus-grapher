@@ -14,7 +14,6 @@ import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js'
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import EraserButton from '../../../../scenery-phet/js/buttons/EraserButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CurveManipulator from '../model/CurveManipulator.js';
 import TransformedCurve from '../model/TransformedCurve.js';
@@ -48,5 +47,3 @@ export default class CurveEraserButton extends EraserButton {
     } );
   }
 }
-
-calculusGrapher.register( 'CurveEraserButton', CurveEraserButton );

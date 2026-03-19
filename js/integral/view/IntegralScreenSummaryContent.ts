@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherSymbols from '../../common/CalculusGrapherSymbols.js';
 import CurveManipulationProperties from '../../common/model/CurveManipulationProperties.js';
@@ -27,5 +26,3 @@ export default class IntegralScreenSummaryContent extends CalculusGrapherScreenS
     } );
   }
 }
-
-calculusGrapher.register( 'IntegralScreenSummaryContent', IntegralScreenSummaryContent );

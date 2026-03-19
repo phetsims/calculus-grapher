@@ -25,7 +25,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import Curve from './Curve.js';
 import CurvePoint from './CurvePoint.js';
@@ -223,5 +222,3 @@ function createYProperty( curvePointProperty: TReadOnlyProperty<CurvePoint>, pro
 
   return new DerivedProperty( [ curvePointProperty ], curvePoint => curvePoint.isDiscontinuous ? null : curvePoint.y, options );
 }
-
-calculusGrapher.register( 'AncillaryTool', AncillaryTool );

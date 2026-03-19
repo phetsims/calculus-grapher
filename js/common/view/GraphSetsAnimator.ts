@@ -16,7 +16,6 @@ import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioS
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import GraphNode from './GraphNode.js';
 
 const STEPPER = null; // step method must be called by the client
@@ -229,5 +228,3 @@ export default class GraphSetsAnimator {
     this.activeAnimation && this.activeAnimation.step( dt );
   }
 }
-
-calculusGrapher.register( 'GraphSetsAnimator', GraphSetsAnimator );

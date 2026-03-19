@@ -16,7 +16,6 @@ import Node from '../../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
@@ -146,5 +145,3 @@ class DiscontinuitiesRadioButtonLabel extends Node {
     } );
   }
 }
-
-calculusGrapher.register( 'DiscontinuitiesControl', DiscontinuitiesControl );

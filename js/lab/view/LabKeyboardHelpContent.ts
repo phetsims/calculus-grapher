@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherKeyboardHelpContent from '../../common/view/CalculusGrapherKeyboardHelpContent.js';
 
@@ -16,5 +15,3 @@ export default class LabKeyboardHelpContent extends CalculusGrapherKeyboardHelpC
     super( CalculusGrapherFluent.keyboardHelp.referenceLineStringProperty );
   }
 }
-
-calculusGrapher.register( 'LabKeyboardHelpContent', LabKeyboardHelpContent );

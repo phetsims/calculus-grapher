@@ -13,7 +13,6 @@ import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js'
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ReturnButton from '../../../../scenery-phet/js/buttons/ReturnButton.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import TransformedCurve from '../model/TransformedCurve.js';
 
@@ -42,5 +41,3 @@ export default class UndoButton extends ReturnButton {
     } );
   }
 }
-
-calculusGrapher.register( 'UndoButton', UndoButton );

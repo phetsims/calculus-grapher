@@ -14,7 +14,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import LabeledLine from '../model/LabeledLine.js';
 import LabeledLineNode, { LabeledLineNodeOptions } from './LabeledLineNode.js';
 
@@ -58,5 +57,3 @@ export default class LabeledLinesNode extends Node {
     } );
   }
 }
-
-calculusGrapher.register( 'LabeledLinesNode', LabeledLinesNode );

@@ -13,7 +13,6 @@ import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
 import RectangularRadioButtonGroup, { RectangularRadioButtonGroupItem } from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import GraphSet from '../model/GraphSet.js';
@@ -64,5 +63,3 @@ export default class GraphSetRadioButtonGroup extends RectangularRadioButtonGrou
     };
   }
 }
-
-calculusGrapher.register( 'GraphSetRadioButtonGroup', GraphSetRadioButtonGroup );

@@ -19,7 +19,6 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
@@ -344,5 +343,3 @@ export default class GraphsNode extends Node {
     return this.primaryGraphNode.getShowPrimaryCurveCheckbox();
   }
 }
-
-calculusGrapher.register( 'GraphsNode', GraphsNode );

@@ -8,7 +8,6 @@
  */
 
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -55,5 +54,3 @@ export default abstract class ExplorationToolDescriber {
     return xPhrase;
   }
 }
-
-calculusGrapher.register( 'ExplorationToolDescriber', ExplorationToolDescriber );

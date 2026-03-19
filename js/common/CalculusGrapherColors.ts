@@ -166,5 +166,3 @@ export default class CalculusGrapherColors {
     tandem: tandem.createTandem( 'predictCurveManipulatorColorProperty' )
   } );
 }
-
-calculusGrapher.register( 'CalculusGrapherColors', CalculusGrapherColors );

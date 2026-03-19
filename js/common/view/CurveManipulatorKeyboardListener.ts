@@ -47,5 +47,3 @@ export default class CurveManipulatorKeyboardListener extends KeyboardListener<O
     } );
   }
 }
-
-calculusGrapher.register( 'CurveManipulatorKeyboardListener', CurveManipulatorKeyboardListener );

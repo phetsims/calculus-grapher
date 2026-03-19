@@ -12,7 +12,6 @@
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { toFixedNumber } from '../../../../../dot/js/util/toFixedNumber.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
-import calculusGrapher from '../../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../../CalculusGrapherConstants.js';
 import CalculusGrapherSymbols from '../../CalculusGrapherSymbols.js';
@@ -95,5 +94,3 @@ export default class TangentToolDescriber extends ExplorationToolDescriber {
     return derivativePhrase;
   }
 }
-
-calculusGrapher.register( 'TangentToolDescriber', TangentToolDescriber );

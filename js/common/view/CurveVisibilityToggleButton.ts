@@ -12,7 +12,6 @@ import { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optio
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import EyeToggleButton, { EyeToggleButtonOptions } from '../../../../scenery-phet/js/buttons/EyeToggleButton.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -37,5 +36,3 @@ export default class CurveVisibilityToggleButton extends EyeToggleButton {
     super( curvesVisibleProperty, options );
   }
 }
-
-calculusGrapher.register( 'CurveVisibilityToggleButton', CurveVisibilityToggleButton );

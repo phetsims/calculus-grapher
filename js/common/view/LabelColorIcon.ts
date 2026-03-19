@@ -13,7 +13,6 @@ import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import TColor from '../../../../scenery/js/util/TColor.js';
-import calculusGrapher from '../../calculusGrapher.js';
 
 export class LabelColorIcon extends VBox {
 
@@ -42,5 +41,3 @@ export class LabelColorIcon extends VBox {
     } );
   }
 }
-
-calculusGrapher.register( 'LabelColorIcon', LabelColorIcon );

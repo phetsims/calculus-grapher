@@ -22,7 +22,6 @@ import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import StringUnionIO from '../../../../tandem/js/types/StringUnionIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 
 const PointTypeValues = [ 'smooth', 'cusp', 'discontinuous' ] as const;
@@ -223,5 +222,3 @@ export default class CurvePoint {
     documentation: 'describe the point on a curve'
   } );
 }
-
-calculusGrapher.register( 'CurvePoint', CurvePoint );

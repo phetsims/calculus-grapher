@@ -15,7 +15,6 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherCheckboxGroup from './CalculusGrapherCheckboxGroup.js';
@@ -53,5 +52,3 @@ export default class TangentCheckbox extends Checkbox {
       } ) );
   }
 }
-
-calculusGrapher.register( 'TangentCheckbox', TangentCheckbox );

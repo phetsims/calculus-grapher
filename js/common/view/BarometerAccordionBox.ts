@@ -30,7 +30,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import BooleanIO from '../../../../tandem/js/types/BooleanIO.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherColors from '../CalculusGrapherColors.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import CalculusGrapherPreferences from '../model/CalculusGrapherPreferences.js';
@@ -233,5 +232,3 @@ function createLabelText( string: string, zeroX: number, yPosition: number ): No
     // No PhET-iO instrumentation is desired.
   } );
 }
-
-calculusGrapher.register( 'BarometerAccordionBox', BarometerAccordionBox );

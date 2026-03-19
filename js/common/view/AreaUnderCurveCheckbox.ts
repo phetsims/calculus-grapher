@@ -15,7 +15,6 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Checkbox, { CheckboxOptions } from '../../../../sun/js/Checkbox.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import AreaUnderCurveScrubberNode from './AreaUnderCurveScrubberNode.js';
@@ -54,5 +53,3 @@ export default class AreaUnderCurveCheckbox extends Checkbox {
       } ) );
   }
 }
-
-calculusGrapher.register( 'AreaUnderCurveCheckbox', AreaUnderCurveCheckbox );

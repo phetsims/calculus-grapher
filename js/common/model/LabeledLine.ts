@@ -13,7 +13,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import ColorProperty from '../../../../scenery/js/util/ColorProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import CalculusGrapherQueryParameters from '../CalculusGrapherQueryParameters.js';
 import DerivativeCurve from './DerivativeCurve.js';
 import IntegralCurve from './IntegralCurve.js';
@@ -71,5 +70,3 @@ export default class LabeledLine extends LabeledAncillaryTool {
         } ) );
   }
 }
-
-calculusGrapher.register( 'LabeledLine', LabeledLine );

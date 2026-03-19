@@ -14,7 +14,6 @@
  */
 
 import Tandem from '../../../../tandem/js/Tandem.js';
-import calculusGrapher from '../../calculusGrapher.js';
 import Curve from './Curve.js';
 import PrimaryCurve from './PrimaryCurve.js';
 
@@ -121,4 +120,3 @@ export default class SecondDerivativeCurve extends Curve {
   }
 
 }
-calculusGrapher.register( 'SecondDerivativeCurve', SecondDerivativeCurve );
