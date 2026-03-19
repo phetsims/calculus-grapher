@@ -1,5 +1,5 @@
 {
-  "comment": "# calculus-grapher 1.1.0-rc.1 Tue Mar 17 2026 13:04:55 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# calculus-grapher 1.1.0-rc.1 Thu Mar 19 2026 12:15:50 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "4fa534de08d265643688965bf233cb73326c3cb7",
     "branch": "HEAD"
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "ddaf160e798a6e2468413d23e7e88e3e5bb55353",
+    "sha": "161ddef2e156c16a2415124216a8df1815ef4ce9",
     "branch": "1.1"
   },
   "chipper": {
