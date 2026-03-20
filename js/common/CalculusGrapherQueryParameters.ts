@@ -158,6 +158,6 @@ const CalculusGrapherQueryParameters = QueryStringMachine.getAll( {
 // Log query parameters
 logGlobal( 'phet.chipper.queryParameters' );
 logGlobal( 'phet.preloads.phetio.queryParameters' );
-logGlobal( 'phet.calculusGrapher.CalculusGrapherQueryParameters' );
+phet.log && phet.log( `CalculusGrapherQueryParameters: ${JSON.stringify( CalculusGrapherQueryParameters, null, 2 )}` );
 
 export default CalculusGrapherQueryParameters;
