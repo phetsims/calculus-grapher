@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "calculus-grapher": {
-    "sha": "fff142b374c7cd5737f9065542b3c393f67aa988",
+    "sha": "4dc30465b284e6ed2d82b20c5d62dffecc6e3259",
     "branch": "1.0"
   },
   "chipper": {
@@ -69,7 +69,7 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "6f7f1a49e48d3cb54ee29e617b41c1783b6bbb9f",
+    "sha": "a121eb41ec0f927d9671a7c8f60370b9a78d3b33",
     "branch": "HEAD"
   },
   "scenery-phet": {
