@@ -44,7 +44,8 @@ export default class LabeledAncillaryTool extends AncillaryTool {
     super( integralCurve, primaryCurve, predictCurve, derivativeCurve, secondDerivativeCurve, options );
 
     this.stringProperty = new StringProperty( options.label, {
-      tandem: options.tandem.createTandem( Text.STRING_PROPERTY_TANDEM_NAME )
+      tandem: options.tandem.createTandem( Text.STRING_PROPERTY_TANDEM_NAME ),
+      phetioFeatured: true
     } );
   }
 
