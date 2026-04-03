@@ -14,10 +14,11 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import { optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
+import AccessibleInteractiveOptions from '../../../../scenery-phet/js/accessibility/AccessibleInteractiveOptions.js';
 import isResettingAllProperty from '../../../../scenery-phet/js/isResettingAllProperty.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
+import CalculusGrapherFluent from '../../CalculusGrapherFluent.js';
 import CalculusGrapherConstants from '../CalculusGrapherConstants.js';
 import ScrubberDragListener from './ScrubberDragListener.js';
 import { ScrubberKeyboardListener } from './ScrubberKeyboardListener.js';
@@ -43,7 +44,7 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
                       providedOptions: XDragHandleNodeOptions ) {
 
     const options = optionize4<XDragHandleNodeOptions, SelfOptions, ShadedSphereNodeOptions>()(
-      {}, AccessibleDraggableOptions, {
+      {}, AccessibleInteractiveOptions, {
 
         // SelfOptions
         radius: CalculusGrapherConstants.SCRUBBER_RADIUS,
@@ -51,7 +52,8 @@ export default class ScrubberHandleNode extends InteractiveHighlighting( ShadedS
 
         // ShadedSphereNodeOptions
         isDisposable: false,
-        cursor: 'ew-resize'
+        cursor: 'ew-resize',
+        accessibleRoleDescription: CalculusGrapherFluent.a11y.explorationTools.accessibleRoleDescriptionStringProperty
       }, providedOptions );
 
     // If we have instrumented the handle's visibleProperty, we also want to feature it in Studio.

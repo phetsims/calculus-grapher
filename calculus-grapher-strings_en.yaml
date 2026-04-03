@@ -437,6 +437,7 @@ a11y:
 
   # For all tools
   explorationTools:
+    accessibleRoleDescription: custom slider
     accessibleHeading: Exploration Tools
     accessibleObjectResponse:
       # Used in patterns that have a {$xPhrase} placeholder.

@@ -381,6 +381,7 @@ type StringsType = {
       }
     };
     'explorationTools': {
+      'accessibleRoleDescriptionStringProperty': LocalizedStringProperty;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleObjectResponse': {
         'xPhrase': {

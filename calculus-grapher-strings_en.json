@@ -748,6 +748,9 @@
       }
     },
     "explorationTools": {
+      "accessibleRoleDescription": {
+        "value": "custom slider"
+      },
       "accessibleHeading": {
         "value": "Exploration Tools"
       },

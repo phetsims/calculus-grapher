@@ -221,6 +221,7 @@ addToMapIfDefined( 'a11y_curveManipulators_primary_accessibleName', 'a11y.curveM
 addToMapIfDefined( 'a11y_curveManipulators_primary_accessibleHelpText', 'a11y.curveManipulators.primary.accessibleHelpTextStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_predict_accessibleName', 'a11y.curveManipulators.predict.accessibleNameStringProperty' );
 addToMapIfDefined( 'a11y_curveManipulators_predict_accessibleHelpText', 'a11y.curveManipulators.predict.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_explorationTools_accessibleRoleDescription', 'a11y.explorationTools.accessibleRoleDescriptionStringProperty' );
 addToMapIfDefined( 'a11y_explorationTools_accessibleHeading', 'a11y.explorationTools.accessibleHeadingStringProperty' );
 addToMapIfDefined( 'a11y_explorationTools_accessibleObjectResponse_xPhrase_min', 'a11y.explorationTools.accessibleObjectResponse.xPhrase.minStringProperty' );
 addToMapIfDefined( 'a11y_explorationTools_accessibleObjectResponse_xPhrase_max', 'a11y.explorationTools.accessibleObjectResponse.xPhrase.maxStringProperty' );
@@ -761,6 +762,7 @@ const CalculusGrapherFluent = {
     },
     _comment_48: new FluentComment( {"comment":"For all tools","associatedKey":"explorationTools"} ),
     explorationTools: {
+      accessibleRoleDescriptionStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_explorationTools_accessibleRoleDescription', _.get( CalculusGrapherStrings, 'a11y.explorationTools.accessibleRoleDescriptionStringProperty' ) ),
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_explorationTools_accessibleHeading', _.get( CalculusGrapherStrings, 'a11y.explorationTools.accessibleHeadingStringProperty' ) ),
       accessibleObjectResponse: {
         _comment_0: new FluentComment( {"comment":"Used in patterns that have a {$xPhrase} placeholder.","associatedKey":"xPhrase"} ),
