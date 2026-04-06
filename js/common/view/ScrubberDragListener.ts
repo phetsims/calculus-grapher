@@ -31,9 +31,6 @@ export default class ScrubberDragListener extends SoundRichDragListener {
       chartTransform.modelXRange.min, chartTransform.modelYRange.min,
       chartTransform.modelXRange.max, chartTransform.modelYRange.max ) );
 
-    // Value of xProperty at the start of the drag.
-    let xStart: number;
-
     super( {
 
       // Synthesize a ModelViewTransform2 from the ChartTransform.
@@ -47,13 +44,10 @@ export default class ScrubberDragListener extends SoundRichDragListener {
       dragBoundsProperty: dragBoundsProperty,
 
       keyboardDragListenerOptions: {
+        keyboardDragDirection: 'leftRight',
         dragDelta: chartTransform.modelToViewDeltaX( 0.1 ),
         shiftDragDelta: chartTransform.modelToViewDeltaX( 0.01 ),
         moveOnHoldInterval: 50
-      },
-
-      start: ( event, listener ) => {
-        xStart = xProperty.value;
       },
 
       drag: ( event, listener ) => {
@@ -61,11 +55,7 @@ export default class ScrubberDragListener extends SoundRichDragListener {
       },
 
       end: () => {
-
-        // So that we don't get a response if upArrow and downArrow are used.
-        if ( xProperty.value !== xStart ) {
-          scrubberNode.doAccessibleObjectResponse();
-        }
+        scrubberNode.doAccessibleObjectResponse();
       },
 
       tandem: tandem
