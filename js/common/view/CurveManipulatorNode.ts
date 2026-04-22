@@ -1,4 +1,3 @@
-
 // Copyright 2025-2026, University of Colorado Boulder
 
 /**
@@ -133,7 +132,10 @@ export default class CurveManipulatorNode extends InteractiveHighlighting( Node 
    * Adds an accessible object response that describes the manipulator when it gets keyboard focus.
    */
   private doAccessibleObjectResponseFocused(): void {
-    this.addAccessibleFocusObjectResponse( this.describer.getAccessibleObjectResponseFocused() );
+    this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponseFocused(), {
+      interruptible: true, // see https://github.com/phetsims/calculus-grapher/issues/390
+      alertDelay: 1000 // ms, see https://github.com/phetsims/calculus-grapher/issues/390#issuecomment-4068266165
+    } );
   }
 
   /**
