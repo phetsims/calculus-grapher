@@ -121,7 +121,7 @@ export default abstract class ScrubberNode extends Node {
     this.addLinkedElement( scrubber );
 
     handleNode.focusedProperty.lazyLink( focused => {
-      focused && this.doAccessibleObjectResponse();
+      focused && this.doAccessibleObjectResponseFocused();
     } );
   }
 
@@ -134,13 +134,20 @@ export default abstract class ScrubberNode extends Node {
   }
 
   /**
-   * Adds an object response when the scrubber gets focused or is moved.
+   * Adds an object response when the scrubber is moved.
    */
-  public doAccessibleObjectResponse(): void {
+  public doAccessibleObjectResponseMoved(): void {
     this.addAccessibleObjectResponse( this.describer.getAccessibleObjectResponse(), {
       interruptible: true, // see https://github.com/phetsims/calculus-grapher/issues/390
       alertDelay: 1000 // ms, see https://github.com/phetsims/calculus-grapher/issues/390#issuecomment-4068266165
     } );
+  }
+
+  /**
+   * Adds an object response when the scrubber gets focus.
+   */
+  public doAccessibleObjectResponseFocused(): void {
+    this.addAccessibleFocusObjectResponse( this.describer.getAccessibleObjectResponse() );
   }
 
   /**

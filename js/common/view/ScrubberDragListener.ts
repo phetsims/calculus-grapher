@@ -55,7 +55,7 @@ export default class ScrubberDragListener extends SoundRichDragListener {
       },
 
       end: () => {
-        scrubberNode.doAccessibleObjectResponse();
+        scrubberNode.doAccessibleObjectResponseMoved();
       },
 
       tandem: tandem

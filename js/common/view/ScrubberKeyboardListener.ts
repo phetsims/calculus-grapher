@@ -79,7 +79,7 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
     xProperty.value = xProperty.range.min;
     positionProperty.value = new Vector2( xProperty.range.min, positionProperty.value.y );
     MIN_SOUND_PLAYER.play();
-    this.scrubberNode.doAccessibleObjectResponse();
+    this.scrubberNode.doAccessibleObjectResponseMoved();
   }
 
   /**
@@ -91,6 +91,6 @@ export class ScrubberKeyboardListener extends KeyboardListener<OneKeyStroke[]> {
     xProperty.value = xProperty.range.max;
     positionProperty.value = new Vector2( xProperty.range.max, positionProperty.value.y );
     MAX_SOUND_PLAYER.play();
-    this.scrubberNode.doAccessibleObjectResponse();
+    this.scrubberNode.doAccessibleObjectResponseMoved();
   }
 }
